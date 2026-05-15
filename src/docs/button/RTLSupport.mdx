@@ -1,0 +1,20 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Button/RTL Support" />
+
+# RTL Support
+
+- Leading icon moves to the **right**; trailing icon moves to the **left** via CSS logical properties (`margin-inline-start`, `margin-inline-end`).
+- Text direction inherits `dir="rtl"` from the document — no per-button override needed.
+- Button-menu chevron reverses direction (`›` → `‹`) in RTL.
+- The `RTL=True` variant in Figma pre-mirrors icon and label order for design inspection.
+
+```html
+<!-- RTL example -->
+<div dir="rtl">
+  <button type="button" class="btn btn--primary btn--medium">
+    <svg class="btn__icon btn__icon--leading" aria-hidden="true" focusable="false"><!-- plus --></svg>
+    إنشاء مشروع
+  </button>
+</div>
+```

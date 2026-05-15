@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Button/Guidelines" />
+
+# Guidelines
+
+## Usage Rules
+
+- **One primary button per section.** Multiple primaries compete for attention.
+- **Labels must be verbs**: "Save", "Create project", "Delete account" — not "OK" or "Yes".
+- **Destructive actions** require a confirmation step before execution.
+- **Loading state**: disable and show spinner while async action completes to prevent double-submit.
+- Use `type="submit"` only inside `<form>`; use `type="button"` everywhere else.
+
+## Accessibility
+
+- Always use a `<button>` element — never `<div>` or `<span>` styled as a button.
+- `aria-label` required for icon-only buttons.
+- `aria-pressed` for toggle buttons.
+- `aria-busy="true"` when in loading state.
+- Focus ring must meet 3:1 contrast against adjacent surface (WCAG 2.4.11).
+
+## Do & Don't
+
+| ✅ Do | ❌ Don't |
+|---|---|
+| Use one primary button per view | Stack two primary buttons side by side |
+| Write actionable verb labels ("Save changes") | Use vague labels ("OK", "Click here") |
+| Show loading state during async actions | Leave button active while a request is in flight |
+| Use Destructive style for delete/remove | Use Primary style for destructive actions |
+| Use `<button type="button">` outside forms | Use `<div>` or `<span>` as a button |
+
+## Example HTML Usage
+
+```html
+<!-- Primary button -->
+<button type="button" class="btn btn--primary btn--medium">
+  Save changes
+</button>
+
+<!-- Primary with leading icon -->
+<button type="button" class="btn btn--primary btn--medium">
+  <svg class="btn__icon btn__icon--leading" aria-hidden="true" focusable="false"><!-- plus --></svg>
+  Create project
+</button>
+
+<!-- Destructive -->
+<button type="button" class="btn btn--destructive btn--medium">
+  Delete account
+</button>
+
+<!-- Loading state -->
+<button type="button" class="btn btn--primary btn--medium" aria-busy="true" disabled>
+  <svg class="btn__spinner" aria-hidden="true"><!-- spinner --></svg>
+  <span class="sr-only">Saving…</span>
+</button>
+
+<!-- Icon-only (Close) -->
+<button type="button" class="btn btn--close" aria-label="Close dialog">
+  <svg aria-hidden="true" focusable="false"><!-- × --></svg>
+</button>
+```
