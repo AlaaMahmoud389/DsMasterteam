@@ -1,0 +1,312 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Icon, ICON_NAMES } from '../../components/icons/Icon';
+import commsPng from '../../assets/icons/categories/communications.png';
+import filesPng from '../../assets/icons/categories/files-folders.png';
+import searchPng from '../../assets/icons/categories/search.png';
+import checkPng from '../../assets/icons/categories/check-validation.png';
+
+<Meta title="Foundations/Icons" />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Foundations / Icons</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Icons</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 680, lineHeight: 1.7 }}>The design system uses <strong>Huge Icon Set v2.0 — Sharp style</strong>, a 2 300+ icon library embedded in the Figma file. All icons accept <code style={{ background: '#f3f4f6', padding: '1px 5px', borderRadius: 3 }}>size</code> (16 / 20 / 24 / 32 px) and a <code style={{ background: '#f3f4f6', padding: '1px 5px', borderRadius: 3 }}>filled</code> variant. Inline SVG implementations use <code style={{ background: '#f3f4f6', padding: '1px 5px', borderRadius: 3 }}>currentColor</code> for theming.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}><span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />src/components/icons/Icon.jsx</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}><span style={{ width: 7, height: 7, borderRadius: '50%', background: '#6366f1', display: 'inline-block' }} />2 300+ icons · Sharp style</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=258-3" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma · Icons page</a>
+  </div>
+</div>
+
+---
+
+## Icon system — live gallery
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 32 }}>
+{[
+  { group: 'Arrows', icons: ['arrow-right','arrow-left','arrow-up','arrow-down','arrow-up-right','arrow-down-left','arrow-reload'] },
+  { group: 'Chevrons', icons: ['chevron-right','chevron-left','chevron-up','chevron-down','chevron-right-double','chevron-left-double'] },
+  { group: 'Actions', icons: ['cancel','cancel-circle','add','add-circle','minus','minus-circle','tick','tick-double','tick-circle'] },
+  { group: 'Edit & File', icons: ['edit','delete','copy'] },
+  { group: 'Search & Filter', icons: ['search','filter','sort'] },
+  { group: 'Eye', icons: ['eye','eye-off'] },
+  { group: 'Home & Navigation', icons: ['home','link','external-link'] },
+  { group: 'User', icons: ['user','user-circle','users'] },
+  { group: 'Notification & Alert', icons: ['bell','bell-off','notification','alert','information-circle'] },
+  { group: 'Settings', icons: ['setting'] },
+  { group: 'Favourites', icons: ['star','heart','bookmark'] },
+  { group: 'Calendar & Time', icons: ['calendar','time'] },
+  { group: 'Transfer', icons: ['download','upload','share'] },
+  { group: 'Layout', icons: ['grid','list','menu','more-horizontal','more-vertical'] },
+  { group: 'Communication', icons: ['message','mail','phone'] },
+  { group: 'Data', icons: ['chart-bar','chart-line','database'] },
+].map(({ group, icons }, gi) => (
+<div key={group} style={{ borderBottom: gi < 15 ? '1px solid #f3f4f6' : 'none' }}>
+  <div style={{ padding: '10px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.07em', color: '#9ca3af', background: '#fafafa', borderBottom: '1px solid #f3f4f6' }}>{group}</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, padding: 12 }}>
+    {icons.map(name => (
+    <div key={name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, padding: '10px 8px', borderRadius: 8, minWidth: 68, background: '#fff', border: '1px solid #f3f4f6' }}>
+      <Icon name={name} size={24} style={{ color: '#1849a9' }} />
+      <span style={{ fontSize: 9, color: '#9ca3af', textAlign: 'center', wordBreak: 'break-all', maxWidth: 60, lineHeight: 1.3 }}>{name}</span>
+    </div>
+    ))}
+  </div>
+</div>
+))}
+</div>
+
+---
+
+## Icon specs
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 16, marginBottom: 32 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>Viewbox</div>
+  <div style={{ fontSize: 22, fontWeight: 700, color: '#111827', marginBottom: 4 }}>24 × 24</div>
+  <div style={{ fontSize: 12, color: '#6b7280' }}>All icons use a 24×24 viewBox. Render at 16, 20, 24, or 32 px.</div>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>Stroke</div>
+  <div style={{ fontSize: 22, fontWeight: 700, color: '#111827', marginBottom: 4 }}>1.5 px</div>
+  <div style={{ fontSize: 12, color: '#6b7280' }}>Consistent stroke. Round linecap & linejoin.</div>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>Style</div>
+  <div style={{ fontSize: 22, fontWeight: 700, color: '#111827', marginBottom: 4 }}>Sharp</div>
+  <div style={{ fontSize: 12, color: '#6b7280' }}>Huge Icon Set v2.0 — Sharp variant. Outline + Filled.</div>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>Library</div>
+  <div style={{ fontSize: 22, fontWeight: 700, color: '#111827', marginBottom: 4 }}>2 300+</div>
+  <div style={{ fontSize: 12, color: '#6b7280' }}>Icons across 48 categories. Figma node 258:3.</div>
+</div>
+</div>
+
+---
+
+## Icon properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 32 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '100px 80px 1fr 120px' }}><span>Prop</span><span>Type</span><span>Description</span><span>Default</span></div>
+{[
+{ prop: 'name', type: 'string', desc: 'Icon name from the Figma design system (required)', def: '—' },
+{ prop: 'size', type: '16 | 20 | 24 | 32', desc: 'Pixel size — maps to Figma size variants', def: '24' },
+{ prop: 'color', type: 'string', desc: 'CSS color — overrides parent currentColor', def: 'currentColor' },
+{ prop: 'aria-label', type: 'string', desc: 'Accessible label for standalone icons (no adjacent text)', def: '—' },
+{ prop: 'aria-hidden', type: 'boolean', desc: 'Defaults to true when aria-label is absent', def: 'true' },
+{ prop: 'className', type: 'string', desc: 'Additional CSS class', def: '—' },
+{ prop: 'style', type: 'CSSProperties', desc: 'Inline style (e.g. RTL transform)', def: '—' },
+].map(({ prop, type, desc, def }, i) => (
+<div key={prop} style={{ display: 'grid', gridTemplateColumns: '100px 80px 1fr 120px', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', alignItems: 'center', gap: 12 }}>
+  <code style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{prop}</code>
+  <span style={{ fontSize: 11, color: '#6366f1', background: '#f0f0ff', padding: '1px 5px', borderRadius: 3 }}>{type}</span>
+  <span style={{ fontSize: 12, color: '#374151' }}>{desc}</span>
+  <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
+</div>
+))}
+</div>
+
+---
+
+## Usage
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 32 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Import and render</div>
+<div style={{ padding: '16px 20px' }}>
+<pre style={{ margin: 0, fontSize: 12, color: '#374151', lineHeight: 1.8, background: '#f9fafb', padding: '14px 16px', borderRadius: 6, border: '1px solid #e5e7eb', overflow: 'auto' }}>{`import { Icon } from '../components/icons';
+
+// Default 24px — color from parent
+<Icon name="arrow-right" />
+
+// Explicit size
+<Icon name="search" size={20} />
+
+// Custom color
+<Icon name="bell" size={24} color="#1849a9" />
+
+// Standalone icon (must have aria-label)
+<button aria-label="Delete item">
+  <Icon name="delete" size={20} aria-hidden="true" />
+</button>
+
+// RTL directional mirroring
+<Icon
+  name="arrow-right"
+  size={20}
+  style={{ transform: dir === 'rtl' ? 'scaleX(-1)' : 'none' }}
+/>`}</pre>
+</div>
+</div>
+
+---
+
+## RTL directional mirroring
+
+<div style={{ marginBottom: 8, fontSize: 13, color: '#6b7280', lineHeight: 1.6 }}>Directional icons (arrows, chevrons, external-link) must mirror horizontally in RTL layouts. Non-directional icons (cancel, add, eye, star, etc.) must NOT mirror.</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 32 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
+<div style={{ padding: '20px 24px', borderRight: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9', marginBottom: 12 }}>Directional — mirror in RTL</div>
+  <div style={{ display: 'flex', gap: 20, marginBottom: 16 }}>
+    {['arrow-right','arrow-left','chevron-right','external-link'].map(n => (
+    <div key={n} style={{ textAlign: 'center' }}>
+      <Icon name={n} size={20} style={{ color: '#374151', display: 'block', margin: '0 auto 4px' }} />
+      <div style={{ fontSize: 9, color: '#9ca3af' }}>LTR</div>
+      <Icon name={n} size={20} style={{ color: '#374151', display: 'block', margin: '4px auto 4px', transform: 'scaleX(-1)' }} />
+      <div style={{ fontSize: 9, color: '#9ca3af' }}>RTL</div>
+    </div>
+    ))}
+  </div>
+  <pre style={{ fontSize: 10, color: '#374151', background: '#f9fafb', padding: '8px 10px', borderRadius: 6, border: '1px solid #e5e7eb', margin: 0 }}>{`<Icon name="arrow-right" style={{
+  transform: dir === 'rtl'
+    ? 'scaleX(-1)' : 'none'
+}} />`}</pre>
+</div>
+<div style={{ padding: '20px 24px' }}>
+  <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Non-directional — never mirror</div>
+  <div style={{ display: 'flex', gap: 20, marginBottom: 16 }}>
+    {['cancel','add','eye','bell','star'].map(n => (
+    <div key={n} style={{ textAlign: 'center' }}>
+      <Icon name={n} size={20} style={{ color: '#374151', display: 'block', margin: '0 auto 4px' }} />
+      <div style={{ fontSize: 9, color: '#9ca3af' }}>LTR</div>
+      <Icon name={n} size={20} style={{ color: '#374151', display: 'block', margin: '4px auto 4px' }} />
+      <div style={{ fontSize: 9, color: '#9ca3af' }}>RTL</div>
+    </div>
+    ))}
+  </div>
+  <div style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.7 }}>Symmetric icons have the same meaning in both reading directions. Applying <code style={{ background: '#f3f4f6', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>scaleX(-1)</code> to these would be incorrect.</div>
+</div>
+</div>
+</div>
+
+---
+
+## Figma icon library — all 2 300+ icons
+
+The Figma Icons page (node 258:3) contains the full Huge Icon Set v2.0 Sharp style across 48 categories. Every icon has 8 variants: 4 sizes (16 / 20 / 24 / 32 px) × 2 fill states (outline / filled).
+
+<div style={{ marginBottom: 24 }}>
+<div style={{ fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 12 }}>Check Validation</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <img src={checkPng} alt="Check Validation icons from Figma" style={{ width: '100%', display: 'block' }} />
+</div>
+<div style={{ fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 12 }}>Communications</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <img src={commsPng} alt="Communications icons from Figma" style={{ width: '100%', display: 'block' }} />
+</div>
+<div style={{ fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 12 }}>Files & Folders</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <img src={filesPng} alt="Files & Folders icons from Figma" style={{ width: '100%', display: 'block' }} />
+</div>
+<div style={{ fontSize: 13, fontWeight: 600, color: '#374151', marginBottom: 12 }}>Search</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <img src={searchPng} alt="Search icons from Figma" style={{ width: '100%', display: 'block' }} />
+</div>
+</div>
+
+### All 48 icon categories
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 32 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '1fr 80px' }}><span>Category</span><span>Icons</span></div>
+{[
+  ['Add Remove Delete', 27], ['Alert Notification', 27], ['Animation', 8],
+  ['Arrows (sharp)', 153], ['Artificial Intelligence', 62], ['Award Reward', 22],
+  ['Bookmark Favorite', 27], ['Brand Logo', 40], ['Building, Landmark & Places', 38],
+  ['Business and Finance', 126], ['Check Validation', 30], ['Communications', 110],
+  ['Crypto', 40], ['Dashboard', 21], ['Date and Time', 64],
+  ['Devices', 56], ['Download and Upload', 19], ['E-Commerce', 61],
+  ['Education', 48], ['Energy', 14], ['Files & Folders', 81],
+  ['Filter Sorting', 21], ['Geometric Shapes', 88], ['Git', 10],
+  ['Hand Gestures', 87], ['Hierarchy', 11], ['Home', 14],
+  ['Image, Camera & Video', 44], ['Islamic', 30], ['Layout & Borders', 26],
+  ['Legal', 53], ['Link Unlink', 19], ['Location & Maps', 65],
+  ['Login and Logout', 20], ['Mathematics', 88], ['Media', 45],
+  ['Medical', 49], ['Mouse & Cursors', 73], ['Note and Task', 23],
+  ['Presentation', 18], ['Programming Language', 42], ['Search', 17],
+  ['Security', 41], ['Setting', 68], ['Space Galaxy', 22],
+  ['Transportation', 39], ['Users', 27], ['Wifi & Signal', 13],
+].map(([cat, count], i) => (
+<div key={cat} style={{ display: 'grid', gridTemplateColumns: '1fr 80px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', alignItems: 'center' }}>
+  <span style={{ fontSize: 12, color: '#374151' }}>{cat}</span>
+  <span style={{ fontSize: 12, color: '#6b7280', fontVariantNumeric: 'tabular-nums' }}>{count}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 32 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Icon-only rules (WCAG 1.1.1 Non-text Content)</div>
+{[
+{ context: 'Decorative (adjacent text label)', code: '<Icon name="arrow-right" aria-hidden="true" />', why: 'Icon adds no meaning — hide from screen readers' },
+{ context: 'Inside a labelled button', code: '<button aria-label="Delete"><Icon name="delete" aria-hidden="true" /></button>', why: 'Accessible name lives on the interactive element' },
+{ context: 'Standalone informative icon', code: '<Icon name="alert" role="img" aria-label="Warning" />', why: 'Icon is the content — must carry its own label' },
+].map(({ context, code, why }, i) => (
+<div key={i} style={{ padding: '12px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 6 }}>{context}</div>
+  <pre style={{ margin: '0 0 6px', fontSize: 11, color: '#374151', background: '#f9fafb', padding: '8px 10px', borderRadius: 6, border: '1px solid #e5e7eb', overflow: 'auto' }}>{code}</pre>
+  <div style={{ fontSize: 11, color: '#6b7280' }}>{why}</div>
+</div>
+))}
+</div>
+
+---
+
+## Do / Don't
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+<div style={{ border: '1px solid #a7f3d0', borderRadius: 10, padding: '16px', background: '#f0fdf4', fontSize: 12, color: '#065f46' }}>
+  <div style={{ fontWeight: 700, marginBottom: 8 }}>Do</div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div>✓ Import from <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>src/components/icons</code>.</div>
+    <div>✓ Use sizes 16 / 20 / 24 / 32 px only.</div>
+    <div>✓ Colour via CSS <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>currentColor</code> inheritance.</div>
+    <div>✓ Mirror <strong>directional</strong> icons in RTL with <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>scaleX(-1)</code>.</div>
+    <div>✓ Add <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>aria-hidden="true"</code> on decorative icons.</div>
+    <div>✓ Add new icons to <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>Icon.jsx</code> from the Figma icon page (node 258:3) only.</div>
+  </div>
+</div>
+<div style={{ border: '1px solid #fecaca', borderRadius: 10, padding: '16px', background: '#fef2f2', fontSize: 12, color: '#991b1b' }}>
+  <div style={{ fontWeight: 700, marginBottom: 8 }}>Don't</div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <div>✕ Do not install Heroicons, Lucide, Remixicon, or any other icon package.</div>
+    <div>✕ Do not hardcode <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>stroke</code> colour — always use <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>currentColor</code>.</div>
+    <div>✕ Do not scale icons with CSS <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3, fontSize: 11 }}>transform: scale()</code>.</div>
+    <div>✕ Do not mirror non-directional icons (cancel, add, star, bell…) in RTL.</div>
+    <div>✕ Do not add icons outside of the Figma design system approval.</div>
+  </div>
+</div>
+</div>
+
+---
+
+## Adding new icons
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>3-step process</div>
+<div style={{ padding: '16px 20px' }}>
+{[
+{ step: '1', title: 'Find the icon in Figma', desc: 'Open the Icons page (node 258:3). Locate the icon in the Huge Icon Set v2.0 Sharp section. Note the icon name (e.g. alarm-clock).' },
+{ step: '2', title: 'Get the SVG path from the 24px variant', desc: 'Export the Size=24 Filled=false symbol as SVG from Figma. Extract the <path d="…"> value.' },
+{ step: '3', title: 'Register in Icon.jsx', desc: 'Add the icon name and path to the ICONS constant in src/components/icons/Icon.jsx.' },
+].map(({ step, title, desc }) => (
+<div key={step} style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
+  <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#1849a9', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{step}</div>
+  <div>
+    <div style={{ fontSize: 13, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{title}</div>
+    <div style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.6 }}>{desc}</div>
+  </div>
+</div>
+))}
+<pre style={{ fontSize: 11, color: '#374151', background: '#f9fafb', padding: '12px 14px', borderRadius: 6, border: '1px solid #e5e7eb', overflow: 'auto', margin: 0 }}>{`// src/components/icons/Icon.jsx
+const ICONS = {
+  // …existing icons…
+  'alarm-clock': 'M12 6v6l4 2M12 22a10 10 0 1 0 0-20…',
+};`}</pre>
+</div>
+</div>
+
+</div>

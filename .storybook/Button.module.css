@@ -1,0 +1,234 @@
+/* ==========================================================
+   Button — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4159:280
+   ========================================================== */
+
+/* ── Base ──────────────────────────────────────────────── */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid transparent;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  text-decoration: none;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+/* Focus — Figma: 2px inner ring (variant color) + 3px outer ring (#f9fafb / white) */
+/* Implemented as double box-shadow: inner matches variant bg, outer is white/icon color */
+.button:focus-visible {
+  outline: none;
+}
+
+/* Disabled — Figma uses dedicated bg/text tokens, NOT opacity */
+.button:disabled,
+.button[aria-disabled='true'] {
+  background-color: var(--color-disabled-bg) !important;
+  border-color: var(--color-disabled-bg) !important;
+  color: var(--color-disabled-text) !important;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Sizes ─────────────────────────────────────────────── */
+/* Figma: Large=40px/12px-pad/24px-icon, Medium=32px/8px-pad/20px-icon, Small=24px/8px-pad/16px-icon */
+
+.lg {
+  height: var(--btn-height-lg);
+  padding: 0 var(--btn-padding-lg);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-text-md);
+}
+
+.md {
+  height: var(--btn-height-md);
+  padding: 0 var(--btn-padding-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-text-sm);
+}
+
+.sm {
+  height: var(--btn-height-sm);
+  padding: 0 var(--btn-padding-sm);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-text-xs);
+}
+
+/* ── Icon slot ─────────────────────────────────────────── */
+/* Figma: Large=24px, Medium=20px, Small=16px */
+
+.iconSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconSlot svg { width: 100%; height: 100%; }
+
+.lg .iconSlot { width: 24px; height: 24px; }
+.md .iconSlot { width: 20px; height: 20px; }
+.sm .iconSlot { width: 16px; height: 16px; }
+
+/* Icon-only: square button, no h-padding */
+.iconOnly {
+  padding: 0;
+  aspect-ratio: 1;
+  width: var(--btn-height-lg);
+}
+.iconOnly.md { width: var(--btn-height-md); }
+.iconOnly.sm { width: var(--btn-height-sm); }
+
+/* ── Variants ──────────────────────────────────────────── */
+
+/* primary — bg #1849a9, text #f9fafb */
+.primary {
+  background-color: var(--color-primary-bg);
+  border-color:     var(--color-primary-bg);
+  color:            var(--color-primary-text);
+}
+.primary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-primary-bg-hover);
+  border-color:     var(--color-primary-bg-hover);
+}
+.primary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-primary-bg-pressed);
+  border-color:     var(--color-primary-bg-pressed);
+}
+.primary:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary-bg), 0 0 0 5px var(--color-primary-text);
+}
+
+/* neutral — bg #f3f4f6, text #000b36 */
+.neutral {
+  background-color: var(--color-neutral-bg);
+  border-color:     var(--color-neutral-bg);
+  color:            var(--color-neutral-text);
+}
+.neutral:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-neutral-bg-hover);
+  border-color:     var(--color-neutral-bg-hover);
+}
+.neutral:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-neutral-bg-pressed);
+  border-color:     var(--color-neutral-bg-pressed);
+}
+.neutral:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-neutral-bg), 0 0 0 5px var(--color-primary-bg);
+}
+
+/* secondary-solid — bg rgba(24,73,169,0.2), text #1849a9 */
+.secondarySolid {
+  background-color: var(--color-secondary-bg);
+  border-color:     transparent;
+  color:            var(--color-secondary-text);
+}
+.secondarySolid:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-secondary-bg-hover);
+}
+.secondarySolid:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: rgba(24, 73, 169, 0.3);
+}
+.secondarySolid:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-secondary-bg), 0 0 0 5px var(--color-primary-bg);
+}
+
+/* transparent — no bg, text #175cd3 */
+.transparent {
+  background-color: transparent;
+  border-color:     transparent;
+  color:            var(--color-transparent-text);
+}
+.transparent:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: rgba(24, 73, 169, 0.06);
+  color: var(--color-transparent-text-hover);
+}
+.transparent:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: rgba(24, 73, 169, 0.12);
+  color: var(--color-transparent-text-hover);
+}
+.transparent:focus-visible {
+  box-shadow: 0 0 0 2px transparent, 0 0 0 5px var(--color-primary-bg);
+}
+
+/* danger — bg #a30000, text #f9fafb (destructive=yes, style=primary) */
+.danger {
+  background-color: var(--color-danger-bg);
+  border-color:     var(--color-danger-bg);
+  color:            var(--color-danger-text);
+}
+.danger:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: #8b0000;
+  border-color:     #8b0000;
+}
+.danger:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: #6f0000;
+  border-color:     #6f0000;
+}
+.danger:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-danger-bg), 0 0 0 5px var(--color-danger-text);
+}
+
+/* danger-secondary — bg #fcdad7, text #a30000 (destructive=yes, style=secondary-solid) */
+.dangerSecondary {
+  background-color: var(--color-danger-secondary-bg);
+  border-color:     transparent;
+  color:            var(--color-danger-secondary-text);
+}
+.dangerSecondary:hover:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-danger-secondary-bg-hover);
+}
+.dangerSecondary:active:not(:disabled):not([aria-disabled='true']) {
+  background-color: var(--color-danger-secondary-bg-press);
+}
+.dangerSecondary:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-danger-secondary-bg), 0 0 0 5px var(--color-danger-bg);
+}
+
+/* ── Loading ───────────────────────────────────────────── */
+
+.loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.loading .label,
+.loading .iconSlot {
+  visibility: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: btn-spin 0.65s linear infinite;
+}
+
+@keyframes btn-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Full width ────────────────────────────────────────── */
+
+.fullWidth {
+  width: 100%;
+}

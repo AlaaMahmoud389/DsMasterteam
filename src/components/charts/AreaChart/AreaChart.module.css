@@ -1,0 +1,89 @@
+/* AreaChart — Masterteam Design System */
+
+.card {
+  background: var(--chart-container-bg, #ffffff);
+  border-radius: var(--chart-container-radius, 8px);
+  border: 1px solid var(--chart-border, #f3f4f6);
+  padding: var(--chart-container-padding, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--font-sans, 'IBM Plex Sans Arabic', sans-serif);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--chart-title, #000b36);
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.kpiBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.kpiValue {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+  color: var(--chart-subtitle, #3c5073);
+  margin: 0;
+}
+
+.kpiRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.kpiBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 24px;
+  background: var(--chart-kpi-bg, rgba(0, 97, 33, 0.1));
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--chart-kpi-positive, #006121);
+}
+
+.kpiLabel {
+  font-size: 14px;
+  color: var(--chart-subtitle, #3c5073);
+}
+
+.svg { display: block; overflow: visible; }
+
+@keyframes skelPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.skelPulse { animation: skelPulse 1.5s ease-in-out infinite; }
+.skelDelay1 { animation-delay: 0.1s; }
+.skelDelay2 { animation-delay: 0.2s; }
+.skelDelay3 { animation-delay: 0.3s; }
+
+.srOnly {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

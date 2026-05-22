@@ -1,0 +1,24 @@
+[14:10:07.350] [INFO] storybook v10.4.0
+[14:10:08.113] [DEBUG] Getting package.json info for D:/sd-output_2026-4-15 (2)/ds-storybook/package.json...
+[14:10:11.407] [WARN] 🚨 Unable to index ./src/components/charts/DonutChart/DonutChart.mdx:
+  Error: Could not parse import/exports with acorn
+    at file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16586:24
+    at async Promise.all (index 2)
+    at async Promise.all (index 0)
+    at async _StoryIndexGenerator.updateExtracted (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16569:5)
+    at async _StoryIndexGenerator.ensureExtracted (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16606:8)
+    at async _StoryIndexGenerator.initialize (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16565:5)
+    at async file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/presets/common-preset.js:1694:10
+    at async Object.experimental_serverChannel (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/@storybook/addon-vitest/dist/preset.js:446:29)
+    at async buildDevStandalone (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:19472:32)
+    at async withTelemetry (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/_node-chunks/chunk-OQIYQ5CW.js:655:12)
+[14:10:11.413] [ERROR] Error: Unable to index ./src/components/charts/DonutChart/DonutChart.mdx
+    at _StoryIndexGenerator.getIndexAndStats (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16835:15)
+    at async _StoryIndexGenerator.getIndex (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16824:13)
+    at async Object.experimental_serverChannel (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/@storybook/addon-vitest/dist/preset.js:460:14)
+    at async buildDevStandalone (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:19472:32)
+    at async withTelemetry (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/_node-chunks/chunk-OQIYQ5CW.js:655:12)
+    at async dev (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/bin/core.js:2736:3)
+    at async _Command.<anonymous> (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/bin/core.js:2806:92)
+[14:10:11.415] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

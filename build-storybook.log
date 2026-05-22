@@ -1,0 +1,84 @@
+
+> ds-storybook@0.0.0 build-storybook
+> storybook build --output-dir=C:\Users\Dell\AppData\Local\Temp\chromatic--38216-PVXWQHZU724Y
+
+
+[90m┌[39m  Building storybook v10.4.0
+[90m│[39m
+[32m◇[39m  Cleaning outputDir:
+[90m│[39m  [36mC:/Users/Dell/AppData/Local/Temp/chromatic--38216-PVXWQHZU724Y[39m
+[90m│[39m
+[32m◇[39m  Loading presets
+[90m│[39m
+[32m◇[39m  Building manager..
+[90m│[39m
+[34m●[39m  Building preview..
+[90m│[39m
+[33m▲[39m  💡 This seems to be an MDX2 syntax error. Please refer to the MDX
+[90m│[39m  section in the following resource for assistance on how to fix this:
+[90m│[39m  [33m]8;;https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#mdx2-upgradehttps://github.com/storybookjs/storybook/blob/next/MIGRATION.md#mdx2-upgrade]8;;[39m
+[90m│[39m
+[33m▲[39m  🚨 Unable to index ./src/components/charts/DonutChart/DonutChart.mdx:
+[90m│[39m  Error: Unexpected closing slash `/` in tag, expected an open tag first
+[90m│[39m  at
+[90m│[39m  file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16586:24
+[90m│[39m  at async Promise.all (index 2)
+[90m│[39m  at async Promise.all (index 0)
+[90m│[39m  at async _StoryIndexGenerator.updateExtracted
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16569:5)
+[90m│[39m  at async _StoryIndexGenerator.ensureExtracted
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16606:8)
+[90m│[39m  at async _StoryIndexGenerator.initialize
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16565:5)
+[90m│[39m  at async
+[90m│[39m  file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/presets/common-preset.js:1694:10
+[90m│[39m
+[31m■[39m  Error: Unable to index
+[90m│[39m  ./src/components/charts/DonutChart/DonutChart.mdx
+[90m│[39m  at _StoryIndexGenerator.getIndexAndStats
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16835:15)
+[90m│[39m  at async _StoryIndexGenerator.getIndex
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16824:13)
+[90m│[39m  at async writeIndexJson
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:8356:20)
+[90m│[39m  at async Promise.all (index 3)
+[90m│[39m  at async buildStaticStandalone
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:17051:7)
+[90m│[39m  at async withTelemetry
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/_node-chunks/chunk-OQIYQ5CW.js:655:12)
+[90m│[39m  at async build
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/bin/core.js:2679:3)
+[90m│[39m  at async _Command.<anonymous>
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/bin/core.js:2824:7)
+[90m│[39m
+[33m▲[39m  🚨 Unable to index ./src/components/charts/DonutChart/DonutChart.mdx:
+[90m│[39m  Error: Unexpected closing slash `/` in tag, expected an open tag first
+[90m│[39m  at
+[90m│[39m  file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16586:24
+[90m│[39m  at async Promise.all (index 2)
+[90m│[39m  at async Promise.all (index 0)
+[90m│[39m  at async _StoryIndexGenerator.updateExtracted
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16569:5)
+[90m│[39m  at async _StoryIndexGenerator.ensureExtracted
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16606:8)
+[90m│[39m  at async _StoryIndexGenerator.initialize
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16565:5)
+[90m│[39m  at async
+[90m│[39m  file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/presets/common-preset.js:1694:10
+[90m│[39m
+[31m■[39m  Failed to generate manifests
+[90m│[39m
+[31m■[39m  Error: Unable to index
+[90m│[39m  ./src/components/charts/DonutChart/DonutChart.mdx
+[90m│[39m  at _StoryIndexGenerator.getIndexAndStats
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16835:15)
+[90m│[39m  at async _StoryIndexGenerator.getIndex
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:16824:13)
+[90m│[39m  at async getManifests
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:9426:16)
+[90m│[39m  at async writeManifests
+[90m│[39m  (file:///D:/sd-output_2026-4-15%20(2)/ds-storybook/node_modules/storybook/dist/core-server/index.js:9436:21)
+[90m│[39m  at async Promise.all (index 4)
+[90m│[39m
+[90m└[39m  Storybook exited with an error
+

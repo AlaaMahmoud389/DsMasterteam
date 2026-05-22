@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma__get_design_context",
+      "Bash(npx --no-install tsc --noEmit --jsx react --allowJs --checkJs false)",
+      "Bash(npx vite *)",
+      "Bash(node -e ' *)",
+      "Bash(npx storybook *)",
+      "Bash(Get-ChildItem -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\" -type f)",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\\\\\\\\src\" -type f)",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\" -type f -name \"*.html\")",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\" -type f \\\\\\( -name \"*.md\" -o -name \"*.mdx\" \\\\\\))",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\" -not -path \"*/node_modules/*\" -type f \\\\\\( -name \"*.md\" -o -name \"*.mdx\" \\\\\\))",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\" -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" -type d)",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\" -maxdepth 1 -type f)",
+      "Bash(find \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\\\\\\\\src\" -type d)",
+      "Bash(grep -n \"HalfDonut\\\\|half\" \"D:\\\\\\\\sd-output_2026-4-15 \\(2\\)\\\\\\\\ds-storybook\\\\\\\\src\\\\\\\\components\\\\\\\\charts\\\\\\\\DonutChart\\\\\\\\DonutChart.stories.jsx\")",
+      "Skill(figma:figma-implement-design)",
+      "mcp__figma__get_screenshot",
+      "mcp__figma__get_metadata",
+      "Bash(Get-Content src/components/charts/DonutChart/DonutChart.mdx)",
+      "Bash(Measure-Object -Line)",
+      "Bash(Select-Object -ExpandProperty Lines)",
+      "Bash(Get-Item \"D:\\\\sd-output_2026-4-15 \\(2\\)\\\\design-system\\\\charts\\\\radar\\\\RadarChart.html\")",
+      "Bash(Select-Object Name, Length, LastWriteTime)",
+      "PowerShell(Get-Item *)",
+      "Bash(node --input-type=module)",
+      "Bash(npm run *)"
+    ]
+  }
+}

@@ -1,0 +1,571 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Accordion } from './Accordion';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Content Display / Accordion</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Accordion</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>The accordion collapses and expands content to reduce clutter and maintain user focus. Use it when related sections can be hidden by default without breaking the user's task flow.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4113:1059</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/content-display/accordion" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>DGA Guidelines</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4113-1059&t=gv8blf425MZ1IhAY-4" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '24px 20px', marginBottom: 16 }}>
+  <Accordion
+    items={[
+      { title: 'What is an accordion?', content: 'The accordion component delivers large amounts of content in a small space through progressive disclosure. The user gets key details and can choose to expand content within the accordion constraints.', defaultOpen: true },
+      { title: 'When to use it?', content: 'Use accordions when space is limited, when content is optional or supplementary, or when users benefit from scanning section headings before deciding what to read.' },
+      { title: 'Accessibility considerations', content: 'Accordions use semantic button elements with aria-expanded, aria-controls, and role="region" on the panel. Keyboard navigation is fully supported.' },
+    ]}
+    type="single"
+    size="lg"
+  />
+</div>
+
+Three sizes · five states · single or multiple open · trailing or leading icon · full RTL support · flush variant. All tokens sourced from Figma node `4113:1059`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px', marginBottom: 24 }}>
+  <div style={{ maxWidth: 420, margin: '0 auto' }}>
+    <Accordion
+      items={[{ title: 'Accordion Title', content: 'Content panel — revealed on expand.', defaultOpen: true }]}
+      size="lg"
+    />
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 24px', justifyContent: 'center', marginTop: 24 }}>
+    {[['1', 'Item container (border-top)'], ['2', 'Trigger button (full-width)'], ['3', 'Title text (Semibold 16px)'], ['4', 'Chevron icon (16×16 px)'], ['5', 'Content panel (hidden when collapsed)']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+| # | Element | Required |
+|---|---|---|
+| 1 | Item container — border-top 1px `#e5e7eb` | Always |
+| 2 | Trigger `<button>` — full-width, clickable | Always |
+| 3 | Title text — Semibold 16 px / 24 px line-height | Required |
+| 4 | Chevron icon — 16 × 16 px, rotates 180° on expand | Always |
+| 5 | Content panel — hidden when collapsed, `role="region"` | Required |
+
+---
+
+## Sizes
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '4px 20px', marginBottom: 16 }}>
+  {[
+    ['Large',  'h:56px · v-pad:16px · h-pad:16px', 'lg'],
+    ['Medium', 'h:48px · v-pad:12px · h-pad:16px', 'md'],
+    ['Small',  'h:40px · v-pad:8px  · h-pad:16px', 'sm'],
+  ].map(([name, spec, size]) => (
+    <div key={size} style={{ padding: '14px 0', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+      <div style={{ minWidth: 140 }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
+        <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{spec}</div>
+      </div>
+      <div style={{ flex: 1, minWidth: 260 }}>
+        <Accordion
+          items={[{ title: `${name} Accordion`, content: 'Content area.' }]}
+          size={size}
+        />
+      </div>
+    </div>
+  ))}
+</div>
+
+| Size prop | Header height | V-padding | H-padding | Font | Figma token |
+|---|---|---|---|---|---|
+| `lg` | 56 px | 16 px | 16 px | 16 px / 24 px | `global/spacing-xl` |
+| `md` | 48 px | 12 px | 16 px | 16 px / 24 px | `global/spacing-lg` |
+| `sm` | 40 px | 8 px  | 16 px | 16 px / 24 px | `global/spacing-md` |
+
+All sizes share the same font (IBM Plex Sans Arabic 600, 16 px / 24 px line-height) and 16 px chevron icon.
+
+---
+
+## States
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14, marginBottom: 16 }}>
+  {[
+    ['Default', <Accordion key="d" items={[{ title: 'Default', content: 'Content.' }]} size="lg" />],
+    ['Hovered', <div key="h" style={{ border: '1px solid #e5e7eb', borderRadius: 2 }}><button style={{ display: 'flex', alignItems: 'center', gap: 16, width: '100%', padding: 16, background: '#fcfcfd', border: 'none', fontFamily: "'IBM Plex Sans Arabic', sans-serif", fontWeight: 600, fontSize: 16, color: '#000b36', cursor: 'pointer' }}><span style={{ flex: 1, textAlign: 'start' }}>Hovered</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#6c737f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button></div>],
+    ['Pressed', <div key="p" style={{ border: '1px solid #e5e7eb', borderRadius: 2 }}><button style={{ display: 'flex', alignItems: 'center', gap: 16, width: '100%', padding: 16, background: '#f3f4f6', border: 'none', fontFamily: "'IBM Plex Sans Arabic', sans-serif", fontWeight: 600, fontSize: 16, color: '#000b36', cursor: 'pointer' }}><span style={{ flex: 1, textAlign: 'start' }}>Pressed</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#6c737f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button></div>],
+    ['Focused', <div key="f" style={{ border: '1px solid #e5e7eb', borderRadius: 2 }}><button style={{ display: 'flex', alignItems: 'center', gap: 16, width: '100%', padding: 16, background: 'none', border: 'none', fontFamily: "'IBM Plex Sans Arabic', sans-serif", fontWeight: 600, fontSize: 16, color: '#000b36', cursor: 'pointer', outline: 'none', boxShadow: '0 0 0 2px #1849a9, 0 0 0 5px #fff', position: 'relative', zIndex: 1 }}><span style={{ flex: 1, textAlign: 'start' }}>Focused</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="#6c737f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button></div>],
+    ['Disabled', <Accordion key="dis" items={[{ title: 'Disabled', content: 'Content.', disabled: true }]} size="lg" />],
+    ['Expanded', <Accordion key="exp" items={[{ title: 'Expanded', content: 'Content panel is visible.', defaultOpen: true }]} size="lg" />],
+  ].map(([name, comp]) => (
+    <div key={name} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 14px 12px', display: 'flex', flexDirection: 'column', gap: 11 }}>
+      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>{name}</span>
+      {comp}
+    </div>
+  ))}
+</div>
+
+| State | Trigger | Background | Text color |
+|---|---|---|---|
+| Default | Resting | none | `#000b36` |
+| Hovered | `:hover` | `#fcfcfd` | `#000b36` |
+| Pressed | `:active` | `#f3f4f6` | `#000b36` |
+| Focused | `:focus-visible` | none | `#000b36` |
+| Disabled | `disabled` prop | none | `#3c5073` |
+| Expanded | open | none | `#000b36` |
+
+---
+
+## State Table
+
+**Focus ring** — implemented as double `box-shadow` (2px `#1849a9` + 5px `#ffffff`), matching the project's Button focus pattern. Figma specifies a 1px `accordion/border/default` border which does not meet WCAG 2.2 Focus Appearance contrast requirements — see Mismatch Report.
+
+**Disabled** — text changes to `accordion/header-text/secondary = #3c5073`. The accordion uses its own disabled token, not the shared `--color-disabled-text: #6c7c96` used by Button.
+
+---
+
+## Open Behavior
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Single Open</div>
+    <Accordion
+      type="single"
+      items={[
+        { title: 'Item one', content: 'Opening this will close any other open item.', defaultOpen: true },
+        { title: 'Item two', content: 'Content for item two.' },
+        { title: 'Item three', content: 'Content for item three.' },
+      ]}
+      size="lg"
+    />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Multiple Open</div>
+    <Accordion
+      type="multiple"
+      items={[
+        { title: 'Item one', content: 'Multiple items can stay open simultaneously.', defaultOpen: true },
+        { title: 'Item two', content: 'Content for item two.', defaultOpen: true },
+        { title: 'Item three', content: 'Content for item three.' },
+      ]}
+      size="lg"
+    />
+  </div>
+</div>
+
+| `type` prop | Behavior |
+|---|---|
+| `single` | Only one item open at a time. Opening another closes the current one. |
+| `multiple` | Any number of items can be open simultaneously. |
+
+---
+
+## Icon Alignment
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Trailing (default)</div>
+    <Accordion iconAlignment="trailing" items={[{ title: 'Trailing icon', content: 'Chevron is at the end of the header row.' }]} size="lg" />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Leading</div>
+    <Accordion iconAlignment="leading" items={[{ title: 'Leading icon', content: 'Chevron is at the start of the header row.' }]} size="lg" />
+  </div>
+</div>
+
+---
+
+## RTL Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+    </div>
+    <Accordion
+      dir="ltr"
+      items={[
+        { title: 'What is an accordion?', content: 'Content aligned left-to-right.', defaultOpen: true },
+        { title: 'When to use?', content: 'Secondary item.' },
+      ]}
+      size="lg"
+    />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
+    </div>
+    <Accordion
+      dir="rtl"
+      items={[
+        { title: 'ما هو الأكورديون؟', content: 'المرجع الوطني الأول للمعلومات والخدمات الحكومية الرقمية كافة في المملكة العربية السعودية.', defaultOpen: true },
+        { title: 'متى تستخدمه؟', content: 'استخدمه عندما يحتاج المستخدم لرؤية العناوين أولاً.' },
+      ]}
+      size="lg"
+    />
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>RTL rules:</strong> Pass <code>dir="rtl"</code> on the Accordion component. CSS logical properties (<code>padding-inline-start / end</code>) automatically mirror content padding. The chevron icon is symmetric and does <strong>not</strong> require <code>scaleX(-1)</code> mirroring.
+</div>
+
+```jsx
+<Accordion
+  dir="rtl"
+  items={[
+    { title: 'ما هو الأكورديون؟', content: 'المحتوى هنا...' },
+    { title: 'متى تستخدمه؟', content: 'المحتوى هنا...' },
+  ]}
+/>
+```
+
+---
+
+## Flush Mode
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Standard (flush=false)</div>
+    <Accordion items={[{ title: 'Bordered item', content: 'Each item has a top border.' }]} flush={false} size="lg" />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Flush (flush=true)</div>
+    <Accordion items={[{ title: 'No border item', content: 'Borders removed for edge-to-edge contexts.' }]} flush={true} size="lg" />
+  </div>
+</div>
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Sizing & Spacing</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[{t:'--accordion-padding-lg',v:'16px',f:'global/spacing-xl',u:'Large header — all sides'},{t:'--accordion-padding-md-v',v:'12px',f:'global/spacing-lg',u:'Medium header vertical'},{t:'--accordion-padding-sm-v',v:'8px',f:'global/spacing-md',u:'Small header vertical'},{t:'--accordion-padding-h',v:'16px',f:'global/spacing-xl',u:'Medium/Small horizontal'},{t:'--accordion-gap',v:'16px',f:'global/spacing-xl',u:'Icon ↔ title gap'},{t:'--accordion-icon-size',v:'16px',f:'(fixed)',u:'Chevron icon size'},{t:'--accordion-content-pt',v:'8px',f:'global/spacing-md',u:'Content top padding'},{t:'--accordion-content-pb',v:'24px',f:'global/spacing-3xl',u:'Content bottom padding'},{t:'--accordion-content-ps',v:'16px',f:'global/spacing-xl',u:'Content inline-start'},{t:'--accordion-content-pe',v:'48px',f:'global/spacing-6xl',u:'Content inline-end'}].map(({t,v,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'220px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '235px 120px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+{t:'--accordion-border',h:'#e5e7eb',f:'accordion/border/default',u:'Item top border'},
+{t:'--accordion-header-text',h:'#000b36',f:'accordion/header-text/default',u:'Title default color'},
+{t:'--accordion-header-text-disabled',h:'#3c5073',f:'accordion/header-text/secondary',u:'Title disabled color'},
+{t:'--accordion-content-text',h:'#3c5073',f:'accordion/header-text/secondary',u:'Content body color'},
+{t:'--accordion-icon',h:'#6c737f',f:'accordion/icon/default',u:'Chevron icon color'},
+{t:'--accordion-header-bg-hover',h:'#fcfcfd',f:'accordion/header-background/default',u:'Hover background'},
+{t:'--accordion-header-bg-pressed',h:'#f3f4f6',f:'accordion/header-background/hover',u:'Pressed background'},
+].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'235px 120px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Typography</div>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 1fr 80px 60px 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Element</span><span>Font</span><span>Weight</span><span>Size</span><span>Line-height</span></div>
+{[{el:'Header title',font:'IBM Plex Sans Arabic',w:'600 Semibold',sz:'16 px',lh:'24 px'},{el:'Content body',font:'IBM Plex Sans Arabic',w:'400 Regular',sz:'16 px',lh:'24 px'}].map(({el,font,w,sz,lh},i)=>(
+<div key={el} style={{display:'grid',gridTemplateColumns:'130px 1fr 80px 60px 80px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<span style={{fontSize:13,fontWeight:600,color:'#111827'}}>{el}</span>
+<code style={{fontSize:12,color:'#6b7280'}}>{font}</code>
+<span style={{fontSize:12,color:'#374151'}}>{w}</span>
+<span style={{fontSize:12,color:'#374151'}}>{sz}</span>
+<span style={{fontSize:12,color:'#374151'}}>{lh}</span>
+</div>
+))}
+</div>
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 110px 76px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+{n:'items',type:'array',tb:'#f0fdf4',tc:'#166534',def:'[]',d:'Array of { title, content, disabled?, defaultOpen? } item objects'},
+{n:'type',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'single',d:'single — only one item open at a time · multiple — any number open'},
+{n:'size',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'lg',d:'lg · md · sm  —  header height 56 / 48 / 40 px'},
+{n:'iconAlignment',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'trailing',d:'trailing · leading  —  chevron position relative to title'},
+{n:'flush',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Remove item borders for edge-to-edge / flush placement'},
+{n:'dir',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'—',d:'ltr · rtl  —  text direction for Arabic layouts'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 110px 76px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+{cat:'Keyboard Navigation',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'⌨',items:[
+{title:'Tab reaches each trigger',desc:'Each accordion header is a native <button> — Tab moves between triggers. Enter or Space toggles open/closed.'},
+{title:'Focus ring on :focus-visible',desc:'box-shadow: 0 0 0 2px #1849a9, 0 0 0 5px #fff — visible on all backgrounds, meets WCAG 2.2 Focus Appearance.'},
+{title:'Disabled items not focusable',desc:'HTML disabled attribute removes the trigger from the tab order and prevents keyboard activation.'},
+]},
+{cat:'ARIA & Semantics',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'A',items:[
+{title:'Native <button> trigger',desc:'Never use div or span as the accordion toggle. The native element provides role, keyboard, and AT support.'},
+{title:'aria-expanded on trigger',desc:'Set to "true" when open, "false" when closed — screen readers announce the current state on focus.'},
+{title:'aria-controls links trigger to panel',desc:'The trigger\'s aria-controls value matches the panel\'s id, creating a programmatic association.'},
+{title:'role="region" on panel',desc:'Each panel has role="region" and aria-labelledby pointing to its trigger — creates a named ARIA landmark.'},
+{title:'Chevron is decorative',desc:'The chevron icon has aria-hidden="true". The trigger\'s text label is the accessible name.'},
+]},
+{cat:'Visual & Focus',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+{title:'hidden removes panels from AT tree',desc:'Collapsed panels use the HTML hidden attribute — hidden from both visual display and assistive technology. Not just visually hidden.'},
+{title:'WCAG 2.2 Focus Appearance — passes',desc:'2 px #1849a9 inner ring + 3 px #fff outer ring achieves ≥ 3:1 contrast. Figma\'s 1 px border fails — see Mismatch Report.'},
+{title:'Disabled text uses dedicated token',desc:'--accordion-header-text-disabled: #3c5073. Different from Button\'s #6c7c96 — scoped to accordion context per Figma.'},
+]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff' }}>
+<Accordion type="single" items={[{ title: 'How do I get started?', content: 'Follow the setup guide in the README.' },{ title: 'What are the requirements?', content: 'Node 18+ and a modern browser.' }]} size="md" />
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Group related, optional content under descriptive titles</div>
+{['Use type="single" when only one section is relevant at a time.','Set defaultOpen on the most important item to guide the user.','Use flush=true inside cards or containers that have their own border.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff' }}>
+<Accordion type="single" items={[{ title: 'Submit', content: 'Click to submit the form.' },{ title: 'Cancel', content: 'Click to cancel the action.' }]} size="md" />
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Use accordion for primary actions (use buttons instead)</div>
+{['Hide critical information all users must see — it might stay collapsed.','Use for navigation — use a sidebar or tabs instead.','Nest accordions inside other accordions.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Use for FAQ, settings, or help content where sections are optional to read.','Use type="single" when only one section is relevant at a time.','Use type="multiple" when users may need to compare across sections.','Set defaultOpen on the most relevant item to guide the user.','Provide concise, descriptive titles that make sense when collapsed.','Use flush=true when placing inside a card with its own border.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
+{["Don't hide critical information all users need to see.","Don't use accordion for navigation — use sidebar or tabs.","Don't nest accordions inside other accordions.","Don't rely on content being visible on load for SEO-critical text.","Don't disable an item without explaining why elsewhere on the page."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { Accordion } from '@/components/Accordion';
+
+// Basic single-open accordion
+<Accordion
+  type="single"
+  size="lg"
+  items={[
+    { title: 'What is an accordion?', content: 'Progressive disclosure component.' },
+    { title: 'When to use it?', content: 'When content is optional and space is limited.' },
+  ]}
+/>
+
+// Multiple open with a default open item
+<Accordion
+  type="multiple"
+  size="md"
+  items={[
+    { title: 'Section A', content: 'Content A', defaultOpen: true },
+    { title: 'Section B', content: 'Content B' },
+  ]}
+/>
+
+// With leading icon
+<Accordion
+  iconAlignment="leading"
+  items={[{ title: 'Leading chevron', content: 'Chevron appears before the title.' }]}
+/>
+
+// RTL Arabic
+<Accordion
+  dir="rtl"
+  type="single"
+  items={[
+    { title: 'ما هو الأكورديون؟', content: 'المحتوى هنا...' },
+    { title: 'متى تستخدمه؟', content: 'المحتوى هنا...', defaultOpen: true },
+  ]}
+/>
+
+// Disabled item
+<Accordion
+  items={[
+    { title: 'Available', content: 'Clickable.' },
+    { title: 'Unavailable', content: 'Cannot expand.', disabled: true },
+  ]}
+/>
+
+// Flush (no borders) inside a card
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8 }}>
+  <Accordion
+    flush={true}
+    items={[{ title: 'Flush item', content: 'No item borders.' }]}
+  />
+</div>
+```
+
+---
+
+## Figma Reference
+
+- **Component set:** [4113:1059 — Masterteam DS Accordion](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4113-1059&t=gv8blf425MZ1IhAY-4)
+- **DGA Guidelines:** [design.dga.gov.sa/guidelines/components/content-display/accordion](https://design.dga.gov.sa/guidelines/components/content-display/accordion)
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4113:1059`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>19 Match</span>
+<span style={{ background: '#fffbeb', color: '#d97706', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fde68a' }}>2 Deviation</span>
+<span style={{ background: '#eff3fb', color: '#1849a9', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #bfdbfe' }}>2 New token</span>
+<span style={{ background: '#f3f4f6', color: '#6b7280', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #e5e7eb' }}>1 Enhancement</span>
+</div>
+<div style={{ border: '1px solid #fde68a', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#fffbeb', padding: '10px 16px', borderBottom: '1px solid #fde68a', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#d97706' }}>Deviations — requires attention</div>
+{[
+{a:'Focus ring',fig:'1 px #e5e7eb border around focused header',impl:'box-shadow: 0 0 0 2px #1849a9, 0 0 0 5px #fff',n:'Figma\'s 1 px border fails WCAG 2.2 Focus Appearance contrast. Project double box-shadow pattern applied instead.'},
+{a:'Accordion icon',fig:'arrow-down-01-sharp (Figma image asset)',impl:'Inline SVG ChevronDown (permanent)',n:'Figma image asset URLs expire after 7 days. SVG equivalent used — same shape, rotate(180deg) on expand.'},
+].map(({a,fig,impl,n},i)=>(
+<div key={a} style={{padding:'12px 16px',background:i%2===0?'#fff':'#fffef5',borderBottom:'1px solid #fef9c3'}}>
+<div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+<span style={{background:'#fffbeb',color:'#d97706',fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,border:'1px solid #fde68a'}}>Deviation</span>
+<span style={{fontSize:13,fontWeight:600,color:'#111827'}}>{a}</span>
+</div>
+<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:6}}>
+<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Figma</div><code style={{fontSize:12,color:'#374151'}}>{fig}</code></div>
+<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Implementation</div><code style={{fontSize:12,color:'#374151'}}>{impl}</code></div>
+</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #bfdbfe', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#eff3fb', padding: '10px 16px', borderBottom: '1px solid #bfdbfe', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9' }}>New tokens & enhancements added</div>
+{[
+{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--font-weight-regular: 400',n:'Missing from tokens.css. Required for accordion content body text (400 Regular per Figma).'},
+{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--space-12: 48px',n:'Missing from tokens.css. Required for --accordion-content-pe (global/spacing-6xl = 48 px).'},
+{s:'Enhancement',sb:'#f3f4f6',st:'#6b7280',a:'Bottom border on last item',n:'Not specified in Figma. Added border-bottom on :last-child to visually close the accordion group.'},
+].map(({s,sb,st,a,n},i)=>(
+<div key={a} style={{display:'flex',alignItems:'flex-start',gap:12,padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6'}}>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',flexShrink:0,border:`1px solid ${sb==='#eff3fb'?'#bfdbfe':'#e5e7eb'}`}}>{s}</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{a}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
+</div>
+</div>
+))}
+</div>
+<details style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<summary style={{ background: '#f9fafb', padding: '10px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#374151', borderBottom: '1px solid #e5e7eb', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 700, border: '1px solid #a7f3d0' }}>19 Match</span>
+View all matched properties
+</summary>
+<div style={{ background: '#fff' }}>
+{[
+['Header height Large','56 px','16+24+16 = 56 px ✓'],
+['Header height Medium','48 px','12+24+12 = 48 px ✓'],
+['Header height Small','40 px','8+24+8 = 40 px ✓'],
+['H-padding all sizes','16 px','--accordion-padding-h = 16 px'],
+['Gap (icon ↔ title)','16 px','--accordion-gap = 16 px'],
+['Icon size','16 × 16 px','--accordion-icon-size = 16 px'],
+['Chevron rotation','Down → Up on expand','CSS rotate(0 → 180deg)'],
+['Item border','1 px top #e5e7eb','border-top: 1px solid var(--accordion-border)'],
+['Header text default','#000b36','--accordion-header-text'],
+['Header text disabled','#3c5073 (own token)','--accordion-header-text-disabled ≠ shared #6c7c96'],
+['Content text','#3c5073','--accordion-content-text'],
+['Icon color','#6c737f','--accordion-icon'],
+['Hover background','#fcfcfd','--accordion-header-bg-hover'],
+['Pressed background','#f3f4f6','--accordion-header-bg-pressed'],
+['Content padding','pt:8 pb:24 ps:16 pe:48','CSS logical properties — RTL auto-mirrors'],
+['Font family','IBM Plex Sans Arabic','--font-sans'],
+['Font weight header','600 Semibold','--font-weight-semibold'],
+['Font weight content','400 Regular','--font-weight-regular (newly added)'],
+['Font size all sizes','16 px / 24 px lh','--font-size-md / --line-height-text-md'],
+].map(([area,figma,impl],i)=>(
+<div key={area} style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',padding:'8px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center',fontSize:12}}>
+<span style={{color:'#111827',fontWeight:500}}>{area}</span>
+<code style={{color:'#6b7280'}}>{figma}</code>
+<code style={{color:'#059669'}}>{impl}</code>
+</div>
+))}
+</div>
+</details>
+<div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#6b7280' }}>
+<span style={{ fontWeight: 700, color: '#374151' }}>Missing design decisions</span> — not specified in Figma: bottom border on last item (implemented as enhancement) · animation/transition for expand/collapse (not specified; none implemented) · --accordion/border/focused token (not in Figma variables; project focus ring used)
+</div>
+
+</div>

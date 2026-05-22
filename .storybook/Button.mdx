@@ -1,0 +1,398 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+Buttons trigger specific actions. The label describes what will happen when clicked. Choose the variant that matches the action's importance and visual context.
+
+> **Figma source:** [Masterteam DS – Button](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4159-296&t=gv8blf425MZ1IhAY-4)
+> **DGA Guidelines:** [design.dga.gov.sa/guidelines/components/actions/buttons](https://design.dga.gov.sa/guidelines/components/actions/buttons)
+> **Figma node:** `4159:280` · Status: Available
+
+---
+
+## Overview
+
+Four visual styles · three sizes · six states · leading/trailing/icon-only icon modes · full RTL support · destructive variants. All tokens sourced from Figma node `4159:280`.
+
+<Canvas of={ButtonStories.AllVariants} />
+
+---
+
+## Anatomy
+
+```
+┌───────────────────────────────────────────────┐
+│  ① Container                                  │
+│  ┌──────────────────────────────────────────┐ │
+│  │  [② Lead icon]  ③ Label  [④ Trail icon] │ │
+│  └──────────────────────────────────────────┘ │
+│  ⑤ Focus ring (keyboard only)                 │
+└───────────────────────────────────────────────┘
+```
+
+| # | Element | Required |
+|---|---|---|
+| ① | Container | Always |
+| ② | Leading icon (24 / 20 / 16 px by size) | Optional |
+| ③ | Text label | Required (unless `iconOnly`) |
+| ④ | Trailing icon (24 / 20 / 16 px by size) | Optional |
+| ⑤ | Focus ring (visible on keyboard nav only) | Automatic |
+
+---
+
+## Variants
+
+Four style values drive visual weight. Choose based on action priority within the current view.
+
+<Canvas of={ButtonStories.AllVariants} />
+
+| Variant | Figma style | Background | Text | When to use |
+|---|---|---|---|---|
+| `primary` | `primary` | `#1849a9` | `#f9fafb` | Highest weight · one per view · main CTA |
+| `neutral` | `neutral` | `#f3f4f6` | `#000b36` | Secondary action · works on light surfaces |
+| `secondary-solid` | `Secondary-Solid` | `rgba(24,73,169,0.2)` | `#1849a9` | Brand-tinted at 20% · pairs with Primary |
+| `transparent` | `Transparent` | none | `#175cd3` | Lowest weight · inline or tertiary |
+
+---
+
+## Destructive (Danger)
+
+When `destructive="yes"` in Figma, a separate danger token palette replaces the standard one. Two destructive styles are supported.
+
+<Canvas of={ButtonStories.DestructiveAll} />
+
+| Variant | Background | Text | Figma token |
+|---|---|---|---|
+| `danger` | `#a30000` | `#f9fafb` | `component/button/danger-primary/background/default` |
+| `danger-secondary` | `#fcdad7` | `#a30000` | `component/button/danger-secondary/background/default` |
+
+> **Important:** Only use destructive buttons for irreversible actions (delete, remove, revoke). Always pair with a confirmation step.
+
+---
+
+## Sizes
+
+<Canvas of={ButtonStories.AllSizes} />
+
+| Prop | Figma label | Height | H-Padding | Icon | Font | Line-height |
+|---|---|---|---|---|---|---|
+| `sm` | Small | 24 px | 8 px | 16 px | 12 px | 18 px |
+| `md` | Medium | 32 px | 8 px | 20 px | 14 px | 20 px |
+| `lg` | Large | 40 px | 12 px | 24 px | 16 px | 24 px |
+
+All sizes share: `border-radius: 4px`, `gap: 4px`, `font-weight: 500`, `font-family: IBM Plex Sans Arabic`.
+
+---
+
+## States
+
+Five interactive states. States are driven by user interaction, not set manually. The focus ring is visible only during keyboard navigation.
+
+<Canvas of={ButtonStories.AllStates} />
+
+<Canvas of={ButtonStories.AllVariantsDisabled} />
+
+| State | How triggered | Visual change |
+|---|---|---|
+| Default | — | Base colors |
+| Hovered | `:hover` | Darker background |
+| Pressed | `:active` | Darkest background |
+| Focused | `:focus-visible` | Double ring: 2px inner (variant color) + 3px outer (white/icon color) |
+| Disabled | `disabled` prop | `bg #d2d6db`, `text #6c7c96` — dedicated tokens, not opacity |
+| Loading | `loading` prop | Spinner overlaid, label/icons hidden, `aria-busy` set |
+
+---
+
+## State × Variant Token Table
+
+Every resolved token for every state and variant, extracted from Figma.
+
+**Primary**
+
+| State | Background | Value | Text |
+|---|---|---|---|
+| Default | `primary/background/default` | `#1849a9` | `#f9fafb` |
+| Hovered | `primary/background/hovered` | `#194185` | same |
+| Pressed | `primary/background/pressed` | `#102a56` | same |
+| Focused | `primary/background/focused` | `#1849a9` | same |
+| Disabled | `disabled/background/disabled` | `#d2d6db` | `#6c7c96` |
+
+**Neutral**
+
+| State | Background | Value | Text |
+|---|---|---|---|
+| Default | `neutral/background/default` | `#f3f4f6` | `#000b36` |
+| Hovered | `neutral/background/hovered` | `#e5e7eb` | same |
+| Pressed | `neutral/background/pressed` | `#d2d6db` | same |
+| Disabled | `disabled/background/disabled` | `#d2d6db` | `#6c7c96` |
+
+**Secondary-Solid**
+
+| State | Background | Value | Text |
+|---|---|---|---|
+| Default | `secondary/background/default` | `rgba(24,73,169,.20)` | `#1849a9` |
+| Hovered | `secondary/background/hovered` | `rgba(24,73,169,.10)` | same |
+| Pressed | `secondary/background/pressed` | `rgba(24,73,169,.30)` | same |
+| Disabled | `disabled/background/disabled` | `#d2d6db` | `#6c7c96` |
+
+**Transparent**
+
+| State | Background | Text token | Value |
+|---|---|---|---|
+| Default | none | `transparent/icon/default` | `#175cd3` |
+| Hovered | `rgba(24,73,169,.06)` | `transparent/text/hovered` | `#1570ef` |
+| Pressed | `rgba(24,73,169,.12)` | `transparent/text/pressed` | `#1570ef` |
+| Disabled | `#d2d6db` | `disabled/text/disabled` | `#6c7c96` |
+
+**Danger Primary / Secondary**
+
+| Style | State | Background | Text |
+|---|---|---|---|
+| `danger` | Default | `#a30000` | `#f9fafb` |
+| `danger` | Hovered | `#8b0000` | same |
+| `danger-secondary` | Default | `#fcdad7` | `#a30000` |
+| `danger-secondary` | Hovered | `#f8bab5` | same |
+
+---
+
+## RTL Support
+
+<Canvas of={ButtonStories.RTLAll} />
+
+Pass `dir="rtl"` on the button or wrap it in a `dir="rtl"` ancestor. The button layout flips automatically via logical CSS.
+
+> **Icon mirroring rule:** Directional icons (→ ← chevrons) **must** be flipped in RTL via `transform: scaleX(-1)`. Symmetrical icons (✕ + ⋯) must **never** be flipped.
+
+```jsx
+// RTL button — directional arrow icon should be mirrored by caller
+<Button variant="primary" dir="rtl" leadIcon={<ArrowRightIcon style={{ transform: 'scaleX(-1)' }} />}>
+  الخطوة التالية
+</Button>
+```
+
+---
+
+## Icon Usage
+
+<Canvas of={ButtonStories.WithLeadIcon} />
+<Canvas of={ButtonStories.WithTrailIcon} />
+<Canvas of={ButtonStories.WithBothIcons} />
+
+Icon sizes scale with the button size automatically. Pass any React node (SVG) to `leadIcon` or `trailIcon`.
+
+### Icon-only
+
+<Canvas of={ButtonStories.IconOnlyAll} />
+
+When `iconOnly` is set, children are rendered inside the icon slot (no label). **Always provide `aria-label`.**
+
+| Size | Icon dimension | Button w/h |
+|---|---|---|
+| Large | 24 × 24 px | 40 × 40 px |
+| Medium | 20 × 20 px | 32 × 32 px |
+| Small | 16 × 16 px | 24 × 24 px |
+
+```jsx
+<Button iconOnly aria-label="Add item" size="lg">
+  <PlusIcon />
+</Button>
+```
+
+---
+
+## Token Reference
+
+### Sizing & Spacing
+
+| Figma token | Value | Usage |
+|---|---|---|
+| `--buttons-(not-foruse)/spacing/button-height-lg` | `40px` | Large button height |
+| `--buttons-(not-foruse)/spacing/button-height-md` | `32px` | Medium button height |
+| `--buttons-(not-foruse)/spacing/button-height-sm` | `24px` | Small button height |
+| `--buttons-(not-foruse)/spacing/buttons-md-padding` | `12px` | H-padding (Large) |
+| `--buttons-(not-foruse)/spacing/buttons-sm-padding` | `8px` | H-padding (Medium, Small) |
+| `--buttons-(not-foruse)/spacing/buttons-sm-gap` | `4px` | Icon ↔ label gap |
+| `--buttons-(not-foruse)/spacing/button-radius` | `4px` | Border radius |
+
+### Colors — Primary
+
+| CSS token | Value | State |
+|---|---|---|
+| `--color-primary-bg` | `#1849a9` | Default |
+| `--color-primary-bg-hover` | `#194185` | Hovered |
+| `--color-primary-bg-pressed` | `#102a56` | Pressed |
+| `--color-primary-text` | `#f9fafb` | All states + focus ring outer |
+
+### Colors — Neutral
+
+| CSS token | Value | State |
+|---|---|---|
+| `--color-neutral-bg` | `#f3f4f6` | Default |
+| `--color-neutral-bg-hover` | `#e5e7eb` | Hovered |
+| `--color-neutral-bg-pressed` | `#d2d6db` | Pressed |
+| `--color-neutral-text` | `#000b36` | All states |
+
+### Colors — Secondary-Solid
+
+| CSS token | Value | State |
+|---|---|---|
+| `--color-secondary-bg` | `rgba(24,73,169,0.2)` | Default |
+| `--color-secondary-bg-hover` | `rgba(24,73,169,0.1)` | Hovered |
+| `--color-secondary-text` | `#1849a9` | All states |
+
+### Colors — Transparent
+
+| CSS token | Value | State |
+|---|---|---|
+| `--color-transparent-text` | `#175cd3` | Default |
+| `--color-transparent-text-hover` | `#1570ef` | Hovered + Pressed |
+
+### Colors — Danger
+
+| CSS token | Value | Usage |
+|---|---|---|
+| `--color-danger-bg` | `#a30000` | Danger primary background |
+| `--color-danger-text` | `#f9fafb` | Danger primary text |
+| `--color-danger-secondary-bg` | `#fcdad7` | Danger secondary background |
+| `--color-danger-secondary-bg-hover` | `#f8bab5` | Danger secondary hover |
+| `--color-danger-secondary-bg-press` | `#f3908a` | Danger secondary pressed |
+| `--color-danger-secondary-text` | `#a30000` | Danger secondary text |
+
+### Colors — Disabled
+
+| CSS token | Value | Usage |
+|---|---|---|
+| `--color-disabled-bg` | `#d2d6db` | All disabled backgrounds |
+| `--color-disabled-text` | `#6c7c96` | All disabled text/icons |
+
+---
+
+## Properties
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `node` | — | Button label (required unless `iconOnly`) |
+| `variant` | `primary \| neutral \| secondary-solid \| transparent \| danger \| danger-secondary` | `primary` | Visual style from Figma |
+| `size` | `sm \| md \| lg` | `lg` | Button height: 24 / 32 / 40 px |
+| `disabled` | `boolean` | `false` | Disabled state — uses dedicated tokens, not opacity |
+| `loading` | `boolean` | `false` | Shows spinner, hides content, sets `aria-busy` |
+| `fullWidth` | `boolean` | `false` | Stretches button to 100% of container |
+| `iconOnly` | `boolean` | `false` | Square icon button — set `aria-label` |
+| `leadIcon` | `node` | `null` | React node for leading icon slot |
+| `trailIcon` | `node` | `null` | React node for trailing icon slot |
+| `dir` | `ltr \| rtl` | — | Sets text direction for RTL/Arabic |
+| `type` | `button \| submit \| reset` | `button` | HTML button type |
+| `onClick` | `function` | — | Click handler |
+
+---
+
+## Accessibility
+
+- All buttons render as a native `<button>` element — keyboard and screen-reader accessible by default.
+- `disabled` sets both the HTML `disabled` attribute and `aria-disabled="true"`.
+- `loading` sets `aria-busy="true"` and hides the spinner from assistive technology (`aria-hidden` on `::after`).
+- Icon slots have `aria-hidden="true"` — label text is the accessible name.
+- Icon-only buttons **must** have `aria-label` (or `aria-labelledby`).
+- Focus ring meets WCAG 2.2 Focus Appearance: double ring (2px inner + 3px outer), minimum 3:1 contrast.
+- Disabled buttons do not receive pointer events — `cursor: not-allowed` communicates state visually.
+- Do not rely on color alone to communicate meaning — pair with label or icon.
+
+---
+
+## Usage Guidelines
+
+### Do
+
+- Use `primary` for the single most important action on a page or section.
+- Use `neutral` or `secondary-solid` for secondary actions alongside a primary button.
+- Use `transparent` for low-emphasis actions in toolbars or inline contexts.
+- Use `danger` / `danger-secondary` only for irreversible destructive actions (delete, remove, revoke).
+- Always label icon-only buttons with `aria-label`.
+- Prefer `lg` (40 px) for primary CTAs; use `md` or `sm` for dense UIs.
+- Pair destructive buttons with a confirmation step.
+
+### Don't
+
+- Don't put two `primary` buttons next to each other — one action must take precedence.
+- Don't use `danger` for non-destructive or reversible actions.
+- Don't strip the label without setting `iconOnly` — empty text causes broken layout.
+- Don't rely on color alone to communicate meaning — pair with label or icon.
+- Don't disable buttons without explaining why (prefer server-side validation or inline errors).
+- Don't use `loading` without setting `aria-busy` — the component handles this automatically.
+
+---
+
+## Code Examples
+
+```jsx
+import { Button } from '@/components/Button';
+
+// Primary with lead icon
+<Button variant="primary" leadIcon={<ArrowRightIcon />} onClick={handleSubmit}>
+  Submit
+</Button>
+
+// Secondary-solid, medium size
+<Button variant="secondary-solid" size="md">
+  Cancel
+</Button>
+
+// Danger primary — irreversible action
+<Button variant="danger" leadIcon={<TrashIcon />} onClick={handleDelete}>
+  Delete account
+</Button>
+
+// Danger secondary — softer destructive action
+<Button variant="danger-secondary" leadIcon={<TrashIcon />} onClick={handleRemove}>
+  Remove
+</Button>
+
+// Loading state
+<Button variant="primary" loading>
+  Saving…
+</Button>
+
+// Icon only
+<Button iconOnly aria-label="Add item" size="lg">
+  <PlusIcon />
+</Button>
+
+// RTL Arabic — mirror directional icon manually
+<Button variant="primary" dir="rtl" leadIcon={<ArrowRightIcon style={{ transform: 'scaleX(-1)' }} />}>
+  الخطوة التالية
+</Button>
+```
+
+---
+
+## Mismatch Report
+
+Audit performed against Figma node `4159:280` and `output/button.html` reference documentation.
+
+| Area | Figma / HTML value | Previous Storybook value | Match | Fix applied | File |
+|---|---|---|---|---|---|
+| `danger-secondary` variant | `#fcdad7` bg / `#a30000` text | Missing | ❌ | Added | Button.jsx, Button.module.css, tokens.css |
+| Neutral pressed | `#d2d6db` | `var(--color-gray-300)` = `#d1d5db` | ❌ | Fixed — new token `--color-neutral-bg-pressed` | tokens.css, Button.module.css |
+| Transparent hover bg | `rgba(24,73,169,.06)` | `rgba(23,92,211,0.08)` | ❌ | Fixed | Button.module.css |
+| Transparent pressed bg | `rgba(24,73,169,.12)` | `rgba(23,92,211,0.14)` | ❌ | Fixed | Button.module.css |
+| Transparent hover text color | `#1570ef` | not changing | ❌ | Fixed — new token `--color-transparent-text-hover` | tokens.css, Button.module.css |
+| Focus ring approach | Double `box-shadow` (2px inner + 3px outer) | `outline` + `box-shadow` | ❌ | Fixed — per-variant `box-shadow` only, `outline: none` | Button.module.css |
+| Danger hover | `#8b0000` | `#8a0000` | ❌ | Fixed | Button.module.css |
+| Destructive section in docs | Required per HTML reference | Missing | ❌ | Added | Button.mdx |
+| State × Variant table | Required per HTML reference | Missing | ❌ | Added | Button.mdx |
+| Props table | Required per HTML reference | Missing | ❌ | Added | Button.mdx |
+| Mismatch report | Required per project rules | Missing | ❌ | Added | Button.mdx |
+| Primary colors | All correct | ✅ | — | — | — |
+| Sizes (height/padding/icon) | All correct | ✅ | — | — | — |
+| Typography (font/size/weight) | All correct | ✅ | — | — | — |
+| Disabled tokens | `#d2d6db` / `#6c7c96` | ✅ | — | — | — |
+| Loading spinner | Spinner via `::after`, hides content | ✅ | — | — | — |
+| RTL via `dir` prop | ✅ | — | — | — | — |
+| Icon-only square sizing | ✅ | — | — | — | — |
+
+**Remaining mismatches:** None.
+
+**Missing tokens or design decisions:** None — all values sourced from Figma node `4159:280` and `output/button.html`.

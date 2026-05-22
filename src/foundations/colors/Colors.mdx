@@ -1,0 +1,197 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Colors" />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Foundations / Colors</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Colors</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>The Masterteam DS color system uses semantic CSS custom properties. Always reference tokens — never hardcode hex values in components.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}><span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />src/components/tokens.css</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+---
+
+## Primary Blue (Info palette)
+
+<div style={{ marginBottom: 8, fontSize: 13, color: '#6b7280' }}>Full 12-step blue scale from Figma. Blue-800 maps to <code style={{ background: '#f3f4f6', padding: '1px 5px', borderRadius: 3, fontSize: 11 }}>--color-primary-bg</code>.</div>
+<div style={{ display: 'flex', borderRadius: 12, overflow: 'hidden', marginBottom: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+{[{h:'#F5FAFF',l:'25'},{h:'#EFF8FF',l:'50'},{h:'#D1E9FF',l:'100'},{h:'#B2DDFF',l:'200'},{h:'#84CAFF',l:'300'},{h:'#53B1FD',l:'400'},{h:'#2E90FA',l:'500'},{h:'#1570EF',l:'600'},{h:'#175CD3',l:'700'},{h:'#1849A9',l:'800'},{h:'#194185',l:'900'},{h:'#102A56',l:'950'}].map(({h,l},i)=>(
+<div key={l} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center'}}>
+<div style={{width:'100%',height:64,background:h}}/>
+<div style={{padding:'6px 2px',textAlign:'center',background:'#fff',width:'100%',borderTop:'1px solid #f3f4f6'}}>
+<div style={{fontSize:10,fontWeight:700,color:'#111827'}}>{l}</div>
+<div style={{fontSize:9,color:'#6b7280',marginTop:1}}>{h}</div>
+</div>
+</div>
+))}
+</div>
+
+---
+
+## Secondary — Indigo
+
+<div style={{ marginBottom: 8, fontSize: 13, color: '#6b7280' }}>Secondary brand palette for accents, tags, and selected states.</div>
+<div style={{ display: 'flex', borderRadius: 12, overflow: 'hidden', marginBottom: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+{[{h:'#F5F8FF',l:'25'},{h:'#EEF4FF',l:'50'},{h:'#E0EAFF',l:'100'},{h:'#C7D7FE',l:'200'},{h:'#A4BCFD',l:'300'},{h:'#8098F9',l:'400'},{h:'#6172F3',l:'500'},{h:'#444CE7',l:'600'},{h:'#3538CD',l:'700'},{h:'#2D31A6',l:'800'},{h:'#2D3282',l:'900'},{h:'#1F235B',l:'950'}].map(({h,l})=>(
+<div key={l} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center'}}>
+<div style={{width:'100%',height:64,background:h}}/>
+<div style={{padding:'6px 2px',textAlign:'center',background:'#fff',width:'100%',borderTop:'1px solid #f3f4f6'}}>
+<div style={{fontSize:10,fontWeight:700,color:'#111827'}}>{l}</div>
+<div style={{fontSize:9,color:'#6b7280',marginTop:1}}>{h}</div>
+</div>
+</div>
+))}
+</div>
+
+---
+
+## Success
+
+<div style={{ display: 'flex', borderRadius: 12, overflow: 'hidden', marginBottom: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+{[{h:'#F6FEF9',l:'25'},{h:'#ECFDF3',l:'50'},{h:'#DCFAE6',l:'100'},{h:'#A9EFC5',l:'200'},{h:'#75E0A7',l:'300'},{h:'#47CD89',l:'400'},{h:'#17B26A',l:'500'},{h:'#079455',l:'600'},{h:'#067647',l:'700'},{h:'#085D3A',l:'800'},{h:'#074D31',l:'900'},{h:'#053321',l:'950'}].map(({h,l})=>(
+<div key={l} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center'}}>
+<div style={{width:'100%',height:64,background:h}}/>
+<div style={{padding:'6px 2px',textAlign:'center',background:'#fff',width:'100%',borderTop:'1px solid #f3f4f6'}}>
+<div style={{fontSize:10,fontWeight:700,color:'#111827'}}>{l}</div>
+<div style={{fontSize:9,color:'#6b7280',marginTop:1}}>{h}</div>
+</div>
+</div>
+))}
+</div>
+
+---
+
+## Warning
+
+<div style={{ display: 'flex', borderRadius: 12, overflow: 'hidden', marginBottom: 12, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+{[{h:'#FFFCF5',l:'25'},{h:'#FFFAEB',l:'50'},{h:'#FEF0C7',l:'100'},{h:'#FEDF89',l:'200'},{h:'#FEC84B',l:'300'},{h:'#FDB022',l:'400'},{h:'#F79009',l:'500'},{h:'#DC6803',l:'600'},{h:'#B54708',l:'700'},{h:'#93370D',l:'800'},{h:'#7A2E0E',l:'900'},{h:'#4E1D09',l:'950'}].map(({h,l})=>(
+<div key={l} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center'}}>
+<div style={{width:'100%',height:64,background:h}}/>
+<div style={{padding:'6px 2px',textAlign:'center',background:'#fff',width:'100%',borderTop:'1px solid #f3f4f6'}}>
+<div style={{fontSize:10,fontWeight:700,color:'#111827'}}>{l}</div>
+<div style={{fontSize:9,color:'#6b7280',marginTop:1}}>{h}</div>
+</div>
+</div>
+))}
+</div>
+
+---
+
+## Error
+
+<div style={{ display: 'flex', borderRadius: 12, overflow: 'hidden', marginBottom: 24, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+{[{h:'#FFFBFA',l:'25'},{h:'#FEF3F2',l:'50'},{h:'#FEE4E2',l:'100'},{h:'#FECDCA',l:'200'},{h:'#FDA29B',l:'300'},{h:'#F97066',l:'400'},{h:'#F04438',l:'500'},{h:'#D92D20',l:'600'},{h:'#B42318',l:'700'},{h:'#912018',l:'800'},{h:'#7A271A',l:'900'},{h:'#55160C',l:'950'}].map(({h,l})=>(
+<div key={l} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center'}}>
+<div style={{width:'100%',height:64,background:h}}/>
+<div style={{padding:'6px 2px',textAlign:'center',background:'#fff',width:'100%',borderTop:'1px solid #f3f4f6'}}>
+<div style={{fontSize:10,fontWeight:700,color:'#111827'}}>{l}</div>
+<div style={{fontSize:9,color:'#6b7280',marginTop:1}}>{h}</div>
+</div>
+</div>
+))}
+</div>
+
+---
+
+## Gray Scale
+
+<div style={{ marginBottom: 32 }}>
+<div style={{ display: 'flex', borderRadius: 12, overflow: 'hidden', marginBottom: 16, boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>
+{[{h:'#f9fafb',l:'50'},{h:'#f3f4f6',l:'100'},{h:'#e5e7eb',l:'200'},{h:'#d1d5db',l:'300'},{h:'#9ca3af',l:'400'},{h:'#6b7280',l:'500'},{h:'#4b5563',l:'600'},{h:'#374151',l:'700'},{h:'#1f2937',l:'800'},{h:'#111827',l:'900'}].map(({h,l},i)=>(
+<div key={l} style={{flex:1,display:'flex',flexDirection:'column',alignItems:'center'}}>
+<div style={{width:'100%',height:80,background:h}}/>
+<div style={{padding:'8px 4px',textAlign:'center',background:'#fff',width:'100%',borderTop:'1px solid #f3f4f6'}}>
+<div style={{fontSize:11,fontWeight:700,color:'#111827'}}>{l}</div>
+<div style={{fontSize:10,color:'#6b7280',marginTop:2}}>{h}</div>
+</div>
+</div>
+))}
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: '120px 120px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderRadius: '8px 8px 0 0', border: '1px solid #e5e7eb', borderBottom: 'none' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: '0 0 8px 8px', overflow: 'hidden' }}>
+{[{t:'--color-gray-50',h:'#f9fafb',f:'color-gray-50',u:'Page background, disabled surface'},{t:'--color-gray-100',h:'#f3f4f6',f:'color-gray-100',u:'Neutral button bg, content area'},{t:'--color-gray-200',h:'#e5e7eb',f:'color-gray-200',u:'Borders, hover bg, dividers'},{t:'--color-gray-300',h:'#d1d5db',f:'color-gray-300',u:'Disabled borders, neutral pressed'},{t:'--color-gray-400',h:'#9ca3af',f:'color-gray-400',u:'Placeholder text'},{t:'--color-gray-500',h:'#6b7280',f:'color-gray-500',u:'Secondary text, labels'},{t:'--color-gray-600',h:'#4b5563',f:'color-gray-600',u:'Muted body text'},{t:'--color-gray-700',h:'#374151',f:'color-gray-700',u:'Strong body text'},{t:'--color-gray-800',h:'#1f2937',f:'color-gray-800',u:'Headings on light background'},{t:'--color-gray-900',h:'#111827',f:'color-gray-900',u:'Primary headings, high contrast'}].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'120px 120px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.1)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{h}</code></span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+</div>
+
+---
+
+## Brand Blue
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 12 }}>
+{[{h:'#1849a9',l:'Primary',t:'--color-primary-bg',u:'Default bg'},{h:'#194185',l:'Primary Hover',t:'--color-primary-bg-hover',u:'Hover bg'},{h:'#102a56',l:'Primary Pressed',t:'--color-primary-bg-pressed',u:'Pressed bg'},{h:'#f9fafb',l:'Primary Text',t:'--color-primary-text',u:'Label on primary',dark:true},{h:'#175cd3',l:'Transparent',t:'--color-transparent-text',u:'Transparent default'},{h:'#1570ef',l:'Transparent Hover',t:'--color-transparent-text-hover',u:'Transparent hover'}].map(({h,l,t,u,dark})=>(
+<div key={t}>
+<div style={{height:72,borderRadius:8,background:h,border:'1px solid rgba(0,0,0,0.08)',marginBottom:8,display:'flex',alignItems:'flex-end',padding:6}}>{dark&&<span style={{fontSize:10,background:'rgba(0,0,0,0.15)',color:'#fff',padding:'2px 5px',borderRadius:3}}>on dark</span>}</div>
+<div style={{fontSize:12,fontWeight:600,color:'#111827',marginBottom:2}}>{l}</div>
+<code style={{fontSize:11,color:'#6b7280',display:'block',marginBottom:2}}>{h}</code>
+<code style={{fontSize:10,color:'#9ca3af',background:'#f9fafb',padding:'1px 5px',borderRadius:3,display:'inline-block'}}>{t}</code>
+</div>
+))}
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 12 }}>
+{[{h:'rgba(24,73,169,0.20)',l:'Secondary',t:'--color-secondary-bg',u:'Secondary default'},{h:'rgba(24,73,169,0.10)',l:'Secondary Hover',t:'--color-secondary-bg-hover',u:'Secondary hover'}].map(({h,l,t,u})=>(
+<div key={t}>
+<div style={{height:72,borderRadius:8,background:h,border:'1px solid rgba(0,0,0,0.08)',marginBottom:8}}/>
+<div style={{fontSize:12,fontWeight:600,color:'#111827',marginBottom:2}}>{l}</div>
+<code style={{fontSize:11,color:'#6b7280',display:'block',marginBottom:2}}>{h}</code>
+<code style={{fontSize:10,color:'#9ca3af',background:'#f9fafb',padding:'1px 5px',borderRadius:3,display:'inline-block'}}>{t}</code>
+</div>
+))}
+</div>
+</div>
+
+---
+
+## Danger / Red
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 12, marginBottom: 16 }}>
+{[{h:'#a30000',l:'Danger Primary',t:'--color-danger-bg'},{h:'#f9fafb',l:'Danger Text',t:'--color-danger-text',dark:true},{h:'#fcdad7',l:'Danger Secondary',t:'--color-danger-secondary-bg'},{h:'#f8bab5',l:'Danger Sec. Hover',t:'--color-danger-secondary-bg-hover'},{h:'#f3908a',l:'Danger Sec. Press',t:'--color-danger-secondary-bg-press'},{h:'#a30000',l:'Danger Sec. Text',t:'--color-danger-secondary-text'}].map(({h,l,t,dark})=>(
+<div key={t}>
+<div style={{height:72,borderRadius:8,background:h,border:'1px solid rgba(0,0,0,0.08)',marginBottom:8,display:'flex',alignItems:'flex-end',padding:6}}>{dark&&<span style={{fontSize:10,background:'rgba(0,0,0,0.15)',color:'#fff',padding:'2px 5px',borderRadius:3}}>on dark</span>}</div>
+<div style={{fontSize:12,fontWeight:600,color:'#111827',marginBottom:2}}>{l}</div>
+<code style={{fontSize:11,color:'#6b7280',display:'block',marginBottom:2}}>{h}</code>
+<code style={{fontSize:10,color:'#9ca3af',background:'#f9fafb',padding:'1px 5px',borderRadius:3,display:'inline-block'}}>{t}</code>
+</div>
+))}
+</div>
+
+---
+
+## Surface, Text, Disabled & Focus
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: 12, marginBottom: 16 }}>
+{[{h:'#ffffff',l:'Surface',t:'--color-surface',u:'Page / card bg'},{h:'#e5e7eb',l:'Border',t:'--color-border',u:'Dividers, outlines'},{h:'#000b36',l:'Neutral Text',t:'--color-neutral-text',u:'Default label text'},{h:'#d2d6db',l:'Disabled BG',t:'--color-disabled-bg',u:'Any disabled surface'},{h:'#6c7c96',l:'Disabled Text',t:'--color-disabled-text',u:'Any disabled label'},{h:'#1849a9',l:'Focus Ring',t:'--focus-ring-color',u:'Inner focus ring'},{h:'#ffffff',l:'Focus Outline',t:'--focus-outline-color',u:'Outer focus ring',dark:true}].map(({h,l,t,u,dark})=>(
+<div key={t}>
+<div style={{height:72,borderRadius:8,background:h,border:'1px solid rgba(0,0,0,0.08)',marginBottom:8,display:'flex',alignItems:'flex-end',padding:6}}>{dark&&<span style={{fontSize:10,background:'rgba(0,0,0,0.15)',color:'#fff',padding:'2px 5px',borderRadius:3}}>on dark</span>}</div>
+<div style={{fontSize:12,fontWeight:600,color:'#111827',marginBottom:2}}>{l}</div>
+<code style={{fontSize:11,color:'#6b7280',display:'block',marginBottom:2}}>{h}</code>
+<code style={{fontSize:10,color:'#9ca3af',background:'#f9fafb',padding:'1px 5px',borderRadius:3,display:'inline-block'}}>{t}</code>
+</div>
+))}
+</div>
+
+---
+
+## Token Usage Rules
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+<div style={{ border: '1px solid #a7f3d0', borderRadius: 10, padding: '12px 16px', background: '#f0fdf4', fontSize: 13, color: '#065f46' }}>
+<span style={{ fontWeight: 700 }}>Do:</span> Always use CSS custom properties — <code style={{ background: 'rgba(0,0,0,0.07)', padding: '1px 5px', borderRadius: 3 }}>var(--color-primary-bg)</code> not <code style={{ background: 'rgba(0,0,0,0.07)', padding: '1px 5px', borderRadius: 3 }}>#1849a9</code>. This allows theme overrides and guarantees token consistency across all components.
+</div>
+<div style={{ border: '1px solid #fecaca', borderRadius: 10, padding: '12px 16px', background: '#fef2f2', fontSize: 13, color: '#991b1b' }}>
+<span style={{ fontWeight: 700 }}>Don't:</span> Add new color tokens without a corresponding Figma token. Every token in <code style={{ background: 'rgba(0,0,0,0.07)', padding: '1px 5px', borderRadius: 3 }}>tokens.css</code> must map to a named Figma variable with a documented Figma token path in the comment.
+</div>
+</div>
+
+</div>

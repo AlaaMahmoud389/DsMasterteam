@@ -1,0 +1,112 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Spacing, Radius & Grids" />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Foundations / Spacing, Radius & Grids</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Spacing, Radius & Grids</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>A 4 px base grid governs all spacing. Border-radius tokens ensure consistent rounding across interactive surfaces. Always use tokens — never raw pixel values in component CSS.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}><span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />src/components/tokens.css</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+---
+
+## Spacing Scale
+
+<div style={{ marginBottom: 8, fontSize: 13, color: '#6b7280' }}>Semantic spacing tokens — from the Figma Spacing, radius & grids page. All values are multiples of 2px (using a 4px base grid from spacing-xs).</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 70px 60px 1fr 180px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Figma token</span><span>Rem</span><span>Pixels</span><span>Usage</span><span>Bar</span></div>
+{[
+{t:'spacing-none',rem:'0rem',px:0,u:'Reset padding or gap'},
+{t:'spacing-xxs',rem:'0.125rem',px:2,u:'Tiny nudge, divider offset'},
+{t:'spacing-xs',rem:'0.25rem',px:4,u:'Icon gap, badge padding (--space-1)'},
+{t:'spacing-sm',rem:'0.375rem',px:6,u:'Tight label gap'},
+{t:'spacing-md',rem:'0.5rem',px:8,u:'Button internal gap (--space-2)'},
+{t:'spacing-lg',rem:'0.75rem',px:12,u:'Button padding sm/md (--space-3)'},
+{t:'spacing-xl',rem:'1rem',px:16,u:'Card padding, accordion h-padding (--space-4)'},
+{t:'spacing-2xl',rem:'1.25rem',px:20,u:'Section inner gap (--space-5)'},
+{t:'spacing-3xl',rem:'1.5rem',px:24,u:'Accordion content pb, panel gap (--space-6)'},
+{t:'spacing-4xl',rem:'2rem',px:32,u:'Panel padding (--space-8)'},
+{t:'spacing-5xl',rem:'2.5rem',px:40,u:'Large section gap'},
+{t:'spacing-6xl',rem:'3rem',px:48,u:'Accordion content pe (--space-12)'},
+{t:'spacing-7xl',rem:'4rem',px:64,u:'Page section vertical rhythm'},
+{t:'spacing-8xl',rem:'5rem',px:80,u:'Hero vertical padding'},
+{t:'spacing-9xl',rem:'6rem',px:96,u:'Page top margin'},
+{t:'spacing-10xl',rem:'8rem',px:128,u:'Full-width section gap'},
+{t:'spacing-11xl',rem:'10rem',px:160,u:'Landing page section gap'},
+{t:'spacing-12xl',rem:'12rem',px:192,u:'Extra-large layout gap'},
+{t:'spacing-13xl',rem:'20rem',px:320,u:'Max container side margin'},
+].map(({t,rem,px,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'140px 70px 60px 1fr 180px',padding:'8px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:11,background:'#eff3fb',padding:'2px 5px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:11,color:'#9ca3af'}}>{rem}</span>
+<span style={{fontSize:12,fontWeight:600,color:'#111827'}}>{px}px</span>
+<span style={{fontSize:11,color:'#6b7280'}}>{u}</span>
+<div style={{display:'flex',alignItems:'center'}}>
+<div style={{flex:1,height:6,borderRadius:9999,background:'#f3f4f6',overflow:'hidden'}}>
+<div style={{width:`${Math.min((px/96)*100,100)}%`,height:'100%',background:'#1849a9',borderRadius:9999,minWidth:px>0?2:0}}/>
+</div>
+</div>
+</div>
+))}
+</div>
+
+<div style={{ background: '#f0fdf4', border: '1px solid #a7f3d0', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#065f46', marginBottom: 24 }}>
+<span style={{ fontWeight: 700 }}>4 px grid:</span> Every spacing step is a multiple of 4px from xs upward. Use the nearest semantic token — never introduce one-off raw pixel values in component CSS.
+</div>
+
+---
+
+## Border Radius
+
+<div style={{ marginBottom: 8, fontSize: 13, color: '#6b7280' }}>7-step radius scale — sourced from the Figma Radius frame. Uses a 16px base.</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 70px 60px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Figma token</span><span>Rem</span><span>Pixels</span><span>Preview & usage</span></div>
+{[
+{t:'radius-none',rem:'0rem',v:'0px',r:0,u:'Sharp corners — data tables, code blocks'},
+{t:'radius-xs',rem:'0.125rem',v:'2px',r:2,u:'Subtle rounding — code badges, small tags (--radius-sm)'},
+{t:'radius-sm',rem:'0.25rem',v:'4px',r:4,u:'Default — buttons, inputs, dropdowns, accordion (--radius-md)'},
+{t:'radius-md',rem:'0.5rem',v:'8px',r:8,u:'Cards, tooltips, popovers (--radius-lg)'},
+{t:'radius-lg',rem:'1rem',v:'16px',r:16,u:'Modals, drawers, section containers'},
+{t:'radius-xl',rem:'1.5rem',v:'24px',r:24,u:'Large floating panels, feature cards'},
+{t:'radius-full',rem:'∞',v:'9999px',r:9999,u:'Pills, avatar rings, toggle switches (--radius-full)'},
+].map(({t,rem,v,r,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'140px 70px 60px 1fr',padding:'12px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:11,background:'#eff3fb',padding:'2px 5px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:11,color:'#9ca3af'}}>{rem}</span>
+<span style={{fontSize:12,fontWeight:600,color:'#111827'}}>{v}</span>
+<div style={{display:'flex',alignItems:'center',gap:12}}>
+<div style={{width:r===9999?32:48,height:r===9999?32:28,background:'#1849a9',borderRadius:r,flexShrink:0}}/>
+<span style={{fontSize:11,color:'#6b7280'}}>{u}</span>
+</div>
+</div>
+))}
+</div>
+
+---
+
+## Grid System
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Layout grid — 12 columns</div>
+<div style={{ padding: '20px 16px' }}>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 4, marginBottom: 16 }}>
+{Array.from({length:12},(_,i)=>(
+<div key={i} style={{height:32,background:'rgba(24,73,169,0.12)',borderRadius:2,display:'flex',alignItems:'center',justifyContent:'center'}}>
+<span style={{fontSize:9,color:'#1849a9',fontWeight:700}}>{i+1}</span>
+</div>
+))}
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, fontSize: 12 }}>
+<div><span style={{color:'#6b7280'}}>Columns</span><span style={{fontWeight:600,color:'#111827',marginLeft:8}}>12</span></div>
+<div><span style={{color:'#6b7280'}}>Gutter</span><span style={{fontWeight:600,color:'#111827',marginLeft:8}}>var(--space-4) · 16px</span></div>
+<div><span style={{color:'#6b7280'}}>Margin</span><span style={{fontWeight:600,color:'#111827',marginLeft:8}}>var(--space-6) · 24px</span></div>
+</div>
+</div>
+</div>
+
+</div>

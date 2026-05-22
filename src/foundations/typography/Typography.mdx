@@ -1,0 +1,118 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Typography" />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Foundations / Typography</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Typography</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>IBM Plex Sans Arabic is the system font. All type sizes, weights, and line heights come from tokens — sized for both LTR and RTL reading environments.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}><span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />src/components/tokens.css</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+---
+
+## Font Family
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ padding: '32px 28px', background: '#fff' }}>
+<div style={{ fontSize: 13, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 700, fontSize: 11 }}>Primary — LTR & RTL</div>
+<div style={{ fontSize: 40, fontWeight: 600, color: '#111827', lineHeight: 1.2, marginBottom: 4 }}>IBM Plex Sans Arabic</div>
+<div style={{ fontSize: 16, color: '#6b7280', marginBottom: 20 }}>AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz</div>
+<div style={{ fontSize: 32, fontWeight: 600, color: '#111827', lineHeight: 1.3, direction: 'rtl', textAlign: 'right' }}>ابتثجحخدذرزسشصضطظعغفقكلمنهوي</div>
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid #e5e7eb' }}>
+<div style={{ padding: '14px 20px', borderRight: '1px solid #e5e7eb' }}>
+<div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>CSS Token</div>
+<code style={{ fontSize: 12, color: '#1849a9', background: '#eff3fb', padding: '2px 6px', borderRadius: 4 }}>--font-sans</code>
+</div>
+<div style={{ padding: '14px 20px', borderRight: '1px solid #e5e7eb' }}>
+<div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Figma token</div>
+<code style={{ fontSize: 12, color: '#6b7280' }}>Font Family/font-family-text</code>
+</div>
+<div style={{ padding: '14px 20px' }}>
+<div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', marginBottom: 4 }}>Fallback stack</div>
+<code style={{ fontSize: 12, color: '#6b7280' }}>system-ui, Segoe UI, sans-serif</code>
+</div>
+</div>
+</div>
+
+---
+
+## Type Scale
+
+<div style={{ marginBottom: 8, fontSize: 13, color: '#6b7280' }}>12-step scale — Desktop sizes (from Figma Typography / Desktop frame). Display sizes apply tracking of −2%.</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 80px 80px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Step</span><span>Font size</span><span>Line height</span><span>Tracking</span><span>Usage</span></div>
+{[
+{step:'Display 2xl',px:'72px',rem:'4.5rem',lhPx:'90px',lhRem:'5.625rem',track:'-2%',u:'Hero headings, landing page titles'},
+{step:'Display xl',px:'60px',rem:'3.75rem',lhPx:'72px',lhRem:'4.5rem',track:'-2%',u:'Section headings, feature titles'},
+{step:'Display lg',px:'48px',rem:'3rem',lhPx:'60px',lhRem:'3.75rem',track:'-2%',u:'Page titles, primary headings'},
+{step:'Display md',px:'36px',rem:'2.25rem',lhPx:'44px',lhRem:'2.75rem',track:'-2%',u:'Sub-page titles, card headings'},
+{step:'Display sm',px:'30px',rem:'1.875rem',lhPx:'38px',lhRem:'2.375rem',track:'—',u:'Section sub-headings'},
+{step:'Display xs',px:'24px',rem:'1.5rem',lhPx:'32px',lhRem:'2rem',track:'—',u:'Sidebar headings, panel titles'},
+{step:'Text xl',px:'20px',rem:'1.25rem',lhPx:'30px',lhRem:'1.875rem',track:'—',u:'Large body, intro paragraphs'},
+{step:'Text lg',px:'18px',rem:'1.125rem',lhPx:'28px',lhRem:'1.75rem',track:'—',u:'Subheadings, card descriptions'},
+{step:'Text md',px:'16px',rem:'1rem',lhPx:'24px',lhRem:'1.5rem',track:'—',u:'Default body, accordion header, button lg'},
+{step:'Text sm',px:'14px',rem:'0.875rem',lhPx:'20px',lhRem:'1.25rem',track:'—',u:'Labels, form fields, button sm'},
+{step:'Text xs',px:'12px',rem:'0.75rem',lhPx:'18px',lhRem:'1.125rem',track:'—',u:'Captions, badges, helper text'},
+{step:'Text xxs',px:'12px',rem:'0.75rem',lhPx:'18px',lhRem:'1.125rem',track:'—',u:'Smallest legal / tooltip text'},
+].map(({step,px,rem,lhPx,lhRem,track,u},i)=>(
+<div key={step} style={{display:'grid',gridTemplateColumns:'110px 80px 80px 80px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<div style={{fontSize:11,fontWeight:700,color:'#111827'}}>{step}</div>
+<div><div style={{fontSize:parseInt(px)>24?18:parseInt(px),fontWeight:400,color:'#111827',lineHeight:1}}>{px}</div><div style={{fontSize:10,color:'#9ca3af',marginTop:2}}>{rem}</div></div>
+<div><span style={{fontSize:12,color:'#374151'}}>{lhPx}</span><div style={{fontSize:10,color:'#9ca3af'}}>{lhRem}</div></div>
+<span style={{fontSize:12,color:'#374151'}}>{track}</span>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+---
+
+## Font Weights
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+{[
+{token:'--font-weight-regular',value:'400',name:'Regular',figma:'Font Weight/font-weight-regular',usage:'Body text, content panels, descriptions'},
+{token:'--font-weight-medium',value:'500',name:'Medium',figma:'Font Weight/font-weight-medium',usage:'Button labels, interactive text'},
+{token:'--font-weight-semibold',value:'600',name:'Semibold',figma:'Font Weight/font-weight-semibold',usage:'Accordion headers, section headings, page titles'},
+{token:'--font-weight-bold',value:'700',name:'Bold',figma:'Font Weight/font-weight-bold',usage:'Strong emphasis, data callouts, critical labels'},
+].map(({token,value,name,figma,usage},i)=>(
+<div key={token} style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 1fr',alignItems:'center',padding:'16px 20px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:16}}>
+<div style={{fontSize:24,fontWeight:parseInt(value),color:'#111827',lineHeight:1}}>{name}</div>
+<div><div style={{fontSize:11,color:'#6b7280',marginBottom:3}}>Token</div><code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{token}</code></div>
+<div><div style={{fontSize:11,color:'#6b7280',marginBottom:3}}>Value</div><span style={{fontSize:16,fontWeight:700,color:'#111827'}}>{value}</span></div>
+<div><div style={{fontSize:11,color:'#6b7280',marginBottom:3}}>Usage</div><span style={{fontSize:12,color:'#374151'}}>{usage}</span></div>
+</div>
+))}
+</div>
+
+---
+
+## RTL / Arabic Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR — English</div>
+<div style={{ padding: '20px 16px' }}>
+<div style={{ fontSize: 16, fontWeight: 600, color: '#111827', marginBottom: 8, direction: 'ltr' }}>Accordion Component</div>
+<div style={{ fontSize: 14, color: '#6b7280', lineHeight: 1.6, direction: 'ltr' }}>The accordion delivers large amounts of content in a small space through progressive disclosure.</div>
+</div>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL — Arabic</div>
+<div style={{ padding: '20px 16px' }}>
+<div style={{ fontSize: 16, fontWeight: 600, color: '#111827', marginBottom: 8, direction: 'rtl', textAlign: 'right' }}>مكوّن الأكورديون</div>
+<div style={{ fontSize: 14, color: '#6b7280', lineHeight: 1.7, direction: 'rtl', textAlign: 'right' }}>المرجع الوطني الأول للمعلومات والخدمات الحكومية الرقمية كافة في المملكة العربية السعودية.</div>
+</div>
+</div>
+</div>
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+<span style={{ fontWeight: 700 }}>RTL rule:</span> IBM Plex Sans Arabic supports both LTR and RTL natively. Always set <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 5px', borderRadius: 3 }}>dir="rtl"</code> on the component or ancestor — never use <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 5px', borderRadius: 3 }}>text-align: right</code> as a substitute.
+</div>
+
+</div>

@@ -1,0 +1,377 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { RiskMatrix } from './RiskMatrix';
+import * as RiskMatrixStories from './RiskMatrix.stories';
+
+<Meta of={RiskMatrixStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Charts / Risk Matrix</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Risk Matrix</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>A 5×5 Probability × Impact heatmap grid for visualising risk exposure. Cells are colour-coded by risk level (Very High → Very Low), support interactive legend filtering, and show a tooltip on hover. Includes RTL support, numeric cell values, named risk items, and a screen-reader accessible table.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>v 1.0.0</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Figma: 4600:9686</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4600-9686" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Legend Filtering','#legend-filtering'],['RTL Support','#rtl-support'],['States','#states'],['Props Reference','#props-reference'],['Token Table','#token-table'],["Do / Don't",'#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 10, padding: 24, marginBottom: 16, maxWidth: 560 }}>
+  <RiskMatrix
+    title="Risk Assessment Matrix"
+    subtitle="Q2 2025 — Project Alpha"
+    yAxisLabel="Probability"
+    xAxisLabel="Impact"
+    showLegend={true}
+    showCellValues={true}
+    showCellLabels={false}
+    seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+    values={[[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]}
+    dir="ltr"
+  />
+</div>
+
+Colour-coded 5×5 grid sourced from Figma node `4600:9686`. Each cell represents one combination of probability (Y) and impact (X). Cells are filled solid using the standard diagonal risk-level pattern. Hovering any cell reveals a tooltip; clicking legend buttons toggles visibility for that risk band.
+
+---
+
+## Anatomy
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Parts of the RiskMatrix component</div>
+{[
+['1', 'Card container', 'Outer div wrapping all content. Sets dir for RTL and holds position:relative for tooltip.', 'charts/container/*'],
+['2', 'Card title', '18px/600 heading. Hidden if title prop is omitted.', 'chart-title (#000b36)'],
+['3', 'Card subtitle', '14px/400 secondary line below the title.', 'chart-subtitle (#3c5073)'],
+['4', 'Legend', 'Centered row of interactive toggle buttons — one per risk level. aria-pressed reflects visibility state.', 'chart-legend-text (#384250)'],
+['5', 'Y-axis label', '"Probability" rotated −90° in a 20px left strip.', 'chart-axis (#6c7c96)'],
+['6', 'Y-axis ticks', 'Numeric labels 5→1 (top to bottom).', 'chart-axis (#6c7c96)'],
+['7', 'Cell grid', '5×5 div grid with row-gap 8px and col-gap 6px. Each cell is 29.619px tall, 3.702px radius.', '—'],
+['8', 'Cell fill', 'Solid background colour per risk level. Dimmed to 18% opacity when filtered out.', 'charts-risk-matrix-* tokens'],
+['9', 'Cell label (optional)', 'Risk level text inside the cell. Enabled by showCellLabels.', 'chart-cell-text (#f9fafb)'],
+['10', 'Cell value (optional)', 'Numeric count inside the cell. Enabled by showCellValues.', 'chart-cell-text (#f9fafb)'],
+['11', 'X-axis ticks', 'Numeric labels 1→5 below the grid.', 'chart-axis (#6c7c96)'],
+['12', 'X-axis label', '"Impact" centered below the ticks.', 'chart-axis (#6c7c96)'],
+['13', 'Tooltip', 'Absolute-position overlay — risk level + coordinates + item names — on hover/focus.', 'chart-tooltip-*'],
+['14', 'Detail panel', 'Expanded card for the clicked risk item (label, description, likelihood/impact).', '—'],
+].map(([n, part, desc, token], i) => (
+<div key={n} style={{ display: 'grid', gridTemplateColumns: '28px 180px 1fr 200px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+  <span style={{ background: '#1849a9', color: '#fff', borderRadius: '50%', width: 20, height: 20, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{n}</span>
+  <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{part}</span>
+  <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{desc}</span>
+  <code style={{ fontSize: 11, color: '#6b7280' }}>{token}</code>
+</div>
+))}
+</div>
+
+---
+
+## Variants
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Color Only</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="Risk Heatmap"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={false}
+  showCellLabels={false}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>showCellValues=false, showCellLabels=false. Purely colour-driven. Best for high-level dashboards.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>With Cell Labels</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="Semantic Labels"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={false}
+  showCellLabels={true}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>showCellLabels=true. Each cell shows its risk level text — good for printed reports.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>With Numeric Values</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="Risk Frequency"
+  subtitle="Count of risks per cell"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={true}
+  showCellLabels={false}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  values={[[0,2,0,3,5],[1,0,4,2,3],[0,1,0,4,2],[2,0,1,0,1],[1,1,0,2,0]]}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>showCellValues=true with a values matrix. Cells show the count; zero counts render blank.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>No Legend</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="Compact Matrix"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={false}
+  showCellValues={true}
+  values={[[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>showLegend=false. Compact form for dashboards with limited vertical space.</div>
+</div>
+</div>
+
+---
+
+## Legend Filtering
+
+Each legend item is a toggle button (`aria-pressed`). Clicking it hides the corresponding risk band — cells of that level drop to 18% opacity and become non-interactive. At least one level must remain visible; the last visible item cannot be toggled off.
+
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 24, marginBottom: 16, maxWidth: 560 }}>
+<RiskMatrix
+  title="Interactive Filter Demo"
+  subtitle="Click any legend item to dim that risk level"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={true}
+  showCellLabels={false}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  values={[[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]}
+  dir="ltr"
+/>
+</div>
+
+| Behaviour | Detail |
+|---|---|
+| Toggle off | Cells for that level get `opacity: 0.18` and `pointer-events: none` |
+| Toggle on | Cells return to full opacity and interactivity |
+| Last-visible guard | If only one level is visible, clicking it has no effect |
+| ARIA | `aria-pressed="true"` = visible, `aria-pressed="false"` = filtered out |
+| Color cue | Legend mark turns grey (`#d2d6db`) when the level is filtered out |
+
+---
+
+## RTL Support
+
+Set `dir="rtl"` to flip all text and layout for Arabic / Hebrew interfaces. The grid itself is direction-neutral — cells remain in the same probability × impact positions.
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>LTR (default)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="Risk Matrix"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={true}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  values={[[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]}
+  dir="ltr"
+/>
+</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>RTL (Arabic)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="مصفوفة المخاطر"
+  yAxisLabel="الاحتمالية"
+  xAxisLabel="التأثير"
+  showLegend={true}
+  showCellValues={true}
+  seriesLabels={['عالٍ جداً', 'عالٍ', 'متوسط', 'منخفض', 'منخفض جداً']}
+  values={[[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]}
+  dir="rtl"
+/>
+</div>
+</div>
+</div>
+
+The `dir` prop sets the HTML `dir` attribute on the card container. All text inside — title, subtitle, axis labels, legend, tooltip — inherits the correct inline direction. Only a single prop change is required.
+
+---
+
+## States
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Empty Grid (no values)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="No Data"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={false}
+  showCellLabels={false}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>No values or items passed. Grid renders with colour bands only — no numeric overlay. Useful as a blank template.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>With Risk Items</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<RiskMatrix
+  title="Project Risks"
+  yAxisLabel="Probability"
+  xAxisLabel="Impact"
+  showLegend={true}
+  showCellValues={true}
+  seriesLabels={['Very High', 'High', 'Medium', 'Low', 'Very Low']}
+  items={[
+    { id: 'R1', label: 'Data Breach', likelihood: 2, impact: 5, description: 'Unauthorised access to customer PII.' },
+    { id: 'R2', label: 'Supplier Delay', likelihood: 4, impact: 3, description: 'Key hardware supplier unable to deliver.' },
+    { id: 'R6', label: 'Cyber Attack', likelihood: 4, impact: 5, description: 'Ransomware targeting infrastructure.' },
+  ]}
+  values={[[0,0,0,0,0],[0,0,1,0,1],[0,0,0,0,0],[0,0,0,0,1],[0,0,0,0,0]]}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>items prop maps named risk items to cells. Click a cell with items to open the detail panel.</div>
+</div>
+</div>
+
+---
+
+## Props Reference
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Card title (18px/600) |
+| `subtitle` | `string` | — | Secondary line below title (14px/400) |
+| `items` | `RiskItem[]` | `[]` | Named risk items plotted on the grid as counts |
+| `yAxisLabel` | `string` | `'Probability'` | Rotated Y-axis title |
+| `xAxisLabel` | `string` | `'Impact'` | Centered X-axis title |
+| `yLabels` | `string[]` | `['5','4','3','2','1']` | Y-axis tick labels (top→bottom) |
+| `xLabels` | `string[]` | `['1','2','3','4','5']` | X-axis tick labels (left→right) |
+| `seriesLabels` | `string[]` | `['Very High',…,'Very Low']` | Labels for the top legend (one per risk level) |
+| `seriesColors` | `string[]` | `['#a30000',…,'#51b488']` | Hex colors for the legend marks |
+| `showLegend` | `boolean` | `true` | Show/hide the top risk-level legend |
+| `showCellLabels` | `boolean` | `false` | Render risk level text inside each cell |
+| `showCellValues` | `boolean` | `true` | Render the numeric `values` inside each cell |
+| `values` | `number[][]` | — | 5×5 matrix of numbers to display in cells |
+| `customGrid` | `string[][]` | — | Override the default 5×5 risk level grid |
+| `dir` | `'ltr' \| 'rtl'` | `'ltr'` | Text and layout direction |
+
+**RiskItem shape:**
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | `string` | ✓ | Unique identifier |
+| `label` | `string` | ✓ | Display name |
+| `likelihood` | `1–5` | ✓ | Y-axis position (1=lowest) |
+| `impact` | `1–5` | ✓ | X-axis position (1=lowest) |
+| `description` | `string` | — | Shown in the detail panel |
+
+---
+
+## Token Table
+
+| Token | Fallback | Used for |
+|---|---|---|
+| `--charts-risk-matrix-very-high` | `#a30000` | Very High cell fill |
+| `--charts-risk-matrix-high` | `#ff5043` | High cell fill |
+| `--charts-risk-matrix-medium` | `#dd7600` | Medium cell fill |
+| `--charts-risk-matrix-low` | `#006121` | Low cell fill |
+| `--charts-risk-matrix-very-low` | `#51b488` | Very Low cell fill |
+| `--chart-container-bg` | `#ffffff` | Card background |
+| `--chart-container-radius` | `8px` | Card border radius |
+| `--chart-container-padding` | `24px` | Card inner padding |
+| `--chart-border` | `#f3f4f6` | Card border |
+| `--chart-title` | `#000b36` | Title text |
+| `--chart-subtitle` | `#3c5073` | Subtitle text |
+| `--chart-axis` | `#6c7c96` | Axis labels and ticks |
+| `--chart-legend-text` | `#384250` | Legend label text |
+| `--chart-cell-text` | `#f9fafb` | Cell value / label text |
+
+---
+
+## Do / Don't
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '2px solid #059669', borderRadius: 8, overflow: 'hidden' }}>
+  <div style={{ background: '#ecfdf5', padding: '8px 16px', fontSize: 12, fontWeight: 700, color: '#059669', textTransform: 'uppercase', letterSpacing: '.06em' }}>Do</div>
+  <div style={{ padding: 16 }}>
+  <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, color: '#374151', lineHeight: 2 }}>
+    <li>Keep seriesLabels in the same order as the risk levels (Very High first)</li>
+    <li>Use values to display pre-aggregated counts — don't overload with raw item counts > 99</li>
+    <li>Provide a meaningful title so screen readers can identify the matrix</li>
+    <li>Use dir="rtl" for Arabic/Hebrew interfaces — never mirror manually with CSS</li>
+    <li>Leave at least one legend item visible — the component enforces this automatically</li>
+  </ul>
+  </div>
+</div>
+<div style={{ border: '2px solid #dc2626', borderRadius: 8, overflow: 'hidden' }}>
+  <div style={{ background: '#fef2f2', padding: '8px 16px', fontSize: 12, fontWeight: 700, color: '#dc2626', textTransform: 'uppercase', letterSpacing: '.06em' }}>Don't</div>
+  <div style={{ padding: 16 }}>
+  <ul style={{ margin: 0, paddingLeft: 20, fontSize: 13, color: '#374151', lineHeight: 2 }}>
+    <li>Don't enable both showCellLabels and showCellValues — they overlap at 30px cell height</li>
+    <li>Don't use customGrid with non-standard level keys — only 'very-high' | 'high' | 'medium' | 'low' | 'very-low' are valid</li>
+    <li>Don't rely on cell colour alone to convey risk — always provide a legend or cell labels for accessibility</li>
+    <li>Don't pass a values matrix larger than 5×5 — extra rows/columns are silently ignored</li>
+    <li>Don't use inline styles to override cell colours — use CSS custom properties instead</li>
+  </ul>
+  </div>
+</div>
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>WCAG 2.1 Checklist</div>
+{[
+['1.1.1 Non-text content', 'AA', 'Hidden screen-reader table provides a full text alternative to the colour grid.'],
+['1.3.1 Info and relationships', 'A', 'Grid uses role="table" / role="row" / role="cell". Y and X axes are labelled.'],
+['1.4.1 Use of colour', 'A', 'Risk level is conveyed by colour and by text (cell label or legend). Colour is never the sole indicator.'],
+['1.4.3 Contrast', 'AA', 'White cell text (#f9fafb) on all risk-level fills passes the 3:1 minimum for large text.'],
+['2.1.1 Keyboard', 'A', 'All cells are focusable (tabIndex=0). Enter opens the detail panel. Legend buttons are full keyboard targets.'],
+['2.4.3 Focus order', 'A', 'Tab order flows left-to-right, top-to-bottom through cells, then legend buttons.'],
+['4.1.2 Name, role, value', 'A', 'Each cell has a computed aria-label: "Probability N, Impact N: Level — item names". Legend buttons expose aria-pressed.'],
+].map(([criterion, level, note], i) => (
+<div key={criterion} style={{ display: 'grid', gridTemplateColumns: '240px 60px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+  <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{criterion}</span>
+  <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: level === 'AAA' ? '#1849a9' : '#e0e7ff', color: level === 'AAA' ? '#fff' : '#1849a9', borderRadius: 100, padding: '1px 8px', fontSize: 11, fontWeight: 700 }}>{level}</span>
+  <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{note}</span>
+</div>
+))}
+</div>
+
+</div>
