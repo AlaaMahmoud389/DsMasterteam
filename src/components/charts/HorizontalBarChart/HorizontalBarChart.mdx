@@ -23,7 +23,7 @@ import * as HorizontalBarChartStories from './HorizontalBarChart.stories';
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
-    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['States','#states'],['Interaction States','#interaction-states'],['Axis States','#axis-states'],['Card States','#card-states'],['Tooltip States','#tooltip-states'],['Chart Structure','#chart-structure'],['Data Format','#data-format'],['Sizes / Layout','#sizes--layout-rules'],['RTL Support','#rtl-support'],['Legend Usage','#legend-usage'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],["Do / Don't",'#do--dont'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference']].map(([label, href]) => (
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['States','#states'],['Interaction States','#interaction-states'],['Axis States','#axis-states'],['Card States','#card-states'],['Tooltip States','#tooltip-states'],['Chart Structure','#chart-structure'],['Data Format','#data-format'],['Sizes / Layout','#sizes--layout-rules'],['RTL Support','#rtl-support'],['Legend Usage','#legend-usage'],['Series Colors','#series-colors'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],["Do / Don't",'#do--dont'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}
   </div>
@@ -636,6 +636,33 @@ const kpi = {
 
 ---
 
+## Series Colors
+
+Up to 6 series — each bar group is assigned a token in order:
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10, marginBottom: 24 }}>
+{[
+  { token: '--chart-series-1', hex: '#1849a9', label: 'Series 1' },
+  { token: '--chart-series-2', hex: '#175cd3', label: 'Series 2' },
+  { token: '--chart-series-3', hex: '#2e90fa', label: 'Series 3' },
+  { token: '--chart-series-4', hex: '#53b1fd', label: 'Series 4' },
+  { token: '--chart-series-5', hex: '#b2ddff', label: 'Series 5' },
+  { token: '--chart-series-6', hex: '#d1e9ff', label: 'Series 6' },
+].map(({ token, hex, label }) => (
+  <div key={token} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ height: 36, background: hex }} />
+    <div style={{ padding: '8px 6px' }}>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{label}</div>
+      <code style={{ fontSize: 10, color: '#6b7280' }}>{hex}</code>
+    </div>
+  </div>
+))}
+</div>
+
+Override a specific bar color by passing a `color` field inside the series object. All 6 tokens draw from the same Figma blue-scale palette used across all design system charts.
+
+---
+
 ## Token Table
 
 <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
@@ -777,13 +804,36 @@ const kpi = {
 ))}
 </div>
 
-| WCAG criterion | Requirement | Status |
-|---|---|---|
-| 1.1.1 Non-text Content | SVG `role="img"` + `aria-label` + `<title>` | ✓ Pass |
-| 1.3.1 Info & Relationships | Each bar carries category + value in `aria-label` | ✓ Pass |
-| 1.4.3 Contrast (text) | Axis labels #3c5073 on white: 5.2:1 | ✓ Pass |
-| 1.4.11 Non-text Contrast | Series-1 #1849a9 on white: 6.3:1 | ✓ Pass |
-| 1.4.10 Reflow | SVG uses `width="100%"` — scales to container | ✓ Pass |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 0 }}>
+    {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+      <div key="hdr" style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+      </div>
+    ))}
+    {[
+      ['1.1.1 Non-text Content', 'A', 'SVG role="img" + aria-label + <title>'],
+      ['1.3.1 Info & Relationships', 'A', 'Each bar carries category + value in aria-label'],
+      ['1.4.3 Contrast (text)', 'AA', 'Axis labels #3c5073 on white: 5.2:1'],
+      ['1.4.11 Non-text Contrast', 'AA', 'Series-1 #1849a9 on white: 6.3:1'],
+      ['1.4.10 Reflow', 'AA', 'SVG uses width="100%" — scales to container'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: level === 'AAA' ? '#ede9fe' : '#dbeafe', color: level === 'AAA' ? '#6d28d9' : '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
 ---
 

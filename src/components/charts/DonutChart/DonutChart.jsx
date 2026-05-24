@@ -99,6 +99,10 @@ export function DonutChart({
   showTable = false,
   tableTitleText,
   showTableTitle = true,
+  /* ── Layout & table-type (Figma: node 4401:26076) ── */
+  orientation = 'portrait',   // 'portrait' | 'landscape'
+  tableType = 'progress',     // 'progress' | 'percentage'
+  percentageRows = [],        // [{ label, percentage, color }]
 }) {
   const isHalf = type === 'half';
   const isPie  = type === 'pie';
@@ -169,6 +173,67 @@ export function DonutChart({
   const centerLabelY = isHalf ? 90 : 123;
   const centerValueY = isHalf ? 117 : 155;
 
+  /* ── Table section (computed once, used in both layouts) ── */
+  const tableSection = (() => {
+    if (tableType === 'percentage' && percentageRows.length > 0) {
+      return (
+        <div className={styles.percentageTable}>
+          {showTableTitle && tableTitleText && (
+            <div className={styles.tableHeader}>
+              <span className={styles.tableTitle}>{tableTitleText}</span>
+              <span className={styles.tableDots} aria-hidden="true">···</span>
+            </div>
+          )}
+          {percentageRows.map((row, i) => {
+            const color = row.color || SERIES_COLORS[i % SERIES_COLORS.length];
+            return (
+              <div key={i} className={styles.percentageRow}>
+                <div className={styles.percentageRowLeft}>
+                  <span className={styles.percentageDot} style={{ background: color }} aria-hidden="true" />
+                  <span className={styles.percentageLabel}>{row.label}</span>
+                </div>
+                <span className={styles.percentageValue}>{row.percentage}%</span>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+    if (showTable && progressRows.length > 0) {
+      return (
+        <div className={styles.progressTable}>
+          {showTableTitle && tableTitleText && (
+            <div className={styles.tableHeader}>
+              <span className={styles.tableTitle}>{tableTitleText}</span>
+              <span className={styles.tableDots} aria-hidden="true">···</span>
+            </div>
+          )}
+          {progressRows.map((row, i) => {
+            const color = row.color || SERIES_COLORS[i % SERIES_COLORS.length];
+            const pct = Math.min(100, Math.max(0, row.percentage));
+            const isDark = pct >= 20;
+            return (
+              <div key={i} className={styles.progressRow}>
+                <span className={styles.progressLabel}>{row.label}</span>
+                <div className={styles.progressBarTrack} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${row.label}: ${pct}%`}>
+                  <div
+                    className={styles.progressBarFill}
+                    style={{ width: `${pct}%`, background: color }}
+                  >
+                    <span className={styles.progressBarValue} style={{ color: isDark ? 'var(--chart-progress-text-light, #f9fafb)' : 'var(--chart-subtitle, #3c5073)' }}>
+                      {pct}%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+    return null;
+  })();
+
   return (
     <div className={styles.card} dir={dir} ref={cardRef}>
       {showHeader && (
@@ -207,238 +272,147 @@ export function DonutChart({
         </div>
       )}
 
-      <div className={styles.content}>
-        {/* ── SVG donut ────────────────────────────── */}
-        <div className={styles.svgWrapper}>
-          <svg
-            viewBox={viewBox}
-            width={svgWidth}
-            style={svgStyle}
-            role="img"
-            aria-label={`${title} — ${type} chart`}
-            className={styles.svg}
-          >
-            <title>{title}</title>
+      {/* ── SVG element (shared between portrait & landscape) ── */}
+      {(() => {
+        const svgEl = (
+          <div className={styles.svgWrapper}>
+            <svg
+              viewBox={viewBox}
+              width={svgWidth}
+              style={svgStyle}
+              role="img"
+              aria-label={`${title} — ${type} chart`}
+              className={styles.svg}
+            >
+              <title>{title}</title>
 
-            {/* Loading skeleton rectangles for centre text */}
-            {loading && (
-              <>
-                <rect
-                  x="100"
-                  y={isHalf ? 79 : 110}
-                  width="80" height="12" rx="3"
-                  fill="var(--chart-skeleton, #e7e9ed)"
-                  className={styles.skelPulse}
-                  style={{ animationDelay: '0.3s' }}
-                  aria-hidden="true"
-                />
-                <rect
-                  x="82"
-                  y={isHalf ? 93 : 131}
-                  width="116" height="26" rx="4"
-                  fill="var(--chart-skeleton, #e7e9ed)"
-                  className={styles.skelPulse}
-                  aria-hidden="true"
-                />
-              </>
-            )}
+              {loading && (
+                <>
+                  <rect x="100" y={isHalf ? 79 : 110} width="80" height="12" rx="3"
+                    fill="var(--chart-skeleton, #e7e9ed)" className={styles.skelPulse}
+                    style={{ animationDelay: '0.3s' }} aria-hidden="true" />
+                  <rect x="82" y={isHalf ? 93 : 131} width="116" height="26" rx="4"
+                    fill="var(--chart-skeleton, #e7e9ed)" className={styles.skelPulse}
+                    aria-hidden="true" />
+                </>
+              )}
 
-            {/* Loading arc segments */}
-            {loading && skelSlices.map((sl, i) => (
-              <path
-                key={i}
-                d={buildArcPath(CX, CY, outerR, innerR, sl.start, sl.end)}
-                fill="var(--chart-skeleton, #e7e9ed)"
-                className={styles.skelPulse}
-                style={{ animationDelay: `${sl.delay}s` }}
-                aria-hidden="true"
-              />
-            ))}
+              {loading && skelSlices.map((sl, i) => (
+                <path key={i} d={buildArcPath(CX, CY, outerR, innerR, sl.start, sl.end)}
+                  fill="var(--chart-skeleton, #e7e9ed)" className={styles.skelPulse}
+                  style={{ animationDelay: `${sl.delay}s` }} aria-hidden="true" />
+              ))}
 
-            {/* Empty state */}
-            {!loading && empty && (() => {
-              const sliceDeg   = isHalf ? 30 : 60;
-              const startAngle = isHalf ? -180 : -90;
-              const empSlices = Array.from({ length: 6 }, (_, i) => {
-                const s = startAngle + i * sliceDeg;
-                return buildArcPath(CX, CY, outerR, innerR, s, s + sliceDeg);
-              });
-              return empSlices.map((d, i) => (
-                <path
-                  key={i}
-                  d={d}
-                  fill="var(--chart-null, #d2d6db)"
-                  aria-hidden="true"
-                />
-              ));
-            })()}
+              {!loading && empty && (() => {
+                const sliceDeg   = isHalf ? 30 : 60;
+                const startAngle = isHalf ? -180 : -90;
+                return Array.from({ length: 6 }, (_, i) => {
+                  const s = startAngle + i * sliceDeg;
+                  return <path key={i} d={buildArcPath(CX, CY, outerR, innerR, s, s + sliceDeg)}
+                    fill="var(--chart-null, #d2d6db)" aria-hidden="true" />;
+                });
+              })()}
 
-            {/* Normal segments */}
-            {!loading && !empty && segments.map((seg, i) => {
-              const isHidden = hiddenSegments.has(i);
-              const color = isHidden
-                ? 'var(--chart-legend-hidden, #d2d6db)'
-                : (seg.color || SERIES_COLORS[i % SERIES_COLORS.length]);
+              {!loading && !empty && segments.map((seg, i) => {
+                if (hiddenSegments.has(i)) return null;
+                const color = seg.color || SERIES_COLORS[i % SERIES_COLORS.length];
+                const pct = seg.value / totalValue;
+                const angleDelta = sweepTotal * pct;
+                const startDeg = currentAngle;
+                const endDeg   = currentAngle + angleDelta;
+                currentAngle   = endDeg;
+                const pctLabel = totalValue > 0 ? `${(pct * 100).toFixed(1)}%` : '0%';
+                const tooltipRows = [{ label: seg.label, value: `${pctLabel} · ${seg.value}`, marker: color }];
+                return (
+                  <path key={seg.id ?? i} d={buildArcPath(CX, CY, outerR, innerR, startDeg, endDeg)}
+                    fill={color} aria-label={`${seg.label}: ${pctLabel}`}
+                    tabIndex={0} role="button" style={{ cursor: 'pointer', outline: 'none' }}
+                    onMouseEnter={e => showTooltipAt(e, tooltipRows)} onMouseLeave={hideTooltip}
+                    onFocus={e => showTooltipAt(e, tooltipRows)} onBlur={hideTooltip}
+                    onKeyDown={e => {
+                      if (e.key === 'Escape') hideTooltip();
+                      if (e.key === 'Enter' || e.key === ' ') showTooltipAt(e, tooltipRows);
+                    }} />
+                );
+              })}
 
-              const segValue = isHidden ? 0 : (seg.value || 0);
-              // For hidden segments, still render a tiny arc for smooth toggle (or skip)
-              if (isHidden) {
-                // Advance angle by 0 (hidden = zero width arc, skip rendering)
-                return null;
-              }
+              {!isPie && !isHalf && <circle cx={CX} cy={CY} r={innerR} fill="white" aria-hidden="true" />}
+              {!isPie && isHalf && (
+                <path d={`M ${CX - innerR} ${CY} A ${innerR} ${innerR} 0 0 1 ${CX + innerR} ${CY} Z`}
+                  fill="white" aria-hidden="true" />
+              )}
 
-              const pct = segValue / totalValue;
-              const angleDelta = sweepTotal * pct;
-              const startDeg = currentAngle;
-              const endDeg   = currentAngle + angleDelta;
-              currentAngle   = endDeg;
+              {!loading && !isPie && (
+                <>
+                  {(centerLabel || empty) && (
+                    <text x={CX} y={centerLabelY} textAnchor="middle"
+                      fontFamily="'IBM Plex Sans Arabic', sans-serif" fontSize="14" fontWeight="400"
+                      fill={empty ? 'var(--chart-null, #d2d6db)' : 'var(--chart-axis-label, #6c7c96)'}
+                      aria-hidden="true">
+                      {empty ? 'No data' : centerLabel}
+                    </text>
+                  )}
+                  {(centerValue || empty) && (
+                    <text x={CX} y={centerValueY} textAnchor="middle"
+                      fontFamily="'IBM Plex Sans Arabic', sans-serif" fontSize="36" fontWeight="700"
+                      fill={empty ? 'var(--chart-null, #d2d6db)' : 'var(--chart-title, #000b36)'}
+                      style={{ letterSpacing: '-0.72px' }} aria-hidden="true">
+                      {empty ? '—' : centerValue}
+                    </text>
+                  )}
+                </>
+              )}
+            </svg>
+          </div>
+        );
 
-              const pctLabel = totalValue > 0 ? `${(pct * 100).toFixed(1)}%` : '0%';
-              const tooltipRows = [
-                { label: seg.label, value: `${pctLabel} · ${seg.value}`, marker: color },
-              ];
+        const srOnlyEl = (
+          <table className={styles.srOnly} aria-label={`${title} — data table`}>
+            <caption>{title}</caption>
+            <thead><tr><th scope="col">Segment</th><th scope="col">Value</th><th scope="col">Percentage</th></tr></thead>
+            <tbody>
+              {segments.map((seg, i) => {
+                const pct = totalValue > 0 ? ((seg.value / totalValue) * 100).toFixed(1) : '0.0';
+                return (
+                  <tr key={seg.id ?? i}>
+                    <th scope="row">{seg.label}</th>
+                    <td>{seg.value}</td>
+                    <td>{pct}%</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        );
 
-              return (
-                <path
-                  key={seg.id ?? i}
-                  d={buildArcPath(CX, CY, outerR, innerR, startDeg, endDeg)}
-                  fill={color}
-                  aria-label={`${seg.label}: ${pctLabel}`}
-                  tabIndex={0}
-                  role="button"
-                  style={{ cursor: 'pointer', outline: 'none' }}
-                  onMouseEnter={e => showTooltipAt(e, tooltipRows)}
-                  onMouseLeave={hideTooltip}
-                  onFocus={e => showTooltipAt(e, tooltipRows)}
-                  onBlur={hideTooltip}
-                  onKeyDown={e => {
-                    if (e.key === 'Escape') hideTooltip();
-                    if (e.key === 'Enter' || e.key === ' ') showTooltipAt(e, tooltipRows);
-                  }}
-                />
-              );
-            })}
-
-            {/* (loading centre text rendered above arc segments — see top of SVG) */}
-
-            {/* Donut hole — full circle for donut; upper-semicircle for half.
-                The full circle in half mode extends below the viewBox and (with
-                overflow:visible on the SVG) paints white over the legend — using
-                a semicircle path keeps it contained within the viewBox. */}
-            {!isPie && !isHalf && (
-              <circle cx={CX} cy={CY} r={innerR} fill="white" aria-hidden="true" />
-            )}
-            {!isPie && isHalf && (
-              <path
-                d={`M ${CX - innerR} ${CY} A ${innerR} ${innerR} 0 0 1 ${CX + innerR} ${CY} Z`}
-                fill="white"
-                aria-hidden="true"
-              />
-            )}
-
-            {/* Center text — Figma: label (14px/400) ABOVE value (36px/700/-0.72px) */}
-            {!loading && !isPie && (
-              <>
-                {(centerLabel || empty) && (
-                  <text
-                    x={CX}
-                    y={centerLabelY}
-                    textAnchor="middle"
-                    fontFamily="'IBM Plex Sans Arabic', sans-serif"
-                    fontSize="14"
-                    fontWeight="400"
-                    fill={empty ? 'var(--chart-null, #d2d6db)' : 'var(--chart-axis-label, #6c7c96)'}
-                    aria-hidden="true"
-                  >
-                    {empty ? 'No data' : centerLabel}
-                  </text>
-                )}
-                {(centerValue || empty) && (
-                  <text
-                    x={CX}
-                    y={centerValueY}
-                    textAnchor="middle"
-                    fontFamily="'IBM Plex Sans Arabic', sans-serif"
-                    fontSize="36"
-                    fontWeight="700"
-                    fill={empty ? 'var(--chart-null, #d2d6db)' : 'var(--chart-title, #000b36)'}
-                    style={{ letterSpacing: '-0.72px' }}
-                    aria-hidden="true"
-                  >
-                    {empty ? '—' : centerValue}
-                  </text>
-                )}
-              </>
-            )}
-          </svg>
-        </div>
-
-        {/* Legend */}
-        {showLegend && !loading && !empty && segments.length > 0 && (
-          <ChartLegend
-            series={segments.map(s => ({ id: s.id, label: s.label, color: s.color }))}
-            hiddenSeries={hiddenSegments}
-            onToggle={toggleSegment}
-            colors={SERIES_COLORS}
-          />
-        )}
-
-        {/* Accessible data table — screen readers */}
-        <table className={styles.srOnly} aria-label={`${title} — data table`}>
-          <caption>{title}</caption>
-          <thead>
-            <tr>
-              <th scope="col">Segment</th>
-              <th scope="col">Value</th>
-              <th scope="col">Percentage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {segments.map((seg, i) => {
-              const pct = totalValue > 0 ? ((seg.value / totalValue) * 100).toFixed(1) : '0.0';
-              return (
-                <tr key={seg.id ?? i}>
-                  <th scope="row">{seg.label}</th>
-                  <td>{seg.value}</td>
-                  <td>{pct}%</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-
-      {/* ── Progress Table (Figma: tables prop) ─────── */}
-      {showTable && progressRows.length > 0 && (
-        <div className={styles.progressTable}>
-          {showTableTitle && tableTitleText && (
-            <div className={styles.tableHeader}>
-              <span className={styles.tableTitle}>{tableTitleText}</span>
-              <span className={styles.tableDots} aria-hidden="true">···</span>
+        if (orientation === 'landscape') {
+          return (
+            <div className={styles.landscapeLayout}>
+              {svgEl}
+              {tableSection && <div className={styles.tableSide}>{tableSection}</div>}
+              {srOnlyEl}
             </div>
-          )}
-          {progressRows.map((row, i) => {
-            const color = row.color || SERIES_COLORS[i % SERIES_COLORS.length];
-            const pct = Math.min(100, Math.max(0, row.percentage));
-            const isDark = pct >= 20;
-            return (
-              <div key={i} className={styles.progressRow}>
-                <span className={styles.progressLabel}>{row.label}</span>
-                <div className={styles.progressBarTrack} role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${row.label}: ${pct}%`}>
-                  <div
-                    className={styles.progressBarFill}
-                    style={{ width: `${pct}%`, background: color }}
-                  >
-                    <span className={styles.progressBarValue} style={{ color: isDark ? 'var(--chart-progress-text-light, #f9fafb)' : 'var(--chart-subtitle, #3c5073)' }}>
-                      {pct}%
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+          );
+        }
+
+        return (
+          <>
+            <div className={styles.content}>
+              {svgEl}
+              {showLegend && !loading && !empty && segments.length > 0 && (
+                <ChartLegend
+                  series={segments.map(s => ({ id: s.id, label: s.label, color: s.color }))}
+                  hiddenSeries={hiddenSegments}
+                  onToggle={toggleSegment}
+                  colors={SERIES_COLORS}
+                />
+              )}
+              {srOnlyEl}
+            </div>
+            {tableSection}
+          </>
+        );
+      })()}
 
       {/* Tooltip — absolutely positioned inside card */}
       <ChartTooltip
@@ -495,4 +469,13 @@ DonutChart.propTypes = {
   showTable:      PropTypes.bool,
   tableTitleText: PropTypes.string,
   showTableTitle: PropTypes.bool,
+  orientation:    PropTypes.oneOf(['portrait', 'landscape']),
+  tableType:      PropTypes.oneOf(['progress', 'percentage']),
+  percentageRows: PropTypes.arrayOf(
+    PropTypes.shape({
+      label:      PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+      color:      PropTypes.string,
+    })
+  ),
 };

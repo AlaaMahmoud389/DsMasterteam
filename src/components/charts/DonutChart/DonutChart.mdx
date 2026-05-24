@@ -23,7 +23,7 @@ import * as DonutStories from './DonutChart.stories';
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
-    {[['Overview','#overview'],['Anatomy','#anatomy'],['Base Types','#base-types'],['Half Donut','#half-donut'],['Widget Variants','#widget-variants-figma-piechartwidgettable'],['RTL Support','#rtl-support'],['Legend Usage','#legend-usage'],['Sizes','#sizes'],['States','#states'],["Do / Don't",'#do--dont'],['Props Reference','#widget-props-reference'],['Tokens','#token-table'],['Accessibility','#accessibility'],['Examples','#implementation-examples']].map(([label, href]) => (
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Base Types','#base-types'],['Half Donut','#half-donut'],['Widget Variants','#widget-variants-figma-piechartwidgettable'],['RTL Support','#rtl-support'],['Legend Usage','#legend-usage'],['Sizes','#sizes'],['Series Colors','#series-colors'],['States','#states'],["Do / Don't",'#do--dont'],['Props Reference','#widget-props-reference'],['Tokens','#token-table'],['Accessibility','#accessibility'],['Examples','#implementation-examples']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}
   </div>
@@ -620,6 +620,33 @@ The full widget (with KPI header + progress table) typically requires a **minimu
 
 ---
 
+## Series Colors
+
+Up to 6 segments — tokens map to CSS custom properties in order of assignment:
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10, marginBottom: 24 }}>
+{[
+  { token: '--chart-series-1', hex: '#1849a9', label: 'Series 1' },
+  { token: '--chart-series-2', hex: '#175cd3', label: 'Series 2' },
+  { token: '--chart-series-3', hex: '#2e90fa', label: 'Series 3' },
+  { token: '--chart-series-4', hex: '#53b1fd', label: 'Series 4' },
+  { token: '--chart-series-5', hex: '#b2ddff', label: 'Series 5' },
+  { token: '--chart-series-6', hex: '#d1e9ff', label: 'Series 6' },
+].map(({ token, hex, label }) => (
+  <div key={token} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ height: 36, background: hex }} />
+    <div style={{ padding: '8px 6px' }}>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{label}</div>
+      <code style={{ fontSize: 10, color: '#6b7280' }}>{hex}</code>
+    </div>
+  </div>
+))}
+</div>
+
+Segment 1 receives `--chart-series-1`, segment 2 receives `--chart-series-2`, and so on. Override any segment color using the `segments[n].color` field.
+
+---
+
 ## States
 
 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
@@ -682,8 +709,47 @@ The full widget (with KPI header + progress table) typically requires a **minimu
 
 ## Token Table
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Series Colors</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Container</div>
+<div style={{ display: 'grid', gridTemplateColumns: '240px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Figma resolved value</span><span>Figma path</span></div>
+{[
+['--chart-container-bg','#ffffff','charts/container/background/default'],
+['--chart-container-padding','24 px','charts/container/chart-card-2xl-padding'],
+['--chart-container-radius','8 px','charts/container/chart-card-radius-sm'],
+['--chart-border','#f3f4f6','charts/container/border/default'],
+].map(([t, v, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '240px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ fontSize: 13, color: '#111827' }}>{v}</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Typography &amp; Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '240px 150px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Figma path</span></div>
+{[
+['--chart-title','#000b36','charts/header-title/title'],
+['--chart-subtitle','#3c5073','charts/header-title/subtitle'],
+['--chart-axis','#6c7c96','charts/axis/title/label-color (legend text)'],
+['--chart-kpi-bg','rgba(0,97,33,0.1)','charts/kpi/badge/icon/icon-bg'],
+['--chart-kpi-positive','#006121','charts/kpi/badge/trend/positive-trend'],
+['--chart-null','#d2d6db','charts/data-and-legend/data/null (empty ring)'],
+].map(([t, h, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '240px 150px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+<span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+<code style={{ fontSize: 11, color: '#111827' }}>{h}</code>
+</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Series &amp; Segments</div>
+<div style={{ display: 'grid', gridTemplateColumns: '240px 120px 200px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Figma path</span><span>Usage</span></div>
 {[
 ['--chart-series-1','#1849a9','charts/data-and-legend/data/series-1','Progress bar row 1 / donut segment 1'],
 ['--chart-series-2','#175cd3','charts/data-and-legend/data/series-2','Progress bar row 2 / donut segment 2'],
@@ -691,7 +757,7 @@ The full widget (with KPI header + progress table) typically requires a **minimu
 ['--chart-series-4','#53b1fd','charts/data-and-legend/data/series-4','Progress bar row 4 / donut segment 4'],
 ['--chart-series-5','#b2ddff','charts/data-and-legend/data/series-5','Donut segment 5'],
 ].map(([t, h, f, u], i) => (
-<div key={t} style={{ display: 'grid', gridTemplateColumns: '220px 120px 280px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '240px 120px 200px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
 <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
 <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
@@ -701,6 +767,7 @@ The full widget (with KPI header + progress table) typically requires a **minimu
 <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
 </div>
 ))}
+</div>
 </div>
 
 ---
@@ -848,14 +915,37 @@ The full widget (with KPI header + progress table) typically requires a **minimu
 ))}
 </div>
 
-| WCAG criterion | Requirement | Status |
-|---|---|---|
-| 1.1.1 Non-text Content | SVG `role="img"` + `aria-label` + `<title>` | ✓ Pass |
-| 1.3.1 Info & Relationships | Each arc carries segment name + percentage in `aria-label`; hidden data `<table>` mirrors all values | ✓ Pass |
-| 1.4.3 Contrast (text) | Chart subtitle #3c5073 on white: 5.2:1 | ✓ Pass |
-| 1.4.11 Non-text Contrast | Series-1 #1849a9 on white: 6.3:1 | ✓ Pass |
-| 1.4.10 Reflow | SVG uses `width="100%"` — scales to container | ✓ Pass |
-| 4.1.3 Status Messages | Progress bars use `role="progressbar"` with `aria-valuenow/min/max` | ✓ Pass |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 0 }}>
+    {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+      <div key="hdr" style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+      </div>
+    ))}
+    {[
+      ['1.1.1 Non-text Content', 'A', 'SVG role="img" + aria-label + <title>'],
+      ['1.3.1 Info & Relationships', 'A', 'Each arc carries segment name + percentage in aria-label; hidden data <table> mirrors all values'],
+      ['1.4.3 Contrast (text)', 'AA', 'Chart subtitle #3c5073 on white: 5.2:1'],
+      ['1.4.11 Non-text Contrast', 'AA', 'Series-1 #1849a9 on white: 6.3:1'],
+      ['1.4.10 Reflow', 'AA', 'SVG uses width="100%" — scales to container'],
+      ['4.1.3 Status Messages', 'AA', 'Progress bars use role="progressbar" with aria-valuenow/min/max'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: level === 'AAA' ? '#ede9fe' : '#dbeafe', color: level === 'AAA' ? '#6d28d9' : '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
 
 ---
 

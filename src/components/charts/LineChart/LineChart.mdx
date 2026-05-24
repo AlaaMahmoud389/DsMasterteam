@@ -1,29 +1,29 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 import { LineChart } from './LineChart';
-import * as LineStories from './LineChart.stories';
+import * as LineChartStories from './LineChart.stories';
 
-<Meta of={LineStories} />
+<Meta of={LineChartStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
 <div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
   <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Charts / Line Chart</div>
   <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Line Chart</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>A multi-series time-series chart with gradient area fills, interactive legend filtering, column tooltip, and four Figma variant controls: <code>rtl</code>, <code>showContent</code>, <code>showXAxisLabel</code>, <code>showYAxisLabel</code>. Supports three line styles (line, step, smooth) and up to 6 series — matching Figma node 4399:18102.</div>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>An SVG line chart supporting up to 6 series, three line styles (line, step, smooth), optional KPI block, gradient area fills, and full RTL support. Includes interactive legend toggle, hover tooltips, loading/empty states, and a screen-reader accessible data table.</div>
   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
       <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
       Available
     </span>
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>v 1.0.0</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Figma: 4399:18102</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-18102" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Figma: 4560:4599</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-4599" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
   </div>
 </div>
 
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
-    {[['Overview','#overview'],['Anatomy','#anatomy'],['Figma Variants','#figma-variants'],['Line Styles','#line-styles'],['Series Colors','#series-colors'],['Legend Filtering','#legend-filtering'],['RTL Support','#rtl-support'],['States','#states'],['Props Reference','#props-reference'],['Tokens','#token-table'],["Do / Don't",'#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Figma Variants','#figma-variants'],['KPI Block','#kpi-block'],['Line Styles','#line-styles'],['Series Colors','#series-colors'],['RTL Support','#rtl-support'],['States','#states'],['Props Reference','#props-reference'],['Token Table','#token-table'],["Do / Don't",'#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}
   </div>
@@ -33,15 +33,17 @@ import * as LineStories from './LineChart.stories';
 
 ## Overview
 
-<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 10, padding: 24, marginBottom: 16, maxWidth: 580 }}>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 10, padding: 24, marginBottom: 16 }}>
   <LineChart
-    title="Card Title"
+    title="Data Title"
+    kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'from last week' } }}
+    showKpi={true}
     yAxisTitle="Active users"
     xAxisTitle="Month"
     series={[
-      { id: 1, label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
-      { id: 2, label: 'Series 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
-      { id: 3, label: 'Series 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
+      { label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
+      { label: 'Series 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
+      { label: 'Series 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
     ]}
     categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']}
     lineType="line"
@@ -53,35 +55,27 @@ import * as LineStories from './LineChart.stories';
   />
 </div>
 
-Exact replica of Figma node `4399:18102`. The card contains: legend row → SVG chart with rotated Y-axis label, Y-tick gridlines, gradient area fills, line strokes, X-axis category labels, X-axis title. Dots are invisible by default and appear on hover/focus for tooltip interaction.
-
 ---
 
 ## Anatomy
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Parts of the LineChart component</div>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 24 }}>
 {[
-['1',  'Card container',     'Outer `div`. Sets `dir` for RTL. 24px padding, 8px radius, 1px border.', 'charts/container/*'],
-['2',  'Card title',         '18px/600 heading. Token: --charts/header-title/title (#000b36).', 'chart-title'],
-['3',  'Card subtitle',      '14px/400 optional text below title.', 'chart-subtitle (#3c5073)'],
-['4',  'Legend row',         'Interactive `<button>` items with dot marks. Toggle visibility per series.', 'chart-axis (#6c7c96)'],
-['5',  'SVG canvas',         'Responsive `<svg>` with computed viewBox. Holds all chart geometry.', '—'],
-['6',  'Y-axis rotated label','Rotated −90° text. Figma: 14px/500, #6c7c96. Controlled by `showYAxisLabel`.', 'chart-axis'],
-['7',  'Y-axis tick labels', 'Auto-computed ticks. Figma: 14px/400, #6c7c96, right-aligned.', 'chart-axis (#6c7c96)'],
-['8',  'Horizontal gridlines','1px lines at each Y tick. Token: --chart-border (#f3f4f6).', 'chart-border'],
-['9',  'Gradient area fills','`<linearGradient>` + area `<path>` below each line. Series color → transparent.', 'chart-series-1…6'],
-['10', 'Line strokes',       '2px `<path>` per series. Rendered back-to-front (lightest series behind).', 'chart-series-1…6'],
-['11', 'Interaction dots',   '`r=4.5` `<circle>` per data point. Invisible by default; visible on hover/focus.', 'chart-series-1…6'],
-['12', 'X-axis labels',      'Category labels centered under each point. Figma: 14px/400, #000b36. Controlled by `showContent`.', 'chart-title (#000b36)'],
-['13', 'X-axis title',       'Centered text below category labels. Figma: 14px/500, #6c7c96. Controlled by `showXAxisLabel`.', 'chart-axis (#6c7c96)'],
-['14', 'Tooltip',            'Absolute-positioned card listing all visible series values for the hovered category.', '—'],
-].map(([n, name, desc, token]) => (
-  <div key={n} style={{ display: 'grid', gridTemplateColumns: '32px 180px 1fr 200px', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 10px', fontWeight: 700, color: '#6b7280', background: '#fafafa' }}>{n}</div>
-    <div style={{ padding: '8px 10px', fontWeight: 600, color: '#111827' }}>{name}</div>
-    <div style={{ padding: '8px 10px', color: '#374151' }}>{desc}</div>
-    <div style={{ padding: '8px 10px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{token}</div>
+  { n: '1', label: 'Title', desc: 'Optional chart title — 18px/600, --charts/header-title/title (#000b36)' },
+  { n: '2', label: 'KPI block', desc: 'Large metric + trend badge (showKpi). Hidden when showKpi=false.' },
+  { n: '3', label: 'Legend', desc: 'Clickable series toggles — 8px square markers, 14px/400, #6c7c96.' },
+  { n: '4', label: 'Y-axis', desc: 'Auto-computed ticks (computeTicks), optional rotated label.' },
+  { n: '5', label: 'Plot area', desc: 'Lines + gradient fills. Dots appear on hover/focus.' },
+  { n: '6', label: 'X-axis', desc: 'Category labels (showContent) + optional axis title (showXAxisLabel).' },
+  { n: '7', label: 'Tooltip', desc: 'Shared ChartTooltip — all visible series values for the hovered category.' },
+  { n: '8', label: 'SR table', desc: 'Visually-hidden <table> provides full text alternative for screen readers.' },
+].map(({ n, label, desc }) => (
+  <div key={n} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '12px 14px', background: '#fff' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+      <span style={{ width: 22, height: 22, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 11, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{label}</span>
+    </div>
+    <div style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</div>
   </div>
 ))}
 </div>
@@ -90,68 +84,89 @@ Exact replica of Figma node `4399:18102`. The card contains: legend row → SVG 
 
 ## Figma Variants
 
-The Figma component exposes four boolean variant controls. Each combination is a distinct story.
+Four canonical variants from Figma frame [4560:4599](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-4599):
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Figma variant props</div>
-{[
-['rtl',            'dir',            '"False" / "True"',   'Reverses category order. LTR (default) places Jan on left, Sep on right. RTL reverses.'],
-['showContent',    'showContent',    'true / false',       'Controls X-axis category labels (Jan, Feb…). When false, the X-axis label row is hidden.'],
-['showXAxisLabel', 'showXAxisLabel', 'true / false',       'Controls the centered X-axis title (e.g. "Month"). Hidden when false.'],
-['showYAxisLabel', 'showYAxisLabel', 'true / false',       'Controls the rotated Y-axis label (e.g. "Active users"). Hidden when false.'],
-].map(([figma, prop, values, desc]) => (
-  <div key={figma} style={{ display: 'grid', gridTemplateColumns: '140px 140px 130px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#7c3aed', background: '#fafafa' }}>{figma}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#1849a9' }}>{prop}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{values}</div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{desc}</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '10px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span style={{ fontSize: 12, fontWeight: 600, color: '#374151' }}>LTR · With KPI</span>
+    <span style={{ fontSize: 11, color: '#6b7280', background: '#e5e7eb', borderRadius: 4, padding: '2px 7px' }}>4560:4600</span>
   </div>
-))}
-</div>
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
-
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>All labels visible (default)</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-    <LineChart title="Card Title" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} />
+  <div style={{ padding: 16, background: '#fff' }}>
+    <LineChart
+      title="Data Title"
+      kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'from last week' } }}
+      showKpi={true}
+      series={[
+        { label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
+        { label: 'Series 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
+        { label: 'Series 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
+      ]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']}
+      yAxisTitle="Active users" xAxisTitle="Month" showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} dir="ltr"
+    />
   </div>
 </div>
 
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>showContent=false</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-    <LineChart title="Card Title" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={false} />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '10px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span style={{ fontSize: 12, fontWeight: 600, color: '#374151' }}>LTR · No KPI</span>
+    <span style={{ fontSize: 11, color: '#6b7280', background: '#e5e7eb', borderRadius: 4, padding: '2px 7px' }}>4560:4620</span>
+  </div>
+  <div style={{ padding: 16, background: '#fff' }}>
+    <LineChart
+      title="Data Title"
+      showKpi={false}
+      series={[
+        { label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
+        { label: 'Series 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
+        { label: 'Series 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
+      ]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']}
+      yAxisTitle="Active users" xAxisTitle="Month" showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} dir="ltr"
+    />
   </div>
 </div>
 
-</div>
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
-
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>showXAxisLabel=false</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-    <LineChart title="Card Title" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      showLegend={true} showYAxisLabel={true} showXAxisLabel={false} showContent={true} />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '10px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span style={{ fontSize: 12, fontWeight: 600, color: '#374151' }}>RTL · With KPI (Arabic)</span>
+    <span style={{ fontSize: 11, color: '#6b7280', background: '#e5e7eb', borderRadius: 4, padding: '2px 7px' }}>4560:4635</span>
+  </div>
+  <div style={{ padding: 16, background: '#fff' }}>
+    <LineChart
+      title="عنوان البيانات"
+      kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'من الأسبوع الماضي' } }}
+      showKpi={true}
+      series={[
+        { label: 'قيمة 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
+        { label: 'قيمة 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
+        { label: 'قيمة 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
+      ]}
+      categories={['رمضان','شعبان','رجب','جماد ||','جماد |','ربيع ||','ربيع |','صفر','محرم']}
+      yAxisTitle="المستخدمين النشطين" xAxisTitle="الشهر" showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} dir="rtl"
+    />
   </div>
 </div>
 
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>showYAxisLabel=false</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-    <LineChart title="Card Title" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      showLegend={true} showYAxisLabel={false} showXAxisLabel={true} showContent={true} />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '10px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <span style={{ fontSize: 12, fontWeight: 600, color: '#374151' }}>RTL · No KPI (Arabic)</span>
+    <span style={{ fontSize: 11, color: '#6b7280', background: '#e5e7eb', borderRadius: 4, padding: '2px 7px' }}>4560:4656</span>
+  </div>
+  <div style={{ padding: 16, background: '#fff' }}>
+    <LineChart
+      title="عنوان البيانات"
+      showKpi={false}
+      series={[
+        { label: 'قيمة 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
+        { label: 'قيمة 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
+        { label: 'قيمة 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
+      ]}
+      categories={['رمضان','شعبان','رجب','جماد ||','جماد |','ربيع ||','ربيع |','صفر','محرم']}
+      yAxisTitle="المستخدمين النشطين" xAxisTitle="الشهر" showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} dir="rtl"
+    />
   </div>
 </div>
 
@@ -159,233 +174,362 @@ The Figma component exposes four boolean variant controls. Each combination is a
 
 ---
 
+## KPI Block
+
+The KPI block (`showKpi={true}`) renders a large metric value, a trend icon, a percentage badge, and a context label below the chart title. Sourced from Figma node 4560:4600.
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '8px 14px', background: '#f0f9f4', borderBottom: '1px solid #d1fae5', fontSize: 12, fontWeight: 600, color: '#059669' }}>showKpi={'{true}'}</div>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Data Title"
+      kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'from last week' } }}
+      showKpi={true}
+      series={[{ label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] }]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']}
+      showLegend={false} showYAxisLabel={false} showXAxisLabel={false} showContent={true} dir="ltr"
+    />
+  </div>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '8px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#6b7280' }}>showKpi={'{false}'}</div>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Data Title"
+      showKpi={false}
+      series={[{ label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] }]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']}
+      showLegend={false} showYAxisLabel={false} showXAxisLabel={false} showContent={true} dir="ltr"
+    />
+  </div>
+</div>
+</div>
+
+**KPI prop shape:**
+```js
+kpi: {
+  value: '78,909.72',           // display string — pre-formatted
+  badge: {
+    icon:  '↑',                 // '↑' | '↓' | '' — trend direction
+    text:  '4.5%',              // percentage or delta
+    label: 'from last week',    // context label
+  },
+}
+```
+
+---
+
 ## Line Styles
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 24 }}>
+Three rendering modes controlled by `lineType`:
 
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Line (default)</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 12 }}>
-    <LineChart title="" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      lineType="line" showLegend={false} />
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 24 }}>
+{[
+  { type: 'line',   label: 'line',   desc: 'Straight segments between data points. Default.' },
+  { type: 'step',   label: 'step',   desc: 'Horizontal then vertical steps — good for discrete data.' },
+  { type: 'smooth', label: 'smooth', desc: 'Cubic bezier interpolation — best for continuous trends.' },
+].map(({ type, label, desc }) => (
+  <div key={type} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '8px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb' }}>
+      <code style={{ fontSize: 12, color: '#1849a9' }}>lineType="{label}"</code>
+    </div>
+    <div style={{ padding: '12px 8px' }}>
+      <LineChart
+        title={label}
+        showKpi={false}
+        series={[{ label: 'Value', data: [200, 450, 300, 700, 500, 650, 400, 800, 600] }]}
+        categories={['A','B','C','D','E','F','G','H','I']}
+        lineType={type}
+        showLegend={false} showYAxisLabel={false} showXAxisLabel={false} showContent={true} dir="ltr"
+      />
+    </div>
+    <div style={{ padding: '8px 14px', borderTop: '1px solid #f3f4f6', fontSize: 12, color: '#6b7280' }}>{desc}</div>
   </div>
-</div>
-
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Smooth</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 12 }}>
-    <LineChart title="" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      lineType="smooth" showLegend={false} />
-  </div>
-</div>
-
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Step</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 12 }}>
-    <LineChart title="" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      lineType="step" showLegend={false} />
-  </div>
-</div>
-
+))}
 </div>
 
 ---
 
 ## Series Colors
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>6-series palette (Figma tokens)</div>
+Up to 6 series — tokens map to CSS custom properties:
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10, marginBottom: 24 }}>
 {[
-['0','Series 1','#1849a9','var(--chart-series-1)','rgba(24,73,169,0.22)',  'Darkest navy — foreground series'],
-['1','Series 2','#2e90fa','var(--chart-series-3)','rgba(46,144,250,0.18)', 'Medium blue'],
-['2','Series 3','#b2ddff','var(--chart-series-5)','rgba(178,221,255,0.22)','Light blue'],
-['3','Series 4','#175cd3','var(--chart-series-2)','rgba(23,92,211,0.18)',  '4th series'],
-['4','Series 5','#53b1fd','var(--chart-series-4)','rgba(83,177,253,0.15)', '5th series'],
-['5','Series 6','#d1e9ff','var(--chart-series-6)','rgba(209,233,255,0.20)','Lightest — 6th series'],
-].map(([idx,name,hex,token,gradTop,desc]) => (
-  <div key={idx} style={{ display: 'grid', gridTemplateColumns: '32px 80px 36px 200px 220px 1fr', alignItems: 'center', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 10px', fontWeight: 700, color: '#6b7280', background: '#fafafa' }}>{idx}</div>
-    <div style={{ padding: '8px 10px', fontWeight: 600, color: '#111827' }}>{name}</div>
-    <div style={{ padding: '6px 10px' }}>
-      <div style={{ width: 20, height: 20, borderRadius: '50%', background: hex, border: '1px solid #e5e7eb' }} />
+  { token: '--chart-series-1', hex: '#1849a9', label: 'Series 1' },
+  { token: '--chart-series-2', hex: '#175cd3', label: 'Series 2' },
+  { token: '--chart-series-3', hex: '#2e90fa', label: 'Series 3' },
+  { token: '--chart-series-4', hex: '#53b1fd', label: 'Series 4' },
+  { token: '--chart-series-5', hex: '#b2ddff', label: 'Series 5' },
+  { token: '--chart-series-6', hex: '#d1e9ff', label: 'Series 6' },
+].map(({ token, hex, label }) => (
+  <div key={token} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ height: 36, background: hex }} />
+    <div style={{ padding: '8px 6px' }}>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{label}</div>
+      <code style={{ fontSize: 10, color: '#6b7280' }}>{hex}</code>
     </div>
-    <div style={{ padding: '8px 6px', fontFamily: 'monospace', fontSize: 11, color: '#1849a9' }}>{token}</div>
-    <div style={{ padding: '8px 6px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{gradTop}</div>
-    <div style={{ padding: '8px 10px', color: '#374151' }}>{desc}</div>
   </div>
 ))}
 </div>
 
----
-
-## Legend Filtering
-
-Click any legend item to hide/show that series. The chart enforces at least one series visible at all times. Hidden series dots and area fills are removed from the SVG and excluded from tooltip rows.
-
-<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16, maxWidth: 580, marginBottom: 16 }}>
-  <LineChart
-    title="Interactive Legend"
-    subtitle="Click legend items to toggle series"
-    yAxisTitle="Active users"
-    xAxisTitle="Month"
-    series={[
-      { id: 1, label: 'Series 1', data: [580, 595, 575, 600, 615, 630, 640, 680, 720] },
-      { id: 2, label: 'Series 2', data: [390, 400, 415, 420, 450, 470, 480, 510, 555] },
-      { id: 3, label: 'Series 3', data: [100, 130, 165, 200, 230, 270, 300, 360, 420] },
-    ]}
-    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']}
-    showLegend={true}
-  />
-</div>
+Each series also gets a matching gradient fill from `rgba(hex, 0.18–0.22)` rendered as an SVG `linearGradient` behind the line.
 
 ---
 
 ## RTL Support
 
-Set `dir="rtl"` to reverse the category order (latest category appears on the left). The Y-axis label and ticks shift to the right edge.
+Set `dir="rtl"` to flip axis orientation — Y-axis moves to the right, X-axis categories reverse, and legend order reverses. All text is right-aligned.
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
-
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>LTR</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-    <LineChart title="Card Title" yAxisTitle="Active users" xAxisTitle="Month"
-      series={[{id:1,label:'Series 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'Series 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'Series 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']}
-      showLegend={true} dir="ltr" />
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '8px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#374151' }}>dir="ltr"</div>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Data Title"
+      showKpi={false}
+      series={[
+        { label: 'Series 1', data: [200, 400, 300, 600, 500, 700] },
+        { label: 'Series 2', data: [300, 250, 450, 350, 600, 400] },
+      ]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
+      showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} yAxisTitle="Users" xAxisTitle="Month" dir="ltr"
+    />
   </div>
 </div>
-
-<div>
-  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>RTL (Arabic)</div>
-  <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
-    <LineChart title="المستخدمون النشطون" yAxisTitle="المستخدمون النشطون" xAxisTitle="الشهر"
-      series={[{id:1,label:'السلسلة 1',data:[580,595,575,600,615,630,640,680,720]},{id:2,label:'السلسلة 2',data:[390,400,415,420,450,470,480,510,555]},{id:3,label:'السلسلة 3',data:[100,130,165,200,230,270,300,360,420]}]}
-      categories={['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر']}
-      showLegend={true} dir="rtl" />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '8px 14px', background: '#f0f4ff', borderBottom: '1px solid #dce3f7', fontSize: 12, fontWeight: 600, color: '#1849a9' }}>dir="rtl"</div>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="عنوان البيانات"
+      showKpi={false}
+      series={[
+        { label: 'قيمة 1', data: [200, 400, 300, 600, 500, 700] },
+        { label: 'قيمة 2', data: [300, 250, 450, 350, 600, 400] },
+      ]}
+      categories={['يناير','فبراير','مارس','أبريل','مايو','يونيو']}
+      showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} yAxisTitle="المستخدمين" xAxisTitle="الشهر" dir="rtl"
+    />
   </div>
 </div>
-
 </div>
 
 ---
 
 ## States
 
-### Loading
-
-<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16, maxWidth: 420, marginBottom: 16 }}>
-  <LineChart title="Card Title" series={[]} categories={[]} loading={true} />
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '8px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#374151' }}>loading={'{true}'}</div>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Data Title"
+      loading={true}
+      series={[{ label: 'Series 1', data: [200, 400, 300, 600, 500, 700] }]}
+      categories={['Jan','Feb','Mar','Apr','May','Jun']}
+      dir="ltr"
+    />
+  </div>
+  <div style={{ padding: '8px 14px', borderTop: '1px solid #f3f4f6', fontSize: 12, color: '#6b7280' }}>Pulsing skeleton replaces the plot area — axes hidden.</div>
 </div>
-
-### Empty
-
-<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16, maxWidth: 420, marginBottom: 16 }}>
-  <LineChart title="Card Title" series={[]} categories={['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep']} empty={true} />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '8px 14px', background: '#f8fafc', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#374151' }}>empty={'{true}'}</div>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Data Title"
+      empty={true}
+      series={[]}
+      categories={['Jan','Feb','Mar','Apr','May','Jun']}
+      dir="ltr"
+    />
+  </div>
+  <div style={{ padding: '8px 14px', borderTop: '1px solid #f3f4f6', fontSize: 12, color: '#6b7280' }}>"No data available" centered on a blank axis grid.</div>
+</div>
 </div>
 
 ---
 
 ## Props Reference
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LineChart props</div>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 120px 110px 100px 1fr', gap: 0, marginBottom: 24, border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', fontSize: 13 }}>
+<div style={{ display: 'contents' }}>
+  {['Prop','Type','Default','Required','Description'].map((h, i) => (
+    <div key={h} style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, color: '#374151', fontSize: 12, borderBottom: '2px solid #e5e7eb', borderRight: i < 4 ? '1px solid #e5e7eb' : 'none' }}>{h}</div>
+  ))}
+</div>
 {[
-['title',           'string',           '—',               'Card title displayed at the top.'],
-['subtitle',        'string',           '—',               'Optional secondary text below the title.'],
-['series *',        'SeriesItem[]',     '—',               'Required. Array of `{ id, label, data[] }`. Up to 6 series.'],
-['categories *',    'string[]',         '—',               'Required. X-axis category labels (e.g. month names).'],
-['lineType',        "'line'|'step'|'smooth'","'line'",      'Line interpolation style.'],
-['maxValue',        'number',           'auto',            'Override the auto-computed Y-axis maximum.'],
-['showLegend',      'boolean',          'true',            'Show/hide the interactive series legend.'],
-['showYAxisLabel',  'boolean',          'true',            'Figma: showYAxisLabel. Show/hide the rotated Y-axis label.'],
-['showXAxisLabel',  'boolean',          'true',            'Figma: showXAxisLabel. Show/hide the centered X-axis title.'],
-['showContent',     'boolean',          'true',            'Figma: showContent. Show/hide the X-axis category labels.'],
-['yAxisTitle',      'string',           "'Active users'",  'Text for the rotated Y-axis label.'],
-['xAxisTitle',      'string',           "'Month'",         'Text for the centered X-axis title.'],
-['loading',         'boolean',          'false',           'Show animated skeleton loading state.'],
-['empty',           'boolean',          'false',           'Show "No data available" empty state.'],
-['dir',             "'ltr'|'rtl'",      "'ltr'",           'Figma: rtl. RTL reverses category order.'],
-].map(([prop, type, def, desc]) => (
-  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 180px 140px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontWeight: 700, color: prop.includes('*') ? '#b45309' : '#1849a9', background: '#fafafa', fontSize: 12 }}>{prop}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#7c3aed' }}>{type}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{def}</div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{desc}</div>
+  ['title','string','—','No','Chart title — 18px/600, --charts/header-title/title color','#f0f4ff','#1849a9'],
+  ['subtitle','string','—','No','Optional subtitle below title — smaller, muted color','#f0f4ff','#1849a9'],
+  ['series','Series[]','[]','Yes','Array of series objects — each has label and data (number[])','#fdf4ff','#7c3aed'],
+  ['categories','string[]','[]','Yes','X-axis category labels — length must match data array lengths','#fdf4ff','#7c3aed'],
+  ['lineType','string','"line"','No','"line" | "step" | "smooth" — rendering style for all lines','#f0fdf4','#059669'],
+  ['maxValue','number','—','No','Override auto-computed Y-axis maximum','#f0fdf4','#059669'],
+  ['kpi','object','—','No','{ value, badge: { icon, text, label } } — KPI metric block','#fff7ed','#c2410c'],
+  ['showKpi','boolean','false','No','Show/hide the KPI metric + badge block above the chart','#fff7ed','#c2410c'],
+  ['showLegend','boolean','true','No','Show/hide the series legend row above the plot area','#f0fdf4','#059669'],
+  ['showYAxisLabel','boolean','true','No','Show/hide the rotated Y-axis title label','#f0fdf4','#059669'],
+  ['showXAxisLabel','boolean','true','No','Show/hide the X-axis title below category labels','#f0fdf4','#059669'],
+  ['showContent','boolean','true','No','Show/hide the X-axis category labels (tick text)','#f0fdf4','#059669'],
+  ['yAxisTitle','string','"Active users"','No','Y-axis rotated label text','#f8fafc','#374151'],
+  ['xAxisTitle','string','"Month"','No','X-axis title label text','#f8fafc','#374151'],
+  ['loading','boolean','false','No','Skeleton loading state — pulsing placeholder lines','#f8fafc','#374151'],
+  ['empty','boolean','false','No','Empty state — "No data available" message on blank axes','#f8fafc','#374151'],
+  ['dir','string','"ltr"','No','"ltr" | "rtl" — flips Y-axis side, category order, text alignment','#f8fafc','#374151'],
+].map(([prop, type, def, req, desc, bg, color], i) => (
+  <div key={prop} style={{ display: 'contents' }}>
+    <div style={{ padding: '9px 14px', background: bg, borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', color, fontWeight: 600, fontSize: 12 }}>{prop}</div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#7c3aed' }}>{type}</div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#6b7280' }}>{def}</div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', textAlign: 'center' }}>
+      <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: req === 'Yes' ? '#fee2e2' : '#f3f4f6', color: req === 'Yes' ? '#dc2626' : '#6b7280' }}>{req}</span>
+    </div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', color: '#374151', lineHeight: 1.4 }}>{desc}</div>
   </div>
 ))}
 </div>
+
+**Series object shape:**
+```js
+{
+  label:    'Series 1',         // legend label
+  data:     [580, 595, 575],    // one value per category
+  lineType: 'smooth',           // optional per-series override
+  color:    '#1849a9',          // optional hex — overrides token
+}
+```
 
 ---
 
 ## Token Table
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Design tokens used</div>
+<div style={{ marginBottom: 24 }}>
+
+**Typography & Color**
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '24px 200px 150px 1fr', gap: 0 }}>
 {[
-['--chart-container-bg',     '#ffffff',  'Card background'],
-['--chart-container-radius', '8px',      'Card corner radius'],
-['--chart-container-padding','24px',     'Card inner padding'],
-['--chart-border',           '#f3f4f6',  'Card border + horizontal gridlines'],
-['--chart-title',            '#000b36',  'Card title + X-axis category labels'],
-['--chart-subtitle',         '#3c5073',  'Card subtitle'],
-['--chart-axis',             '#6c7c96',  'Y-tick labels, Y-axis label, X-axis title'],
-['--chart-series-1',         '#1849a9',  'Series 0 stroke (darkest navy)'],
-['--chart-series-2',         '#175cd3',  'Series 3 stroke'],
-['--chart-series-3',         '#2e90fa',  'Series 1 stroke (medium blue)'],
-['--chart-series-4',         '#53b1fd',  'Series 4 stroke'],
-['--chart-series-5',         '#b2ddff',  'Series 2 stroke (light blue)'],
-['--chart-series-6',         '#d1e9ff',  'Series 5 stroke (lightest)'],
-].map(([token, value, desc]) => (
-  <div key={token} style={{ display: 'grid', gridTemplateColumns: '240px 90px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#1849a9', background: '#fafafa' }}>{token}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{value}</div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{desc}</div>
+  ['#000b36','--charts/header-title/title','#000b36','Chart title text color'],
+  ['#3c5073','--charts/kpi/value-color','#3c5073','KPI large metric value'],
+  ['#006121','--charts/kpi/positive-color','#006121','KPI badge text (positive trend)'],
+  ['rgba(0,97,33,0.1)','--charts/kpi/positive-bg','rgba(0,97,33,0.1)','KPI badge background (positive)'],
+  ['#6c7c96','--charts/axis/title/label-color','#6c7c96','Y-axis ticks, X-axis labels, legend text'],
+  ['#000b36','--charts/axis/x-label-color','#000b36','X-axis category label color'],
+].map(([swatch, token, val, desc], i) => (
+  <div key={token} style={{ display: 'contents' }}>
+    <div style={{ padding: '10px 10px', background: '#fff', borderBottom: '1px solid #f3f4f6', display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: 14, height: 14, borderRadius: 3, background: swatch, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+    </div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#1849a9' }}>{token}</div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#6b7280' }}>{val}</div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151' }}>{desc}</div>
   </div>
 ))}
+</div>
+</div>
+
+**Series Colors**
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '24px 160px 100px 1fr', gap: 0 }}>
+{[
+  ['#1849a9','--chart-series-1','#1849a9','Primary series — deepest blue'],
+  ['#175cd3','--chart-series-2','#175cd3','Secondary series'],
+  ['#2e90fa','--chart-series-3','#2e90fa','Third series — medium blue'],
+  ['#53b1fd','--chart-series-4','#53b1fd','Fourth series — light blue'],
+  ['#b2ddff','--chart-series-5','#b2ddff','Fifth series — pale blue'],
+  ['#d1e9ff','--chart-series-6','#d1e9ff','Sixth series — lightest'],
+].map(([swatch, token, val, desc]) => (
+  <div key={token} style={{ display: 'contents' }}>
+    <div style={{ padding: '10px 10px', background: '#fff', borderBottom: '1px solid #f3f4f6', display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: 14, height: 14, borderRadius: 3, background: swatch, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+    </div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#1849a9' }}>{token}</div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#6b7280' }}>{val}</div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151' }}>{desc}</div>
+  </div>
+))}
+</div>
+</div>
+
+**Container & Layout**
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '24px 260px 140px 1fr', gap: 0 }}>
+{[
+  ['#ffffff','--charts/container/background/default','#ffffff','Card background'],
+  ['#e5e7eb','--charts/container/chart-card-radius-sm','8px','Card border radius'],
+  ['#e5e7eb','--charts/container/chart-card-2xl-padding','24px','Card padding (all sides)'],
+  ['#e7e9ed','--chart-skeleton-bg','#e7e9ed','Skeleton pulse base color'],
+].map(([swatch, token, val, desc]) => (
+  <div key={token} style={{ display: 'contents' }}>
+    <div style={{ padding: '10px 10px', background: '#fff', borderBottom: '1px solid #f3f4f6', display: 'flex', alignItems: 'center' }}>
+      <div style={{ width: 14, height: 14, borderRadius: 3, background: swatch, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+    </div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#1849a9' }}>{token}</div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#6b7280' }}>{val}</div>
+    <div style={{ padding: '10px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151' }}>{desc}</div>
+  </div>
+))}
+</div>
+</div>
+
 </div>
 
 ---
 
 ## Do / Don't
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
 
-<div style={{ border: '1px solid #bbf7d0', borderRadius: 10, overflow: 'hidden' }}>
-  <div style={{ background: '#f0fdf4', padding: '8px 16px', borderBottom: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', gap: 8 }}>
-    <span style={{ color: '#16a34a', fontSize: 16, fontWeight: 700 }}>✓</span>
-    <span style={{ fontSize: 13, fontWeight: 700, color: '#166534' }}>Do</span>
+<div style={{ border: '2px solid #d1fae5', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '10px 14px', background: '#f0fdf4', borderBottom: '1px solid #d1fae5' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669' }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Use showContent to show category labels</div>
   </div>
-  <div style={{ padding: 16, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
-    <ul style={{ margin: 0, paddingLeft: 18 }}>
-      <li>Provide the same number of data points in every series as entries in `categories`.</li>
-      <li>Use `showYAxisLabel` / `showXAxisLabel` / `showContent` to match the specific Figma variant needed in your layout.</li>
-      <li>Set `maxValue` explicitly when you need the Y-axis scale to stay consistent across multiple charts.</li>
-      <li>Use `lineType="smooth"` for gradual data trends; `"step"` for discrete state changes.</li>
-      <li>Enable `showLegend={true}` whenever there are 2+ series to help users distinguish them.</li>
-    </ul>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Monthly Users"
+      showKpi={false}
+      series={[
+        { label: 'Active', data: [300, 420, 380, 500, 460, 580] },
+        { label: 'New', data: [100, 140, 160, 200, 180, 230] },
+      ]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
+      showLegend={true} showYAxisLabel={true} showXAxisLabel={true} showContent={true} dir="ltr"
+    />
+  </div>
+  <div style={{ padding: '10px 14px', background: '#f0fdf4', borderTop: '1px solid #d1fae5' }}>
+    {['Label every X-axis category clearly.','Use 2–4 series for readable comparisons.','Prefer "smooth" for continuous metrics, "step" for discrete events.'].map((r,i)=>(
+      <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: i > 0 ? 4 : 0, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+    ))}
   </div>
 </div>
 
-<div style={{ border: '1px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
-  <div style={{ background: '#fef2f2', padding: '8px 16px', borderBottom: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 8 }}>
-    <span style={{ color: '#dc2626', fontSize: 16, fontWeight: 700 }}>✗</span>
-    <span style={{ fontSize: 13, fontWeight: 700, color: '#991b1b' }}>Don't</span>
+<div style={{ border: '2px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
+  <div style={{ padding: '10px 14px', background: '#fef2f2', borderBottom: '1px solid #fecaca' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626' }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Don't plot more than 6 series</div>
   </div>
-  <div style={{ padding: 16, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
-    <ul style={{ margin: 0, paddingLeft: 18 }}>
-      <li>Don't pass more than 6 series — the color palette only covers 6 tokens and additional series will cycle colors.</li>
-      <li>Don't omit `categories` — it is required; passing an empty array renders the empty state.</li>
-      <li>Don't use the line chart for categorical (non-continuous) comparisons — use a bar chart instead.</li>
-      <li>Don't set `maxValue` below the actual data maximum — points will be clamped to the plot area silently.</li>
-      <li>Don't disable all three axis controls at once without providing the title for context.</li>
-    </ul>
+  <div style={{ padding: 16 }}>
+    <LineChart
+      title="Too Many Series"
+      showKpi={false}
+      series={[
+        { label: 'A', data: [300, 420, 380, 500, 460, 580] },
+        { label: 'B', data: [100, 140, 160, 200, 180, 230] },
+        { label: 'C', data: [200, 250, 220, 310, 270, 340] },
+        { label: 'D', data: [150, 180, 170, 220, 200, 260] },
+        { label: 'E', data: [80, 100, 95, 130, 110, 150] },
+        { label: 'F', data: [400, 350, 430, 390, 460, 410] },
+      ]}
+      categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
+      showLegend={true} showYAxisLabel={false} showXAxisLabel={false} showContent={true} dir="ltr"
+    />
+  </div>
+  <div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+    {["Don't exceed 6 series — lines overlap and become illegible.","Don't hide both showContent and showXAxisLabel — users lose axis context.","Don't pass inconsistent data lengths — each series.data must match categories.length."].map((r,i)=>(
+      <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: i > 0 ? 4 : 0, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+    ))}
   </div>
 </div>
 
@@ -395,25 +539,73 @@ Set `dir="rtl"` to reverse the category order (latest category appears on the le
 
 ## Accessibility
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>WCAG 2.1 compliance</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
 {[
-['1.1.1', 'Non-text content', 'AA', 'SVG has `role="img"` with `aria-label`. Each interaction dot has `aria-label` with series name, category, and value. Hidden `<table>` provides full data matrix for screen readers.'],
-['1.4.3', 'Contrast (minimum)', 'AA', 'Y-tick labels (#6c7c96 on white) pass 4.5:1. X-category labels (#000b36 on white) exceed 4.5:1. Axis titles (#6c7c96 on white) pass 4.5:1.'],
-['1.4.11', 'Non-text contrast', 'AA', 'Line strokes (2px) are all ≥3:1 against the white card background. Dots show white stroke on focus.'],
-['2.1.1', 'Keyboard', 'A', 'All interaction dots are `tabIndex={0}`. Tab moves through every data point in document order. Focus triggers the tooltip.'],
-['2.4.7', 'Focus visible', 'AA', 'Dots reveal themselves (`opacity:1`) on `:focus-visible` so keyboard users see the active point. Legend `<button>` elements receive browser default focus ring.'],
-['4.1.2', 'Name, role, value', 'A', 'Legend buttons use `aria-pressed` to communicate toggle state. SVG `<title>` provides a document-level name. Screen-reader table has `<caption>` and `scope` attributes.'],
-].map(([sc, name, level, notes]) => (
-  <div key={sc} style={{ display: 'grid', gridTemplateColumns: '60px 180px 50px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280', background: '#fafafa' }}>{sc}</div>
-    <div style={{ padding: '8px 12px', fontWeight: 600, color: '#111827' }}>{name}</div>
-    <div style={{ padding: '8px 12px' }}>
-      <span style={{ background: '#dbeafe', color: '#1e40af', borderRadius: 4, padding: '1px 6px', fontSize: 11, fontWeight: 700 }}>{level}</span>
-    </div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{notes}</div>
-  </div>
+{cat:'SVG Role & Labels',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'SVG',items:[
+{title:'<title> on SVG',desc:'The root SVG element carries a <title> equal to the chart title, providing the accessible name for screen readers that process SVG title elements.'},
+{title:'Hidden data table',desc:'A visually-hidden <table> with all series values is injected into the DOM — AT users can navigate it without needing to interpret the visual chart.'},
+{title:'Tooltip targets are focusable',desc:'Each data point column area has tabIndex={0} and responds to focus events, so keyboard users can trigger the same tooltip as mouse hover.'},
+]},
+{cat:'Colour Independence',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'◑',items:[
+{title:'Series always labelled',desc:'Legend labels and tooltip rows name each series explicitly — colour is never the sole differentiator (WCAG 1.4.1).'},
+{title:'6 distinct hues from light to dark',desc:'Series tokens span a full luminance range so they remain distinguishable under common colour-blindness simulations (deuteranopia, protanopia).'},
+{title:'Contrast for axis text',desc:'Axis label text (#6c7c96 on white) meets the 3:1 minimum for large text. Title text (#000b36) meets 4.5:1 for normal text.'},
+]},
+{cat:'Keyboard & Focus',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'⌨',items:[
+{title:'Legend buttons are keyboard accessible',desc:'Each legend toggle is a focusable element — Enter/Space toggles series visibility. At least one series is always kept visible.'},
+{title:'dir="rtl" for Arabic interfaces',desc:'Use dir="rtl" to flip axis orientation and text direction. Do not manually mirror with CSS transforms.'},
+{title:'No animation without prefers-reduced-motion',desc:'The skeleton pulse animation respects prefers-reduced-motion — motion stops when the user has disabled animations in their OS.'},
+]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:28,height:28,borderRadius:6,background:catIconBg,color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
 ))}
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 0 }}>
+    {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+      <div key="hdr" style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+      </div>
+    ))}
+    {[
+      ['1.1.1 Non-text Content', 'A', 'Hidden <table> provides full text alternative to the SVG chart'],
+      ['1.3.1 Info & Relationships', 'A', 'Series labelled in legend and tooltip; axes titled'],
+      ['1.4.1 Use of Colour', 'A', 'Series colour is supplemented by legend label and tooltip text'],
+      ['1.4.3 Contrast (text)', 'AA', 'Axis text #6c7c96 ≥ 3:1; title #000b36 ≥ 7:1 on white'],
+      ['2.1.1 Keyboard', 'A', 'Legend buttons focusable; data points focusable via tab'],
+      ['2.4.3 Focus Order', 'AA', 'Tab flows legend → plot columns left-to-right (LTR) or right-to-left (RTL)'],
+      ['4.1.2 Name, Role, Value', 'AA', 'SVG <title>; legend buttons have accessible labels'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: level === 'AAA' ? '#ede9fe' : '#dbeafe', color: level === 'AAA' ? '#6d28d9' : '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
 </div>
 
 </div>
