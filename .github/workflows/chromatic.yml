@@ -3,7 +3,9 @@ name: Chromatic Publish
 on:
   push:
     branches:
-      - Alaa
+      - Master-Team
+      - Alaa-work
+      - faisal-work
   pull_request:
 
 jobs:
