@@ -1,7 +1,25 @@
 import { DonutChart } from './DonutChart';
 
 const FIGMA_URL =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4401-26076';
+
+/* ── Per-variant Figma URLs ─────────────────────── */
+const FIGMA_TABLE_PORTRAIT_LTR =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4401-26077';
+const FIGMA_TABLE_PORTRAIT_RTL =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4537-9534';
+const FIGMA_TABLE_LANDSCAPE_LTR =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4401-26116';
+const FIGMA_TABLE_LANDSCAPE_RTL =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4537-9494';
+const FIGMA_PROGRESS_PORTRAIT_LTR =
   'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4401-26156';
+const FIGMA_PROGRESS_PORTRAIT_RTL =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4537-9461';
+const FIGMA_PROGRESS_LANDSCAPE_LTR =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4401-26189';
+const FIGMA_PROGRESS_LANDSCAPE_RTL =
+  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4537-9427';
 
 /* ── Segment fixtures ─────────────────────────────── */
 
@@ -54,6 +72,21 @@ const RTL_PROGRESS_ROWS = [
   { label: 'التصنيف', percentage: 40 },
   { label: 'التصنيف', percentage: 60 },
   { label: 'التصنيف', percentage: 15 },
+];
+
+/* Percentage rows (Figma: Type=Table — dot + label + value) */
+const PERCENTAGE_ROWS = [
+  { label: 'Item Label #1', percentage: 30 },
+  { label: 'Item Label #2', percentage: 35 },
+  { label: 'Item Label #3', percentage: 40 },
+  { label: 'Item Label #4', percentage: 15 },
+];
+
+const RTL_PERCENTAGE_ROWS = [
+  { label: 'تسمية العنصر #1', percentage: 30 },
+  { label: 'تسمية العنصر #2', percentage: 35 },
+  { label: 'تسمية العنصر #3', percentage: 40 },
+  { label: 'تسمية العنصر #4', percentage: 15 },
 ];
 
 /* ── Story default export ─────────────────────────── */
@@ -130,9 +163,22 @@ export default {
       description: 'Figma: tableTitle — show/hide table heading row',
       table: { defaultValue: { summary: 'true' } },
     },
-    kpi:          { control: false },
-    progressRows: { control: false },
-    segments:     { control: false },
+    orientation: {
+      control: { type: 'radio' },
+      options: ['portrait', 'landscape'],
+      description: 'Figma: Orientation — portrait stacks chart+table; landscape places them side by side',
+      table: { defaultValue: { summary: 'portrait' } },
+    },
+    tableType: {
+      control: { type: 'radio' },
+      options: ['progress', 'percentage'],
+      description: 'Figma: Type — "progress" renders progress bars; "percentage" renders dot+label+value rows',
+      table: { defaultValue: { summary: 'progress' } },
+    },
+    kpi:            { control: false },
+    progressRows:   { control: false },
+    percentageRows: { control: false },
+    segments:       { control: false },
   },
 };
 
@@ -399,5 +445,362 @@ export const WithTooltip = {
     showLegend: true,
     type: 'donut',
     dir: 'ltr',
+  },
+};
+
+/* ══════════════════════════════════════════════════
+   Figma: Pie Chart / Widget Table — all 8 variants
+   Node 4401:26076 — Type × Orientation × RTL
+   ══════════════════════════════════════════════════ */
+
+/* ── 1. Table / Portrait / LTR (node 4401:26077) ── */
+export const FigmaTablePortraitLTR = {
+  name: 'Figma — Table · Portrait · LTR (4401:26077)',
+  parameters: { design: { type: 'figma', url: FIGMA_TABLE_PORTRAIT_LTR } },
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    centerValue: '99,999',
+    centerLabel: 'Data Title',
+    showLegend: false,
+    type: 'half',
+    dir: 'ltr',
+    orientation: 'portrait',
+    tableType: 'percentage',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: true,
+    tableTitleText: 'Table Title',
+    showTableTitle: true,
+    percentageRows: PERCENTAGE_ROWS,
+  },
+};
+
+/* ── 2. Table / Portrait / RTL (node 4537:9534) ─── */
+export const FigmaTablePortraitRTL = {
+  name: 'Figma — Table · Portrait · RTL (4537:9534)',
+  parameters: { design: { type: 'figma', url: FIGMA_TABLE_PORTRAIT_RTL } },
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'half',
+    dir: 'rtl',
+    orientation: 'portrait',
+    tableType: 'percentage',
+    showHeader: true,
+    kpi: RTL_KPI,
+    showKpi: true,
+    tableTitleText: 'عنوان الجدول',
+    showTableTitle: true,
+    percentageRows: RTL_PERCENTAGE_ROWS,
+  },
+};
+
+/* ── 3. Table / Landscape / LTR (node 4401:26116) ── */
+export const FigmaTableLandscapeLTR = {
+  name: 'Figma — Table · Landscape · LTR (4401:26116)',
+  parameters: { design: { type: 'figma', url: FIGMA_TABLE_LANDSCAPE_LTR } },
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    centerValue: '99,999',
+    centerLabel: 'Data Title',
+    showLegend: false,
+    type: 'half',
+    dir: 'ltr',
+    orientation: 'landscape',
+    tableType: 'percentage',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: true,
+    tableTitleText: 'Table Title',
+    showTableTitle: true,
+    percentageRows: PERCENTAGE_ROWS,
+  },
+};
+
+/* ── 4. Table / Landscape / RTL (node 4537:9494) ─── */
+export const FigmaTableLandscapeRTL = {
+  name: 'Figma — Table · Landscape · RTL (4537:9494)',
+  parameters: { design: { type: 'figma', url: FIGMA_TABLE_LANDSCAPE_RTL } },
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'half',
+    dir: 'rtl',
+    orientation: 'landscape',
+    tableType: 'percentage',
+    showHeader: true,
+    kpi: RTL_KPI,
+    showKpi: true,
+    tableTitleText: 'عنوان الجدول',
+    showTableTitle: true,
+    percentageRows: RTL_PERCENTAGE_ROWS,
+  },
+};
+
+/* ── 5. Progress Table / Portrait / LTR (node 4401:26156) ── */
+export const FigmaProgressPortraitLTR = {
+  name: 'Figma — Progress Table · Portrait · LTR (4401:26156)',
+  parameters: { design: { type: 'figma', url: FIGMA_PROGRESS_PORTRAIT_LTR } },
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    centerValue: '99,999',
+    centerLabel: 'Data Title',
+    showLegend: false,
+    type: 'donut',
+    dir: 'ltr',
+    orientation: 'portrait',
+    tableType: 'progress',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: true,
+    showTable: true,
+    tableTitleText: 'Table Title',
+    showTableTitle: true,
+    progressRows: PROGRESS_ROWS,
+  },
+};
+
+/* ── 6. Progress Table / Portrait / RTL (node 4537:9461) ── */
+export const FigmaProgressPortraitRTL = {
+  name: 'Figma — Progress Table · Portrait · RTL (4537:9461)',
+  parameters: { design: { type: 'figma', url: FIGMA_PROGRESS_PORTRAIT_RTL } },
+  args: {
+    title: 'العنوان',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'donut',
+    dir: 'rtl',
+    orientation: 'portrait',
+    tableType: 'progress',
+    showHeader: true,
+    kpi: RTL_KPI,
+    showKpi: true,
+    showTable: true,
+    tableTitleText: 'عنوان الجدول',
+    showTableTitle: true,
+    progressRows: RTL_PROGRESS_ROWS,
+  },
+};
+
+/* ── 7. Progress Table / Landscape / LTR (node 4401:26189) ── */
+export const FigmaProgressLandscapeLTR = {
+  name: 'Figma — Progress Table · Landscape · LTR (4401:26189)',
+  parameters: { design: { type: 'figma', url: FIGMA_PROGRESS_LANDSCAPE_LTR } },
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    centerValue: '99,999',
+    centerLabel: 'Data Title',
+    showLegend: false,
+    type: 'donut',
+    dir: 'ltr',
+    orientation: 'landscape',
+    tableType: 'progress',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: true,
+    showTable: true,
+    tableTitleText: 'Table Title',
+    showTableTitle: true,
+    progressRows: PROGRESS_ROWS,
+  },
+};
+
+/* ── 8. Progress Table / Landscape / RTL (node 4537:9427) ── */
+export const FigmaProgressLandscapeRTL = {
+  name: 'Figma — Progress Table · Landscape · RTL (4537:9427)',
+  parameters: { design: { type: 'figma', url: FIGMA_PROGRESS_LANDSCAPE_RTL } },
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'donut',
+    dir: 'rtl',
+    orientation: 'landscape',
+    tableType: 'progress',
+    showHeader: true,
+    kpi: RTL_KPI,
+    showKpi: true,
+    showTable: true,
+    tableTitleText: 'عنوان الجدول',
+    showTableTitle: true,
+    progressRows: RTL_PROGRESS_ROWS,
+  },
+};
+
+/* ── Other supplementary Figma states ────────────── */
+
+/* ── Missing Figma variants (node 4537:9427) ──────── */
+
+/* Figma: showHeader=true, KPI block hidden (showKpi=false) — title + link only */
+export const HeaderNoKpi = {
+  name: 'Header — No KPI Block',
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    centerValue: '99,999',
+    centerLabel: 'Data Title',
+    showLegend: false,
+    type: 'donut',
+    dir: 'ltr',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: false,
+    showTable: true,
+    tableTitleText: 'Table Title',
+    showTableTitle: true,
+    progressRows: PROGRESS_ROWS,
+  },
+};
+
+/* Figma: RTL, showHeader=false — chart + table, no header */
+export const RTLNoHeader = {
+  name: 'RTL — No Header',
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'donut',
+    dir: 'rtl',
+    showHeader: false,
+    showTable: true,
+    tableTitleText: 'عنوان الجدول',
+    showTableTitle: true,
+    progressRows: RTL_PROGRESS_ROWS,
+  },
+};
+
+/* Figma: RTL, tableTitle=false — table without title row */
+export const RTLNoTableTitle = {
+  name: 'RTL — No Table Title',
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'donut',
+    dir: 'rtl',
+    showHeader: true,
+    kpi: RTL_KPI,
+    showKpi: true,
+    showTable: true,
+    showTableTitle: false,
+    progressRows: RTL_PROGRESS_ROWS,
+  },
+};
+
+/* Figma: RTL, showHeader=true, showKpi=false — title + link only, RTL */
+export const RTLHeaderNoKpi = {
+  name: 'RTL — Header, No KPI Block',
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'donut',
+    dir: 'rtl',
+    showHeader: true,
+    kpi: RTL_KPI,
+    showKpi: false,
+    showTable: true,
+    tableTitleText: 'عنوان الجدول',
+    showTableTitle: true,
+    progressRows: RTL_PROGRESS_ROWS,
+  },
+};
+
+/* Figma: type=Progress Table with pie geometry */
+export const PieWithTable = {
+  name: 'Pie — With Progress Table',
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    showLegend: false,
+    type: 'pie',
+    dir: 'ltr',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: true,
+    showTable: true,
+    tableTitleText: 'Table Title',
+    showTableTitle: true,
+    progressRows: PROGRESS_ROWS,
+  },
+};
+
+/* Chart only — no table, no legend, KPI header visible */
+export const ChartOnlyWithHeader = {
+  name: 'Chart Only — KPI Header, No Table',
+  args: {
+    title: 'Data Title',
+    segments: SAMPLE_SEGMENTS_4,
+    centerValue: '99,999',
+    centerLabel: 'Data Title',
+    showLegend: false,
+    type: 'donut',
+    dir: 'ltr',
+    showHeader: true,
+    kpi: KPI_DEFAULT,
+    showKpi: true,
+    showTable: false,
+  },
+};
+
+/* RTL — donut, legend, no table/header (simple chart) */
+export const RTLChartOnly = {
+  name: 'RTL — Chart Only',
+  args: {
+    title: 'عنوان البيانات',
+    segments: RTL_SEGMENTS,
+    centerValue: '٩٩٬٩٩٩',
+    centerLabel: 'عنوان البيانات',
+    showLegend: false,
+    type: 'donut',
+    dir: 'rtl',
+    showHeader: false,
+    showTable: false,
+  },
+};
+
+/* Empty state — RTL */
+export const EmptyStateRTL = {
+  name: 'Empty State — RTL',
+  args: {
+    title: 'توزيع الفئات',
+    segments: [],
+    showLegend: false,
+    empty: true,
+    type: 'donut',
+    dir: 'rtl',
+  },
+};
+
+/* Loading state — RTL */
+export const LoadingStateRTL = {
+  name: 'Loading State — RTL',
+  args: {
+    title: 'توزيع الفئات',
+    segments: [],
+    showLegend: false,
+    loading: true,
+    type: 'donut',
+    dir: 'rtl',
   },
 };

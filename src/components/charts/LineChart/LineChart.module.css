@@ -55,6 +55,58 @@
   margin: 0;
 }
 
+/* ── KPI block (Figma node 4560:4600 — cardDetails=true) ─ */
+
+.kpiBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.kpiValue {
+  /* Figma: display-sm / Semibold → 30px / 600 / line-height 38px */
+  font-family: var(--font-display, 'IBM Plex Sans Arabic', sans-serif);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  color: var(--chart-subtitle, #3c5073);
+  margin: 0;
+}
+
+.kpiRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kpiBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 24px;
+  background: var(--chart-kpi-bg, rgba(0, 97, 33, 0.1));
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--chart-kpi-positive, #006121);
+  white-space: nowrap;
+}
+
+.kpiBadgeIcon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.kpiLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--chart-subtitle, #3c5073);
+  white-space: nowrap;
+}
+
 /* ── Body ─────────────────────────────────────── */
 
 .content {

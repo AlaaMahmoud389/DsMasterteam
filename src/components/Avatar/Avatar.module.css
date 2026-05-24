@@ -1,0 +1,213 @@
+/* Avatar — Masterteam Design System */
+
+/* ─── Outer wrapper — no overflow:hidden so status dot is never clipped ── */
+.avatarWrap {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+/* ─── Inner circle — overflow:hidden clips image/initials/icon ─── */
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ─── Background fill (Figma "bg" layer) ─────────────── */
+/* alpha-white overlay + 2px white ring — always present  */
+/* color and border set inline per-instance               */
+.bg {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+}
+
+/* ─── Initials text ──────────────────────────────────── */
+.initials {
+  position: relative;
+  z-index: 1;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  /* font-weight and color set inline per size/textColor  */
+  line-height: 1;
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+
+/* ─── Icon wrapper ───────────────────────────────────── */
+.iconWrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ─── Image wrapper + image ──────────────────────────── */
+.imageWrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+/* ─── Ring overlay (Figma "border" prop) ────────────── */
+/* border width/color set inline per size */
+.ring {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* ─── Status / indicator dot ────────────────────────── */
+.statusDot {
+  position: absolute;
+  bottom: 0;
+  /* right/left and transform set inline to respect dir   */
+  z-index: 2;
+  border: solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.notifyCount {
+  font-size: 7px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+/* ─── AvatarGroup ────────────────────────────────────── */
+.group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.stacked .groupItem {
+  position: relative;
+}
+
+.spaced {
+  gap: 4px;
+}
+
+.stackItem {
+  flex-shrink: 0;
+}
+
+/* ─── AvatarWithLabel ────────────────────────────────── */
+.labelGroup {
+  display: inline-flex;
+  align-items: center;
+  /* gap set inline per size: 10px (sm) / 12px (md, lg) */
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.labelText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.labelName {
+  font-weight: 500;
+  color: #233a61;
+  line-height: 1.4;
+}
+
+.labelCaption {
+  font-weight: 400;
+  color: #3c5073;
+  line-height: 1.4;
+}
+
+/* ─── AvatarAddButton (node 4120:317) ────────────────── */
+.addBtnWrap {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px dashed #e5e7eb;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.addBtn:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.addBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px #f2f4f7;
+}
+
+.addBtnDisabled {
+  background: #e5e7eb;
+  border-color: #ffffff;
+  cursor: not-allowed;
+}
+
+.addBtnFocus {
+  box-shadow: 0 0 0 4px #f2f4f7;
+}
+
+.addBtnHover {
+  background: #f9fafb;
+}
+
+/* Tooltip */
+.addBtnTooltip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0px 4px 6px rgba(16,24,40,0.08)) drop-shadow(0px 2px 3px rgba(16,24,40,0.06));
+  white-space: nowrap;
+}
+
+.addBtnTooltipBody {
+  background: #233a61;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.addBtnTooltipText {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  color: #f9fafb;
+}
+
+.addBtnTooltipArrow {
+  display: block;
+  flex-shrink: 0;
+}

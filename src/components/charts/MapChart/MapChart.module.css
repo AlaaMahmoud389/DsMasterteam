@@ -86,6 +86,7 @@
 .skelPulse  { animation: skelPulse 1.5s ease-in-out infinite; }
 .skelDelay1 { animation-delay: 0.1s; }
 .skelDelay2 { animation-delay: 0.25s; }
+.skelDelay3 { animation-delay: 0.4s; }
 
 .srOnly {
   position: absolute; width: 1px; height: 1px;

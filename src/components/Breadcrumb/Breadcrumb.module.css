@@ -1,0 +1,218 @@
+/* Breadcrumb — Masterteam Design System */
+/* Figma node 4113:3779 */
+
+/* ─── Root <ol> ──────────────────────────────────────────────── */
+.root {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+/* ─── Modifier: withBackground ───────────────────────────────── */
+/* --breadcrumb/text/text-background-default: #f9fafb */
+.withBackground {
+  background: #f9fafb;
+  border-radius: 8px;
+  height: 34px;
+  padding-inline: 8px;
+}
+
+/* ─── Modifier: withBorder ───────────────────────────────────── */
+.withBorder {
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  height: 36px;
+}
+
+/* ─── Breadcrumb item (<li>) ─────────────────────────────────── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-inline-end: 4px;
+}
+
+.item:last-child {
+  padding-inline-end: 0;
+}
+
+/* ─── Separator icon wrapper ─────────────────────────────────── */
+.sep {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #98a2b3;
+}
+
+/* ─── Ancestor link ──────────────────────────────────────────── */
+/* --breadcrumb/text/default: #000b36 */
+.link {
+  color: #000b36;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Current page (last item) ───────────────────────────────── */
+/* --breadcrumb/text/current: #3c5073 */
+.current {
+  color: #3c5073;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ─── Overflow "…" button ────────────────────────────────────── */
+.overflowBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000b36;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.overflowBtn:hover {
+  text-decoration: underline;
+}
+
+.overflowBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Active (menu-open) state for the "…" button */
+.overflowBtnActive {
+  color: #1849a9;
+  background: #eef2ff;
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+/* ─── Overflow wrapper — anchor for the dropdown ────────────── */
+.overflowWrapper {
+  position: relative;
+}
+
+/* ─── Overflow dropdown menu ─────────────────────────────────── */
+.overflowMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  min-width: 160px;
+  z-index: 100;
+  padding: 4px 0;
+  list-style: none;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ─── Menu item link ─────────────────────────────────────────── */
+.menuLink {
+  display: block;
+  padding: 8px 14px;
+  color: #000b36;
+  text-decoration: none;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.menuLink:hover {
+  background: #f9fafb;
+}
+
+.menuLink:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+/* ─── Divider between hidden items and "Show all" ────────────── */
+.menuDivider {
+  height: 1px;
+  background: #f3f4f6;
+  margin: 4px 0;
+}
+
+/* ─── "Show all" button ──────────────────────────────────────── */
+.menuShowAll {
+  display: block;
+  width: 100%;
+  text-align: start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  color: #6b7280;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.menuShowAll:hover {
+  background: #f9fafb;
+  color: #374151;
+}
+
+.menuShowAll:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+/* ─── Collapse button (visible in middle-overflow / expanded state) ── */
+/* Small "←" control that re-closes the overflow */
+.collapseBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #98a2b3;
+  font-size: 12px;
+  padding: 0 2px;
+  line-height: 20px;
+  margin-inline-start: 2px;
+  transition: color 0.15s;
+}
+
+.collapseBtn:hover {
+  color: #000b36;
+}
+
+.collapseBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ─── Home icon ──────────────────────────────────────────────── */
+.homeIcon {
+  display: flex;
+  align-items: center;
+  color: #667085;
+  cursor: default;
+}

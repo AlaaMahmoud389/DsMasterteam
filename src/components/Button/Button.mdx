@@ -21,6 +21,15 @@ import * as ButtonStories from './Button.stories';
   </div>
 </div>
 
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Destructive','#destructive'],['Sizes','#sizes'],['States','#states'],['State Table','#state-table'],['RTL Support','#rtl-support'],['Icon Usage','#icon-usage'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
 ---
 
 ## Overview

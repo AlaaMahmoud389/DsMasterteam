@@ -6,9 +6,12 @@ import { ChartLegend } from '../shared/ChartLegend';
 
 /**
  * LineChart — Masterteam Design System
- * Figma: WTmRAkJVvw0IvZMA7wBdTC / node 4399:18102
+ * Figma nodes:
+ *   4399:18102 — base (no KPI)
+ *   4560:4600  — with KPI block (cardDetails=true)
  *
  * Figma variants:
+ *   cardDetails    → showKpi        (show/hide KPI value + badge block)
  *   rtl            → dir="rtl"      (category order reverses)
  *   showContent    → showContent    (show/hide X-axis category labels)
  *   showXAxisLabel → showXAxisLabel (show/hide X-axis title, e.g. "Month")
@@ -16,7 +19,6 @@ import { ChartLegend } from '../shared/ChartLegend';
  *
  * Line types: line | step | smooth
  * Up to 6 series — Figma series-1…6 tokens
- * Gradient area fill below each line
  * Dots invisible by default; appear on hover / keyboard focus
  * Y-axis ticks: #6c7c96 (axis label color) · X-axis labels: #000b36 (title color)
  */
@@ -56,6 +58,8 @@ export function LineChart({
   categories = [],
   lineType = 'line',
   maxValue,
+  kpi,
+  showKpi = false,
   showLegend = true,
   showYAxisLabel = true,
   showXAxisLabel = true,
@@ -160,15 +164,6 @@ export function LineChart({
     return `M ${dataArr.map((v, ci) => `${xPos(ci).toFixed(1)},${yPos(v).toFixed(1)}`).join(' L ')}`;
   }
 
-  /* Area = line path + baseline closure */
-  function buildAreaPath(dataArr) {
-    if (catCount < 2) return '';
-    const line = buildLinePath(dataArr);
-    const lastX = xPos(catCount - 1).toFixed(1);
-    const firstX = xPos(0).toFixed(1);
-    return `${line} L ${lastX},${baseY.toFixed(1)} L ${firstX},${baseY.toFixed(1)} Z`;
-  }
-
   const seriesOrder = [...series.keys()].reverse();
 
   /* ── Skeleton ── */
@@ -196,10 +191,24 @@ export function LineChart({
   if (empty || series.length === 0 || catCount === 0) {
     return (
       <div className={styles.card} dir={dir} ref={cardRef}>
-        {(title || subtitle) && (
+        {(title || subtitle || (showKpi && kpi)) && (
           <div className={styles.header}>
             {title    && <p className={styles.title}>{title}</p>}
             {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+            {showKpi && kpi && (
+              <div className={styles.kpiBlock}>
+                <p className={styles.kpiValue}>{kpi.value}</p>
+                {kpi.badge && (
+                  <div className={styles.kpiRow}>
+                    <span className={styles.kpiBadge}>
+                      {kpi.badge.icon && <span className={styles.kpiBadgeIcon} aria-hidden="true">{kpi.badge.icon}</span>}
+                      {kpi.badge.text}
+                    </span>
+                    {kpi.badge.label && <span className={styles.kpiLabel}>{kpi.badge.label}</span>}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
         <svg viewBox={`0 0 ${VIEW_W} ${SVG_H}`} width="100%" className={styles.svg} aria-hidden="true">
@@ -213,11 +222,25 @@ export function LineChart({
   return (
     <div className={styles.card} dir={dir} ref={cardRef}>
 
-      {/* Header */}
-      {(title || subtitle) && (
+      {/* Header — title, subtitle, optional KPI block (Figma: cardDetails=true / node 4560:4600) */}
+      {(title || subtitle || (showKpi && kpi)) && (
         <div className={styles.header}>
           {title    && <p className={styles.title}>{title}</p>}
           {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+          {showKpi && kpi && (
+            <div className={styles.kpiBlock}>
+              <p className={styles.kpiValue}>{kpi.value}</p>
+              {kpi.badge && (
+                <div className={styles.kpiRow}>
+                  <span className={styles.kpiBadge}>
+                    {kpi.badge.icon && <span className={styles.kpiBadgeIcon} aria-hidden="true">{kpi.badge.icon}</span>}
+                    {kpi.badge.text}
+                  </span>
+                  {kpi.badge.label && <span className={styles.kpiLabel}>{kpi.badge.label}</span>}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
 
@@ -235,20 +258,6 @@ export function LineChart({
         <svg viewBox={`0 0 ${VIEW_W} ${SVG_H}`} width="100%"
           role="img" aria-label={title || 'Line chart'} className={styles.svg}>
           <title>{title || 'Line chart'}</title>
-
-          {/* Gradient defs — one linearGradient per series */}
-          <defs>
-            {series.map((s, si) => {
-              const st = SERIES_STYLES[si % SERIES_STYLES.length];
-              const hex = s.color || st.hex;
-              return (
-                <linearGradient key={si} id={`llg-${si}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%"   stopColor={hex} stopOpacity="0.22" />
-                  <stop offset="100%" stopColor={hex} stopOpacity="0"    />
-                </linearGradient>
-              );
-            })}
-          </defs>
 
           {/* Y-axis rotated label — Figma: 14px/500, #6c7c96 */}
           {showYAxisLabel && yAxisTitle && (
@@ -288,18 +297,6 @@ export function LineChart({
               </g>
             ))}
           </g>
-
-          {/* Area fills — back to front (lightest/largest series first) */}
-          {seriesOrder.map(si => {
-            if (hiddenSeries.has(si)) return null;
-            return (
-              <path key={`area-${si}`}
-                d={buildAreaPath(series[si].data)}
-                fill={`url(#llg-${si})`}
-                stroke="none"
-              />
-            );
-          })}
 
           {/* Line strokes — back to front */}
           {seriesOrder.map(si => {
@@ -408,6 +405,11 @@ LineChart.propTypes = {
   categories:      PropTypes.arrayOf(PropTypes.string).isRequired,
   lineType:        PropTypes.oneOf(['line', 'step', 'smooth']),
   maxValue:        PropTypes.number,
+  kpi: PropTypes.shape({
+    value: PropTypes.string,
+    badge: PropTypes.shape({ icon: PropTypes.node, text: PropTypes.string, label: PropTypes.string }),
+  }),
+  showKpi:         PropTypes.bool,
   showLegend:      PropTypes.bool,
   showYAxisLabel:  PropTypes.bool,
   showXAxisLabel:  PropTypes.bool,

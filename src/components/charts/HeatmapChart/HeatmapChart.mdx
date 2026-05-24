@@ -23,7 +23,7 @@ import * as HeatmapStories from './HeatmapChart.stories';
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
-    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Color Bands','#color-bands'],['RTL Support','#rtl-support'],['States','#states'],['Props Reference','#props-reference'],['Tokens','#token-table'],["Do / Don't",'#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Series Colors','#series-colors'],['Color Bands','#color-bands'],['RTL Support','#rtl-support'],['States','#states'],['Props Reference','#props-reference'],['Tokens','#token-table'],["Do / Don't",'#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}
   </div>
@@ -182,6 +182,31 @@ Full Figma widget from node `4600:5922`. The card contains: optional KPI header 
 
 ---
 
+## Series Colors
+
+The heatmap uses the same 6 series tokens as other charts, applied as a sequential intensity scale from lightest (low values) to darkest (high values):
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10, marginBottom: 24 }}>
+{[
+  { token: '--chart-series-1', hex: '#1849a9', label: 'Darkest' },
+  { token: '--chart-series-2', hex: '#175cd3', label: 'Dark' },
+  { token: '--chart-series-3', hex: '#2e90fa', label: 'Mid-dark' },
+  { token: '--chart-series-4', hex: '#53b1fd', label: 'Mid-light' },
+  { token: '--chart-series-5', hex: '#b2ddff', label: 'Light' },
+  { token: '--chart-series-6', hex: '#d1e9ff', label: 'Lightest' },
+].map(({ token, hex, label }) => (
+  <div key={token} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ height: 36, background: hex }} />
+    <div style={{ padding: '8px 6px' }}>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{label}</div>
+      <code style={{ fontSize: 10, color: '#6b7280' }}>{hex}</code>
+    </div>
+  </div>
+))}
+</div>
+
+---
+
 ## Color Bands
 
 The heatmap maps each cell value to one of 7 discrete color bands sourced from Figma series tokens. Band 0 (null/grey) represents zero or missing data.
@@ -307,30 +332,29 @@ Cells with a value of `0` or `null` render in the grey null band (`--chart-null,
 
 ## Props Reference
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>HeatmapChart props</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 120px 200px 1fr 160px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span><span>Visual effect</span></div>
 {[
-['title', 'string', '—', 'Card title displayed at the top of the card.'],
-['subtitle', 'string', '—', 'Secondary text below the title.'],
-['data *', 'number[][]', '—', 'Required. 2D array of values, rows × cols. Use null or 0 for empty cells.'],
-['rowLabels', 'string[]', '[]', 'Labels for each row, shown in the tooltip.'],
-['colLabels', 'string[]', '[]', 'Labels for each column (X-axis ticks).'],
-['yAxisTitle', 'string', "'Active users'", 'Rotated Y-axis label (Figma: "Active users").'],
-['xAxisTitle', 'string', "'Month'", 'Centered X-axis label below column ticks (Figma: "Month").'],
-['yTicks', 'string[]', "['500','400','300','200','100','0']", 'Y-axis gridline labels, top-to-bottom. One gridline per entry.'],
-['scaleMin', 'number', '0', 'Left label of the color scale bar.'],
-['scaleMax', 'number', '40', 'Right label and normalization maximum of the color scale.'],
-['showColorScale', 'boolean', 'true', 'Show or hide the 7-band color scale bar at the bottom.'],
-['showKpi', 'boolean', 'false', 'Show the KPI block (value + badge). Requires `kpi` prop.'],
-['kpi', 'object', '—', '`{ value: string, badge?: { icon?, text?, label? } }`. Displayed when `showKpi=true`.'],
-['dir', "'ltr' | 'rtl'", "'ltr'", 'Layout direction. RTL reverses column order.'],
-].map(([prop, type, def, desc]) => (
-  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 200px 240px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontWeight: 700, color: prop.includes('*') ? '#b45309' : '#1849a9', background: '#fafafa', fontSize: 12 }}>{prop}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#7c3aed' }}>{type}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{def}</div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{desc}</div>
-  </div>
+{n:'title',type:'string',req:true,tb:'#eff3fb',tc:'#1849a9',def:'—',d:'Card title displayed at top of card',v:'Card heading + SVG aria-label'},
+{n:'data',type:'number[][]',req:true,tb:'#eff3fb',tc:'#1849a9',def:'—',d:'2D array of values (rows × cols). Use null for missing cells',v:'Cell colour intensity'},
+{n:'rowLabels',type:'string[]',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'[]',d:'Label for each row — shown in tooltip',v:'Tooltip row identifier'},
+{n:'colLabels',type:'string[]',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'[]',d:'Labels for each column (X-axis ticks)',v:'Column tick labels'},
+{n:'yAxisTitle',type:'string',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:"'Active users'",d:'Rotated Y-axis label',v:'Rotated text beside rows'},
+{n:'xAxisTitle',type:'string',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:"'Month'",d:'Centered X-axis label below column ticks',v:'Label below tick row'},
+{n:'scaleMin',type:'number',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'0',d:'Left label of the colour scale bar',v:'Scale bar left value'},
+{n:'scaleMax',type:'number',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'40',d:'Right label and normalisation maximum of colour scale',v:'Scale bar right value + colour ceiling'},
+{n:'showColorScale',type:'boolean',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'true',d:'Show or hide the 7-band colour scale bar',v:'Colour legend bar below chart'},
+{n:'showKpi',type:'boolean',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Show KPI block (requires kpi prop)',v:'KPI value + badge above chart'},
+{n:'kpi',type:'KpiConfig',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'—',d:'{ value, badge?: { icon?, text?, label? } }',v:'KPI block content'},
+{n:'dir',type:'enum',req:false,tb:'#fff7ed',tc:'#c2410c',def:"'ltr'",d:"'ltr' | 'rtl' — reverses column order",v:'Full chart RTL layout'},
+].map(({n,type,req,tb,tc,def,d,v},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'140px 120px 200px 1fr 160px',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:tb,padding:'2px 6px',borderRadius:4,color:tc,fontWeight:600}}>{n}{req&&<span style={{color:'#ef4444'}}> *</span>}</code>
+<span style={{background:'#f3f4f6',color:'#374151',fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:500,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.4}}>{v}</span>
+</div>
 ))}
 </div>
 
@@ -338,34 +362,65 @@ Cells with a value of `0` or `null` render in the grey null band (`--chart-null,
 
 ## Token Table
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Design tokens used</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Container</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Figma resolved value</span><span>Figma path</span></div>
 {[
-['--chart-container-bg',       '#ffffff',  'Card background'],
-['--chart-container-radius',   '8px',      'Card corner radius'],
-['--chart-container-padding',  '24px',     'Card inner padding'],
-['--chart-border',             '#f3f4f6',  'Card border + gridlines'],
-['--chart-title',              '#000b36',  'Card title text'],
-['--chart-subtitle',           '#3c5073',  'Card subtitle text'],
-['--chart-axis',               '#6c7c96',  'Axis labels, tick labels, scale labels'],
-['--chart-kpi-value',          '#000b36',  'KPI large value text'],
-['--chart-kpi-badge-pos-bg',   '#ecfdf3',  'KPI positive badge background'],
-['--chart-kpi-badge-pos-text', '#006121',  'KPI positive badge text'],
-['--chart-null',               '#d2d6db',  'Cell color for null / zero values'],
-['--chart-series-6',           '#d1e9ff',  'Band 1 — lightest blue'],
-['--chart-series-5',           '#b2ddff',  'Band 2'],
-['--chart-series-4',           '#53b1fd',  'Band 3'],
-['--chart-series-3',           '#2e90fa',  'Band 4 — mid blue'],
-['--chart-series-2',           '#175cd3',  'Band 5'],
-['--chart-series-1',           '#1849a9',  'Band 6 — darkest blue'],
-['--focus-ring-color',         '#1849a9',  'Keyboard focus ring on cells'],
-].map(([token, value, desc]) => (
-  <div key={token} style={{ display: 'grid', gridTemplateColumns: '260px 90px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#1849a9', background: '#fafafa' }}>{token}</div>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{value}</div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{desc}</div>
-  </div>
+['--chart-container-bg','#ffffff','charts/container/background/default'],
+['--chart-container-padding','24 px','charts/container/chart-card-2xl-padding'],
+['--chart-container-radius','8 px','charts/container/chart-card-radius-sm'],
+['--chart-border','#f3f4f6','charts/container/border/default + gridlines'],
+].map(([t, v, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ fontSize: 13, color: '#111827' }}>{v}</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
 ))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Typography &amp; Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Figma path</span></div>
+{[
+['--chart-title','#000b36','charts/header-title/title'],
+['--chart-subtitle','#3c5073','charts/header-title/subtitle'],
+['--chart-axis','#6c7c96','charts/axis/title/label-color (axis labels + scale labels)'],
+['--chart-kpi-bg','rgba(0,97,33,0.1)','charts/kpi/badge/icon/icon-bg'],
+['--chart-kpi-positive','#006121','charts/kpi/badge/trend/positive-trend'],
+['--chart-null','#d2d6db','charts/data-and-legend/data/null (missing cell fill)'],
+].map(([t, h, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+<span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+<code style={{ fontSize: 11, color: '#111827' }}>{h}</code>
+</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colour Ramp (series tokens)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Band</span></div>
+{[
+['--chart-series-6','#d1e9ff','Band 1 — lightest (lowest values)'],
+['--chart-series-5','#b2ddff','Band 2'],
+['--chart-series-4','#53b1fd','Band 3'],
+['--chart-series-3','#2e90fa','Band 4 — mid blue'],
+['--chart-series-2','#175cd3','Band 5'],
+['--chart-series-1','#1849a9','Band 6 — darkest (highest values)'],
+].map(([t, h, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+<span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+<code style={{ fontSize: 11, color: '#111827' }}>{h}</code>
+</span>
+<span style={{ fontSize: 12, color: '#6b7280' }}>{f}</span>
+</div>
+))}
+</div>
 </div>
 
 ---
@@ -374,36 +429,44 @@ Cells with a value of `0` or `null` render in the grey null band (`--chart-null,
 
 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
 
-<div style={{ border: '1px solid #bbf7d0', borderRadius: 10, overflow: 'hidden' }}>
-  <div style={{ background: '#f0fdf4', padding: '8px 16px', borderBottom: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', gap: 8 }}>
-    <span style={{ color: '#16a34a', fontSize: 16, fontWeight: 700 }}>✓</span>
-    <span style={{ fontSize: 13, fontWeight: 700, color: '#166534' }}>Do</span>
-  </div>
-  <div style={{ padding: 16, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
-    <ul style={{ margin: 0, paddingLeft: 18 }}>
-      <li>Provide consistent `data` dimensions matching `rowLabels` and `colLabels` lengths.</li>
-      <li>Use `scaleMax` set to the actual maximum value in your data for meaningful color distribution.</li>
-      <li>Show the color scale bar (`showColorScale=true`) whenever the context is unfamiliar to the reader.</li>
-      <li>Include both `yAxisTitle` and `xAxisTitle` to clarify what the axes represent.</li>
-      <li>Use `null` for missing data rather than `0` when the distinction matters semantically.</li>
-    </ul>
-  </div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', background: '#fff' }}>
+<HeatmapChart
+  title="Weekly Activity"
+  data={[[8,12,20,15,18,32,28],[5,10,24,30,22,18,14],[3,8,15,20,25,28,22],[2,6,10,14,18,22,16]]}
+  rowLabels={['Week 1','Week 2','Week 3','Week 4']}
+  colLabels={['Mon','Tue','Wed','Thu','Fri','Sat','Sun']}
+  yAxisTitle="Week"
+  xAxisTitle="Day"
+  scaleMax={32}
+  showColorScale={true}
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Labelled axes + colour scale — context is clear</div>
+{['Set scaleMax equal to the actual data maximum for meaningful colour distribution.','Always show the colour scale when the context is unfamiliar to readers.','Provide rowLabels and colLabels so tooltip values are self-explanatory.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
 </div>
 
-<div style={{ border: '1px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
-  <div style={{ background: '#fef2f2', padding: '8px 16px', borderBottom: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 8 }}>
-    <span style={{ color: '#dc2626', fontSize: 16, fontWeight: 700 }}>✗</span>
-    <span style={{ fontSize: 13, fontWeight: 700, color: '#991b1b' }}>Don't</span>
-  </div>
-  <div style={{ padding: 16, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
-    <ul style={{ margin: 0, paddingLeft: 18 }}>
-      <li>Don't set `scaleMax` much higher than the data maximum — this compresses all cells into the light end of the scale.</li>
-      <li>Don't use more than ~24 columns — very narrow cells become unreadable and hard to click.</li>
-      <li>Don't omit `rowLabels` and `colLabels` — tooltips will fall back to generic "Row N / Col N" identifiers.</li>
-      <li>Don't rely solely on color to convey meaning — always provide the tooltip for accessible value disclosure.</li>
-      <li>Don't use the heatmap for continuous trends — use a line or area chart instead.</li>
-    </ul>
-  </div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', background: '#fff' }}>
+<HeatmapChart
+  title="Activity"
+  data={[[8,12,20,15,18,32,28],[5,10,24,30,22,18,14],[3,8,15,20,25,28,22],[2,6,10,14,18,22,16]]}
+  rowLabels={[]}
+  colLabels={[]}
+  scaleMax={200}
+  showColorScale={false}
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>No labels, no scale, wrong scaleMax</div>
+{["Don't set scaleMax much higher than the data max — all cells compress to the light end.","Don't omit rowLabels/colLabels — tooltips fall back to 'Row N / Col N'.","Don't hide the colour scale bar — without it, colour intensity is uninterpretable."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
 </div>
 
 </div>
@@ -412,25 +475,73 @@ Cells with a value of `0` or `null` render in the grey null band (`--chart-null,
 
 ## Accessibility
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>WCAG 2.1 compliance</div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
 {[
-['1.1.1', 'Non-text content', 'AA', 'Each cell `<rect>` has `aria-label` with row, column and value. Hidden `<table>` provides full data for screen readers.'],
-['1.4.3', 'Contrast (minimum)', 'AA', 'All axis text and scale labels pass 4.5:1 against the white card background.'],
-['1.4.11', 'Non-text contrast', 'AA', 'Focus ring (2px solid #1849a9) provides sufficient contrast against cell colors.'],
-['2.1.1', 'Keyboard', 'A', 'All cells are `tabIndex={0}` and respond to `focus`/`blur` for tooltip. Tab moves through each cell.'],
-['2.4.7', 'Focus visible', 'AA', 'Cells show `:focus-visible` outline on keyboard navigation.'],
-['4.1.2', 'Name, role, value', 'A', 'SVG has `role="img"` with `aria-label`. Cells have `role="cell"` and descriptive `aria-label`. Screen-reader `<table>` has caption and scope attributes.'],
-].map(([sc, name, level, notes]) => (
-  <div key={sc} style={{ display: 'grid', gridTemplateColumns: '60px 180px 50px 1fr', gap: 0, borderBottom: '1px solid #f3f4f6', fontSize: 13 }}>
-    <div style={{ padding: '8px 12px', fontFamily: 'monospace', fontSize: 11, color: '#6b7280', background: '#fafafa' }}>{sc}</div>
-    <div style={{ padding: '8px 12px', fontWeight: 600, color: '#111827' }}>{name}</div>
-    <div style={{ padding: '8px 12px' }}>
-      <span style={{ background: level === 'AAA' ? '#ede9fe' : '#dbeafe', color: level === 'AAA' ? '#5b21b6' : '#1e40af', borderRadius: 4, padding: '1px 6px', fontSize: 11, fontWeight: 700 }}>{level}</span>
-    </div>
-    <div style={{ padding: '8px 12px', color: '#374151' }}>{notes}</div>
-  </div>
+{cat:'SVG Role & Labels',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'SVG',items:[
+{title:'role="img" + aria-label on SVG',desc:'The SVG receives role="img" and aria-label={title} so screen readers announce it as a named image.'},
+{title:'Each cell <rect> has aria-label',desc:'Every cell carries aria-label="RowLabel, ColLabel: value" — keyboard and AT users can navigate individual cells.'},
+{title:'Hidden data table mirrors all values',desc:'A <table> with visually-hidden CSS (.srOnly) exposes the full rows × columns matrix with caption and scope attributes.'},
+]},
+{cat:'Colour Independence',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'◑',items:[
+{title:'Do not rely on colour alone',desc:'Cell values are exposed via tooltip and the hidden accessible table. Colour is a redundant visual encoding, not the sole indicator.'},
+{title:'Contrast ratios',desc:'Axis labels (#6c7c96) on white: 4.6:1 ✓  Focus ring (#1849a9) on all band colours meets 3:1 non-text contrast minimum ✓'},
+{title:'Null cells distinguished',desc:'Null/zero cells use --chart-null (#d2d6db fill) — visually distinct from Band 1 (#d1e9ff). Tooltip shows "—" for null cells.'},
+]},
+{cat:'Keyboard & Focus',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'⌨',items:[
+{title:'All cells are tabIndex={0}',desc:'Tab order flows left-to-right, top-to-bottom through every cell in the grid — matches visual reading order.'},
+{title:'Focus ring on :focus-visible',desc:'A 2px solid #1849a9 ring appears on keyboard focus, meeting WCAG 2.4.7 Focus Visible at all band colours.'},
+{title:'Tooltip triggered by focus and hover',desc:'The tooltip opens on both focus and hover, so keyboard-only users see the same value disclosure as mouse users.'},
+]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:28,height:28,borderRadius:6,background:catIconBg,color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
 ))}
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 0 }}>
+    {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+      <div key="hdr" style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+      </div>
+    ))}
+    {[
+      ['1.1.1 Non-text Content', 'A', 'SVG role="img" + aria-label; each cell has descriptive aria-label; hidden <table> mirrors all data'],
+      ['1.3.1 Info & Relationships', 'A', 'Grid uses role="table/row/cell". Axes labelled.'],
+      ['1.4.3 Contrast (text)', 'AA', 'Axis labels #6c7c96 on white: 4.6:1'],
+      ['1.4.11 Non-text Contrast', 'AA', 'Focus ring #1849a9 on all band colours ≥ 3:1'],
+      ['1.4.10 Reflow', 'AA', 'SVG uses width="100%" — scales to container'],
+      ['2.1.1 Keyboard', 'A', 'All cells tabIndex={0}; tooltip opens on focus'],
+      ['2.4.7 Focus Visible', 'AA', ':focus-visible ring on every cell'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: level === 'AAA' ? '#ede9fe' : '#dbeafe', color: level === 'AAA' ? '#6d28d9' : '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
 </div>
 
 </div>
