@@ -1,0 +1,656 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Checkbox, CheckboxGroup } from './Checkbox';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Form / Checkbox</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Checkbox</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>A checkbox lets users select one or more options from a list. It supports a checked, unchecked, and indeterminate state across two variants (Primary and Neutral), three sizes, and full RTL support.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4112:15</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4112-15" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 16 }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <Checkbox checked={false} label="Unchecked — default resting state" size="md" variant="primary" />
+    <Checkbox checked={true} label="Checked — primary variant" size="md" variant="primary" />
+    <Checkbox indeterminate={true} label="Indeterminate — mixed selection" size="md" variant="primary" />
+    <Checkbox checked={true} label="Neutral variant" size="md" variant="neutral" />
+    <Checkbox
+      checked={false}
+      label="With description and error"
+      description="When a selection needs a further detailed explanation, it goes here."
+      error="Error / Warning message"
+      size="md"
+      variant="primary"
+    />
+  </div>
+</div>
+
+Two fill variants · three sizes · indeterminate state · label, description, error support · full RTL. All tokens sourced from Figma node `4112:15`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px', marginBottom: 24 }}>
+  <div style={{ maxWidth: 420, margin: '0 auto' }}>
+    <Checkbox
+      checked={true}
+      label="Checkbox Label"
+      description="When a selection needs a further detailed explanation, it goes here."
+      error="Error / Warning message"
+      size="md"
+      variant="primary"
+    />
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 24px', justifyContent: 'center', marginTop: 28 }}>
+    {[['1','Checkbox box (control)'],['2','Check / Indeterminate icon'],['3','Label text'],['4','Description (helper text)'],['5','Error icon'],['6','Error message text']].map(([n,label])=>(
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+| # | Element | Required |
+|---|---|---|
+| 1 | Checkbox box — the interactive control, `border-radius: 1px` | Always |
+| 2 | Check icon (✓) or indeterminate dash (—) — shown when filled | Conditional |
+| 3 | Label text — `16px Medium`, `color: #000b36` | Optional |
+| 4 | Description — helper text below label, `14px Regular`, `color: #3c5073` | Optional |
+| 5 | Error icon — circular warning SVG | Conditional |
+| 6 | Error message — `14px Regular`, `color: #a30000`, sets `aria-invalid` | Optional |
+
+---
+
+## Variants
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Primary (variant="primary")</div>
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Checkbox checked={false} label="Unchecked" size="md" variant="primary" />
+      <Checkbox checked={true} label="Checked" size="md" variant="primary" />
+      <Checkbox indeterminate={true} label="Indeterminate" size="md" variant="primary" />
+    </div>
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Neutral (variant="neutral")</div>
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Checkbox checked={false} label="Unchecked" size="md" variant="neutral" />
+      <Checkbox checked={true} label="Checked" size="md" variant="neutral" />
+      <Checkbox indeterminate={true} label="Indeterminate" size="md" variant="neutral" />
+    </div>
+  </div>
+</div>
+
+| Variant | Filled bg | Icon color | Use case |
+|---|---|---|---|
+| `primary` | `#1849a9` blue | `#f9fafb` white | Default — primary brand context, forms |
+| `neutral` | `#1f2a37` dark navy | `#f9fafb` white | Dark/neutral contexts, content-heavy layouts |
+
+---
+
+## Sizes
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
+  {[
+    ['Medium', 'size="md"', 'md', '24px', '12px'],
+    ['Small',  'size="sm"', 'sm', '20px', '10px'],
+    ['X-Small','size="xs"', 'xs', '16px',  '8px'],
+  ].map(([name, code, size, box, icon]) => (
+    <div key={size} style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '14px 0', borderBottom: '1px solid #f3f4f6' }}>
+      <div style={{ minWidth: 160 }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
+        <code style={{ fontSize: 11, color: '#6b7280' }}>{code}</code>
+      </div>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <Checkbox size={size} checked={false} variant="primary" />
+        <Checkbox size={size} checked={true} variant="primary" />
+        <Checkbox size={size} indeterminate={true} variant="primary" />
+        <Checkbox size={size} checked={true} variant="neutral" />
+      </div>
+      <div style={{ fontSize: 12, color: '#6b7280', marginLeft: 8 }}>{box} box · {icon} icon</div>
+    </div>
+  ))}
+</div>
+
+| Size prop | Box size | Icon size | Figma token |
+|---|---|---|---|
+| `md` | 24 × 24 px | 12 px | `Controls/Size/medium/*` |
+| `sm` | 20 × 20 px | 10 px | `Controls/Size/small/*` |
+| `xs` | 16 × 16 px |  8 px | `Controls/Size/x small/*` |
+
+All sizes use `border-radius: 1px` — a minimal 1px rounding per Figma.
+
+---
+
+## States
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 14, marginBottom: 16 }}>
+  {[
+    ['Default', <div key="d" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #6c737f', background: '#fff', display: 'inline-flex' }} />],
+    ['Hover', <div key="h" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #6c737f', background: '#f3f4f6', display: 'inline-flex' }} />],
+    ['Pressed', <div key="p" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #6c737f', background: '#e5e7eb', display: 'inline-flex' }} />],
+    ['Focused', <div key="f" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #6c737f', background: '#fff', display: 'inline-flex', boxShadow: '0 0 0 2px #ffffff, 0 0 0 4px #00001c' }} />],
+    ['Checked', <Checkbox key="c" checked={true} size="md" variant="primary" />],
+    ['Checked Hover', <div key="ch" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #194185', background: '#194185', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Checked Pressed', <div key="cp" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #102a56', background: '#102a56', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Checked Focused', <div key="cf" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #1849a9', background: '#1849a9', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb', boxShadow: '0 0 0 2px #ffffff, 0 0 0 4px #00001c' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Read-only', <div key="ro" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #1849a9', background: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#1849a9' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Disabled', <Checkbox key="dis" disabled checked={false} size="md" />],
+    ['Disabled Checked', <Checkbox key="disc" disabled checked={true} size="md" variant="primary" />],
+  ].map(([name, comp]) => (
+    <div key={name} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 14px 12px', display: 'flex', flexDirection: 'column', gap: 11 }}>
+      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>{name}</span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 40 }}>{comp}</div>
+    </div>
+  ))}
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 14, marginBottom: 16 }}>
+  {[
+    ['Neutral Default', <Checkbox key="nd" checked={false} size="md" variant="neutral" />],
+    ['Neutral Checked', <Checkbox key="nc" checked={true} size="md" variant="neutral" />],
+    ['Neutral Hover', <div key="nh" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #0d121c', background: '#0d121c', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Neutral Pressed', <div key="np" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #4d5761', background: '#4d5761', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Neutral Read-only', <div key="nro" style={{ width: 24, height: 24, borderRadius: 1, border: '1.5px solid #ced3dc', background: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000b36' }}><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6.5L4.5 9L10 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
+    ['Neutral Disabled', <Checkbox key="ndis" disabled checked={true} size="md" variant="neutral" />],
+    ['Indeterminate', <Checkbox key="ind" indeterminate={true} size="md" variant="primary" />],
+    ['Indet. Neutral', <Checkbox key="indn" indeterminate={true} size="md" variant="neutral" />],
+  ].map(([name, comp]) => (
+    <div key={name} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 14px 12px', display: 'flex', flexDirection: 'column', gap: 11 }}>
+      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>{name}</span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 40 }}>{comp}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## State Table
+
+| State | Trigger | Primary bg | Neutral bg | Icon |
+|---|---|---|---|---|
+| Default (unchecked) | Resting | `#ffffff` + gray border | `#ffffff` + gray border | — |
+| Hover (unchecked) | `:hover` | `#f3f4f6` ripple | `#f3f4f6` ripple | — |
+| Pressed (unchecked) | `:active` | `#e5e7eb` | `#e5e7eb` | — |
+| Default (checked) | `checked=true` | `#1849a9` | `#1f2a37` | white `#f9fafb` |
+| Hover (checked) | `:hover` | `#194185` | `#0d121c` | white |
+| Pressed (checked) | `:active` | `#102a56` | `#4d5761` | white |
+| Focused | `:focus-visible` | unchanged + ring | unchanged + ring | unchanged |
+| Read-only (checked) | `readOnly=true` | white + blue border | white + gray border | blue / dark |
+| Disabled | `disabled=true` | `#d2d6db` | `#d2d6db` | `#6c7c96` |
+
+**Focus ring:** `box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #00001c` (white inner gap + dark navy outer ring).
+
+**Disabled** uses dedicated tokens (`--checkbox-disabled-bg: #d2d6db` / `--checkbox-disabled-icon: #6c7c96`), never opacity.
+
+---
+
+## Form Field
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Checkbox only (no label)</div>
+    <div style={{ display: 'flex', gap: 16 }}>
+      <Checkbox checked={false} size="md" variant="primary" />
+      <Checkbox checked={true} size="md" variant="primary" />
+      <Checkbox indeterminate={true} size="md" variant="primary" />
+    </div>
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>With label</div>
+    <Checkbox checked={false} label="Checkbox Label" size="md" variant="primary" />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>With label + description</div>
+    <Checkbox
+      checked={false}
+      label="Checkbox Label"
+      description="When a selection needs a further detailed explanation, it goes here."
+      size="md"
+      variant="primary"
+    />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>With label + description + error</div>
+    <Checkbox
+      checked={false}
+      label="Checkbox Label"
+      description="When a selection needs a further detailed explanation, it goes here."
+      error="Error / Warning message"
+      size="md"
+      variant="primary"
+    />
+  </div>
+</div>
+
+| Slot | Prop | Typography | Color |
+|---|---|---|---|
+| Label | `label` | 16px Medium (500) | `#000b36` |
+| Description | `description` | 14px Regular (400) | `#3c5073` |
+| Error | `error` | 14px Regular (400) | `#a30000` |
+
+Description and error text are indented to align with the label start (`checkbox-size + 8px gap`).
+
+---
+
+## RTL Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Checkbox dir="ltr" checked={false} label="Checkbox Label" description="Helper description text." size="md" variant="primary" />
+      <Checkbox dir="ltr" checked={true} label="Checkbox Label" size="md" variant="primary" />
+    </div>
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <Checkbox dir="rtl" checked={false} label="عنوان اختيار متعدد" description="يكتب المحتوى الإضافي هنا في حال ان عنوان الاختيار يحتاج إلى شرح أو تفصيل." size="md" variant="primary" />
+      <Checkbox dir="rtl" checked={true} label="عنوان اختيار متعدد" size="md" variant="primary" />
+    </div>
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>RTL behaviour:</strong> Pass <code>dir="rtl"</code>. The checkbox box moves to the inline-end (right), label and description align inline-start (left in RTL). The description indent uses <code>padding-inline-start</code> so it follows the reading direction automatically.
+</div>
+
+---
+
+## Checkbox Group
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '24px', marginBottom: 16 }}>
+  <CheckboxGroup legend="Notification preferences">
+    <Checkbox checked={true} label="Email notifications" description="Receive updates via email." size="md" variant="primary" />
+    <Checkbox checked={false} label="SMS notifications" size="md" variant="primary" />
+    <Checkbox checked={true} label="Push notifications" size="md" variant="primary" />
+  </CheckboxGroup>
+</div>
+
+`CheckboxGroup` renders a `<fieldset>` with an optional `<legend>`. It semantically groups related checkboxes for assistive technologies.
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Sizing</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+{t:'--checkbox-xs',v:'16px',f:'Controls/Size/x small/width + height',u:'X-small checkbox size'},
+{t:'--checkbox-sm',v:'20px',f:'Controls/Size/small/width + height',u:'Small checkbox size'},
+{t:'--checkbox-md',v:'24px',f:'Controls/Size/medium/width + height',u:'Medium checkbox size'},
+{t:'--checkbox-radius',v:'1px',f:'Controls/Size/*/radius',u:'Border radius on all sizes'},
+].map(({t,v,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'220px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 120px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+{t:'--checkbox-unchecked-border',h:'#6c737f',f:'Controls/Unchecked/Border/default',u:'Default unchecked border'},
+{t:'--checkbox-unchecked-border-readonly',h:'#d2d6db',f:'Controls/Unchecked/Border/read-only',u:'Read-only unchecked border'},
+{t:'--checkbox-unchecked-bg-pressed',h:'#e5e7eb',f:'Controls/Unchecked/Bg/pressed',u:'Unchecked pressed background'},
+{t:'--checkbox-ripple',h:'#f3f4f6',f:'Controls/Ripple effect/ripple-effect',u:'Unchecked hover background'},
+{t:'--checkbox-primary-bg',h:'#1849a9',f:'Controls/Checked/Primary/bg/default',u:'Primary checked bg'},
+{t:'--checkbox-primary-bg-hover',h:'#194185',f:'Controls/Checked/Primary/bg/hover',u:'Primary checked hover'},
+{t:'--checkbox-primary-bg-pressed',h:'#102a56',f:'Controls/Checked/Primary/bg/pressed',u:'Primary checked pressed'},
+{t:'--checkbox-primary-icon',h:'#f9fafb',f:'Controls/Checked/Primary/Icon/default',u:'Primary icon color'},
+{t:'--checkbox-primary-icon-readonly',h:'#1849a9',f:'Controls/Checked/Primary/Icon/read-only',u:'Primary read-only icon'},
+{t:'--checkbox-primary-border-readonly',h:'#1849a9',f:'Controls/Checked/Primary/Border/read-only',u:'Primary read-only border'},
+{t:'--checkbox-neutral-bg',h:'#1f2a37',f:'Controls/Checked/Neutral/Box/bg/default',u:'Neutral checked bg'},
+{t:'--checkbox-neutral-bg-hover',h:'#0d121c',f:'Controls/Checked/Neutral/Box/bg/hover',u:'Neutral checked hover'},
+{t:'--checkbox-neutral-bg-pressed',h:'#4d5761',f:'Controls/Checked/Neutral/Box/bg/pressed',u:'Neutral checked pressed'},
+{t:'--checkbox-neutral-icon',h:'#f9fafb',f:'Controls/Checked/Neutral/Icon/default',u:'Neutral icon color'},
+{t:'--checkbox-neutral-icon-readonly',h:'#000b36',f:'Controls/Checked/Neutral/Icon/read-only',u:'Neutral read-only icon'},
+{t:'--checkbox-neutral-border-readonly',h:'#ced3dc',f:'Controls/Checked/Neutral/Border/read-only',u:'Neutral read-only border'},
+{t:'--checkbox-disabled-bg',h:'#d2d6db',f:'Controls/Checked/Disabled/bg/disable',u:'Disabled background'},
+{t:'--checkbox-disabled-icon',h:'#6c7c96',f:'Controls/Checked/Disabled/Icon/disable',u:'Disabled icon'},
+{t:'--checkbox-focus-ring',h:'#00001c',f:'Controls/Focus Ring/focus ring',u:'Focus ring outer color'},
+{t:'--checkbox-label-title',h:'#000b36',f:'Check Box Label/title',u:'Label text color'},
+{t:'--checkbox-label-subtext',h:'#3c5073',f:'Check Box Label/subtext',u:'Description text color'},
+{t:'--checkbox-label-error',h:'#a30000',f:'Check Box Label/text-error',u:'Error text color'},
+].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'260px 120px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#4b5563' }}>Checkbox</div>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 90px 90px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+{n:'checked',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Whether the checkbox is checked'},
+{n:'indeterminate',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Indeterminate state — overrides checked visually; sets aria-checked="mixed"'},
+{n:'variant',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'primary',d:'primary — blue fill · neutral — dark navy fill'},
+{n:'size',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'md',d:'xs=16px · sm=20px · md=24px'},
+{n:'label',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Label text displayed beside the checkbox'},
+{n:'description',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Helper description rendered below the label; 14px Regular, gray'},
+{n:'error',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Error message with icon; sets aria-invalid="true" on the input'},
+{n:'disabled',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Disables interaction and applies disabled color tokens'},
+{n:'readOnly',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Prevents value changes while preserving the checked display (outlined style)'},
+{n:'dir',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'ltr',d:'ltr · rtl — mirrors layout for Arabic; description indent uses padding-inline-start'},
+{n:'onChange',type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',d:'Native input change event handler. No-op when disabled or readOnly.'},
+{n:'id',type:'node',tb:'#ecfdf5',tc:'#059669',def:'auto',d:'HTML id — auto-generated via useId() when omitted'},
+{n:'name',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Input name for form submission'},
+{n:'value',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Input value for form submission'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 90px 90px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#4b5563' }}>CheckboxGroup (sub-component)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 90px 90px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+{n:'legend',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Group label rendered as <legend> inside <fieldset>'},
+{n:'children',type:'node',tb:'#ecfdf5',tc:'#059669',def:'—',d:'Checkbox components to group'},
+{n:'gap',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'md',d:'Vertical gap between items — sm=8px · md=16px · lg=24px'},
+{n:'dir',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'ltr',d:'Text direction — mirrors the group layout for RTL'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 90px 90px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+{cat:'Keyboard Navigation',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'⌨',items:[
+{title:'Space toggles the checkbox',desc:'The native <input type="checkbox"> handles Space key by default — no additional JS required.'},
+{title:'Tab reaches every enabled checkbox',desc:'Native inputs are keyboard-focusable. Disabled checkboxes are excluded via the HTML disabled attribute.'},
+{title:'Focus ring on :focus-visible only',desc:'The box-shadow ring appears only on keyboard navigation, not mouse interaction — matches WCAG 2.2 Focus Appearance.'},
+{title:'Read-only checkboxes remain reachable',desc:'Read-only checkboxes are focusable (not disabled) but the onChange handler returns early, preventing value changes.'},
+]},
+{cat:'ARIA & Semantics',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'A',items:[
+{title:'Native <input type="checkbox">',desc:'Uses a native checkbox for reliable AT support across all platforms — no custom role needed.'},
+{title:'aria-checked="mixed" for indeterminate',desc:'The indeterminate prop sets the native .indeterminate property and aria-checked="mixed", correctly announced by screen readers.'},
+{title:'aria-invalid and aria-describedby',desc:'When error is set, aria-invalid="true" and aria-describedby reference the error element. Description also linked via aria-describedby.'},
+{title:'aria-readonly for read-only state',desc:'aria-readonly="true" signals to AT that the field is not editable, even though HTML readonly is ineffective on checkboxes.'},
+{title:'CheckboxGroup uses <fieldset> + <legend>',desc:'Grouping with <fieldset> and <legend> ensures AT announces the group name before each option — critical for form usability.'},
+]},
+{cat:'Visual & Focus',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+{title:'Double box-shadow focus ring — WCAG 2.2',desc:'box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #00001c — white inner gap + dark navy outer ring ensures 3:1 contrast on any background.'},
+{title:'Disabled uses dedicated tokens, not opacity',desc:'--checkbox-disabled-bg (#d2d6db) and --checkbox-disabled-icon (#6c7c96) keep disabled controls perceptible at all levels.'},
+{title:'Read-only outlined style distinguishes from checked',desc:'Read-only checked shows a white box with colored border and icon — visually distinct from the filled checked state.'},
+{title:'Error icon is aria-hidden',desc:'The error SVG is decorative; the accessible error text is in the sibling <span> referenced by aria-describedby.'},
+]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff' }}>
+  <CheckboxGroup legend="Notification preferences">
+    <Checkbox checked={true} label="Email updates" size="md" variant="primary" />
+    <Checkbox checked={false} label="SMS alerts" size="md" variant="primary" />
+    <Checkbox checked={true} label="Push notifications" size="md" variant="primary" />
+  </CheckboxGroup>
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Multiple independent options</div>
+  {['Group related checkboxes in a CheckboxGroup with a descriptive legend.','Use indeterminate on a parent checkbox when only some children are selected.','Add description text when the label alone is insufficient.','Use primary variant for most forms; neutral for dark-themed or content-heavy contexts.'].map((r,i)=>(
+    <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+  ))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff' }}>
+  <Checkbox checked={false} label="I agree to the terms" size="md" variant="primary" />
+  <Checkbox checked={false} label="Option B" size="md" variant="primary" />
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Mutually exclusive choices</div>
+  {["Don't use checkboxes for mutually exclusive options — use Radio instead.","Don't use checkbox for a single on/off toggle — use a Switch component.","Don't mix sizes within the same group.","Don't use disabled for all items — at least one should be interactive."].map((r,i)=>(
+    <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+  ))}
+</div>
+</div>
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Use size="md" as the default; only downsize when space is constrained.','Provide visible labels — avoid unlabelled checkboxes in forms.','Use CheckboxGroup + legend for semantic grouping.','Use indeterminate to represent partial selection in a parent control.','Test with keyboard — all checkboxes must be Tab-reachable and Space-toggleable.','Use error prop instead of separate error text to retain aria-invalid linkage.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
+{["Don't use for single toggle or mutually exclusive selections (use Switch or Radio).","Don't disable all options — always leave at least one interactive.","Don't mix primary and neutral variants within the same group.","Don't rely on colour alone to communicate error — always use the error prop.","Don't use indeterminate as a permanent state — it should reflect partial child selection.","Don't place unrelated checkboxes in the same CheckboxGroup."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Code Examples
+
+```jsx
+import { Checkbox, CheckboxGroup } from '@/components/Checkbox';
+
+// Basic unchecked
+<Checkbox label="Accept terms" />
+
+// Controlled checked — primary
+<Checkbox
+  checked={isChecked}
+  onChange={(e) => setIsChecked(e.target.checked)}
+  label="Email notifications"
+  variant="primary"
+  size="md"
+/>
+
+// Neutral variant
+<Checkbox checked={true} variant="neutral" label="Neutral option" />
+
+// With description and error
+<Checkbox
+  checked={false}
+  label="I agree to the privacy policy"
+  description="Your data is protected under our privacy agreement."
+  error="You must accept the privacy policy to continue."
+  onChange={handleChange}
+/>
+
+// Indeterminate (parent of partial selection)
+<Checkbox
+  checked={allSelected}
+  indeterminate={someSelected && !allSelected}
+  label="Select all"
+  onChange={handleSelectAll}
+/>
+
+// Read-only
+<Checkbox readOnly checked={true} label="Confirmed preference" />
+
+// Disabled
+<Checkbox disabled checked={false} label="Unavailable option" />
+
+// RTL Arabic
+<Checkbox
+  dir="rtl"
+  checked={false}
+  label="عنوان اختيار متعدد"
+  description="يكتب المحتوى الإضافي هنا في حال ان عنوان الاختيار يحتاج إلى شرح."
+  onChange={handleChange}
+/>
+
+// Group with legend
+<CheckboxGroup legend="Notification preferences">
+  <Checkbox checked={emailOn} label="Email" onChange={toggleEmail} />
+  <Checkbox checked={smsOn}   label="SMS"   onChange={toggleSms}   />
+  <Checkbox checked={pushOn}  label="Push"  onChange={togglePush}  />
+</CheckboxGroup>
+```
+
+---
+
+## Figma Reference
+
+- **Component set:** [4112:15 — Masterteam DS Checkbox](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4112-15)
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4112:15`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>22 Match</span>
+<span style={{ background: '#fffbeb', color: '#d97706', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fde68a' }}>2 Deviation</span>
+<span style={{ background: '#eff3fb', color: '#1849a9', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #bfdbfe' }}>1 New token</span>
+<span style={{ background: '#f3f4f6', color: '#6b7280', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #e5e7eb' }}>1 Enhancement</span>
+</div>
+<div style={{ border: '1px solid #fde68a', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#fffbeb', padding: '10px 16px', borderBottom: '1px solid #fde68a', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#d97706' }}>Deviations — requires attention</div>
+{[
+{a:'HTML readOnly on checkbox',fig:'Figma defines a read-only state with outlined visual style',impl:'HTML readonly attribute is not effective on <input type="checkbox">. Implemented via JS: onChange returns early; aria-readonly="true" set; outlined CSS class applied.',n:'This is a known HTML limitation. The visual and accessible behaviour matches Figma intent; only the native browser enforcement is absent. The outlined checked style (white bg + colored border + colored icon) correctly communicates read-only to sighted users.'},
+{a:'Focus ring on indeterminate vs checked',fig:'Figma component set shows one focused state without distinguishing checked/indeterminate',impl:'Same box-shadow applied to all filled states (checked and indeterminate) on :focus-visible. Both pass WCAG 2.2 Focus Appearance.',n:'Consistent with the established project focus ring pattern (0 0 0 2px #ffffff, 0 0 0 4px #00001c). No visual difference needed between the two filled states on focus.'},
+].map(({a,fig,impl,n},i)=>(
+<div key={a} style={{padding:'12px 16px',background:i%2===0?'#fff':'#fffef5',borderBottom:'1px solid #fef9c3'}}>
+<div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
+<span style={{background:'#fffbeb',color:'#d97706',fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,border:'1px solid #fde68a'}}>Deviation</span>
+<span style={{fontSize:13,fontWeight:600,color:'#111827'}}>{a}</span>
+</div>
+<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:6}}>
+<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Figma</div><code style={{fontSize:12,color:'#374151'}}>{fig}</code></div>
+<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Implementation</div><code style={{fontSize:12,color:'#374151'}}>{impl}</code></div>
+</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #bfdbfe', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#eff3fb', padding: '10px 16px', borderBottom: '1px solid #bfdbfe', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9' }}>New tokens &amp; enhancements</div>
+{[
+{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--checkbox-ripple: #f3f4f6',n:'Hover background for unchecked state. Directly from Figma Controls/Ripple effect/ripple-effect variable — named as a dedicated token.'},
+{s:'Enhancement',sb:'#f3f4f6',st:'#6b7280',a:'CheckboxGroup sub-component',n:'Not a separate export in the Figma component set. Added as a <fieldset>/<legend> wrapper to provide semantic grouping and accessible AT announcement. Follows the same pattern as AccordionGroup in this design system.'},
+].map(({s,sb,st,a,n},i)=>(
+<div key={a} style={{display:'flex',alignItems:'flex-start',gap:12,padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6'}}>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',flexShrink:0,border:`1px solid ${sb==='#eff3fb'?'#bfdbfe':'#e5e7eb'}`}}>{s}</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{a}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
+</div>
+</div>
+))}
+</div>
+<details style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<summary style={{ background: '#f9fafb', padding: '10px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#374151', borderBottom: '1px solid #e5e7eb', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 700, border: '1px solid #a7f3d0' }}>22 Match</span>
+View all matched properties
+</summary>
+<div style={{ background: '#fff' }}>
+{[
+['xs size','16×16px','--checkbox-xs ✓'],
+['sm size','20×20px','--checkbox-sm ✓'],
+['md size','24×24px','--checkbox-md ✓'],
+['Border radius','1px','--checkbox-radius ✓'],
+['Unchecked border','#6c737f','--checkbox-unchecked-border ✓'],
+['Unchecked border readonly','#d2d6db','--checkbox-unchecked-border-readonly ✓'],
+['Unchecked bg pressed','#e5e7eb','--checkbox-unchecked-bg-pressed ✓'],
+['Primary bg default','#1849a9','--checkbox-primary-bg ✓'],
+['Primary bg hover','#194185','--checkbox-primary-bg-hover ✓'],
+['Primary bg pressed','#102a56','--checkbox-primary-bg-pressed ✓'],
+['Primary icon default','#f9fafb','--checkbox-primary-icon ✓'],
+['Primary icon readonly','#1849a9','--checkbox-primary-icon-readonly ✓'],
+['Primary border readonly','#1849a9','--checkbox-primary-border-readonly ✓'],
+['Neutral bg default','#1f2a37','--checkbox-neutral-bg ✓'],
+['Neutral bg hover','#0d121c','--checkbox-neutral-bg-hover ✓'],
+['Neutral bg pressed','#4d5761','--checkbox-neutral-bg-pressed ✓'],
+['Neutral icon default','#f9fafb','--checkbox-neutral-icon ✓'],
+['Neutral icon readonly','#000b36','--checkbox-neutral-icon-readonly ✓'],
+['Neutral border readonly','#ced3dc','--checkbox-neutral-border-readonly ✓'],
+['Disabled bg','#d2d6db','--checkbox-disabled-bg ✓'],
+['Disabled icon','#6c7c96','--checkbox-disabled-icon ✓'],
+['Focus ring','#00001c','--checkbox-focus-ring ✓'],
+].map(([area,figma,impl],i)=>(
+<div key={area} style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',padding:'8px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center',fontSize:12}}>
+<span style={{color:'#111827',fontWeight:500}}>{area}</span>
+<code style={{color:'#6b7280'}}>{figma}</code>
+<code style={{color:'#059669'}}>{impl}</code>
+</div>
+))}
+</div>
+</details>
+<div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#6b7280' }}>
+<span style={{ fontWeight: 700, color: '#374151' }}>Missing design decisions not in Figma:</span> Transition animation on state changes (120ms ease added as enhancement) · Exact focus ring spread values (4px outer derived from checkbox scale; Figma only defines the ring color token) · Description/error indent value (derived from checkbox size + 8px gap) · CheckboxGroup gap scale (sm/md/lg — not defined in Figma, added as utility)
+</div>
+
+</div>
