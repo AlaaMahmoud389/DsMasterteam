@@ -40,7 +40,7 @@ jobs:
       - name: Publish to Chromatic
         uses: chromaui/action@latest
         with:
-          projectToken: ${{ secrets.chpt_74341895429d6e5 }}
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           buildScriptName: build-storybook
           exitZeroOnChanges: true
           autoAcceptChanges: false
