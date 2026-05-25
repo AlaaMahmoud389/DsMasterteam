@@ -5,12 +5,12 @@ on:
     branches:
       - Master-Team
       - Alaa-work
-      - faisal-work
+      - faisal-work-new
   pull_request:
     branches:
       - Master-Team
       - Alaa-work
-      - faisal-work
+      - faisal-work-new
 
 jobs:
   chromatic:
@@ -22,11 +22,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Debug git history
-        run: |
-          git branch -a
-          git log --oneline -10
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -41,6 +36,3 @@ jobs:
         uses: chromaui/action@latest
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          buildScriptName: build-storybook
-          exitZeroOnChanges: true
-          autoAcceptChanges: false
