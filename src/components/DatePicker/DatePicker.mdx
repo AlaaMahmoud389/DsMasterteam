@@ -577,4 +577,353 @@ Audit against Figma node `4250:1943`.
 <span style={{ fontWeight: 700, color: '#374151' }}>Missing design decisions not in Figma variable set:</span> Year dropdown max-height · Panel drop-shadow exact spread values · Dual-month calendar divider width · Weekday row exact height · Quick options sidebar item line-height · Input field placeholder text format
 </div>
 
+---
+
+## Date Cell
+
+<div style={{ marginBottom: 12 }}>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 720, lineHeight: 1.7, marginBottom: 12 }}>
+    The <strong>Date Cell</strong> is the core building block of the calendar grid. Every calendar day is rendered as one Date Cell. The component has <strong>5 independent variant properties</strong> that combine to produce <strong>41 total variants</strong>. Each cell is a fixed <strong>56 × 56 px</strong> outer hit area containing a centred <strong>48 × 48 px</strong> interactive circle layer.
+  </div>
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Figma node 7060:5995</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>41 variants</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#1849a9' }}>56 × 56 px</span>
+  </div>
+</div>
+
+### Variant Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '160px 220px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Values</span><span>Description</span>
+</div>
+{[
+  { prop: 'Selected',  values: 'False | True',                            desc: 'Whether this date is selected (start, end, or single pick). Fills the cell with the primary brand colour.' },
+  { prop: 'Today',     values: 'False | True',                            desc: "Whether this cell represents today's date. Shows a 2 px border ring and uses bold primary text when not selected." },
+  { prop: 'Nex/Prev',  values: 'False | True',                            desc: 'Whether this date belongs to the previous or next month (adjacent). Shown with a muted text colour and never bold.' },
+  { prop: 'State',     values: 'Default | Hovered | Pressed | Focused | Disabled', desc: 'The current interaction state. Controls background fill, text opacity, and focus ring visibility.' },
+  { prop: 'Null',      values: 'False | True',                            desc: 'Empty cell — occupies the grid slot but renders no date. Used to pad the start/end of the calendar grid.' },
+].map(({ prop, values, desc }, i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 220px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code>
+    <span style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>{values}</span>
+    <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{desc}</span>
+  </div>
+))}
+</div>
+
+### Cell Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 24 }}>
+  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+    <div style={{ minWidth: 180 }}>
+      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Cell layers (bottom → top)</div>
+      {[
+        ['Range Highlight left', '56 × 28 px left half — range strip background'],
+        ['Range Highlight middle', '56 × 56 px full — range strip background'],
+        ['Range Highlight right', '56 × 28 px right half — range strip background'],
+        ['state-layer', '48 × 48 px centred frame, border-radius 9999 px (circle)'],
+        ['Date text', '16 px · line-height 24 px · horizontally + vertically centred'],
+        ['Secondary Date', '12 px · line-height 18 px · sub-label (hidden by default)'],
+        ['Focus ring', '56 × 56 px RECTANGLE, stroke 2 px OUTSIDE, corner-radius 4 px'],
+      ].map(([name, desc], i) => (
+        <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: 8 }}>
+          <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</span>
+          <div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
+            <div style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.4 }}>{desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div>
+      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Live examples</div>
+      <DatePicker inline />
+    </div>
+  </div>
+</div>
+
+### State Visual Specifications
+
+All values sourced directly from Figma component set (node `7060:5995`).
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Default State Cells (Selected=False, Today=False, Nex/Prev=False)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 110px 100px 100px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>State</span><span>Circle BG</span><span>Border/Stroke</span><span>Date colour</span><span>Font weight</span>
+</div>
+{[
+  { state: 'Default',  bg: 'transparent', stroke: 'none',              textColor: '#000C37', weight: '400' },
+  { state: 'Hovered',  bg: '#E6E8EC',     stroke: 'none',              textColor: '#000C37', weight: '400' },
+  { state: 'Pressed',  bg: '#D3D7DC',     stroke: 'none',              textColor: '#000C37', weight: '400' },
+  { state: 'Focused',  bg: 'transparent', stroke: 'Focus ring (see §)', textColor: '#000C37', weight: '400' },
+  { state: 'Disabled', bg: 'transparent', stroke: 'none',              textColor: '#6D7D97', weight: '400' },
+].map(({ state, bg, stroke, textColor, weight }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '110px 110px 100px 100px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {bg !== 'transparent' && <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: bg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
+    </span>
+    <code style={{ fontSize: 10, color: '#374151' }}>{stroke}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: textColor, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{textColor}</code>
+    </span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{weight}</code>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Today Cells (Today=True, Selected=False, Nex/Prev=False)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 110px 160px 100px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>State</span><span>Circle BG</span><span>Border/Stroke</span><span>Date colour</span><span>Font weight</span>
+</div>
+{[
+  { state: 'Default',  bg: 'transparent', stroke: '#194AAA 2 px ring', textColor: '#194AAA', weight: '700 (Bold)' },
+  { state: 'Hovered',  bg: '#E6E8EC',     stroke: '#194AAA 2 px ring', textColor: '#194AAA', weight: '700 (Bold)' },
+  { state: 'Pressed',  bg: '#D3D7DC',     stroke: '#194AAA 2 px ring', textColor: '#194AAA', weight: '700 (Bold)' },
+  { state: 'Focused',  bg: 'transparent', stroke: '#194AAA 2 px ring + Focus ring', textColor: '#194AAA', weight: '700 (Bold)' },
+  { state: 'Disabled', bg: 'transparent', stroke: 'none (ring removed)', textColor: '#6D7D97', weight: '400' },
+].map(({ state, bg, stroke, textColor, weight }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '110px 110px 160px 100px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {bg !== 'transparent' && <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: bg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
+    </span>
+    <code style={{ fontSize: 10, color: '#374151' }}>{stroke}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: textColor, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{textColor}</code>
+    </span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{weight}</code>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Selected Cells (Selected=True, Nex/Prev=False)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 110px 100px 100px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>State + Today</span><span>Circle BG</span><span>Border</span><span>Date colour</span><span>Font weight</span>
+</div>
+{[
+  { state: 'Default / Today=F',  bg: '#194AAA', stroke: 'none',         textColor: '#FAFBFC', weight: '400' },
+  { state: 'Default / Today=T',  bg: '#194AAA', stroke: 'none',         textColor: '#FAFBFC', weight: '700 (Bold)' },
+  { state: 'Hovered / Today=F',  bg: '#1A4185', stroke: 'none',         textColor: '#FAFBFC', weight: '400' },
+  { state: 'Pressed / Today=F',  bg: '#D3D7DC', stroke: 'none',         textColor: '#FAFBFC', weight: '400' },
+  { state: 'Focused / Today=F',  bg: '#194AAA', stroke: 'Focus ring (§)',textColor: '#FAFBFC', weight: '400' },
+  { state: 'Disabled / Today=F', bg: '#D3D7DC', stroke: 'none',         textColor: '#FAFBFC', weight: '400' },
+].map(({ state, bg, stroke, textColor, weight }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '140px 110px 100px 100px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+    <span style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: bg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
+    </span>
+    <code style={{ fontSize: 10, color: '#374151' }}>{stroke}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: textColor, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{textColor}</code>
+    </span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{weight}</code>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Adjacent-Month Cells (Nex/Prev=True)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 110px 100px 100px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>State</span><span>Circle BG</span><span>Border</span><span>Date colour</span><span>Font weight</span>
+</div>
+{[
+  { state: 'Default',  bg: 'transparent', stroke: 'none', textColor: '#3D5174', weight: '400' },
+  { state: 'Hovered',  bg: '#E6E8EC',     stroke: 'none', textColor: '#3D5174', weight: '400' },
+  { state: 'Pressed',  bg: '#D3D7DC',     stroke: 'none', textColor: '#3D5174', weight: '400' },
+  { state: 'Focused',  bg: 'transparent', stroke: 'Focus ring (§)', textColor: '#3D5174', weight: '400' },
+  { state: 'Disabled', bg: 'transparent', stroke: 'none', textColor: '#6D7D97', weight: '400' },
+].map(({ state, bg, stroke, textColor, weight }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '110px 110px 100px 100px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {bg !== 'transparent' && <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: '50%', background: bg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
+    </span>
+    <code style={{ fontSize: 10, color: '#374151' }}>{stroke}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: textColor, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{textColor}</code>
+    </span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{weight}</code>
+  </div>
+))}
+</div>
+
+### Focus Ring
+
+<div style={{ border: '1px solid #bfdbfe', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#eff3fb', padding: '10px 16px', borderBottom: '1px solid #bfdbfe', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9' }}>Focus Ring — Figma layer "Focus ring" inside state-layer</div>
+{[
+  { prop: 'Layer type',     val: 'RECTANGLE (positioned absolute, centred on cell)' },
+  { prop: 'Size',           val: '56 × 56 px (matches outer hit area)' },
+  { prop: 'Stroke width',   val: '2 px' },
+  { prop: 'Stroke align',   val: 'OUTSIDE — rendered ring extends to 60 × 60 px' },
+  { prop: 'Corner radius',  val: '4 px (rounded square — not a circle)' },
+  { prop: 'Stroke colour',  val: '#1849A9 (primary — via Figma variable alias)' },
+  { prop: 'Fill',           val: 'none' },
+  { prop: 'Visibility',     val: 'Shown only when State=Focused; hidden in all other states' },
+  { prop: 'CSS equivalent', val: 'outline: 2px solid #1849a9; outline-offset: 0; border-radius: 4px' },
+].map(({ prop, val }, i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#f8faff', borderBottom: '1px solid #f3f4f6', gap: 16, alignItems: 'center' }}>
+    <span style={{ fontSize: 12, fontWeight: 600, color: '#374151' }}>{prop}</span>
+    <code style={{ fontSize: 12, color: '#1849a9' }}>{val}</code>
+  </div>
+))}
+</div>
+
+### Typography Specifications
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Text layers inside Date Cell</div>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 130px 70px 80px 90px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 8, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Layer</span><span>Font family</span><span>Size</span><span>Weight</span><span>Line height</span><span>Align</span><span>Notes</span>
+</div>
+{[
+  {
+    layer: 'Date',
+    family: 'IBM Plex Sans Arabic',
+    size: '16 px',
+    weight: '400 (Regular) or 700 (Bold for Today)',
+    lh: '24 px',
+    align: 'CENTER / CENTER',
+    notes: 'Primary date number. Weight switches to 700 when Today=True.',
+  },
+  {
+    layer: 'Secondary Date',
+    family: 'IBM Plex Sans Arabic',
+    size: '12 px',
+    weight: '400 (Regular)',
+    lh: '18 px',
+    align: 'CENTER / CENTER',
+    notes: 'Optional sub-label (e.g. Hijri date). Hidden by default via visible=false.',
+  },
+].map(({ layer, family, size, weight, lh, align, notes }, i) => (
+  <div key={layer} style={{ display: 'grid', gridTemplateColumns: '130px 130px 70px 80px 90px 80px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 8, alignItems: 'start' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 5px', borderRadius: 3, color: '#1849a9', fontWeight: 600 }}>{layer}</code>
+    <span style={{ fontSize: 12, color: '#374151' }}>{family}</span>
+    <span style={{ fontSize: 12, fontWeight: 700, color: '#111827' }}>{size}</span>
+    <span style={{ fontSize: 12, color: '#374151' }}>{weight}</span>
+    <span style={{ fontSize: 12, color: '#374151' }}>{lh}</span>
+    <span style={{ fontSize: 12, color: '#374151' }}>{align}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+
+### Null Cell
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '14px 18px', marginBottom: 24, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
+  <div style={{ fontWeight: 700, color: '#111827', marginBottom: 6 }}>Null=True — Empty grid slot</div>
+  The <strong>Null</strong> variant is a blank 56 × 56 px cell used to fill empty positions at the start or end of the calendar grid (e.g., the days before the 1st of the month). It renders with a transparent background, no date text, no stroke, and no pointer events. In Figma it exists as a single variant: <code style={{ fontSize: 11, background: '#f3f4f6', padding: '1px 5px', borderRadius: 3 }}>Selected=False, Today=False, Nex/Prev=False, State=Default, Null=True</code>.
+</div>
+
+### All 41 Variants — Reference Matrix
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Complete variant matrix (41 variants)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '80px 60px 80px 90px 60px 110px 100px 80px', background: '#f0f1f3', padding: '7px 14px', gap: 8, fontSize: 10, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Selected</span><span>Today</span><span>Nex/Prev</span><span>State</span><span>Null</span><span>Circle BG</span><span>Text colour</span><span>Weight</span>
+</div>
+{[
+  { sel:'False', today:'False', np:'False', state:'Default',  nil:'False', bg:'transparent', tc:'#000C37', w:'400' },
+  { sel:'False', today:'True',  np:'False', state:'Default',  nil:'False', bg:'transparent + #194AAA 2px ring', tc:'#194AAA', w:'700' },
+  { sel:'True',  today:'False', np:'False', state:'Default',  nil:'False', bg:'#194AAA', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'True',  np:'False', state:'Default',  nil:'False', bg:'#194AAA', tc:'#FAFBFC', w:'700' },
+  { sel:'False', today:'False', np:'False', state:'Hovered',  nil:'False', bg:'#E6E8EC', tc:'#000C37', w:'400' },
+  { sel:'False', today:'True',  np:'False', state:'Hovered',  nil:'False', bg:'#E6E8EC + #194AAA 2px ring', tc:'#194AAA', w:'700' },
+  { sel:'True',  today:'False', np:'False', state:'Hovered',  nil:'False', bg:'#1A4185', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'True',  np:'False', state:'Hovered',  nil:'False', bg:'#1A4185', tc:'#FAFBFC', w:'700' },
+  { sel:'False', today:'False', np:'False', state:'Pressed',  nil:'False', bg:'#D3D7DC', tc:'#000C37', w:'400' },
+  { sel:'False', today:'True',  np:'False', state:'Pressed',  nil:'False', bg:'#D3D7DC + #194AAA 2px ring', tc:'#194AAA', w:'700' },
+  { sel:'True',  today:'False', np:'False', state:'Pressed',  nil:'False', bg:'#D3D7DC', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'True',  np:'False', state:'Pressed',  nil:'False', bg:'#D3D7DC', tc:'#FAFBFC', w:'700' },
+  { sel:'False', today:'False', np:'False', state:'Focused',  nil:'False', bg:'transparent + focus ring', tc:'#000C37', w:'400' },
+  { sel:'False', today:'True',  np:'False', state:'Focused',  nil:'False', bg:'transparent + both rings', tc:'#194AAA', w:'700' },
+  { sel:'True',  today:'False', np:'False', state:'Focused',  nil:'False', bg:'#194AAA + focus ring', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'True',  np:'False', state:'Focused',  nil:'False', bg:'#194AAA + focus ring', tc:'#FAFBFC', w:'700' },
+  { sel:'False', today:'False', np:'False', state:'Disabled', nil:'False', bg:'transparent', tc:'#6D7D97', w:'400' },
+  { sel:'False', today:'True',  np:'False', state:'Disabled', nil:'False', bg:'transparent (ring removed)', tc:'#6D7D97', w:'400' },
+  { sel:'True',  today:'False', np:'False', state:'Disabled', nil:'False', bg:'#D3D7DC', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'True',  np:'False', state:'Disabled', nil:'False', bg:'#D3D7DC (ring removed)', tc:'#FAFBFC', w:'400' },
+  { sel:'False', today:'False', np:'True',  state:'Default',  nil:'False', bg:'transparent', tc:'#3D5174', w:'400' },
+  { sel:'False', today:'False', np:'True',  state:'Hovered',  nil:'False', bg:'#E6E8EC', tc:'#3D5174', w:'400' },
+  { sel:'False', today:'False', np:'True',  state:'Pressed',  nil:'False', bg:'#D3D7DC', tc:'#3D5174', w:'400' },
+  { sel:'False', today:'False', np:'True',  state:'Focused',  nil:'False', bg:'transparent + focus ring', tc:'#3D5174', w:'400' },
+  { sel:'False', today:'False', np:'True',  state:'Disabled', nil:'False', bg:'transparent', tc:'#6D7D97', w:'400' },
+  { sel:'True',  today:'False', np:'True',  state:'Default',  nil:'False', bg:'#194AAA', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'False', np:'True',  state:'Hovered',  nil:'False', bg:'#1A4185', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'False', np:'True',  state:'Pressed',  nil:'False', bg:'#D3D7DC', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'False', np:'True',  state:'Focused',  nil:'False', bg:'#194AAA + focus ring', tc:'#FAFBFC', w:'400' },
+  { sel:'True',  today:'False', np:'True',  state:'Disabled', nil:'False', bg:'#D3D7DC', tc:'#FAFBFC', w:'400' },
+  { sel:'False', today:'True',  np:'True',  state:'Default',  nil:'False', bg:'transparent + #194AAA 2px ring', tc:'#194AAA', w:'700' },
+  { sel:'False', today:'True',  np:'True',  state:'Hovered',  nil:'False', bg:'#E6E8EC + #194AAA 2px ring', tc:'#194AAA', w:'700' },
+  { sel:'False', today:'True',  np:'True',  state:'Pressed',  nil:'False', bg:'#D3D7DC + #194AAA 2px ring', tc:'#194AAA', w:'700' },
+  { sel:'False', today:'True',  np:'True',  state:'Focused',  nil:'False', bg:'transparent + both rings', tc:'#194AAA', w:'700' },
+  { sel:'False', today:'True',  np:'True',  state:'Disabled', nil:'False', bg:'transparent (ring removed)', tc:'#6D7D97', w:'400' },
+  { sel:'True',  today:'True',  np:'True',  state:'Default',  nil:'False', bg:'#194AAA', tc:'#FAFBFC', w:'700' },
+  { sel:'True',  today:'True',  np:'True',  state:'Hovered',  nil:'False', bg:'#1A4185', tc:'#FAFBFC', w:'700' },
+  { sel:'True',  today:'True',  np:'True',  state:'Pressed',  nil:'False', bg:'#D3D7DC', tc:'#FAFBFC', w:'700' },
+  { sel:'True',  today:'True',  np:'True',  state:'Focused',  nil:'False', bg:'#194AAA + focus ring', tc:'#FAFBFC', w:'700' },
+  { sel:'True',  today:'True',  np:'True',  state:'Disabled', nil:'False', bg:'#D3D7DC (ring removed)', tc:'#FAFBFC', w:'400' },
+  { sel:'False', today:'False', np:'False', state:'Default',  nil:'True',  bg:'transparent (empty)', tc:'—', w:'—' },
+].map(({ sel, today, np, state, nil, bg, tc, w }, i) => (
+  <div key={i} style={{ display: 'grid', gridTemplateColumns: '80px 60px 80px 90px 60px 110px 100px 80px', padding: '7px 14px', background: nil === 'True' ? '#f0fff4' : i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 8, alignItems: 'center' }}>
+    <span style={{ fontSize: 11, fontWeight: sel === 'True' ? 700 : 400, color: sel === 'True' ? '#1849a9' : '#374151' }}>{sel}</span>
+    <span style={{ fontSize: 11, fontWeight: today === 'True' ? 700 : 400, color: today === 'True' ? '#d97706' : '#374151' }}>{today}</span>
+    <span style={{ fontSize: 11, fontWeight: np === 'True' ? 700 : 400, color: np === 'True' ? '#7c3aed' : '#374151' }}>{np}</span>
+    <span style={{ fontSize: 11, color: '#374151', background: state === 'Focused' ? '#eff3fb' : state === 'Disabled' ? '#f3f4f6' : state === 'Hovered' ? '#f0fdf4' : state === 'Pressed' ? '#fff7ed' : 'transparent', padding: '1px 5px', borderRadius: 3 }}>{state}</span>
+    <span style={{ fontSize: 11, color: nil === 'True' ? '#059669' : '#374151', fontWeight: nil === 'True' ? 700 : 400 }}>{nil}</span>
+    <code style={{ fontSize: 9, color: '#374151', wordBreak: 'break-all' }}>{bg}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+      {tc !== '—' && <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: tc, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 9, color: '#374151' }}>{tc}</code>
+    </span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{w}</code>
+  </div>
+))}
+</div>
+
+### Date Cell Colour Tokens
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Token (suggested)</span><span>Value</span><span>Usage</span>
+</div>
+{[
+  { t: '--dc-text-default',         v: '#000C37', u: 'Default/Hovered/Pressed date text' },
+  { t: '--dc-text-today',           v: '#194AAA', u: 'Today date text + border ring colour' },
+  { t: '--dc-text-adjacent',        v: '#3D5174', u: 'Adjacent-month date text' },
+  { t: '--dc-text-on-selected',     v: '#FAFBFC', u: 'Date text on filled (selected) cell' },
+  { t: '--dc-text-disabled',        v: '#6D7D97', u: 'Disabled date text' },
+  { t: '--dc-bg-selected',          v: '#194AAA', u: 'Selected cell fill (default + focused)' },
+  { t: '--dc-bg-selected-hover',    v: '#1A4185', u: 'Selected cell fill on hover' },
+  { t: '--dc-bg-selected-disabled', v: '#D3D7DC', u: 'Selected cell fill when disabled' },
+  { t: '--dc-bg-hover',             v: '#E6E8EC', u: 'Default/adjacent/today cell hover fill' },
+  { t: '--dc-bg-pressed',           v: '#D3D7DC', u: 'Default/adjacent/today cell pressed fill' },
+  { t: '--dc-today-ring',           v: '#194AAA',  u: 'Today border ring · 2 px solid' },
+  { t: '--dc-focus-ring',           v: '#1849A9',  u: 'Focus rectangle stroke · 2 px outside · radius 4 px' },
+].map(({ t, v, u }, i) => (
+  <div key={t} style={{ display: 'grid', gridTemplateColumns: '220px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: v, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#111827' }}>{v}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
+  </div>
+))}
+</div>
+
 </div>

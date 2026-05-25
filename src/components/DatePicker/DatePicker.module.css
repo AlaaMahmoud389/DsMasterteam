@@ -1,8 +1,21 @@
+/* ── Font import ──────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+
 /* ── Root ─────────────────────────────────────────────────────────────────── */
 
 .root {
   display: inline-block;
   position: relative;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/*
+  Buttons, inputs and other replaced/form elements do NOT inherit font-family
+  from their parent in browsers — they keep the browser's own UI font.
+  This rule forces every descendant inside the DatePicker to use IBM Plex Sans Arabic.
+*/
+.root * {
   font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
 }
 
@@ -18,7 +31,8 @@
 
 .label {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 20px;
   color: var(--dp-trigger-label, #000b36);
   user-select: none;
 }
@@ -52,7 +66,9 @@
 
 .triggerText {
   flex: 1;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
   color: var(--dp-text-default, #000b36);
   text-align: start;
   white-space: nowrap;
@@ -70,8 +86,8 @@
   color: var(--dp-text-default, #000b36);
 }
 
-.errorMsg   { font-size: 12px; color: #a30000; margin-top: 2px; }
-.helperText { font-size: 12px; color: var(--dp-text-helper, #233a61); margin-top: 2px; }
+.errorMsg   { font-size: 14px; font-weight: 400; line-height: 20px; color: #a30000; margin-top: 2px; }
+.helperText { font-size: 14px; font-weight: 400; line-height: 20px; color: var(--dp-text-helper, #233a61); margin-top: 2px; }
 
 /* ── Panel ────────────────────────────────────────────────────────────────── */
 
@@ -138,7 +154,8 @@
 
 .dateInputLabel {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 20px;
   color: var(--dp-text-default, #000b36);
 }
 
@@ -156,6 +173,8 @@
 
 .dateInputValue {
   font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
   color: var(--dp-text-default, #000b36);
   white-space: nowrap;
   overflow: hidden;
@@ -164,6 +183,8 @@
 
 .dateInputPlaceholder {
   font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
   color: var(--dp-text-placeholder, #b6bdca);
   white-space: nowrap;
 }
@@ -213,7 +234,8 @@
 
 .monthLabel {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 500;
+  line-height: 24px;
   color: var(--dp-text-default, #000b36);
 }
 
@@ -225,8 +247,9 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 20px;
   color: var(--dp-text-default, #000b36);
   background: none;
   border: none;
@@ -273,6 +296,7 @@
   padding: 7px 12px;
   font-size: 14px;
   font-weight: 400;
+  line-height: 20px;
   color: var(--dp-text-default, #000b36);
   background: none;
   border: none;
@@ -298,8 +322,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border: none;
   background: none;
   cursor: pointer;
@@ -331,6 +355,7 @@
   justify-content: center;
   font-size: 16px;
   font-weight: 400;
+  line-height: 24px;
   color: var(--dp-text-placeholder, #b6bdca);
   user-select: none;
 }
@@ -403,6 +428,7 @@
   justify-content: center;
   font-size: 16px;
   font-weight: 400;
+  line-height: 24px;
   color: var(--dp-text-default, #000b36);
   font-family: inherit;
   transition: background 0.12s, color 0.12s, border-color 0.12s;
@@ -437,8 +463,12 @@
 .cellSelected:hover:not(:disabled) .cellInner { background: var(--dp-cell-selected-bg-hover, #194185); }
 .cellSelected:active:not(:disabled) .cellInner { background: var(--dp-cell-selected-bg-pressed, #102a56); }
 
-/* Adjacent month — muted */
-.cellAdjacent .cellInner { color: var(--dp-text-secondary, #3c5073); }
+/* Adjacent month — muted, smaller (Figma: Secondary Date 12px/400/lh18) */
+.cellAdjacent .cellInner {
+  color: var(--dp-text-secondary, #3c5073);
+  font-size: 12px;
+  line-height: 18px;
+}
 
 /* Disabled */
 .cellDisabled { cursor: not-allowed; pointer-events: none; }
@@ -449,7 +479,7 @@
 .quickOptions {
   width: 160px;
   flex-shrink: 0;
-  border-inline-start: 1px solid var(--dp-panel-border, #e5e7eb);
+  border-inline-end: 1px solid var(--dp-panel-border, #e5e7eb);
   padding: 16px 0;
   display: flex;
   flex-direction: column;
@@ -459,6 +489,7 @@
 .quickOptionsLabel {
   font-size: 12px;
   font-weight: 700;
+  line-height: 18px;
   color: #6c737f;
   text-transform: uppercase;
   letter-spacing: .06em;
@@ -470,8 +501,9 @@
   align-items: center;
   width: 100%;
   padding: 8px 12px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
+  line-height: 24px;
   color: var(--dp-text-default, #000b36);
   background: none;
   border: none;
@@ -479,7 +511,6 @@
   font-family: inherit;
   text-align: start;
   transition: background 0.1s;
-  line-height: 1.5;
 }
 
 .quickOption:hover { background: #f3f4f6; }
@@ -508,6 +539,7 @@
 .actionsInner {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 8px;
 }
 
@@ -521,8 +553,9 @@
   color: #ffffff;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 24px;
   font-family: inherit;
   cursor: pointer;
   transition: background 0.12s;
@@ -545,8 +578,9 @@
   color: var(--dp-text-default, #000b36);
   border: 1px solid var(--dp-trigger-border, #d2d6db);
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 24px;
   font-family: inherit;
   cursor: pointer;
   transition: background 0.12s, border-color 0.12s;
