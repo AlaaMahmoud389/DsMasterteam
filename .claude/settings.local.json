@@ -28,7 +28,12 @@
       "Bash(Select-Object Name, Length, LastWriteTime)",
       "PowerShell(Get-Item *)",
       "Bash(node --input-type=module)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "WebFetch(domain:www.figma.com)",
+      "WebFetch(domain:s3-alpha.figma.com)",
+      "PowerShell($env:FIGMA_TOKEN; $env:FIGMA_API_TOKEN; $env:FIGMA_ACCESS_TOKEN)",
+      "WebFetch(domain:api.figma.com)",
+      "WebFetch(domain:figma-alpha-api.s3.us-west-2.amazonaws.com)"
     ]
   }
 }
