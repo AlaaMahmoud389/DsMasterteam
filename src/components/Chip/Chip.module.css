@@ -1,0 +1,283 @@
+/*
+ * Chip.module.css — Masterteam Design System
+ * Source: Figma node 4157:86523 · 288 variants
+ * Properties: RTL · State · Style · Size · Rounded · On-color
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════
+   Base chip
+   ═══════════════════════════════════════════════════════════════ */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;                         /* Figma: itemSpacing=4 */
+  padding: 0 12px;                  /* Figma: paddingLeft=12 paddingRight=12 */
+  border: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+  font-family: 'IBM Plex Sans Arabic', system-ui, 'Segoe UI', sans-serif;
+  transition: background-color 120ms ease;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Sizes
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Small — height=20px, font=10px/SemiBold/14px */
+.sizeSm {
+  height: 20px;                     /* Figma: Small height=20px */
+  border-radius: 2px;               /* Figma: Rounded=False cornerRadius=2 */
+  font-size: 10px;                  /* Figma: Small fontSize=10 */
+  font-weight: 600;                 /* Figma: Small fontWeight=SemiBold */
+  line-height: 14px;               /* Figma: Small lineHeightPx=14 */
+}
+
+/* Medium — height=24px, font=12px/Medium/18px */
+.sizeMd {
+  height: 24px;                     /* Figma: Medium height=24px */
+  border-radius: 2px;
+  font-size: 12px;                  /* Figma: Medium fontSize=12 */
+  font-weight: 500;                 /* Figma: Medium fontWeight=Medium */
+  line-height: 18px;               /* Figma: Medium lineHeightPx=18 */
+}
+
+/* Large — height=32px, font=16px/Medium/24px */
+.sizeLg {
+  height: 32px;                     /* Figma: Large height=32px */
+  border-radius: 2px;
+  font-size: 16px;                  /* Figma: Large fontSize=16 */
+  font-weight: 500;                 /* Figma: Large fontWeight=Medium */
+  line-height: 24px;               /* Figma: Large lineHeightPx=24 */
+}
+
+/* ── Rounded pill override ─────────────────────────────────── */
+.rounded {
+  border-radius: 9999px !important; /* Figma: Rounded=True cornerRadius=9999 */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Style = Primary  ·  On-color = False
+   Figma fill: rgba(24,73,169, opacity)
+   ═══════════════════════════════════════════════════════════════ */
+
+.primary {
+  background: rgba(24, 73, 169, 0.10); /* Figma: Default opacity=0.10 */
+  color: #1849a9;                       /* Figma: Default text fill=#1849a9 */
+}
+
+.primary:hover:not(.disabled) {
+  background: rgba(24, 73, 169, 0.20); /* Figma: Hovered opacity=0.20 */
+}
+
+.primary:active:not(.disabled) {
+  background: rgba(24, 73, 169, 0.30); /* Figma: Pressed opacity=0.30 */
+}
+
+.primary.selected {
+  background: #1849a9;                 /* Figma: Selected fill=#1849a9 solid */
+  color: #f9fafb;                      /* Figma: Selected text=#f9fafb */
+}
+
+.primary.focused {
+  background: rgba(24, 73, 169, 0.10);
+  color: #1849a9;
+  outline: 3px solid #00001c;          /* Figma: Focus outline stroke=#00001c 3px INSIDE */
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Style = Neutral  ·  On-color = False
+   Figma fill: rgba(31,42,55, opacity)
+   ═══════════════════════════════════════════════════════════════ */
+
+.neutral {
+  background: rgba(31, 42, 55, 0.05); /* Figma: Neutral Default opacity=0.05 */
+  color: #000b36;                      /* Figma: Neutral Default text=#000b36 */
+}
+
+.neutral:hover:not(.disabled) {
+  background: rgba(31, 42, 55, 0.10); /* Figma: Neutral Hovered opacity=0.10 */
+}
+
+.neutral:active:not(.disabled) {
+  background: rgba(31, 42, 55, 0.20); /* Figma: Neutral Pressed opacity=0.20 */
+}
+
+.neutral.selected {
+  background: #1f2a37;                /* Figma: Neutral Selected fill=#1f2a37 */
+  color: #f9fafb;                     /* Figma: Neutral Selected text=#f9fafb */
+}
+
+.neutral.focused {
+  background: rgba(31, 42, 55, 0.05);
+  color: #000b36;
+  outline: 3px solid #00001c;         /* Figma: Focus outline stroke=#00001c 3px INSIDE */
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Disabled (both styles share the same disabled tokens) ─── */
+.disabled,
+.disabled:hover,
+.disabled:active {
+  background: #d2d6db !important;     /* Figma: Disabled bg=#d2d6db */
+  color: #6c7c96 !important;          /* Figma: Disabled text=#6c7c96 */
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   On-color = True
+   On-color chips use solid fills and a fixed cornerRadius=4px
+   ═══════════════════════════════════════════════════════════════ */
+
+.onColor {
+  border-radius: 4px !important;     /* Figma: On-color cornerRadius=4 (overrides size default) */
+}
+
+/* Rounded=True AND On-color=True → still pill-shaped */
+.onColor.rounded {
+  border-radius: 9999px !important;
+}
+
+/* ── On-color Primary ─────────────────────────────────────── */
+.onColor.primary {
+  background: #0b2550;               /* Figma: On-color Primary Default bg=#0b2550 */
+  color: #f9fafb;                    /* Figma: On-color Primary text=#f9fafb */
+}
+
+.onColor.primary:hover:not(.disabled) {
+  background: #233a61;               /* Figma: On-color Primary Hovered bg=#233a61 */
+}
+
+.onColor.primary:active:not(.disabled) {
+  background: #0b2550;               /* Figma: On-color Primary Pressed bg=#0b2550 */
+}
+
+.onColor.primary.selected {
+  background: #1849a9;               /* Figma: On-color Primary Selected bg=#1849a9 */
+  color: #f9fafb;
+}
+
+.onColor.primary.focused {
+  background: #0b2550;
+  color: #f9fafb;
+  outline: 3px solid #f9fafb;        /* Figma: On-color Primary focus outline=#f9fafb */
+  outline-offset: 2px;
+}
+
+/* ── On-color Neutral ─────────────────────────────────────── */
+.onColor.neutral {
+  background: #6c737f;               /* Figma: On-color Neutral Default bg=#6c737f */
+  color: #f9fafb;
+}
+
+.onColor.neutral:hover:not(.disabled) {
+  background: #9da4ae;               /* Figma: On-color Neutral Hovered bg=#9da4ae */
+}
+
+.onColor.neutral:active:not(.disabled) {
+  background: #6c737f;               /* Figma: On-color Neutral Pressed bg=#6c737f */
+}
+
+.onColor.neutral.selected {
+  background: #e5e7eb;               /* Figma: On-color Neutral Selected bg=#e5e7eb */
+  color: #000b36;                    /* Figma: On-color Neutral Selected text=#000b36 (inverted) */
+}
+
+.onColor.neutral.focused {
+  background: #6c737f;
+  color: #f9fafb;
+  outline: 3px solid #fcfcfd;        /* Figma: On-color Neutral focus outline=#fcfcfd */
+  outline-offset: 2px;
+}
+
+/* On-color Disabled */
+.onColor.disabled,
+.onColor.disabled:hover,
+.onColor.disabled:active {
+  background: #1f2a37 !important;    /* Figma: On-color Neutral Disabled bg=#1f2a37 */
+  color: #6c7c96 !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Label
+   ═══════════════════════════════════════════════════════════════ */
+
+.label {
+  flex: 0 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Icon wrapper
+   ═══════════════════════════════════════════════════════════════ */
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+/* Icon size by chip size */
+.sizeSm .iconWrap { width: 10px; height: 10px; }
+.sizeMd .iconWrap { width: 12px; height: 12px; }
+.sizeLg .iconWrap { width: 16px; height: 16px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Close / Remove button
+   ═══════════════════════════════════════════════════════════════ */
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  border-radius: 2px;
+  outline: none;
+  transition: opacity 120ms ease;
+}
+
+.closeBtn:hover {
+  opacity: 0.75;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+}
+
+/* Close button sizing matches icon sizing */
+.sizeSm .closeBtn { width: 10px; height: 10px; }
+.sizeMd .closeBtn { width: 12px; height: 12px; }
+.sizeLg .closeBtn { width: 16px; height: 16px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   RTL — direction is handled automatically via HTML dir attribute.
+   Flex child order mirrors. CSS logical properties auto-flip.
+   ═══════════════════════════════════════════════════════════════ */
