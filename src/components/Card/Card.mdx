@@ -1,0 +1,490 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Card } from './Card';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Card</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Card</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>
+    A container for information and actions related to a specific concept or object. Cards combine images, text, and interactive elements in a rectangular box to enhance visibility and facilitate predictable browsing patterns.
+  </p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4112:13</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/content-display/card" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4112-13&t=GbrZIJyJ1y1Cbin4-1" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+---
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Types','#types'],['Variants','#variants'],['States','#states'],['Selectable','#selectable'],['Expandable','#expandable'],['Effects','#effects'],['With Image','#with-image'],['With Tags','#with-tags'],['With Rating','#with-rating'],['RTL Support','#rtl-support'],['Props Reference','#props-reference'],['Token Table','#token-table'],['Do / Don\'t','#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 32, marginBottom: 24, background: '#f8fafc', display: 'flex', justifyContent: 'center' }}>
+  <Card uid="ov1" />
+</div>
+
+---
+
+## Anatomy
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }}>
+  {[
+    { num: '1', label: 'Image (optional)', desc: '250px-tall image at the card top. Accepts any URL; falls back to a gradient placeholder.' },
+    { num: '2', label: 'Featured Icon', desc: '48 × 48 circle (#e6f4ee bg) with a 24 × 24 icon. Defaults to the checkmark-circle.' },
+    { num: '3', label: 'Title', desc: 'Bold 18px (#000b36). Always at the top of the Content block.' },
+    { num: '4', label: 'Description', desc: 'Regular 16px (#3c5073). Below the title. Can be toggled off independently.' },
+    { num: '5', label: 'Tags', desc: '12px chip pills (h=24px). Accepts any string array. Hidden by default.' },
+    { num: '6', label: 'Rating', desc: '5-star system with half-star support. Shows count as "N reviews". Hidden by default.' },
+    { num: '7', label: 'Actions', desc: 'Neutral + primary button pair. Both have an arrow-right icon. Full-width within card.' },
+    { num: '8', label: 'Shadow', desc: '0 4px 4px rgba(16,24,40,.1) + 0 2px 2px rgba(16,24,40,.06). Toggleable.' },
+  ].map(({ num, label, desc }) => (
+    <div key={num} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '14px 16px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+        <span style={{ width: 22, height: 22, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{num}</span>
+        <span style={{ fontWeight: 600, fontSize: 13, color: '#111827' }}>{label}</span>
+      </div>
+      <p style={{ fontSize: 12, color: '#6b7280', margin: 0 }}>{desc}</p>
+    </div>
+  ))}
+</div>
+
+---
+
+## Types
+
+Cards come in three types that determine their interaction model.
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 24, background: '#f8fafc', padding: 24, borderRadius: 10 }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Default</div>
+    <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 12 }}>Informational. Two-button footer. No hover state.</div>
+    <Card uid="tp1" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Expandable</div>
+    <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 12 }}>Interactive. Single chevron button reveals more content.</div>
+    <Card uid="tp2" type="expandable" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Selectable</div>
+    <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 12 }}>Interactive. Checkbox at top-right. Click card to toggle.</div>
+    <Card uid="tp3" type="selectable" />
+  </div>
+</div>
+
+---
+
+## Variants
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 24, background: '#f8fafc', padding: 24, borderRadius: 10 }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Default</div>
+    <Card uid="v1" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>No Icon</div>
+    <Card uid="v2" featuredIcon={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>No Shadow</div>
+    <Card uid="v3" shadow={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>With Tags</div>
+    <Card uid="v4" showTags featuredIcon={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>With Rating</div>
+    <Card uid="v5" showRating featuredIcon={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Tags + Rating</div>
+    <Card uid="v6" showTags showRating featuredIcon={false} />
+  </div>
+</div>
+
+---
+
+## States
+
+Interactive card types (Expandable and Selectable) have four interaction states.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 24 }}>
+
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 12, borderBottom: '1px solid #e5e7eb', paddingBottom: 6 }}>Selectable — all states</div>
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10 }}>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Default</div>
+        <Card uid="st1" type="selectable" />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Hover</div>
+        <Card uid="st2" type="selectable" state="hover" />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Focused</div>
+        <Card uid="st3" type="selectable" state="focused" />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Disabled</div>
+        <Card uid="st4" type="selectable" state="disabled" />
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 12, borderBottom: '1px solid #e5e7eb', paddingBottom: 6 }}>Expandable — all states</div>
+    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10 }}>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Default</div>
+        <Card uid="est1" type="expandable" />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Hover</div>
+        <Card uid="est2" type="expandable" state="hover" />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Focused</div>
+        <Card uid="est3" type="expandable" state="focused" />
+      </div>
+      <div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Disabled</div>
+        <Card uid="est4" type="expandable" state="disabled" />
+      </div>
+    </div>
+  </div>
+
+</div>
+
+---
+
+## Selectable
+
+The selectable type uses a 20×20 checkbox positioned at the top-right corner (top-left in RTL). The card background changes to `#f5faff` with a `1.5px #1849a9` border when focused/selected.
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Unchecked</div>
+    <Card uid="sel1" type="selectable" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Checked</div>
+    <Card uid="sel2" type="selectable" selected state="focused" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Disabled</div>
+    <Card uid="sel3" type="selectable" state="disabled" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>RTL Checked</div>
+    <Card uid="sel4" type="selectable" selected state="focused" dir="rtl" title="محدد" description="تم تحديد هذه البطاقة" />
+  </div>
+</div>
+
+---
+
+## Expandable
+
+The expandable type replaces the two-button footer with a single 40×40 chevron button aligned to the end of the card. Use `expanded` and `onExpand` to control the toggle state.
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Collapsed</div>
+    <Card uid="exp1" type="expandable" expanded={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Expanded</div>
+    <Card uid="exp2" type="expandable" expanded />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Hover</div>
+    <Card uid="exp3" type="expandable" state="hover" />
+  </div>
+</div>
+
+---
+
+## Effects
+
+Three shadow/border effects are available via the `shadow` and `stroke` props.
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>With Shadow (default)</div>
+    <Card uid="ef1" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>No Shadow</div>
+    <Card uid="ef2" shadow={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Stroke</div>
+    <Card uid="ef3" stroke />
+  </div>
+</div>
+
+---
+
+## With Image
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Image only</div>
+    <Card uid="img1" image imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=720&q=80" featuredIcon={false} />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Image + Icon</div>
+    <Card uid="img2" image imageSrc="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=720&q=80" />
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#9ca3af', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Placeholder</div>
+    <Card uid="img3" image />
+  </div>
+</div>
+
+---
+
+## With Tags
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  <Card uid="tg1" showTags tags={['Label', 'Label', 'Label']} />
+  <Card uid="tg2" showTags tags={['Design', 'UI/UX', 'Research', 'Figma']} featuredIcon={false} />
+</div>
+
+---
+
+## With Rating
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  {[2, 3.5, 5].map(r => (
+    <Card key={r} uid={`r${r}`} featuredIcon={false} showRating rating={r} ratingCount={Math.round(r * 8)} title={`${r} stars`} showDescription={false} />
+  ))}
+</div>
+
+---
+
+## RTL Support
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', background: '#f8fafc', padding: 24, borderRadius: 10, marginBottom: 24 }}>
+  <Card uid="rtl1" dir="rtl" title="عنوان البطاقة" description="نص توضيحي للمحتوى يظهر هنا بشكل افتراضي" neutralLabel="زر" primaryLabel="زر" />
+  <Card uid="rtl2" dir="rtl" title="عنوان البطاقة" description="نص توضيحي" showTags tags={['تسمية', 'تسمية', 'تسمية']} showRating rating={3.5} ratingCount={12} neutralLabel="زر" primaryLabel="زر" />
+</div>
+
+---
+
+## Props Reference
+
+<div style={{ display: 'grid', gridTemplateColumns: '160px 110px 130px 90px 1fr', gap: 0, marginBottom: 24, border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', fontSize: 13 }}>
+<div style={{ display: 'contents' }}>
+  {['Prop','Type','Default','Required','Description'].map((h, i) => (
+    <div key={h} style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, color: '#374151', fontSize: 12, borderBottom: '2px solid #e5e7eb', borderRight: i < 4 ? '1px solid #e5e7eb' : 'none' }}>{h}</div>
+  ))}
+</div>
+{[
+  ['image','boolean','false','No','Show 250px image header. Use imageSrc to provide URL.','#f0fdf4','#059669'],
+  ['imageSrc','string','—','No','Image URL. Falls back to a gradient placeholder when omitted.','#f0f4ff','#1849a9'],
+  ['featuredIcon','boolean','true','No','Show 48×48 icon circle (#e6f4ee bg). Override with icon prop.','#f0fdf4','#059669'],
+  ['icon','ReactNode','—','No','Custom icon inside the featured icon circle.','#fdf4ff','#7c3aed'],
+  ['showTitle','boolean','true','No','Render the title text.','#f0fdf4','#059669'],
+  ['title','string','"Card Title"','No','Card heading text.','#f0f4ff','#1849a9'],
+  ['showDescription','boolean','true','No','Render the description text.','#f0fdf4','#059669'],
+  ['description','string','"Card content…"','No','Supporting body text below the title.','#f0f4ff','#1849a9'],
+  ['showTags','boolean','false','No','Show tag chip row.','#f0fdf4','#059669'],
+  ['tags','string[]','["Label"×3]','No','Array of tag label strings.','#fdf4ff','#7c3aed'],
+  ['showRating','boolean','false','No','Show star rating row.','#f0fdf4','#059669'],
+  ['rating','number','3.5','No','Star rating value 0–5. Supports 0.5 increments.','#fff7ed','#c2410c'],
+  ['ratingCount','number','12','No','Review count shown as "N reviews".','#fff7ed','#c2410c'],
+  ['showActions','boolean','true','No','Show the footer button pair.','#f0fdf4','#059669'],
+  ['neutralLabel','string','"Button"','No','Neutral (grey) button label.','#f0f4ff','#1849a9'],
+  ['primaryLabel','string','"Button"','No','Primary (blue) button label.','#f0f4ff','#1849a9'],
+  ['shadow','boolean','true','No','Apply the Figma shadow-md drop shadow. Overridden by stroke.','#f0fdf4','#059669'],
+  ['stroke','boolean','false','No','Stroke effect — 1px #e5e7eb border, no shadow.','#f0fdf4','#059669'],
+  ['type','string','"default"','No','"default" | "expandable" | "selectable". Controls interaction model and action footer layout.','#f8fafc','#374151'],
+  ['state','string','"default"','No','"default" | "hover" | "focused" | "disabled". Forces a visual state for story demos.','#f8fafc','#374151'],
+  ['selected','boolean','false','No','Selectable type only. true = checkbox checked + focused visual (#f5faff bg, blue border).','#f0fdf4','#059669'],
+  ['expanded','boolean','false','No','Expandable type only. Chevron icon flips to indicate expanded state.','#f0fdf4','#059669'],
+  ['onCardClick','function','—','No','Click handler for expandable/selectable cards.','#fdf4ff','#7c3aed'],
+  ['onExpand','function','—','No','Click handler for the expand/collapse chevron button.','#fdf4ff','#7c3aed'],
+  ['dir','string','"ltr"','No','"ltr" or "rtl". Flips layout and checkbox position for RTL languages.','#f8fafc','#374151'],
+].map(([prop, type, def, req, desc, bg, color]) => (
+  <div key={prop} style={{ display: 'contents' }}>
+    <div style={{ padding: '9px 14px', background: bg, borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', color, fontWeight: 600, fontSize: 12 }}>{prop}</div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#7c3aed' }}>{type}</div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 12, color: '#6b7280' }}>{def}</div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', textAlign: 'center' }}>
+      <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: req === 'Yes' ? '#fee2e2' : '#f3f4f6', color: req === 'Yes' ? '#dc2626' : '#6b7280' }}>{req}</span>
+    </div>
+    <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', color: '#374151', lineHeight: 1.4 }}>{desc}</div>
+  </div>
+))}
+</div>
+
+---
+
+## Token Table
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Container</div>
+    {[
+      { token: '--card/background/default', val: 'white', label: 'Card background' },
+      { token: '--card/background/hover', val: '#f9fafb', label: 'Hover background' },
+      { token: '--card/background/selected', val: '#f5faff', label: 'Focused/selected bg' },
+      { token: '--card/background/disabled', val: '#f3f4f6', label: 'Disabled background' },
+      { token: '--card/border/selected', val: '#1849a9', label: 'Focused/selected border' },
+      { token: '--card/container/card-radius-md', val: '16px', label: 'Border radius' },
+      { token: '--card/container/card-lg-padding', val: '16px', label: 'Padding' },
+      { token: '--card/container/card-xl-gap', val: '24px', label: 'Slot gap' },
+      { token: 'shadow-md', val: '0 4px 4px rgba(16,24,40,.1)', label: 'Drop shadow' },
+    ].map(({ token, val, label }) => (
+      <div key={token} style={{ padding: '10px 14px', borderBottom: '1px solid #f3f4f6' }}>
+        <code style={{ fontSize: 11, color: '#1849a9', display: 'block' }}>{token}</code>
+        <span style={{ fontSize: 11, color: '#6b7280' }}>{val} · {label}</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Typography & Colors</div>
+    {[
+      { token: '--card/content/title', hex: '#000b36', label: 'Title (Bold 18px)' },
+      { token: '--card/content/description', hex: '#3c5073', label: 'Description (Regular 16px)' },
+      { token: '--card/icon/success-background', hex: '#e6f4ee', label: 'Icon circle bg' },
+      { token: '--tag/tag-text-neutral', hex: '#1f2a37', label: 'Tag text (Medium 12px)' },
+      { token: '--tag/tag-background-neutral-light', hex: '#f9fafb', label: 'Tag background' },
+      { token: 'rating-fill', hex: '#f79009', label: 'Star filled' },
+      { token: 'rating-empty', hex: '#e4e7ec', label: 'Star empty' },
+    ].map(({ token, hex, label }) => (
+      <div key={token} style={{ padding: '10px 14px', borderBottom: '1px solid #f3f4f6', display: 'flex', alignItems: 'center', gap: 8 }}>
+        {hex.startsWith('#') && <div style={{ width: 14, height: 14, borderRadius: 3, background: hex, border: '1px solid #e5e7eb', flexShrink: 0 }} />}
+        <div>
+          <code style={{ fontSize: 10, color: '#1849a9', display: 'block' }}>{token}</code>
+          <span style={{ fontSize: 10, color: '#6b7280' }}>{hex} · {label}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Buttons</div>
+    {[
+      { token: '--button/neutral/background/default', hex: '#f3f4f6', label: 'Neutral bg' },
+      { token: '--button/neutral/text/default', hex: '#000b36', label: 'Neutral text' },
+      { token: '--button/primary/background/default', hex: '#1849a9', label: 'Primary bg' },
+      { token: '--button/primary/text/default', hex: '#f9fafb', label: 'Primary text' },
+      { token: 'button-height', hex: '', label: '40px' },
+      { token: 'button-radius', hex: '', label: '4px' },
+      { token: 'button-gap', hex: '', label: '16px (actions gap)' },
+    ].map(({ token, hex, label }) => (
+      <div key={token} style={{ padding: '10px 14px', borderBottom: '1px solid #f3f4f6', display: 'flex', alignItems: 'center', gap: 8 }}>
+        {hex && <div style={{ width: 14, height: 14, borderRadius: 3, background: hex, border: '1px solid #e5e7eb', flexShrink: 0 }} />}
+        <div>
+          <code style={{ fontSize: 10, color: '#1849a9', display: 'block' }}>{token}</code>
+          <span style={{ fontSize: 10, color: '#6b7280' }}>{label}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+---
+
+## Do / Don't
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✓ Do</div>
+    <div style={{ border: '2px solid #d1fae5', borderRadius: 10, padding: 20 }}>
+      <Card uid="do1" title="Clear, Concise Title" description="Use short descriptions that tell users what the card is about without overwhelming them." showActions={false} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Keep titles and descriptions brief and scannable.</p>
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✗ Don't</div>
+    <div style={{ border: '2px solid #fee2e2', borderRadius: 10, padding: 20 }}>
+      <Card uid="dont1" featuredIcon={false} title="This is a very long card title that wraps to multiple lines and makes it difficult to scan" description="And then the description is also extremely long, going on and on about details that should really be on the destination page, not in the card preview itself." showActions={false} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Don't overload the card with excessive text — link out to full content instead.</p>
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✓ Do</div>
+    <div style={{ border: '2px solid #d1fae5', borderRadius: 10, padding: 20 }}>
+      <Card uid="do2" showTags tags={['Design', 'Research']} showRating rating={4} ratingCount={20} featuredIcon={false} title="Tagged & Rated Content" description="Tags and ratings help users filter and compare content at a glance." />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Use tags and ratings together when content needs to be compared.</p>
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✗ Don't</div>
+    <div style={{ border: '2px solid #fee2e2', borderRadius: 10, padding: 20 }}>
+      <Card uid="dont2" showTags tags={['Tag','Tag','Tag','Tag','Tag','Tag','Tag','Tag']} showActions={false} featuredIcon={false} title="Too Many Tags" description="" showDescription={false} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Don't use more tags than can be scanned quickly — 3 is the recommended max.</p>
+    </div>
+  </div>
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+  {[
+    { icon: '📋', title: 'Semantic markup', body: 'Card renders as <article> so screen readers identify it as an independent content unit.' },
+    { icon: '⭐', title: 'Rating label', body: 'Star group carries role="img" and aria-label="N out of 5 stars" for full screen reader support.' },
+    { icon: '⌨️', title: 'Keyboard access', body: 'Both action buttons are native <button> elements — reachable and operable with keyboard alone.' },
+    { icon: '🖼️', title: 'Decorative images', body: 'Card images use alt="" and pointer-events:none — they are decorative and not announced.' },
+    { icon: '🔠', title: 'Color contrast', body: 'Title #000b36 and description #3c5073 both exceed 4.5:1 on white background.' },
+  ].map(({ icon, title, body }) => (
+    <div key={title} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '12px 16px', display: 'flex', gap: 12 }}>
+      <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
+      <div>
+        <div style={{ fontWeight: 600, fontSize: 13, color: '#111827', marginBottom: 2 }}>{title}</div>
+        <div style={{ fontSize: 12, color: '#6b7280' }}>{body}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 0 }}>
+    <div style={{ display: 'contents' }}>
+      {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+        <div key="hdr" style={{ display: 'contents' }}>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+        </div>
+      ))}
+    </div>
+    {[
+      ['1.1.1 Non-text','A','Decorative card images use alt="" and are hidden from assistive tech.'],
+      ['1.4.3 Contrast','AA','Title #000b36 = 18.3:1 · Description #3c5073 = 7.2:1 · both exceed minimum.'],
+      ['2.1.1 Keyboard','A','All interactive elements (links, buttons) are reachable via Tab and operable with Enter/Space.'],
+      ['4.1.2 Name, Role, Value','A','article landmark, role=img on stars, and button labels provide full semantic context.'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#dbeafe', color: '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

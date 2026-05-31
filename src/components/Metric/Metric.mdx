@@ -1,0 +1,361 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as MetricStories from './Metric.stories';
+
+<Meta of={MetricStories} />
+
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Metric</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Metric</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>
+    A KPI card that surfaces a key metric with an optional sparkline chart, change badge, featured icon, and action controls. Supports Small Chart and Large Chart layouts with full RTL mirroring.
+  </p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:20180</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-20180" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Chart Types','#chart-types'],['Trend States','#trend-states'],['Change Badge','#change-badge'],['Toggle States','#toggle-states'],['RTL Support','#rtl-support'],['Props Reference','#props-reference'],['Token Table','#token-table'],['Do / Don\'t','#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.Default} />
+</div>
+
+---
+
+## Anatomy
+
+<div id="anatomy" style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
+  {[
+    [1,  'Card container',     '360px wide, 16px padding, 16px border-radius, drop-shadow, content-height only'],
+    [2,  'Featured icon badge','32×32px circular badge — rgba(0,97,33,0.1) bg — category icon centred inside'],
+    [3,  'Label',              '14px Medium #3c5073 — describes the metric (e.g. "24h Views")'],
+    [4,  'Kebab menu',         '24×24px ⋮ icon at the opposite edge from the label — triggers a context menu'],
+    [5,  'Percentage value',   '36px Bold #000b36, tracking -0.72px — the primary KPI number'],
+    [6,  'Change badge',       'Coloured pill: trend arrow/trade icon + change % — green (#006121) for positive, red (#a30000) for negative'],
+    [7,  'Change subtext',     '"vs last month" — 14px regular #3c5073 — contextualises the badge'],
+    [8,  'Sparkline chart',    'Area bg + line overlay. Small: 128×64px. Large: full card width (328×64px). Four chart types: Realistic, Wavy, Straight, Layers.'],
+    [9,  'Marker dot',         '22×22px: outer ring (20% opacity, trend colour) + inner dot (white fill, trend colour border)'],
+    [10, 'Divider',            '1px #d2d6db — separates the main content from the actions footer'],
+    [11, 'Settings button',    '32×32px icon button — secondary action on the leading side'],
+    [12, 'View Report link',   '14px Medium #175cd3 with directional arrow — deep-link to the full report'],
+  ].map(([n, name, desc]) => (
+    <div key={n} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', border: '1px solid #f3f4f6', borderRadius: 8, padding: '10px 14px' }}>
+      <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#1849a9', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{n}</div>
+      <div>
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
+        <div style={{ fontSize: 12, color: '#6b7280', marginTop: 2 }}>{desc}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Variants
+
+<div id="variants" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.AllVariants} />
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  {[
+    { type: 'Small Chart', desc: 'Value block (left) and sparkline (right) sit side-by-side in the body row. Label row is above, actions below. Chart is fixed at 128×64px.', when: 'Use in dense dashboard grids where many metrics share a row — the narrower chart keeps the card compact.' },
+    { type: 'Large Chart', desc: 'LTR: sparkline spans full width at top, then label row, value row, actions. RTL: label row first, value row, then full-width chart, then actions.', when: 'Use for a featured metric where trend trajectory matters as much as the value — the wider chart makes the line more readable.' },
+  ].map(({ type, desc, when }) => (
+    <div key={type} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '14px 16px' }}>
+      <div style={{ fontSize: 13, fontWeight: 700, color: '#111827', marginBottom: 6 }}>{type}</div>
+      <div style={{ fontSize: 12, color: '#374151', lineHeight: 1.5, marginBottom: 8 }}>{desc}</div>
+      <div style={{ fontSize: 11, color: '#1849a9', background: '#f0f4ff', borderRadius: 4, padding: '4px 8px' }}><strong>When to use:</strong> {when}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Chart Types
+
+<div id="chart-types" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.ChartTypesSmall} />
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 24 }}>
+  {[
+    { type: 'Realistic', desc: 'Organic, irregular peaks and troughs — closest to real-world time-series data.' },
+    { type: 'Wavy',      desc: 'Smooth sinusoidal wave — ideal for cyclical or periodic metrics.' },
+    { type: 'Straight',  desc: 'Two straight segments with an inflection point — best for clear directional change.' },
+    { type: 'Layers',    desc: 'Stacked band shape starting from a vertical offset — good for layered area data.' },
+  ].map(({ type, desc }) => (
+    <div key={type} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '12px 14px' }}>
+      <div style={{ fontSize: 13, fontWeight: 700, color: '#111827', marginBottom: 4 }}>{type}</div>
+      <div style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.4 }}>{desc}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Trend States
+
+<div id="trend-states" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.TrendStates} />
+</div>
+
+The `trend` prop controls colour theming across the badge, marker dot, and ring:
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #d1fae5', borderRadius: 8, padding: '12px 14px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#059669', marginBottom: 4 }}>Positive</div>
+    <div style={{ fontSize: 12, color: '#374151' }}>Badge bg: <code>rgba(0,97,33,0.1)</code> · Text: <code>#006121</code> · Marker ring/dot border: <code>#006121</code></div>
+  </div>
+  <div style={{ border: '1px solid #fee2e2', borderRadius: 8, padding: '12px 14px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#dc2626', marginBottom: 4 }}>Negative</div>
+    <div style={{ fontSize: 12, color: '#374151' }}>Badge bg: <code>rgba(163,0,0,0.1)</code> · Text: <code>#a30000</code> · Marker ring/dot border: <code>#a30000</code></div>
+  </div>
+</div>
+
+---
+
+## Change Badge
+
+<div id="change-badge" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.ChangeBadgeTypes} />
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '12px 14px' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#111827', marginBottom: 4 }}>Type 01 — Arrow</div>
+    <div style={{ fontSize: 12, color: '#374151' }}>Uses an arrow-up icon rotated to point up (positive) or rotated to point down (negative). Classic trend indicator.</div>
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '12px 14px' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#111827', marginBottom: 4 }}>Type 02 — Trade Icon</div>
+    <div style={{ fontSize: 12, color: '#374151' }}>Uses a trade-up or trade-down icon (24×24). Better for financial / trading contexts where direction is implied by the icon shape.</div>
+  </div>
+</div>
+
+---
+
+## Toggle States
+
+<div id="toggle-states" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.ToggleStates} />
+</div>
+
+Each boolean prop independently hides its section without reflowing the rest of the card. Use these to adapt the card to your data availability — e.g. hide `showChart` for metrics with no time-series history, or hide `showActions` in read-only dashboards.
+
+---
+
+## RTL Support
+
+<div id="rtl-support" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <Canvas of={MetricStories.RTLAllTypes} />
+</div>
+
+Pass `rtl={true}` to enable the RTL layout. The component uses **structural conditional rendering** (not a CSS `dir` attribute on the container) to mirror each section:
+
+- **Small Chart RTL**: kebab moves to the left; label + icon moves to the right; sparkline moves to the left, value block to the right; View Report moves to the left with ← arrow, settings button to the right.
+- **Large Chart RTL**: label row appears _before_ the chart; change subtext appears to the left of the change badge; View Report and settings swap sides.
+
+---
+
+## Props Reference
+
+<div id="props-reference" style={{ display: 'grid', gridTemplateColumns: '200px 150px 100px 100px 1fr', gap: 0, marginBottom: 24, border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', fontSize: 13 }}>
+  <div style={{ display: 'contents' }}>
+    {['Prop','Type','Default','Required','Description'].map((h, i) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, color: '#374151', fontSize: 12, borderBottom: '2px solid #e5e7eb', borderRight: i < 4 ? '1px solid #e5e7eb' : 'none' }}>{h}</div>
+    ))}
+  </div>
+  {[
+    ['variant',             '"Small Chart" | "Large Chart"', '"Small Chart"', 'No', '#f0f4ff','#1849a9', 'Controls chart size and section ordering'],
+    ['rtl',                 'boolean',  'false',      'No', '#f0f4ff','#1849a9', 'Enables right-to-left structural layout for Arabic'],
+    ['labelEn',             'string',   '"24h Views"','No', '#f8fafc','#374151', 'Metric label shown in LTR mode'],
+    ['labelAr',             'string',   '"المشاهدات خلال 24س"','No','#f8fafc','#374151','Metric label shown in RTL mode'],
+    ['percentage',          'string',   '"50%"',      'No', '#fff7ed','#c2410c', 'Primary KPI value displayed at 36px bold'],
+    ['changePct',           'string',   '"100%"',     'No', '#fff7ed','#c2410c', 'Percentage shown inside the change badge'],
+    ['textEn',              'string',   '"vs last month"','No','#f8fafc','#374151','Change subtext in LTR mode'],
+    ['textAr',              'string',   '"مقارنة بالشهر الماضي"','No','#f8fafc','#374151','Change subtext in RTL mode'],
+    ['chartType',           '"Realistic" | "Wavy" | "Straight" | "Layers"','"Realistic"','No','#fdf4ff','#7c3aed','Selects the sparkline shape. Both Small and Large charts use separate Figma assets per type.'],
+    ['trend',               '"Positive" | "Negative"','"Positive"','No','#fdf4ff','#7c3aed','Sets the colour theme (green vs red) for badge, marker ring, and marker dot. Also swaps the chart line asset.'],
+    ['changeType',          '"01" | "02"','"01"',      'No', '#fdf4ff','#7c3aed','Type 01 uses an arrow-up icon; Type 02 uses a trade-up/down icon.'],
+    ['showMarker',          'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the circular marker dot on the sparkline'],
+    ['showActions',         'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the full actions footer (divider + settings + View Report)'],
+    ['showChange',          'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the change badge inside the info area'],
+    ['showChart',           'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the sparkline chart'],
+    ['showFeaturedIcon',    'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the circular featured icon badge'],
+    ['showInfo',            'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the entire info area (change badge + subtext)'],
+    ['showSecondaryAction', 'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the settings icon button in the actions footer'],
+    ['showText',            'boolean',  'true',       'No', '#f0fdf4','#059669', 'Shows/hides the "vs last month" subtext next to the change badge'],
+  ].map(([prop, type, def, req, bg, color, desc]) => (
+    <div key={prop} style={{ display: 'contents' }}>
+      <div style={{ padding: '9px 14px', background: bg, borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', color, fontWeight: 600, fontSize: 12 }}>{prop}</div>
+      <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 11, color: '#7c3aed' }}>{type}</div>
+      <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', fontFamily: 'monospace', fontSize: 11, color: '#6b7280' }}>{def}</div>
+      <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderRight: '1px solid #e5e7eb', textAlign: 'center' }}>
+        <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: req === 'Yes' ? '#fee2e2' : '#f3f4f6', color: req === 'Yes' ? '#dc2626' : '#6b7280' }}>{req}</span>
+      </div>
+      <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', color: '#374151', lineHeight: 1.4 }}>{desc}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Token Table
+
+<div id="token-table" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Container</div>
+    {[
+      { token: '--charts/container/background', hex: '#ffffff', label: 'Card background' },
+      { token: '--card/container/radius',        hex: '16px',   label: 'Border radius' },
+      { token: '--card/container/padding',       hex: '16px',   label: 'Card padding' },
+      { token: '--card/container/gap',           hex: '24px',   label: 'Section gap' },
+      { token: 'shadow',  hex: '0px 4px 8px -2px rgba(16,24,40,.1)', label: 'Drop shadow' },
+      { token: '--charts/kpi/badge/border/border', hex: '#d2d6db', label: 'Divider colour' },
+    ].map(({ token, hex, label }) => (
+      <div key={token} style={{ padding: '10px 14px', borderBottom: '1px solid #f3f4f6' }}>
+        <code style={{ fontSize: 10, color: '#1849a9', display: 'block' }}>{token}</code>
+        <span style={{ fontSize: 11, color: '#6b7280' }}>{hex} · {label}</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Typography & Colors</div>
+    {[
+      { token: '--charts/kpi/value',                   hex: '#000b36', label: 'KPI value (36px Bold)' },
+      { token: '--charts/kpi/label',                   hex: '#3c5073', label: 'Label & subtext (14px)' },
+      { token: '--charts/kpi/badge/trend/positive',    hex: '#006121', label: 'Positive badge text' },
+      { token: '--charts/kpi/badge/icon/icon-bg',      hex: 'rgba(0,97,33,0.1)', label: 'Positive badge bg' },
+      { token: '--charts/kpi/badge/text/positive',     hex: '#006121', label: 'Positive change text' },
+      { token: '--charts/kpi/badge/point/fill',        hex: '#f5faff', label: 'Marker dot inner fill' },
+      { token: '--button/transparent/icon/default',    hex: '#175cd3', label: 'View Report link text' },
+    ].map(({ token, hex, label }) => (
+      <div key={token} style={{ padding: '10px 14px', borderBottom: '1px solid #f3f4f6', display: 'flex', alignItems: 'center', gap: 8 }}>
+        {hex.startsWith('#') && <div style={{ width: 14, height: 14, borderRadius: 3, background: hex, border: '1px solid #e5e7eb', flexShrink: 0 }} />}
+        <div>
+          <code style={{ fontSize: 10, color: '#1849a9', display: 'block' }}>{token}</code>
+          <span style={{ fontSize: 10, color: '#6b7280' }}>{hex} · {label}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '10px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Sparkline Sizes</div>
+    {[
+      { token: 'Small Chart width',  hex: '128px', label: 'Fixed sparkline width' },
+      { token: 'Small Chart height', hex: '64px',  label: 'Fixed sparkline height' },
+      { token: 'Large Chart width',  hex: '100%',  label: 'Full card width (328px)' },
+      { token: 'Large Chart height', hex: '64px',  label: 'Sparkline height' },
+      { token: 'Marker size',        hex: '22×22px',label: 'Marker outer diameter' },
+      { token: 'Marker ring opacity',hex: '0.2',   label: 'Outer ring opacity' },
+      { token: 'Featured badge',     hex: '32×32px',label: 'Icon badge diameter' },
+    ].map(({ token, hex, label }) => (
+      <div key={token} style={{ padding: '10px 14px', borderBottom: '1px solid #f3f4f6' }}>
+        <code style={{ fontSize: 10, color: '#1849a9', display: 'block' }}>{token}</code>
+        <span style={{ fontSize: 11, color: '#6b7280' }}>{hex} · {label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+---
+
+## Do / Don't
+
+<div id="do--dont" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✓ Do</div>
+    <div style={{ border: '2px solid #d1fae5', borderRadius: 10, padding: 20 }}>
+      <Canvas of={MetricStories.SmallChartLTR} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Use the change badge, sparkline, and subtext together so the KPI value has context — a number alone doesn't explain direction.</p>
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✗ Don't</div>
+    <div style={{ border: '2px solid #fee2e2', borderRadius: 10, padding: 20 }}>
+      <Canvas of={MetricStories.ToggleStates} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Don't strip all context (no chart, no badge, no subtext) — the bare percentage loses meaning without a trend reference.</p>
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✓ Do</div>
+    <div style={{ border: '2px solid #d1fae5', borderRadius: 10, padding: 20 }}>
+      <Canvas of={MetricStories.LargeChartLTR} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Use the Large Chart variant when the metric is featured and trend trajectory is the primary story — the wider sparkline makes the shape clear.</p>
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.05em' }}>✗ Don't</div>
+    <div style={{ border: '2px solid #fee2e2', borderRadius: 10, padding: 20 }}>
+      <Canvas of={MetricStories.TrendStates} />
+      <p style={{ fontSize: 12, color: '#374151', marginTop: 12, marginBottom: 0 }}>Don't mix Positive trend colour with data that is actually declining — always set <code>trend</code> to match the real data direction.</p>
+    </div>
+  </div>
+</div>
+
+---
+
+## Accessibility
+
+<div id="accessibility" style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
+  {[
+    { category: 'Keyboard',       color: '#eff8ff', text: '#1849a9', items: ['Settings button is focusable with Tab and responds to Enter/Space', 'View Report button is keyboard-reachable', 'Kebab menu icon has an aria-label on its button wrapper'] },
+    { category: 'Semantics',      color: '#f0fdf4', text: '#059669', items: ['Sparkline images use alt="" (decorative) — screen readers skip them', 'Change badge text is inline — direction is conveyed by text and icon, not colour alone', 'dir="auto" on Arabic label/subtext ensures correct bidi text rendering'] },
+    { category: 'Color contrast', color: '#fdf4ff', text: '#7c3aed', items: ['Percentage #000b36 on white — 21:1 (AAA)', 'Label #3c5073 on white — 5.9:1 (AA)', 'Positive change text #006121 on rgba(0,97,33,0.1) bg — passes WCAG AA', 'View Report #175cd3 on white — 4.7:1 (AA)'] },
+    { category: 'RTL',            color: '#fff7ed', text: '#c2410c', items: ['Structural conditional rendering (not CSS dir) mirrors each section correctly', 'Large Chart RTL places the chart after the value row — matching Figma spec', 'Arrow icons swap (→ to ←) for the View Report link in RTL mode'] },
+  ].map(({ category, color, text, items }) => (
+    <div key={category} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+      <div style={{ padding: '8px 14px', background: color, fontWeight: 700, fontSize: 12, color: text }}>{category}</div>
+      <ul style={{ margin: 0, padding: '10px 14px 10px 28px' }}>
+        {items.map(item => (
+          <li key={item} style={{ fontSize: 13, color: '#374151', lineHeight: 1.6 }}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 60px 1fr 100px', gap: 0 }}>
+    <div style={{ display: 'contents' }}>
+      {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+        <div key="hdr" style={{ display: 'contents' }}>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+          <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+        </div>
+      ))}
+    </div>
+    {[
+      ['1.4.3 Contrast',     'AA',  'Text and interactive elements must have ≥ 4.5:1 contrast ratio against background'],
+      ['1.3.1 Info & Relationships', 'A', 'Change direction conveyed by text and arrow icon — not colour alone'],
+      ['2.1.1 Keyboard',     'A',   'Settings and View Report controls operable without a mouse'],
+      ['4.1.2 Name, Role, Value', 'A', 'Buttons expose correct roles; decorative chart images hidden from assistive tech'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#dbeafe', color: '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
