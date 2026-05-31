@@ -33,7 +33,13 @@
       "WebFetch(domain:s3-alpha.figma.com)",
       "PowerShell($env:FIGMA_TOKEN; $env:FIGMA_API_TOKEN; $env:FIGMA_ACCESS_TOKEN)",
       "WebFetch(domain:api.figma.com)",
-      "WebFetch(domain:figma-alpha-api.s3.us-west-2.amazonaws.com)"
+      "WebFetch(domain:figma-alpha-api.s3.us-west-2.amazonaws.com)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4140-89804&depth=2\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4140-89804&depth=3\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4157-86523&depth=4\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4140-89803\")",
+      "Bash(python -m json.tool)"
     ]
   }
 }
