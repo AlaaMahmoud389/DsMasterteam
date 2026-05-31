@@ -6,13 +6,15 @@ import _addNormalSm  from '../../assets/icons/add-normal-sm.svg';
 import _addNormalMd  from '../../assets/icons/add-normal-md.svg';
 import _addDisabledSm from '../../assets/icons/add-disabled-sm.svg';
 import _addDisabledMd from '../../assets/icons/add-disabled-md.svg';
-import _avatarPhoto  from '../../assets/photos/avatar-demo.png';
-import _labelPhoto   from '../../assets/photos/avatar-label.png';
+import _avatar1 from '../../assets/photos/avatar-1.png';
+import _avatar2 from '../../assets/photos/avatar-2.png';
+import _avatar3 from '../../assets/photos/avatar-3.png';
+import _avatar4 from '../../assets/photos/avatar-4.png';
 
-// ─── Photo constants (local static files — node 4113:655 / 4929:1747) ─
-export const FIGMA_PHOTO = _avatarPhoto;
-export const ARAB_PHOTOS = [_avatarPhoto, _avatarPhoto, _avatarPhoto, _avatarPhoto, _avatarPhoto];
-export const LABEL_PHOTO = _labelPhoto;
+// ─── Photo constants (Figma node 4112:17 — real avatar photos) ─────
+export const FIGMA_PHOTO = _avatar1;
+export const ARAB_PHOTOS = [_avatar1, _avatar2, _avatar3, _avatar4, _avatar1];
+export const LABEL_PHOTO = _avatar2;
 
 // ─── AvatarAddButton icon (node 4120:317) ────────────────────────
 const ADD_BTN_CFG = {
