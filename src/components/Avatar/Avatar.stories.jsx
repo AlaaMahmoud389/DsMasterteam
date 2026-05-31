@@ -1,7 +1,7 @@
 import { Avatar, AvatarGroup, AvatarWithLabel, AvatarAddButton, FIGMA_PHOTO, ARAB_PHOTOS, LABEL_PHOTO } from './Avatar';
-// FIGMA_PHOTO = avatar-1 (woman in colorful headscarf)
-// ARAB_PHOTOS = [avatar-1, avatar-2, avatar-3, avatar-4, avatar-1] — real Figma photos
-// LABEL_PHOTO = avatar-2 (man in thobe)
+// FIGMA_PHOTO = avatar-figma-demo (Figma node 4113:655 image-type placeholder)
+// ARAB_PHOTOS = [avatar-1, avatar-3, avatar-4, avatar-2, avatar-1] — real portraits
+// LABEL_PHOTO = avatar-4 (woman in white hijab — Nora)
 
 // ─── Figma canvas layout constants ───────────────────────────────
 // Source: node 4113:655 — 7 columns × 6 rows (Round + Square sections)
@@ -11,17 +11,18 @@ const ROW_GAP  = 56;
 const SEC_GAP  = 75;
 
 // ─── Single avatar row (bottom-aligned) ──────────────────────────
+// Image type cycles through all 4 real Figma photos across the 7 sizes
 function AvatarRow({ type, square = false }) {
   return (
     <div style={{ display: 'flex', gap: COL_GAP, alignItems: 'flex-end' }}>
-      {SIZES.map(s => (
+      {SIZES.map((s, i) => (
         <Avatar
           key={s}
           type={type}
           size={s}
           square={square}
           initials="AB"
-          src={FIGMA_PHOTO}
+          src={type === 'image' ? ARAB_PHOTOS[i % ARAB_PHOTOS.length] : FIGMA_PHOTO}
           alt="User"
         />
       ))}

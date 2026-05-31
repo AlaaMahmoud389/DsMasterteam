@@ -6,15 +6,19 @@ import _addNormalSm  from '../../assets/icons/add-normal-sm.svg';
 import _addNormalMd  from '../../assets/icons/add-normal-md.svg';
 import _addDisabledSm from '../../assets/icons/add-disabled-sm.svg';
 import _addDisabledMd from '../../assets/icons/add-disabled-md.svg';
-import _avatar1 from '../../assets/photos/avatar-1.png';
-import _avatar2 from '../../assets/photos/avatar-2.png';
-import _avatar3 from '../../assets/photos/avatar-3.png';
-import _avatar4 from '../../assets/photos/avatar-4.png';
+import _avatar1    from '../../assets/photos/avatar-1.png';
+import _avatar2    from '../../assets/photos/avatar-2.png';
+import _avatar3    from '../../assets/photos/avatar-3.png';
+import _avatar4    from '../../assets/photos/avatar-4.png';
+import _figmaDemo  from '../../assets/photos/avatar-figma-demo.png';
 
-// ─── Photo constants (Figma node 4112:17 — real avatar photos) ─────
-export const FIGMA_PHOTO = _avatar1;
-export const ARAB_PHOTOS = [_avatar1, _avatar2, _avatar3, _avatar4, _avatar1];
-export const LABEL_PHOTO = _avatar2;
+// ─── Photo constants ──────────────────────────────────────────────
+// FIGMA_PHOTO  : Figma node 4113:655 image-type row placeholder
+// ARAB_PHOTOS  : 5 hijabi female portraits (no male) for image rows & groups
+// LABEL_PHOTO  : woman in white hijab — used for female persona (Nora)
+export const FIGMA_PHOTO = _figmaDemo;
+export const ARAB_PHOTOS = [_avatar1, _avatar3, _avatar4, _avatar3, _avatar1];
+export const LABEL_PHOTO = _avatar4;
 
 // ─── AvatarAddButton icon (node 4120:317) ────────────────────────
 const ADD_BTN_CFG = {
