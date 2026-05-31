@@ -1,4 +1,7 @@
 import { Avatar, AvatarGroup, AvatarWithLabel, AvatarAddButton, FIGMA_PHOTO, ARAB_PHOTOS, LABEL_PHOTO } from './Avatar';
+// FIGMA_PHOTO = avatar-1 (woman in colorful headscarf)
+// ARAB_PHOTOS = [avatar-1, avatar-2, avatar-3, avatar-4, avatar-1] — real Figma photos
+// LABEL_PHOTO = avatar-2 (man in thobe)
 
 // ─── Figma canvas layout constants ───────────────────────────────
 // Source: node 4113:655 — 7 columns × 6 rows (Round + Square sections)
@@ -221,9 +224,9 @@ export const FigmaLabelGroup = {
   parameters: { layout: 'centered' },
   render: () => (
     <div style={{ background: '#ffffff', display: 'inline-flex', alignItems: 'center', gap: 48, padding: '16px 24px' }}>
-      <AvatarWithLabel size="sm" type="image" src={LABEL_PHOTO} name="Ahmad Alwarda" caption="ahmad@email.com" dir="ltr" />
-      <AvatarWithLabel size="md" type="image" src={LABEL_PHOTO} name="Ahmad Alwarda" caption="ahmad@email.com" dir="ltr" />
-      <AvatarWithLabel size="lg" type="image" src={LABEL_PHOTO} name="Ahmad Alwarda" caption="ahmad@email.com" dir="ltr" />
+      <AvatarWithLabel size="sm" type="image" src={LABEL_PHOTO} name="Nora Al-Rasheed" caption="nora@email.com" dir="ltr" />
+      <AvatarWithLabel size="md" type="image" src={LABEL_PHOTO} name="Nora Al-Rasheed" caption="nora@email.com" dir="ltr" />
+      <AvatarWithLabel size="lg" type="image" src={LABEL_PHOTO} name="Nora Al-Rasheed" caption="nora@email.com" dir="ltr" />
     </div>
   ),
 };
@@ -235,8 +238,8 @@ export const RTLSupport = {
   name: 'RTL Support',
   render: () => (
     <div style={{ display: 'flex', gap: 48 }}>
-      <AvatarWithLabel size="lg" type="image" src={LABEL_PHOTO} name="Ahmad Alwarda" caption="ahmad@email.com" dir="ltr" />
-      <AvatarWithLabel size="lg" type="image" src={LABEL_PHOTO} name="أحمد الوردة" caption="ahmad@email.com" dir="rtl" />
+      <AvatarWithLabel size="lg" type="image" src={LABEL_PHOTO} name="Nora Al-Rasheed" caption="nora@email.com" dir="ltr" />
+      <AvatarWithLabel size="lg" type="image" src={LABEL_PHOTO} name="نورا الرشيد" caption="nora@email.com" dir="rtl" />
     </div>
   ),
 };
