@@ -129,10 +129,17 @@ function YearDropdown({ year, isOpen, isRTL, onClick, yearRange, onSelect }) {
         aria-haspopup="listbox"
         aria-label="Select year"
       >
+        {isRTL && (
+          <svg className={`${styles.chevron} ${isOpen ? styles.chevronUp : ''}`} width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
         <span>{year}</span>
-        <svg className={`${styles.chevron} ${isOpen ? styles.chevronUp : ''}`} width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        {!isRTL && (
+          <svg className={`${styles.chevron} ${isOpen ? styles.chevronUp : ''}`} width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 4.5L6 8.5L10 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        )}
       </button>
       {isOpen && (
         <div className={`${styles.yearDropdown} ${isRTL ? styles.yearDropdownRTL : ''}`} role="listbox">
@@ -145,8 +152,9 @@ function YearDropdown({ year, isOpen, isRTL, onClick, yearRange, onSelect }) {
               className={`${styles.yearOption} ${y === year ? styles.yearOptionActive : ''}`}
               onClick={() => onSelect(y)}
             >
+              {isRTL && y === year && <span className={styles.yearCheck} aria-hidden="true">✓</span>}
               <span>{y}</span>
-              {y === year && <span className={styles.yearCheck} aria-hidden="true">✓</span>}
+              {!isRTL && y === year && <span className={styles.yearCheck} aria-hidden="true">✓</span>}
             </button>
           ))}
         </div>
@@ -181,17 +189,15 @@ function CalendarGrid({
             <div className={styles.headerNav}>
               {showPrev && (
                 <button type="button" className={styles.navBtn} onClick={onPrev} aria-label="Previous month">
-                  {/* arrow-left-02 — Stroke / Rounded — from Figma node 7060:6399 */}
-                  <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                    <path d="M11.2504 19.9997C11.2504 20.3733 11.4161 20.7198 11.5729 20.9801C11.7422 21.2609 11.9699 21.5508 12.2196 21.8335C12.7206 22.4005 13.3743 23.0095 14.0087 23.5604C14.6468 24.1145 15.2827 24.6247 15.7577 24.9955C15.9956 25.1812 16.1941 25.3326 16.3335 25.4379C16.4032 25.4906 16.4582 25.5318 16.496 25.56L16.5396 25.5923L16.5511 25.6009L16.5551 25.6039C16.8886 25.8495 17.3586 25.7786 17.6042 25.4451C17.8499 25.1116 17.7787 24.6422 17.4452 24.3965L17.4325 24.3871L17.3925 24.3573C17.357 24.3309 17.3046 24.2917 17.2376 24.2411C17.1036 24.1398 16.9115 23.9932 16.6806 23.813C16.2182 23.4521 15.6041 22.9592 14.9922 22.4278C14.3765 21.8932 13.7802 21.3344 13.3437 20.8403C13.3161 20.8091 13.2894 20.7784 13.2636 20.7482L28.0004 20.7482C28.4147 20.7482 28.7504 20.4124 28.7504 19.9982C28.7504 19.584 28.4147 19.2482 28.0004 19.2482L13.2661 19.2482C13.2912 19.219 13.317 19.1893 13.3437 19.1591C13.7802 18.665 14.3765 18.1062 14.9922 17.5716C15.6041 17.0402 16.2181 16.5473 16.6806 16.1863C16.9114 16.0062 17.1036 15.8596 17.2376 15.7583C17.3046 15.7077 17.357 15.6685 17.3925 15.6421L17.4325 15.6123L17.4452 15.6029C17.7787 15.3572 17.8499 14.8877 17.6042 14.5543C17.3586 14.2208 16.8886 14.1499 16.5551 14.3955L16.5511 14.3985L16.5396 14.407L16.496 14.4394C16.4582 14.4676 16.4032 14.5088 16.3335 14.5615C16.1941 14.6668 15.9956 14.8182 15.7577 15.0039C15.2826 15.3747 14.6468 15.8849 14.0087 16.439C13.3743 16.9899 12.7206 17.5988 12.2196 18.1659C11.9699 18.4486 11.7422 18.7385 11.5729 19.0193C11.417 19.278 11.2524 19.622 11.2504 19.993Z" fill="currentColor"/>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
               )}
               {showNext && (
                 <button type="button" className={styles.navBtn} onClick={onNext} aria-label="Next month">
-                  {/* arrow-right-02 — Stroke / Rounded — from Figma node 7060:6400 */}
-                  <svg width="24" height="24" viewBox="40 0 40 40" fill="none" aria-hidden="true">
-                    <path d="M68.7496 19.9996C68.7496 19.626 68.5839 19.2795 68.4271 19.0193C68.2578 18.7384 68.0301 18.4485 67.7804 18.1658C67.2794 17.5988 66.6257 16.9898 65.9914 16.4389C65.3533 15.8848 64.7174 15.3746 64.2423 15.0038C64.0044 14.8181 63.806 14.6667 63.6665 14.5614C63.5968 14.5087 63.5418 14.4675 63.504 14.4393L63.4604 14.407L63.4489 14.3984L63.4449 14.3954C63.1114 14.1498 62.6414 14.2207 62.3958 14.5542C62.1501 14.8877 62.2213 15.3571 62.5548 15.6028L62.5675 15.6122L62.6076 15.642C62.643 15.6684 62.6954 15.7076 62.7624 15.7582C62.8964 15.8595 63.0886 16.0061 63.3194 16.1863C63.7819 16.5472 64.396 17.0401 65.0079 17.5715C65.6235 18.1061 66.2198 18.6649 66.6563 19.159C66.6839 19.1902 66.7106 19.2209 66.7364 19.2511L51.9996 19.2511C51.5854 19.2511 51.2496 19.5869 51.2496 20.0011C51.2496 20.4153 51.5854 20.7511 51.9996 20.7511L66.7339 20.7511C66.7089 20.7803 66.683 20.81 66.6563 20.8403C66.2198 21.3343 65.6235 21.8931 65.0079 22.4277C64.396 22.9591 63.7819 23.452 63.3194 23.813C63.0886 23.9931 62.8964 24.1397 62.7624 24.241C62.6954 24.2916 62.643 24.3308 62.6076 24.3572L62.5675 24.387L62.5548 24.3964C62.2213 24.6421 62.1501 25.1116 62.3958 25.4451C62.6414 25.7786 63.1114 25.8494 63.4449 25.6038L63.4489 25.6008L63.4604 25.5923L63.504 25.5599C63.5418 25.5317 63.5968 25.4905 63.6666 25.4378C63.806 25.3325 64.0044 25.1811 64.2423 24.9954C64.7174 24.6246 65.3533 24.1144 65.9914 23.5603C66.6257 23.0094 67.2794 22.4005 67.7804 21.8334C68.0301 21.5507 68.2578 21.2608 68.4271 20.98C68.583 20.7213 68.7476 20.3773 68.7496 20.0063Z" fill="currentColor"/>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
               )}
@@ -200,30 +206,28 @@ function CalendarGrid({
         )}
         {isRTL && (
           <>
-            <div className={styles.headerEnd}>
-              <span className={styles.monthLabel}>{months[month]}</span>
-              <YearDropdown
-                year={year} isOpen={yearDDOpen} isRTL={true}
-                onClick={onYearDDToggle} yearRange={yearRange} onSelect={onYearSelect}
-              />
-            </div>
             <div className={styles.headerNav}>
               {showPrev && (
                 <button type="button" className={styles.navBtn} onClick={onPrev} aria-label="الشهر السابق">
-                  {/* arrow-right-02 — RTL prev navigates backward (right direction in RTL) */}
-                  <svg width="24" height="24" viewBox="40 0 40 40" fill="none" aria-hidden="true">
-                    <path d="M68.7496 19.9996C68.7496 19.626 68.5839 19.2795 68.4271 19.0193C68.2578 18.7384 68.0301 18.4485 67.7804 18.1658C67.2794 17.5988 66.6257 16.9898 65.9914 16.4389C65.3533 15.8848 64.7174 15.3746 64.2423 15.0038C64.0044 14.8181 63.806 14.6667 63.6665 14.5614C63.5968 14.5087 63.5418 14.4675 63.504 14.4393L63.4604 14.407L63.4489 14.3984L63.4449 14.3954C63.1114 14.1498 62.6414 14.2207 62.3958 14.5542C62.1501 14.8877 62.2213 15.3571 62.5548 15.6028L62.5675 15.6122L62.6076 15.642C62.643 15.6684 62.6954 15.7076 62.7624 15.7582C62.8964 15.8595 63.0886 16.0061 63.3194 16.1863C63.7819 16.5472 64.396 17.0401 65.0079 17.5715C65.6235 18.1061 66.2198 18.6649 66.6563 19.159C66.6839 19.1902 66.7106 19.2209 66.7364 19.2511L51.9996 19.2511C51.5854 19.2511 51.2496 19.5869 51.2496 20.0011C51.2496 20.4153 51.5854 20.7511 51.9996 20.7511L66.7339 20.7511C66.7089 20.7803 66.683 20.81 66.6563 20.8403C66.2198 21.3343 65.6235 21.8931 65.0079 22.4277C64.396 22.9591 63.7819 23.452 63.3194 23.813C63.0886 23.9931 62.8964 24.1397 62.7624 24.241C62.6954 24.2916 62.643 24.3308 62.6076 24.3572L62.5675 24.387L62.5548 24.3964C62.2213 24.6421 62.1501 25.1116 62.3958 25.4451C62.6414 25.7786 63.1114 25.8494 63.4449 25.6038L63.4489 25.6008L63.4604 25.5923L63.504 25.5599C63.5418 25.5317 63.5968 25.4905 63.6666 25.4378C63.806 25.3325 64.0044 25.1811 64.2423 24.9954C64.7174 24.6246 65.3533 24.1144 65.9914 23.5603C66.6257 23.0094 67.2794 22.4005 67.7804 21.8334C68.0301 21.5507 68.2578 21.2608 68.4271 20.98C68.583 20.7213 68.7476 20.3773 68.7496 20.0063Z" fill="currentColor"/>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
               )}
               {showNext && (
                 <button type="button" className={styles.navBtn} onClick={onNext} aria-label="الشهر التالي">
-                  {/* arrow-left-02 — RTL next navigates forward (left direction in RTL) */}
-                  <svg width="24" height="24" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-                    <path d="M11.2504 19.9997C11.2504 20.3733 11.4161 20.7198 11.5729 20.9801C11.7422 21.2609 11.9699 21.5508 12.2196 21.8335C12.7206 22.4005 13.3743 23.0095 14.0087 23.5604C14.6468 24.1145 15.2827 24.6247 15.7577 24.9955C15.9956 25.1812 16.1941 25.3326 16.3335 25.4379C16.4032 25.4906 16.4582 25.5318 16.496 25.56L16.5396 25.5923L16.5511 25.6009L16.5551 25.6039C16.8886 25.8495 17.3586 25.7786 17.6042 25.4451C17.8499 25.1116 17.7787 24.6422 17.4452 24.3965L17.4325 24.3871L17.3925 24.3573C17.357 24.3309 17.3046 24.2917 17.2376 24.2411C17.1036 24.1398 16.9115 23.9932 16.6806 23.813C16.2182 23.4521 15.6041 22.9592 14.9922 22.4278C14.3765 21.8932 13.7802 21.3344 13.3437 20.8403C13.3161 20.8091 13.2894 20.7784 13.2636 20.7482L28.0004 20.7482C28.4147 20.7482 28.7504 20.4124 28.7504 19.9982C28.7504 19.584 28.4147 19.2482 28.0004 19.2482L13.2661 19.2482C13.2912 19.219 13.317 19.1893 13.3437 19.1591C13.7802 18.665 14.3765 18.1062 14.9922 17.5716C15.6041 17.0402 16.2181 16.5473 16.6806 16.1863C16.9114 16.0062 17.1036 15.8596 17.2376 15.7583C17.3046 15.7077 17.357 15.6685 17.3925 15.6421L17.4325 15.6123L17.4452 15.6029C17.7787 15.3572 17.8499 14.8877 17.6042 14.5543C17.3586 14.2208 16.8886 14.1499 16.5551 14.3955L16.5511 14.3985L16.5396 14.407L16.496 14.4394C16.4582 14.4676 16.4032 14.5088 16.3335 14.5615C16.1941 14.6668 15.9956 14.8182 15.7577 15.0039C15.2826 15.3747 14.6468 15.8849 14.0087 16.439C13.3743 16.9899 12.7206 17.5988 12.2196 18.1659C11.9699 18.4486 11.7422 18.7385 11.5729 19.0193C11.417 19.278 11.2524 19.622 11.2504 19.993Z" fill="currentColor"/>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
               )}
+            </div>
+            <div className={styles.headerEnd}>
+              <YearDropdown
+                year={year} isOpen={yearDDOpen} isRTL={true}
+                onClick={onYearDDToggle} yearRange={yearRange} onSelect={onYearSelect}
+              />
+              <span className={styles.monthLabel}>{months[month]}</span>
             </div>
           </>
         )}
@@ -580,26 +584,8 @@ export function DatePicker({
       {(inline || open) && (
         <div ref={panelRef} role="dialog" aria-label={isRTL ? 'منتقي التاريخ' : 'Date picker'} className={panelCls}>
 
-          {/* Top: quick options (start) + calendar area */}
+          {/* Top: calendar area + quick options */}
           <div className={styles.panelBody}>
-
-            {/* Quick options sidebar — rendered first so it sits on the
-                inline-start edge: left in LTR, right in RTL */}
-            {showQuickOptions && (
-              <div className={styles.quickOptions} role="region" aria-label={isRTL ? 'اختصارات' : 'Shortcuts'}>
-                <div className={styles.quickOptionsLabel}>{isRTL ? 'اختصارات' : 'Shortcuts'}</div>
-                {quickOpts.map(({ key, label: optLabel }) => (
-                  <button
-                    key={key}
-                    type="button"
-                    className={`${styles.quickOption} ${activeQuick === key ? styles.quickOptionActive : ''}`}
-                    onClick={() => handleQuickOption(key)}
-                  >
-                    {optLabel}
-                  </button>
-                ))}
-              </div>
-            )}
 
             {/* Calendar & input column */}
             <div className={styles.calendarArea}>
@@ -688,22 +674,28 @@ export function DatePicker({
               </div>
             </div>
 
+            {/* Quick options sidebar */}
+            {showQuickOptions && (
+              <div className={styles.quickOptions} role="region" aria-label={isRTL ? 'اختصارات' : 'Shortcuts'}>
+                <div className={styles.quickOptionsLabel}>{isRTL ? 'اختصارات' : 'Shortcuts'}</div>
+                {quickOpts.map(({ key, label: optLabel }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    className={`${styles.quickOption} ${activeQuick === key ? styles.quickOptionActive : ''}`}
+                    onClick={() => handleQuickOption(key)}
+                  >
+                    {optLabel}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Submit button action bar */}
           {showSubmitButton && (
             <div className={styles.actionsBar}>
               <div className={styles.actionsInner}>
-                <button
-                  type="button"
-                  className={styles.btnCancel}
-                  onClick={handleCancel}
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                  {isRTL ? 'إلغاء' : 'Cancel'}
-                </button>
                 <button
                   type="button"
                   className={styles.btnApply}
@@ -713,6 +705,16 @@ export function DatePicker({
                     <path d="M2.5 8.5L6 12L13.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   {isRTL ? 'تأكيد' : 'Apply'}
+                </button>
+                <button
+                  type="button"
+                  className={styles.btnCancel}
+                  onClick={handleCancel}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                  </svg>
+                  {isRTL ? 'إلغاء' : 'Cancel'}
                 </button>
               </div>
             </div>
