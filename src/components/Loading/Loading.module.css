@@ -1,0 +1,108 @@
+/*
+ * Loading.module.css — Masterteam Design System
+ * Figma node 4389:1155
+ *
+ * The spinner is two concentric arcs:
+ *   Track  — full-circle background ring
+ *   Tail   — ~90° colored arc that rotates continuously
+ *
+ * Implemented via CSS border: the track color fills all four sides,
+ * border-top-color overrides the top side to the tail (indicator) color.
+ * The element rotates via @keyframes, reproducing the Indicator=1–4 frames.
+ *
+ * Color tokens (exact Figma values):
+ *
+ *   Track (Primary / Neutral) : #F3F4F6
+ *   Track (On-Color)          : rgba(255, 255, 255, 0.30)  [fill opacity=0.30]
+ *
+ *   Tail Primary              : #1849A9
+ *   Tail Neutral              : #1F2A37
+ *   Tail On-Color             : #FFFFFF
+ *
+ * Sizes → diameter / border-width (stroke = diameter × (1−innerRadius) / 2):
+ *   xx Small  20px / 2px   innerRadius ≈ 0.80
+ *   x Small   24px / 2px   innerRadius ≈ 0.83
+ *   Small     28px / 2px   innerRadius ≈ 0.86
+ *   Medium    32px / 3px   innerRadius ≈ 0.81
+ *   Large     36px / 3px   innerRadius ≈ 0.83
+ *   x Large   40px / 3px   innerRadius ≈ 0.85
+ *   xx Large  44px / 4px   innerRadius ≈ 0.82
+ */
+
+/* ── Keyframe ──────────────────────────────────────────────────────── */
+@keyframes loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+.spinner {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border-style: solid;
+  animation: loading-spin 0.75s linear infinite;
+}
+
+/* ── Sizes ─────────────────────────────────────────────────────────── */
+.sizeXxSmall {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.sizeXSmall {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.sizeSmall {
+  width: 28px;
+  height: 28px;
+  border-width: 2px;
+}
+
+.sizeMedium {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+.sizeLarge {
+  width: 36px;
+  height: 36px;
+  border-width: 3px;
+}
+
+.sizeXLarge {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+}
+
+.sizeXxLarge {
+  width: 44px;
+  height: 44px;
+  border-width: 4px;
+}
+
+/* ── Style: Primary ────────────────────────────────────────────────── */
+/* Track: #F3F4F6 (all 4 sides), Tail: #1849A9 (top) */
+.stylePrimary {
+  border-color: #f3f4f6;
+  border-top-color: #1849a9;
+}
+
+/* ── Style: Neutral ────────────────────────────────────────────────── */
+/* Track: #F3F4F6, Tail: #1F2A37 */
+.styleNeutral {
+  border-color: #f3f4f6;
+  border-top-color: #1f2a37;
+}
+
+/* ── Style: On-Color (place on dark surfaces) ──────────────────────── */
+/* Track: rgba(255,255,255,0.30) [Figma fill opacity=0.30], Tail: #FFFFFF */
+.styleOnColor {
+  border-color: rgba(255, 255, 255, 0.30);
+  border-top-color: #ffffff;
+}
