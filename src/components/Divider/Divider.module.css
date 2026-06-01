@@ -1,0 +1,63 @@
+/*
+ * Divider.module.css — Masterteam Design System
+ * Variants: Orientation (horizontal / vertical) · Color (neutral / primary / solidWhite) · OnColor
+ */
+
+/* ═══════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════ */
+
+.divider {
+  display: block;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Orientation
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Horizontal — 1px tall, spans full width of its container */
+.horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+/* Vertical — 1px wide, spans full height of its container */
+.vertical {
+  width: 1px;
+  height: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Colors
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Neutral — #ffffff at 30% opacity (default & on-color contexts) */
+.neutral {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Primary — solid #1849A9 (use on light / default backgrounds) */
+.primary {
+  background-color: #1849a9;
+}
+
+/* Solid White — #ffffff at full opacity (on-color contexts only) */
+.solidWhite {
+  background-color: #ffffff;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   OnColor context marker
+   Applied when the divider sits on the dark #000B36 background.
+   No visual change to the divider itself — used as a semantic hook
+   that stories / wrappers can read.
+   ═══════════════════════════════════════════════════════════════ */
+
+.onColorContext {
+  /* intentionally empty — visual context is handled by the parent bg */
+}
