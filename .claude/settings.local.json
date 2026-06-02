@@ -42,7 +42,29 @@
       "Bash(python -m json.tool)",
       "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4250:1936\")",
       "PowerShell(New-Item *)",
-      "PowerShell(ls \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\\\\src\\\\components\\\\\")"
+      "PowerShell(ls \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\\\\src\\\\components\\\\\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4482%3A3649\")",
+      "Read(//c/Users/Faisal/**)",
+      "Bash(node *)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/images/WTmRAkJVvw0IvZMA7wBdTC?ids=7579%3A5742&format=svg\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/64f2e395-eb03-4f3f-93a7-0f855eff8b6a\" -o C:/Users/Faisal/quote_vector.svg)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/images/WTmRAkJVvw0IvZMA7wBdTC?ids=7579%3A5741%2C7579%3A5747&format=svg\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/fc9a70e5-3244-4ff5-97d1-a6b9c5d5ffa3\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/993b264a-c750-4091-b30f-5f7d6d039696\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/images/WTmRAkJVvw0IvZMA7wBdTC?ids=4482%3A3661%2C4482%3A3650%2C4482%3A3716&format=png&scale=1\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/84bb4705-42dc-4a6e-ac62-28bea9823854\" -o \"C:/Users/Faisal/quote_ltr_large.png\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/73b28616-0202-4495-9b36-63d2721dff54\" -o \"C:/Users/Faisal/quote_rtl_large.png\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f22483f1-1025-4404-83ee-02c03f270c67\" -o \"C:/Users/Faisal/quote_ltr_small.png\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/images/WTmRAkJVvw0IvZMA7wBdTC?ids=4482%3A4847%2C4482%3A4851%2C4482%3A4859%2C4482%3A4863%2C4482%3A4913%2C4482%3A4915%2C4482%3A4917%2C4482%3A4919%2C4482%3A4921%2C4482%3A4923&format=svg\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/2e512934-6dc2-4bdf-afae-670e4c71463c\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6aa7c40f-b633-442c-9fb4-e11b86fbe49e\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/12e080fa-798b-4e33-8a49-46591a6a2a11\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f0190add-806c-44d6-970b-bd7b6c0ac9d6\")",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/images/WTmRAkJVvw0IvZMA7wBdTC?ids=4482%3A4913%2C4482%3A4914%2C4482%3A4917%2C4482%3A4918%2C4482%3A4921%2C4482%3A4922&format=png&scale=2\")",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/ff329638-43a8-4742-b391-c0f319ea7e24\" -o C:/Users/Faisal/rating_large_default.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/4ea860bc-cd6c-46f2-b4b8-2d066f6dc042\" -o C:/Users/Faisal/rating_large_brand.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/d93e8061-8184-4ce5-a0bb-3e5398ff3e05\" -o C:/Users/Faisal/rating_medium_default.png)",
+      "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c3af7ca2-2284-4153-93a4-ce3599ca5c4b\" -o C:/Users/Faisal/rating_small_default.png)"
     ]
   }
 }

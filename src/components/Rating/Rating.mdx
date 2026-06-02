@@ -1,0 +1,239 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import React, { useState } from 'react';
+import { RatingStar, Rating } from './Rating';
+
+export const InteractiveDefault = () => {
+  const [val, setVal] = useState(3);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: '16px 0' }}>
+      {['large', 'medium', 'small'].map((size) => (
+        <div key={size}>
+          <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+            {size.charAt(0).toUpperCase() + size.slice(1)}
+          </div>
+          <Rating size={size} value={val} onChange={setVal} />
+          <div style={{ marginTop: 6, fontSize: 12, color: '#6b7280', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+            Value: {val}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export const InteractiveBrand = () => {
+  const [val, setVal] = useState(3);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: '16px 0' }}>
+      {['large', 'medium', 'small'].map((size) => (
+        <div key={size}>
+          <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+            {size.charAt(0).toUpperCase() + size.slice(1)} — Brand
+          </div>
+          <Rating size={size} brand value={val} onChange={setVal} />
+          <div style={{ marginTop: 6, fontSize: 12, color: '#6b7280', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+            Value: {val}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+<Meta title="Components/Rating/Docs" />
+
+# Rating
+
+Star rating component from the Masterteam Design System.
+
+**Figma:** [node 4250‑1940](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1940)
+
+Two exports:
+- **`RatingStar`** — single star, matches the `_RatingStar` Figma component set (24 variants)
+- **`Rating`** — interactive 5-star row, matches the `Rating` Figma component set (6 variants)
+
+---
+
+## RatingStar — States
+
+### Normal (gray)
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
+  <RatingStar size="large" state="normal" />
+  <RatingStar size="medium" state="normal" />
+  <RatingStar size="small" state="normal" />
+</div>
+
+### Selected — Default (amber)
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
+  <RatingStar size="large" state="selected" brand={false} />
+  <RatingStar size="medium" state="selected" brand={false} />
+  <RatingStar size="small" state="selected" brand={false} />
+</div>
+
+### Selected — Brand (blue)
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
+  <RatingStar size="large" state="selected" brand />
+  <RatingStar size="medium" state="selected" brand />
+  <RatingStar size="small" state="selected" brand />
+</div>
+
+### Half — Default (amber)
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
+  <RatingStar size="large" state="half" brand={false} />
+  <RatingStar size="medium" state="half" brand={false} />
+  <RatingStar size="small" state="half" brand={false} />
+</div>
+
+### Half — Brand (blue)
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
+  <RatingStar size="large" state="half" brand />
+  <RatingStar size="medium" state="half" brand />
+  <RatingStar size="small" state="half" brand />
+</div>
+
+### Pressed
+
+<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
+  <RatingStar size="large" state="pressed" />
+  <RatingStar size="medium" state="pressed" />
+  <RatingStar size="small" state="pressed" />
+</div>
+
+---
+
+## Rating — Sizes
+
+Value `3.5` (3 selected + 1 half + 1 normal) — the Figma demo value.
+
+### Large
+
+<div style={{ padding: '16px 0' }}>
+  <Rating size="large" value={3.5} readOnly />
+</div>
+
+### Medium
+
+<div style={{ padding: '16px 0' }}>
+  <Rating size="medium" value={3.5} readOnly />
+</div>
+
+### Small
+
+<div style={{ padding: '16px 0' }}>
+  <Rating size="small" value={3.5} readOnly />
+</div>
+
+---
+
+## Rating — Brand variant
+
+### Large — Brand
+
+<div style={{ padding: '16px 0' }}>
+  <Rating size="large" brand value={3.5} readOnly />
+</div>
+
+### Medium — Brand
+
+<div style={{ padding: '16px 0' }}>
+  <Rating size="medium" brand value={3.5} readOnly />
+</div>
+
+### Small — Brand
+
+<div style={{ padding: '16px 0' }}>
+  <Rating size="small" brand value={3.5} readOnly />
+</div>
+
+---
+
+## Rating — Values
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '16px 0' }}>
+  {[0, 0.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5].map((v) => (
+    <div key={v} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <span style={{ fontSize: 13, color: '#6b7280', width: 28, textAlign: 'right', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{v}</span>
+      <Rating size="medium" value={v} readOnly />
+    </div>
+  ))}
+</div>
+
+---
+
+## Rating — Interactive
+
+Click stars to set the value. Hover to preview.
+
+### Default (amber)
+
+<InteractiveDefault />
+
+### Brand (blue)
+
+<InteractiveBrand />
+
+---
+
+## Props
+
+### RatingStar
+
+| Prop      | Type                                         | Default    | Description                         |
+|-----------|----------------------------------------------|------------|-------------------------------------|
+| `size`    | `'large' \| 'medium' \| 'small'`            | `'large'`  | Star size (48 / 32 / 24 px)        |
+| `state`   | `'normal' \| 'selected' \| 'half' \| 'pressed'` | `'normal'` | Visual state                    |
+| `brand`   | `boolean`                                    | `false`    | Blue (#1849A9) instead of amber     |
+
+### Rating
+
+| Prop       | Type                                | Default   | Description                                  |
+|------------|-------------------------------------|-----------|----------------------------------------------|
+| `value`    | `number`                            | `0`       | Current rating (0–count, 0.5 increments)     |
+| `onChange` | `(n: number) => void`               | —         | Called with new integer value on click        |
+| `size`     | `'large' \| 'medium' \| 'small'`   | `'large'` | Star size                                    |
+| `brand`    | `boolean`                           | `false`   | Brand (blue) color scheme                    |
+| `readOnly` | `boolean`                           | `false`   | Disables interaction, removes pointer events |
+| `count`    | `number`                            | `5`       | Number of stars                              |
+
+---
+
+## Design Tokens
+
+| Token           | Value     |
+|-----------------|-----------|
+| Normal fill     | `#E5E7EB` |
+| Selected amber  | `#F79009` |
+| Selected brand  | `#1849A9` |
+| Pressed ring    | `#F3F4F6` |
+| Star size large | `48 × 48 px` |
+| Star size medium| `32 × 32 px` |
+| Star size small | `24 × 24 px` |
+| Row gap         | `4 px`    |
+
+---
+
+## Usage
+
+```jsx
+import { Rating, RatingStar } from './Rating';
+
+// Interactive 5-star rating
+const [rating, setRating] = useState(0);
+<Rating value={rating} onChange={setRating} size="large" />
+
+// Read-only display (e.g., from API)
+<Rating value={4.5} readOnly size="medium" />
+
+// Brand color
+<Rating value={3} brand size="large" />
+
+// Individual star for custom layouts
+<RatingStar size="large" state="selected" />
+<RatingStar size="medium" state="half" brand />
+<RatingStar size="small" state="pressed" />
+```
