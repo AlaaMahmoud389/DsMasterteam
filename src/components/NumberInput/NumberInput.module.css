@@ -1,0 +1,319 @@
+/*
+ * NumberInput.module.css — Masterteam Design System
+ * Figma: 4629:3942 (Number Input) · 4629:3845 (Input Prefix-Suffix)
+ *
+ * Design tokens:
+ *
+ * Input field borders:
+ *   Default        border #D2D6DB  bg #FFFFFF
+ *   Hovered        border #1F2A37  bg #FFFFFF
+ *   Pressed        border #D2D6DB  bg #F3F4F6
+ *   Focused        border #D2D6DB  + bottom underline #1849A9 2px
+ *   Disabled       border #E5E7EB  bg transparent
+ *   Read-only      border #CED3DC  bg transparent
+ *   Error          border #A30000
+ *
+ * Input styles:
+ *   Default         bg #FFFFFF
+ *   Filled lighter  bg #FCFCFD  (no border)
+ *   Filled darker   bg #F3F4F6  (no border)
+ *
+ * Text colors:
+ *   Label           #000B36  14px/400 (semibold: 600) (large: 16px)
+ *   Required *      #A30000
+ *   Disabled label  #6C7C96
+ *   Placeholder     #B6BDCA
+ *   Value           #000B36  16px/400
+ *   Helper normal   #384250  14px/400
+ *   Helper error    #B42318  14px/400
+ *
+ * Prefix-Suffix buttons:
+ *   Solid   Default  bg #F3F4F6
+ *   Solid   Hovered  bg #E5E7EB
+ *   Solid   Pressed  bg #D2D6DB
+ *   Solid   Selected bg #E5E7EB
+ *   Solid   Focused  bg #E5E7EB  outline #00001C
+ *   Solid   Disabled bg #D2D6DB  cursor not-allowed
+ *   Subtle  Default  transparent
+ *   Subtle  Hovered  bg #E5E7EB
+ *   Subtle  Pressed  bg #D2D6DB
+ *   Subtle  Focused  transparent  outline #00001C
+ *   Subtle  Disabled transparent  cursor not-allowed
+ *
+ * Sizes:
+ *   Large   input field 40px  button 56×40px
+ *   Medium  input field 32px  button 48×32px
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Wrapper
+   ══════════════════════════════════════════════════════════════════ */
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  min-width: 180px;
+}
+
+.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Label
+   ══════════════════════════════════════════════════════════════════ */
+.label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000b36;
+  font-family: inherit;
+}
+
+.labelSemibold {
+  font-weight: 600;
+}
+
+.labelLarge {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.labelDisabled {
+  color: #6c7c96;
+}
+
+.required {
+  color: #a30000;
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Input field container (the bordered row)
+   ══════════════════════════════════════════════════════════════════ */
+.inputField {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #d2d6db;
+  border-radius: 4px;
+  background: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+/* ── Sizes ──────────────────────────────────────────────────────── */
+.inputField {
+  height: 40px;        /* Large default */
+}
+
+.sizeMedium {
+  height: 32px;
+}
+
+/* ── Input Styles ───────────────────────────────────────────────── */
+.inputStyleDefault {
+  background: #ffffff;
+  border-color: #d2d6db;
+}
+
+.inputStyleFilledlighter {
+  background: #fcfcfd;
+  border-color: transparent;
+}
+
+.inputStyleFilleddarkr {
+  background: #f3f4f6;
+  border-color: transparent;
+}
+
+/* catch both camelCase results from the replace call */
+.inputStyleFilleddarker {
+  background: #f3f4f6;
+  border-color: transparent;
+}
+
+/* ── State overrides ─────────────────────────────────────────────── */
+.stateDefault:hover {
+  border-color: #1f2a37;
+}
+
+.stateHovered {
+  border-color: #1f2a37;
+}
+
+.statePressed {
+  border-color: #d2d6db;
+  background: #f3f4f6;
+}
+
+.stateFocused {
+  border-color: #d2d6db;
+  border-bottom-color: #1849a9;
+  border-bottom-width: 2px;
+}
+
+.stateDisabled {
+  border-color: #e5e7eb;
+  background: transparent;
+  cursor: not-allowed;
+}
+
+.stateReadonly {
+  border-color: #ced3dc;
+  background: transparent;
+}
+
+/* Error always overrides border colour */
+.error {
+  border-color: #a30000 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Inner <input> text field
+   ══════════════════════════════════════════════════════════════════ */
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000b36;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  outline: none;
+  text-align: center;
+
+  /* hide native number arrows */
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input::placeholder {
+  color: #b6bdca;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  color: #b6bdca;
+}
+
+.input:read-only {
+  cursor: default;
+  color: #384250;
+}
+
+.inputMedium {
+  font-size: 14px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Prefix / Suffix button
+   ══════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  transition: background 120ms ease;
+  color: #1f2a37;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── Sizes ──────────────────────────────────────────────────────── */
+.btnLarge {
+  width: 56px;
+  height: 40px;
+}
+
+.btnMedium {
+  width: 48px;
+  height: 32px;
+}
+
+/* ── Solid style ────────────────────────────────────────────────── */
+.btnSolid {
+  background: #f3f4f6;
+}
+
+.btnSolid:hover:not(:disabled),
+.btnSolid.btnStateHovered   { background: #e5e7eb; }
+
+.btnSolid:active:not(:disabled),
+.btnSolid.btnStatePressed   { background: #d2d6db; }
+
+.btnSolid.btnStateSelected  { background: #e5e7eb; }
+
+.btnSolid.btnStateFocused,
+.btnSolid:focus-visible     { background: #e5e7eb; outline: 2px solid #00001c; outline-offset: -2px; }
+
+.btnSolid.btnStateDisabled  { background: #d2d6db; }
+
+/* ── Subtle style ───────────────────────────────────────────────── */
+.btnSubtle {
+  background: transparent;
+}
+
+.btnSubtle:hover:not(:disabled),
+.btnSubtle.btnStateHovered  { background: #e5e7eb; }
+
+.btnSubtle:active:not(:disabled),
+.btnSubtle.btnStatePressed  { background: #d2d6db; }
+
+.btnSubtle.btnStateSelected { background: #e5e7eb; }
+
+.btnSubtle.btnStateFocused,
+.btnSubtle:focus-visible    { background: transparent; outline: 2px solid #00001c; outline-offset: -2px; }
+
+.btnSubtle.btnStateDisabled { background: transparent; }
+
+/* ── Disabled shared ────────────────────────────────────────────── */
+.btnDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #6c7c96;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Helper text
+   ══════════════════════════════════════════════════════════════════ */
+.helperText {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #384250;
+  font-family: inherit;
+}
+
+.helperTextError {
+  color: #b42318;
+}
+
+.helperIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: inherit;
+}
