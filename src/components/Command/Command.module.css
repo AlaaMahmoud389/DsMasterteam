@@ -200,8 +200,7 @@
   white-space: nowrap;
 }
 
-.textGroupStacked,
-.textStacked {
+.textGroupStacked {
   flex-direction: column;
   align-items: flex-start;
   white-space: normal;

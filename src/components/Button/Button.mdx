@@ -6,15 +6,18 @@ import * as ButtonStories from './Button.stories';
 <Meta of={ButtonStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Actions / Button</div>
-  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Button</h1>
-  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>Buttons trigger specific actions. The label describes what will happen when clicked. Choose the variant that matches the action's importance and visual context.</p>
-  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
-    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
-    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4159:280</span>
-    <a href="https://design.dga.gov.sa/guidelines/components/actions/buttons" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4159-296&t=gv8blf425MZ1IhAY-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Actions / Button</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Button</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 600, lineHeight: 1.7 }}>Buttons trigger specific actions. The label describes what will happen when clicked. Choose the variant that matches the action's importance and visual context.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4159:280</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/actions/buttons" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>DGA Guidelines</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4159-296&t=gv8blf425MZ1IhAY-4" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
   </div>
 </div>
 
@@ -60,28 +63,13 @@ Four visual styles · three sizes · six states · leading / trailing / icon-onl
   </div>
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
-<thead>
-<tr style={{ background: '#f0f1f3' }}>
-<th style={{ width: 44, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
-<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
-<th style={{ width: 190, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Required</th>
-</tr>
-</thead>
-<tbody>
-{[['1','Container','Always'],['2','Leading icon (24 / 20 / 16 px by size)','Optional'],['3','Text label','Required unless iconOnly'],['4','Trailing icon (24 / 20 / 16 px by size)','Optional'],['5','Focus ring','Automatic on keyboard nav']].map(([n,el,req],i)=>(
-<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
-<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
-</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
-</tr>
-))}
-</tbody>
-</table>
-</div>
+| # | Element | Required |
+|---|---|---|
+| 1 | Container | Always |
+| 2 | Leading icon (24 / 20 / 16 px by size) | Optional |
+| 3 | Text label | Required unless `iconOnly` |
+| 4 | Trailing icon (24 / 20 / 16 px by size) | Optional |
+| 5 | Focus ring | Automatic on keyboard nav |
 
 ---
 
@@ -102,28 +90,12 @@ Four visual styles · three sizes · six states · leading / trailing / icon-onl
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ display: 'grid', gridTemplateColumns: '155px 160px 1fr 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Variant</span><span>Figma Style</span><span>Background</span><span>Text</span></div>
-{[
-{v:'primary',fs:'primary',bg:'#1849a9',tx:'#f9fafb'},
-{v:'neutral',fs:'neutral',bg:'#f3f4f6',tx:'#000b36'},
-{v:'secondary-solid',fs:'Secondary-Solid',bg:'rgba(24,73,169,0.2)',tx:'#1849a9'},
-{v:'transparent',fs:'Transparent',bg:'none',tx:'#175cd3'},
-].map(({v,fs,bg,tx},i)=>(
-<div key={v} style={{display:'grid',gridTemplateColumns:'155px 160px 1fr 80px',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{v}</code>
-<code style={{fontSize:11,color:'#6b7280'}}>{fs}</code>
-<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-{bg!=='none'&&<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:bg,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>}
-<code style={{fontSize:11,color:'#111827'}}>{bg}</code>
-</span>
-<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:tx,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
-<code style={{fontSize:11,color:'#111827'}}>{tx}</code>
-</span>
-</div>
-))}
-</div>
+| Variant | Figma style | Background | Text |
+|---|---|---|---|
+| `primary` | primary | `#1849a9` | `#f9fafb` |
+| `neutral` | neutral | `#f3f4f6` | `#000b36` |
+| `secondary-solid` | Secondary-Solid | `rgba(24,73,169,0.2)` | `#1849a9` |
+| `transparent` | Transparent | none | `#175cd3` |
 
 ---
 
@@ -146,26 +118,10 @@ When `destructive="yes"` in Figma a separate danger palette replaces the standar
   </div>
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16, marginTop: 16 }}>
-<div style={{ display: 'grid', gridTemplateColumns: '160px 130px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Variant</span><span>Background</span><span>Text</span><span>Figma token</span></div>
-{[
-{v:'danger',bg:'#a30000',tx:'#f9fafb',ft:'danger-primary/background/default'},
-{v:'danger-secondary',bg:'#fcdad7',tx:'#a30000',ft:'danger-secondary/background/default'},
-].map(({v,bg,tx,ft},i)=>(
-<div key={v} style={{display:'grid',gridTemplateColumns:'160px 130px 100px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
-<code style={{fontSize:12,background:'#fff1f1',padding:'2px 6px',borderRadius:4,color:'#a30000',fontWeight:600}}>{v}</code>
-<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:bg,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
-<code style={{fontSize:11,color:'#111827'}}>{bg}</code>
-</span>
-<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:tx,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
-<code style={{fontSize:11,color:'#111827'}}>{tx}</code>
-</span>
-<code style={{fontSize:11,color:'#6b7280'}}>{ft}</code>
-</div>
-))}
-</div>
+| Variant | Background | Text | Figma token |
+|---|---|---|---|
+| `danger` | `#a30000` | `#f9fafb` | `danger-primary/background/default` |
+| `danger-secondary` | `#fcdad7` | `#a30000` | `danger-secondary/background/default` |
 
 <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginTop: 8 }}>
   <strong>Only use destructive buttons for irreversible actions</strong> (delete, remove, revoke). Always pair with a confirmation step.
@@ -191,29 +147,11 @@ When `destructive="yes"` in Figma a separate danger palette replaces the standar
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
-<thead>
-<tr style={{ background: '#f0f1f3' }}>
-{['Prop','Height','H-Padding','Icon','Font','Line-height'].map(h=>(
-<th key={h} style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>{h}</th>
-))}
-</tr>
-</thead>
-<tbody>
-{[['lg','40 px','12 px','24 px','16 px','24 px'],['md','32 px','8 px','20 px','14 px','20 px'],['sm','24 px','8 px','16 px','12 px','18 px']].map(([prop,...vals],i)=>(
-<tr key={prop} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
-<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code>
-</td>
-{vals.map((v,j)=>(
-<td key={j} style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', fontWeight: 600, verticalAlign: 'middle' }}>{v}</td>
-))}
-</tr>
-))}
-</tbody>
-</table>
-</div>
+| Prop | Height | H-Padding | Icon | Font | Line-height |
+|---|---|---|---|---|---|
+| `lg` | 40 px | 12 px | 24 px | 16 px | 24 px |
+| `md` | 32 px | 8 px | 20 px | 14 px | 20 px |
+| `sm` | 24 px | 8 px | 16 px | 12 px | 18 px |
 
 All sizes share: `border-radius: 4px` · `gap: 4px` · `font-weight: 500` · `font-family: IBM Plex Sans Arabic`.
 
@@ -261,133 +199,42 @@ All sizes share: `border-radius: 4px` · `gap: 4px` · `font-weight: 500` · `fo
 
 Every resolved token for every state and variant from Figma.
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
-<thead>
-<tr style={{ background: '#f0f1f3' }}>
-{['Variant','State','Token','Background','Text'].map(h=>(
-<th key={h} style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>{h}</th>
-))}
-</tr>
-</thead>
-<tbody>
-<tr style={{ background: '#fff' }}>
-<td rowSpan={5} style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb', borderRight: '1px solid #f3f4f6', verticalAlign: 'top', paddingTop: 14 }}>
-<code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>primary</code>
-</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Default</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>primary/background/default</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1849a9', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1849a9</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#f9fafb', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#f9fafb</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Hovered</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>primary/background/hovered</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#194185', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#194185</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#f9fafb', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#f9fafb</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Pressed</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>primary/background/pressed</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#102a56', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#102a56</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#f9fafb', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#f9fafb</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Focused</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>primary/background/focused</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1849a9', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1849a9</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#f9fafb', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#f9fafb</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb', color: '#9ca3af' }}>Disabled</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><code style={{ fontSize: 11, color: '#6b7280' }}>disabled/background/disabled</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#d2d6db', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#d2d6db</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#6c7c96', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#6c7c96</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td rowSpan={4} style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb', borderRight: '1px solid #f3f4f6', verticalAlign: 'top', paddingTop: 14 }}>
-<code style={{ fontSize: 11, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151', fontWeight: 600 }}>neutral</code>
-</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Default</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>neutral/background/default</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#f3f4f6', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#f3f4f6</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#000b36', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#000b36</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Hovered</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>neutral/background/hovered</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#e5e7eb', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#e5e7eb</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#000b36', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#000b36</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Pressed</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>neutral/background/pressed</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#d2d6db', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#d2d6db</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#000b36', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#000b36</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb', color: '#9ca3af' }}>Disabled</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><code style={{ fontSize: 11, color: '#6b7280' }}>disabled/background/disabled</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#d2d6db', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#d2d6db</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#6c7c96', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#6c7c96</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td rowSpan={4} style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb', borderRight: '1px solid #f3f4f6', verticalAlign: 'top', paddingTop: 14 }}>
-<code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>secondary-solid</code>
-</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Default</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>secondary/background/default</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(24,73,169,.20)', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>rgba(24,73,169,.20)</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1849a9', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1849a9</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Hovered</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>secondary/background/hovered</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(24,73,169,.10)', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>rgba(24,73,169,.10)</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1849a9', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1849a9</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Pressed</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>secondary/background/pressed</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(24,73,169,.30)', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>rgba(24,73,169,.30)</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1849a9', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1849a9</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb', color: '#9ca3af' }}>Disabled</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><code style={{ fontSize: 11, color: '#6b7280' }}>disabled/background/disabled</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#d2d6db', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#d2d6db</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#6c7c96', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#6c7c96</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td rowSpan={4} style={{ padding: '10px 16px', borderRight: '1px solid #f3f4f6', verticalAlign: 'top', paddingTop: 14 }}>
-<code style={{ fontSize: 11, background: '#f0f8ff', padding: '2px 7px', borderRadius: 4, color: '#175cd3', fontWeight: 600 }}>transparent</code>
-</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Default</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>transparent/icon/default</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#9ca3af' }}>none</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#175cd3', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#175cd3</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Hovered</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>transparent/text/hovered</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(24,73,169,.06)', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>rgba(24,73,169,.06)</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1570ef', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1570ef</code></span></td>
-</tr>
-<tr style={{ background: '#fafafa' }}>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827' }}>Pressed</td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 11, color: '#6b7280' }}>transparent/text/pressed</code></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: 'rgba(24,73,169,.12)', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>rgba(24,73,169,.12)</code></span></td>
-<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#1570ef', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#1570ef</code></span></td>
-</tr>
-<tr style={{ background: '#fff' }}>
-<td style={{ padding: '10px 16px', color: '#9ca3af' }}>Disabled</td>
-<td style={{ padding: '10px 16px' }}><code style={{ fontSize: 11, color: '#6b7280' }}>disabled/text/disabled</code></td>
-<td style={{ padding: '10px 16px' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#d2d6db', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#d2d6db</code></span></td>
-<td style={{ padding: '10px 16px' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 12, height: 12, borderRadius: 2, background: '#6c7c96', border: '1px solid rgba(0,0,0,.12)', display: 'inline-block', flexShrink: 0 }}/><code style={{ fontSize: 11 }}>#6c7c96</code></span></td>
-</tr>
-</tbody>
-</table>
-</div>
+**Primary**
+
+| State | Background | Value | Text |
+|---|---|---|---|
+| Default | `primary/background/default` | `#1849a9` | `#f9fafb` |
+| Hovered | `primary/background/hovered` | `#194185` | same |
+| Pressed | `primary/background/pressed` | `#102a56` | same |
+| Focused | `primary/background/focused` | `#1849a9` | same |
+| Disabled | `disabled/background/disabled` | `#d2d6db` | `#6c7c96` |
+
+**Neutral**
+
+| State | Background | Value | Text |
+|---|---|---|---|
+| Default | `neutral/background/default` | `#f3f4f6` | `#000b36` |
+| Hovered | `neutral/background/hovered` | `#e5e7eb` | same |
+| Pressed | `neutral/background/pressed` | `#d2d6db` | same |
+| Disabled | `disabled/background/disabled` | `#d2d6db` | `#6c7c96` |
+
+**Secondary-Solid**
+
+| State | Background | Value | Text |
+|---|---|---|---|
+| Default | `secondary/background/default` | `rgba(24,73,169,.20)` | `#1849a9` |
+| Hovered | `secondary/background/hovered` | `rgba(24,73,169,.10)` | same |
+| Pressed | `secondary/background/pressed` | `rgba(24,73,169,.30)` | same |
+| Disabled | `disabled/background/disabled` | `#d2d6db` | `#6c7c96` |
+
+**Transparent**
+
+| State | Background | Text | Value |
+|---|---|---|---|
+| Default | none | `transparent/icon/default` | `#175cd3` |
+| Hovered | `rgba(24,73,169,.06)` | `transparent/text/hovered` | `#1570ef` |
+| Pressed | `rgba(24,73,169,.12)` | `transparent/text/pressed` | `#1570ef` |
+| Disabled | `#d2d6db` | `disabled/text/disabled` | `#6c7c96` |
 
 ---
 

@@ -1,29 +1,18 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import styles from './Command.module.css';
 
-// ─── Static local assets (node 4747:83322) ───────────────────────
-import _searchIcon    from '../../assets/icons/search.svg';
-import _helpIcon      from '../../assets/icons/help.svg';
-import _userIcon      from '../../assets/icons/user.svg';
-import _dotIcon       from '../../assets/icons/dot.svg';
-import _arrowRightImg from '../../assets/icons/arrow-right.png';
-import _arrowUpImg    from '../../assets/icons/arrow-up.svg';
-import _arrowDownImg  from '../../assets/icons/arrow-down.svg';
-import _enterImg      from '../../assets/icons/enter.svg';
-import _arrowLeftImg  from '../../assets/icons/arrow-left.svg';
-import _settingsImg   from '../../assets/icons/settings.svg';
-
-const SEARCH_ICON          = _searchIcon;
-const HELP_ICON            = _helpIcon;
-export const AVATAR_SM_ICON = _userIcon;
-export const AVATAR_MD_ICON = _userIcon;
-export const DOT_IMG        = _dotIcon;
-const ARROW_RIGHT_IMG       = _arrowRightImg;
-const ARROW_UP_IMG          = _arrowUpImg;
-const ARROW_DOWN_IMG        = _arrowDownImg;
-const ENTER_IMG             = _enterImg;
-const ARROW_LEFT_IMG        = _arrowLeftImg;
-const SETTINGS_IMG          = _settingsImg;
+// ─── Figma assets (node 4747:83322) ──────────────────────────────
+const SEARCH_ICON     = 'https://www.figma.com/api/mcp/asset/fdad0fba-0785-4ece-b0c6-8433d568888c';
+const HELP_ICON       = 'https://www.figma.com/api/mcp/asset/c5fe3a8e-7754-48c8-8b69-0da130b50bb5';
+export const AVATAR_SM_ICON  = 'https://www.figma.com/api/mcp/asset/48723fc5-be27-4f4b-8328-d49acb2bcdbc';
+export const AVATAR_MD_ICON  = 'https://www.figma.com/api/mcp/asset/2fd00ea8-f754-4083-85ec-fd684e5b0a7d';
+export const DOT_IMG         = 'https://www.figma.com/api/mcp/asset/c32f2149-b779-40d8-ac8f-b2322feab2b7';
+const ARROW_RIGHT_IMG = 'https://www.figma.com/api/mcp/asset/ea3240fc-1dcc-4380-b188-78aa1a28f1f7'; // from _Command shortcut node 4807:133374
+const ARROW_UP_IMG    = 'https://www.figma.com/api/mcp/asset/c6d04ce1-508e-4f49-b3d2-8c0fe5453127';
+const ARROW_DOWN_IMG  = 'https://www.figma.com/api/mcp/asset/2796342a-5216-4416-b802-a487c9e61d61';
+const ENTER_IMG       = 'https://www.figma.com/api/mcp/asset/054d5b88-3dc0-4337-bb4f-ca9eb8c41a54';
+const ARROW_LEFT_IMG  = 'https://www.figma.com/api/mcp/asset/2a8cbde5-027f-42a3-91c1-b413967e9203';
+const SETTINGS_IMG    = 'https://www.figma.com/api/mcp/asset/ea1721c1-0aa0-40cd-9763-01cdc1fa9b93';
 
 // ─── CommandInput ──────────────────────────────────────────────────
 // state       : 'placeholder' | 'filled' | 'focus'
