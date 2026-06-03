@@ -1,0 +1,563 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { NotificationToast } from './NotificationToast';
+import * as NotificationToastStories from './NotificationToast.stories';
+
+<Meta of={NotificationToastStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Feedback / Notification Toast</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Notification Toast</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>Toasts are transient, non-modal notification cards that appear on top of content — typically at a screen corner — to deliver brief alerts. They float above the layout with a drop shadow, feature a colored left-side accent, and support an optional dismiss button and action buttons. Unlike the full-width Notification banner, toasts are compact, positioned, and auto-dismissible.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:21638</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/feedback/notification" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-21638&t=fWTlS4h9RZJZvHwC-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Sizes','#sizes'],['RTL Support','#rtl-support'],['States','#states'],['Dismiss Animation','#dismiss-animation'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16, alignItems: 'flex-start' }}>
+  <NotificationToast variant="Neutral" />
+  <NotificationToast variant="Info" />
+  <NotificationToast variant="Critical/Error" />
+  <NotificationToast variant="Warning" />
+  <NotificationToast variant="Success" />
+</div>
+
+Five severity variants · white card with drop shadow · 8 px colored left accent · optional helper text, close button, and action buttons · desktop (484 px) and mobile (343 px) sizes · full RTL support · animated dismiss. All tokens sourced from Figma node `4399:21638`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 24 }}>
+  <NotificationToast variant="Info" actions={true} />
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', justifyContent: 'flex-start' }}>
+    {[['1','White card (bg/shadow/radius)'],['2','Left accent border (8 px)'],['3','Icon circle (40 × 40 px)'],['4','Title (semibold 16 px)'],['5','Description (regular 14 px, optional)'],['6','Close button (optional)'],['7','Action buttons row (optional)']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ width: 44, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
+<th style={{ width: 190, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Required</th>
+</tr>
+</thead>
+<tbody>
+{[
+  ['1','White card with drop shadow and 8px border-radius','Always'],
+  ['2','Left (or top on mobile) accent border, 8px, variant color','Automatic'],
+  ['3','Icon circle 40 × 40 px with variant-specific background','Always'],
+  ['4','Title — 16px semibold, dark navy #000b36','Always'],
+  ['5','Description text — 14px regular, gray #3c5073','When helperText=true'],
+  ['6','Close button (×)','When closeButton=true'],
+  ['7','Action buttons — two neutral 32px buttons (desktop) / 40px full-width (mobile)','When actions=true'],
+].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Variants
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+  {[
+    ['Neutral',        '#6b7280', 'Low-priority system information. Neutral gray accent.'],
+    ['Info',           '#1849a9', 'Informational message using the brand palette.'],
+    ['Critical/Error', '#a30000', 'Errors or failures requiring immediate attention.'],
+    ['Warning',        '#dd7600', 'Cautionary messages — user should be aware before continuing.'],
+    ['Success',        '#006121', 'Confirms a completed action or positive system state.'],
+  ].map(([variant, color, desc]) => (
+    <div key={variant} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: color, flexShrink: 0 }}/>
+        <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151' }}>{variant}</code>
+        <span style={{ fontSize: 13, color: '#6b7280' }}>{desc}</span>
+      </div>
+      <NotificationToast variant={variant} />
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Variant</span><span>Icon Circle BG</span><span>Accent Border Color</span>
+</div>
+{[
+  {v:'Neutral',        ib:'#f3f4f6',ac:'#d2d6db'},
+  {v:'Info',           ib:'#eff8ff',ac:'#1849a9'},
+  {v:'Critical/Error', ib:'#fdeceb',ac:'#a30000'},
+  {v:'Warning',        ib:'#fef4e6',ac:'#dd7600'},
+  {v:'Success',        ib:'#e6f4ee',ac:'#006121'},
+].map(({v,ib,ac},i)=>(
+<div key={v} style={{display:'grid',gridTemplateColumns:'140px 130px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{v}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+  <span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:ib,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+  <code style={{fontSize:11,color:'#111827'}}>{ib}</code>
+</span>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+  <span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:ac,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+  <code style={{fontSize:11,color:'#111827'}}>{ac}</code>
+</span>
+</div>
+))}
+</div>
+
+---
+
+## Sizes
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Desktop — 484 px</div>
+    <NotificationToast variant="Info" />
+    <div style={{ marginTop: 12, fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>
+      Width: 484 px · Padding: 16 px vertical / 24 px horizontal · Action buttons: 32 px height · <strong>Left vertical accent</strong> (8 px)
+    </div>
+  </div>
+  <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Mobile — 343 px</div>
+    <NotificationToast variant="Info" mobile={true} />
+    <div style={{ marginTop: 12, fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>
+      Width: 343 px · Padding: 16 px all sides · Action buttons: 40 px full-width stacked · <strong>Top horizontal accent</strong> (8 px)
+    </div>
+  </div>
+</div>
+
+| Property | Desktop | Mobile |
+|---|---|---|
+| Width | 484 px | 343 px |
+| Padding | 16 px × 24 px | 16 px all sides |
+| Accent position | Left vertical 8 px | Top horizontal 8 px |
+| Action button height | 32 px | 40 px |
+| Action button width | Auto (inline) | Full width (stacked) |
+
+---
+
+## RTL Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+    </div>
+    <NotificationToast variant="Warning" rtl={false} />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
+    </div>
+    <NotificationToast variant="Warning" rtl={true} title="عنوان رسالة الاشعار أو التنبيه" description="يكتب المحتوى الإضافي هنا في حال ان رسالة الاشعار أو التنبيه تحتاج الى شرح أو تفصيل." />
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>RTL note:</strong> Setting <code>rtl=true</code> applies <code>dir="rtl"</code> to the card. The flex row mirrors automatically — icon moves right, text aligns right, close button moves left. The accent border moves to the right side via <code>padding-inline-start</code> and CSS class overrides.
+</div>
+
+---
+
+## States
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+  {[
+    { name: 'Default',           badge: 'closeButton + helperText',        desc: 'Standard configuration — close button visible, description shown.',            toast: <NotificationToast key="d"  variant="Neutral" /> },
+    { name: 'No Helper Text',    badge: 'helperText=false',                 desc: 'Title-only — removes the description line, reducing the card height.',         toast: <NotificationToast key="nh" variant="Info" helperText={false} /> },
+    { name: 'With Actions',      badge: 'actions=true',                     desc: 'Two action buttons appear below the text, indented to align with the title.',   toast: <NotificationToast key="a"  variant="Success" actions={true} action1Label="View" action2Label="Dismiss" /> },
+    { name: 'No Close Button',   badge: 'closeButton=false',                desc: 'Persistent toast — no dismiss affordance; requires programmatic removal.',       toast: <NotificationToast key="nc" variant="Warning" closeButton={false} /> },
+    { name: 'Mobile',            badge: 'mobile=true',                      desc: '343 px width, 16 px padding on all sides, top horizontal 8 px accent.',        toast: <NotificationToast key="m"  variant="Critical/Error" mobile={true} /> },
+    { name: 'Mobile + Actions',  badge: 'mobile=true + actions=true',       desc: 'Full-width stacked action buttons at 40 px height, no left indent.',           toast: <NotificationToast key="ma" variant="Success" mobile={true} actions={true} action1Label="Confirm" action2Label="Cancel" /> },
+  ].map(({ name, badge, desc, toast }) => (
+    <div key={name} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+      <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#111827', flexShrink: 0 }}>{name}</span>
+        <code style={{ fontSize: 11, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151', flexShrink: 0 }}>{badge}</code>
+        <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+      </div>
+      <div style={{ padding: '20px 24px', background: '#fff', display: 'flex', justifyContent: 'flex-start' }}>
+        {toast}
+      </div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Dismiss Animation
+
+Both the **Notification banner** and **Notification Toast** include built-in dismiss animations triggered when the close button is clicked.
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f0f1f3', padding: '9px 14px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, color: '#374151' }}>Banner (Notification)</div>
+    <div style={{ padding: '12px 14px', background: '#fff', fontSize: 12, color: '#6b7280', lineHeight: 1.6 }}>
+      <strong>Phase 1 (0–45%)</strong>: Fade out + slide up (-10px)<br/>
+      <strong>Phase 2 (45–100%)</strong>: Height collapse to 0, padding zeroed<br/>
+      <strong>Duration</strong>: 350ms · easing: cubic-bezier(0.4, 0, 0.2, 1)<br/>
+      <strong>Effect</strong>: Sibling elements smoothly fill the vacated space
+    </div>
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f0f1f3', padding: '9px 14px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, color: '#374151' }}>Toast (NotificationToast)</div>
+    <div style={{ padding: '12px 14px', background: '#fff', fontSize: 12, color: '#6b7280', lineHeight: 1.6 }}>
+      <strong>Phase 1 (0–45%)</strong>: Fade out + slide right (+20px, -20px for RTL) + scale(0.98)<br/>
+      <strong>Phase 2 (45–100%)</strong>: Height collapse, margin-bottom: -16px<br/>
+      <strong>Duration</strong>: 380ms · easing: cubic-bezier(0.4, 0, 0.2, 1)<br/>
+      <strong>Effect</strong>: Toast slides off then collapses, stack re-flows
+    </div>
+  </div>
+</div>
+
+```jsx
+// Animation is fully internal — just wire onDismiss to remove from state
+const [toasts, setToasts] = useState([{ id: 1, variant: 'Info' }]);
+
+<NotificationToast
+  variant="Info"
+  onDismiss={() => setToasts(prev => prev.filter(t => t.id !== 1))}
+/>
+// The component plays the exit animation, then calls onDismiss when it completes.
+// Remove the item from state inside onDismiss — not before.
+```
+
+<div style={{ background: '#fff7ed', border: '1px solid #fed7aa', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#c2410c', marginBottom: 16 }}>
+  <strong>Important:</strong> Remove the toast from state <strong>inside</strong> <code>onDismiss</code> (called <em>after</em> the animation ends), not when the button is clicked. Removing it immediately will cut the animation short.
+</div>
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Layout & Shape</div>
+<div style={{ display: 'grid', gridTemplateColumns: '235px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--notification-toast-radius',        v:'8px',   f:'notification/spacing/card-radius-sm', u:'Card border radius'},
+  {t:'--notification-toast-width',         v:'484px', f:'(desktop card width)',                u:'Desktop card width'},
+  {t:'--notification-toast-width-mobile',  v:'343px', f:'(mobile card width)',                 u:'Mobile card width'},
+  {t:'--notification-toast-padding-v',     v:'16px',  f:'notification/spacing/card-lg-padding',u:'Vertical padding'},
+  {t:'--notification-toast-padding-h',     v:'24px',  f:'notification/spacing/card-2xl-padding',u:'Horizontal padding (desktop)'},
+  {t:'--notification-toast-gap',           v:'16px',  f:'notification/spacing/card-lg-gap',    u:'Gap between header and actions'},
+  {t:'--notification-toast-header-gap',    v:'12px',  f:'global/spacing-lg',                   u:'Gap between icon / text / button'},
+  {t:'--notification-toast-text-gap',      v:'4px',   f:'global/spacing-xs',                   u:'Gap between title and description'},
+].map(({t,v,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'235px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Typography & Base Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '235px 130px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--notification-bg-primary',       h:'#ffffff', f:'notification/background/primary', u:'Card background (all variants)'},
+  {t:'--notification-text-info',        h:'#000b36', f:'notification/text/info',          u:'Title text color (all variants)'},
+  {t:'--notification-text-secondary',   h:'#3c5073', f:'notification/text/secondary',     u:'Description text color (all variants)'},
+].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'235px 130px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Accent Border Colors (per variant)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '235px 130px 1fr 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Variant</span></div>
+{[
+  {t:'--notification-border-info',    h:'#d2d6db', f:'notification/border/info',    v:'Neutral'},
+  {t:'--notification-text-brand',     h:'#1849a9', f:'notification/text/brand',     v:'Info'},
+  {t:'--notification-border-error',   h:'#a30000', f:'notification/border/error',   v:'Critical/Error'},
+  {t:'--notification-border-warning', h:'#dd7600', f:'notification/border/warning', v:'Warning'},
+  {t:'--notification-border-success', h:'#006121', f:'notification/border/success', v:'Success'},
+].map(({t,h,f,v},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'235px 130px 1fr 80px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#374151'}}>{v}</span>
+</div>
+))}
+</div>
+
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 100px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+  {n:'variant',      type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'Neutral',     d:"Visual type and accent color — Neutral · Info · Critical/Error · Warning · Success. Maps to Figma 'type' prop."},
+  {n:'closeButton',  type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'true',        d:'Show the × close button in the header. Set false for persistent toasts.'},
+  {n:'actions',      type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',       d:'Show two action buttons below the content. Desktop: 32px inline. Mobile: 40px full-width stacked.'},
+  {n:'helperText',   type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'true',        d:'Show or hide the secondary description text below the title.'},
+  {n:'mobile',       type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',       d:'343px mobile card with top horizontal accent and stacked full-width action buttons.'},
+  {n:'rtl',          type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',       d:'Right-to-left layout for Arabic. Mirrors flex layout and moves accent border to the right side.'},
+  {n:'title',        type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"Notification…"', d:'Main title text — rendered semibold 16px in dark navy (#000b36).'},
+  {n:'description',  type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"When a…"',   d:'Secondary helper description text — rendered regular 14px in gray (#3c5073). Shown when helperText=true.'},
+  {n:'action1Label', type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"Action"',    d:'Label for the first action button.'},
+  {n:'action2Label', type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"Action"',    d:'Label for the second action button.'},
+  {n:'onDismiss',    type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',           d:'Called after the dismiss animation completes. Wire this to remove the toast from state — do not remove on button click.'},
+  {n:'onAction1',    type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',           d:'Called when action button 1 is clicked.'},
+  {n:'onAction2',    type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',           d:'Called when action button 2 is clicked.'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 100px 100px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+  {cat:'Semantics & ARIA',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'A',items:[
+    {title:'role="alert" on the card',desc:'Announces the toast to screen readers immediately on render. Appropriate for time-sensitive or important messages. For non-urgent toasts, consider role="status" to avoid interrupting ongoing AT output.'},
+    {title:'Close button has aria-label',desc:'"Dismiss notification" is always applied to the × button. AT users can dismiss without reading surrounding context.'},
+    {title:'Icons are aria-hidden',desc:'All SVG icons have aria-hidden="true". The title and description text provide the full accessible meaning.'},
+  ]},
+  {cat:'Keyboard Navigation',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'⌨',items:[
+    {title:'Close and action buttons are keyboard-focusable',desc:'All interactive elements are native <button> elements. Tab order: close button → action 1 → action 2.'},
+    {title:'Focus rings use outline',desc:'2px outline on :focus-visible with 2px offset — visible on the white card background. Close button uses #1849a9, action buttons also use #1849a9.'},
+    {title:'Dismiss animation does not break focus',desc:'pointer-events: none is set during animation, preventing double-clicks. Focus is not manually moved — browser handles naturally.'},
+  ]},
+  {cat:'Visual',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+    {title:'Color is not the only differentiator',desc:'Each variant has a unique icon shape (triangle, circle, checkmark, info) alongside the colored accent, so severity is communicated without relying on color alone.'},
+    {title:'Title text is always dark (#000b36)',desc:'All variants share the same dark navy title color — consistent readability regardless of variant.'},
+    {title:'Sufficient contrast on white',desc:'Title #000b36 on white ≥ 18:1 · Description #3c5073 on white ≥ 7.5:1 — both exceed WCAG AAA.'},
+    {title:'Drop shadow provides depth without color',desc:'The shadow-3xl (0 32 64 -12 rgba(16,24,40,0.14)) is a visual-only affordance and does not carry semantic meaning.'},
+  ]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', minHeight: 100, display: 'flex', alignItems: 'flex-start', background: '#fff' }}>
+  <NotificationToast variant="Success" title="File uploaded" description="report_q1_2026.pdf was uploaded successfully." />
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Short, contextual success confirmation</div>
+{['Use toasts for brief feedback after a user-initiated action.','Provide onDismiss so the toast can be dismissed or auto-removed after a timeout.','Keep title under 60 characters and description under 120 characters.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', minHeight: 100, display: 'flex', alignItems: 'flex-start', background: '#fff' }}>
+  <NotificationToast variant="Critical/Error" closeButton={false} title="Form errors" description="Please fix all the required fields below before submitting the form again." />
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Error toast for an inline form validation issue</div>
+{['Form validation errors belong inline next to the field, not in a toast.','Avoid blocking toasts — use the Notification banner for persistent errors.','Do not use a toast for information the user needs to act on immediately.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Use for transient feedback: save confirmation, copy success, file upload.','Use Success for completed actions, Info for neutral system messages.','Auto-dismiss after 4–6 seconds for non-critical toasts.','Wire onDismiss to remove from state AFTER animation completes.','Limit to 1–3 visible toasts at a time to avoid overwhelming users.','Use mobile=true on viewports narrower than 480px.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
+{["Don't use for form validation — use inline errors instead.","Don't use for blocking errors — use the Notification banner.","Don't remove the toast from state before the animation ends.","Don't stack more than 3 toasts — queue them if needed.","Don't put long multi-sentence text in a toast — keep it concise.","Don't auto-dismiss Critical/Error toasts — let the user dismiss manually."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { NotificationToast } from '@/components/NotificationToast';
+
+// Basic usage
+<NotificationToast
+  variant="Success"
+  title="Profile saved"
+  description="Your changes have been saved successfully."
+  onDismiss={() => setVisible(false)}
+/>
+
+// With action buttons
+<NotificationToast
+  variant="Info"
+  title="New update available"
+  description="Version 2.4.0 includes performance improvements."
+  actions={true}
+  action1Label="Update now"
+  action2Label="Later"
+  onAction1={handleUpdate}
+  onAction2={handleDismiss}
+  onDismiss={() => setVisible(false)}
+/>
+
+// Mobile size
+<NotificationToast
+  variant="Warning"
+  mobile={true}
+  title="Low storage"
+  description="You have less than 500MB remaining."
+  onDismiss={() => setVisible(false)}
+/>
+
+// RTL Arabic
+<NotificationToast
+  variant="Success"
+  rtl={true}
+  title="تم الحفظ بنجاح"
+  description="تم حفظ جميع التغييرات بنجاح."
+  onDismiss={() => setVisible(false)}
+/>
+
+// Persistent (no auto-dismiss, no close button)
+<NotificationToast
+  variant="Critical/Error"
+  closeButton={false}
+  title="Connection lost"
+  description="Attempting to reconnect..."
+/>
+
+// Controlled toast stack — animate then remove from state
+const [toasts, setToasts] = useState([]);
+
+const addToast = (variant, title) =>
+  setToasts(prev => [...prev, { id: Date.now(), variant, title }]);
+
+const removeToast = (id) =>
+  setToasts(prev => prev.filter(t => t.id !== id));
+
+// Auto-dismiss after 5s for non-critical
+useEffect(() => {
+  const id = setTimeout(() => onDismiss?.(), 5000);
+  return () => clearTimeout(id);
+}, []);
+
+{toasts.map(toast => (
+  <NotificationToast
+    key={toast.id}
+    variant={toast.variant}
+    title={toast.title}
+    onDismiss={() => removeToast(toast.id)}
+  />
+))}
+```
+
+---
+
+## Figma Reference
+
+- **Component node:** [4399:21638 — Masterteam DS Notification Toast](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-21638&t=fWTlS4h9RZJZvHwC-4)
+- **DGA Guidelines:** [design.dga.gov.sa/guidelines/components/feedback/notification](https://design.dga.gov.sa/guidelines/components/feedback/notification)
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4399:21638`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>6 Matched</span>
+<span style={{ background: '#fff7ed', color: '#c2410c', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fed7aa' }}>1 Pending</span>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Area</span><span>Status</span><span>Notes</span></div>
+{[
+  {a:'All 5 variant accent colors',                                s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Exact colors from Figma: border/info, text/brand, border/error, border/warning, border/success. All at 0.7 opacity.'},
+  {a:'Desktop (484px) and mobile (343px) sizes',                  s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Width, padding, and action button sizing match Figma exactly. Mobile prop controls the switch.'},
+  {a:'Desktop vertical accent vs mobile horizontal accent',       s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Desktop: 8px left strip (right for RTL). Mobile: 8px top strip. Matches Figma layout per size.'},
+  {a:'RTL layout via dir="rtl" + CSS class',                      s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Flex layout mirrors. Accent border moves to right side using .rtl .accent override. Dismiss animation uses separate RTL keyframe (slide left).'},
+  {a:'helperText, closeButton, actions boolean props',            s:'Matched', sb:'#ecfdf5',st:'#059669',n:'All three Figma boolean props implemented. helperText controls description visibility. actions shows 2 neutral buttons.'},
+  {a:'Dismiss animation (slide + fade + collapse)',               s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Two-phase animation: fade+slide in 45%, height collapse in 55%. onDismiss fires via onAnimationEnd after full animation.'},
+  {a:'Icon circle color (icon SVG color tint per variant)',       s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma uses specific icon images per variant at exact sizes. Inline SVG approximations used here. A future pass should replace with the exact Figma icon assets for pixel-perfect fidelity.'},
+].map(({a,s,sb,st,n},i)=>(
+<div key={a} style={{display:'grid',gridTemplateColumns:'1fr 100px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{s}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+</div>
+))}
+</div>
+
+</div>

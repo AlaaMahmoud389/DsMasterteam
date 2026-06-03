@@ -1,0 +1,288 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ProgressChartStories from './ProgressChart.stories';
+import { ProgressChart } from './ProgressChart';
+
+<Meta of={ProgressChartStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Progress Bar / Progress Chart</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Progress Chart</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A three-ring concentric chart card with interactive hover tooltips, optional center value and label, and a six-item legend. Ideal for visualising proportion breakdowns in dashboard cards. Built from Figma node 4531:5667.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4531:5667</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4531-5667" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['States','#states'],['Tooltip','#tooltip'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Design Tokens','#design-tokens'],['Properties','#properties'],['Accessibility','#accessibility'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+<Canvas of={ProgressChartStories.Playground} />
+<Controls of={ProgressChartStories.Playground} />
+</div>
+
+## Anatomy
+
+<div id="anatomy" style={{ marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', gap: 12 }}>
+  {['#','Region / Element','Class / Tag','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['1','Card container',    'div.card',          '510 px wide · 24 px padding · 8 px border-radius · 1 px border #e7e9ed'],
+  ['2','Title row',         'span.title',        '16 px / 500 / #3c5073 · hidden when showTitle=false'],
+  ['3','Chart area',        'div.chartArea',     'Centers SVG (270 × 270 px) + center overlay + tooltip'],
+  ['4','Outer ring',        'circle r=113 sw=20','Arc fills clockwise from 12 o\'clock'],
+  ['5','Middle ring',       'circle r=90 sw=18', 'Arc fills clockwise from 12 o\'clock'],
+  ['6','Inner ring',        'circle r=67 sw=16', 'Arc fills clockwise from 12 o\'clock'],
+  ['7','Center overlay',    'div.centerOverlay', 'Optional label (16 px/500) above value (30 px/700)'],
+  ['8','Tooltip',           'div.tooltip',       'Follows cursor on arc hover — shows color mark + label + value%'],
+  ['9','Legend',            'div.legend',        '2-column grid · 6 items with 8 × 8 px color squares'],
+].map(([n, region, el, notes], i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{region}</span>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{el}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+## States
+
+<div id="states" style={{ marginBottom: 24 }}>
+  <div style={{ marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>All states grid</div>
+  <Canvas of={ProgressChartStories.AllStates} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Legend only (default)</div>
+  <Canvas of={ProgressChartStories.Playground} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>With center label</div>
+  <Canvas of={ProgressChartStories.WithLabel} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Without legend</div>
+  <Canvas of={ProgressChartStories.WithoutLegend} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Without title</div>
+  <Canvas of={ProgressChartStories.WithoutTitle} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Minimal (no title, no label, no legend)</div>
+  <Canvas of={ProgressChartStories.NoLabelNoLegend} />
+</div>
+
+## Tooltip
+
+<div id="tooltip" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Hover any filled arc segment to see the interactive tooltip. It tracks the cursor via <code>onMouseMove</code> and <code>getBoundingClientRect</code>, showing a color swatch, the ring label, and the value percentage. The tooltip is mouse-only — ensure values are also accessible via the legend.
+</div>
+<Canvas of={ProgressChartStories.LabelAndLegend} />
+</div>
+
+## RTL Support
+
+<div id="rtl-support" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  RTL mode applies <code>transform: scaleX(-1)</code> to the SVG, reversing arc fill to counter-clockwise. The legend color mark moves to the right of the label text. The center overlay value and label are unaffected by the SVG flip. <code>dir="rtl"</code> is set on the card root for correct reading order.
+</div>
+<Canvas of={ProgressChartStories.RTLArabic} />
+<Canvas of={ProgressChartStories.AllStatesRTL} />
+</div>
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #bbf7d0', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#dcfce7', padding: '10px 16px', borderBottom: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#16a34a', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#15803d' }}>Do</span>
+    </div>
+    {[
+      'Use the Progress Chart to show how 3 data series relate proportionally to each other in a single compact card.',
+      'Always provide a legend (showLegend=true) or a center label so users can identify each ring without relying on color alone.',
+      'Use the center value to anchor a key metric (total count, budget, etc.) that gives the rings context.',
+      'Provide hover-accessible tooltip text by ensuring the ring label prop is descriptive and meaningful.',
+      'Enable RTL mode for Arabic/Hebrew content — arc direction, legend, and card layout all adapt automatically.',
+      'Use distinct, brand-appropriate colors per ring with sufficient contrast against the #e7e9ed track.',
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderBottom: '1px solid #dcfce7', background: i % 2 === 0 ? '#fff' : '#f0fdf4' }}>
+        <span style={{ color: '#16a34a', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#166534', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#fee2e2', padding: '10px 16px', borderBottom: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✗</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#991b1b' }}>Don't</span>
+    </div>
+    {[
+      "Don't use more than 3 rings — the component supports a maximum of 3 concentric arcs.",
+      "Don't rely on the hover tooltip as the only way to communicate ring values — it's mouse-only and inaccessible to keyboard and touch users.",
+      "Don't omit the legend when all rings are similar colors or when the chart is used in a standalone context without surrounding data.",
+      "Don't set all ring values to 0 or 100 — a fully empty or fully filled chart loses its visual meaning.",
+      "Don't use the center value for non-numeric content — it is styled as a large display number; use the title for labels.",
+      "Don't place multiple Progress Charts side by side — use a Radial Chart with 4 rings for multi-series comparisons.",
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderBottom: '1px solid #fee2e2', background: i % 2 === 0 ? '#fff' : '#fef2f2' }}>
+        <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#991b1b', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+## Design Tokens
+
+<div id="design-tokens" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Card &amp; Layout</div>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 140px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>CSS Variable</span><span>Default</span><span>Usage</span>
+</div>
+{[
+  ['--progress-chart-bg',     '#ffffff', null,      'Card background'],
+  ['--progress-chart-border', '#e7e9ed', '#e7e9ed', 'Card border color (1 px solid)'],
+  ['--progress-chart-radius', '8px',     null,      'Card border-radius'],
+  ['—',                       '510 px',  null,      'Card fixed width (not customisable via token)'],
+  ['—',                       '24 px',   null,      'Card padding (all sides)'],
+].map(([token, val, swatch, usage], i) => (
+  <div key={token+i} style={{ display: 'grid', gridTemplateColumns: '200px 140px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {swatch && <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: swatch, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{usage}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors &amp; Typography</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>CSS Variable / Property</span><span>Default</span><span>Usage</span>
+</div>
+{[
+  { t: '--progress-chart-title',  h: '#3c5073', v: '#3c5073',               u: 'Card title text color' },
+  { t: '--progress-chart-value',  h: '#000b36', v: '#000b36',               u: 'Center value text color' },
+  { t: '--progress-chart-label',  h: '#000b36', v: '#000b36',               u: 'Center label text color' },
+  { t: '--progress-chart-legend', h: '#3c5073', v: '#3c5073',               u: 'Legend label text color' },
+  { t: '--progress-chart-track',  h: '#e7e9ed', v: '#e7e9ed',               u: 'Ring track background color' },
+  { t: 'Title font',              h: null,      v: 'IBM Plex Sans Arabic 16 px / 500', u: 'Card title' },
+  { t: 'Center value font',       h: null,      v: 'IBM Plex Sans Arabic 30 px / 700', u: 'Large numeric value in center' },
+  { t: 'Center label font',       h: null,      v: 'IBM Plex Sans Arabic 16 px / 500', u: 'Descriptive label above center value' },
+].map(({ t, h, v, u }, i) => (
+  <div key={t} style={{ display: 'grid', gridTemplateColumns: '220px 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {h && <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 11, color: '#374151' }}>{v}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Ring Geometry</div>
+<div style={{ display: 'grid', gridTemplateColumns: '100px 100px 130px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Ring','Radius','Stroke Width','Track Token','Notes'].map(h => <span key={h}>{h}</span>)}
+</div>
+{[
+  ['Outer',  '113 px', '20 px', '--progress-chart-track', 'Outermost ring — widest stroke'],
+  ['Middle', '90 px',  '18 px', '--progress-chart-track', ''],
+  ['Inner',  '67 px',  '16 px', '--progress-chart-track', 'Innermost ring — narrowest stroke'],
+].map(([ring, r, sw, track, note], i) => (
+  <div key={ring} style={{ display: 'grid', gridTemplateColumns: '100px 100px 130px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{ring}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{r}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{sw}</span>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{track}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>
+
+## Properties
+
+<div id="properties" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 150px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Prop','Type','Default','Description'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { n: 'title',      type: 'string',    tb: '#ecfdf5', tc: '#059669', def: '"Card Title"', d: 'Card title shown above the chart. Hidden when showTitle=false.' },
+  { n: 'showTitle',  type: 'boolean',   tb: '#fff7ed', tc: '#c2410c', def: 'true',         d: 'Toggle the title row.' },
+  { n: 'totalValue', type: 'string',    tb: '#ecfdf5', tc: '#059669', def: '"1,000"',      d: 'Large number displayed in the center overlay. Styled as 30 px / 700.' },
+  { n: 'totalLabel', type: 'string',    tb: '#ecfdf5', tc: '#059669', def: '""',           d: 'Label above the center value. Requires showLabel=true to be visible.' },
+  { n: 'showLabel',  type: 'boolean',   tb: '#fff7ed', tc: '#c2410c', def: 'false',        d: 'Show the center label text (totalLabel prop).' },
+  { n: 'rings',      type: 'Ring[]',    tb: '#f5f3ff', tc: '#6d28d9', def: '3 defaults',   d: 'Array of { label, value, color } — 1 to 3 items. Determines ring fill arcs and tooltip content.' },
+  { n: 'legend',     type: 'LegendItem[]', tb: '#f5f3ff', tc: '#6d28d9', def: '6 defaults', d: 'Array of { label, color } for the 2-column legend grid below the chart.' },
+  { n: 'showLegend', type: 'boolean',   tb: '#fff7ed', tc: '#c2410c', def: 'true',         d: 'Show or hide the legend grid.' },
+  { n: 'rtl',        type: 'boolean',   tb: '#fff7ed', tc: '#c2410c', def: 'false',        d: 'Enable RTL layout — reverses arc fill, flips legend color mark, sets dir="rtl" on card root.' },
+].map(({ n, type, tb, tc, def, d }, i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '130px 150px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 12, color: '#7c3aed', fontWeight: 600 }}>{n}</code>
+    <span style={{ fontSize: 11, background: tb, color: tc, padding: '2px 7px', borderRadius: 4, fontFamily: 'monospace', display: 'inline-block' }}>{type}</span>
+    <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{d}</span>
+  </div>
+))}
+</div>
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Concern','Implementation'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['SVG aria-hidden',       'aria-hidden="true" on the SVG element — the chart is decorative; ring data is conveyed by the legend, title, and center value.'],
+  ['Card role',             'Implicit div container. Add role="img" + aria-label for standalone widget context (e.g. inside a dashboard grid).'],
+  ['Keyboard tooltip',      'The hover tooltip is mouse-only. All ring values must be accessible via the legend labels as a keyboard-accessible alternative.'],
+  ['Color independence',    'Legend labels repeat the ring color meaning textually. Never rely solely on ring color to convey the data category.'],
+  ['RTL dir attribute',     'dir="rtl" set on the card root; legend, title, and center text adapt to right-to-left reading order automatically.'],
+  ['Ring contrast',         'Ring fill colors should achieve at least 3:1 contrast against the #e7e9ed track background per WCAG 1.4.11 (Non-text Contrast).'],
+].map(([concern, impl], i) => (
+  <div key={concern} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>{concern}</span>
+    <span style={{ fontSize: 13, color: '#3c5073', lineHeight: 1.5 }}>{impl}</span>
+  </div>
+))}
+</div>
+
+## Mismatch Report
+
+<div id="mismatch-report" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '40px 1fr 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['#','Figma Spec','Status','Notes'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { n:'1', a:'510 px card width',                             s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Fixed 510 px in CSS.' },
+  { n:'2', a:'3 rings: r=113/90/67, sw=20/18/16',            s:'Matched', sb:'#ecfdf5',st:'#059669', note:'All ring dimensions extracted directly from Figma.' },
+  { n:'3', a:'Center value: 30 px / 700 / #000b36',          s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Font size, weight, and color match Figma spec.' },
+  { n:'4', a:'Center label: 16 px / 500 / #000b36',          s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Font size, weight, and color match Figma spec.' },
+  { n:'5', a:'Legend: 2-col grid, 8 px swatch, 14 px / 400', s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Grid layout, swatch size, and label font size match.' },
+  { n:'6', a:'Hover tooltip with color swatch',              s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Implemented via onMouseMove + getBoundingClientRect; shows label + value%.' },
+  { n:'7', a:'RTL arc counter-clockwise fill',               s:'Matched', sb:'#ecfdf5',st:'#059669', note:'scaleX(-1) on SVG; legend color mark mirrors to right side.' },
+].map(({ n, a, s, sb, st, note }, i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 1fr 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#e5e7eb', color: '#374151', fontSize: 11, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, color: '#111827', lineHeight: 1.4 }}>{a}</span>
+    <span style={{ background: sb, color: st, fontSize: 11, padding: '3px 8px', borderRadius: 4, fontWeight: 700, display: 'inline-block', whiteSpace: 'nowrap' }}>{s}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>

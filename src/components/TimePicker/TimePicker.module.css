@@ -1,0 +1,461 @@
+/* ==========================================================
+   TimePicker — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4770:12915
+   ========================================================== */
+
+/*
+  Design tokens
+  --time-picker/background/default   → #ffffff
+  --time-picker/background/selected  → #eff8ff
+  --time-picker/border/default       → #f3f4f6
+  --time-picker/text/default         → #000b36
+  --time-picker/text/secondary       → #b6bdca
+  --time-picker/text/brand           → #1849a9
+  --time-picker/icon/arrow           → #9da4ae
+  --time-picker/spacing/card-sm-gap  → 8px
+  --time-picker/spacing/card-radius-xs → 4px
+*/
+
+/* ── Base ───────────────────────────────────────────────────── */
+
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--time-picker\/spacing\/card-sm-gap, 8px);
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.wrapDropdown { align-items: flex-end; }
+.wrapTimer    { align-items: flex-start; }
+
+/* ── Clock icon ─────────────────────────────────────────────── */
+
+.clockIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--time-picker\/icon\/arrow, #9da4ae);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── Stepper type ───────────────────────────────────────────── */
+
+/* Each time-unit box (Hours / Minutes / Seconds) */
+.stepperBox {
+  box-sizing: border-box;
+  width: 54px;
+  background: var(--time-picker\/background\/default, #fff);
+  border: 1px solid var(--time-picker\/border\/default, #f3f4f6);
+  border-radius: var(--time-picker\/spacing\/card-radius-xs, 4px);
+  padding: 4px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+.stepperVal {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--time-picker\/text\/default, #000b36);
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* Selector icon wrapper — two invisible click zones overlay the icon */
+.selectorWrap {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: var(--time-picker\/icon\/arrow, #9da4ae);
+}
+
+.selectorHalf {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.selectorHalf:focus-visible {
+  outline: 2px solid var(--time-picker\/text\/brand, #1849a9);
+  outline-offset: 1px;
+}
+
+.selectorUp   { top: 0; }
+.selectorDown { bottom: 0; }
+
+/* Period as plain text — clickable to toggle */
+.stepperPeriod {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--time-picker\/text\/default, #000b36);
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.stepperPeriod:hover { opacity: 0.7; }
+
+/* ── Dropdown type ──────────────────────────────────────────── */
+
+.ddWrap {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0;
+}
+
+/* Single time-unit column (Hours / Minutes / Seconds) */
+.ddGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.ddLabel {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--time-picker\/icon\/arrow, #9da4ae);
+  line-height: 14px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+/* Row: [select box] [colon indicator] */
+.ddContent {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.ddBox {
+  box-sizing: border-box;
+  width: 56px;
+  background: var(--time-picker\/background\/default, #fff);
+  border: 1px solid var(--time-picker\/border\/default, #f3f4f6);
+  border-radius: var(--time-picker\/spacing\/card-radius-xs, 4px);
+  padding: 4px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ddSelectVal {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--time-picker\/text\/default, #000b36);
+  line-height: 20px;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.ddChevWrap {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Invisible native select overlaid on the styled box */
+.ddSelect {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* Colon separator (:) between Dropdown units */
+.ddColon {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--time-picker\/icon\/arrow, #9da4ae);
+  width: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+}
+
+/* Period box for Dropdown (no label above) */
+.ddPeriodContent {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+/* Gap between last time unit and Period in Dropdown */
+.ddGroupPeriod {
+  margin-inline-start: 8px;
+}
+
+/* ── Input type ─────────────────────────────────────────────── */
+
+.inputWrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--time-picker\/spacing\/card-sm-gap, 8px);
+  flex-shrink: 0;
+}
+
+/* Time display container */
+.inputBox {
+  box-sizing: border-box;
+  height: 28px;
+  background: var(--time-picker\/background\/default, #fff);
+  border: 1px solid var(--time-picker\/border\/default, #f3f4f6);
+  border-radius: var(--time-picker\/spacing\/card-radius-xs, 4px);
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.inputHours {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--time-picker\/text\/default, #000b36);
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.inputMinSec {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--time-picker\/text\/secondary, #b6bdca);
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.inputColon {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--time-picker\/text\/default, #000b36);
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+/* Blinking cursor (replaces Figma image asset) */
+.inputCursor {
+  width: 1px;
+  height: 18px;
+  background: var(--time-picker\/text\/default, #000b36);
+  flex-shrink: 0;
+  animation: tpBlink 1s step-end infinite;
+}
+
+@keyframes tpBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* AM / PM side-by-side period toggle */
+.inputPeriod {
+  box-sizing: border-box;
+  display: flex;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.inputPeriodBtn {
+  box-sizing: border-box;
+  border: 1px solid var(--time-picker\/border\/default, #f3f4f6);
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+  background: var(--time-picker\/background\/default, #fff);
+  color: var(--time-picker\/text\/default, #000b36);
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  white-space: nowrap;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.inputPeriodBtn:first-child {
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+}
+
+.inputPeriodBtn:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.inputPeriodBtnActive {
+  background: var(--time-picker\/background\/selected, #eff8ff);
+  color: var(--time-picker\/text\/brand, #1849a9);
+}
+
+.inputPeriodBtn:focus-visible {
+  outline: 2px solid var(--time-picker\/text\/brand, #1849a9);
+  outline-offset: -2px;
+}
+
+/* ── Timer type ─────────────────────────────────────────────── */
+
+.timerTime {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.timerUnit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timerBox {
+  box-sizing: border-box;
+  width: 48px;
+  height: 40px;
+  background: var(--time-picker\/background\/default, #fff);
+  border: 1px solid var(--time-picker\/border\/default, #f3f4f6);
+  border-radius: var(--time-picker\/spacing\/card-radius-xs, 4px);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timerVal {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--time-picker\/text\/default, #000b36);
+  line-height: 28px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timerLabel {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--time-picker\/icon\/arrow, #9da4ae);
+  line-height: 14px;
+  width: 100%;
+  min-width: 100%;
+}
+
+/* Colon between timer units — bar is inside flex-1 area, filler below matches label+gap height */
+.timerColon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  width: 12px;
+  flex-shrink: 0;
+}
+
+.timerColonDot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.timerColonChar {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--time-picker\/icon\/arrow, #9da4ae);
+  display: block;
+  text-align: center;
+}
+
+/* Filler: same height as label row (10px line-height + 4px gap = 18px) */
+.timerColonFiller {
+  height: 18px;
+  width: 12px;
+  flex-shrink: 0;
+}
+
+/* Stacked AM / PM for Timer */
+.timerPeriod {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.timerPeriodBtn {
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  border: 1px solid var(--time-picker\/border\/default, #f3f4f6);
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  cursor: pointer;
+  background: var(--time-picker\/background\/default, #fff);
+  color: var(--time-picker\/text\/default, #000b36);
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  white-space: nowrap;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.timerPeriodBtn:first-child {
+  border-radius: 4px 4px 0 0;
+  border-bottom: none;
+}
+
+.timerPeriodBtn:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
+.timerPeriodBtnActive {
+  background: var(--time-picker\/background\/selected, #eff8ff);
+  color: var(--time-picker\/text\/brand, #1849a9);
+}
+
+.timerPeriodBtn:focus-visible {
+  outline: 2px solid var(--time-picker\/text\/brand, #1849a9);
+  outline-offset: -2px;
+}
+
+.timerPeriodRtl {
+  width: 31px;
+}

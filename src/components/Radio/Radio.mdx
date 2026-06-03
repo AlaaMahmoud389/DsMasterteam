@@ -1,0 +1,415 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as RadioStories from './Radio.stories';
+import { Radio, RadioGroup } from './Radio';
+
+<Meta of={RadioStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Radio</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Radio</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A radio button lets users choose exactly one option from a group. Two styles (Primary blue · Neutral navy), six interaction states (Default · Hover · Pressed · Focused · Read-only · Disabled), optional helper text and error message, and full RTL support. Built from Figma node 4399:23544.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:23544</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/forms-and-inputs/radio" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1933" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Styles','#styles'],['States','#states'],['RadioGroup','#radiogroup'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Design Tokens','#design-tokens'],['Figma Reference','#figma-reference'],['Properties','#properties'],['Accessibility','#accessibility'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+<Canvas of={RadioStories.Playground} />
+<Controls of={RadioStories.Playground} />
+</div>
+
+---
+
+## Anatomy
+
+<div id="anatomy" style={{ marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', gap: 12 }}>
+  {['#','Element','Class','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['1','Wrapper',        '.wrapper',      'Outer flex column — holds label row, helper text, error row'],
+  ['2','Label row',      '.labelRow',     'Flex row (LTR: radio→text; RTL: text→radio) — the clickable area'],
+  ['3','Hit area',       '.controlWrap',  '32×32 px container; ::before provides the 40×40 ripple on hover/press'],
+  ['4','Ring',           '.ring',         '24×24 px circle border — color changes per state and style'],
+  ['5','Inner dot',      '.dot',          '16×16 px filled dot — scale(0) hidden, scale(1) shown when selected'],
+  ['6','Label text',     '.labelText',    'IBM Plex Sans Arabic 16 px / 500 · color #000b36'],
+  ['7','Helper text',    '.helperText',   '14 px / 400 · color #6c7c96 · 40 px indent'],
+  ['8','Error row',      '.errorRow',     'Alert icon + error message · 14 px / 500 · color #a30000'],
+].map(([n, el, cls, notes], i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{el}</span>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{cls}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+---
+
+## Styles
+
+<div id="styles" style={{ marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+{[
+  { name: 'Primary', key: 'primary', ringDefault: '#6c737f', ringSelected: '#1849a9', dotColor: '#1849a9', desc: 'Blue accent. Use for standard form fields and user preference settings.' },
+  { name: 'Neutral', key: 'neutral', ringDefault: '#1f2a37', ringSelected: '#1f2a37', dotColor: '#1f2a37', desc: 'Dark navy accent. Use for neutral or administrative UI where blue feels too prominent.' },
+].map(({ name, ringDefault, ringSelected, dotColor, desc }) => (
+  <div key={name} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', border: `2px solid ${ringSelected}`, background: dotColor, flexShrink: 0 }} />
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 700 }}>{name}</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 4, background: '#fff' }}>
+      <Radio name={`style-${name}`} value="a" label="Unselected option" radioStyle={name.toLowerCase()} onChange={() => {}} />
+      <Radio name={`style-${name}`} value="b" label="Selected option"   radioStyle={name.toLowerCase()} defaultChecked onChange={() => {}} />
+    </div>
+  </div>
+))}
+</div>
+
+<Canvas of={RadioStories.StyleComparison} />
+</div>
+
+---
+
+## States
+
+<div id="states" style={{ marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '130px 1fr 1fr', gap: 12 }}>
+  {['State','Primary','Neutral'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { state: 'Default',   desc: 'Idle, not yet interacted', primary: { ring: '#6c737f', ringSel: '#1849a9', dot: '#1849a9' },   neutral: { ring: '#1f2a37', ringSel: '#1f2a37', dot: '#1f2a37' } },
+  { state: 'Hovered',   desc: 'Cursor over the control',  primary: { ring: '#6c737f', ringSel: '#194185', dot: '#194185' },   neutral: { ring: '#0d121c', ringSel: '#0d121c', dot: '#0d121c' } },
+  { state: 'Pressed',   desc: 'Mouse/touch held down',    primary: { ring: '#102a56', ringSel: '#102a56', dot: '#102a56' },   neutral: { ring: '#4d5761', ringSel: '#4d5761', dot: '#4d5761' } },
+  { state: 'Focused',   desc: 'Square border on hit-area', primary: { ring: '#1849a9', ringSel: '#1849a9', dot: '#1849a9', squareFocus: '#1849a9' },   neutral: { ring: '#1f2a37', ringSel: '#1f2a37', dot: '#1f2a37', squareFocus: '#1f2a37' } },
+  { state: 'Read-only', desc: 'Non-editable but shown',   primary: { ring: '#1849a9', ringSel: '#1849a9', dot: '#1849a9', op: 0.8 }, neutral: { ring: '#1f2a37', ringSel: '#1f2a37', dot: '#1f2a37', op: 0.8 } },
+  { state: 'Disabled',  desc: 'Not interactive',          primary: { ring: '#d2d6db', ringSel: '#d2d6db', dot: '#d2d6db', op: 0.7 }, neutral: { ring: '#d2d6db', ringSel: '#d2d6db', dot: '#d2d6db', op: 0.7 } },
+].map(({ state, desc, primary, neutral }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '130px 1fr 1fr', padding: '12px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <div>
+      <div style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{state}</div>
+      <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{desc}</div>
+    </div>
+    {[primary, neutral].map((s, si) => (
+      <div key={si} style={{ display: 'flex', gap: 16, alignItems: 'center', opacity: s.op || 1 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+          <div style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', outline: s.squareFocus ? `2px solid ${s.squareFocus}` : 'none', outlineOffset: '-2px', borderRadius: s.squareFocus ? 4 : 0 }}>
+            <div style={{ width: 24, height: 24, borderRadius: '50%', border: `1px solid ${s.ring}` }} />
+          </div>
+          <span style={{ fontSize: 10, color: '#9ca3af' }}>unsel.</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+          <div style={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', outline: s.squareFocus ? `2px solid ${s.squareFocus}` : 'none', outlineOffset: '-2px', borderRadius: s.squareFocus ? 4 : 0 }}>
+            <div style={{ width: 24, height: 24, borderRadius: '50%', border: `1px solid ${s.ringSel}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ width: 16, height: 16, borderRadius: '50%', background: s.dot }} />
+            </div>
+          </div>
+          <span style={{ fontSize: 10, color: '#9ca3af' }}>sel.</span>
+        </div>
+      </div>
+    ))}
+  </div>
+))}
+</div>
+
+<Canvas of={RadioStories.PrimaryStates} />
+<Canvas of={RadioStories.NeutralStates} />
+</div>
+
+---
+
+## RadioGroup
+
+<div id="radiogroup" style={{ marginBottom: 24 }}>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Use <code>RadioGroup</code> to wrap multiple options under a shared <code>name</code> and <code>legend</code>. It handles <code>value</code>/<code>onChange</code> at the group level and propagates <code>disabled</code>, <code>readOnly</code>, and <code>rtl</code> to all children.
+</div>
+
+<Canvas of={RadioStories.GroupVertical} />
+<Canvas of={RadioStories.GroupHorizontal} />
+<Canvas of={RadioStories.WithError} />
+<Canvas of={RadioStories.DisabledGroup} />
+</div>
+
+---
+
+## RTL Support
+
+<div id="rtl-support" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Setting <code>rtl=true</code> reverses the label row (<code>flex-direction: row-reverse</code>), right-aligns all text, and mirrors helper/error text indentation using CSS logical properties (<code>padding-inline-end</code> / <code>margin-inline-end</code>).
+</div>
+<Canvas of={RadioStories.RTLArabic} />
+</div>
+
+---
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ marginBottom: 24 }}>
+
+<div style={{ marginBottom: 16 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Single-select form — correct use</div>
+  <div style={{ border: '2px solid #a7f3d0', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '20px 24px', background: '#fff' }}>
+      <RadioGroup
+        legend="Preferred contact method"
+        name="contact-do"
+        defaultValue="email"
+        radioStyle="primary"
+        options={[
+          { value: 'email', label: 'Email',        helperText: 'We will send updates to your inbox' },
+          { value: 'sms',   label: 'SMS',          helperText: 'Text messages to your phone' },
+          { value: 'push',  label: 'Push notifications', helperText: 'Requires app installed' },
+        ]}
+      />
+    </div>
+    <div style={{ padding: '10px 16px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0', fontSize: 12, color: '#059669', fontWeight: 600 }}>
+      ✓ Clear legend · descriptive helper text · one selection
+    </div>
+  </div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}>
+  <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do
+</div>
+{['Use for mutually exclusive single-select choices (only one option can be true at a time).','Always wrap options in a RadioGroup with a meaningful legend for screen readers.','Use Primary for forms; Neutral for settings or administrative screens where blue is too prominent.','Add helperText on each option when the label alone is not self-explanatory.','Preserve the selected state across navigation — do not reset the group unless the form is cleared.','Use horizontal orientation only when options are short (1–3 words) and there are ≤ 4 options.'].map((t, i) => (
+  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+    <span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{t}
+  </div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}>
+  <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✗</span>Don't
+</div>
+{["Don't use radios for multi-select — use Checkboxes instead.","Don't use a radio group with only one option — use a Checkbox or Toggle instead.","Don't place more than 6–7 options in a group — use a Select/Dropdown for long lists.","Don't set the initial value to an empty/unselected state in most cases — pre-select the most common option.","Don't mix Primary and Neutral styles within the same group.","Don't rely only on color to communicate state — the dot, ring, and label changes together ensure accessibility."].map((t, i) => (
+  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+    <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✗</span>{t}
+  </div>
+))}
+</div>
+</div>
+</div>
+
+---
+
+## Design Tokens
+
+<div id="design-tokens" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Primary — Ring &amp; Dot Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 120px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Figma Token</span><span>Unselected</span><span>Selected</span><span>State</span>
+</div>
+{[
+  { token: '--controls/unchecked/border/default',           unsel: '#6c737f', sel: null,      state: 'Default' },
+  { token: '--controls/checked/primary/bg/default',         unsel: null,      sel: '#1849a9', state: 'Default selected' },
+  { token: '--controls/checked/primary/bg/hover',           unsel: null,      sel: '#194185', state: 'Hovered selected' },
+  { token: '--controls/checked/primary/bg/pressed',         unsel: '#102a56', sel: '#102a56', state: 'Pressed' },
+  { token: '--controls/checked/primary/bg/focused',         unsel: '#1849a9', sel: '#1849a9', state: 'Focused' },
+  { token: '--controls/checked/primary/icon/read-only',     unsel: '#1849a9', sel: '#1849a9', state: 'Read-only' },
+  { token: '--controls/unchecked/disabled/border/disable',  unsel: '#d2d6db', sel: '#d2d6db', state: 'Disabled' },
+  { token: '--controls/ripple',                             unsel: '#f3f4f6', sel: '#f3f4f6', state: 'Hover / Press ripple' },
+].map(({ token, unsel, sel, state }, i) => (
+  <div key={token} style={{ display: 'grid', gridTemplateColumns: '260px 120px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 10, background: '#eff3fb', padding: '2px 5px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+      {unsel && <><span style={{ display: 'inline-block', width: 11, height: 11, borderRadius: '50%', background: unsel, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} /><code style={{ fontSize: 10, color: '#374151' }}>{unsel}</code></>}
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+      {sel && <><span style={{ display: 'inline-block', width: 11, height: 11, borderRadius: '50%', background: sel, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} /><code style={{ fontSize: 10, color: '#374151' }}>{sel}</code></>}
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{state}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Neutral — Ring &amp; Dot Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Figma Token</span><span>Value</span><span>State</span>
+</div>
+{[
+  { token: '--controls/checked/neutral/box/bg/default',   val: '#1f2a37', state: 'Default' },
+  { token: '--controls/checked/neutral/box/bg/hover',     val: '#0d121c', state: 'Hovered' },
+  { token: '--controls/checked/neutral/box/bg/pressed',   val: '#4d5761', state: 'Pressed' },
+  { token: '--controls/checked/neutral/box/bg/read-only', val: '#1f2a37', state: 'Read-only' },
+].map(({ token, val, state }, i) => (
+  <div key={token} style={{ display: 'grid', gridTemplateColumns: '260px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 10, background: '#eff3fb', padding: '2px 5px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+      <span style={{ display: 'inline-block', width: 11, height: 11, borderRadius: '50%', background: val, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{val}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{state}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Geometry &amp; Typography</div>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 140px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Value</span><span>Notes</span>
+</div>
+{[
+  ['Hit area',         '32 × 32 px',  'Includes hover/focus ripple zone'],
+  ['Ring diameter',    '24 × 24 px',  'Centered in the hit area (4 px inset each side)'],
+  ['Ring border',      '1 px solid',  'Changes color per state'],
+  ['Inner dot',        '16 × 16 px',  'scale(0) → scale(1) on selection, cubic-bezier bounce — matches Figma inset ~18.75% on 24px ring'],
+  ['Ripple',           '40 × 40 px',  'Background #f3f4f6 on hover/press (::before pseudo)'],
+  ['Focus indicator',  '2 px square', 'outline: 2px solid on .controlWrap — square border matching Figma (border-radius 4px, inset)'],
+  ['Label font',       '16 px / 500', 'IBM Plex Sans Arabic, line-height 24 px'],
+  ['Helper font',      '14 px / 400', 'IBM Plex Sans Arabic, color #6c7c96'],
+  ['Error font',       '14 px / 500', 'IBM Plex Sans Arabic, color #a30000'],
+  ['Helper indent',    '40 px',       '32 px hit area + 8 px gap'],
+].map(([prop, val, notes], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '180px 140px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{prop}</span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+---
+
+## Figma Reference
+
+<div id="figma-reference" style={{ marginBottom: 24 }}>
+
+<div style={{ fontSize: 13, color: '#3c5073', marginBottom: 16, lineHeight: 1.6 }}>
+  The frames below are exported directly from the Figma component library (<a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-23544" target="_blank" rel="noreferrer" style={{ color: '#1849a9' }}>node 4399:23544</a>). Use them as a pixel-accurate reference when reviewing the live component above.
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>All States — Primary (left) &amp; Neutral (right) · Unselected + Selected</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/radio-states.png" alt="Radio button all states from Figma — Primary and Neutral, unselected and selected" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+  <div style={{ padding: '8px 16px', background: '#f9fafb', borderTop: '1px solid #e5e7eb', fontSize: 11, color: '#6b7280' }}>
+    Rows (top → bottom): Default · Hovered · Pressed · Focused · Read-only · Disabled — note the <strong>square focus indicator</strong> in row 4
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Radio with Label — Full Component (node 4399:23649)</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/radio-label.png" alt="Radio with label component from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+</div>
+
+</div>
+
+---
+
+## Properties
+
+<div id="properties" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 100px 90px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+</div>
+{[
+  ['id',          'string',                   '—',         'HTML id forwarded to the native input'],
+  ['name',        'string',                   '—',         'Radio group name — required for mutual exclusion'],
+  ['value',       'string',                   '—',         'Value submitted with the form'],
+  ['label',       'string',                   '—',         'Visible label text'],
+  ['helperText',  'string',                   '—',         'Secondary description below the label'],
+  ['errorText',   'string',                   '—',         'Error message with alert icon — shown instead of helperText'],
+  ['checked',     'boolean',                  '—',         'Controlled selected state'],
+  ['defaultChecked','boolean',                '—',         'Uncontrolled initial selected state'],
+  ['onChange',    'func',                     '—',         'Change handler (e) => void'],
+  ['radioStyle',  '"primary"|"neutral"',      '"primary"', 'Color style — blue (primary) or dark navy (neutral)'],
+  ['disabled',    'boolean',                  'false',     'Prevents interaction; mutes all colors'],
+  ['readOnly',    'boolean',                  'false',     'Visible but non-editable'],
+  ['rtl',         'boolean',                  'false',     'Mirrors layout for Arabic/Hebrew content'],
+].map(([prop, type, def, desc], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '130px 100px 90px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+    <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+    <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+  </div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Concern</span><span>Implementation</span>
+</div>
+{[
+  ['Keyboard navigation', 'Native <input type="radio"> receives focus; Arrow keys cycle within a name group; Space/Enter selects'],
+  ['Screen reader',       'Wrapped in <label> — clicking anywhere in the row activates; grouped in <fieldset> + <legend>'],
+  ['Focus indicator',     'outline: 2px solid on .controlWrap:has(:focus-visible) — square border matching Figma; only shown on keyboard navigation (:focus-visible)'],
+  ['Disabled vs hidden',  'Use disabled prop; never hide options — assistive technology still needs to announce them'],
+  ['Error',               'errorRow has role="alert" — announced immediately by screen readers on appearance'],
+  ['RTL',                 'dir="rtl" on wrapper; all layout uses logical CSS properties — fully mirrored'],
+  ['Color contrast',      'Ring border at default opacity satisfies WCAG AA for both Primary (#6c737f) and Neutral (#1f2a37)'],
+].map(([concern, impl], i) => (
+  <div key={concern} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{concern}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{impl}</span>
+  </div>
+))}
+</div>
+
+---
+
+## Mismatch Report
+
+<div id="mismatch-report" style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '9px 16px' }}>
+  {['Figma Spec','Status','Notes'].map(h => <span key={h} style={{ fontSize: 12, fontWeight: 700, color: '#374151', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { a: '32×32 px hit area, 24×24 px ring, 16×16 px inner dot',                            s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'All sizes extracted from Figma component.' },
+  { a: '2 styles: Primary (#1849a9) and Neutral (#1f2a37)',                              s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'Exact color tokens applied via CSS custom properties.' },
+  { a: '6 interaction states: Default · Hover · Pressed · Focused · Read-only · Disabled', s: 'Matched', sb: '#ecfdf5', st: '#059669', n: 'Hover/Pressed/Focused via CSS pseudo-classes; disabled/readOnly via props.' },
+  { a: 'Ripple 40×40 px (#f3f4f6) on Hover and Pressed',                                s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'Implemented via ::before pseudo-element on .controlWrap.' },
+  { a: 'Focus: 2px square border on 32px hit-area container',                            s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'outline: 2px solid on .controlWrap:has(.input:focus-visible); outline-offset: -2px; border-radius: 4px — exact Figma square.' },
+  { a: 'RTL label row mirroring',                                                        s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'flex-direction: row-reverse + logical CSS properties.' },
+  { a: 'Helper text 40 px indent, error row with alert-circle icon',                     s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'Alert icon built as inline SVG matching Figma alert-circle.' },
+  { a: 'Inner dot bounce animation on selection',                                        s: 'Pending',  sb: '#fff7ed', st: '#c2410c', n: 'Figma is static. Implemented scale() CSS transition; confirm timing with motion team.' },
+].map(({ a, s, sb, st, n }, i) => (
+  <div key={a} style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, color: '#111827', fontWeight: 500 }}>{a}</span>
+    <span style={{ background: sb, color: st, fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap', display: 'inline-block' }}>{s}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{n}</span>
+  </div>
+))}
+</div>
+
+</div>

@@ -1,0 +1,286 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { CircularProgressBar } from './CircularProgressBar';
+import * as CircularProgressBarStories from './CircularProgressBar.stories';
+
+<Meta of={CircularProgressBarStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Progress Bar / Circular</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Circular Progress Bar</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A circular visual indicator that represents task or process progress as a filled ring. The arc fills clockwise from 12 o'clock. Four variants (Primary, Neutral, Success, Error), five sizes (64–200 px), optional center text with descriptive label, and full RTL support.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:20424</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/loading-and-status/progress-bar" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-20424" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Sizes','#sizes'],['Variants','#variants'],['States','#states'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+  <CircularProgressBar size={120} variant="Primary" value={75} label="Active users" />
+</div>
+
+## Anatomy
+
+<div id="anatomy" style={{ background: '#f8faff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 14, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Component parts</div>
+  {[
+    ["Track ring",     "Full grey circle behind the fill arc. Always 100% width."],
+    ["Fill arc",       "Colored stroke that fills clockwise from 12 o'clock by value (0–100%)."],
+    ["Center overlay", "Absolute-centered overlay showing percentage text or status icon."],
+    ["Percentage text","Bold numeric value (e.g. \"50%\"). Hidden when showText=false."],
+    ["Label text",     "Descriptive text below percentage. Rendered for size ≥ 120 px only."],
+    ["Status icon",    "Checkmark (Success) or X (Error) icon. Replaces percentage text."],
+  ].map(([part, desc]) => (
+    <div key={part} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', gap: 12, padding: '8px 0', borderBottom: '1px solid #e5e7eb' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>{part}</span>
+      <span style={{ fontSize: 13, color: '#3c5073' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+## Sizes
+
+<div id="sizes" style={{ marginBottom: 24 }}>
+  <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, flexWrap: 'wrap', padding: 24, background: '#fafafa', border: '1px solid #e5e7eb', borderRadius: 8 }}>
+    {[64, 80, 120, 160, 200].map(s => (
+      <div key={s} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+        <CircularProgressBar size={s} variant="Primary" value={75} label={s >= 120 ? 'Active users' : ''} />
+        <span style={{ fontSize: 11, color: '#6b7280', fontWeight: 600 }}>{s} px</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ marginTop: 12, border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '70px 90px 90px 90px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '8px 16px' }}>
+      {['Size','Stroke','Value font','Label font','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+    </div>
+    {[
+      ['64 px', '6 px',  '14 px / 700', '—',          'No label — inner circle too small'],
+      ['80 px', '7 px',  '18 px / 700', '—',          'No label'],
+      ['120 px','10 px', '24 px / 700', '14 px / 400', 'Label available'],
+      ['160 px','12 px', '30 px / 700', '16 px / 400', 'Label available'],
+      ['200 px','16 px', '36 px / 700', '20 px / 400', 'Letter-spacing −0.72 px on value'],
+    ].map(([sz, sw, vf, lf, note], i) => (
+      <div key={sz} style={{ display: 'grid', gridTemplateColumns: '70px 90px 90px 90px 1fr', padding: '8px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12 }}>
+        <span style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{sz}</span>
+        <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{sw}</span>
+        <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{vf}</span>
+        <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{lf}</span>
+        <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+## Variants
+
+<div id="variants" style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
+{[
+  { variant: 'Primary', arcColor: '#006121', desc: 'Green arc — use for progress tied to a positive metric.' },
+  { variant: 'Neutral', arcColor: '#3c5073', desc: 'Navy arc — use for neutral system processes (loading, syncing).' },
+  { variant: 'Success', arcColor: '#006121', desc: 'Full green ring + checkmark icon. Arc is always 100%. Use when a task completes.' },
+  { variant: 'Error',   arcColor: '#a30000', desc: 'Full red ring + X icon. Use when a task fails.' },
+].map(({ variant, arcColor, desc }) => (
+  <div key={variant} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: arcColor, flexShrink: 0 }}/>
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 700 }}>{variant}</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '24px', background: '#fff', display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+      <CircularProgressBar size={80}  variant={variant} value={75} />
+      <CircularProgressBar size={120} variant={variant} value={75} label={variant === 'Success' ? 'Task complete' : variant === 'Error' ? 'Upload failed' : 'Active users'} />
+      <CircularProgressBar size={160} variant={variant} value={75} label={variant === 'Success' ? 'Task complete' : variant === 'Error' ? 'Upload failed' : 'Active users'} />
+    </div>
+  </div>
+))}
+</div>
+
+## States
+
+<div id="states" style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 24 }}>
+  {[
+    { v: 0,   caption: '0% — Empty',    label: 'Loading' },
+    { v: 25,  caption: '25% — Starting', label: 'Uploading' },
+    { v: 50,  caption: '50% — Midway',   label: 'Processing' },
+    { v: 75,  caption: '75% — Almost',   label: 'Finishing' },
+    { v: 100, caption: '100% — Done',    label: 'Complete' },
+  ].map(({ v, caption, label }) => (
+    <div key={v} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+      <CircularProgressBar size={120} variant="Primary" value={v} label={label} />
+      <span style={{ fontSize: 11, color: '#6b7280', fontWeight: 600 }}>{caption}</span>
+    </div>
+  ))}
+</div>
+
+## RTL Support
+
+<div id="rtl-support" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 20, background: '#fff' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', border: '1px solid #dce3f7', padding: '1px 7px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>Clockwise fill</span>
+    </div>
+    <CircularProgressBar size={160} variant="Primary" value={65} label="Active users" rtl={false} />
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 20, background: '#fff' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', border: '1px solid #dce3f7', padding: '1px 7px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>Counter-clockwise fill</span>
+    </div>
+    <CircularProgressBar size={160} variant="Primary" value={65} label="مستخدم نشط" rtl={true} />
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 24 }}>
+  RTL mirrors the SVG via <code>scaleX(-1)</code>, reversing the arc fill to counter-clockwise. The <code>dir</code> attribute is set on the root element so assistive technology reads the label in the correct direction.
+</div>
+
+## Token Table
+
+<div id="token-table" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 110px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Figma Token</span><span>Usage</span></div>
+{[
+  {t:'--circular-progress-track',       h:'#e7e9ed', f:'charts/container/background/default-2',  u:'Background ring (all variants)'},
+  {t:'--circular-progress-value-color', h:'#3c5073', f:'charts/progress-bar/text-color/label',   u:'Center percentage text color'},
+  {t:'Primary arc',                     h:'#006121', f:'charts/progress-bar/legends/success',     u:'Primary fill arc'},
+  {t:'Neutral arc',                     h:'#3c5073', f:'charts/progress-bar/text-color/label',    u:'Neutral fill arc'},
+  {t:'Success arc + label',             h:'#006121', f:'charts/progress-bar/legends/success',     u:'Success ring + icon + label'},
+  {t:'Error arc + label',               h:'#a30000', f:'charts/progress-bar/legends/error',       u:'Error ring + icon + label'},
+].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'220px 110px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:11,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:'50%',background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{h}</code></span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+</div>
+
+## Properties
+
+<div id="properties" style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 120px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '8px 16px' }}>
+    {['Prop','Type','Default','Description'].map(h => <span key={h} style={{ fontSize: 12, fontWeight: 700, color: '#374151', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+  </div>
+  {[
+    ['size',     '64|80|120|160|200', '120',      'Ring diameter in px. Label only renders for size ≥ 120.'],
+    ['variant',  'Primary|Neutral|Success|Error','Primary','Arc color + state. Success/Error show icon instead of percentage.'],
+    ['value',    'number',  '50',       'Progress 0–100. Ignored for Success/Error (always 100%).'],
+    ['showText', 'boolean', 'true',     'Show percentage text or status icon in the center.'],
+    ['label',    'string',  '""',       'Descriptive label below percentage. Only shown for size ≥ 120.'],
+    ['rtl',      'boolean', 'false',    'RTL layout — mirrors arc fill direction to counter-clockwise.'],
+  ].map(([prop, type, def, desc], i) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '120px 120px 120px 1fr', padding: '8px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <code style={{ fontSize: 12, color: '#7c3aed' }}>{prop}</code>
+      <span style={{ fontSize: 12, color: '#374151', fontFamily: 'monospace' }}>{type}</span>
+      <span style={{ fontSize: 12, color: '#374151', fontFamily: 'monospace' }}>{def}</span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '8px 16px' }}>
+    {['Concern','Implementation'].map(h => <span key={h} style={{ fontSize: 12, fontWeight: 700, color: '#374151', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+  </div>
+  {[
+    ['role="progressbar"',  'Root element carries role, aria-valuenow, aria-valuemin, aria-valuemax.'],
+    ['aria-label',          'Auto-generated from variant + value: "Primary progress: 50%". Override via label prop.'],
+    ['SVG aria-hidden',     'The SVG ring is aria-hidden="true" — decorative, skipped by screen readers.'],
+    ['Status icon labels',  'Success/Error icons are aria-hidden; the state is communicated via aria-label on the root.'],
+    ['Color contrast',      'Primary (#006121) and Neutral (#3c5073) pass AA on white background.'],
+    ['dir attribute',       'Root carries dir="rtl"|"ltr" for correct reading order in assistive technology.'],
+  ].map(([concern, impl], i) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', padding: '8px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12 }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>{concern}</span>
+      <span style={{ fontSize: 13, color: '#3c5073' }}>{impl}</span>
+    </div>
+  ))}
+</div>
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #bbf7d0', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#dcfce7', padding: '10px 16px', borderBottom: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#16a34a', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#15803d' }}>Do</span>
+    </div>
+    {[
+      'Use a circular progress bar when radial space or a dashboard widget context suits the layout better than a linear bar.',
+      'Pair with a descriptive label (size ≥ 120 px) to give context — "Uploading", "Processing", "Active users".',
+      'Use Primary for goal/metric progress; Neutral for system/background processes.',
+      'Switch to Success/Error variant once the operation completes or fails — do not try to animate value to 100 manually.',
+      'Show a label in RTL mode — center text is mirrored correctly and the label reads right-to-left automatically.',
+      'Use showText=false when space is tight (64–80 px) or when the value is already shown in surrounding UI.',
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderBottom: '1px solid #dcfce7', background: i % 2 === 0 ? '#fff' : '#f0fdf4' }}>
+        <span style={{ color: '#16a34a', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#166534', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#fee2e2', padding: '10px 16px', borderBottom: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✗</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#991b1b' }}>Don't</span>
+    </div>
+    {[
+      'Don\'t use multiple circular progress bars in a row to represent related data — use a Radial Chart instead.',
+      'Don\'t set variant="Success" or variant="Error" while leaving value at an intermediate number — Success/Error always render a full ring regardless of value.',
+      'Don\'t show a label for the 64 px or 80 px sizes — the inner circle is too small to be readable; rely on a tooltip or external text instead.',
+      'Don\'t rely solely on color to communicate progress state — always pair with percentage text, a label, or status icon.',
+      'Don\'t animate value changes faster than the 400 ms CSS transition; rapid prop changes will queue and cause visual jank.',
+      'Don\'t use this component as a spinner/indeterminate loader — use a Spinner component for unknown-duration operations.',
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderBottom: '1px solid #fee2e2', background: i % 2 === 0 ? '#fff' : '#fef2f2' }}>
+        <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#991b1b', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+## Mismatch Report
+
+<div id="mismatch-report" style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '9px 16px' }}>
+    {['Figma Spec','Status','Notes'].map(h => <span key={h} style={{ fontSize: 12, fontWeight: 700, color: '#374151', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+  </div>
+  {[
+    {a:'5 sizes: 64/80/120/160/200 px with correct stroke widths 6/7/10/12/16',s:'Matched',sb:'#ecfdf5',st:'#059669',n:'All stroke widths and font sizes extracted from Figma size variants.'},
+    {a:'4 variants: Primary (#006121), Neutral (#3c5073), Success, Error',s:'Matched',sb:'#ecfdf5',st:'#059669',n:'Exact color tokens from Figma charts/progress-bar/legends/* tokens.'},
+    {a:'Label inside center overlay below percentage (size ≥ 120 px)',s:'Matched',sb:'#ecfdf5',st:'#059669',n:'Label rendered inside .center overlay — Figma places label below percentage in same container.'},
+    {a:'Success/Error: full ring + icon + optional label',s:'Matched',sb:'#ecfdf5',st:'#059669',n:'SuccessIcon and ErrorIcon centered; label shown below for size ≥ 120 when label prop is set.'},
+    {a:'RTL: counter-clockwise arc via scaleX(-1)',s:'Matched',sb:'#ecfdf5',st:'#059669',n:'SVG scaleX(-1) mirrors arc direction. Center overlay text is not mirrored.'},
+    {a:'Animated arc fill transition',s:'Pending',sb:'#fff7ed',st:'#c2410c',n:'Figma is static. Implemented 400 ms cubic-bezier on stroke-dashoffset. Confirm duration with motion team.'},
+  ].map(({a,s,sb,st,n},i)=>(
+    <div key={a} style={{display:'grid',gridTemplateColumns:'1fr 100px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+      <span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+      <span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{s}</span>
+      <span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+    </div>
+  ))}
+</div>
+
+</div>

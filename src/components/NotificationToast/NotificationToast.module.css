@@ -1,0 +1,261 @@
+/* ==========================================================
+   NotificationToast — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4399:21638
+   ========================================================== */
+
+/* ── Base card ──────────────────────────────────────────────── */
+
+.toast {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--notification-toast-gap, 16px);
+  padding: var(--notification-toast-padding-v, 16px) var(--notification-toast-padding-h, 24px);
+  background-color: var(--notification-bg-primary, #ffffff);
+  border-radius: var(--notification-toast-radius, 8px);
+  box-shadow: 0px 32px 64px -12px rgba(16, 24, 40, 0.14);
+  width: var(--notification-toast-width, 484px);
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* Mobile size */
+.mobile {
+  width: var(--notification-toast-width-mobile, 343px);
+  padding: var(--notification-toast-padding-v, 16px);
+}
+
+/* ── Accent border ──────────────────────────────────────────── */
+/* Desktop: vertical 8px strip on the inline-start side (left LTR, right RTL) */
+/* Mobile:  horizontal 8px strip on top */
+
+.accent {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  opacity: 0.7;
+}
+
+.rtl .accent {
+  left: auto;
+  right: 0;
+}
+
+/* Mobile: override to horizontal top strip */
+.mobile .accent {
+  bottom: auto;
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 8px;
+}
+
+/* ── Header row ─────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--notification-toast-header-gap, 12px);
+  width: 100%;
+}
+
+/* ── Icon circle ─────────────────────────────────────────────── */
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  color: #374151;
+}
+
+/* ── Text block ─────────────────────────────────────────────── */
+
+.textBlock {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--notification-toast-text-gap, 4px);
+  justify-content: center;
+  min-height: 40px;
+}
+
+.titleText {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--notification-text-info, #000b36);
+  font-style: normal;
+  word-break: break-word;
+}
+
+.descriptionText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--notification-text-secondary, #3c5073);
+  word-break: break-word;
+}
+
+/* ── Close button ───────────────────────────────────────────── */
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #6b7280;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.closeBtn:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ── Action buttons row ─────────────────────────────────────── */
+
+.actionsRow {
+  display: flex;
+  gap: 8px;
+  padding-inline-start: 52px; /* icon(40) + gap(12) — aligns with text */
+}
+
+/* Mobile actions: full-width stacked, no indent */
+.mobile .actionsRow {
+  flex-direction: column;
+  padding-inline-start: 0;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 8px;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #000b36;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+/* Mobile action buttons are full-width and taller */
+.mobile .actionBtn {
+  height: 40px;
+  font-size: 16px;
+  line-height: 24px;
+  width: 100%;
+}
+
+.actionBtn:hover {
+  background-color: #e5e7eb;
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ── Variant accent colors ──────────────────────────────────── */
+
+.neutral        .accent { background-color: var(--notification-border-info,    #d2d6db); }
+.info           .accent { background-color: var(--notification-text-brand,     #1849a9); }
+.critical-error .accent { background-color: var(--notification-border-error,   #a30000); }
+.warning        .accent { background-color: var(--notification-border-warning,  #dd7600); }
+.success        .accent { background-color: var(--notification-border-success,  #006121); }
+
+/* Icon color tint per variant */
+.neutral        .iconWrap { color: #6b7280; }
+.info           .iconWrap { color: #1849a9; }
+.critical-error .iconWrap { color: #a30000; }
+.warning        .iconWrap { color: #dd7600; }
+.success        .iconWrap { color: #006121; }
+
+/* ── Dismiss animation ──────────────────────────────────────── */
+/* Phase 1 (0–45%): fade + slide right. Phase 2 (45–100%): collapse height. */
+
+@keyframes toast-exit {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 600px;
+    padding-top: var(--notification-toast-padding-v, 16px);
+    padding-bottom: var(--notification-toast-padding-v, 16px);
+    margin-bottom: 0;
+  }
+  45% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.98);
+    max-height: 600px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.98);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: -16px;
+  }
+}
+
+@keyframes toast-exit-rtl {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    max-height: 600px;
+    padding-top: var(--notification-toast-padding-v, 16px);
+    padding-bottom: var(--notification-toast-padding-v, 16px);
+    margin-bottom: 0;
+  }
+  45% {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.98);
+    max-height: 600px;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.98);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: -16px;
+  }
+}
+
+.dismissing {
+  animation: toast-exit 380ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rtl.dismissing {
+  animation-name: toast-exit-rtl;
+}

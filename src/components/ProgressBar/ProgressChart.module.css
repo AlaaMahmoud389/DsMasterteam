@@ -1,0 +1,141 @@
+/* ==========================================================
+   ProgressChart — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4531:5667
+   ========================================================== */
+
+.card {
+  background: var(--progress-chart-bg, #ffffff);
+  border-radius: var(--progress-chart-radius, 8px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 510px;
+  min-height: 300px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.titleRow {
+  width: 100%;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--progress-chart-title, #000b36);
+  white-space: nowrap;
+}
+
+.chartArea {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 280px;
+}
+
+.svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.centerOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  pointer-events: none;
+  width: 100px;
+  text-align: center;
+}
+
+.centerLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--progress-chart-title, #000b36);
+  white-space: nowrap;
+}
+
+.centerValue {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 38px;
+  color: var(--progress-chart-title, #000b36);
+  white-space: nowrap;
+}
+
+/* ── Legend ──────────────────────────────────────────────────── */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legendMark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--progress-chart-legend-color, #3c5073);
+  white-space: nowrap;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────────── */
+
+.tooltip {
+  position: absolute;
+  background: #1e2a3a;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 18px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.tooltipMark {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.tooltipLabel {
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.tooltipValue {
+  font-weight: 700;
+  color: #93c5fd;
+}

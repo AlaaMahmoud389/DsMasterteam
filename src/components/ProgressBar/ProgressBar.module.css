@@ -1,0 +1,124 @@
+/* ==========================================================
+   ProgressBar — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4399:20639
+   ========================================================== */
+
+/* ── Root container ─────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--progress-bar-gap, 4px);
+  width: 100%;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ── Label ──────────────────────────────────────────────────── */
+
+.label {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--progress-bar-label-color, #000b36);
+  white-space: nowrap;
+}
+
+/* ── Track ──────────────────────────────────────────────────── */
+
+.track {
+  width: 100%;
+  background-color: var(--progress-bar-track, #e7e9ed);
+  border-radius: var(--progress-bar-radius, 4px);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Fill ───────────────────────────────────────────────────── */
+
+.fill {
+  height: 100%;
+  border-radius: var(--progress-bar-radius, 4px);
+  min-width: 0;
+}
+
+/* ── Helper row ─────────────────────────────────────────────── */
+
+.helperRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.helperIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.helperText {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+/* ── Size: Small ─────────────────────────────────────────────── */
+/* Bar height: 4 px · label font: 14px/20px */
+
+.small .track {
+  height: 4px;
+}
+
+.small .label {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ── Size: Medium ────────────────────────────────────────────── */
+/* Bar height: 8 px · label font: 14px/20px */
+
+.medium .track {
+  height: 8px;
+}
+
+.medium .label {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ── Size: Large ─────────────────────────────────────────────── */
+/* Bar height: 16 px · label font: 16px/24px · value text inside fill */
+
+.large .track {
+  height: 16px;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+}
+
+.large .label {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.fillLarge {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.fillLabel {
+  color: #f9fafb;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+  font-family: inherit;
+  font-weight: 400;
+  flex-shrink: 0;
+}

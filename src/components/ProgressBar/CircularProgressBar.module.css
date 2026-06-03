@@ -1,0 +1,69 @@
+/* ==========================================================
+   CircularProgressBar — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4399:20424
+   ========================================================== */
+
+/* ── Root container ─────────────────────────────────────────── */
+
+.root {
+  display: inline-flex;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* ── Circle wrapper (positions the SVG + center overlay) ────── */
+
+.circleWrap {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ── SVG ring ────────────────────────────────────────────────── */
+
+.svg {
+  display: block;
+}
+
+/* ── Center overlay (percentage text or status icon) ─────────── */
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  width: 80%;
+  text-align: center;
+}
+
+/* ── Status icon (success checkmark / error X) ───────────────── */
+
+.statusIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Percentage value text ───────────────────────────────────── */
+
+.valueText {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  white-space: nowrap;
+  display: block;
+}
+
+/* ── Label text (inside center overlay, 120px+ only) ────────── */
+
+.centerLabel {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-weight: 400;
+  text-align: center;
+  max-width: 100%;
+  display: block;
+  white-space: nowrap;
+}
