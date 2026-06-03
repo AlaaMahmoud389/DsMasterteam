@@ -69,7 +69,7 @@ const GROUPS = {
   'Eye': ['eye', 'eye-off'],
   'Home & Navigation': ['home', 'link', 'external-link'],
   'User': ['user', 'user-circle', 'users'],
-  'Notifications': ['bell', 'bell-off', 'notification', 'alert', 'information-circle'],
+  'Notifications': ['bell', 'bell-off', 'notification', 'alert', 'information-circle', 'help-circle'],
   'Settings': ['setting'],
   'Media': ['star', 'heart', 'bookmark'],
   'Calendar & Time': ['calendar', 'time'],

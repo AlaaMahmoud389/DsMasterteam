@@ -1,0 +1,57 @@
+import PropTypes from 'prop-types';
+
+/**
+ * FeedbackIcon — Masterteam Design System
+ * Figma: node 4404:4429 (Feedback Icon component, used in Tooltip)
+ *
+ * Solid filled question-mark circle. Uses fill="currentColor" so color
+ * is inherited from CSS or set via the `color` prop.
+ * Default size 18px matches Figma's tooltip icon slot.
+ * viewBox 0 0 16.5 16.5 — exact Figma geometry, fill-rule evenodd.
+ */
+
+const PATH =
+  'M16.5 8.25C16.5 12.8063 12.8063 16.5 8.25 16.5C3.69365 16.5 0 12.8063 0 8.25C0 3.69365 3.69365 0 8.25 0C12.8063 0 16.5 3.69365 16.5 8.25Z' +
+  'M7.36268 5.45681C7.66808 5.27732 8.02715 5.21171 8.37629 5.2716C8.72543 5.33148 9.04211 5.513 9.27024 5.784C9.49837 6.05501 9.62323 6.398 9.62271 6.75224L9.6227 6.75336C9.6227 7.10521 9.34888 7.47202 8.83168 7.81682C8.5959 7.974 8.35479 8.0951 8.16966 8.17737C8.07817 8.21804 8.00296 8.24807 7.95239 8.26734C7.92716 8.27695 7.90825 8.28381 7.89672 8.28791L7.88514 8.29198C7.49244 8.42311 7.28025 8.8477 7.41119 9.24053C7.54218 9.63349 7.96692 9.84586 8.35988 9.71487L8.1227 9.00336C8.35988 9.71487 8.36081 9.71456 8.36081 9.71456L8.36196 9.71417L8.36489 9.71319L8.37318 9.71035L8.39923 9.70123C8.42065 9.69361 8.45008 9.6829 8.48638 9.66907C8.55885 9.64146 8.65943 9.60118 8.77887 9.54809C9.01562 9.44287 9.33701 9.28271 9.66373 9.0649C10.2714 8.65978 11.1224 7.90181 11.1227 6.75404C11.1237 6.04572 10.8739 5.3599 10.4178 4.818C9.96152 4.276 9.32816 3.91296 8.62988 3.79319C7.9316 3.67341 7.21346 3.80463 6.60266 4.16361C5.99186 4.52258 5.52781 5.08614 5.2927 5.75448C5.15525 6.14522 5.36058 6.5734 5.75132 6.71086C6.14206 6.84831 6.57025 6.64298 6.70771 6.25224C6.82526 5.91807 7.05728 5.63629 7.36268 5.45681Z' +
+  'M8.1827 11.2534C7.76849 11.2534 7.4327 11.5891 7.4327 12.0034C7.4327 12.4176 7.76849 12.7534 8.1827 12.7534H8.1902C8.60442 12.7534 8.9402 12.4176 8.9402 12.0034C8.9402 11.5891 8.60442 11.2534 8.1902 11.2534H8.1827Z';
+
+export function FeedbackIcon({
+  size = 18,
+  color,
+  className,
+  style,
+  'aria-label': ariaLabel,
+  'aria-hidden': ariaHidden,
+  ...rest
+}) {
+  return (
+    <svg
+      viewBox="0 0 16.5 16.5"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      style={color ? { color, ...style } : style}
+      className={className}
+      role={ariaLabel ? 'img' : undefined}
+      aria-label={ariaLabel}
+      aria-hidden={ariaHidden ?? (ariaLabel ? undefined : 'true')}
+      {...rest}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d={PATH} fill="currentColor" />
+    </svg>
+  );
+}
+
+FeedbackIcon.propTypes = {
+  size:            PropTypes.number,
+  color:           PropTypes.string,
+  className:       PropTypes.string,
+  style:           PropTypes.object,
+  'aria-label':    PropTypes.string,
+  'aria-hidden':   PropTypes.string,
+};
+
+FeedbackIcon.defaultProps = {
+  size: 18,
+};
