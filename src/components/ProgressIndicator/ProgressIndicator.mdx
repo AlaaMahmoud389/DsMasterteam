@@ -1,0 +1,399 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as ProgressIndicatorStories from './ProgressIndicator.stories';
+import { ProgressIndicator } from './ProgressIndicator';
+
+<Meta of={ProgressIndicatorStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Progress Indicator</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Progress Indicator</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A step-by-step navigation component for forms and multi-step processes. Provides clear visual cues for completed, current, and upcoming steps. Supports vertical (default) and horizontal orientations with full RTL support. Built from Figma node 4399:23099.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:23099</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/forms-and-inputs/steps" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-23099" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['States','#states'],['Variants','#variants'],['Orientations','#orientations'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Design Tokens','#design-tokens'],['Figma Reference','#figma-reference'],['Properties','#properties'],['Accessibility','#accessibility'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+<Canvas of={ProgressIndicatorStories.Playground} />
+<Controls of={ProgressIndicatorStories.Playground} />
+</div>
+
+## Anatomy
+
+<div id="anatomy" style={{ marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', gap: 12 }}>
+  {['#','Element','Class','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['1','Root container',     '.root',       'flex-col (vertical) or flex-row (horizontal); dir="rtl|ltr"'],
+  ['2','Step item',          '.step',       'flex-row (vertical) or flex-col (horizontal); role="listitem"'],
+  ['3','Indicator column',   '.indicator',  'flex-col for vertical; flex-row for horizontal — holds circle + line'],
+  ['4','Step circle',        '.circle',     '32×32 px · border-radius 50% · color changes per state'],
+  ['5','Connecting line',    '.line',       '2 px wide (vertical) or 2 px tall (horizontal); hidden on last step'],
+  ['6','Content block',      '.content',    'flex-col with 4px gap; holds label + description'],
+  ['7','Step label',         '.label',      'IBM Plex Sans Arabic 14 px / 500 · color changes per state'],
+  ['8','Step description',   '.description','IBM Plex Sans Arabic 14 px / 400 · shown when showDescription=true'],
+].map(([n, el, cls, notes], i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{el}</span>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{cls}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+## States
+
+<div id="states" style={{ marginBottom: 24 }}>
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 20 }}>
+{[
+  { state: 'Completed', circleBg: '#194185', circleContent: '✓ (white)', lineColor: '#194185', textColor: '#000b36', descColor: '#3c5073', desc: 'All previous steps — dark navy circle with white checkmark. Connecting line matches the circle color.' },
+  { state: 'Current',   circleBg: '#eff8ff', circleContent: 'Step number in #194185', lineColor: '#e5e7eb', textColor: '#000b36 (semibold)', descColor: '#3c5073', desc: 'The active step — light blue circle with dark step number. Label is semibold to distinguish from other states.' },
+  { state: 'Upcoming',  circleBg: '#f3f4f6', circleContent: 'Step number in #9da4ae', lineColor: '#e5e7eb', textColor: '#6c7c96', descColor: '#6c7c96', desc: 'Steps not yet reached — light gray circle with muted number. Label and description are both muted gray.' },
+].map(({ state, circleBg, circleContent, lineColor, textColor, descColor, desc }) => (
+  <div key={state} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <span style={{ display: 'inline-block', width: 16, height: 16, borderRadius: '50%', background: circleBg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 700 }}>{state}</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff', display: 'grid', gridTemplateColumns: '100px 120px 120px 120px', gap: 16, fontSize: 12, color: '#374151' }}>
+      <div><div style={{ fontSize: 10, fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', marginBottom: 4 }}>Circle</div><span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 12, height: 12, borderRadius: '50%', background: circleBg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} /><code style={{ fontSize: 11 }}>{circleBg}</code></span></div>
+      <div><div style={{ fontSize: 10, fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', marginBottom: 4 }}>Content</div><span style={{ fontSize: 11 }}>{circleContent}</span></div>
+      <div><div style={{ fontSize: 10, fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', marginBottom: 4 }}>Line</div><span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 12, height: 3, background: lineColor, flexShrink: 0 }} /><code style={{ fontSize: 11 }}>{lineColor}</code></span></div>
+      <div><div style={{ fontSize: 10, fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', marginBottom: 4 }}>Label</div><code style={{ fontSize: 11 }}>{textColor}</code></div>
+    </div>
+  </div>
+))}
+</div>
+
+<Canvas of={ProgressIndicatorStories.AllStates} />
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 8 }}>
+  <Canvas of={ProgressIndicatorStories.FirstStep} />
+  <Canvas of={ProgressIndicatorStories.AllCompleted} />
+</div>
+
+</div>
+
+## Variants
+
+<div id="variants" style={{ marginBottom: 24 }}>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  The <code>variant</code> prop changes the visual style of the step indicator. <strong>default</strong> uses filled circles with numbers and a checkmark icon; <strong>dot</strong> replaces circles with small dots (larger and pulsing for the current step); <strong>outlined</strong> shows transparent circles with border-only rings.
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, marginBottom: 16 }}>
+  {[
+    { v: 'default',  label: 'Default', desc: 'Filled circles, check icons, step numbers' },
+    { v: 'dot',      label: 'Dot',     desc: 'Minimal dot indicators — no numbers' },
+    { v: 'outlined', label: 'Outlined',desc: 'Border-only circles, blue for current' },
+  ].map(({ v, label, desc }) => (
+    <div key={v} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+      <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}>
+        <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 700 }}>{v}</code>
+        <div style={{ fontSize: 11, color: '#6b7280', marginTop: 4 }}>{desc}</div>
+      </div>
+      <div style={{ padding: '20px 20px', background: '#fff' }}>
+        <ProgressIndicator
+          variant={v}
+          currentStep={1}
+          showDescription={false}
+          steps={[
+            { label: 'Personal Info' },
+            { label: 'Account Setup' },
+            { label: 'Verify Email' },
+          ]}
+        />
+      </div>
+    </div>
+  ))}
+</div>
+
+<Canvas of={ProgressIndicatorStories.VariantComparison} />
+<Canvas of={ProgressIndicatorStories.DotVariant} />
+<Canvas of={ProgressIndicatorStories.OutlinedVariant} />
+
+</div>
+
+## Orientations
+
+<div id="orientations" style={{ marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 20, background: '#fff' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.07em', marginBottom: 16 }}>Vertical (default)</div>
+    <ProgressIndicator
+      currentStep={1}
+      steps={[
+        { label: 'Personal Info',    description: 'Name and contact' },
+        { label: 'Account Setup',    description: 'Username and password' },
+        { label: 'Verify Email',     description: 'Confirm address' },
+      ]}
+    />
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 20, background: '#fff' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.07em', marginBottom: 16 }}>Horizontal</div>
+    <ProgressIndicator
+      orientation="horizontal"
+      currentStep={1}
+      steps={[
+        { label: 'Details',  description: 'Fill in info' },
+        { label: 'Payment',  description: 'Card details' },
+        { label: 'Confirm',  description: 'Review'       },
+      ]}
+    />
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  In <strong>vertical</strong> orientation, the circle is on the left and the connecting line extends downward. In <strong>horizontal</strong> orientation, circles are in a row at the top and the line extends to the right of each circle. Data labels in horizontal layouts are centered below their respective circles.
+</div>
+
+<Canvas of={ProgressIndicatorStories.HorizontalLayout} />
+<Canvas of={ProgressIndicatorStories.HorizontalNoDescription} />
+</div>
+
+## RTL Support
+
+<div id="rtl-support" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Setting <code>rtl=true</code> applies <code>dir="rtl"</code> to the root element. In vertical mode, the circle moves to the right and text aligns right. In horizontal mode, the step order reverses to read right-to-left. The <code>padding-inline-end</code> and <code>margin-inline-start</code> CSS logical properties handle the mirroring automatically.
+</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 20, background: '#fff' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', marginBottom: 12 }}>LTR — Vertical</div>
+    <ProgressIndicator currentStep={1} steps={[{ label: 'Step One', description: 'Description' }, { label: 'Step Two', description: 'Description' }, { label: 'Step Three', description: 'Description' }]} />
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 20, background: '#fff' }}>
+    <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', marginBottom: 12 }}>RTL — Vertical</div>
+    <ProgressIndicator rtl currentStep={1} steps={[{ label: 'الخطوة الأولى', description: 'الوصف' }, { label: 'الخطوة الثانية', description: 'الوصف' }, { label: 'الخطوة الثالثة', description: 'الوصف' }]} />
+  </div>
+</div>
+<Canvas of={ProgressIndicatorStories.RTLArabic} />
+<Canvas of={ProgressIndicatorStories.RTLHorizontal} />
+</div>
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #bbf7d0', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#dcfce7', padding: '10px 16px', borderBottom: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#16a34a', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#15803d' }}>Do</span>
+    </div>
+    <div style={{ padding: '16px', background: '#f0fdf4', borderBottom: '1px solid #dcfce7' }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#15803d', textTransform: 'uppercase', marginBottom: 8 }}>Checkout flow — 3 clear steps</div>
+      <ProgressIndicator orientation="horizontal" currentStep={1} steps={[{ label: 'Details' }, { label: 'Payment' }, { label: 'Confirm' }]} showDescription={false} />
+    </div>
+    {[
+      'Use for processes with 3–7 clearly defined, sequential steps.',
+      'Label each step with a concise action noun — "Payment", "Review", "Confirm".',
+      'Advance currentStep only after the user successfully completes the step.',
+      'Use vertical orientation for forms in narrow sidebars or modals.',
+      'Use horizontal orientation for top-of-page checkout or wizard flows.',
+      'Enable RTL mode for Arabic/Hebrew multi-step processes.',
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '9px 14px', borderBottom: '1px solid #dcfce7', background: i % 2 === 0 ? '#fff' : '#f0fdf4' }}>
+        <span style={{ color: '#16a34a', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#166534', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#fee2e2', padding: '10px 16px', borderBottom: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✗</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#991b1b' }}>Don't</span>
+    </div>
+    <div style={{ padding: '16px', background: '#fef2f2', borderBottom: '1px solid #fecaca' }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#991b1b', textTransform: 'uppercase', marginBottom: 8 }}>Too many steps — hard to scan</div>
+      <ProgressIndicator currentStep={3} showDescription={false} steps={[{ label: 'Step 1' },{ label: 'Step 2' },{ label: 'Step 3' },{ label: 'Step 4' },{ label: 'Step 5' },{ label: 'Step 6' },{ label: 'Step 7' },{ label: 'Step 8' }]} />
+    </div>
+    {[
+      "Don't use more than 7 steps — the component loses clarity and feels overwhelming.",
+      "Don't use vague step labels like \"Step 1\", \"Step 2\" — labels must describe the task.",
+      "Don't skip steps programmatically unless the user has explicitly skipped an optional step.",
+      "Don't use for non-linear navigation where users can revisit steps in any order — use tabs instead.",
+      "Don't use horizontal layout when step labels are long — they will overflow or truncate.",
+      "Don't show the component for single-action flows — only use for multi-step sequences.",
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '9px 14px', borderBottom: '1px solid #fee2e2', background: i % 2 === 0 ? '#fff' : '#fef2f2' }}>
+        <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#991b1b', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+## Design Tokens
+
+<div id="design-tokens" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>State Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 110px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>CSS Variable</span><span>Value</span><span>State</span><span>Usage</span>
+</div>
+{[
+  { t: '--stepper-completed-bg',   h: '#194185', v: '#194185', state: 'completed', u: 'Completed circle background' },
+  { t: '--stepper-completed-line', h: '#194185', v: '#194185', state: 'completed', u: 'Completed connecting line' },
+  { t: '--stepper-completed-text', h: '#000b36', v: '#000b36', state: 'completed', u: 'Completed step label' },
+  { t: '--stepper-completed-desc', h: '#3c5073', v: '#3c5073', state: 'completed', u: 'Completed step description' },
+  { t: '--stepper-current-bg',     h: '#eff8ff', v: '#eff8ff', state: 'current',   u: 'Current circle background' },
+  { t: '--stepper-current-icon',   h: '#194185', v: '#194185', state: 'current',   u: 'Current step number color' },
+  { t: '--stepper-current-line',   h: '#e5e7eb', v: '#e5e7eb', state: 'current',   u: 'Current connecting line' },
+  { t: '--stepper-current-text',   h: '#000b36', v: '#000b36', state: 'current',   u: 'Current step label' },
+  { t: '--stepper-current-desc',   h: '#3c5073', v: '#3c5073', state: 'current',   u: 'Current step description' },
+  { t: '--stepper-upcoming-bg',    h: '#f3f4f6', v: '#f3f4f6', state: 'upcoming',  u: 'Upcoming circle background' },
+  { t: '--stepper-upcoming-icon',  h: '#9da4ae', v: '#9da4ae', state: 'upcoming',  u: 'Upcoming step number color' },
+  { t: '--stepper-upcoming-line',  h: '#e5e7eb', v: '#e5e7eb', state: 'upcoming',  u: 'Upcoming connecting line' },
+  { t: '--stepper-upcoming-text',  h: '#6c7c96', v: '#6c7c96', state: 'upcoming',  u: 'Upcoming step label + description' },
+].map(({ t, h, v, state, u }, i) => (
+  <div key={t} style={{ display: 'grid', gridTemplateColumns: '220px 110px 80px 1fr', padding: '8px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 11, color: '#374151' }}>{v}</code>
+    </span>
+    <span style={{ fontSize: 11, background: state === 'completed' ? '#ecfdf5' : state === 'current' ? '#eff8ff' : '#f3f4f6', color: state === 'completed' ? '#059669' : state === 'current' ? '#194185' : '#6b7280', padding: '1px 7px', borderRadius: 4, fontWeight: 600 }}>{state}</span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Geometry &amp; Typography</div>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Value</span><span>Notes</span>
+</div>
+{[
+  ['Circle size',        '32 × 32 px',                    'border-radius: 50%'],
+  ['Checkmark icon',     '16 × 16 px',                    'White stroke, tick-02 from DS icon library'],
+  ['Connecting line',    '2 px',                          'Width (vertical) or height (horizontal)'],
+  ['Step number font',   'IBM Plex Sans Arabic 16px/500', 'Displayed in current and upcoming circles'],
+  ['Label font',         'IBM Plex Sans Arabic 14px/500', 'Current step uses font-weight 600'],
+  ['Description font',   'IBM Plex Sans Arabic 14px/400', 'Shown when showDescription=true'],
+  ['Circle–text gap',    '8 px',                          '--stepper/spacing/card-lg-gap'],
+  ['Label–desc gap',     '4 px',                          '--spacing/progress-indicator/progress-text-content-gap'],
+  ['Text side padding',  '16 px',                         '--progress-indicator/progress-text-content-side-padding (inline-end)'],
+].map(([prop, val, note], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '200px 160px 1fr', padding: '8px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{prop}</span>
+    <code style={{ fontSize: 12, color: '#374151' }}>{val}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>
+
+## Properties
+
+<div id="properties" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 160px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Prop','Type','Default','Description'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { n: 'steps',           type: 'Step[]',                  tb: '#f5f3ff', tc: '#6d28d9', def: '[]',          d: 'Array of { label?: string, description?: string }. Each object defines one step in the sequence.' },
+  { n: 'currentStep',     type: 'number',                  tb: '#ecfdf5', tc: '#059669', def: '0',           d: '0-based index of the active step. Steps with a lower index are shown as completed. Use -1 to show all steps as upcoming.' },
+  { n: 'orientation',     type: '"vertical"|"horizontal"',          tb: '#fff7ed', tc: '#c2410c', def: '"vertical"',  d: 'Layout direction. Vertical stacks steps; horizontal places them in a row with the line extending right.' },
+  { n: 'variant',         type: '"default"|"dot"|"outlined"',       tb: '#fdf4ff', tc: '#7c3aed', def: '"default"',  d: 'Visual style. default = filled circles + checkmarks; dot = small indicator dots; outlined = transparent circles with border.' },
+  { n: 'showDescription', type: 'boolean',                          tb: '#fff7ed', tc: '#c2410c', def: 'true',        d: 'Show the description text below each step label. Set to false for compact layouts.' },
+  { n: 'rtl',             type: 'boolean',                          tb: '#fff7ed', tc: '#c2410c', def: 'false',       d: 'Enable right-to-left layout. Mirrors circle position, line direction, and text alignment.' },
+].map(({ n, type, tb, tc, def, d }, i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '140px 160px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 12, color: '#7c3aed', fontWeight: 600 }}>{n}</code>
+    <span style={{ fontSize: 11, background: tb, color: tc, padding: '2px 7px', borderRadius: 4, fontFamily: 'monospace', display: 'inline-block' }}>{type}</span>
+    <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{d}</span>
+  </div>
+))}
+</div>
+
+## Figma Reference
+
+<div id="figma-reference" style={{ marginBottom: 24 }}>
+
+<div style={{ fontSize: 13, color: '#3c5073', marginBottom: 16, lineHeight: 1.6 }}>
+  Exported directly from Figma (<a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-23099" target="_blank" rel="noreferrer" style={{ color: '#1849a9' }}>node 4399:23099</a>). Compare this reference against the live component above to verify visual accuracy.
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Progress Indicator — All States &amp; Orientations</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/progress-indicator.png" alt="Progress Indicator all states from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+  <div style={{ padding: '8px 16px', background: '#f9fafb', borderTop: '1px solid #e5e7eb', fontSize: 11, color: '#6b7280' }}>
+    Shows vertical and horizontal orientations with completed, current, and upcoming step states.
+  </div>
+</div>
+
+</div>
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Concern','Implementation'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['role="list"',         'Root element has role="list" so screen readers announce the number of steps.'],
+  ['role="listitem"',     'Each step has role="listitem" — announced as "item N of N" within the list.'],
+  ['aria-current="step"', 'The current active step carries aria-current="step" so screen readers identify it as the current location in the sequence.'],
+  ['Line aria-hidden',    'The connecting line div has aria-hidden="true" — purely decorative; excluded from the accessibility tree.'],
+  ['dir attribute',       'dir="rtl"|"ltr" on the root ensures assistive technology reads step labels in the correct order for the language.'],
+  ['Color contrast',      'Completed circle #194185 on white: 8.6:1 (AAA). Step number #194185 on #eff8ff: 7.4:1 (AAA). Upcoming number #9da4ae on #f3f4f6: 2.8:1 — supplemented by step number text.'],
+  ['Keyboard focus',      'The component is display-only. If steps are clickable, wrap each step in a <button> and manage focus programmatically with keyboard navigation.'],
+].map(([concern, impl], i) => (
+  <div key={concern} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>{concern}</span>
+    <span style={{ fontSize: 13, color: '#3c5073', lineHeight: 1.5 }}>{impl}</span>
+  </div>
+))}
+</div>
+
+## Mismatch Report
+
+<div id="mismatch-report" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '40px 1fr 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['#','Figma Spec','Status','Notes'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { n:'1', a:'3 states: Completed (#194185) · Current (#eff8ff) · Upcoming (#f3f4f6)',  s:'Matched', sb:'#ecfdf5',st:'#059669', note:'All circle backgrounds and text colors match Figma tokens exactly.' },
+  { n:'2', a:'Checkmark (tick-02) icon for completed state, 16×16 px',                  s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Inline SVG path approximates Figma tick-02 icon with matching stroke width.' },
+  { n:'3', a:'Circle size 32×32 px, border-radius 999px',                                s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Exact dimensions; border-radius 50% produces the same result.' },
+  { n:'4', a:'Connecting line 2px, vertical (color matches state)',                       s:'Matched', sb:'#ecfdf5',st:'#059669', note:'Completed line #194185; current/upcoming line #e5e7eb.' },
+  { n:'5', a:'Two orientations: Horizontal and Vertical',                                 s:'Matched', sb:'#ecfdf5',st:'#059669', note:'orientation prop controls flex direction and line axis.' },
+  { n:'6', a:'RTL: layout mirrors, text dir="rtl"',                                      s:'Matched', sb:'#ecfdf5',st:'#059669', note:'CSS logical properties (padding-inline-end, margin-inline-start) handle RTL automatically.' },
+  { n:'7', a:'Hover and Focused variant states from Figma',                               s:'Pending', sb:'#fff7ed',st:'#c2410c', note:'Figma has hover + focused visual variants (border/shadow on circle). Implemented as display-only; interactive hover/focus states are pending.' },
+  { n:'8', a:'Exact tick-02 SVG asset from DS icon library',                              s:'Pending', sb:'#fff7ed',st:'#c2410c', note:'Using inline SVG approximation. A future pass should import the tick-02 icon from the DS icon library component.' },
+].map(({ n, a, s, sb, st, note }, i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 1fr 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#e5e7eb', color: '#374151', fontSize: 11, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, color: '#111827', lineHeight: 1.4 }}>{a}</span>
+    <span style={{ background: sb, color: st, fontSize: 11, padding: '3px 8px', borderRadius: 4, fontWeight: 700, display: 'inline-block', whiteSpace: 'nowrap' }}>{s}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>

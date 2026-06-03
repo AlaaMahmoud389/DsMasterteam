@@ -1,0 +1,321 @@
+/* ==========================================================
+   Radio — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4399:23544
+   ========================================================== */
+
+/* ── Fieldset reset ────────────────────────────────────────── */
+
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.legend {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000b36;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+/* ── Group layouts ─────────────────────────────────────────── */
+
+.groupVertical {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.groupHorizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+}
+
+/* ── Single radio wrapper ──────────────────────────────────── */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* ── Label row (radio + text) ──────────────────────────────── */
+
+.labelRow {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.disabled .labelRow,
+.disabled .labelRow * {
+  cursor: not-allowed;
+}
+
+.readOnly .labelRow {
+  cursor: default;
+}
+
+/* ── Hit area + ripple ─────────────────────────────────────── */
+
+.controlWrap {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ripple circle (hover / press) */
+.controlWrap::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 0.15s ease;
+  pointer-events: none;
+}
+
+.labelRow:hover .controlWrap::before {
+  background: var(--controls-ripple, #f3f4f6);
+}
+
+.labelRow:active .controlWrap::before {
+  background: var(--controls-ripple, #e5e7eb);
+}
+
+.disabled .labelRow:hover .controlWrap::before,
+.disabled .labelRow:active .controlWrap::before,
+.readOnly .labelRow:hover .controlWrap::before {
+  background: transparent;
+}
+
+/* ── Hidden native input ───────────────────────────────────── */
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+/* ── Custom ring ───────────────────────────────────────────── */
+
+.ring {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--radio-ring-color, #6c737f);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+/* ── Inner dot (shown when selected) ──────────────────────── */
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: transparent;
+  transform: scale(0);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease;
+}
+
+/* ── Primary style tokens ──────────────────────────────────── */
+
+.primary {
+  --radio-ring-color:          #6c737f;
+  --radio-ring-selected:       #1849a9;
+  --radio-ring-hover-unsel:    #6c737f;
+  --radio-ring-hover-sel:      #194185;
+  --radio-ring-pressed:        #102a56;
+  --radio-ring-focus:          #1849a9;
+  --radio-ring-readonly:       #1849a9;
+  --radio-dot-color:           #1849a9;
+  --radio-dot-hover:           #194185;
+  --radio-dot-pressed:         #102a56;
+}
+
+/* ── Neutral style tokens ──────────────────────────────────── */
+
+.neutral {
+  --radio-ring-color:          #1f2a37;
+  --radio-ring-selected:       #1f2a37;
+  --radio-ring-hover-unsel:    #0d121c;
+  --radio-ring-hover-sel:      #0d121c;
+  --radio-ring-pressed:        #4d5761;
+  --radio-ring-focus:          #1f2a37;
+  --radio-ring-readonly:       #1f2a37;
+  --radio-dot-color:           #1f2a37;
+  --radio-dot-hover:           #0d121c;
+  --radio-dot-pressed:         #4d5761;
+}
+
+/* ── Selected state ────────────────────────────────────────── */
+
+.input:checked ~ .ring {
+  border-color: var(--radio-ring-selected);
+}
+
+.input:checked ~ .ring .dot {
+  background: var(--radio-dot-color);
+  transform: scale(1);
+}
+
+/* ── Hover (unselected) ────────────────────────────────────── */
+
+.labelRow:hover .input:not(:checked) ~ .ring {
+  border-color: var(--radio-ring-hover-unsel);
+}
+
+/* ── Hover (selected) ──────────────────────────────────────── */
+
+.labelRow:hover .input:checked ~ .ring {
+  border-color: var(--radio-ring-hover-sel);
+}
+
+.labelRow:hover .input:checked ~ .ring .dot {
+  background: var(--radio-dot-hover);
+}
+
+/* ── Pressed ───────────────────────────────────────────────── */
+
+.labelRow:active .ring {
+  border-color: var(--radio-ring-pressed);
+}
+
+.labelRow:active .input:checked ~ .ring .dot {
+  background: var(--radio-dot-pressed);
+}
+
+/* ── Focus-visible indicator — square border + thicker ring (Figma border-2) ── */
+
+.input:focus-visible ~ .ring {
+  border-color: var(--radio-ring-focus);
+  border-width: 2px;
+}
+
+/* Square outline on the 32 px hit-area matching Figma's focused state */
+.controlWrap:has(.input:focus-visible) {
+  outline: 2px solid var(--radio-ring-focus);
+  outline-offset: -2px;
+  border-radius: 3px;
+}
+
+/* ── Disabled ──────────────────────────────────────────────── */
+
+.disabled .ring,
+.input:disabled ~ .ring {
+  border-color: #d2d6db;
+  opacity: 0.7;
+}
+
+.disabled .input:checked ~ .ring .dot,
+.input:disabled:checked ~ .ring .dot {
+  background: #d2d6db;
+}
+
+/* ── Read-only ─────────────────────────────────────────────── */
+
+.readOnly .ring {
+  border-color: var(--radio-ring-readonly);
+  opacity: 0.8;
+}
+
+.readOnly .input:checked ~ .ring .dot {
+  background: var(--radio-ring-readonly);
+  opacity: 0.8;
+}
+
+/* ── Label text ────────────────────────────────────────────── */
+
+.labelText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--controls-text-default, #000b36);
+  transition: color 0.15s ease;
+}
+
+.disabled .labelText {
+  color: #9da4ae;
+}
+
+/* ── Helper text ───────────────────────────────────────────── */
+
+.helperText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--controls-text-description, #6c7c96);
+  margin: 4px 0 0 40px;
+  padding: 0;
+}
+
+.rtl .helperText {
+  margin-inline-start: 40px;
+  margin-inline-end: 0;
+}
+
+/* ── Error row ─────────────────────────────────────────────── */
+
+.errorRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding-inline-start: 40px;
+}
+
+.errorText {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--controls-text-error, #a30000);
+  margin: 0;
+}
+
+/* ── RTL mirroring ─────────────────────────────────────────── */
+
+.rtl .labelRow {
+  flex-direction: row-reverse;
+}
+
+.rtl .labelText {
+  text-align: right;
+}
+
+.rtl .helperText {
+  margin-left: 0;
+  margin-right: 40px;
+  text-align: right;
+}
+
+.rtl .errorRow {
+  flex-direction: row-reverse;
+  padding-inline-start: 0;
+  padding-inline-end: 40px;
+}
+
+.rtl .errorText {
+  text-align: right;
+}

@@ -1,0 +1,585 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { ProgressBar } from './ProgressBar';
+import { CircularProgressBar } from './CircularProgressBar';
+import { ProgressChart } from './ProgressChart';
+import { RadialChart } from './RadialChart';
+import * as ProgressBarStories from './ProgressBar.stories';
+
+<Meta of={ProgressBarStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Progress Bar / Progress Line</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Progress Line</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A linear progress indicator that shows task or process advancement as a filled horizontal track growing from 0% to 100%. Two color variants (Primary green · Neutral navy), three bar heights (Small 4 px · Medium 8 px · Large 16 px), three states (default · success · error), optional label and helper text, and full RTL support. Figma node 4399:20639.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:20639</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/loading-and-status/progress-bar" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-20639&t=fWTlS4h9RZJZvHwC-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Sizes','#sizes'],['States','#states'],['RTL Support','#rtl-support'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16, maxWidth: 360 }}>
+  <ProgressBar size="Small"  value={50} label="Small - 50%" />
+  <ProgressBar size="Medium" value={50} label="Medium - 50%" />
+  <ProgressBar size="Large"  value={50} label="Large - 50%" />
+</div>
+
+Two color variants (Primary · Neutral) · three bar heights (4 px · 8 px · 16 px) · three states (default · success · error) · optional label and helper text · full RTL support. All tokens sourced from Figma node `4399:20639`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 24, maxWidth: 400 }}>
+  <ProgressBar size="Medium" value={60} label="Label" helperText="Help Text" />
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', justifyContent: 'flex-start' }}>
+    {[['1','Label (optional)'],['2','Track (background)'],['3','Fill (progress)'],['4','Helper icon'],['5','Helper text']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ width: 44, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
+<th style={{ width: 190, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Condition</th>
+</tr>
+</thead>
+<tbody>
+{[
+  ['1','Label - 14 px (Small/Medium) or 16 px (Large), #000b36','When showLabel=true'],
+  ['2','Track - full-width, #e7e9ed background, 4 px border-radius','Always'],
+  ['3','Fill - colored bar, width driven by value prop (0–100%), animated on change','Always'],
+  ['4','Helper icon - 16×16 px SVG: help-circle, checkmark-circle, or error-circle','When showHelperText=true'],
+  ['5','Helper text - 12 px, color matches status','When showHelperText=true'],
+].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Variants
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+{[
+  { variant: 'Primary', fillColor: '#006121', desc: 'Green fill - for progress tied to a positive goal (file upload, form submission, onboarding steps).', values: [20, 60, 100] },
+  { variant: 'Neutral', fillColor: '#3c5073', desc: 'Navy fill - for neutral system processes where a positive/negative outcome is not yet implied (loading, syncing, indexing).', values: [20, 60, 100] },
+].map(({ variant, fillColor, desc, values }) => (
+  <div key={variant} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 3, background: fillColor, flexShrink: 0 }}/>
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 700 }}>{variant}</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 14, background: '#fff', maxWidth: 380 }}>
+      {values.map(v => (
+        <ProgressBar key={v} variant={variant} value={v} label={`${v}%`} status={v === 100 ? 'success' : 'default'} helperText={v === 100 ? undefined : `${v}% complete`} />
+      ))}
+    </div>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 130px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Variant</span><span>Fill</span><span>Track</span><span>Usage</span>
+</div>
+{[
+  { v:'Primary', fill:'#006121', track:'#e7e9ed', usage:'Goal-oriented progress - upload, onboarding, form steps' },
+  { v:'Neutral', fill:'#3c5073', track:'#e7e9ed', usage:'System / neutral processes - loading, syncing, indexing' },
+].map(({v,fill,track,usage},i)=>(
+<div key={v} style={{display:'grid',gridTemplateColumns:'110px 130px 130px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{v}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:fill,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{fill}</code></span>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:track,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{track}</code></span>
+<span style={{fontSize:12,color:'#6b7280'}}>{usage}</span>
+</div>
+))}
+</div>
+
+---
+
+## Sizes
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+{[
+  { label: 'Small',  size: 'Small',  barH: '4 px',  labelFont: '14 px / 20 px' },
+  { label: 'Medium', size: 'Medium', barH: '8 px',  labelFont: '14 px / 20 px' },
+  { label: 'Large',  size: 'Large',  barH: '16 px', labelFont: '16 px / 24 px' },
+].map(({ label, size, barH, labelFont }) => (
+  <div key={size} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827', minWidth: 56 }}>{label}</span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>Bar height: <strong style={{ color: '#374151' }}>{barH}</strong></span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>Label font: <strong style={{ color: '#374151' }}>{labelFont}</strong></span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff', maxWidth: 380 }}>
+      <ProgressBar size={size} value={60} label="Label" helperText="Help Text" />
+    </div>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '80px 100px 130px 1fr', background: '#f0f1f3', padding: '8px 16px', gap: 12, fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', borderBottom: '1px solid #e5e7eb' }}>
+    <span>Size</span><span>Bar height</span><span>Label font</span><span>Token / Notes</span>
+  </div>
+  {[
+    { size: 'Small',  h: '4 px',  lf: '14 px / 400',  note: 'Track border-radius 2px' },
+    { size: 'Medium', h: '8 px',  lf: '14 px / 400',  note: 'Track border-radius 4px' },
+    { size: 'Large',  h: '16 px', lf: '16 px / 400',  note: 'border-radius 8px · value % shown inside fill in #f9fafb' },
+  ].map(({ size, h, lf, note }, i) => (
+    <div key={size} style={{ display: 'grid', gridTemplateColumns: '80px 100px 130px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{size}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151' }}>{h}</code>
+      <span style={{ fontSize: 12, color: '#374151', fontFamily: 'monospace' }}>{lf}</span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+## States
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+{[
+  { name: 'Default - In Progress',   badge: 'status="default"',   desc: 'Help-circle icon + custom helperText. Fill color follows variant.',                              value: 50,  status: 'default', variant: 'Primary' },
+  { name: 'Success',                 badge: 'status="success"',   desc: 'Fill goes full (100%), checkmark-circle icon, "Success" text in green #006121.',                value: 100, status: 'success', variant: 'Primary' },
+  { name: 'Error',                   badge: 'status="error"',     desc: 'Fill turns red (#a30000), error-circle icon, "Error" text in red - regardless of value.',       value: 0,   status: 'error',   variant: 'Primary' },
+  { name: 'Neutral - In Progress',   badge: 'variant="Neutral"',  desc: 'Navy fill #3c5073. Help-circle icon + helper text.',                                            value: 40,  status: 'default', variant: 'Neutral' },
+  { name: 'Neutral - Success',       badge: 'variant + success',  desc: 'Navy variant with success state - checkmark icon, "Success" text in green.',                   value: 100, status: 'success', variant: 'Neutral' },
+  { name: 'Neutral - Error',         badge: 'variant + error',    desc: 'Red fill overrides Neutral color. Error icon + "Error" text.',                                   value: 0,   status: 'error',   variant: 'Neutral' },
+  { name: 'No Label / Helper',       badge: 'showLabel=false etc',desc: 'Bar only - used in compact table cells or when context makes label redundant.',                  value: 55,  status: 'default', variant: 'Primary', noLabel: true, noHelper: true },
+].map(({ name, badge, desc, value, status, variant, noLabel, noHelper }) => (
+  <div key={name} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827', flexShrink: 0 }}>{name}</span>
+      <code style={{ fontSize: 11, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151', flexShrink: 0 }}>{badge}</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff', maxWidth: 380 }}>
+      <ProgressBar variant={variant} value={value} status={status} label="Label" helperText="Help Text" showLabel={!noLabel} showHelperText={!noHelper} />
+    </div>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '100px 130px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Status</span><span>Fill color</span><span>Helper color</span><span>Helper text</span></div>
+{[
+  { s:'default', fill:'variant-driven', fillColor:'#006121 or #3c5073', hColor:'#3c5073', ht:'Custom helperText prop' },
+  { s:'success', fill:'#006121 (always)', fillColor:'#006121', hColor:'#006121', ht:'"Success" (overrides prop)' },
+  { s:'error',   fill:'#a30000 (always)', fillColor:'#a30000', hColor:'#a30000', ht:'"Error" (overrides prop)' },
+].map(({s,fill,fillColor,hColor,ht},i)=>(
+<div key={s} style={{display:'grid',gridTemplateColumns:'100px 130px 130px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{s}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:fillColor,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{fill}</code></span>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:hColor,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{hColor}</code></span>
+<span style={{fontSize:12,color:'#6b7280'}}>{ht}</span>
+</div>
+))}
+</div>
+
+---
+
+## RTL Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 16, background: '#fff' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', border: '1px solid #dce3f7', padding: '1px 7px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+    </div>
+    <div style={{ maxWidth: 280 }}>
+      <ProgressBar value={60} label="Label" helperText="Help Text" rtl={false} />
+    </div>
+  </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, padding: 16, background: '#fff' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', border: '1px solid #dce3f7', padding: '1px 7px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
+    </div>
+    <div style={{ maxWidth: 280 }}>
+      <ProgressBar value={60} label="عنوان" helperText="نص مساعد" rtl={true} />
+    </div>
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>RTL note:</strong> Setting <code>rtl=true</code> applies <code>dir="rtl"</code> to the root element. The fill grows from right to left, the helper row icon and text mirror their order, and the label text aligns right. No additional CSS is required.
+</div>
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Layout & Shape</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--progress-bar-gap',    v:'4px',  f:'charts/container/chart-card-xs-gap', u:'Gap between label, bar, and helper row'},
+  {t:'--progress-bar-radius', v:'4px',  f:'radius/radius-sm',                   u:'Border radius on track and fill'},
+].map(({t,v,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'220px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '240px 130px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--progress-bar-fill-primary', h:'#006121', f:'charts/progress-bar/legends/success', u:'Primary variant fill + success fill'},
+  {t:'--progress-bar-fill-neutral', h:'#3c5073', f:'charts/progress-bar/legends/default', u:'Neutral variant fill'},
+  {t:'--progress-bar-fill-error',   h:'#a30000', f:'charts/progress-bar/legends/error',   u:'Error state fill (overrides variant)'},
+  {t:'--progress-bar-track',        h:'#e7e9ed', f:'charts/container/background/default-2',u:'Track background (all variants)'},
+  {t:'--progress-bar-label-color',  h:'#000b36', f:'charts/header-title/title',            u:'Label text color'},
+].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'240px 130px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Helper Text Colors (per state)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '240px 130px 1fr 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>State</span></div>
+{[
+  {t:'(charts/progress-bar/text-color/label)', h:'#3c5073', f:'charts/progress-bar/text-color/label', v:'default'},
+  {t:'(charts/progress-bar/legends/success)',  h:'#006121', f:'charts/progress-bar/legends/success',  v:'success'},
+  {t:'(charts/progress-bar/legends/error)',    h:'#a30000', f:'charts/progress-bar/legends/error',    v:'error'},
+].map(({t,h,f,v},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'240px 130px 1fr 80px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:11,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{h}</code></span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#374151',fontWeight:600}}>{v}</span>
+</div>
+))}
+</div>
+
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '140px 100px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+  {n:'value',          type:'number',  tb:'#ecfdf5',tc:'#059669',def:'20',         d:'Progress value 0–100. Controls fill bar width. Animates smoothly on change via CSS transition.'},
+  {n:'size',           type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'Medium',     d:"Bar height - Small (4 px) · Medium (8 px) · Large (16 px, value % shown inside fill). Maps to Figma 'size' prop."},
+  {n:'variant',        type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'Primary',    d:"Fill color palette - Primary (green #006121) · Neutral (navy #3c5073). Maps to Figma 'style' prop."},
+  {n:'status',         type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'default',    d:"Visual state - 'default' uses variant color · 'success' forces green fill + checkmark · 'error' forces red fill + error icon."},
+  {n:'label',          type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"Label"',    d:'Text shown above the bar. 14 px (Small/Medium) or 16 px (Large). Dark navy #000b36.'},
+  {n:'helperText',     type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"Help Text"',d:'Helper text shown below the bar alongside the icon. Overridden by "Success" or "Error" when status is set.'},
+  {n:'showLabel',      type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'true',       d:'Show or hide the label row above the bar.'},
+  {n:'showHelperText', type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'true',       d:'Show or hide the helper text row below the bar.'},
+  {n:'rtl',            type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',      d:'Right-to-left layout. Fill grows from right to left, text aligns right.'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'140px 100px 100px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+  {cat:'Semantics & ARIA',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'A',items:[
+    {title:'role="progressbar" on the track element',desc:'The track div carries role="progressbar", aria-valuenow, aria-valuemin=0, and aria-valuemax=100. Screen readers announce the current progress value.'},
+    {title:'aria-label on the progressbar',desc:'The label prop value is passed as aria-label so screen readers announce context ("Uploading: 60%") rather than just a number.'},
+    {title:'Icons are aria-hidden',desc:'All SVG icons (help, success, error) have aria-hidden="true". The helper text provides the accessible description.'},
+  ]},
+  {cat:'Status Changes',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'◎',items:[
+    {title:'Color + icon + text for each state',desc:'Status is communicated via three redundant cues: fill color, icon shape (help-circle vs checkmark vs error-circle), and text label. Color is never the sole indicator.'},
+    {title:'Live region for success/error',desc:'Consider wrapping the component in an aria-live="polite" region in your app so screen readers announce state transitions (e.g. "Upload complete: Success") without user focus change.'},
+  ]},
+  {cat:'Visual',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+    {title:'Contrast: fill on track',desc:'Primary green #006121 on #e7e9ed track >= 3.8:1. Error red #a30000 on track >= 4.5:1. Both pass WCAG AA for non-text graphical elements.'},
+    {title:'Label contrast',desc:'Label #000b36 on white >= 18:1 (WCAG AAA). Helper text #3c5073 on white >= 5.1:1 (WCAG AA).'},
+    {title:'Fill transition is respectful',desc:'The 400ms width transition uses prefers-reduced-motion: add @media (prefers-reduced-motion: reduce) to disable it if needed.'},
+  ]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', background: '#fff', maxWidth: 320 }}>
+  <ProgressBar value={75} label="Uploading report.pdf" helperText="75% - 30 seconds remaining" />
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Clear label with context and estimated time</div>
+{['Set value to the actual % complete from your data source.','Transition status to "success" when value reaches 100.','Provide meaningful label and helperText (e.g. filename, operation name).'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', background: '#fff', maxWidth: 320 }}>
+  <ProgressBar value={100} label="Done" status="error" />
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✗</span>Mismatched value and status - full bar with error state</div>
+{['Do not show status="error" with value=100 - it contradicts the visual fill.','Do not auto-dismiss a success bar too quickly - give users at least 1–2 seconds to see it.','Do not use progress bars for binary states - use a spinner or skeleton instead.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+
+<div style={{ marginBottom: 16 }}>
+<div style={{ fontSize: 12, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Sizes in context</div>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+  {[['Small', 'Small'], ['Medium', 'Medium'], ['Large', 'Large']].map(([size, label]) => (
+    <div key={size} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: 12, background: '#fff' }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', marginBottom: 8 }}>{label}</div>
+      <ProgressBar size={size} value={60} label="Uploading" helperText="60% complete" />
+    </div>
+  ))}
+</div>
+</div>
+
+<div style={{ marginBottom: 16 }}>
+<div style={{ fontSize: 12, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Variants in context</div>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+  {[
+    { variant: 'Default',  label: 'Default',  desc: 'User-initiated upload' },
+    { variant: 'Neutral',  label: 'Neutral',  desc: 'Background sync' },
+    { variant: 'Default',  label: 'Success',  desc: 'Operation complete', status: 'success', value: 100 },
+  ].map(({ variant, label, desc, status, value }) => (
+    <div key={label} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: 12, background: '#fff' }}>
+      <div style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', marginBottom: 8 }}>{label}</div>
+      <ProgressBar variant={variant} value={value ?? 65} status={status} label={desc} helperText={status === 'success' ? 'Done' : '65%'} />
+    </div>
+  ))}
+</div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Use for determinate progress - when you know the total and current position.','Set status="success" when the operation completes (value=100).','Set status="error" when the operation fails - value can be any amount.','Use Neutral variant for system/background tasks with no user goal attached.','Use Small for compact layouts (table cells, sidebars, compact cards).','Use Large for prominent on-boarding or import flows where progress is the main UI.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✗</span>Don't</div>
+{["Don't use for indeterminate loading - use a spinner or skeleton.","Don't leave the bar at 100% without transitioning to 'success' status.","Don't set status='error' with value=100 - it creates a contradictory message.","Don't remove the helperText when status changes - it provides the key context.","Don't use for sequences (step 1 of 5) - use a Step Indicator component.","Don't animate value prop repeatedly from 0 on re-renders - manage state outside."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✗</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { ProgressBar } from '@/components/ProgressBar';
+
+// Basic controlled progress
+const [progress, setProgress] = useState(0);
+<ProgressBar
+  value={progress}
+  label="Uploading file"
+  helperText={`${progress}% complete`}
+/>
+
+// With status lifecycle
+const [progress, setProgress] = useState(0);
+const [status, setStatus] = useState('default');
+
+// On upload tick:
+setProgress(prev => {
+  const next = Math.min(prev + 10, 100);
+  if (next === 100) setStatus('success');
+  return next;
+});
+
+<ProgressBar
+  value={progress}
+  status={status}
+  label="Uploading report.pdf"
+  helperText={`${progress}% - ${Math.round((100 - progress) / 10)} seconds remaining`}
+/>
+
+// Error state
+<ProgressBar
+  value={partialProgress}
+  status="error"
+  label="Upload failed"
+  helperText="Network error - please retry"
+/>
+
+// Neutral variant for background sync
+<ProgressBar
+  variant="Neutral"
+  value={syncProgress}
+  label="Syncing data"
+  helperText="Fetching records..."
+/>
+
+// Sizes
+<ProgressBar size="Small"  value={60} label="Small" />
+<ProgressBar size="Medium" value={60} label="Medium" />
+<ProgressBar size="Large"  value={60} label="Large" />
+
+// RTL Arabic
+<ProgressBar
+  rtl={true}
+  value={75}
+  label="تحميل الملف"
+  helperText="٧٥٪ مكتمل"
+/>
+
+// Bar only (no label/helper - for compact table cells)
+<ProgressBar
+  showLabel={false}
+  showHelperText={false}
+  value={row.completionPct}
+  aria-label={`${row.name} - ${row.completionPct}% complete`}
+/>
+```
+
+---
+
+## Figma Reference
+
+<div id="figma-reference" style={{ marginBottom: 24 }}>
+
+<div style={{ fontSize: 13, color: '#3c5073', marginBottom: 16, lineHeight: 1.6 }}>
+  Exported from Figma component node <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-20639" target="_blank" rel="noreferrer" style={{ color: '#1849a9' }}>4399:20639</a>. Use this as a pixel-accurate reference when reviewing the live implementations above.
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Progress Bar — All Variants, Sizes &amp; States</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/progress-bar.png" alt="Progress Bar all variants, sizes and states from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+  <div style={{ padding: '8px 16px', background: '#f9fafb', borderTop: '1px solid #e5e7eb', fontSize: 11, color: '#6b7280' }}>
+    Left to right: Primary and Neutral variants across Small (4px), Medium (8px), and Large (16px) sizes, plus success and error states.
+  </div>
+</div>
+
+<div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 8 }}>
+  <span style={{ fontSize: 13, color: '#6b7280' }}>Component node:</span>
+  <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-20639" target="_blank" rel="noreferrer" style={{ fontSize: 13, color: '#1849a9' }}>4399:20639 ↗</a>
+  <span style={{ fontSize: 13, color: '#6b7280' }}>DGA Guidelines:</span>
+  <a href="https://design.dga.gov.sa/guidelines/components/loading-and-status/progress-bar" target="_blank" rel="noreferrer" style={{ fontSize: 13, color: '#1849a9' }}>design.dga.gov.sa ↗</a>
+</div>
+
+</div>
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4399:20639`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>6 Matched</span>
+<span style={{ background: '#fff7ed', color: '#c2410c', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fed7aa' }}>2 Pending</span>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Area</span><span>Status</span><span>Notes</span></div>
+{[
+  {a:'Three sizes (Small 4px, Medium 8px, Large 12px)',                        s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Bar heights match Figma size variants exactly. Label font scales with size.'},
+  {a:'Two variants - Primary (#006121) and Neutral (#3c5073)',                 s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Exact color values from Figma tokens charts/progress-bar/legends/success and legends/default.'},
+  {a:'Three states - default, success, error',                                 s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Error forces #a30000 fill (legends/error), success forces #006121. Helper text overrides match Figma.'},
+  {a:'Success icon (checkmark-circle) and Error icon (error-circle)',          s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Inline SVG approximations matching Figma icon shapes. Help-circle for default state.'},
+  {a:'RTL - fill grows right-to-left, helper row mirrors',                     s:'Matched', sb:'#ecfdf5',st:'#059669',n:'dir="rtl" on root element. CSS flex and % width naturally mirror in RTL context.'},
+  {a:'Track color #e7e9ed, label #000b36, helper text colors per state',       s:'Matched', sb:'#ecfdf5',st:'#059669',n:'All color values extracted from Figma token fallbacks. Matched to exact hex.'},
+  {a:'Animated fill width transition',                                          s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma is a static design - no animation spec. Implemented as 400ms cubic-bezier transition on width. Verify with motion design team if specific easing/duration is required.'},
+  {a:'Exact helper icon assets from Figma',                                    s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma uses specific icon instances (help-circle, success, error icons from the DS icon library). Replaced with inline SVG approximations. A future pass should link to the exact DS Icon component.'},
+].map(({a,s,sb,st,n},i)=>(
+<div key={a} style={{display:'grid',gridTemplateColumns:'1fr 100px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{s}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+</div>
+))}
+</div>
+
+
+---
+
+<div id="see-also" style={{ background: "#f0f4ff", border: "1px solid #dce3f7", borderRadius: 8, padding: "16px 20px", marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: "#1849a9", marginBottom: 10, textTransform: "uppercase", letterSpacing: ".07em" }}>Other Progress Bar components</div>
+  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+    <a href="?path=/docs/components-progress-bar-circular--docs" style={{ background: "#fff", border: "1px solid #dce3f7", borderRadius: 6, padding: "8px 14px", fontSize: 13, color: "#1849a9", fontWeight: 600, textDecoration: "none" }}>Circular →</a>
+    <a href="?path=/docs/components-progress-bar-radial--docs" style={{ background: "#fff", border: "1px solid #dce3f7", borderRadius: 6, padding: "8px 14px", fontSize: 13, color: "#1849a9", fontWeight: 600, textDecoration: "none" }}>Radial →</a>
+    <a href="?path=/docs/components-progress-bar-progress-chart--docs" style={{ background: "#fff", border: "1px solid #dce3f7", borderRadius: 6, padding: "8px 14px", fontSize: 13, color: "#1849a9", fontWeight: 600, textDecoration: "none" }}>Progress Chart →</a>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,268 @@
+/* ==========================================================
+   ProgressIndicator — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4399:23099
+   ========================================================== */
+
+/* ── Root ──────────────────────────────────────────────────── */
+
+.root {
+  display: inline-flex;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* ── Vertical layout (steps stacked top-to-bottom) ─────────── */
+
+.vertical {
+  flex-direction: column;
+}
+
+.vertical .step {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.vertical .indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.vertical .line {
+  width: 2px;
+  flex: 1;
+  min-height: 28px;
+  margin-top: 4px;
+}
+
+.vertical .content {
+  padding-bottom: 20px;
+  padding-inline-end: 16px;
+}
+
+/* ── Horizontal layout (steps side by side) ─────────────────── */
+
+.horizontal {
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.horizontal .step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 72px;
+}
+
+/* Indicator row: left-line  •  circle  •  right-line
+   Both lines are flex:1 so the circle is always centred */
+.horizontal .indicator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.horizontal .line {
+  height: 2px;
+  flex: 1;
+  min-width: 10px;
+}
+
+.horizontal .content {
+  text-align: center;
+  margin-top: 8px;
+  padding-inline: 4px;
+}
+
+/* ── Circle ────────────────────────────────────────────────── */
+
+.circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stepNum {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+/* ── Line ──────────────────────────────────────────────────── */
+
+.line {
+  transition: background-color 0.4s ease;
+}
+
+/* ── State: Completed ──────────────────────────────────────── */
+
+.completed .circle {
+  background: var(--stepper-completed-bg, #194185);
+  color: #fff;
+  animation: piStepDone 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.completed .line {
+  background: var(--stepper-completed-line, #194185);
+}
+
+.completed .label {
+  color: var(--stepper-completed-text, #000b36);
+}
+
+.completed .description {
+  color: var(--stepper-completed-desc, #3c5073);
+}
+
+/* ── State: Current ────────────────────────────────────────── */
+
+.current .circle {
+  background: var(--stepper-current-bg, #eff8ff);
+  box-shadow: 0 0 0 4px rgba(25, 65, 133, 0.12);
+  animation: piStepActive 0.35s ease forwards;
+}
+
+.current .stepNum {
+  color: var(--stepper-current-icon, #194185);
+}
+
+.current .line {
+  background: var(--stepper-current-line, #e5e7eb);
+}
+
+.current .label {
+  color: var(--stepper-current-text, #000b36);
+  font-weight: 600;
+}
+
+.current .description {
+  color: var(--stepper-current-desc, #3c5073);
+}
+
+/* ── State: Upcoming ───────────────────────────────────────── */
+
+.upcoming .circle {
+  background: var(--stepper-upcoming-bg, #f3f4f6);
+}
+
+.upcoming .stepNum {
+  color: var(--stepper-upcoming-icon, #9da4ae);
+}
+
+.upcoming .line {
+  background: var(--stepper-upcoming-line, #e5e7eb);
+}
+
+.upcoming .label {
+  color: var(--stepper-upcoming-text, #6c7c96);
+}
+
+.upcoming .description {
+  color: var(--stepper-upcoming-desc, #6c7c96);
+}
+
+/* ── Content (text block) ──────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  min-height: 32px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: color 0.3s ease;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* ── Animations ────────────────────────────────────────────── */
+
+@keyframes piStepDone {
+  0%   { transform: scale(0.75); opacity: 0.6; }
+  55%  { transform: scale(1.18); opacity: 1; }
+  80%  { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+@keyframes piStepActive {
+  0%   { box-shadow: 0 0 0 0px rgba(25, 65, 133, 0); }
+  100% { box-shadow: 0 0 0 4px rgba(25, 65, 133, 0.12); }
+}
+
+/* ── Dot variant ───────────────────────────────────────────── */
+
+.dotVariant .circle {
+  width: 10px;
+  height: 10px;
+  background: var(--stepper-upcoming-line, #e5e7eb);
+  box-shadow: none;
+  animation: none;
+}
+
+.dotVariant .step.current .circle {
+  width: 16px;
+  height: 16px;
+  background: var(--stepper-current-icon, #1849a9);
+  box-shadow: 0 0 0 4px rgba(25, 65, 133, 0.12);
+  animation: piDotPulse 0.35s ease forwards;
+}
+
+.dotVariant .step.completed .circle {
+  width: 10px;
+  height: 10px;
+  background: var(--stepper-completed-bg, #194185);
+  box-shadow: none;
+  animation: piStepDone 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes piDotPulse {
+  0%   { box-shadow: 0 0 0 0px rgba(25, 65, 133, 0); transform: scale(0.75); }
+  60%  { transform: scale(1.15); }
+  100% { box-shadow: 0 0 0 4px rgba(25, 65, 133, 0.12); transform: scale(1); }
+}
+
+/* ── Outlined variant ──────────────────────────────────────── */
+
+.outlinedVariant .circle {
+  background: transparent;
+  border: 1.5px solid #d2d6db;
+  box-shadow: none;
+  animation: none;
+}
+
+.outlinedVariant .step.upcoming .circle {
+  background: transparent;
+  border: 1.5px solid #d2d6db;
+}
+
+.outlinedVariant .step.current .circle {
+  background: transparent;
+  border: 2px solid var(--stepper-current-icon, #1849a9);
+  box-shadow: 0 0 0 4px rgba(25, 65, 133, 0.12);
+  animation: piStepActive 0.35s ease forwards;
+}
+
+.outlinedVariant .step.completed .circle {
+  background: transparent;
+  border: 2px solid var(--stepper-completed-bg, #194185);
+  animation: none;
+}

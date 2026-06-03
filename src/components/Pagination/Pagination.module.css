@@ -1,0 +1,285 @@
+/* ==========================================================
+   Pagination — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4399:22726
+   ========================================================== */
+
+/* ── Base ──────────────────────────────────────────────────── */
+
+.pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pagination-gap, 8px);
+  padding: 0;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+/* ── Shared item + navBtn base ──────────────────────────────── */
+
+.item,
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--pagination-item-radius, 4px);
+  color: var(--pagination-item-text-default, #3c5073);
+  font-family: inherit;
+  font-weight: 400;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  text-decoration: none;
+  user-select: none;
+}
+
+/* ── Hover ──────────────────────────────────────────────────── */
+
+.item:hover:not(.active),
+.navBtn:hover:not(:disabled) {
+  background-color: #f3f4f6;
+}
+
+/* ── Focus ──────────────────────────────────────────────────── */
+
+.item:focus-visible,
+.navBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ── Active / current page ───────────────────────────────────── */
+
+.active {
+  color: var(--pagination-item-text-current, #1849a9);
+}
+
+/* 3 px underline selector bar */
+.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  border-radius: 9999px;
+  background-color: var(--pagination-item-text-current, #1849a9);
+}
+
+/* ── Ellipsis item ──────────────────────────────────────────── */
+
+.ellipsis {
+  border: 1px solid var(--pagination-item-border, #f3f4f6);
+  color: var(--pagination-icon-secondary, #9da4ae);
+  letter-spacing: 0.02em;
+}
+
+.ellipsisBtn {
+  cursor: pointer;
+}
+
+/* ── Disabled nav button ─────────────────────────────────────── */
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ── Item wrapper (positions the jump menu) ──────────────────── */
+
+.itemWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Page-jump menu ─────────────────────────────────────────── */
+
+.menu {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px -4px rgba(16, 24, 40, 0.14), 0px 2px 6px -2px rgba(16, 24, 40, 0.06);
+  z-index: 100;
+  overflow: hidden;
+  min-width: 60px;
+  transform-origin: bottom center;
+}
+
+/* Size-adjusted widths */
+.menuSmall  { min-width: 52px; }
+.menuMedium { min-width: 60px; }
+.menuLarge  { min-width: 72px; }
+
+/* ── Menu open animation ─────────────────────────────────────── */
+
+@keyframes menu-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.92) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
+}
+
+@keyframes menu-exit {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.92) translateY(6px);
+  }
+}
+
+.menuOpen {
+  animation: menu-enter 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.menuClosing {
+  animation: menu-exit 140ms cubic-bezier(0.4, 0, 1, 1) forwards;
+  pointer-events: none;
+}
+
+/* ── Menu scroll area ───────────────────────────────────────── */
+
+.menuScroll {
+  max-height: 240px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.menuScroll::-webkit-scrollbar {
+  width: 4px;
+}
+.menuScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.menuScroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+/* ── Menu item ──────────────────────────────────────────────── */
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  height: 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--pagination-item-text-default, #3c5073);
+  padding: 0 6px;
+  transition: background-color 0.1s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.menuItem:hover {
+  background-color: #f3f4f6;
+}
+
+.menuItem:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}
+
+/* Active/current page item in menu */
+.menuItemActive {
+  color: var(--pagination-item-text-current, #1849a9);
+  font-weight: 600;
+  background-color: #eff3fb;
+}
+
+.menuItemActive:hover {
+  background-color: #dce4f6;
+}
+
+/* ── Size: Small ─────────────────────────────────────────────── */
+/* Items: 24 × 24 px · font 14px/20px · padding 4px · selector 16px */
+
+.small .item,
+.small .ellipsis {
+  min-width: 24px;
+  height: 24px;
+  font-size: var(--pagination-font-size-sm, 14px);
+  line-height: 20px;
+  padding: 4px;
+}
+
+.small .navBtn {
+  width: 24px;
+  height: 24px;
+}
+
+.small .active::after {
+  width: 16px;
+}
+
+/* ── Size: Medium ────────────────────────────────────────────── */
+/* Items: 32 × 32 px · font 14px/20px · padding 6px · selector 24px */
+
+.medium .item,
+.medium .ellipsis {
+  width: 32px;
+  height: 32px;
+  font-size: var(--pagination-font-size-md, 14px);
+  line-height: 20px;
+  padding: 6px;
+}
+
+.medium .navBtn {
+  width: 32px;
+  height: 32px;
+}
+
+.medium .active::after {
+  width: 24px;
+}
+
+/* ── Size: Large ─────────────────────────────────────────────── */
+/* Items: 40 × 40 px · font 16px/24px · padding 8px · selector 24px */
+
+.large .item,
+.large .ellipsis {
+  min-width: 40px;
+  height: 40px;
+  font-size: var(--pagination-font-size-lg, 16px);
+  line-height: 24px;
+  padding: 8px;
+}
+
+.large .navBtn {
+  width: 40px;
+  height: 40px;
+}
+
+.large .active::after {
+  width: 24px;
+}

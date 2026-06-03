@@ -1,0 +1,111 @@
+/* ==========================================================
+   RadialChart — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4548:5751
+   ========================================================== */
+
+.card {
+  background: var(--radial-chart-bg, #ffffff);
+  border: 1px solid var(--radial-chart-border, #e7e9ed);
+  border-radius: var(--radial-chart-radius, 8px);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 664px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.medium { min-height: 502px; }
+.small  { min-height: 398px; }
+
+/* ── Header ──────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Title: 18 px / 600 semibold */
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--radial-chart-title, #3c5073);
+}
+
+/* KPI value: Display sm / 600 semibold — Figma: font-weight-semibold */
+.kpiValue {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  color: var(--radial-chart-kpi, #3c5073);
+}
+
+.trendRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Trend badge: 12 px / 500 Inter Medium */
+.trendBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 97, 33, 0.10);
+  color: #006121;
+  border-radius: 24px;
+  padding: 2px 6px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.trendLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--radial-chart-trend-label, #3c5073);
+}
+
+/* View more: 16 px / 500 Inter Medium */
+.viewMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--radial-chart-link, #175cd3);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viewMore:hover { opacity: 0.8; }
+
+/* ── Chart area ──────────────────────────────────────────── */
+
+.chartArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.svg { display: block; flex-shrink: 0; }

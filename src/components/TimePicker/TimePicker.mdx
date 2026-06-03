@@ -1,0 +1,364 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { TimePicker } from './TimePicker';
+import * as TimePickerStories from './TimePicker.stories';
+
+<Meta of={TimePickerStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Inputs / TimePicker</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>TimePicker</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A time-selection control with four distinct interaction patterns: Stepper, Dropdown, Input, and Timer. All patterns support 12-hour format with AM/PM, optional seconds, and full RTL layout for Arabic and Hebrew.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4770:12915</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4770-12915&t=ohnsyAtOEvJbxf9o-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Types','#types'],['Anatomy','#anatomy'],['AM / PM','#am--pm'],['Without Seconds','#without-seconds'],['RTL Support','#rtl-support'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Figma Reference','#figma-reference']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 16 }}>
+  <TimePicker type="Stepper"  />
+  <TimePicker type="Dropdown" />
+  <TimePicker type="Input"    />
+  <TimePicker type="Timer"    />
+</div>
+
+Four interaction patterns · 12-hour format with AM / PM · optional seconds · full RTL support. All tokens sourced from Figma node `4770:12915`.
+
+---
+
+## Types
+
+### Stepper
+
+Increment / decrement each time unit with up and down arrow buttons. Ideal for precise value entry in compact interfaces.
+
+<div style={{ marginBottom: 24 }}>
+  <TimePicker type="Stepper" />
+</div>
+
+### Dropdown
+
+Native `<select>` elements with labels above. Best for touch-friendly interfaces or where keyboard navigation through a list is preferred.
+
+<div style={{ marginBottom: 24 }}>
+  <TimePicker type="Dropdown" />
+</div>
+
+### Input
+
+Displays the full time as a formatted string. The `typing` prop adds a blinking cursor for active input states.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
+  <TimePicker type="Input" />
+  <TimePicker type="Input" typing={true} hours="09" minutes="30" />
+</div>
+
+### Timer
+
+Large, prominent number display — suited for countdown timers, stopwatches, or any context that requires time to be immediately readable from a distance.
+
+<div style={{ marginBottom: 24 }}>
+  <TimePicker type="Timer" />
+</div>
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px 20px', marginBottom: 24 }}>
+  <TimePicker type="Stepper" />
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', marginTop: 20 }}>
+    {[
+      ['1', 'Clock icon'],
+      ['2', 'Time unit (hours, minutes, seconds)'],
+      ['3', 'Increment / decrement buttons'],
+      ['4', 'Colon separator'],
+      ['5', 'AM / PM period toggle'],
+    ].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ width: 44, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
+<th style={{ width: 190, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Required</th>
+</tr>
+</thead>
+<tbody>
+{[
+  ['1','Clock icon (Stepper / Input types)','Optional'],
+  ['2','Time unit display (HH / MM / SS)','Always'],
+  ['3','Increment / decrement buttons (Stepper)','When type="Stepper"'],
+  ['4','Colon separator between units','Always'],
+  ['5','AM / PM toggle or dropdown','Always'],
+  ['6','Blinking cursor','When typing=true (Input)'],
+].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## AM / PM
+
+The period toggle appears in all four types. The active period is highlighted with the brand blue background (`#eff8ff`) and brand text (`#1849a9`).
+
+<div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 24 }}>
+  <TimePicker type="Stepper" period="AM" />
+  <TimePicker type="Stepper" period="PM" />
+</div>
+
+---
+
+## Without Seconds
+
+Set `showSeconds={false}` to hide the seconds unit across all four types.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
+  <TimePicker type="Stepper"  showSeconds={false} />
+  <TimePicker type="Dropdown" showSeconds={false} />
+  <TimePicker type="Input"    showSeconds={false} />
+  <TimePicker type="Timer"    showSeconds={false} />
+</div>
+
+---
+
+## RTL Support
+
+Set `rtl={true}` to mirror the layout for Arabic or Hebrew content. The `dir="rtl"` attribute is applied automatically to the root element.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
+  <TimePicker type="Stepper"  rtl={true} />
+  <TimePicker type="Dropdown" rtl={true} />
+  <TimePicker type="Input"    rtl={true} />
+  <TimePicker type="Timer"    rtl={true} />
+</div>
+
+---
+
+## Token Table
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+{['Token','Value','Usage'].map(h => (
+  <th key={h} style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>{h}</th>
+))}
+</tr>
+</thead>
+<tbody>
+{[
+  ['--time-picker/background/default',  '#ffffff',  'Component background'],
+  ['--time-picker/background/selected', '#eff8ff',  'Active period (AM/PM) background'],
+  ['--time-picker/border/default',      '#f3f4f6',  'Internal dividers'],
+  ['--time-picker/text/default',        '#000b36',  'Time digits and labels'],
+  ['--time-picker/text/secondary',      '#b6bdca',  'Colon separators, inactive period'],
+  ['--time-picker/text/brand',          '#1849a9',  'Active period text, focus states'],
+  ['--time-picker/icon/arrow',          '#9da4ae',  'Clock icon and chevron buttons'],
+].map(([token,value,usage],i)=>(
+<tr key={token} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#7c3aed', whiteSpace: 'nowrap' }}>{token}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+    <span style={{ width: 16, height: 16, borderRadius: 3, background: value, border: '1px solid #e5e7eb', flexShrink: 0, display: 'inline-block' }} />
+    <code style={{ fontFamily: 'monospace', fontSize: 12, color: '#374151' }}>{value}</code>
+  </span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280' }}>{usage}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+{['Prop','Type','Default','Description'].map(h => (
+  <th key={h} style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>{h}</th>
+))}
+</tr>
+</thead>
+<tbody>
+{[
+  ['type','`"Stepper" | "Dropdown" | "Input" | "Timer"`','"Stepper"','Interaction pattern'],
+  ['hours','`string`','"00"','Initial hours (0–11)'],
+  ['minutes','`string`','"00"','Initial minutes (0–59)'],
+  ['seconds','`string`','"00"','Initial seconds (0–59)'],
+  ['period','`"AM" | "PM"`','"AM"','Initial period selection'],
+  ['showSeconds','`boolean`','`true`','Display the seconds unit'],
+  ['rtl','`boolean`','`false`','Right-to-left layout'],
+  ['typing','`boolean`','`false`','Blinking cursor in Input type'],
+].map(([prop,type,def,desc],i)=>(
+<tr key={prop} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', whiteSpace: 'nowrap', fontWeight: 600 }}>{prop}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 11, color: '#7c3aed' }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#374151' }}>{def}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+{[
+  ['Stepper buttons','Each increment/decrement button has an `aria-label` ("Increase hours", "Decrease minutes", etc.)'],
+  ['Live regions','Stepper and Input values use `aria-live="polite"` so screen readers announce changes without interrupting the user'],
+  ['Period toggle','The AM/PM group has `role="group"` and each button has `aria-pressed` reflecting the current selection'],
+  ['Keyboard','All interactive elements (buttons, selects) are keyboard-focusable with visible focus rings'],
+  ['RTL','`dir="rtl"` is applied to the root element so assistive technologies receive the correct reading order'],
+].map(([label, desc]) => (
+  <div key={label} style={{ background: '#f9fafb', border: '1px solid #f3f4f6', borderRadius: 8, padding: '12px 16px', display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+    <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#1849a9', flexShrink: 0, marginTop: 5 }} />
+    <div>
+      <span style={{ fontWeight: 600, color: '#111827', fontSize: 13 }}>{label}: </span>
+      <span style={{ color: '#6b7280', fontSize: 13 }}>{desc}</span>
+    </div>
+  </div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 24 }}>
+
+<div style={{ flex: 1, minWidth: 260, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 8, padding: '16px 20px' }}>
+  <div style={{ fontSize: 13, fontWeight: 700, color: '#059669', marginBottom: 10 }}>Do</div>
+  {[
+    'Use Stepper for precise time entry in forms',
+    'Use Timer for countdown / elapsed time displays',
+    'Use Dropdown when horizontal space is limited',
+    'Use Input for read-only or display-only time contexts',
+    'Hide seconds (`showSeconds={false}`) when only hours and minutes matter',
+  ].map((t, i) => (
+    <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 6 }}>
+      <span style={{ color: '#059669', fontWeight: 700, fontSize: 14, flexShrink: 0 }}>✓</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{t}</span>
+    </div>
+  ))}
+</div>
+
+<div style={{ flex: 1, minWidth: 260, background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '16px 20px' }}>
+  <div style={{ fontSize: 13, fontWeight: 700, color: '#dc2626', marginBottom: 10 }}>Don't</div>
+  {[
+    'Mix types within the same form — pick one and be consistent',
+    'Use Timer for user input — it is display-oriented',
+    'Omit the AM/PM toggle in 12-hour contexts',
+    'Override the font-family — use the DS system font',
+  ].map((t, i) => (
+    <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 6 }}>
+      <span style={{ color: '#dc2626', fontWeight: 700, fontSize: 14, flexShrink: 0 }}>✗</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{t}</span>
+    </div>
+  ))}
+</div>
+
+</div>
+
+### Timer Usage
+
+The Timer type is intended for display purposes only — countdown timers, elapsed time, or stopwatch readouts. It should not be used as an input control.
+
+<div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 24 }}>
+
+<div style={{ flex: 1, minWidth: 280, background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 8, padding: '16px 20px' }}>
+  <div style={{ fontSize: 13, fontWeight: 700, color: '#059669', marginBottom: 12 }}>Do — Stopwatch / countdown display</div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '20px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+    <TimePicker type="Timer" hours="00" minutes="02" seconds="45" />
+    <span style={{ fontSize: 12, color: '#6b7280', textAlign: 'center' }}>Session elapsed time — large numerals readable at a glance</span>
+  </div>
+  <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+    <span style={{ color: '#059669', fontWeight: 700, fontSize: 14, flexShrink: 0 }}>✓</span>
+    <span style={{ fontSize: 13, color: '#374151' }}>Use Timer for stopwatch or countdown displays where the value updates automatically and users only need to read the time</span>
+  </div>
+</div>
+
+<div style={{ flex: 1, minWidth: 280, background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '16px 20px' }}>
+  <div style={{ fontSize: 13, fontWeight: 700, color: '#dc2626', marginBottom: 12 }}>Don't — Time input control</div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '20px 16px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, marginBottom: 12, position: 'relative' }}>
+    <TimePicker type="Timer" />
+    <div style={{ position: 'absolute', inset: 0, borderRadius: 8, background: 'rgba(220,38,38,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <span style={{ fontSize: 28, color: '#dc2626', fontWeight: 700, opacity: 0.7 }}>✗</span>
+    </div>
+    <span style={{ fontSize: 12, color: '#6b7280', textAlign: 'center' }}>Asking users to "set" a time with the Timer type</span>
+  </div>
+  <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+    <span style={{ color: '#dc2626', fontWeight: 700, fontSize: 14, flexShrink: 0 }}>✗</span>
+    <span style={{ fontSize: 13, color: '#374151' }}>Don't use Timer when users need to input a specific time — use Stepper or Input instead</span>
+  </div>
+</div>
+
+</div>
+
+---
+
+## Figma Reference
+
+<div style={{ background: '#fff7ed', border: '1px solid #fed7aa', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 13, fontWeight: 700, color: '#c2410c', marginBottom: 6 }}>Figma Source</div>
+  <div style={{ fontSize: 13, color: '#374151' }}>
+    File: <code style={{ fontFamily: 'monospace', fontSize: 12 }}>WTmRAkJVvw0IvZMA7wBdTC</code> · Node: <code style={{ fontFamily: 'monospace', fontSize: 12 }}>4770:12915</code>
+  </div>
+  <div style={{ marginTop: 8 }}>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4770-12915&t=ohnsyAtOEvJbxf9o-4" target="_blank" rel="noreferrer" style={{ fontSize: 13, color: '#c2410c', fontWeight: 600 }}>
+      Open in Figma ↗
+    </a>
+  </div>
+  <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: '6px 20px' }}>
+    {[
+      ['Variants', '8 frames (4 types × AM/PM)'],
+      ['RTL', 'Full mirror support'],
+      ['showSeconds', 'Toggleable seconds unit'],
+      ['typing', 'Blinking cursor (Input)'],
+    ].map(([k, v]) => (
+      <div key={k} style={{ fontSize: 12, color: '#6b7280' }}>
+        <span style={{ fontWeight: 600, color: '#374151' }}>{k}:</span> {v}
+      </div>
+    ))}
+  </div>
+</div>
+
+</div>

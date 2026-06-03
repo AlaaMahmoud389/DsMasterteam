@@ -1,0 +1,448 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Pagination } from './Pagination';
+import * as PaginationStories from './Pagination.stories';
+
+<Meta of={PaginationStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Navigation / Pagination</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Pagination</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>Pagination divides large datasets into discrete pages, letting users navigate sequentially with prev/next arrows and direct page selection. It adapts to three sizes (Small, Medium, Large), supports ellipsis truncation for large page counts, and mirrors completely for right-to-left Arabic layouts.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:22726</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/navigational/pagination" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-22726&t=fWTlS4h9RZJZvHwC-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Sizes','#sizes'],['States','#states'],['RTL Support','#rtl-support'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+  <Pagination size="Small"  currentPage={1} totalPages={10} />
+  <Pagination size="Medium" currentPage={1} totalPages={10} />
+  <Pagination size="Large"  currentPage={1} totalPages={10} />
+</div>
+
+Three sizes · prev/next chevron navigation · active-page underline indicator · ellipsis truncation for large page counts · RTL support. All tokens sourced from Figma node `4399:22726`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 24 }}>
+  <Pagination size="Medium" currentPage={5} totalPages={999} />
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', justifyContent: 'flex-start' }}>
+    {[['1','Prev button (chevron)'],['2','Page item — default'],['3','Ellipsis item (…)'],['4','Page item — active (underline)'],['5','Next button (chevron)']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ width: 44, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
+<th style={{ width: 190, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Condition</th>
+</tr>
+</thead>
+<tbody>
+{[
+  ['1','Previous button — chevron-left icon, disabled on first page','Always'],
+  ['2','Page items — page numbers, regular weight, #3c5073','Always'],
+  ['3','Ellipsis "…" — with #f3f4f6 border, #9da4ae color, non-interactive','When totalPages > 7'],
+  ['4','Active page item — #1849a9 text + 3px bottom underline bar','Always (marks currentPage)'],
+  ['5','Next button — chevron-right icon, disabled on last page','Always'],
+].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Sizes
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+{[
+  { label: 'Small',  size: 'Small',  itemH: '24 px', font: '14 px / 20 px', padding: '4 px', navH: '24 px', selector: '16 px' },
+  { label: 'Medium', size: 'Medium', itemH: '32 px', font: '14 px / 20 px', padding: '6 px', navH: '32 px', selector: '24 px' },
+  { label: 'Large',  size: 'Large',  itemH: '40 px', font: '16 px / 24 px', padding: '8 px', navH: '40 px', selector: '24 px' },
+].map(({ label, size, itemH, font, padding, navH, selector }) => (
+  <div key={size} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827', minWidth: 56 }}>{label}</span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>Item height: <strong style={{ color: '#374151' }}>{itemH}</strong></span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>Font: <strong style={{ color: '#374151' }}>{font}</strong></span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>Padding: <strong style={{ color: '#374151' }}>{padding}</strong></span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>Selector bar: <strong style={{ color: '#374151' }}>{selector}</strong></span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff' }}>
+      <Pagination size={size} currentPage={1} totalPages={10} />
+    </div>
+  </div>
+))}
+</div>
+
+| Size | Item height | Min-width | Font size | Padding | Nav button | Selector bar |
+|---|---|---|---|---|---|---|
+| Small | 24 px | 24 px | 14 px | 4 px | 24 × 24 px | 16 px wide |
+| Medium | 32 px | 32 px (fixed) | 14 px | 6 px | 32 × 32 px | 24 px wide |
+| Large | 40 px | 40 px | 16 px | 8 px | 40 × 40 px | 24 px wide |
+
+---
+
+## States
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+{[
+  { name: 'Default — First Page',    badge: 'currentPage=1',           desc: 'Prev button is disabled (opacity 0.3). First page is active.', pg: 1,   total: 10  },
+  { name: 'Middle Page',             badge: 'currentPage=5',           desc: 'Both prev and next are enabled. Ellipsis may appear on one or both sides.', pg: 5,   total: 10  },
+  { name: 'Last Page',               badge: 'currentPage=10',          desc: 'Next button is disabled (opacity 0.3). Last page is active.', pg: 10,  total: 10  },
+  { name: 'Few Pages — No Ellipsis', badge: 'totalPages ≤ 7',          desc: 'All pages shown inline, no truncation needed.', pg: 3,   total: 5   },
+  { name: 'Many Pages — Ellipsis',   badge: 'currentPage=1 / total=999', desc: 'Shows first 5 pages, ellipsis, and last page.', pg: 1,   total: 999 },
+  { name: 'Deep in Large Set',       badge: 'currentPage=500 / total=999', desc: 'Ellipsis on both sides, window around current page.', pg: 500, total: 999 },
+].map(({ name, badge, desc, pg, total }) => (
+  <div key={name} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{name}</span>
+      <code style={{ fontSize: 11, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151', flexShrink: 0 }}>{badge}</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff' }}>
+      <Pagination size="Medium" currentPage={pg} totalPages={total} />
+    </div>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '160px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Item state</span><span>Color</span><span>Visual treatment</span></div>
+{[
+  { state: 'Default',          color: '#3c5073', desc: 'Regular gray text, no border, transparent background. Hover adds #f3f4f6 bg.' },
+  { state: 'Active / Current', color: '#1849a9', desc: 'Brand blue text + 3px bottom underline bar. No hover effect.' },
+  { state: 'Ellipsis',         color: '#9da4ae', desc: 'Muted gray text + 1px #f3f4f6 border. Non-interactive.' },
+  { state: 'Nav disabled',     color: '#3c5073', desc: 'Chevron button at opacity 0.3. pointer-events:none effectively.' },
+  { state: 'Nav hover',        color: '#3c5073', desc: '#f3f4f6 background on hover when enabled.' },
+].map(({ state, color, desc }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '160px 120px 1fr', padding: '10px 16px', background: i%2===0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: color, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }}/>
+      <code style={{ fontSize: 11, color: '#111827' }}>{color}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+  </div>
+))}
+</div>
+
+---
+
+## RTL Support
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16 }}>
+{[
+  { label: 'LTR (Small)',  rtl: false, size: 'Small',  pg: 1,   total: 10  },
+  { label: 'RTL (Small)',  rtl: true,  size: 'Small',  pg: 1,   total: 10  },
+  { label: 'LTR (Medium)', rtl: false, size: 'Medium', pg: 1,   total: 999 },
+  { label: 'RTL (Medium)', rtl: true,  size: 'Medium', pg: 1,   total: 999 },
+  { label: 'LTR (Large)',  rtl: false, size: 'Large',  pg: 1,   total: 999 },
+  { label: 'RTL (Large)',  rtl: true,  size: 'Large',  pg: 1,   total: 999 },
+].map(({ label, rtl, size, pg, total }) => (
+  <div key={label} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '9px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}>
+      <span style={{ fontSize: 12, fontWeight: 700, color: '#374151' }}>{label}</span>
+      <span style={{ background: rtl ? '#eff3fb' : '#f9fafb', color: rtl ? '#1849a9' : '#6b7280', border: '1px solid', borderColor: rtl ? '#dce3f7' : '#e5e7eb', padding: '1px 7px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>{rtl ? 'dir="rtl"' : 'dir="ltr"'}</span>
+    </div>
+    <div style={{ padding: '16px 20px', background: '#fff' }}>
+      <Pagination size={size} rtl={rtl} currentPage={pg} totalPages={total} />
+    </div>
+  </div>
+))}
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>RTL note:</strong> Setting <code>rtl=true</code> applies <code>dir="rtl"</code> and reverses the displayed page order. For a dataset where page 1 is "first" (LTR), RTL shows the last page on the left and the first page (current) on the right. Chevron directions also swap so the left arrow always means "back toward first page" regardless of reading direction.
+</div>
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Layout & Spacing</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--pagination-gap',          v:'8px',  f:'pagination/spacing/pagination-item-lg-padding', u:'Gap between items and nav buttons'},
+  {t:'--pagination-item-radius',  v:'4px',  f:'pagination/spacing/pagination-item-sm-padding', u:'Border radius on items and nav buttons'},
+  {t:'--pagination-font-size-sm', v:'14px', f:'size/text/typo-size-text-sm',                   u:'Font size for Small items'},
+  {t:'--pagination-font-size-md', v:'14px', f:'size/text/typo-size-text-md',                   u:'Font size for Medium items'},
+  {t:'--pagination-font-size-lg', v:'16px', f:'size/text/typo-size-text-lg (inferred)',         u:'Font size for Large items'},
+].map(({t,v,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'220px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '240px 130px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--pagination-item-text-default', h:'#3c5073', f:'pagination/item-text/default',       u:'Default page number color'},
+  {t:'--pagination-item-text-current', h:'#1849a9', f:'pagination/item-text/current-page',  u:'Active page text + selector bar'},
+  {t:'--pagination-item-border',       h:'#f3f4f6', f:'pagination/item-border/default',     u:'Ellipsis item border'},
+  {t:'--pagination-icon-secondary',    h:'#9da4ae', f:'pagination/icon/secondary',          u:'Ellipsis text color'},
+].map(({t,h,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'240px 130px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 100px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+  {n:'size',        type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'Medium',    d:"Item height and font size — Small (24px, 14px) · Medium (32px, 14px) · Large (40px, 16px). Maps to Figma 'size' prop."},
+  {n:'rtl',         type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',     d:'Right-to-left layout. Reverses page order in the display and swaps chevron directions so left always means "toward first page."'},
+  {n:'currentPage', type:'number',  tb:'#ecfdf5',tc:'#059669',def:'1',         d:'The currently active page number (1-based). Controls the active indicator and which page items appear around the window.'},
+  {n:'totalPages',  type:'number',  tb:'#ecfdf5',tc:'#059669',def:'10',        d:'Total number of pages. Determines whether ellipsis truncation is shown (> 7 pages) and disables the next button on the last page.'},
+  {n:'onPageChange',type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',         d:'Called with the new page number when a page item or nav button is clicked. Wire to setState to control the component.'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 100px 100px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+  {cat:'Semantics & ARIA',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'A',items:[
+    {title:'role="navigation" + aria-label on the container',desc:'Wraps the component in a <nav> landmark with aria-label="Pagination" so screen reader users can jump to it via landmark navigation.'},
+    {title:'aria-current="page" on the active item',desc:'The current page button gets aria-current="page", announcing it as the active page to screen readers.'},
+    {title:'aria-label on every button',desc:'Prev/Next buttons use "Previous page" / "Next page". Page items use "Page N". No ambiguous icon-only buttons without labels.'},
+    {title:'Icons are aria-hidden',desc:'Chevron SVGs carry aria-hidden="true". The button\'s aria-label provides the accessible name.'},
+  ]},
+  {cat:'Keyboard Navigation',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'⌨',items:[
+    {title:'All interactive elements are native <button>',desc:'Tab navigates through prev → pages → next. Space and Enter activate each button. No custom key handlers needed.'},
+    {title:'Disabled buttons are truly disabled',desc:'disabled attribute prevents focus and interaction on the prev/next buttons when on the first/last page. Ellipsis spans are non-interactive and skip the tab order.'},
+    {title:'Focus rings on :focus-visible',desc:'2px #1849a9 outline with 2px offset on all buttons — visible on both white and light gray backgrounds.'},
+  ]},
+  {cat:'Visual',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+    {title:'Active state uses both color and underline',desc:'Current page is shown with blue text AND a 3px underline bar — two visual cues, so color alone is not the only indicator.'},
+    {title:'Disabled opacity is distinct',desc:'Disabled nav buttons at 0.3 opacity are clearly distinguished from enabled buttons.'},
+    {title:'Sufficient contrast',desc:'Active page #1849a9 on white ≥ 4.7:1 (WCAG AA). Default text #3c5073 on white ≥ 5.1:1. Both pass for body text size.'},
+  ]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+  <Pagination size="Medium" currentPage={5} totalPages={20} />
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Server-side pagination for large result sets</div>
+{['Use pagination for tables, search results, or lists with 20+ items.','Always persist current page in URL query params for shareable/bookmarkable state.','Show a "Showing X–Y of Z results" label alongside pagination for orientation.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+  <Pagination size="Small" currentPage={1} totalPages={3} />
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Pagination for very small data sets</div>
+{['Avoid pagination for fewer than 10 items — show all items directly.','Do not use pagination as a substitute for filtering when the dataset is searchable.','Do not use pagination inside a modal or drawer for space-constrained areas.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Use Medium size by default — Small only in compact UI, Large for touch/mobile.','Persist currentPage in URL state so back-navigation returns to the right page.','Show "Loading…" feedback between page transitions for server-fetched data.','Use onPageChange to fetch the new page data, then update currentPage.','Use Large size on mobile viewports for improved touch target size.','Always provide totalPages — even an estimate — to avoid disabling the Next button prematurely.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
+{["Don't change page silently without user action — always require explicit navigation.","Don't reset to page 1 on every filter/sort change without notifying the user.","Don't use client-side pagination for > 1000 items — paginate on the server.","Don't omit onPageChange — the component is fully controlled and won't navigate without it.","Don't hide pagination when there is only one page — conditionally render it (totalPages > 1).","Don't use pagination inside an infinite-scroll list — choose one pattern."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { Pagination } from '@/components/Pagination';
+
+// Basic controlled usage
+const [page, setPage] = useState(1);
+<Pagination
+  size="Medium"
+  currentPage={page}
+  totalPages={50}
+  onPageChange={(p) => setPage(p)}
+/>
+
+// With data fetch on page change
+const [page, setPage] = useState(1);
+const { data, isLoading } = useQuery(['items', page], () => fetchItems(page));
+
+<Pagination
+  size="Medium"
+  currentPage={page}
+  totalPages={data?.totalPages ?? 1}
+  onPageChange={(p) => setPage(p)}
+/>
+
+// Large size for mobile
+<Pagination
+  size="Large"
+  currentPage={page}
+  totalPages={20}
+  onPageChange={setPage}
+/>
+
+// RTL Arabic
+<Pagination
+  size="Medium"
+  rtl={true}
+  currentPage={page}
+  totalPages={20}
+  onPageChange={setPage}
+/>
+
+// URL-synced pagination (React Router / Next.js)
+const [searchParams, setSearchParams] = useSearchParams();
+const page = Number(searchParams.get('page') ?? 1);
+
+<Pagination
+  size="Medium"
+  currentPage={page}
+  totalPages={totalPages}
+  onPageChange={(p) => setSearchParams({ page: p })}
+/>
+
+// Conditional render — hide when only 1 page
+{totalPages > 1 && (
+  <Pagination
+    currentPage={page}
+    totalPages={totalPages}
+    onPageChange={setPage}
+  />
+)}
+```
+
+---
+
+## Figma Reference
+
+- **Component node:** [4399:22726 — Masterteam DS Pagination](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-22726&t=fWTlS4h9RZJZvHwC-4)
+- **DGA Guidelines:** [design.dga.gov.sa/guidelines/components/navigational/pagination](https://design.dga.gov.sa/guidelines/components/navigational/pagination)
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4399:22726`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>5 Matched</span>
+<span style={{ background: '#fff7ed', color: '#c2410c', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fed7aa' }}>2 Pending</span>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Area</span><span>Status</span><span>Notes</span></div>
+{[
+  {a:'Three sizes — Small (24px), Medium (32px), Large (40px)',                   s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Item heights, paddings, font sizes, and selector bar widths match Figma exactly.'},
+  {a:'Active page — blue text (#1849a9) + 3px bottom underline bar',              s:'Matched', sb:'#ecfdf5',st:'#059669',n:'::after pseudo-element positioned at bottom-center, 16px (sm) or 24px (md/lg) wide. Matches Figma selector indicator.'},
+  {a:'Ellipsis item — #f3f4f6 border + #9da4ae text',                             s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Figma shows ellipsis items with a subtle border and muted gray text. Implemented via .ellipsis class.'},
+  {a:'RTL — reversed page order + swapped chevrons',                              s:'Matched', sb:'#ecfdf5',st:'#059669',n:'RTL reverses the page array so the active page appears on the right. Chevron directions swap via conditional component selection.'},
+  {a:'Disabled state — prev/next at opacity 0.3 on edge pages',                  s:'Matched', sb:'#ecfdf5',st:'#059669',n:'HTML disabled attribute + 0.3 opacity. Matches Figma dim state on boundary pages.'},
+  {a:'Exact icon assets for prev/next arrows',                                    s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma uses specific arrow-left-01 / arrow-right-01 icon assets (node 4399:22151 / 4399:22200). Replaced with inline SVG chevron approximations. A future pass should use the exact DS icon library.'},
+  {a:'Hover/focus styles with background fill',                                   s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma may specify a particular hover background token. Currently using #f3f4f6 as a consistent hover fill matching button patterns elsewhere in the DS. Needs validation against final Figma hover specs.'},
+].map(({a,s,sb,st,n},i)=>(
+<div key={a} style={{display:'grid',gridTemplateColumns:'1fr 100px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{s}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+</div>
+))}
+</div>
+
+</div>

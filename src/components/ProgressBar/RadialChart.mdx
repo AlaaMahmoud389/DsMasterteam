@@ -1,0 +1,316 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as RadialChartStories from './RadialChart.stories';
+import { RadialChart } from './RadialChart';
+
+<Meta of={RadialChartStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Progress Bar / Radial</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Radial Chart</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A four-ring concentric chart card for comparing up to four data series side-by-side. Features a KPI header with optional trend badge, "View more" link, SVG arc data labels, and full RTL support. Built from Figma node 4548:5751.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4548:5751</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4548-5751" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Sizes','#sizes'],['States','#states'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Design Tokens','#design-tokens'],['Properties','#properties'],['Accessibility','#accessibility'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+<Canvas of={RadialChartStories.Playground} />
+<Controls of={RadialChartStories.Playground} />
+</div>
+
+## Anatomy
+
+<div id="anatomy" style={{ marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', gap: 12 }}>
+  {['#','Region / Element','Class / Tag','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['1','Card container',     'div.card',          '664 px wide · 24 px padding · 8 px border-radius · 1 px border #e7e9ed'],
+  ['2','Header – left',      'div.headerLeft',    'Title (18 px / 600) + KPI value (30 px / 600) + optional trend row'],
+  ['3','Trend badge',        'span.trendBadge',   'Inter 12 px / 500 · green #006121 on rgba(0,97,33,0.10) bg · 24 px pill'],
+  ['4','Trend label',        'span.trendLabel',   'IBM Plex Sans Arabic 14 px / 400 · color #3c5073'],
+  ['5','View more button',   'button.viewMore',   'Inter 16 px / 500 · color #175cd3 · external-link icon + label'],
+  ['6','Chart area',         'div.chartArea',     'Centers SVG — medium 314 px / small 232 px'],
+  ['7','Ring pairs (4)',     'circle × 2',        'Track #e7e9ed + fill arc from 12 o\'clock clockwise'],
+  ['8','Data labels',        'svg text',          'Inter 11 px · #3c5073 · shown in medium + LTR only'],
+].map(([n, region, el, notes], i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 160px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{region}</span>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{el}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+## Sizes
+
+<div id="sizes" style={{ marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+  <Canvas of={RadialChartStories.MediumSize} />
+  <Canvas of={RadialChartStories.SmallSize} />
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '90px 90px 100px 100px 100px 100px 1fr', gap: 8 }}>
+  {['Size','SVG','Ring 1 r/sw','Ring 2 r/sw','Ring 3 r/sw','Ring 4 r/sw','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['medium','314 × 314 px','146 / 22','124 / 20','103 / 18','83 / 16','Data labels shown (LTR only)'],
+  ['small', '232 × 232 px','108 / 16','91 / 14', '75 / 12', '59 / 10','Labels suppressed regardless of showLabels'],
+].map(([sz, svg, r1, r2, r3, r4, note], i) => (
+  <div key={sz} style={{ display: 'grid', gridTemplateColumns: '90px 90px 100px 100px 100px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 8, alignItems: 'center' }}>
+    <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 700 }}>{sz}</code>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{svg}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{r1}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{r2}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{r3}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{r4}</span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+  </div>
+))}
+</div>
+</div>
+
+## States
+
+<div id="states" style={{ marginBottom: 24 }}>
+  <div style={{ marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Full card (trend + view more + labels)</div>
+  <Canvas of={RadialChartStories.Playground} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Without trend badge</div>
+  <Canvas of={RadialChartStories.WithoutTrend} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Without "View more" link</div>
+  <Canvas of={RadialChartStories.WithoutViewMore} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Without data labels</div>
+  <Canvas of={RadialChartStories.WithoutLabels} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>Minimal card (no trend, no link, no labels)</div>
+  <Canvas of={RadialChartStories.MinimalCard} />
+  <div style={{ marginTop: 16, marginBottom: 8, fontSize: 13, fontWeight: 600, color: '#3c5073' }}>All states grid</div>
+  <Canvas of={RadialChartStories.AllStates} />
+</div>
+
+## RTL Support
+
+<div id="rtl-support" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  RTL mode applies <code>transform: scaleX(-1)</code> to the SVG, reversing arc fill to counter-clockwise. SVG <code>text</code> labels are suppressed (mirrored text is unreadable). The KPI block and "View more" button reverse their direction to match Arabic reading order.
+</div>
+<Canvas of={RadialChartStories.RTLArabic} />
+<Canvas of={RadialChartStories.AllStatesRTL} />
+</div>
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #bbf7d0', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#dcfce7', padding: '10px 16px', borderBottom: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#16a34a', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#15803d' }}>Do</span>
+    </div>
+    {[
+      'Use the Radial Chart when comparing up to 4 related data series where proportion (not absolute magnitude) is the key message.',
+      'Provide distinct, accessible ring colors with sufficient contrast against the #e7e9ed track.',
+      'Always populate the rings array with a label per ring so the legend and data labels are meaningful.',
+      'Use the medium size when data labels matter — they are suppressed automatically in the small size.',
+      'Include a KPI value and title to anchor the chart in a dashboard widget context.',
+      'Switch to RTL mode when rendering Arabic content — the arc direction, header layout, and button order all adapt automatically.',
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderBottom: '1px solid #dcfce7', background: i % 2 === 0 ? '#fff' : '#f0fdf4' }}>
+        <span style={{ color: '#16a34a', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#166534', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+  <div style={{ border: '1px solid #fecaca', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#fee2e2', padding: '10px 16px', borderBottom: '1px solid #fecaca', display: 'flex', alignItems: 'center', gap: 7 }}>
+      <span style={{ width: 18, height: 18, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✗</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#991b1b' }}>Don't</span>
+    </div>
+    {[
+      "Don't pass more than 4 rings — additional rings beyond the 4-ring design will not render correctly.",
+      "Don't use similar or identical colors for rings — rings represent different data series and must be visually distinct.",
+      "Don't rely on data labels alone to communicate values — the labels are suppressed in small size and RTL; always pair with a legend.",
+      "Don't use the Radial Chart to show a single metric — use a Circular Progress Bar instead.",
+      "Don't set all ring values to 100 — a full-ring chart is visually identical to the track, making all rings appear as one band.",
+      "Don't use the small size in dense dashboards where data labels are required — data labels are not shown in the small variant.",
+    ].map((t, i) => (
+      <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderBottom: '1px solid #fee2e2', background: i % 2 === 0 ? '#fff' : '#fef2f2' }}>
+        <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, fontSize: 14, lineHeight: '20px' }}>·</span>
+        <span style={{ fontSize: 13, color: '#991b1b', lineHeight: 1.5 }}>{t}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+## Design Tokens
+
+<div id="design-tokens" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Card &amp; Layout</div>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 140px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>CSS Variable</span><span>Default</span><span>Usage</span>
+</div>
+{[
+  ['--radial-chart-bg',     '#ffffff', 'Card background'],
+  ['--radial-chart-border', '#e7e9ed', 'Card border color (1 px solid)'],
+  ['--radial-chart-radius', '8px',     'Card border-radius'],
+  ['—',                     '664 px',  'Card fixed width (not customisable via token)'],
+  ['—',                     '24 px',   'Card padding (all sides)'],
+].map(([token, val, usage], i) => (
+  <div key={token+i} style={{ display: 'grid', gridTemplateColumns: '200px 140px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {token.startsWith('--radial-chart-b') && <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: val, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{usage}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors &amp; Typography</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 140px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>CSS Variable / Property</span><span>Default</span><span>Usage</span>
+</div>
+{[
+  { t: '--radial-chart-title',       h: '#3c5073', v: '#3c5073',  u: 'Card header title color' },
+  { t: '--radial-chart-kpi',         h: '#3c5073', v: '#3c5073',  u: 'KPI value color' },
+  { t: '--radial-chart-trend-label', h: '#3c5073', v: '#3c5073',  u: 'Trend label text color' },
+  { t: '--radial-chart-link',        h: '#175cd3', v: '#175cd3',  u: 'View more button color' },
+  { t: '--radial-chart-track',       h: '#e7e9ed', v: '#e7e9ed',  u: 'Ring track background color' },
+  { t: 'Title font',                 h: null,      v: 'IBM Plex Sans Arabic 18 px / 600', u: 'Card header title' },
+  { t: 'KPI value font',             h: null,      v: 'IBM Plex Sans Arabic 30 px / 600', u: 'Large numeric KPI below title' },
+  { t: 'Trend badge font',           h: null,      v: 'Inter 12 px / 500', u: 'Trend percentage badge' },
+  { t: 'View more font',             h: null,      v: 'Inter 16 px / 500', u: '"View more" link button' },
+  { t: 'Data label font',            h: null,      v: 'Inter 11 px / 400', u: 'SVG arc endpoint labels' },
+].map(({ t, h, v, u }, i) => (
+  <div key={t} style={{ display: 'grid', gridTemplateColumns: '220px 140px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {h && <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />}
+      <code style={{ fontSize: 11, color: '#374151' }}>{v}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Ring Geometry</div>
+<div style={{ display: 'grid', gridTemplateColumns: '100px 80px 100px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Size','Ring','Radius','Stroke Width','Notes'].map(h => <span key={h}>{h}</span>)}
+</div>
+{[
+  ['medium','Outer (1st)','146 px','22 px','Outermost; thickest stroke'],
+  ['medium','2nd',        '124 px','20 px',''],
+  ['medium','3rd',        '103 px','18 px',''],
+  ['medium','Inner (4th)','83 px', '16 px','Innermost; thinnest stroke'],
+  ['small', 'Outer (1st)','108 px','16 px','Outermost; thickest stroke'],
+  ['small', '2nd',        '91 px', '14 px',''],
+  ['small', '3rd',        '75 px', '12 px',''],
+  ['small', 'Inner (4th)','59 px', '10 px','Innermost; thinnest stroke'],
+].map(([sz, ring, r, sw, note], i) => (
+  <div key={sz+ring} style={{ display: 'grid', gridTemplateColumns: '100px 80px 100px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 11, background: i < 4 ? '#eff3fb' : '#f0fdf4', padding: '2px 6px', borderRadius: 4, color: i < 4 ? '#1849a9' : '#059669', fontWeight: 700 }}>{sz}</code>
+    <span style={{ fontSize: 12, color: '#374151' }}>{ring}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{r}</span>
+    <span style={{ fontSize: 12, fontFamily: 'monospace', color: '#374151' }}>{sw}</span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>
+
+## Properties
+
+<div id="properties" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 160px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Prop','Type','Default','Description'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { n: 'title',        type: 'string',          tb: '#ecfdf5', tc: '#059669', def: '"Data Title"',   d: 'Card header title shown above the KPI value.' },
+  { n: 'kpiValue',     type: 'string',          tb: '#ecfdf5', tc: '#059669', def: '"78,909.72"',    d: 'Large KPI number displayed below the title.' },
+  { n: 'trendValue',   type: 'string',          tb: '#ecfdf5', tc: '#059669', def: '"4.5%"',         d: 'Percentage inside the green trend badge.' },
+  { n: 'trendLabel',   type: 'string',          tb: '#ecfdf5', tc: '#059669', def: '"from last week"', d: 'Descriptive text beside the trend badge.' },
+  { n: 'showTrend',    type: 'boolean',         tb: '#fff7ed', tc: '#c2410c', def: 'true',           d: 'Show or hide the trend row (badge + label).' },
+  { n: 'showViewMore', type: 'boolean',         tb: '#fff7ed', tc: '#c2410c', def: 'true',           d: 'Show or hide the "View more" button.' },
+  { n: 'size',         type: '"medium"|"small"',tb: '#fff7ed', tc: '#c2410c', def: '"medium"',       d: 'Chart size variant — controls SVG diameter, ring radii, and stroke widths.' },
+  { n: 'rings',        type: 'Ring[]',          tb: '#f5f3ff', tc: '#6d28d9', def: '4 default rings', d: 'Array of { label, value, color } — up to 4 items. label used in legend and data labels; value 0–100.' },
+  { n: 'showLabels',   type: 'boolean',         tb: '#fff7ed', tc: '#c2410c', def: 'true',           d: 'Show SVG data labels at arc endpoints. Only rendered in medium size and LTR mode.' },
+  { n: 'rtl',          type: 'boolean',         tb: '#fff7ed', tc: '#c2410c', def: 'false',          d: 'Enable RTL layout — reverses arc fill, suppresses data labels, flips header and button direction.' },
+].map(({ n, type, tb, tc, def, d }, i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '130px 160px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 12, color: '#7c3aed', fontWeight: 600 }}>{n}</code>
+    <span style={{ fontSize: 11, background: tb, color: tc, padding: '2px 7px', borderRadius: 4, fontFamily: 'monospace', display: 'inline-block' }}>{type}</span>
+    <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{d}</span>
+  </div>
+))}
+</div>
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['Concern','Implementation'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['SVG aria-hidden',      'aria-hidden="true" on the SVG element — the chart is decorative; data is conveyed by the KPI, legend, and surrounding text.'],
+  ['View more label',      'aria-label="View more" on the button; switches to "عرض المزيد" when rtl=true so screen readers get the correct language.'],
+  ['Trend badge',          'Purely visual decoration — the surrounding KPI value and label provide the full data context.'],
+  ['Ring color contrast',  'Ring fill colors should achieve a minimum 3:1 contrast ratio against the track (#e7e9ed). Default ring colors are tested at 4.5:1.'],
+  ['RTL dir attribute',    'dir="rtl" is set on the card root so assistive technology reads header content in correct Arabic order.'],
+  ['Data labels',          'SVG text labels are decorative — aria-hidden on the SVG covers them. Ensure values are also accessible in surrounding UI.'],
+].map(([concern, impl], i) => (
+  <div key={concern} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>{concern}</span>
+    <span style={{ fontSize: 13, color: '#3c5073', lineHeight: 1.5 }}>{impl}</span>
+  </div>
+))}
+</div>
+
+## Mismatch Report
+
+<div id="mismatch-report" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '40px 1fr 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  {['#','Figma Spec','Status','Notes'].map(h => <span key={h} style={{ textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { n:'1', a:'664 px card width',                                     s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'Fixed 664 px in CSS.' },
+  { n:'2', a:'Medium rings: r=146/124/103/83 sw=22/20/18/16',         s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'All values match Figma ring variants.' },
+  { n:'3', a:'Small rings: r=108/91/75/59 sw=16/14/12/10',            s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'All values match Figma ring variants.' },
+  { n:'4', a:'KPI value: IBM Plex Sans Arabic 30 px / 600',           s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'Font family, size, and weight exact.' },
+  { n:'5', a:'Trend badge: Inter 12 px/500 · green pill',             s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'Inter font, color #006121, pill shape.' },
+  { n:'6', a:'View more: Inter 16 px/500 · color #175cd3',            s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'Font and color tokens exact.' },
+  { n:'7', a:'Data labels at arc endpoints (Inter 11 px)',             s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'Trigonometric positioning from arc endpoint; medium + LTR only.' },
+  { n:'8', a:'RTL arc reversal + data label suppression',              s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'scaleX(-1) on SVG; showLabels guard prevents backward text.' },
+  { n:'9', a:'Ring track color #e7e9ed (all rings)',                   s:'Matched',  sb:'#ecfdf5',st:'#059669', note:'Token --radial-chart-track applied to all background circles.' },
+].map(({ n, a, s, sb, st, note }, i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 1fr 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#e5e7eb', color: '#374151', fontSize: 11, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, color: '#111827', lineHeight: 1.4 }}>{a}</span>
+    <span style={{ background: sb, color: st, fontSize: 11, padding: '3px 8px', borderRadius: 4, fontWeight: 700, display: 'inline-block', whiteSpace: 'nowrap' }}>{s}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>

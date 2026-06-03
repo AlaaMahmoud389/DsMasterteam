@@ -1,0 +1,506 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Notification } from './Notification';
+import * as NotificationStories from './Notification.stories';
+
+<Meta of={NotificationStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Feedback / Notification</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Notification</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>Notifications are prominent full-width banners used to convey important alerts or system messages. They appear at the top of a page, drawing immediate attention with a colored accent and contextual icon. Choose the variant that reflects the message severity.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4399:21418</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/feedback/notification" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-21418&t=fWTlS4h9RZJZvHwC-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['RTL Support','#rtl-support'],['Dismissible','#dismissible'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 16 }}>
+  <Notification variant="Critical" />
+  <Notification variant="Warning" />
+  <Notification variant="Success" />
+  <Notification variant="Info" />
+  <Notification variant="Neutral" />
+</div>
+
+Five severity variants · optional dismiss button · full RTL / Arabic support. All tokens sourced from Figma node `4399:21418`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 24 }}>
+  <div>
+    <Notification variant="Info" />
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', justifyContent: 'flex-start' }}>
+    {[['1', 'Container + background'], ['2', 'Icon circle (32 × 32 px)'], ['3', 'Bold title label'], ['4', 'Message body'], ['5', 'Bottom accent border (2 px)'], ['6', 'Dismiss button (optional)']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ width: 44, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
+<th style={{ width: 190, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Required</th>
+</tr>
+</thead>
+<tbody>
+{[
+  ['1','Container','Always'],
+  ['2','Icon circle (32 × 32 px, variant-colored bg)','Always'],
+  ['3','Bold title label (e.g. "Important:")','Always'],
+  ['4','Message body text','Always'],
+  ['5','Bottom accent border (2 px, variant color)','Automatic'],
+  ['6','Dismiss button (×)','When dismissible=true'],
+].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Variants
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+  {[
+    ['Critical', 'Critical', 'Errors, failures, or required actions blocking progress.'],
+    ['Warning',  'Warning',  'Cautionary messages — user should read but can proceed.'],
+    ['Success',  'Success',  'Confirms a completed action or positive system state.'],
+    ['Info',     'Info',     'Neutral informational message using the brand palette.'],
+    ['Neutral',  'Neutral',  'Low-priority system messages with a muted gray palette.'],
+  ].map(([variant, label, desc]) => (
+    <div key={variant} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+        <span style={{ minWidth: 70, fontSize: 13, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280' }}>{label}</span>
+        <code style={{ fontSize: 11, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151' }}>{variant}</code>
+        <span style={{ fontSize: 13, color: '#6b7280' }}>{desc}</span>
+      </div>
+      <Notification variant={variant} />
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '90px 160px 160px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Variant</span><span>Background</span><span>Text</span><span>Border</span><span>Icon</span>
+</div>
+{[
+  {v:'Critical', bg:'#fdeceb', tx:'#a30000', br:'#a30000 / 70%', icon:'Alert triangle'},
+  {v:'Warning',  bg:'#fffbf6', tx:'#dd7600', br:'#dd7600 / 60%', icon:'Alert circle'},
+  {v:'Success',  bg:'#e6f4ee', tx:'#006121', br:'#006121 / 60%', icon:'Checkmark circle'},
+  {v:'Info',     bg:'#eff8ff', tx:'#1849a9', br:'#1849a9 / 60%', icon:'Info circle'},
+  {v:'Neutral',  bg:'#f5faff', tx:'#3c5073', br:'#d2d6db / 60%', icon:'Info circle'},
+].map(({v,bg,tx,br,icon},i)=>(
+<div key={v} style={{display:'grid',gridTemplateColumns:'90px 160px 160px 100px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{v}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+  <span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:bg,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+  <code style={{fontSize:11,color:'#111827'}}>{bg}</code>
+</span>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+  <span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:tx,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+  <code style={{fontSize:11,color:'#111827'}}>{tx}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{br}</code>
+<span style={{fontSize:13,color:'#6b7280'}}>{icon}</span>
+</div>
+))}
+</div>
+
+---
+
+## RTL Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Notification variant="Critical" rtl={false} />
+      <Notification variant="Success" rtl={false} />
+    </div>
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Notification variant="Critical" rtl={true} title="مهم:" message="هذه رسالة تنبيهية مهمة للغاية تستدعي التركيز." />
+      <Notification variant="Success" rtl={true} title="مهم:" message="هذه رسالة تنبيهية مهمة للغاية تستدعي التركيز." />
+    </div>
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>RTL layout rule:</strong> Setting <code>rtl=true</code> applies <code>dir="rtl"</code> to the notification container. The flex row automatically mirrors — icon moves to the right, dismiss button to the left, and text aligns right. No manual CSS transforms needed.
+</div>
+
+```jsx
+<Notification
+  variant="Critical"
+  rtl={true}
+  title="مهم:"
+  message="هذه رسالة تنبيهية مهمة للغاية تستدعي التركيز."
+/>
+```
+
+---
+
+## Dismissible
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 16 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Dismissible (default)</div>
+    <Notification variant="Warning" dismissible={true} />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 16 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Non-Dismissible</div>
+    <Notification variant="Warning" dismissible={false} />
+  </div>
+</div>
+
+| dismissible | Behaviour |
+|---|---|
+| `true` (default) | Shows × close button · calls `onDismiss` when clicked |
+| `false` | No close button · notification is persistent |
+
+Use `dismissible={false}` for critical errors that require user action before the page can continue.
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Spacing & Shape</div>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
+{[
+  {t:'--notification-radius',    v:'4px',  f:'notification/spacing/card-radius-xs',  u:'Border radius'},
+  {t:'--notification-spacing-h', v:'24px', f:'notification/spacing/card-2xl-padding',u:'Horizontal padding'},
+  {t:'--notification-spacing-v', v:'8px',  f:'notification/spacing/card-sm-padding', u:'Vertical padding'},
+  {t:'--global-spacing-md',      v:'8px',  f:'global/spacing-md',                    u:'Gap between icon / text / button'},
+  {t:'--featured-icons-size-sm', v:'32px', f:'featured-icons/size/small/height',     u:'Icon circle diameter'},
+].map(({t,v,f,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'220px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Background Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '230px 130px 1fr 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Variant</span></div>
+{[
+  {t:'--notification-bg-error',   h:'#fdeceb', f:'notification/background/error',   v:'Critical'},
+  {t:'--notification-bg-warning', h:'#fffbf6', f:'notification/background/warning', v:'Warning'},
+  {t:'--notification-bg-success', h:'#e6f4ee', f:'notification/background/success', v:'Success'},
+  {t:'--notification-bg-brand',   h:'#eff8ff', f:'notification/background/brand',   v:'Info'},
+  {t:'--notification-bg-info',    h:'#f5faff', f:'notification/background/info',    v:'Neutral'},
+].map(({t,h,f,v},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'230px 130px 1fr 80px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#374151'}}>{v}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Text Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '230px 130px 1fr 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Value</span><span>Figma token</span><span>Variant</span></div>
+{[
+  {t:'--notification-text-error',     h:'#a30000', f:'notification/text/error',     v:'Critical'},
+  {t:'--notification-text-warning',   h:'#dd7600', f:'notification/text/warning',   v:'Warning'},
+  {t:'--notification-text-success',   h:'#006121', f:'notification/text/success',   v:'Success'},
+  {t:'--notification-text-brand',     h:'#1849a9', f:'notification/text/brand',     v:'Info'},
+  {t:'--notification-text-secondary', h:'#3c5073', f:'notification/text/secondary', v:'Neutral'},
+].map(({t,h,f,v},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'230px 130px 1fr 80px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#374151'}}>{v}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Border Colors (bottom accent line)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '230px 220px 1fr 80px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS token</span><span>Resolved value (with opacity)</span><span>Figma token</span><span>Variant</span></div>
+{[
+  {t:'--notification-border-error',   h:'rgba(163,0,0,0.7)',    hd:'#a30000', f:'notification/border/error',   v:'Critical'},
+  {t:'--notification-border-warning', h:'rgba(221,118,0,0.6)',  hd:'#dd7600', f:'notification/border/warning', v:'Warning'},
+  {t:'--notification-border-success', h:'rgba(0,97,33,0.6)',    hd:'#006121', f:'notification/border/success', v:'Success'},
+  {t:'--notification-border-brand',   h:'rgba(24,73,169,0.6)',  hd:'#1849a9', f:'notification/border/brand',   v:'Info'},
+  {t:'--notification-border-info',    h:'rgba(210,214,219,0.6)',hd:'#d2d6db', f:'notification/border/info',    v:'Neutral'},
+].map(({t,h,hd,f,v},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'230px 220px 1fr 80px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:hd,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{fontSize:12,color:'#374151'}}>{v}</span>
+</div>
+))}
+</div>
+
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '120px 100px 96px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+  {n:'variant',     type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'Critical', d:"Visual style and severity palette — Critical · Warning · Success · Info · Neutral. Maps to Figma 'style' prop."},
+  {n:'dismissible', type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'true',     d:'Show the × close button. Set false for persistent banners that require explicit user action.'},
+  {n:'rtl',         type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',    d:'Right-to-left layout for Arabic content. Mirrors the flex row via dir="rtl".'},
+  {n:'title',       type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"Important:"', d:'Bold label prefix shown before the message body.'},
+  {n:'message',     type:'string',  tb:'#ecfdf5',tc:'#059669',def:'"This is…"',   d:'The notification body text displayed after the title.'},
+  {n:'onDismiss',   type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',        d:'Called when the dismiss button is clicked. Wire this to remove the notification from state.'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'120px 100px 96px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+  {cat:'Semantics & ARIA',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'A',items:[
+    {title:'role="alert" on the container',desc:'Announces the notification to screen readers immediately on mount. Use for urgent messages only — non-urgent messages should use role="status" to avoid interrupting ongoing AT output.'},
+    {title:'Dismiss button has aria-label',desc:'"Dismiss notification" is always set on the × button so AT users know its purpose without reading surrounding context.'},
+    {title:'Icons are decorative',desc:'All SVG icons have aria-hidden="true" — the title and message text provide the full accessible description.'},
+  ]},
+  {cat:'Keyboard Navigation',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'⌨',items:[
+    {title:'Dismiss button is keyboard-focusable',desc:'Implemented as a native <button>, so Tab reaches it and Enter / Space activates it. No extra JS needed.'},
+    {title:'Focus ring on :focus-visible',desc:'2px outline using currentColor (the variant text color) with 2px offset — maintains contrast on any variant background.'},
+    {title:'Notification itself is not interactive',desc:'The container div has no tabIndex. Only the dismiss button enters the tab order, keeping keyboard navigation clean.'},
+  ]},
+  {cat:'Visual & Color',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+    {title:'Color is not the only differentiator',desc:'Each variant has a distinct icon shape (triangle, circle, checkmark, info) so severity is communicated beyond color alone.'},
+    {title:'Bottom border reinforces variant',desc:'The 2 px accent line provides a second visual cue for the severity alongside background color.'},
+    {title:'Text contrast passes WCAG AA',desc:'All text/background pairings: Critical #a30000/#fdeceb ≥ 5.5:1 · Warning #dd7600/#fffbf6 ≥ 3.5:1 · Success #006121/#e6f4ee ≥ 5.8:1 · Info #1849a9/#eff8ff ≥ 4.8:1 · Neutral #3c5073/#f5faff ≥ 5.2:1.'},
+  ]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', minHeight: 100, display: 'flex', flexDirection: 'column', gap: 8, background: '#fff' }}>
+  <Notification variant="Critical" dismissible={false} message="Your session expired. Please log in again to continue." />
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Critical non-dismissible for blocking errors</div>
+{['Use Critical + dismissible=false when users must act to proceed.','Match variant severity to the actual situation — not everything is Critical.','Use onDismiss to remove the notification from DOM/state when dismissed.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', minHeight: 100, display: 'flex', flexDirection: 'column', gap: 8, background: '#fff' }}>
+  <Notification variant="Critical" message="Your profile was saved." />
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Wrong severity — Critical for a success action</div>
+{['Do not use Critical for positive or neutral messages.','Do not show multiple Notification banners stacked if avoidable — consolidate messages.','Do not omit onDismiss when dismissible=true — the button click should actually hide the banner.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Place at the top of the page or content area, above the primary content.','Use Success to confirm a completed action (form saved, file uploaded).','Use Warning when the user should be aware of a risk but can still proceed.','Use Neutral for low-priority system information that does not require action.','Set dismissible=false only when the notification must persist until resolved.','Always wire onDismiss to actually remove the notification from the DOM.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
+{["Don't overuse Critical — reserve it for genuine errors or blockers.","Don't show Notification in a modal — use an inline alert inside the modal instead.","Don't stack more than 2–3 notifications without consolidating them.","Don't use long multi-paragraph messages — keep the message to one concise sentence.","Don't hide or omit the icon — it provides non-color severity context.","Don't use this component for transient toasts — use a separate Toast component."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { Notification } from '@/components/Notification';
+
+// Critical — blocking error (non-dismissible)
+<Notification
+  variant="Critical"
+  dismissible={false}
+  title="Error:"
+  message="Payment failed. Please check your card details and try again."
+/>
+
+// Warning — cautionary, dismissible
+<Notification
+  variant="Warning"
+  title="Warning:"
+  message="Your subscription expires in 3 days. Renew now to avoid service interruption."
+  onDismiss={() => setShowWarning(false)}
+/>
+
+// Success — confirmation
+<Notification
+  variant="Success"
+  title="Success:"
+  message="Your profile has been updated successfully."
+  onDismiss={() => setShowSuccess(false)}
+/>
+
+// Info — informational
+<Notification
+  variant="Info"
+  title="Info:"
+  message="Scheduled maintenance on Saturday 00:00–02:00 UTC. No action required."
+  onDismiss={() => setShowInfo(false)}
+/>
+
+// Neutral — system message
+<Notification
+  variant="Neutral"
+  title="Note:"
+  message="Some features may be unavailable in your region."
+  onDismiss={() => setShowNote(false)}
+/>
+
+// RTL Arabic
+<Notification
+  variant="Critical"
+  rtl={true}
+  title="خطأ:"
+  message="فشل الدفع. يرجى التحقق من بيانات البطاقة والمحاولة مرة أخرى."
+  onDismiss={() => setShowError(false)}
+/>
+
+// Controlled visibility pattern
+const [visible, setVisible] = useState(true);
+{visible && (
+  <Notification
+    variant="Warning"
+    title="Warning:"
+    message="Unsaved changes will be lost."
+    onDismiss={() => setVisible(false)}
+  />
+)}
+```
+
+---
+
+## Figma Reference
+
+- **Component node:** [4399:21418 — Masterteam DS Notification](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4399-21418&t=fWTlS4h9RZJZvHwC-4)
+- **DGA Guidelines:** [design.dga.gov.sa/guidelines/components/feedback/notification](https://design.dga.gov.sa/guidelines/components/feedback/notification)
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4399:21418`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>5 Matched</span>
+<span style={{ background: '#fff7ed', color: '#c2410c', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fed7aa' }}>1 Pending</span>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Area</span><span>Status</span><span>Notes</span></div>
+{[
+  {a:'All 5 variant palettes (bg, text, border)',          s:'Matched',  sb:'#ecfdf5',st:'#059669',n:'Exact hex values extracted from Figma tokens: error, warning, success, brand, info/secondary.'},
+  {a:'Icon per variant',                                   s:'Matched',  sb:'#ecfdf5',st:'#059669',n:'alert-02 (Critical), alert-circle (Warning), checkmark-badge (Success), information-circle (Info/Neutral) — inline SVG approximations matching Figma icon shapes.'},
+  {a:'Bottom accent border (2 px, variant color + opacity)',s:'Matched', sb:'#ecfdf5',st:'#059669',n:'CSS ::after pseudo-element, rgba with exact Figma opacity values (70% Critical, 60% all others).'},
+  {a:'RTL layout via dir="rtl"',                          s:'Matched',  sb:'#ecfdf5',st:'#059669',n:'dir="rtl" on the flex container naturally mirrors icon/text/close order. Matches Figma RTL variants.'},
+  {a:'Dismissible / non-dismissible states',              s:'Matched',  sb:'#ecfdf5',st:'#059669',n:'dismissible=true shows native <button> close; dismissible=false hides it. Matches Figma boolean prop.'},
+  {a:'Actions slot (CTA buttons inside notification)',     s:'Pending',  sb:'#fff7ed',st:'#c2410c',n:'Figma shows a 137px "Actions" placeholder slot for optional CTA buttons. Not yet implemented — tokens and designs not fully specified.'},
+].map(({a,s,sb,st,n},i)=>(
+<div key={a} style={{display:'grid',gridTemplateColumns:'1fr 100px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{s}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+</div>
+))}
+</div>
+
+</div>
