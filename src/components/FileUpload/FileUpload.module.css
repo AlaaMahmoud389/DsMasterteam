@@ -1,0 +1,386 @@
+/*
+ * FileUpload.module.css — Masterteam Design System
+ * Figma node 4250:1936
+ * Exact values extracted from Figma API.
+ *
+ * Color tokens:
+ *   #F3F4F6  — bg (drop zone + file item)
+ *   #D2D6DB  — border default / disabled
+ *   #000B36  — text primary / icon default
+ *   #3C5073  — text secondary (helper)
+ *   #6C7C96  — text disabled
+ *   #E6F4EE  — drag-over bg
+ *   #006121  — drag-over border / success icon
+ *   #A30000  — error border / error text / error icon
+ *   #1849A9  — browse button bg (Single)
+ *   #B42318  — required asterisk
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ── Hidden file input ─────────────────────────────────────────────── */
+.hiddenInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   _Drop Zone
+   Default: bg #F3F4F6, dashed border #D2D6DB, radius 4px, pad 24px
+   ═══════════════════════════════════════════════════════════════════ */
+.dropZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #f3f4f6;
+  border: 1px dashed #d2d6db;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  transition: background 150ms ease, border-color 150ms ease;
+  outline: none;
+}
+
+.dropZone:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* Drag-over — green theme */
+.dropZoneDragOver {
+  background: #e6f4ee;
+  border-color: #006121;
+}
+
+/* Disabled */
+.dropZoneDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Upload icon */
+.dropZoneIcon {
+  color: #000b36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.dropZoneDragOver .dropZoneIcon {
+  color: #006121;
+}
+
+.dropZoneDisabled .dropZoneIcon {
+  color: #6c7c96;
+}
+
+/* Text block */
+.dropZoneText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.dropZoneTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000b36;
+}
+
+.dropZoneDragOver .dropZoneTitle {
+  color: #006121;
+}
+
+.dropZoneDisabled .dropZoneTitle {
+  color: #6c7c96;
+}
+
+.dropZoneHint {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3c5073;
+}
+
+.dropZoneDragOver .dropZoneHint {
+  color: #006121;
+}
+
+.dropZoneDisabled .dropZoneHint {
+  color: #6c7c96;
+}
+
+/* Browse Files button (ghost in default, gray in drag-over/disabled) */
+.browseBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  height: 32px;
+  border-radius: 4px;
+  background: #f3f4f6;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #000b36;
+  box-sizing: border-box;
+  pointer-events: none; /* entire drop zone is clickable */
+}
+
+.dropZoneDragOver .browseBtn {
+  background: #d2d6db;
+  color: #6c7c96;
+}
+
+.dropZoneDisabled .browseBtn {
+  background: #d2d6db;
+  color: #6c7c96;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   _File  (FileItem)
+   bg #F3F4F6, border 1px solid #D2D6DB, radius 4px, h 36px
+   ═══════════════════════════════════════════════════════════════════ */
+.fileItem {
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f6;
+  border: 1px solid #d2d6db;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.fileItemError {
+  border-color: #a30000;
+}
+
+/* Main row: icon + name + × */
+.fileItemRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  gap: 8px;
+  min-height: 36px;
+  box-sizing: border-box;
+}
+
+.fileItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Status icons */
+.iconSuccess {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #006121;
+}
+
+.iconError {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #a30000;
+}
+
+/* Spinner */
+@keyframes fuSpin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d2d6db;
+  border-top-color: #000b36;
+  border-radius: 50%;
+  animation: fuSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* File name */
+.fileName {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #000b36;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* Remove button */
+.removeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #6c7c96;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: color 120ms ease;
+}
+
+.removeBtn:hover { color: #000b36; }
+.removeBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 1px;
+}
+
+/* Error message row (below separator) */
+.errorMessageRow {
+  border-top: 1px solid #d2d6db;
+  padding: 8px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.errorMessageText {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #a30000;
+}
+
+/* File list */
+.fileList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   File Upload / Single
+   Layout: header → button (or file item)
+   ═══════════════════════════════════════════════════════════════════ */
+.singleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  width: 100%;
+}
+
+/* Header */
+.singleHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.singleLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.requiredAsterisk {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #b42318;
+}
+
+.labelText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #000b36;
+}
+
+.labelTextDisabled {
+  color: #6c7c96;
+}
+
+.singleHint {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #3c5073;
+}
+
+.singleHintDisabled {
+  color: #6c7c96;
+}
+
+/* Browse Files button — solid blue */
+.singleBrowseBtn {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 4px;
+  padding: 2px 8px;
+  height: 32px;
+  border-radius: 4px;
+  background: #1849a9;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #f9fafb;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background 120ms ease;
+}
+
+.singleBrowseBtn:hover { background: #1a3f8f; }
+.singleBrowseBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.singleBrowseBtnDisabled {
+  background: #d2d6db;
+  color: #6c7c96;
+  cursor: not-allowed;
+}
+
+.singleBrowseBtnDisabled:hover { background: #d2d6db; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   File Upload / Multiple
+   Layout: drop zone → file list
+   ═══════════════════════════════════════════════════════════════════ */
+.multipleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  width: 100%;
+}

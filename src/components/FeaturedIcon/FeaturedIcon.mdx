@@ -1,0 +1,452 @@
+{/* FeaturedIcon.mdx — Masterteam Design System */}
+import { Meta } from '@storybook/addon-docs/blocks';
+import { FeaturedIcon } from './FeaturedIcon';
+import * as FeaturedIconStories from './FeaturedIcon.stories';
+
+<Meta of={FeaturedIconStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ───────────────────────────────────────────────── */}
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Featured Icon</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Featured Icon</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 680, lineHeight: 1.7 }}>
+    A decorative badge that pairs a semantic colour token with an icon. Used to communicate
+    status, category, or intent at a glance — in cards, alert banners, feature highlights, and empty states.
+  </div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>4 sizes</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>7 colours</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>2 shapes · 2 modes</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4388-1265" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 16 }}>
+  <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+    {[
+      { color: 'default',        icon: 'setting',            label: 'Default' },
+      { color: 'info',           icon: 'information-circle', label: 'Info' },
+      { color: 'success',        icon: 'tick-circle',        label: 'Success' },
+      { color: 'warning',        icon: 'alert',              label: 'Warning' },
+      { color: 'error',          icon: 'cancel-circle',      label: 'Error' },
+      { color: 'brand',          icon: 'star',               label: 'Brand' },
+      { color: 'gray-attention', icon: 'bell',               label: 'Gray-attention' },
+    ].map(({ color, icon, label }) => (
+      <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+        <FeaturedIcon size="md" color={color} onColor icon={icon} />
+        <span style={{ fontSize: 11, color: '#6b7280', textAlign: 'center' }}>{label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+**7 colour tokens** · 4 sizes · 2 shapes (circle / rounded rect) · 2 modes (colored background / white).
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 24 }}>
+  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'center', marginBottom: 20 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+      <FeaturedIcon size="xl" color="brand" onColor icon="star" />
+      <span style={{ fontSize: 11, color: '#6b7280' }}>Circle=No · OnColor=Yes</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+      <FeaturedIcon size="xl" color="brand" circle onColor icon="star" />
+      <span style={{ fontSize: 11, color: '#6b7280' }}>Circle=Yes · OnColor=Yes</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+      <FeaturedIcon size="xl" color="brand" onColor={false} icon="star" />
+      <span style={{ fontSize: 11, color: '#6b7280' }}>Circle=No · OnColor=No</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+      <FeaturedIcon size="xl" color="brand" circle onColor={false} icon="star" />
+      <span style={{ fontSize: 11, color: '#6b7280' }}>Circle=Yes · OnColor=No</span>
+    </div>
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 28px' }}>
+    {[
+      ['1', 'Container — div with role="img" when aria-label is set. Width and height are fixed per size.'],
+      ['2', 'Background — semantic tinted fill (OnColor=Yes) or white with a coloured border (OnColor=No).'],
+      ['3', 'Shape — 4 px border-radius (Circle=No) or 50% border-radius (Circle=Yes).'],
+      ['4', 'Icon — rendered at the correct px size for the container. Inherits currentColor from the container.'],
+      ['5', 'Border — 1 px solid coloured border only in OnColor=No mode; transparent otherwise.'],
+    ].map(([n, l]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'flex-start', gap: 7, fontSize: 13, color: '#111827', maxWidth: 620 }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{n}</span>
+        <span style={{ lineHeight: 1.5 }}>{l}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+---
+
+## Property: Size
+
+<div style={{ marginBottom: 20, display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+  {[
+    { size: 'sm', label: 'Small',   px: '32' },
+    { size: 'md', label: 'Medium',  px: '40' },
+    { size: 'lg', label: 'Large',   px: '48' },
+    { size: 'xl', label: 'X Large', px: '56' },
+  ].map(({ size, label, px }) => (
+    <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+      <FeaturedIcon size={size} color="brand" onColor icon="star" />
+      <span style={{ fontSize: 12, color: '#374151', fontWeight: 500 }}>{label}</span>
+      <span style={{ fontSize: 11, color: '#9ca3af' }}>{px} px</span>
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Size tokens</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 70px 120px 100px 90px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+    <span>Size</span><span>Prop</span><span>Container</span><span>Icon</span><span>Border-radius (no circle)</span>
+  </div>
+  {[
+    { size: 'Small',   prop: '"sm"', container: '32 × 32 px', icon: '16 px', r: '4 px' },
+    { size: 'Medium',  prop: '"md"', container: '40 × 40 px', icon: '20 px', r: '4 px' },
+    { size: 'Large',   prop: '"lg"', container: '48 × 48 px', icon: '24 px', r: '4 px' },
+    { size: 'X Large', prop: '"xl"', container: '56 × 56 px', icon: '32 px', r: '4 px' },
+  ].map(({ size, prop, container, icon, r }, i) => (
+    <div key={size} style={{ display: 'grid', gridTemplateColumns: '100px 70px 120px 100px 90px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, color: '#374151', fontWeight: 500 }}>{size}</span>
+      <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <span style={{ fontSize: 13, color: '#374151' }}>{container}</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{icon}</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{r}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+## Property: Color
+
+<div style={{ marginBottom: 20 }}>
+  <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor=Yes — on #00001C surface</div>
+  <div style={{ background: '#00001c', padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 14, flexWrap: 'wrap' }}>
+    {[
+      { color: 'default',        icon: 'setting' },
+      { color: 'info',           icon: 'information-circle' },
+      { color: 'success',        icon: 'tick-circle' },
+      { color: 'warning',        icon: 'alert' },
+      { color: 'error',          icon: 'cancel-circle' },
+      { color: 'brand',          icon: 'star' },
+      { color: 'gray-attention', icon: 'bell' },
+    ].map(({ color, icon }) => (
+      <FeaturedIcon key={color} size="lg" color={color} onColor icon={icon} />
+    ))}
+  </div>
+</div>
+
+<div style={{ marginBottom: 20 }}>
+  <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor=No — white background</div>
+  <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+    {[
+      { color: 'default',        icon: 'setting' },
+      { color: 'info',           icon: 'information-circle' },
+      { color: 'success',        icon: 'tick-circle' },
+      { color: 'warning',        icon: 'alert' },
+      { color: 'error',          icon: 'cancel-circle' },
+      { color: 'brand',          icon: 'star' },
+      { color: 'gray-attention', icon: 'bell' },
+    ].map(({ color, icon }) => (
+      <FeaturedIcon key={color} size="lg" color={color} onColor={false} icon={icon} />
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Color token reference</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '140px 200px 120px 160px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+    <span>Color</span>
+    <span>BG (OnColor=Yes, on #00001C)</span>
+    <span>Icon (OnColor=Yes)</span>
+    <span>BG (OnColor=No)</span>
+    <span>Icon (OnColor=No)</span>
+  </div>
+  {[
+    { c: 'default',        bgOn: 'rgba(31,42,55,0.6)',   iconOn: '#ffffff', bgOff: '#F3F4F6', iconOff: '#000B36' },
+    { c: 'info',           bgOn: 'rgba(60,80,115,0.6)',  iconOn: '#ffffff', bgOff: '#F3F4F6', iconOff: '#000B36' },
+    { c: 'success',        bgOn: 'rgba(0,97,33,0.6)',    iconOn: '#ffffff', bgOff: '#E6F4EE', iconOff: '#006121' },
+    { c: 'warning',        bgOn: 'rgba(221,118,0,0.6)',  iconOn: '#ffffff', bgOff: '#FEF4E6', iconOff: '#DD7600' },
+    { c: 'error',          bgOn: 'rgba(163,0,0,0.6)',    iconOn: '#ffffff', bgOff: '#FDECEB', iconOff: '#A30000' },
+    { c: 'brand',          bgOn: 'rgba(24,73,169,0.6)',  iconOn: '#ffffff', bgOff: '#EFF8FF', iconOff: '#1849A9' },
+    { c: 'gray-attention', bgOn: 'rgba(31,42,55,0.6)',   iconOn: '#ffffff', bgOff: '#F3F4F6', iconOff: '#000B36' },
+  ].map(({ c, bgOn, iconOn, bgOff, iconOff }, i) => (
+    <div key={c} style={{ display: 'grid', gridTemplateColumns: '140px 200px 120px 160px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>"{c}"</code>
+      <code style={{ fontSize: 11, color: '#374151' }}>{bgOn}</code>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#ffffff', border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
+        <code style={{ fontSize: 11, color: '#374151' }}>#ffffff</code>
+      </span>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: bgOff, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
+        <code style={{ fontSize: 11, color: '#374151' }}>{bgOff}</code>
+      </span>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: iconOff, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
+        <code style={{ fontSize: 11, color: '#374151' }}>{iconOff}</code>
+      </span>
+    </div>
+  ))}
+</div>
+
+---
+
+## Property: Circle
+
+<div style={{ marginBottom: 20, display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+  <div>
+    <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '.06em' }}>Circle=No — 4 px rounded rect</div>
+    <div style={{ display: 'flex', gap: 12 }}>
+      {['sm','md','lg','xl'].map((size) => (
+        <FeaturedIcon key={size} size={size} color="brand" circle={false} onColor icon="star" />
+      ))}
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '.06em' }}>Circle=Yes — full circle (50%)</div>
+    <div style={{ display: 'flex', gap: 12 }}>
+      {['sm','md','lg','xl'].map((size) => (
+        <FeaturedIcon key={size} size={size} color="brand" circle={true} onColor icon="star" />
+      ))}
+    </div>
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Shape reference</div>
+  {[
+    { circle: false, borderRadius: '4 px',                css: 'border-radius: 4px',   when: 'Cards, notification chips, tags — geometric, structured contexts' },
+    { circle: true,  borderRadius: '50% (full circle)',   css: 'border-radius: 50%',   when: 'Avatar-like contexts, feature highlights, hero sections' },
+  ].map(({ circle, borderRadius, css, when }, i) => (
+    <div key={String(circle)} style={{ display: 'grid', gridTemplateColumns: '80px 160px 160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', fontSize: 13, color: '#374151' }}>
+      <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{String(circle)}</code>
+      <span>{borderRadius}</span>
+      <code style={{ fontSize: 11, color: '#6b7280' }}>{css}</code>
+      <span style={{ lineHeight: 1.5 }}>{when}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+## Property: OnColor
+
+<div style={{ marginBottom: 20, display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+  <div>
+    <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor=Yes — on #00001C surface · white icons</div>
+    <div style={{ background: '#00001c', padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 10, flexWrap: 'wrap' }}>
+      {['default','info','success','warning','error','brand','gray-attention'].map((color) => (
+        <FeaturedIcon key={color} size="md" color={color} onColor icon="star" />
+      ))}
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor=No — light background · semantic icons</div>
+    <div style={{ display: 'inline-flex', gap: 10, flexWrap: 'wrap' }}>
+      {['default','info','success','warning','error','brand','gray-attention'].map((color) => (
+        <FeaturedIcon key={color} size="md" color={color} onColor={false} icon="star" />
+      ))}
+    </div>
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>OnColor mode reference</div>
+  {[
+    { oc: 'Yes (true)',  bg: 'Semantic tinted fill',           border: 'none (transparent)', when: 'Use on coloured cards, highlighted sections, brand surfaces' },
+    { oc: 'No (false)', bg: 'White (#ffffff)',                 border: '1 px coloured',      when: 'Use on white or neutral page backgrounds, dense lists' },
+  ].map(({ oc, bg, border, when }, i) => (
+    <div key={oc} style={{ display: 'grid', gridTemplateColumns: '100px 200px 140px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', fontSize: 13, color: '#374151' }}>
+      <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{oc}</code>
+      <span>{bg}</span>
+      <span>{border}</span>
+      <span style={{ lineHeight: 1.5 }}>{when}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>FeaturedIcon props</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '130px 100px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    { n: 'size',       tb: '#fff7ed', tc: '#c2410c', type: 'enum',    def: '"md"',       d: '"sm" | "md" | "lg" | "xl" — Container size (32 / 40 / 48 / 56 px). Icon scales automatically.' },
+    { n: 'color',      tb: '#fff7ed', tc: '#c2410c', type: 'enum',    def: '"default"',  d: '"default" | "info" | "success" | "warning" | "error" | "brand" | "gray-attention".' },
+    { n: 'circle',     tb: '#f3f0ff', tc: '#7c3aed', type: 'boolean', def: 'false',      d: 'true → full circle (border-radius: 50%). false → rounded rectangle (border-radius: 4 px).' },
+    { n: 'onColor',    tb: '#f3f0ff', tc: '#7c3aed', type: 'boolean', def: 'false',      d: 'true → semantic tinted background fill (OnColor=Yes). false → white background with coloured border (OnColor=No).' },
+    { n: 'icon',       tb: '#ecfdf5', tc: '#059669', type: 'string',  def: 'undefined',  d: 'Icon name from the design-system registry (Icon component). Renders at the correct size for the chosen size prop.' },
+    { n: 'children',   tb: '#ecfdf5', tc: '#059669', type: 'node',    def: 'undefined',  d: 'Custom icon element. Used when the icon prop is not provided. The caller controls the icon\'s px size.' },
+    { n: 'className',  tb: '#ecfdf5', tc: '#059669', type: 'string',  def: '""',         d: 'Additional CSS class applied to the container element.' },
+    { n: 'aria-label', tb: '#ecfdf5', tc: '#059669', type: 'string',  def: 'undefined',  d: 'Accessible label. When provided, the container gets role="img". When omitted, aria-hidden="true" is set.' },
+  ].map(({ n, tb, tc, type, def, d }, i) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '130px 100px 160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
+      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600 }}>{type}</span>
+      <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
+      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#fdf4ff', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#9333ea' }}>ARIA roles &amp; attributes</div>
+    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {[
+        ['role="img" + aria-label', 'Applied when aria-label prop is provided. Use when the icon conveys standalone meaning not already described by adjacent text.'],
+        ['aria-hidden="true"', 'Default when no aria-label is set — the icon is purely decorative and suppressed from the accessibility tree.'],
+        ['Inner icon aria-hidden', 'The rendered Icon is always aria-hidden="true" since the container element owns the accessible label.'],
+      ].map(([attr, desc]) => (
+        <div key={attr} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
+          <code style={{ background: '#f3f0ff', padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600, flexShrink: 0, color: '#7c3aed' }}>{attr}</code>
+          <span style={{ lineHeight: 1.5 }}>{desc}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#ecfdf5', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#059669' }}>Colour contrast guidance</div>
+    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {[
+        ['Default / Gray-attention', 'Icon on tinted bg — decorative; coloured bg provides visual grouping, not text contrast.'],
+        ['Info / Success / Warning / Error / Brand', 'Icon colours meet WCAG non-text contrast (3:1) against their respective tinted backgrounds.'],
+        ['OnColor=No (white bg)', 'All icon colours pass WCAG 3:1 against white — most pass 4.5:1.'],
+        ['Don\'t use as the sole indicator', 'Always pair with a text label or adjacent description so colour-blind users get the same information.'],
+      ].map(([pair, result]) => (
+        <div key={pair} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
+          <span style={{ minWidth: 220, fontWeight: 500, flexShrink: 0 }}>{pair}</span>
+          <span style={{ lineHeight: 1.5, color: '#6b7280' }}>{result}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+  <div style={{ border: '1px solid #d1fae5', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#ecfdf5', padding: '8px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#059669' }}>✓ Do</div>
+    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {[
+        'Use to communicate category or status at a glance — success, warning, error, info.',
+        'Pair with a text label so colour-blind users can understand the meaning.',
+        'Use circle=true for feature highlights and hero sections where an avatar-like shape fits.',
+        'Use circle=false (default) in structured layouts like cards, tables, and notification lists.',
+        'Choose OnColor=Yes when placed on white or very light backgrounds for stronger visual presence.',
+        'Choose OnColor=No when the surrounding surface already has strong colour and a lighter badge fits better.',
+        'Provide aria-label when the icon is the only indicator of status in that UI region.',
+      ].map((t, i) => (
+        <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
+          <span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>✓</span>
+          <span style={{ lineHeight: 1.5 }}>{t}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div style={{ border: '1px solid #fee2e2', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#fef2f2', padding: '8px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#dc2626' }}>✗ Don't</div>
+    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {[
+        "Don't use as a button — FeaturedIcon has no click semantics. Use a Button or an icon button instead.",
+        "Don't resize via className width/height overrides — use the size prop to maintain correct icon-to-container proportions.",
+        "Don't omit aria-label when the icon is the sole communicator of status (e.g., a lone success/error indicator with no adjacent text).",
+        "Don't mix different sizes in the same row without a clear visual hierarchy reason.",
+        "Don't use color=error for non-error states — semantic colours carry meaning; misusing them erodes trust.",
+      ].map((t, i) => (
+        <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
+          <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>✗</span>
+          <span style={{ lineHeight: 1.5 }}>{t}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+---
+
+## Code Examples
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Basic usage — icon prop</div>
+  <div style={{ padding: 16, background: '#1e1e2e' }}>
+    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`import { FeaturedIcon } from '@/components/FeaturedIcon';
+
+// Colored background (OnColor=Yes), rounded rectangle
+<FeaturedIcon size="md" color="success" onColor icon="tick-circle" />
+
+// White background (OnColor=No), circle shape
+<FeaturedIcon size="lg" color="error" circle icon="cancel-circle" />`}</pre>
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>With accessible label</div>
+  <div style={{ padding: 16, background: '#1e1e2e' }}>
+    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`{/* When the icon is the only status indicator, add aria-label */}
+<FeaturedIcon
+  size="sm"
+  color="warning"
+  onColor
+  icon="alert"
+  aria-label="Warning: session expiring"
+/>`}</pre>
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Custom icon via children</div>
+  <div style={{ padding: 16, background: '#1e1e2e' }}>
+    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`import { FeaturedIcon } from '@/components/FeaturedIcon';
+import { Icon } from '@/components/icons/Icon';
+
+{/* Pass any icon element as children when you need full control */}
+<FeaturedIcon size="md" color="brand" circle onColor>
+  <Icon name="star" size={20} />
+</FeaturedIcon>`}</pre>
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>In a notification card</div>
+  <div style={{ padding: 16, background: '#1e1e2e' }}>
+    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`<div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+  <FeaturedIcon size="md" color="success" onColor icon="tick-circle" />
+  <div>
+    <h4>Payment confirmed</h4>
+    <p>Your payment of \$240.00 was processed successfully.</p>
+  </div>
+</div>`}</pre>
+  </div>
+</div>
+
+</div>

@@ -1,41 +1,43 @@
 import styles from './Avatar.module.css';
 
-// ─── Static local assets ─────────────────────────────────────────
-import _userIconSvg  from '../../assets/icons/user.svg';
-import _addNormalSm  from '../../assets/icons/add-normal-sm.svg';
-import _addNormalMd  from '../../assets/icons/add-normal-md.svg';
-import _addDisabledSm from '../../assets/icons/add-disabled-sm.svg';
-import _addDisabledMd from '../../assets/icons/add-disabled-md.svg';
-import _avatar1    from '../../assets/photos/avatar-1.png';
-import _avatar2    from '../../assets/photos/avatar-2.png';
-import _avatar3    from '../../assets/photos/avatar-3.png';
-import _avatar4    from '../../assets/photos/avatar-4.png';
-import _figmaDemo  from '../../assets/photos/avatar-figma-demo.png';
+// ─── Figma asset URLs ─────────────────────────────────────────────
+// Single photo — used for Image-type size demonstrations (node 4113:655)
+export const FIGMA_PHOTO = 'https://www.figma.com/api/mcp/asset/fcc09fa1-996d-4aeb-9509-5c06c4fe59a6';
 
-// ─── Photo constants ──────────────────────────────────────────────
-// FIGMA_PHOTO  : Figma node 4113:655 image-type row placeholder
-// ARAB_PHOTOS  : 5 hijabi female portraits (no male) for image rows & groups
-// LABEL_PHOTO  : woman in white hijab — used for female persona (Nora)
-export const FIGMA_PHOTO = _figmaDemo;
-export const ARAB_PHOTOS = [_avatar1, _avatar3, _avatar4, _avatar3, _avatar1];
-export const LABEL_PHOTO = _avatar4;
+// 5 distinct Arab person photos — used for avatar groups (node 4113:852)
+export const ARAB_PHOTOS = [
+  'https://www.figma.com/api/mcp/asset/a13b266f-e586-4e3b-b222-c4f78d663224',
+  'https://www.figma.com/api/mcp/asset/5250ecb2-799d-4eb8-b621-0d821cf37ef8',
+  'https://www.figma.com/api/mcp/asset/d7e41472-3a9a-41db-9cef-5f8131beb44c',
+  'https://www.figma.com/api/mcp/asset/b1f0326a-148a-4283-85fd-63925e94bb8b',
+  'https://www.figma.com/api/mcp/asset/275ba1ee-7ba3-4261-8bce-95e9a1a6b068',
+];
 
-// ─── AvatarAddButton icon (node 4120:317) ────────────────────────
+// Photo used in AvatarWithLabel demos (node 4929:1747)
+export const LABEL_PHOTO = 'https://www.figma.com/api/mcp/asset/beb273cd-060f-4156-b9cd-177c809cc085';
+
+// ─── AvatarAddButton asset URLs (node 4120:317) ───────────────────
+const ADD_ICON_SM     = 'https://www.figma.com/api/mcp/asset/ebfd8a1b-be42-4f5a-8674-d6b85752584e'; // xs/sm
+const ADD_ICON_MD     = 'https://www.figma.com/api/mcp/asset/96e72c3d-8443-4f98-bb3d-e5f02ab733db'; // md
+const ADD_ICON_SM_DIS = 'https://www.figma.com/api/mcp/asset/e5b963df-332e-4dea-981b-2425766b282a'; // xs/sm disabled
+const ADD_ICON_MD_DIS = 'https://www.figma.com/api/mcp/asset/2d81ee84-0f6e-4b16-aa11-c9047b531c8e'; // md disabled
+const ADD_TOOLTIP_ARR = 'https://www.figma.com/api/mcp/asset/e254e38a-d3ac-4d6c-bf94-c102fc702754'; // tooltip caret
+
 const ADD_BTN_CFG = {
-  xs: { px: 24, radius: 12, iconPx: 16, icon: _addNormalSm,  iconDis: _addDisabledSm },
-  sm: { px: 32, radius: 16, iconPx: 16, icon: _addNormalSm,  iconDis: _addDisabledSm },
-  md: { px: 40, radius: 20, iconPx: 20, icon: _addNormalMd,  iconDis: _addDisabledMd },
+  xs: { px: 24, radius: 12, iconPx: 16, icon: ADD_ICON_SM,     iconDis: ADD_ICON_SM_DIS },
+  sm: { px: 32, radius: 16, iconPx: 16, icon: ADD_ICON_SM,     iconDis: ADD_ICON_SM_DIS },
+  md: { px: 40, radius: 20, iconPx: 20, icon: ADD_ICON_MD,     iconDis: ADD_ICON_MD_DIS },
 };
 
-// User icons — single SVG scales for all sizes (node 4113:655)
+// User icons per size — exported so stories can reference them
 export const ICON_URLS = {
-  xs_round: _userIconSvg,
-  xs_sq:    _userIconSvg,
-  sm:       _userIconSvg,
-  md:       _userIconSvg,
-  xl:       _userIconSvg,
-  '2xl':    _userIconSvg,
-  '3xl':    _userIconSvg,
+  xs_round: 'https://www.figma.com/api/mcp/asset/56074f39-801f-4880-979a-243d724cd0c0', // 24px round (16px icon)
+  xs_sq:    'https://www.figma.com/api/mcp/asset/3795340f-66cc-4630-81ab-56f25790204f', // 24px square (16px icon)
+  sm:       'https://www.figma.com/api/mcp/asset/79b7f739-a225-4a8d-91f4-28bec3577efb', // 32px (24px icon)
+  md:       'https://www.figma.com/api/mcp/asset/d16a06b5-8ac7-4e9b-a0ec-85306146fbf8', // 40px / 48px (32px icon)
+  xl:       'https://www.figma.com/api/mcp/asset/c93a927b-cb8f-4840-bcd7-add57658684a', // 64px (40px icon)
+  '2xl':    'https://www.figma.com/api/mcp/asset/563d9408-3e85-4eee-95d9-d929ea0c5ead', // 80px (56px icon)
+  '3xl':    'https://www.figma.com/api/mcp/asset/3cfb8ad1-8dc6-418c-8ded-45f6fce1bcbf', // 120px (80px icon)
 };
 
 // ─── Design tokens (Figma node 4113:655) ────────────────────────
@@ -71,8 +73,10 @@ function CheckIcon() {
   );
 }
 
-function getIconUrl() {
-  return _userIconSvg;
+function getIconUrl(size, square) {
+  if (size === 'xs') return square ? ICON_URLS.xs_sq : ICON_URLS.xs_round;
+  if (size === 'lg') return ICON_URLS.md;
+  return ICON_URLS[size] || ICON_URLS.md;
 }
 
 // ─── Avatar ───────────────────────────────────────────────────────
@@ -184,7 +188,6 @@ export function Avatar({
               className={styles.img}
               src={src || FIGMA_PHOTO}
               alt={alt}
-              onError={e => { e.currentTarget.src = _userIconSvg; e.currentTarget.style.objectFit = 'contain'; e.currentTarget.style.padding = '15%'; }}
             />
           </div>
         )}
@@ -310,6 +313,7 @@ export function AvatarAddButton({
   const isDisabled = state === 'disabled';
   const isFocus    = state === 'focus';
   const isHover    = state === 'hover';
+  const iconSrc    = isDisabled ? cfg.iconDis : cfg.icon;
 
   const btnCls = [
     styles.addBtn,
@@ -327,9 +331,7 @@ export function AvatarAddButton({
           <div className={styles.addBtnTooltipBody}>
             <span className={styles.addBtnTooltipText}>{label}</span>
           </div>
-          <svg className={styles.addBtnTooltipArrow} width={16} height={6} viewBox="0 0 16 6" fill="none" aria-hidden="true">
-            <path d="M0 0 L8 6 L16 0 Z" fill="#233a61"/>
-          </svg>
+          <img className={styles.addBtnTooltipArrow} src={ADD_TOOLTIP_ARR} alt="" width={16} height={6} />
         </div>
       )}
 
@@ -341,7 +343,7 @@ export function AvatarAddButton({
         onClick={!isDisabled ? onClick : undefined}
         aria-label={label}
       >
-        <img src={isDisabled ? cfg.iconDis : cfg.icon} alt="" width={cfg.iconPx} height={cfg.iconPx} style={{ display: 'block' }} />
+        <img src={iconSrc} alt="" width={cfg.iconPx} height={cfg.iconPx} style={{ display: 'block' }} />
       </button>
     </div>
   );

@@ -39,7 +39,10 @@
       "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4140-89804&depth=3\")",
       "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4157-86523&depth=4\")",
       "Bash(curl -s -H \"X-Figma-Token: figd_xM5f4DliJM0HiXQU1Jfd78lq4P11uQcPj3IYeNGT\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4140-89803\")",
-      "Bash(python -m json.tool)"
+      "Bash(python -m json.tool)",
+      "Bash(curl -s -H \"X-Figma-Token: figd_9tUczkgolGxJyPbBIUjG8KVRK1qeKDMHLibz4TGN\" \"https://api.figma.com/v1/files/WTmRAkJVvw0IvZMA7wBdTC/nodes?ids=4250:1936\")",
+      "PowerShell(New-Item *)",
+      "PowerShell(ls \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\\\\src\\\\components\\\\\")"
     ]
   }
 }

@@ -8,18 +8,10 @@ const LABEL = {
   marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em',
 };
 
-const FIGMA_URL = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4112-13&t=GbrZIJyJ1y1Cbin4-1';
-
 export default {
   title: 'Components/Card',
   component: Card,
-  parameters: {
-    layout: 'centered',
-    design: {
-      type: 'figma',
-      url: FIGMA_URL,
-    },
-  },
+  parameters: { layout: 'centered' },
   argTypes: {
     type:            { control: 'radio', options: ['default', 'expandable', 'selectable'] },
     state:           { control: 'radio', options: ['default', 'hover', 'focused', 'disabled'] },
