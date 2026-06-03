@@ -1,1 +1,0 @@
-export { HeatmapChart } from './HeatmapChart';
