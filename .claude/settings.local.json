@@ -67,7 +67,9 @@
       "Bash(curl -s \"https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/c3af7ca2-2284-4153-93a4-ce3599ca5c4b\" -o C:/Users/Faisal/rating_small_default.png)",
       "Bash(curl *)",
       "Bash(Get-Content *)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); nodes=data.get\\('nodes',{}\\); key=list\\(nodes.keys\\(\\)\\)[0]; doc=nodes[key]['document']; print\\('TOP NODE:', doc['name'], doc['type']\\); children=doc.get\\('children',[]\\); print\\('CHILDREN COUNT:', len\\(children\\)\\); [print\\(f'  [{i}] id={c[\\\\\"id\\\\\"]} name={c[\\\\\"name\\\\\"]} type={c[\\\\\"type\\\\\"]}'\\) for i,c in enumerate\\(children\\)]\")",
+      "Bash(powershell *)"
     ]
   }
 }

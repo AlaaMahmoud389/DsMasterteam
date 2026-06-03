@@ -1,0 +1,499 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import React, { useState } from 'react';
+import { VerticalTab, HorizontalTab, HorizontalMoreTab, VerticalTabList, HorizontalTabList } from './Tabs';
+
+export const SAMPLE_TABS = [
+  { id: 'tab1', label: 'Tab 1' },
+  { id: 'tab2', label: 'Tab 2' },
+  { id: 'tab3', label: 'Tab 3' },
+  { id: 'tab4', label: 'Tab 4', disabled: true },
+];
+
+export const SAMPLE_TABS_AR = [
+  { id: 'tab1', label: 'الأول' },
+  { id: 'tab2', label: 'الثاني' },
+  { id: 'tab3', label: 'الثالث' },
+  { id: 'tab4', label: 'الرابع', disabled: true },
+];
+
+export const VerticalListDemo = () => {
+  const [active, setActive] = useState('tab1');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <VerticalTabList tabs={SAMPLE_TABS} activeTab={active} onTabChange={setActive} />
+    </div>
+  );
+};
+
+export const HorizontalListDemo = () => {
+  const [active, setActive] = useState('tab1');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <HorizontalTabList tabs={SAMPLE_TABS} activeTab={active} onTabChange={setActive} />
+    </div>
+  );
+};
+
+export const HorizontalListWithMoreDemo = () => {
+  const [active, setActive] = useState('tab1');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <HorizontalTabList tabs={SAMPLE_TABS} activeTab={active} onTabChange={setActive} showMore />
+    </div>
+  );
+};
+
+export const VerticalListRTLDemo = () => {
+  const [active, setActive] = useState('tab1');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <VerticalTabList rtl tabs={SAMPLE_TABS_AR} activeTab={active} onTabChange={setActive} />
+    </div>
+  );
+};
+
+export const HorizontalListRTLDemo = () => {
+  const [active, setActive] = useState('tab1');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <HorizontalTabList rtl tabs={SAMPLE_TABS_AR} activeTab={active} onTabChange={setActive} />
+    </div>
+  );
+};
+
+<Meta title="Components/Tabs/Docs" />
+
+# Tabs
+
+Navigation tabs for switching between views — available in vertical and horizontal orientations with sizes, icon support, RTL, and disabled states.
+
+**Figma:** [node 4747‑83313](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4747-83313)
+
+---
+
+## Vertical Tab List — Interactive
+
+<VerticalListDemo />
+
+## Horizontal Tab List — Interactive
+
+<HorizontalListDemo />
+
+---
+
+## Vertical Tab — Sizes & States
+
+### Small
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'column', gap: 4, width: 150, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTab size="small" label="Default" />
+  <VerticalTab size="small" label="Selected" selected />
+  <VerticalTab size="small" label="Hovered" state="hovered" />
+  <VerticalTab size="small" label="Pressed" state="pressed" />
+  <VerticalTab size="small" label="Focused" state="focused" />
+  <VerticalTab size="small" label="Disabled" state="disabled" />
+</div>
+
+### Medium
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'column', gap: 4, width: 150, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTab size="medium" label="Default" />
+  <VerticalTab size="medium" label="Selected" selected />
+  <VerticalTab size="medium" label="Hovered" state="hovered" />
+  <VerticalTab size="medium" label="Pressed" state="pressed" />
+  <VerticalTab size="medium" label="Focused" state="focused" />
+  <VerticalTab size="medium" label="Disabled" state="disabled" />
+</div>
+
+### Large
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'column', gap: 4, width: 150, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTab size="large" label="Default" />
+  <VerticalTab size="large" label="Selected" selected />
+  <VerticalTab size="large" label="Hovered" state="hovered" />
+  <VerticalTab size="large" label="Pressed" state="pressed" />
+  <VerticalTab size="large" label="Focused" state="focused" />
+  <VerticalTab size="large" label="Disabled" state="disabled" />
+</div>
+
+---
+
+## Horizontal Tab — Sizes & States
+
+### Small
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'row', gap: 4, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTab size="small" label="Default" />
+  <HorizontalTab size="small" label="Selected" selected />
+  <HorizontalTab size="small" label="Hovered" state="hovered" />
+  <HorizontalTab size="small" label="Pressed" state="pressed" />
+  <HorizontalTab size="small" label="Focused" state="focused" />
+  <HorizontalTab size="small" label="Disabled" state="disabled" />
+</div>
+
+### Medium
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'row', gap: 4, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTab size="medium" label="Default" />
+  <HorizontalTab size="medium" label="Selected" selected />
+  <HorizontalTab size="medium" label="Hovered" state="hovered" />
+  <HorizontalTab size="medium" label="Pressed" state="pressed" />
+  <HorizontalTab size="medium" label="Focused" state="focused" />
+  <HorizontalTab size="medium" label="Disabled" state="disabled" />
+</div>
+
+### Large
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'row', gap: 4, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTab size="large" label="Default" />
+  <HorizontalTab size="large" label="Selected" selected />
+  <HorizontalTab size="large" label="Hovered" state="hovered" />
+  <HorizontalTab size="large" label="Pressed" state="pressed" />
+  <HorizontalTab size="large" label="Focused" state="focused" />
+  <HorizontalTab size="large" label="Disabled" state="disabled" />
+</div>
+
+---
+
+## Horizontal More Tab — States
+
+A three-dots overflow button that appears as the last item in a `HorizontalTabList`. It has no indicator bar and is not selectable — it is used to trigger a menu or additional actions.
+
+### Default · Hovered · Pressed · Focused · Disabled
+
+<div style={{ padding: '16px 0', display: 'flex', flexDirection: 'row', gap: 4, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalMoreTab state="default" />
+  <HorizontalMoreTab state="hovered" />
+  <HorizontalMoreTab state="pressed" />
+  <HorizontalMoreTab state="focused" />
+  <HorizontalMoreTab state="disabled" />
+</div>
+
+## Horizontal Tab List — With More Button
+
+<HorizontalListWithMoreDemo />
+
+---
+
+## Vertical Tab List — Sizes
+
+### Small
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTabList size="small" tabs={SAMPLE_TABS} activeTab="tab1" />
+</div>
+
+### Medium
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTabList size="medium" tabs={SAMPLE_TABS} activeTab="tab2" />
+</div>
+
+### Large
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTabList size="large" tabs={SAMPLE_TABS} activeTab="tab3" />
+</div>
+
+---
+
+## Horizontal Tab List — Sizes
+
+### Small
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTabList size="small" tabs={SAMPLE_TABS} activeTab="tab1" />
+</div>
+
+### Medium
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTabList size="medium" tabs={SAMPLE_TABS} activeTab="tab2" />
+</div>
+
+### Large
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTabList size="large" tabs={SAMPLE_TABS} activeTab="tab3" />
+</div>
+
+---
+
+## Horizontal Tab List — Flush
+
+<div style={{ padding: '16px 0', background: '#f9fafb', paddingInline: 16, borderRadius: 8, border: '1px solid #e5e7eb', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <p style={{ fontSize: 12, color: '#6b7280', marginBottom: 8, marginTop: 0 }}>flush=true</p>
+  <HorizontalTabList size="medium" flush tabs={SAMPLE_TABS} activeTab="tab1" />
+</div>
+
+---
+
+## RTL
+
+### Vertical Tab List RTL
+
+<VerticalListRTLDemo />
+
+### Horizontal Tab List RTL
+
+<HorizontalListRTLDemo />
+
+---
+
+## With Icons
+
+### Vertical Tab List — Icons
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <VerticalTabList size="medium" showIcons tabs={SAMPLE_TABS} activeTab="tab1" />
+</div>
+
+### Horizontal Tab List — Icons
+
+<div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <HorizontalTabList size="medium" showIcons tabs={SAMPLE_TABS} activeTab="tab1" />
+</div>
+
+---
+
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — VerticalTab / HorizontalTab</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['label',    'string',                                              "'Tab'",    'Tab label text'],
+        ['size',     "'small' | 'medium' | 'large'",                        "'medium'", 'Tab size'],
+        ['selected', 'boolean',                                             'false',    'Whether this tab is active/selected'],
+        ['state',    "'default' | 'hovered' | 'pressed' | 'focused' | 'disabled'", "'default'", 'Visual state override'],
+        ['showIcon', 'boolean',                                             'false',    'Show icon before label'],
+        ['icon',     'ReactNode',                                           '—',        'Custom icon; defaults to generic list icon'],
+        ['rtl',      'boolean',                                             'false',    'Right-to-left layout'],
+        ['onClick',  '() => void',                                          '—',        'Click handler'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — VerticalTabList</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['tabs',        '{ id: string; label: string; icon?: ReactNode; disabled?: boolean }[]', '[]',       'Array of tab definitions'],
+        ['activeTab',   'string',                                                                  '—',        'id of the currently active tab'],
+        ['onTabChange', '(id: string) => void',                                                   '—',        'Called when a tab is clicked'],
+        ['size',        "'small' | 'medium' | 'large'",                                            "'medium'", 'Tab size applied to all tabs'],
+        ['showIcons',   'boolean',                                                                 'false',    'Show icons on all tabs'],
+        ['rtl',         'boolean',                                                                 'false',    'Right-to-left layout'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — HorizontalTabList</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['tabs',        '{ id: string; label: string; icon?: ReactNode; disabled?: boolean }[]', '[]',       'Array of tab definitions'],
+        ['activeTab',   'string',                                                                  '—',        'id of the currently active tab'],
+        ['onTabChange', '(id: string) => void',                                                   '—',        'Called when a tab is clicked'],
+        ['size',        "'small' | 'medium' | 'large'",                                            "'medium'", 'Tab size applied to all tabs'],
+        ['showIcons',   'boolean',                                                                 'false',    'Show icons on all tabs'],
+        ['flush',       'boolean',                                                                 'false',    'Removes the leading margin so tabs sit flush with the container. When true, the first tab\'s selected/hover indicator also extends to the container start edge — no divider is shown to its left. All other tabs keep their normal 16px indicator inset.'],
+        ['divider',     'boolean',                                                                 'true',     'Show 3px bottom border beneath the tab list'],
+        ['showMore',    'boolean',                                                                 'false',    'Append a three-dots more button as the last item in the list'],
+        ['onMoreClick', '() => void',                                                              '—',        'Click handler for the more button'],
+        ['rtl',         'boolean',                                                                 'false',    'Right-to-left layout'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — HorizontalMoreTab</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['size',     "'small' | 'medium' | 'large'",                                           "'medium'",  'Matches the size of sibling tabs in the list'],
+        ['state',    "'default' | 'hovered' | 'pressed' | 'focused' | 'disabled'",             "'default'", 'Visual state override'],
+        ['onClick',  '() => void',                                                              '—',         'Click handler — typically opens a dropdown or overflow menu'],
+        ['rtl',      'boolean',                                                                 'false',     'Right-to-left layout'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['Vertical tab border-radius',       '4px',       'Corner radius applied to each vertical tab item'],
+        ['Vertical tab height — small',     '36px',      'Height of small vertical tab'],
+        ['Vertical tab height — medium',    '44px',      'Height of medium vertical tab'],
+        ['Vertical tab height — large',     '52px',      'Height of large vertical tab'],
+        ['Vertical indicator width',             '3px',   'Left-side selection bar width (all sizes)'],
+        ['Vertical indicator height — small',    '16px',  'Bar height for small tabs, centered vertically'],
+        ['Vertical indicator height — medium',   '16px',  'Bar height for medium tabs, centered vertically'],
+        ['Vertical indicator height — large',    '24px',  'Bar height for large tabs, centered vertically'],
+        ['Vertical indicator border-radius',     '9999px','Fully rounded on all 4 corners — circular pill shape'],
+        ['Vertical indicator gap to content',    '9px',   'Space between the right edge of the indicator bar and the tab text/icon'],
+        ['Vertical indicator — selected',   '#1849A9',   'Blue bar when tab is selected'],
+        ['Vertical indicator — dis. sel.',  '#D2D6DB',   'Gray bar when disabled+selected'],
+        ['Vertical hover bar',              '#1F2A37',   'Indicator color on unselected hover'],
+        ['Horizontal tab border-radius',     '4px',       'Corner radius applied to each horizontal tab item'],
+        ['Horizontal tab height',           '52px',      'Height of all horizontal tab sizes (16px padding TB + 20px line-height)'],
+        ['Horizontal tab padding',          '16px',      '16px on all four sides (top, right, bottom, left) — uniform across all sizes'],
+        ['Horizontal indicator height',        '3px',    'Bottom bar thickness (all sizes)'],
+        ['Horizontal indicator width',         'content width', 'Bar spans the content area only — inset 16px from each side to match tab padding'],
+        ['Horizontal indicator inset',         '16px',   '16px from both the start and end edges, aligning the bar with the tab text/icon'],
+        ['Horizontal indicator border-radius', '9999px', 'Fully rounded on all 4 corners — circular pill shape'],
+        ['Horizontal indicator — selected',    '#1849A9','Blue bar when tab is selected'],
+        ['Horizontal indicator — dis. sel.','#6C7C96',   'Gray bar when disabled+selected'],
+        ['Text color',                      '#000B36',   'Default tab label color'],
+        ['Text color — disabled',           '#6C7C96',   'Label color when state=disabled'],
+        ['Vertical text size S/M',          '14px',      'Font size for small and medium vertical tabs'],
+        ['Vertical text size L',            '16px',      'Font size for large vertical tabs'],
+        ['Horizontal text size',            '14px',      'Font size for all horizontal tabs'],
+        ['Unselected weight — vertical',    '400',       'Font weight for unselected vertical tab'],
+        ['Selected weight — vertical',      '600',       'Font weight for selected vertical tab'],
+        ['Unselected weight — horizontal',  '500',       'Font weight for unselected horizontal tab'],
+        ['Selected weight — horizontal',    '700',       'Font weight for selected horizontal tab'],
+        ['Hover background',                '#E5E7EB',   'Tab background on hover — unselected tabs only; selected tabs have no hover state'],
+        ['Hover indicator — horizontal',   '#1F2A37',   'Bottom bar color shown on hover for unselected horizontal tabs — same shape and size as the selected indicator'],
+        ['Pressed background',              '#D2D6DB',   'Tab background on press — unselected tabs only'],
+        ['Focus ring',                      '#1849A9',   '3px solid outline, 2px offset — applied on focused vertical and horizontal tabs'],
+        ['Divider color',                   '#D2D6DB',   '3px inset box-shadow at the bottom of HorizontalTabList — aligns flush with the tab indicator bars'],
+        ['More icon color',                 '#000B36',   'Fill color of the three dots in HorizontalMoreTab'],
+        ['More icon color — disabled',      '#6C7C96',   'Fill color when HorizontalMoreTab state=disabled'],
+        ['More icon size',                  '16×16px',   'Width and height of the three-dots SVG icon'],
+        ['More indicator bar',              'none',       'HorizontalMoreTab has no bottom indicator bar — it is not a selectable tab'],
+        ['Vertical list width',             '150px',     'Fixed width of VerticalTabList'],
+      ].map(([token, value, usage]) => (
+        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
+          <td style={{ padding: '10px 14px' }}>
+            {value.startsWith('#') ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
+                <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+              </span>
+            ) : (
+              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+            )}
+          </td>
+          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Usage
+
+```jsx
+import { VerticalTab, HorizontalTab, HorizontalMoreTab, VerticalTabList, HorizontalTabList } from './Tabs';
+
+// Interactive vertical navigation
+const [active, setActive] = useState('tab1');
+<VerticalTabList
+  tabs={[
+    { id: 'tab1', label: 'Overview' },
+    { id: 'tab2', label: 'Details' },
+    { id: 'tab3', label: 'Settings', disabled: true },
+  ]}
+  activeTab={active}
+  onTabChange={setActive}
+  size="medium"
+/>
+
+// Interactive horizontal navigation with divider
+<HorizontalTabList
+  tabs={tabs}
+  activeTab={active}
+  onTabChange={setActive}
+  size="large"
+  divider
+/>
+
+// Flush horizontal tabs (no leading padding)
+<HorizontalTabList tabs={tabs} activeTab={active} onTabChange={setActive} flush />
+
+// Single tab — presentational, all states
+<VerticalTab size="large" label="Selected" selected />
+<HorizontalTab size="medium" label="Hovered" state="hovered" />
+
+// RTL
+<VerticalTabList rtl tabs={arabicTabs} activeTab={active} onTabChange={setActive} />
+<HorizontalTabList rtl tabs={arabicTabs} activeTab={active} onTabChange={setActive} />
+```
