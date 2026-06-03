@@ -1,0 +1,583 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Tooltip } from './Tooltip';
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Overlay / Tooltip</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Tooltip</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A compact informational bubble that surfaces supplementary text on demand. Supports light and dark themes, four beak placements (Top / Bottom / Left / Right), an optional feedback icon, and full RTL layout for Arabic.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4404:4368</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4404-4368&t=ohnsyAtOEvJbxf9o-4" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Themes','#themes'],['Beak Placements','#beak-placements'],['All 4 Sides','#all-4-sides'],['Beak Alignment','#beak-alignment'],['Without Icon','#without-icon'],['RTL Support','#rtl-support'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', marginBottom: 16, alignItems: 'flex-start' }}>
+  <div style={{ padding: '28px 32px', background: '#f4f5f7', borderRadius: 12, display: 'inline-flex' }}>
+    <Tooltip />
+  </div>
+  <div style={{ padding: '28px 32px', background: '#f4f5f7', borderRadius: 12, display: 'inline-flex' }}>
+    <Tooltip inverted={true} />
+  </div>
+</div>
+
+Light and dark themes · optional beak pointer on any of 4 sides · feedback icon · full RTL support. All tokens sourced from Figma node `4404:4368`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 24 }}>
+  <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div style={{ padding: '32px 24px 24px', background: '#f4f5f7', borderRadius: 12, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Top" beakAlignment="Center" />
+    </div>
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px', justifyContent: 'flex-start' }}>
+    {[['1','Outer wrapper — inline-flex, 240 px wide, border-radius 8px, drop-shadow filter'],['2','Beak triangle — SVG polygon, 28×6 px (Top/Bottom) or 6×28 px (Left/Right), optional'],['3','Content card — padding 8px, border-radius 4px, light #ffffff or dark #1f2a37 bg'],['4','Feedback icon — 18×18 px circle, optional, toggleable via icon prop'],['5','Title — 12px, weight 600, leading color token'],['6','Body — 12px, weight 400, secondary color token']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '32px 1fr 140px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>#</span><span>Element</span><span>Condition</span></div>
+{[
+  ['1','Outer wrapper — drop-shadow filter + backdrop-blur + border-radius 8px','Always'],
+  ['2','Beak triangle — SVG polygon, colour matches content card bg','When beakPlacement ≠ "None"'],
+  ['3','Content card — coloured background, border-radius 4px, 8px padding','Always'],
+  ['4','Feedback icon — 18×18 circular question-mark SVG','When icon={true} (default)'],
+  ['5','Title — bold heading text, 12px/18px','When title prop is set'],
+  ['6','Body — regular description text, 12px/18px','When body prop is set'],
+].map(([n,el,req],i)=>(
+<div key={n} style={{ display: 'grid', gridTemplateColumns: '32px 1fr 140px', padding: '10px 16px', background: i%2===0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+<span style={{ fontSize: 13, color: '#111827' }}>{el}</span>
+<span style={{ fontSize: 12, color: '#6b7280' }}>{req}</span>
+</div>
+))}
+</div>
+
+---
+
+## Themes
+
+Two theme variants controlled by the `inverted` prop.
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 24, alignItems: 'flex-start' }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>Light (default)</div>
+    <div style={{ padding: '28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip inverted={false} />
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>Dark (inverted)</div>
+    <div style={{ padding: '28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip inverted={true} />
+    </div>
+  </div>
+</div>
+
+---
+
+## Beak Placements
+
+The `beakPlacement` prop controls which side the triangular pointer appears on. Use `'None'` (default) for no pointer.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 24 }}>
+
+{[
+  { label: 'None',   desc: 'No pointer — standalone tooltip card',                            pad: '24px',            placement: 'None'   },
+  { label: '▲ Top',    desc: 'Beak points up — trigger element is above the tooltip',          pad: '28px 24px 20px',  placement: 'Top'    },
+  { label: '▽ Bottom', desc: 'Beak points down — trigger element is below the tooltip',        pad: '20px 24px 28px',  placement: 'Bottom' },
+  { label: '◄ Left',   desc: 'Beak points left — trigger element is to the left',             pad: '24px 24px 24px 28px', placement: 'Left' },
+  { label: '► Right',  desc: 'Beak points right — trigger element is to the right',           pad: '24px 28px 24px 24px', placement: 'Right' },
+].map(({ label, desc, pad, placement }) => (
+  <div key={placement} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{label}</span>
+      <code style={{ fontSize: 11, background: '#f3f4f6', padding: '2px 7px', borderRadius: 4, color: '#374151' }}>beakPlacement="{placement}"</code>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{desc}</span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff', display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+      <div style={{ padding: pad, background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+        <Tooltip beakPlacement={placement} beakAlignment={placement === 'None' ? 'Start' : 'Center'} inverted={false} />
+      </div>
+      <div style={{ padding: pad, background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+        <Tooltip beakPlacement={placement} beakAlignment={placement === 'None' ? 'Start' : 'Center'} inverted={true} />
+      </div>
+    </div>
+  </div>
+))}
+
+</div>
+
+---
+
+## All 4 Sides
+
+All four beak placements at a glance, both light and dark.
+
+<div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', marginBottom: 24, alignItems: 'flex-start' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>▲ Top</div>
+    <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Top" beakAlignment="Center" inverted={false} />
+    </div>
+    <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Top" beakAlignment="Center" inverted={true} />
+    </div>
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>▽ Bottom</div>
+    <div style={{ padding: '20px 24px 28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Bottom" beakAlignment="Center" inverted={false} />
+    </div>
+    <div style={{ padding: '20px 24px 28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Bottom" beakAlignment="Center" inverted={true} />
+    </div>
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>◄ Left</div>
+    <div style={{ padding: '24px 24px 24px 28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Left" beakAlignment="Center" inverted={false} />
+    </div>
+    <div style={{ padding: '24px 24px 24px 28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Left" beakAlignment="Center" inverted={true} />
+    </div>
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em' }}>► Right</div>
+    <div style={{ padding: '24px 28px 24px 24px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Right" beakAlignment="Center" inverted={false} />
+    </div>
+    <div style={{ padding: '24px 28px 24px 24px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Right" beakAlignment="Center" inverted={true} />
+    </div>
+  </div>
+</div>
+
+---
+
+## Beak Alignment
+
+`beakAlignment` positions the beak on its edge. `Start` pins it to the leading corner; `Center` places it at the midpoint.
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 24, alignItems: 'flex-start' }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>Start (default)</div>
+    <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Top" beakAlignment="Start" />
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>Center</div>
+    <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip beakPlacement="Top" beakAlignment="Center" />
+    </div>
+  </div>
+</div>
+
+---
+
+## Without Icon
+
+Set `icon={false}` to hide the decorative feedback icon.
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 24, alignItems: 'flex-start' }}>
+  <div style={{ padding: '28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+    <Tooltip icon={false} />
+  </div>
+  <div style={{ padding: '28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+    <Tooltip icon={false} inverted={true} />
+  </div>
+</div>
+
+---
+
+## RTL Support
+
+Set `rtl={true}` to mirror the layout for Arabic or Hebrew. The icon moves to the trailing side and text aligns right.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
+{[
+  { label: 'LTR — Light', rtl: false, inverted: false, title: 'Tooltip title',   body: 'Max width of tooltips is 240px - text will wrap automatically' },
+  { label: 'LTR — Dark',  rtl: false, inverted: true,  title: 'Tooltip title',   body: 'Max width of tooltips is 240px - text will wrap automatically' },
+  { label: 'RTL — Light', rtl: true,  inverted: false,  title: 'عنوان التلميح', body: 'أقصى عرض للتلميحات هو 240px - سيتم محاذاة النص بشكل تلقائي' },
+  { label: 'RTL — Dark',  rtl: true,  inverted: true,   title: 'عنوان التلميح', body: 'أقصى عرض للتلميحات هو 240px - سيتم محاذاة النص بشكل تلقائي' },
+].map(({ label, rtl, inverted, title, body }) => (
+  <div key={label} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '9px 16px', borderBottom: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}>
+      <span style={{ fontSize: 12, fontWeight: 700, color: '#374151' }}>{label}</span>
+      <span style={{ background: rtl ? '#eff3fb' : '#f9fafb', color: rtl ? '#1849a9' : '#6b7280', border: '1px solid', borderColor: rtl ? '#dce3f7' : '#e5e7eb', padding: '1px 7px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>{rtl ? 'dir="rtl"' : 'dir="ltr"'}</span>
+    </div>
+    <div style={{ padding: '20px 24px', background: '#fff', display: 'inline-flex' }}>
+      <div style={{ padding: '28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+        <Tooltip rtl={rtl} inverted={inverted} title={title} body={body} />
+      </div>
+    </div>
+  </div>
+))}
+</div>
+
+<div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 24, alignItems: 'flex-start' }}>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>RTL + Top beak</div>
+    <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip rtl={true} beakPlacement="Top" beakAlignment="Center" title="عنوان التلميح" body="أقصى عرض للتلميحات هو 240px - سيتم محاذاة النص بشكل تلقائي" />
+    </div>
+  </div>
+  <div>
+    <div style={{ fontSize: 11, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 12 }}>RTL + Dark + Top beak</div>
+    <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+      <Tooltip rtl={true} inverted={true} beakPlacement="Top" beakAlignment="Center" title="عنوان التلميح" body="أقصى عرض للتلميحات هو 240px - سيتم محاذاة النص بشكل تلقائي" />
+    </div>
+  </div>
+</div>
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors — Light Theme</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Usage</span></div>
+{[
+  { t: '--tooltip/light/bg/default',     h: '#ffffff', u: 'Light theme card background' },
+  { t: '--tooltip/light/text/default',   h: '#000b36', u: 'Light theme title colour' },
+  { t: '--tooltip/light/text/secondary', h: '#3c5073', u: 'Light theme body and icon colour' },
+].map(({t,h,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'1fr 120px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#7c3aed'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors — Dark Theme</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Usage</span></div>
+{[
+  { t: '--tooltip/dark/bg/default',     h: '#1f2a37', u: 'Dark theme card background' },
+  { t: '--tooltip/dark/text/default',   h: '#f9fafb', u: 'Dark theme title colour' },
+  { t: '--tooltip/dark/text/secondary', h: '#b6bdca', u: 'Dark theme body and icon colour' },
+].map(({t,h,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'1fr 120px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#7c3aed'}}>{t}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
+<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
+<code style={{fontSize:11,color:'#111827'}}>{h}</code>
+</span>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Layout & Spacing</div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Usage</span></div>
+{[
+  { t: '--tooltip/layout/width',              v: '240px',  u: 'Fixed card width (246px total with Left/Right beak)' },
+  { t: '--tooltip/spacing/tooltip-padding',   v: '8px',    u: 'Content card padding (all sides)' },
+  { t: '--tooltip/spacing/tooltip-gap',       v: '8px',    u: 'Gap between icon and text, and between title and body' },
+  { t: '--radius/radius-sm',                  v: '4px',    u: 'Content card border-radius' },
+  { t: '--radius/radius-md',                  v: '8px',    u: 'Outer wrapper border-radius' },
+  { t: '--tooltip/beak/width',                v: '28px',   u: 'Beak base width (Top/Bottom placements)' },
+  { t: '--tooltip/beak/height',               v: '6px',    u: 'Beak depth / protrusion distance' },
+  { t: '--tooltip/icon/size',                 v: '18px',   u: 'Feedback icon dimensions (width × height)' },
+].map(({t,v,u},i)=>(
+<div key={t} style={{display:'grid',gridTemplateColumns:'1fr 80px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#7c3aed'}}>{t}</code>
+<code style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</code>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+
+</div>
+
+### Color Contrast — WCAG Audit
+
+All tooltip color pairs pass **WCAG 2.1 AAA** (≥ 7:1 contrast ratio).
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
+{[
+  { fg: '#000b36', bg: '#ffffff', label: 'Light — Title',     ratio: '19.5:1', grade: 'AAA' },
+  { fg: '#3c5073', bg: '#ffffff', label: 'Light — Body/Icon', ratio: '8.2:1',  grade: 'AAA' },
+  { fg: '#f9fafb', bg: '#1f2a37', label: 'Dark — Title',      ratio: '14.1:1', grade: 'AAA' },
+  { fg: '#b6bdca', bg: '#1f2a37', label: 'Dark — Body/Icon',  ratio: '7.9:1',  grade: 'AAA' },
+].map(({ fg, bg, label, ratio, grade }) => (
+  <div key={label} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', minWidth: 200, flex: '1 1 200px' }}>
+    <div style={{ background: bg, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid #e5e7eb' }}>
+      <span style={{ width: 18, height: 18, borderRadius: 4, background: fg, flexShrink: 0, border: '1px solid rgba(0,0,0,0.08)', display: 'inline-block' }} />
+      <span style={{ color: fg, fontSize: 13, fontWeight: 700 }}>Aa</span>
+      <span style={{ color: fg, fontSize: 11, opacity: 0.8 }}>{label}</span>
+    </div>
+    <div style={{ background: '#fff', padding: '10px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div>
+        <div style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{label}</div>
+        <div style={{ fontSize: 11, color: '#6b7280', fontFamily: 'monospace' }}>{fg} / {bg}</div>
+      </div>
+      <div style={{ textAlign: 'right' }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#059669' }}>{ratio}</div>
+        <div style={{ fontSize: 10, fontWeight: 700, color: '#059669', background: '#d1fae5', borderRadius: 10, padding: '1px 6px', display: 'inline-block' }}>{grade}</div>
+      </div>
+    </div>
+  </div>
+))}
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 140px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+  { n:'inverted',      type:'boolean',                                        tb:'#f3f0ff',tc:'#7c3aed', def:'false',         d:"Enable dark background theme. Light uses #ffffff card; dark uses #1f2a37."},
+  { n:'beakPlacement', type:'"None"|"Top"|"Bottom"|"Left"|"Right"',           tb:'#fff7ed',tc:'#c2410c', def:'"None"',        d:'Side where the triangular beak pointer appears. "None" shows no beak.'},
+  { n:'beakAlignment', type:'"Start"|"Center"',                               tb:'#fff7ed',tc:'#c2410c', def:'"Start"',       d:'Position of the beak on its edge. Start = leading corner, Center = midpoint.'},
+  { n:'icon',          type:'boolean',                                        tb:'#f3f0ff',tc:'#7c3aed', def:'true',          d:'Show the 18×18 px decorative feedback circle icon. Set false to hide it.'},
+  { n:'rtl',           type:'boolean',                                        tb:'#f3f0ff',tc:'#7c3aed', def:'false',         d:'Right-to-left layout: icon moves to trailing side, text aligns right. Applies dir="rtl" to the content card.'},
+  { n:'title',         type:'string',                                         tb:'#ecfdf5',tc:'#059669', def:'"Tooltip title"','d':'Tooltip heading text. Rendered at 12px / weight 600.'},
+  { n:'body',          type:'string',                                         tb:'#ecfdf5',tc:'#059669', def:'"Max width…"',   d:'Tooltip body text. Rendered at 12px / weight 400. Wraps automatically at 240px.'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 140px 120px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center',wordBreak:'break-all'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+  {cat:'Semantics & ARIA',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'A',items:[
+    {title:'Add role="tooltip" when anchoring to a trigger',desc:'The component renders a plain div. Wrap it with role="tooltip" and wire the trigger\'s aria-describedby to the tooltip id so screen readers announce it on focus.'},
+    {title:'Reference the tooltip from its trigger via aria-describedby',desc:'<button aria-describedby="tip-id">…</button><Tooltip id="tip-id" …/>. Without this wiring the tooltip text is not announced to AT users.'},
+    {title:'Icon is aria-hidden',desc:'The feedback SVG carries aria-hidden="true" and is skipped by screen readers. Title and body text carry the accessible meaning.'},
+  ]},
+  {cat:'Keyboard Navigation',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'⌨',items:[
+    {title:'Reveal on :focus, dismiss on blur',desc:'Tooltips must appear when the trigger receives keyboard focus and disappear on blur — the same behaviour as on hover — so keyboard-only users can read them.'},
+    {title:'Never trap focus inside the tooltip',desc:'Tooltips are read-only overlays. Do not put interactive content (links, buttons) inside one. Use a popover component for interactive content.'},
+  ]},
+  {cat:'Visual',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+    {title:'All four color pairs pass WCAG 2.1 AAA (≥ 7:1)',desc:'Light title 19.5:1 · Light body 8.2:1 · Dark title 14.1:1 · Dark body 7.9:1. All exceed the AAA threshold for 12px text.'},
+    {title:'Use the dark (inverted) theme over light page backgrounds',desc:'The dark tooltip provides higher perceptual contrast against white or very light page content than the light tooltip.'},
+    {title:'Do not rely on tooltip text for critical information',desc:'Tooltips can be missed by touch-only users. Use them for optional hints only — never for required form instructions or essential actions.'},
+  ]},
+  {cat:'RTL',catBg:'#fef9ee',catBorder:'#fde68a',catIconBg:'#d97706',catIcon:'ع',items:[
+    {title:'dir="rtl" applied to the content card',desc:'Setting rtl={true} applies dir="rtl" to the inner content div, which correctly reverses icon placement and text alignment for Arabic and Hebrew.'},
+    {title:'Beak direction is independent of RTL',desc:'The beak placement (Top/Bottom/Left/Right) refers to the physical side of the card, not the text direction. Swap beak sides if the physical trigger position changes in RTL layouts.'},
+  ]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '24px 16px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+  <div style={{ padding: '28px 24px 20px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+    <Tooltip beakPlacement="Top" beakAlignment="Center" inverted={true} title="Helpful hint" body="Use dark theme over light backgrounds for better contrast." />
+  </div>
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Good tooltip usage</div>
+{['Short, supplementary hint text only.','Beak points toward the trigger element.','Dark theme used over light page content.','icon={true} provides visual affordance.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '24px 16px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+  <div style={{ padding: '28px', background: '#f4f5f7', borderRadius: 10, display: 'inline-flex' }}>
+    <Tooltip icon={false} title="Click here to submit the form" body="This action cannot be undone. Please make sure all required fields are filled before clicking. Contact support if you see an error." />
+  </div>
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Avoid these patterns</div>
+{['Do not put critical instructions in a tooltip — touch users may never see it.','Do not write long paragraphs — keep body text brief and scannable.','Do not omit the beak when the tooltip is anchored to a specific trigger.','Do not use a tooltip for interactive content (links, buttons, inputs).'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
+{['Use for brief, supplementary information only.','Keep body text concise — it wraps at 240 px.','Choose beakPlacement that points toward the trigger.','Use dark theme (inverted) over light backgrounds.','Apply role="tooltip" and aria-describedby to wire to a trigger.','Reveal on focus and hover; dismiss on blur and mouseout.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
+{["Don't put critical or required information in a tooltip — users may miss it.","Don't put links, buttons, or form fields inside a tooltip.","Don't show more than one tooltip at a time on the same page.","Don't override the font-family — use the DS system font throughout.","Don't use a tooltip as the only source of form field instructions.","Don't use beakPlacement='None' when the tooltip anchors to a specific element."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { Tooltip } from '@/components/Tooltip';
+
+// Basic tooltip — light theme, no beak
+<Tooltip
+  title="Tooltip title"
+  body="Max width of tooltips is 240px - text will wrap automatically"
+/>
+
+// Dark theme tooltip with top beak centered
+<Tooltip
+  inverted={true}
+  beakPlacement="Top"
+  beakAlignment="Center"
+  title="Dark tooltip"
+  body="Use dark theme over light page content for better contrast."
+/>
+
+// Without the feedback icon
+<Tooltip
+  icon={false}
+  title="No icon"
+  body="The icon is optional — disable it for a more compact appearance."
+/>
+
+// RTL Arabic
+<Tooltip
+  rtl={true}
+  inverted={true}
+  beakPlacement="Bottom"
+  beakAlignment="Center"
+  title="عنوان التلميح"
+  body="أقصى عرض للتلميحات هو 240px - سيتم محاذاة النص بشكل تلقائي"
+/>
+
+// Anchored to a trigger with correct ARIA wiring
+<div style={{ position: 'relative', display: 'inline-block' }}>
+  <button
+    aria-describedby="my-tooltip"
+    onMouseEnter={() => setVisible(true)}
+    onMouseLeave={() => setVisible(false)}
+    onFocus={() => setVisible(true)}
+    onBlur={() => setVisible(false)}
+  >
+    Hover or focus me
+  </button>
+  {visible && (
+    <div
+      id="my-tooltip"
+      role="tooltip"
+      style={{ position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: 8 }}
+    >
+      <Tooltip
+        beakPlacement="Bottom"
+        beakAlignment="Center"
+        inverted={true}
+        title="Action info"
+        body="This action will save your changes."
+      />
+    </div>
+  )}
+</div>
+```
+
+---
+
+## Figma Reference
+
+- **Component node:** [4404:4368 — Masterteam DS Tooltip](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4404-4368&t=ohnsyAtOEvJbxf9o-4)
+- **Themes:** Light (default) and dark (inverted=true)
+- **Beak:** 4 placements — Top · Bottom · Left · Right · None; 28×6 px (Top/Bottom) or 6×28 px (Left/Right)
+- **Alignment:** Start (leading corner) · Center (midpoint of the edge)
+- **Icon:** Feedback circle 18×18 px, toggleable
+- **RTL:** Full mirror via dir="rtl" on content card
+- **Width:** Fixed 240 px card (246 px total with Left/Right beak)
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4404:4368`.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>7 Matched</span>
+<span style={{ background: '#fff7ed', color: '#c2410c', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fed7aa' }}>2 Pending</span>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Area</span><span>Status</span><span>Notes</span></div>
+{[
+  {a:'Two themes — light (#ffffff) and dark (#1f2a37)',                         s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Background colors, title colors, and body/icon colors match Figma tokens exactly.'},
+  {a:'Four beak placements — Top, Bottom, Left, Right + None',                  s:'Matched', sb:'#ecfdf5',st:'#059669',n:'SVG polygon triangles render at exact 28×6 px (H) and 6×28 px (V) dimensions. -1px overlap margin eliminates the subpixel gap.'},
+  {a:'Beak alignment — Start and Center',                                        s:'Matched', sb:'#ecfdf5',st:'#059669',n:'align-items: flex-start (Start) and align-items: center (Center) on the outer flex wrapper match Figma alignment options.'},
+  {a:'Drop-shadow filter applied to outer wrapper',                              s:'Matched', sb:'#ecfdf5',st:'#059669',n:'filter: drop-shadow() traces the full shape including the beak triangle. Shadow values: 0px 2px 4px 0.08 + 0px 8px 20px 0.14 match Figma effect tokens.'},
+  {a:'Feedback icon — 18×18 px circular question-mark SVG',                     s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Figma uses a "Feedback Icon" circle with a question mark path. Implemented as an inline SVG matching the stroke weight (1.5px) and geometry.'},
+  {a:'RTL layout — dir="rtl" mirrors icon and text',                            s:'Matched', sb:'#ecfdf5',st:'#059669',n:'dir="rtl" on the content card reverses the flex row so the icon appears on the trailing (right) side and text aligns right.'},
+  {a:'Typography — 12px/18px, IBM Plex Sans Arabic, weight 600/400',            s:'Matched', sb:'#ecfdf5',st:'#059669',n:'Title at 600 weight, body at 400 weight, both 12px / 18px line-height. Font family matches DS system font.'},
+  {a:'backdrop-filter: blur(20px) on outer wrapper',                            s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma specifies a blur backdrop effect. Implemented via backdrop-filter: blur(20px) but this requires a semi-transparent backdrop to be visible. In Storybook preview the effect is not perceptible against the opaque preview background.'},
+  {a:'Interactive show/hide behavior (hover, focus, dismiss)',                  s:'Pending', sb:'#fff7ed',st:'#c2410c',n:'Figma shows the tooltip as a static presentation layer. This implementation is a pure display component — position, visibility, and trigger wiring are left to the consuming layout layer.'},
+].map(({a,s,sb,st,n},i)=>(
+<div key={a} style={{display:'grid',gridTemplateColumns:'1fr 100px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{s}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+</div>
+))}
+</div>
+
+</div>

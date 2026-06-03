@@ -1,9 +1,9 @@
-import { useState, Fragment, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Table } from './Table';
 import { Button } from '../Button/Button';
 import { Icon } from '../icons/Icon';
+import { Filtration } from '../Filtration/Filtration';
 import tableStyles from './Table.module.css';
-import filtrationStyles from '../Filtration/Filtration.module.css';
 import s from './Table.interactive.module.css';
 
 export default {
@@ -206,74 +206,6 @@ function Tooltip({ label, children }) {
   );
 }
 
-function TableFilterPanel({ activeFilters, onApply, onClear }) {
-  const [local, setLocal] = useState({ ...activeFilters });
-
-  const toggle = (key, val) => {
-    setLocal(prev => {
-      const arr = prev[key].includes(val)
-        ? prev[key].filter(v => v !== val)
-        : [...prev[key], val];
-      return { ...prev, [key]: arr };
-    });
-  };
-
-  const totalActive = Object.values(local).reduce((sum, arr) => sum + arr.length, 0);
-
-  return (
-    <div className={filtrationStyles.panel}>
-      {Object.entries(FILTER_OPTIONS).map(([key, options], i) => (
-        <Fragment key={key}>
-          {i > 0 && <div className={filtrationStyles.divider} />}
-          <div className={filtrationStyles.section}>
-            <span className={filtrationStyles.sectionLabel}>
-              {key.charAt(0).toUpperCase() + key.slice(1)}
-              {local[key].length > 0 && (
-                <span className={filtrationStyles.labelCount}> ({local[key].length})</span>
-              )}
-            </span>
-            <div className={filtrationStyles.optionsList}>
-              {options.map(opt => {
-                const checked = local[key].includes(opt);
-                return (
-                  <div
-                    key={opt}
-                    className={filtrationStyles.optionItem}
-                    onClick={() => toggle(key, opt)}
-                    role="checkbox"
-                    aria-checked={checked}
-                    tabIndex={0}
-                    onKeyDown={e => e.key === ' ' && toggle(key, opt)}
-                  >
-                    <span
-                      className={`${filtrationStyles.checkbox} ${checked ? filtrationStyles.checkboxChecked : ''}`}
-                    />
-                    <span className={filtrationStyles.optionText}>{opt}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </Fragment>
-      ))}
-      <div className={filtrationStyles.footer}>
-        <button
-          className={filtrationStyles.clearBtn}
-          onClick={() => { setLocal({ ...EMPTY_FILTERS }); onClear(); }}
-        >
-          Clear all
-        </button>
-        <button
-          className={filtrationStyles.applyBtn}
-          onClick={() => onApply(local)}
-        >
-          Apply{totalActive > 0 ? ` (${totalActive})` : ''}
-        </button>
-      </div>
-    </div>
-  );
-}
-
 function SortDropdown({ sortConfig, onSort }) {
   return (
     <div className={s.sortPanel}>
@@ -447,8 +379,8 @@ function InteractiveTableDemo({ rtl = false }) {
     }, 480);
   };
 
-  const applyFilters = filters => {
-    setActiveFilters(filters);
+  const applyFilters = (filters) => {
+    if (filters && typeof filters === 'object') setActiveFilters(filters);
     setFilterOpen(false);
   };
 
@@ -702,8 +634,7 @@ function InteractiveTableDemo({ rtl = false }) {
             </div>
             {filterOpen && (
               <div className={s.filterPopoverWrap}>
-                <TableFilterPanel
-                  activeFilters={activeFilters}
+                <Filtration
                   onApply={applyFilters}
                   onClear={clearFilters}
                 />
