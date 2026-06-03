@@ -1,0 +1,393 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TableStories from './Table.stories';
+import { Table } from './Table';
+
+<Meta of={TableStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Table</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Table</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A data table for displaying structured information in rows and columns. Supports compact density, alternating rows, contained (card) layout, row selection with checkboxes, column sorting, RTL, and an empty state. Built from Figma node 4804:93375.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4804:93375</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4804-93375" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Row States','#row-states'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Design Tokens','#design-tokens'],['Figma Reference','#figma-reference'],['Properties','#properties'],['Accessibility','#accessibility'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+<Canvas of={TableStories.Playground} />
+<Controls of={TableStories.Playground} />
+</div>
+
+---
+
+## Anatomy
+
+<div id="anatomy" style={{ marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '40px 180px 160px 1fr', gap: 12 }}>
+  {['#','Element','Class / Token','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['1','Wrapper',           '.tableWrap',                   'Overflow-x auto scroll container; adds .contained, .compact, .rtl modifier classes'],
+  ['2','Table',             '.table',                       'Native <table> element with border-collapse; 100% width'],
+  ['3','Header row',        '.thead / .th',                 '12 px / 500 (medium) / non-uppercase; bg #f3f4f6; 1 px solid #f3f4f6 top+bottom border; color #3c5073; height 48 px; sortable columns add click handler'],
+  ['4','Sort icon',         'SortIcon component',           'Up/down caret pair; opacity 0.4 default → active caret fully opaque on sort'],
+  ['5','Checkbox column',   '.checkTh / .checkTd',          '52 px fixed width; leads row for selection; 1 px right divider'],
+  ['6','Body row',          '.tr',                          'Hover, selected, and altRow state modifiers; bottom border 1 px solid'],
+  ['7','Cell',              '.td',                          '16 px / 400 text; 64 px height (48 px compact); 1 px right border-right directly on .td (not ::after)'],
+  ['8','Status badge',      'custom render fn',             'Inline pill badge rendered via column render() — not a hard-coded cell type'],
+  ['9','Empty state',       '.emptyCell',                   'Full-width cell spanning all columns; centred, muted text'],
+].map(([n, el, cls, notes], i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 180px 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{el}</span>
+    <code style={{ fontSize: 10, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{cls}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+---
+
+## Variants
+
+<div id="variants" style={{ marginBottom: 24 }}>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Four boolean props compose to create 16 Figma variants: <code>compact</code>, <code>alternatingRows</code>, <code>contained</code>, and <code>rtl</code>. All can be combined freely.
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+{[
+  { name: 'Default',          prop: null,               desc: 'Normal density (64 px rows), no striping, no border wrapper' },
+  { name: 'compact',          prop: 'compact',          desc: 'Reduces row height to 48 px and font to 14 px for dense data grids' },
+  { name: 'alternatingRows',  prop: 'alternatingRows',  desc: 'Stripes odd rows with #f9fafb — improves scan-ability for wide tables' },
+  { name: 'contained',        prop: 'contained',        desc: 'Wraps the table in a 1 px border + border-radius 8 px card container' },
+].map(({ name, prop, desc }) => (
+  <div key={name} style={{ border: '1px solid #e5e7eb', borderRadius: 8, padding: '12px 16px', background: '#fff' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+      <code style={{ fontSize: 12, background: prop ? '#eff3fb' : '#f9fafb', padding: '2px 8px', borderRadius: 4, color: prop ? '#1849a9' : '#6b7280', fontWeight: 700 }}>{prop || 'default'}</code>
+    </div>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+  </div>
+))}
+</div>
+
+<Canvas of={TableStories.Default} />
+<Canvas of={TableStories.Compact} />
+<Canvas of={TableStories.AlternatingRows} />
+<Canvas of={TableStories.Contained} />
+<Canvas of={TableStories.CompactContained} />
+<Canvas of={TableStories.AllVariants} />
+
+</div>
+
+---
+
+## Row States
+
+<div id="row-states" style={{ marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '130px 140px 1fr', gap: 12 }}>
+  {['State','Background','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { state: 'Default',     color: '#ffffff', notes: 'White background; bottom border #f3f4f6' },
+  { state: 'Alt row',     color: '#f9fafb', notes: 'alternatingRows=true; odd row index; mix-blend-multiply in Figma' },
+  { state: 'Hovered',     color: '#f3f4f6', notes: ':hover CSS pseudo; also overrides alt row background' },
+  { state: 'Selected',    color: '#f3fcf6', notes: 'localSelected Set contains row id; green tint from Figma token table-background-row-selected' },
+].map(({ state, color, notes }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '130px 140px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      <span style={{ display: 'inline-block', width: 28, height: 18, borderRadius: 3, background: color, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{color}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+
+<Canvas of={TableStories.FullFeatured} />
+
+</div>
+
+---
+
+## RTL Support
+
+<div id="rtl-support" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Setting <code>rtl=true</code> applies <code>dir="rtl"</code> on the wrapper and right-aligns header and cell text. Column dividers flip to the left edge. All 16 Figma variants have RTL equivalents.
+</div>
+<Canvas of={TableStories.RTLArabic} />
+</div>
+
+---
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ marginBottom: 24 }}>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}>
+  <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do
+</div>
+{['Use tables for structured multi-attribute data where comparison across rows matters.','Use compact mode in admin dashboards or data-heavy screens where vertical space is limited.','Use alternating rows for wide tables (6+ columns) to aid horizontal scanning.','Always provide a meaningful header label for every column — screen readers rely on it.','Use contained when the table sits inside a card or a page area with other elements.','Provide column-level render functions for non-text content (badges, buttons, tags).','Use the selectable prop only when bulk actions are available for selected rows.'].map((t, i) => (
+  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+    <span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{t}
+  </div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}>
+  <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✗</span>Don't
+</div>
+{["Don't use tables for single-attribute lists — use a List or Card component instead.","Don't enable sorting on columns where alphabetical or numeric order has no meaning (e.g. avatar columns).","Don't use both alternatingRows and heavy custom cell content — it becomes visually noisy.","Don't place more than 8–9 columns without a horizontal scroll container — the tableWrap handles this.","Don't use compact mode as the default unless target users are primarily power users or analysts.","Don't rely on row click alone for selection — always pair onRowClick with keyboard/checkbox access."].map((t, i) => (
+  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+    <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✗</span>{t}
+  </div>
+))}
+</div>
+</div>
+
+</div>
+
+---
+
+## Design Tokens
+
+<div id="design-tokens" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Row Background Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '300px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Figma Token</span><span>Value</span><span>State</span>
+</div>
+{[
+  { token: '--table/table-background-row-alt',       val: '#f9fafb', state: 'Alternating row (odd index)' },
+  { token: '--table/table-background-row-selected',  val: '#f3fcf6', state: 'Selected row (green tint)' },
+  { token: '--table/table-background-row-hovered',   val: '#f3f4f6', state: 'Hovered row' },
+].map(({ token, val, state }, i) => (
+  <div key={token} style={{ display: 'grid', gridTemplateColumns: '300px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 10, background: '#eff3fb', padding: '2px 5px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 2, background: val, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{val}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{state}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Cell &amp; Text Tokens</div>
+<div style={{ display: 'grid', gridTemplateColumns: '300px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Figma Token</span><span>Value</span><span>Usage</span>
+</div>
+{[
+  { token: '--table/row-text/default',  val: '#000b36', usage: 'Cell text color (default)' },
+  { token: '--table/cell-border/default', val: '#f3f4f6', usage: 'Right column divider + row bottom border' },
+  { token: '--table/table-cell-h-padding', val: '16px', usage: 'Left/right cell padding' },
+  { token: '--table/table-cell-v-padding', val: '8px',  usage: 'Top/bottom cell padding' },
+  { token: '--table/table-cell-gap',       val: '8px',  usage: 'Gap between cell content items' },
+].map(({ token, val, usage }, i) => (
+  <div key={token} style={{ display: 'grid', gridTemplateColumns: '300px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <code style={{ fontSize: 10, background: '#eff3fb', padding: '2px 5px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+    <code style={{ fontSize: 10, color: '#374151' }}>{val}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{usage}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Geometry</div>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Value</span><span>Notes</span>
+</div>
+{[
+  ['Row height (default)',  '64 px',            'min-height on .td; flex row grows for multi-line content'],
+  ['Row height (compact)',  '48 px',            'compact=true reduces to 48 px; font shrinks to 14 px'],
+  ['Checkbox column',       '52 px',            'Fixed width; 20×20 px checkbox centered'],
+  ['Container radius',      '8 px',             'contained=true; border-radius on .tableWrap'],
+  ['Container border',      '1 px #e5e7eb',     'contained=true; same border as Card component'],
+  ['Header font',           '12 px / 500',      'Not uppercase; color #3c5073; height 48 px; bg #f3f4f6; 1 px solid #f3f4f6 border'],
+  ['Cell font',             '16 px / 400',      'IBM Plex Sans Arabic Regular; compact uses 14 px'],
+  ['Sort icon',             '8×5 px SVG',       'Up/down caret pair; opacity 0.4 idle → 1 on active direction'],
+].map(([prop, val, notes], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '180px 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{prop}</span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{notes}</span>
+  </div>
+))}
+</div>
+
+</div>
+
+---
+
+## Figma Reference
+
+<div id="figma-reference" style={{ marginBottom: 24 }}>
+
+<div style={{ fontSize: 13, color: '#3c5073', marginBottom: 16, lineHeight: 1.6 }}>
+  Frames below are exported directly from the Figma component library (<a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4804-93375" target="_blank" rel="noreferrer" style={{ color: '#1849a9' }}>node 4804:93375</a>). The full sheet contains 16 variants (RTL × Alternating × Compact × Contained).
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Default — RTL=False, Alternating=False, Compact=False, Contained=False</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/table-default.png" alt="Table default variant from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Compact — RTL=False, Alternating=False, Compact=True, Contained=False</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/table-compact.png" alt="Table compact variant from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Alternating Rows — RTL=False, Alternating=True, Compact=False, Contained=False</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/table-alternating.png" alt="Table alternating rows variant from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL — RTL=True, Alternating=False, Compact=False, Contained=False</div>
+  <div style={{ padding: '16px 20px', background: '#fff', display: 'flex', justifyContent: 'center' }}>
+    <img src="/figma/table-rtl.png" alt="Table RTL variant from Figma" style={{ maxWidth: '100%', borderRadius: 6, border: '1px solid #f3f4f6' }} />
+  </div>
+</div>
+
+</div>
+
+---
+
+## Properties
+
+<div id="properties" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '150px 160px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+</div>
+{[
+  ['columns',          'Column[]',            '[]',        'Column definitions — see Column shape below'],
+  ['data',             'object[]',            '[]',        'Row data array — each row should have a unique id field'],
+  ['compact',          'boolean',             'false',     'Reduce row height to 48 px and font to 14 px'],
+  ['alternatingRows',  'boolean',             'false',     'Apply #f9fafb background to every odd row'],
+  ['contained',        'boolean',             'false',     'Wrap table in a 1 px bordered card with border-radius 8 px'],
+  ['selectable',       'boolean',             'false',     'Show leading checkbox column; manages localSelected state internally'],
+  ['rtl',              'boolean',             'false',     'Flip layout and text direction for Arabic / Hebrew'],
+  ['emptyText',        'string',              '"No data available"', 'Message shown when data array is empty'],
+  ['onRowClick',       '(row) => void',       '—',         'Called when any body row is clicked'],
+  ['selectedIds',      '(string|number)[]',   '[]',        'Controlled initial set of selected row ids'],
+  ['onSelectionChange','(ids[]) => void',     '—',         'Called when checkbox selection changes'],
+].map(([prop, type, def, desc], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '150px 160px 80px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+    <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+    <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+  </div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Column Shape</div>
+<div style={{ display: 'grid', gridTemplateColumns: '120px 160px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Key</span><span>Type</span><span>Required</span><span>Description</span>
+</div>
+{[
+  ['key',      'string',                        'Yes', 'Row object key used to read cell value'],
+  ['label',    'string',                        'Yes', 'Header cell text'],
+  ['width',    'string | number',               'No',  'Fixed column width (CSS value or px number)'],
+  ['minWidth', 'string | number',               'No',  'Minimum column width'],
+  ['align',    '"left"|"center"|"right"',       'No',  'Cell and header text alignment; default "left"'],
+  ['sortable', 'boolean',                        'No',  'Enable click-to-sort on this column'],
+  ['render',   '(value, row) => ReactNode',     'No',  'Custom cell renderer; receives cell value and full row object'],
+  ['type',     '"actions"',                    'No',  'Set to "actions" to use .actionsTd styling (64 px wide, right-aligned, no column divider); requires render() to provide content'],
+].map(([key, type, req, desc], i) => (
+  <div key={key} style={{ display: 'grid', gridTemplateColumns: '120px 160px 80px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{key}</code>
+    <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+    <span style={{ fontSize: 12, color: req === 'Yes' ? '#059669' : '#9ca3af', fontWeight: 600 }}>{req}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+  </div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Concern</span><span>Implementation</span>
+</div>
+{[
+  ['Semantic markup',       'Uses native <table>, <thead>, <tbody>, <th>, <td> elements — screen readers announce table structure correctly'],
+  ['Column headers',        '<th> with aria-sort="ascending|descending|none" on sortable columns; updated on click'],
+  ['Row selection',         'role="grid" on table; aria-selected on body rows when selectable=true'],
+  ['Checkbox labels',       'aria-label="Select row N" on each row checkbox; aria-label="Select all rows" on header checkbox'],
+  ['Keyboard sorting',      'Sortable <th> is keyboard-focusable via natural tab order; Enter/Space trigger sort (native click)'],
+  ['Horizontal scroll',     'tableWrap has overflow-x: auto — content never clips; keyboard users can scroll with arrow keys'],
+  ['RTL',                   'dir="rtl" on wrapper; text-align flips; column dividers move to left edge'],
+  ['Empty state',           'Empty cell spans all columns — no missing cell warnings from assistive technology'],
+].map(([concern, impl], i) => (
+  <div key={concern} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{concern}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{impl}</span>
+  </div>
+))}
+</div>
+
+---
+
+## Mismatch Report
+
+<div id="mismatch-report" style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '9px 16px' }}>
+  {['Figma Spec','Status','Notes'].map(h => <span key={h} style={{ fontSize: 12, fontWeight: 700, color: '#374151', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { a: '16 variants: RTL × Alternating × Compact × Contained',                                  s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'All 4 boolean props compose freely; 16 combinations identical to Figma frames.' },
+  { a: 'Row heights: 64 px (default), 48 px (compact)',                                          s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'min-height on .td; compact class reduces to 48 px.' },
+  { a: 'Cell padding: 16 px horizontal, 8 px vertical',                                          s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'Exact Figma token values applied.' },
+  { a: 'Row state backgrounds: alt #f9fafb, hover #f3f4f6, selected #f3fcf6',                    s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'CSS classes .altRow, :hover, .selected with Figma token colors.' },
+  { a: 'Contained: 1 px border + border-radius card wrapper',                                    s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden.' },
+  { a: 'RTL: mirrored layout, right-aligned text, flipped dividers',                             s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'dir="rtl"; CSS .rtl selectors flip text-align and border-right/border-left directly on .td and .th.' },
+  { a: 'Checkbox 20×20 px, column 52 px wide',                                                   s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'Exact dimensions from Figma TableRow cell node.' },
+  { a: 'Column sorting (header click)',                                                           s: 'Added',    sb: '#f0f4ff', st: '#1849a9', n: 'Figma is static; sort is a functional enhancement with aria-sort, asc/desc toggle, and sort icon.' },
+  { a: 'Figma cell content: Chip, StatusTag, Button, Icon actions',                              s: 'Matched',  sb: '#ecfdf5', st: '#059669', n: 'Chip, StatusTag, ActionButton, and IconBtn inline components implemented in stories with exact Figma colors, sizes, and layout.' },
+].map(({ a, s, sb, st, n }, i) => (
+  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, color: '#111827', fontWeight: 500 }}>{a}</span>
+    <span style={{ background: sb, color: st, fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 700, whiteSpace: 'nowrap', display: 'inline-block' }}>{s}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{n}</span>
+  </div>
+))}
+</div>
+
+</div>
