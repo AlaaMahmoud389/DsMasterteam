@@ -1,0 +1,106 @@
+/* ==========================================================
+   Tooltip — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 4404:4368
+   ========================================================== */
+
+/* ── Outer wrapper ──────────────────────────────────────── */
+
+.wrap {
+  display: inline-flex;
+  width: 240px;
+  align-items: flex-start; /* Default = Start: beak at flex-start edge */
+  border-radius: 8px;
+  backdrop-filter: blur(20px);
+  filter:
+    drop-shadow(0px 2px 4px rgba(16, 24, 40, 0.08))
+    drop-shadow(0px 8px 20px rgba(16, 24, 40, 0.14));
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.wrapCol { flex-direction: column; }
+.wrapRow { flex-direction: row; width: 246px; }
+
+/* Beak position on the card edge — applied to .wrap, overrides flex-start default */
+.beakAlignCenter { align-items: center; }
+.beakAlignEnd    { align-items: flex-end; }
+
+/* ── Content box ────────────────────────────────────────── */
+
+.content {
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* Row layout (Left/Right beak) — content fills remaining space after beak */
+.contentRow {
+  flex: 1 0 0;
+  width: auto;
+  min-width: 0;
+}
+
+.contentLight { background: #ffffff; }
+.contentDark  { background: #1f2a37; }
+
+/* ── Text wrapper ───────────────────────────────────────── */
+
+.textWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 18px;
+  word-break: break-word;
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.titleLight { color: #000b36; }
+.titleDark  { color: #f9fafb; }
+
+.body {
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.bodyLight { color: #3c5073; }
+.bodyDark  { color: #b6bdca; }
+
+/* ── Icon ───────────────────────────────────────────────── */
+/* Figma: node 4404:4429 "Feedback Icon" — 18×18 filled SVG, FeedbackIcon component.
+   color sets fill via currentColor.
+   Matches var(--tooltip/light/text/secondary, #3c5073) and var(--tooltip/dark/text/secondary, #b6bdca). */
+
+.iconWrap {
+  display: block;
+  flex-shrink: 0;
+}
+
+.iconLight { color: #3c5073; }
+.iconDark  { color: #b6bdca; }
+
+/* ── Beak ───────────────────────────────────────────────── */
+/* SVG polygon beaks are rendered inline in Tooltip.jsx — no CSS needed here.
+   Dimensions: 28×6px (Top/Bottom) or 6×28px (Left/Right).
+   Fill colour is set dynamically to match the content card background.
+   A -1px margin on the joining edge prevents a subpixel gap. */
