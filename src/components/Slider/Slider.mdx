@@ -1,0 +1,303 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import React, { useState } from 'react';
+import { Slider } from './Slider';
+
+export const SingleDemo = () => {
+  const [val, setVal] = useState(20);
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <Slider value={val} onChange={setVal} label="Label" helperText="Help Text" />
+      <div style={{ marginTop: 8, fontSize: 12, color: '#6b7280' }}>Value: {val}%</div>
+    </div>
+  );
+};
+
+export const RangeDemo = () => {
+  const [range, setRange] = useState({ min: 20, max: 70 });
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+      <Slider
+        range
+        minValue={range.min} maxValue={range.max} onRangeChange={setRange}
+        label="Label" helperText="Help Text"
+      />
+      <div style={{ marginTop: 8, fontSize: 12, color: '#6b7280' }}>Range: {range.min}% – {range.max}%</div>
+    </div>
+  );
+};
+
+export const RTLSingleDemo = () => (
+  <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+    <Slider value={50} rtl label="عنوان" helperText="نص مساعد" />
+  </div>
+);
+
+export const RTLRangeDemo = () => (
+  <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+    <Slider
+      range rtl
+      minValue={30} maxValue={70}
+      label="عنوان" helperText="نص مساعد"
+    />
+  </div>
+);
+
+<Meta title="Components/Slider/Docs" />
+
+# Slider
+
+A range-input slider for selecting a value or a value range.
+
+**Figma:** [node 4731‑482](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4731-482)
+
+---
+
+## Single Slider — Interactive
+
+<SingleDemo />
+
+## Range Slider — Interactive
+
+<RangeDemo />
+
+---
+
+## Sizes
+
+### Small
+
+<div style={{ padding: '16px 0' }}>
+  <Slider size="small" value={20} label="Label" helperText="Help Text" />
+</div>
+
+### Medium
+
+<div style={{ padding: '16px 0' }}>
+  <Slider size="medium" value={20} label="Label" helperText="Help Text" />
+</div>
+
+---
+
+## Values
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: '16px 0' }}>
+  {[0, 20, 50, 100].map((v) => (
+    <div key={v} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <span style={{ fontSize: 12, color: '#6b7280', width: 36, textAlign: 'right', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{v}%</span>
+      <Slider value={v} showLabel={false} showHelperText={false} />
+    </div>
+  ))}
+</div>
+
+---
+
+## Range Slider
+
+### 0% – 50%
+
+<div style={{ padding: '16px 0' }}>
+  <Slider range minValue={0} maxValue={50} label="Label" helperText="Help Text" />
+</div>
+
+### 20% – 70%
+
+<div style={{ padding: '16px 0' }}>
+  <Slider range minValue={20} maxValue={70} label="Label" helperText="Help Text" />
+</div>
+
+---
+
+## RTL
+
+### RTL Single
+
+<RTLSingleDemo />
+
+### RTL Range
+
+<RTLRangeDemo />
+
+---
+
+## Label Variants
+
+### Regular (default)
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} label="Regular Label" labelType="regular" showHelperText={false} />
+</div>
+
+### Semibold
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} label="Semibold Label" labelType="semibold" showHelperText={false} />
+</div>
+
+### Required
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} label="Required Field" required showHelperText={false} />
+</div>
+
+### Disabled
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={50} label="Disabled" disabled showHelperText={false} />
+</div>
+
+---
+
+## Visibility
+
+### Show Label + Helper Text
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} showLabel showHelperText label="Label" helperText="Help Text" />
+</div>
+
+### Show Label only
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} showLabel showHelperText={false} label="Label" />
+</div>
+
+### Show Helper Text only
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} showLabel={false} showHelperText helperText="Help Text" />
+</div>
+
+### Track only (no label, no helper text)
+
+<div style={{ padding: '12px 0' }}>
+  <Slider value={20} showLabel={false} showHelperText={false} />
+</div>
+
+---
+
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['value',          'number',                 '20',          'Current value for single slider (0–100)'],
+        ['onChange',       '(n: number) => void',    '—',           'Called with new value on change'],
+        ['minValue',       'number',                 '0',           'Range start value'],
+        ['maxValue',       'number',                 '50',          'Range end value'],
+        ['onRangeChange',  '({min, max}) => void',   '—',           'Called on range thumb change'],
+        ['min',            'number',                 '0',           'Slider minimum bound'],
+        ['max',            'number',                 '100',         'Slider maximum bound'],
+        ['step',           'number',                 '1',           'Increment step'],
+        ['size',           "'small' | 'medium'",     "'medium'",    'Track and thumb size'],
+        ['range',          'boolean',                'false',       'Enable dual-handle range mode'],
+        ['rtl',            'boolean',                'false',       'Right-to-left layout'],
+        ['disabled',       'boolean',                'false',       'Disable interaction (50% opacity)'],
+        ['showLabel',      'boolean',                'true',        'Show the label above the track'],
+        ['label',          'string',                 "'Label'",     'Label text'],
+        ['labelType',      "'regular' | 'semibold'", "'regular'",   'Label font weight'],
+        ['required',       'boolean',                'false',       'Show red asterisk before label'],
+        ['showHelperText', 'boolean',                'true',        'Show helper text below the track'],
+        ['helperText',     'string',                 "'Help Text'", 'Helper text content'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['Track inactive fill',   '#F3F4F6',    'Gray background on the unfilled portion of the track'],
+        ['Track active fill',     '#1849A9',    'Blue fill on the filled portion and thumb'],
+        ['Track border-radius',   '4px',        'Fully rounded ends on both track and fill'],
+        ['Track height — small',  '4px',        'Track thickness for the small size'],
+        ['Track height — medium', '8px',        'Track thickness for the medium size'],
+        ['Thumb size — small',    '12 × 12 px', 'Circular handle diameter for small size'],
+        ['Thumb size — medium',   '16 × 16 px', 'Circular handle diameter for medium size'],
+        ['Thumb fill',            '#1849A9',    'Fill color of the draggable thumb'],
+        ['Thumb stroke',          '#175CD3',    '1px border on the thumb'],
+        ['Percentage text',       '#233A61',    '12px / 400 — value label beside the track'],
+        ['Label small',           '#000B36',    '14px / 400 / 20px line-height'],
+        ['Label medium',          '#000B36',    '16px / 400 / 24px line-height'],
+        ['Label semibold',        '600',        'Font weight when labelType="semibold"'],
+        ['Label disabled',        '#6C7C96',    'Label color when disabled=true'],
+        ['Required asterisk',     '#A30000',    'Color of the * shown when required=true'],
+        ['Helper text small',     '#233A61',    '12px / 400 / 18px line-height'],
+        ['Helper text medium',    '#233A61',    '14px / 400 / 20px line-height'],
+        ['Helper icon stroke',    '#384250',    '1.5px stroke on the help-circle icon'],
+        ['Wrapper gap',           '4px',        'Vertical gap between label, track row, and helper text'],
+        ['Track-row gap',         '6px',        'Gap between percentage labels and the track'],
+        ['Helper-row gap',        '8px',        'Gap between the help icon and helper text'],
+      ].map(([token, value, usage]) => (
+        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
+          <td style={{ padding: '10px 14px' }}>
+            {value.startsWith('#') ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
+                <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+              </span>
+            ) : (
+              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+            )}
+          </td>
+          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Usage
+
+```jsx
+import { Slider } from './Slider';
+
+// Single interactive slider
+const [value, setValue] = useState(20);
+<Slider value={value} onChange={setValue} label="Volume" />
+
+// Range slider
+const [range, setRange] = useState({ min: 20, max: 70 });
+<Slider
+  range
+  minValue={range.min}
+  maxValue={range.max}
+  onRangeChange={setRange}
+  label="Price range"
+/>
+
+// RTL
+<Slider value={20} rtl label="عنوان" helperText="نص مساعد" />
+
+// Small size, semibold label, required
+<Slider size="small" value={50} label="Amount" labelType="semibold" required />
+
+// Read-only display (no onChange)
+<Slider value={75} showHelperText={false} />
+```

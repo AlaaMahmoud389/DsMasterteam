@@ -1,0 +1,277 @@
+/*
+ * Slider.module.css — Masterteam Design System
+ * Figma: node 4731:482
+ *
+ * Design tokens:
+ *
+ *   Track (inactive)   bg #F3F4F6  border-radius 4px
+ *   Track (active)     fill #1849A9
+ *   Track height:      Small=4px  Medium=8px
+ *   Track width:       320px (responsive, use flex:1)
+ *
+ *   Thumb:             Small=12×12px  Medium=16×16px
+ *                      fill #1849A9  stroke #175CD3 1px  shape circle
+ *
+ *   Percentage text:   12px / 400 / 18px lh  color #233A61
+ *   Track row gap:     6px
+ *
+ *   Label Small:       14px / 400 / 20px lh  color #000B36
+ *   Label Medium:      16px / 400 / 24px lh  color #000B36
+ *   Label Semibold:    weight 600
+ *   Label Disabled:    color #6C7C96
+ *   Required asterisk: color #A30000
+ *
+ *   Helper text Small: 12px / 400 / 18px lh  color #233A61
+ *   Helper text Medium:14px / 400 / 20px lh  color #233A61
+ *   Helper icon:       16×16px  stroke #384250 1.5px
+ *   Helper row gap:    8px
+ *
+ *   Wrapper column gap: 4px
+ *   RTL:               direction rtl + input scaleX(-1) + gradient flip
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Wrapper
+   ══════════════════════════════════════════════════════════════════ */
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  width: 100%;
+  max-width: 380px;
+  box-sizing: border-box;
+}
+
+.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+.wrapDisabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Label row
+   ══════════════════════════════════════════════════════════════════ */
+.labelRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+}
+
+.label {
+  color: #000b36;
+  font-family: inherit;
+}
+
+.labelSmall {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.labelMedium {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.labelSemibold {
+  font-weight: 600;
+}
+
+.labelDisabled {
+  color: #6c7c96;
+}
+
+.required {
+  color: #a30000;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Track row — holds [start%] [track] [end%]
+   ══════════════════════════════════════════════════════════════════ */
+.trackRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Track container — positions visual track + native input(s)
+   ══════════════════════════════════════════════════════════════════ */
+.trackWrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+/* Height matches thumb so click area covers the thumb fully */
+.trackWrapSmall  { height: 12px; }
+.trackWrapMedium { height: 16px; }
+
+/* ── Visual track div (gradient background) ─────────────────────── */
+.track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-radius: 4px;
+  pointer-events: none;
+  transition: background 50ms linear;
+}
+
+.trackSmall  { height: 4px; }
+.trackMedium { height: 8px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Native range input
+   Track is made transparent; only the styled thumb is visible.
+   ══════════════════════════════════════════════════════════════════ */
+.rangeInput {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.rangeInputSmall  { height: 12px; }
+.rangeInputMedium { height: 16px; }
+
+/* ── Hide native track ──────────────────────────────────────────── */
+.rangeInput::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 0;
+  border: none;
+}
+
+.rangeInput::-moz-range-track {
+  background: transparent;
+  height: 0;
+  border: none;
+}
+
+.rangeInput::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+/* ── Thumb: Small ───────────────────────────────────────────────── */
+.rangeInputSmall::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1849a9;
+  border: 1px solid #175cd3;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.rangeInputSmall::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #1849a9;
+  border: 1px solid #175cd3;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* ── Thumb: Medium ──────────────────────────────────────────────── */
+.rangeInputMedium::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1849a9;
+  border: 1px solid #175cd3;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.rangeInputMedium::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #1849a9;
+  border: 1px solid #175cd3;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* ── Range slider: only thumbs receive pointer events ───────────── */
+.rangeInputMin,
+.rangeInputMax {
+  pointer-events: none;
+}
+
+.rangeInputMin::-webkit-slider-thumb,
+.rangeInputMax::-webkit-slider-thumb {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.rangeInputMin::-moz-range-thumb,
+.rangeInputMax::-moz-range-thumb {
+  pointer-events: all;
+  cursor: pointer;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Percentage text
+   ══════════════════════════════════════════════════════════════════ */
+.percentage {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #233a61;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Helper text row
+   ══════════════════════════════════════════════════════════════════ */
+.helperRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.helperText {
+  color: #233a61;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.helperTextSmall {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.helperTextMedium {
+  font-size: 14px;
+  line-height: 20px;
+}
