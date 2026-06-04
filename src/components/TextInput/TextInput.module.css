@@ -304,7 +304,7 @@
   gap: 4px;
   flex-shrink: 0;
   align-self: stretch;
-  padding: 0 8px;
+  padding: 0 16px;
   margin: 0;
   cursor: pointer;
   white-space: nowrap;
