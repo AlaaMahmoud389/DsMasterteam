@@ -1,400 +1,404 @@
-{/* Switch.mdx — Masterteam Design System */}
-import { Meta } from '@storybook/addon-docs/blocks';
-import { Switch, SwitchLabel } from './Switch';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as SwitchStories from './Switch.stories';
+import { Switch, SwitchLabel } from './Switch';
 
 <Meta of={SwitchStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-
-{/* ── Header ───────────────────────────────────────────────── */}
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Switch</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Switch</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 680, lineHeight: 1.7 }}>
-    A toggle control with two components: a standalone <strong>Switch</strong> (48 × 24 px track with sliding thumb)
-    and a <strong>Switch Label</strong> that adds a label, optional helper text, and optional alert message.
-    Supports 5 states, RTL layout, an optional tick icon in the thumb, and flexible switch positioning (leading or trailing).
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Switch</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Switch</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A toggle control that turns a setting on or off instantly. Two components: a standalone <strong>Switch</strong> (48 × 24 px track with a sliding 16 × 16 px thumb) and a <strong>SwitchLabel</strong> that adds a label, optional helper text, and an optional alert message. Supports 5 interaction states, a squish-and-slide toggle animation, RTL layout, an optional tick icon in the thumb, and flexible leading or trailing switch positioning. Built from Figma node 4457:791.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4457:791</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>5 states</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>RTL</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1937" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
   </div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-      Available
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['States','#states'],['Animation','#animation'],['Switch Label','#switch-label'],['RTL Support','#rtl-support'],['Usage Guidelines','#usage-guidelines'],['Design Tokens','#design-tokens'],['Properties','#properties'],['Accessibility','#accessibility']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div id="overview" style={{ marginBottom: 24 }}>
+<Canvas of={SwitchStories.PlaygroundSwitch} />
+<Controls of={SwitchStories.PlaygroundSwitch} />
+</div>
+
+---
+
+## Anatomy
+
+<div id="anatomy" style={{ marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '40px 170px 150px 1fr', gap: 12 }}>
+  {['#','Element','Class','Notes'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  ['1', 'Track',       '.track',      '48 × 24 px pill-shaped container rendered as <button role="switch">'],
+  ['2', 'Track — Off', '.trackOff',   'Transparent fill, 1 px solid border; border color changes per state'],
+  ['3', 'Track — On',  '.trackOn',    'Solid blue fill (#1849A9); border matches fill color'],
+  ['4', 'Thumb',       '.thumb',      '16 × 16 px circle; slides left ↔ right (LTR) on toggle via CSS transition'],
+  ['5', 'Tick icon',   '.thumbIcon',  'Optional 10 × 10 px checkmark SVG inside thumb; shown when on + showIcon'],
+  ['6', 'Label text',  '.labelText',  'SwitchLabel only · 16 px / 500 weight · color #000B36'],
+  ['7', 'Helper text', '.helperText', 'SwitchLabel only · 14 px / 400 · color #233A61 · shown when helperText is set'],
+  ['8', 'Alert row',   '.alertRow',   'SwitchLabel only · alert icon + 14 px / 500 red text · color #A30000'],
+].map(([n, el, cls, notes], i) => (
+  <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 170px 150px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{el}</span>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{cls}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{notes}</span>
+  </div>
+))}
+</div>
+</div>
+
+---
+
+## States
+
+<div id="states" style={{ marginBottom: 24 }}>
+
+<div style={{ fontSize: 13, color: '#3c5073', lineHeight: 1.6, marginBottom: 16 }}>
+  The switch has 5 interaction states. The <strong>Off</strong> track is transparent with a colored border; the <strong>On</strong> track is filled blue. State changes affect border/fill color, thumb fill, and the focus ring.
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ background: '#f0f1f3', padding: '7px 16px', borderBottom: '1px solid #e5e7eb', display: 'grid', gridTemplateColumns: '130px 1fr 1fr 1fr', gap: 12 }}>
+  {['State', 'Off', 'On', 'On + Icon'].map(h => <span key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.05em' }}>{h}</span>)}
+</div>
+{[
+  { state: 'default',  label: 'Default',  desc: 'Idle, no interaction yet' },
+  { state: 'hovered',  label: 'Hovered',  desc: 'Cursor over the track' },
+  { state: 'pressed',  label: 'Pressed',  desc: 'Mouse or touch held down' },
+  { state: 'focused',  label: 'Focused',  desc: 'Keyboard navigation — outline shows' },
+  { state: 'disabled', label: 'Disabled', desc: 'Not interactive — muted colors' },
+].map(({ state, label, desc }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '130px 1fr 1fr 1fr', padding: '14px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <div>
+      <div style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{label}</div>
+      <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{desc}</div>
+    </div>
+    <div><Switch checked={false} state={state} /></div>
+    <div><Switch checked={true}  state={state} /></div>
+    <div><Switch checked={true}  state={state} showIcon={true} /></div>
+  </div>
+))}
+</div>
+
+<Canvas of={SwitchStories.FullMatrix} />
+</div>
+
+---
+
+## Animation
+
+<div id="animation" style={{ marginBottom: 24 }}>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Click or tap the switch below to see the animation. The thumb slides smoothly from its current position to the new one. It also briefly widens from 16 px to 22 px (becoming a pill shape) then snaps back — the squish effect adds physical weight to the toggle. No animation fires on the initial render.
+</div>
+
+<Canvas of={SwitchStories.InteractiveSwitch} />
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginTop: 16, marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Animation Timing</div>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 240px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Value</span><span>Notes</span>
+</div>
+{[
+  ['Thumb slide',         '250 ms · cubic-bezier(0.4, 0, 0.2, 1)', 'CSS transition on left (LTR) / right (RTL)'],
+  ['Squish expand',       '120 ms · ease-in-out',                  'Width 16 px → 22 px when toggle starts'],
+  ['Squish release',      '120 ms · ease-in-out',                  'Width 22 px → 16 px after 150 ms'],
+  ['Background',          '150 ms · ease',                         'Track fill and thumb color change'],
+  ['Focus ring / shadow', '150 ms · ease',                         'box-shadow / outline on track'],
+  ['Initial render',      'No animation',                          'Thumb appears at its correct position immediately'],
+].map(([prop, val, note], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '200px 240px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{prop}</span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
+  </div>
+))}
+</div>
+
+</div>
+
+---
+
+## Switch Label
+
+<div id="switch-label" style={{ marginBottom: 24 }}>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Use <code>SwitchLabel</code> to wrap a switch with a label, optional helper text, and an optional alert message. Set <code>trailSwitch={true}</code> to move the switch to the trailing side (right in LTR, left in RTL). All state and interaction props are forwarded to the inner Switch.
+</div>
+
+<Canvas of={SwitchStories.PlaygroundSwitchLabel} />
+<Controls of={SwitchStories.PlaygroundSwitchLabel} />
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginTop: 24, marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Switch Position × Content Combinations</div>
+<div style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 16, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Combination</span><span>Lead Switch (default)</span><span>Trail Switch</span>
+</div>
+{[
+  { label: 'Label only',       helperText: null,                                              alertMessage: null },
+  { label: 'With helper text', helperText: 'Applies immediately across the application.',     alertMessage: null },
+  { label: 'With alert',       helperText: null,                                              alertMessage: 'Error/Warning message' },
+  { label: 'Helper + Alert',   helperText: 'Further explanation of this setting goes here.',  alertMessage: 'Error/Warning message' },
+].map(({ label, helperText, alertMessage }, i) => (
+  <div key={label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', padding: '16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 16, alignItems: 'start' }}>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5, paddingTop: 2 }}>{label}</span>
+    <SwitchLabel label="Switch Label" checked={false} trailSwitch={false} helperText={helperText} alertMessage={alertMessage} />
+    <SwitchLabel label="Switch Label" checked={true} showIcon={true} trailSwitch={true} helperText={helperText} alertMessage={alertMessage} />
+  </div>
+))}
+</div>
+
+<Canvas of={SwitchStories.WithHelperText} />
+<Canvas of={SwitchStories.WithAlertMessage} />
+<Canvas of={SwitchStories.AllLabelStates} />
+</div>
+
+---
+
+## RTL Support
+
+<div id="rtl-support" style={{ marginBottom: 24 }}>
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 6, padding: '10px 14px', fontSize: 13, color: '#3c5073', marginBottom: 16 }}>
+  Setting <code>rtl={true}</code> mirrors the thumb: it starts on the right when off and slides left when on. In <code>SwitchLabel</code>, the entire row is reversed via <code>direction: rtl</code> and logical CSS properties. The animation slide direction is also mirrored automatically.
+</div>
+<Canvas of={SwitchStories.RTLSwitch} />
+<Canvas of={SwitchStories.RTLSwitchLabel} />
+</div>
+
+---
+
+## Usage Guidelines
+
+<div id="usage-guidelines" style={{ marginBottom: 24 }}>
+
+<div style={{ marginBottom: 16 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Correct use — instant-effect binary settings</div>
+  <div style={{ border: '2px solid #a7f3d0', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ padding: '20px 24px', background: '#fff', display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <SwitchLabel label="Dark mode" checked={true} showIcon={true} helperText="Applies immediately across all screens" />
+      <SwitchLabel label="Email notifications" checked={false} helperText="Receive weekly updates to your inbox" />
+      <SwitchLabel label="Auto-save drafts" checked={true} showIcon={true} helperText="Saves every 30 seconds" />
+    </div>
+    <div style={{ padding: '10px 16px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0', fontSize: 12, color: '#059669', fontWeight: 600 }}>
+      ✓ Binary settings that take effect immediately · clear labels · helper text adds context
+    </div>
+  </div>
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}>
+  <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do
+</div>
+{['Use for binary settings that take effect immediately without a submit button (dark mode, notifications, auto-save).','Keep labels short and outcome-focused: "Dark mode", not "Toggle the application dark mode setting".','Use trailSwitch when the label must align flush-left in a settings list.','Add helperText when the label alone does not make the full effect clear.','Use the disabled state when a setting is locked; always add helper text or a tooltip explaining why.','Use alertMessage after a failed save or permission check — keep it short and actionable.'].map((t, i) => (
+  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+    <span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{t}
+  </div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}>
+  <span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✗</span>Don't
+</div>
+{["Don't use a switch when the change requires a separate confirmation step — use a dialog with an action button instead.","Don't use for single-select or multi-select choices — use Radio or Checkbox instead.","Don't leave labels vague — avoid 'Enable' or 'Activate' without saying what is being enabled.","Don't disable a switch without communicating why — always pair with helper text or a tooltip.","Don't use a switch to preview a change that only saves on form submit — use a Checkbox in that case.","Don't rely on color alone to communicate on/off — the thumb position is the primary indicator."].map((t, i) => (
+  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+    <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✗</span>{t}
+  </div>
+))}
+</div>
+</div>
+</div>
+
+---
+
+## Design Tokens
+
+<div id="design-tokens" style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 24 }}>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Track — Off State (border color · thumb fill)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 130px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>State</span><span>Track border</span><span>Thumb fill</span><span>Notes</span>
+</div>
+{[
+  { state: 'Default',  border: '#1F2A37', thumb: '#1F2A37', note: 'Dark navy — same color for both' },
+  { state: 'Hovered',  border: '#0D121C', thumb: '#0D121C', note: 'Darker navy + outer glow (#F3F4F6)' },
+  { state: 'Pressed',  border: '#4D5761', thumb: '#4D5761', note: 'Lighter slate + outer glow (#F3F4F6)' },
+  { state: 'Focused',  border: '#1F2A37', thumb: '#1F2A37', note: 'outline: 2px solid #00001C' },
+  { state: 'Disabled', border: '#6C7C96', thumb: '#D2D6DB', note: 'Muted — border and thumb differ' },
+].map(({ state, border, thumb, note }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '110px 130px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 3, background: border, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{border}</code>
     </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>5 states</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>RTL</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Accessible</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1937" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: thumb, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{thumb}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
   </div>
+))}
 </div>
 
-{/* ── Switch — On / Off ────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Switch — Off / On / On with Icon</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    The thumb slides from left (off) to right (on). When <code>showIcon</code> is true and the switch is on,
-    a tick icon appears inside the white thumb in the track colour.
-  </p>
-  <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Off</div>
-      <Switch checked={false} />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>On</div>
-      <Switch checked={true} />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>On + Icon</div>
-      <Switch checked={true} showIcon />
-    </div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Track — On State (fill color · thumb fill)</div>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 130px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>State</span><span>Track fill</span><span>Thumb fill</span><span>Notes</span>
+</div>
+{[
+  { state: 'Default',  fill: '#1849A9', thumb: '#F9FAFB', note: 'Primary blue' },
+  { state: 'Hovered',  fill: '#102A56', thumb: '#F9FAFB', note: 'Darker blue + outer glow (#F3F4F6)' },
+  { state: 'Pressed',  fill: '#1849A9', thumb: '#F9FAFB', note: 'Same as default + outer glow (#F3F4F6)' },
+  { state: 'Focused',  fill: '#D2D6DB', thumb: '#F9FAFB', note: 'Light grey fill + outline: 2px solid #00001C' },
+  { state: 'Disabled', fill: '#1849A9', thumb: '#F9FAFB', note: 'Blue fill at 50% opacity' },
+].map(({ state, fill, thumb, note }, i) => (
+  <div key={state} style={{ display: 'grid', gridTemplateColumns: '110px 130px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{state}</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 3, background: fill, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{fill}</code>
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: '50%', background: thumb, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+      <code style={{ fontSize: 10, color: '#374151' }}>{thumb}</code>
+    </span>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
   </div>
+))}
 </div>
 
-{/* ── All States — Off ─────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>All States — Off</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    5 interactive states for the off position. The border and thumb darken on Hover/Press and lighten when Disabled.
-  </p>
-  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-    {['default', 'hovered', 'pressed', 'focused', 'disabled'].map((state) => (
-      <div key={state}>
-        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{state}</div>
-        <Switch checked={false} state={state} />
-      </div>
-    ))}
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Geometry, Typography &amp; Other Tokens</div>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Value</span><span>Notes</span>
+</div>
+{[
+  ['Track size',            '48 × 24 px',              'border-radius: 9999px (pill)'],
+  ['Thumb size (rest)',     '16 × 16 px',              'border-radius: 50% — perfect circle'],
+  ['Thumb size (squish)',   '22 × 16 px',              'Oval during animation; returns to 16 px'],
+  ['Thumb position — Off',  'left: 3 px (LTR)',        'right: 3 px in RTL'],
+  ['Thumb position — On',   'left: 27 px (LTR)',       'right: 27 px in RTL (48 − 1 − 4 − 16)'],
+  ['Tick icon',             '10 × 10 px',              'Shown inside thumb when on + showIcon'],
+  ['Focus outer glow',      '#F3F4F6',                 'box-shadow 0 0 0 3 px on hover/press'],
+  ['Keyboard focus outline','#00001C — 2 px solid',    'outline-offset: 2 px'],
+  ['Label text',            '16 px / 500 / #000B36',   'SwitchLabel · line-height 24 px'],
+  ['Helper text',           '14 px / 400 / #233A61',   'SwitchLabel · line-height 20 px'],
+  ['Alert text / icon',     '14 px / 500 / #A30000',   'SwitchLabel · alert-circle icon 16 × 16 px'],
+  ['Label gap',             '12 px',                   'Gap between switch and label text'],
+  ['Stack gap',             '4 px',                    'Vertical gap between label row, helper, alert'],
+  ['Font family',           "IBM Plex Sans Arabic",    'All text in the component'],
+].map(([prop, val, note], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '180px 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{prop}</span>
+    <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
+    <span style={{ fontSize: 12, color: '#6b7280' }}>{note}</span>
   </div>
+))}
 </div>
 
-{/* ── All States — On ──────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>All States — On</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    Track fill darkens on Hover, turns light grey on Focus, remains blue when Disabled (with reduced opacity).
-  </p>
-  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-    {['default', 'hovered', 'pressed', 'focused', 'disabled'].map((state) => (
-      <div key={state}>
-        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{state}</div>
-        <Switch checked={true} state={state} />
-      </div>
-    ))}
+</div>
+
+---
+
+## Properties
+
+<div id="properties" style={{ marginBottom: 24 }}>
+
+<div style={{ fontSize: 14, fontWeight: 700, color: '#000b36', marginBottom: 12 }}>Switch</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '120px 200px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+</div>
+{[
+  ['checked',   'boolean',                                            'false',      'On (true) or Off (false)'],
+  ['showIcon',  'boolean',                                            'false',      'Show tick icon inside thumb when on'],
+  ['state',     "'default'|'hovered'|'pressed'|'focused'|'disabled'", "'default'", 'Visual / interaction state'],
+  ['rtl',       'boolean',                                            'false',      'RTL layout — thumb starts on right when off, slides left when on'],
+  ['onChange',  '(value: boolean) => void',                          '—',          'Called with the new boolean value on click or keyboard activation'],
+  ['className', 'string',                                             '—',          'Extra class applied to the track element'],
+].map(([prop, type, def, desc], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '120px 200px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+    <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+    <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
   </div>
+))}
 </div>
 
-{/* ── All States — On with Icon ────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>All States — On with Icon</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    Same states as On, with a tick icon inside the thumb. The icon is coloured to match the track.
-  </p>
-  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-    {['default', 'hovered', 'pressed', 'focused', 'disabled'].map((state) => (
-      <div key={state}>
-        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{state}</div>
-        <Switch checked={true} showIcon state={state} />
-      </div>
-    ))}
+<div style={{ fontSize: 14, fontWeight: 700, color: '#000b36', marginBottom: 12 }}>SwitchLabel</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 200px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+</div>
+{[
+  ['label',        'string',                                            "'Switch Label'", 'Label text displayed next to the switch'],
+  ['checked',      'boolean',                                           'false',          'Switch on/off state'],
+  ['showIcon',     'boolean',                                           'false',          'Show tick icon in thumb when on'],
+  ['state',        "'default'|'hovered'|'pressed'|'focused'|'disabled'","'default'",     'Visual state forwarded to the inner Switch'],
+  ['trailSwitch',  'boolean',                                           'false',          'Move the switch to the trailing side (right in LTR, left in RTL)'],
+  ['helperText',   'string | null',                                     'null',           'Secondary description shown below the label row'],
+  ['alertMessage', 'string | null',                                     'null',           'Error/alert message with icon shown below helper text'],
+  ['rtl',          'boolean',                                           'false',          'RTL layout — mirrors the entire label row and thumb direction'],
+  ['onChange',     '(value: boolean) => void',                         '—',              'Called with the new boolean value on toggle'],
+  ['className',    'string',                                            '—',              'Extra class applied to the outer wrapper element'],
+].map(([prop, type, def, desc], i) => (
+  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '130px 200px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+    <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+    <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
   </div>
+))}
 </div>
 
-{/* ── RTL ──────────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>RTL</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    In RTL mode, the thumb starts on the right side (off) and slides to the left (on) — mirroring the LTR behaviour.
-  </p>
-  <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Off</div>
-      <Switch checked={false} rtl />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — On</div>
-      <Switch checked={true} rtl />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — On + Icon</div>
-      <Switch checked={true} showIcon rtl />
-    </div>
+</div>
+
+---
+
+## Accessibility
+
+<div id="accessibility" style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Concern</span><span>Implementation</span>
+</div>
+{[
+  ['Role',              'Renders as <button role="switch"> — screen readers announce "Switch, on/off" automatically'],
+  ['aria-checked',      'aria-checked={checked} reflects the current state; updated on every toggle'],
+  ['Keyboard',          'Space and Enter activate the switch; Tab moves focus to/from the track'],
+  ['Focus indicator',   ':focus-visible shows outline: 2px solid #00001C with 2 px offset — only on keyboard navigation'],
+  ['Disabled',          'disabled HTML attribute applied; pointer-events: none and cursor: not-allowed prevent interaction'],
+  ['RTL',               'dir="rtl" on the track; thumb mirrored via right property instead of left'],
+  ['Color contrast',    'Off thumb (#1F2A37 on transparent) and On track (#1849A9) both satisfy WCAG AA at default sizes'],
+  ['Motion',            'Animation is driven by CSS transitions; wrapping in a prefers-reduced-motion media query is recommended in consuming apps'],
+].map(([concern, impl], i) => (
+  <div key={concern} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{concern}</span>
+    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{impl}</span>
   </div>
-</div>
-
-{/* ── Switch Label — Trail positions ───────────────────────── */}
-<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Switch Label — Switch Position</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    <code>trailSwitch=false</code> (default) places the switch on the leading side (left in LTR).
-    <code>trailSwitch=true</code> places it on the trailing side (right in LTR).
-  </p>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 420 }}>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Trail Switch = False</div>
-      <SwitchLabel label="Switch Label" checked={false} trailSwitch={false} />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Trail Switch = True</div>
-      <SwitchLabel label="Switch Label" checked={true} showIcon trailSwitch={true} />
-    </div>
-  </div>
-</div>
-
-{/* ── Switch Label — Helper Text ───────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Switch Label — Helper Text</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    Pass a string to <code>helperText</code> to show a secondary description below the label row.
-  </p>
-  <div style={{ maxWidth: 420 }}>
-    <SwitchLabel
-      label="Switch Label"
-      checked={false}
-      helperText="When a selection needs a further detailed explanation, it goes here."
-    />
-  </div>
-</div>
-
-{/* ── Switch Label — Alert Message ─────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Switch Label — Alert Message</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    Pass a string to <code>alertMessage</code> to show an error row (icon + red text) beneath the helper text.
-    Helper text and alert message are independent — either or both can be shown.
-  </p>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 420 }}>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Alert only</div>
-      <SwitchLabel label="Switch Label" checked={false} alertMessage="Error/Warning message" />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Helper + Alert</div>
-      <SwitchLabel
-        label="Switch Label"
-        checked={false}
-        helperText="When a selection needs a further detailed explanation, it goes here."
-        alertMessage="Error/Warning message"
-      />
-    </div>
-  </div>
-</div>
-
-{/* ── Switch Label — RTL ───────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Switch Label — RTL</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
-    RTL layout with Arabic text. The switch and label positions mirror naturally.
-  </p>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 420 }}>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Trail Switch = False</div>
-      <SwitchLabel label="عنوان المفتاح" checked={false} rtl trailSwitch={false} />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Trail Switch = True</div>
-      <SwitchLabel label="عنوان المفتاح" checked={true} showIcon rtl trailSwitch={true} />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Helper + Alert</div>
-      <SwitchLabel
-        label="عنوان المفتاح"
-        checked={false}
-        rtl
-        helperText="يكتب المحتوى الإضافي هنا في حال ان عنوان الاختيار يحتاج الى شرح أو تفصيل."
-        alertMessage="رسالة خطأ أو تحذير"
-      />
-    </div>
-  </div>
-</div>
-
-{/* ── Switch Label — All States ────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Switch Label — All States</h2>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 420 }}>
-    {['default', 'hovered', 'pressed', 'focused', 'disabled'].map((state) => (
-      <div key={state}>
-        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{state}</div>
-        <SwitchLabel
-          label="Switch Label"
-          checked={state !== 'disabled' && state !== 'default'}
-          state={state}
-          helperText="Helper text appears here."
-        />
-      </div>
-    ))}
-  </div>
-</div>
-
-{/* ── Props: Switch ────────────────────────────────────────── */}
-<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — Switch</h2>
-  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['checked', 'boolean', 'false', 'On (true) or Off (false)'],
-        ['showIcon', 'boolean', 'false', 'Show tick icon inside thumb when on'],
-        ['state', "'default'|'hovered'|'pressed'|'focused'|'disabled'", "'default'", 'Visual state'],
-        ['rtl', 'boolean', 'false', 'RTL layout — thumb starts on right when off'],
-        ['onChange', 'function', '—', 'Called with new boolean value on click'],
-      ].map(([prop, type, def, desc]) => (
-        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
-          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-{/* ── Props: SwitchLabel ───────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — SwitchLabel</h2>
-  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['label', 'string', "'Switch Label'", 'Label text'],
-        ['checked', 'boolean', 'false', 'Switch on/off state'],
-        ['showIcon', 'boolean', 'false', 'Show tick icon in thumb when on'],
-        ['state', "'default'|'hovered'|'pressed'|'focused'|'disabled'", "'default'", 'Visual state of the switch'],
-        ['trailSwitch', 'boolean', 'false', 'Move switch to trailing side (right in LTR, left in RTL)'],
-        ['helperText', 'string | null', 'null', 'Optional helper text below the label row'],
-        ['alertMessage', 'string | null', 'null', 'Optional error/alert message with alert-circle icon'],
-        ['rtl', 'boolean', 'false', 'RTL layout'],
-        ['onChange', 'function', '—', 'Called with new boolean value on toggle'],
-      ].map(([prop, type, def, desc]) => (
-        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
-          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-{/* ── Design Tokens ────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
-  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['Track OFF default', '#1F2A37', 'Border colour, thumb fill'],
-        ['Track OFF hovered', '#0D121C', 'Darker border + thumb on hover'],
-        ['Track OFF pressed', '#4D5761', 'Lighter on press'],
-        ['Track OFF disabled', '#6C7C96', 'Border only when disabled'],
-        ['Thumb OFF disabled', '#D2D6DB', 'Muted thumb when disabled'],
-        ['Track ON default', '#1849A9', 'Blue fill for on state'],
-        ['Track ON hovered', '#102A56', 'Darker blue on hover'],
-        ['Track ON focused', '#D2D6DB', 'Light grey on keyboard focus'],
-        ['Thumb ON all', '#F9FAFB', 'White thumb in on state'],
-        ['Focus ring hover', '#F3F4F6', 'Outer glow on hover/press'],
-        ['Focus ring focus', '#00001C', 'Keyboard focus outline'],
-        ['Label text', '#000B36', 'SwitchLabel label'],
-        ['Helper text', '#233A61', 'SwitchLabel helper text'],
-        ['Alert text / icon', '#A30000', 'SwitchLabel alert message'],
-      ].map(([token, value, usage]) => (
-        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
-          <td style={{ padding: '10px 14px' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
-              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
-            </span>
-          </td>
-          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-{/* ── Usage ────────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 16 }}>Usage</h2>
-  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 8, padding: 20, fontSize: 13, lineHeight: 1.7, overflowX: 'auto', color: '#374151' }}>{`import { Switch, SwitchLabel } from './Switch';
-
-// Standalone switch
-<Switch checked={on} onChange={setOn} />
-
-// With tick icon
-<Switch checked={on} showIcon onChange={setOn} />
-
-// RTL standalone
-<Switch checked={on} rtl onChange={setOn} />
-
-// Switch with label (switch leads)
-<SwitchLabel
-  label="Dark Mode"
-  checked={on}
-  showIcon
-  onChange={setOn}
-/>
-
-// Switch trails (right side in LTR)
-<SwitchLabel
-  label="Notifications"
-  checked={on}
-  trailSwitch
-  onChange={setOn}
-/>
-
-// With helper text and alert
-<SwitchLabel
-  label="Enable feature"
-  checked={on}
-  helperText="This setting affects all users."
-  alertMessage="Permission required to change this setting."
-  onChange={setOn}
-/>
-
-// RTL with all options
-<SwitchLabel
-  label="عنوان المفتاح"
-  checked={on}
-  showIcon
-  rtl
-  trailSwitch
-  helperText="نص مساعد"
-  onChange={setOn}
-/>`}</pre>
-</div>
-
-{/* ── Accessibility ─────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 12 }}>Accessibility</h2>
-  <ul style={{ fontSize: 14, color: '#374151', lineHeight: 2, paddingLeft: 20 }}>
-    <li>The track renders as <code>&lt;button role="switch"&gt;</code> with <code>aria-checked</code> reflecting on/off state.</li>
-    <li>Keyboard operable: Space and Enter toggle the switch.</li>
-    <li>Disabled switches receive <code>disabled</code> attribute and <code>pointer-events: none</code>.</li>
-    <li><code>:focus-visible</code> shows a <code>#00001C</code> outline for keyboard navigation.</li>
-    <li>RTL support via <code>dir="rtl"</code> and explicit thumb mirroring.</li>
-  </ul>
+))}
 </div>
 
 </div>

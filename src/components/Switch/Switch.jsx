@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Switch.module.css';
-import { Icon } from '../icons/Icon';
 
 /**
  * Switch — Masterteam Design System
@@ -8,7 +7,7 @@ import { Icon } from '../icons/Icon';
  *
  * Switch props:
  *   checked        boolean  — on/off state
- *   showIcon       boolean  — show tick icon inside thumb when on (only visible when checked)
+ *   showIcon       boolean  — show tick icon inside thumb when on
  *   state          'default'|'hovered'|'pressed'|'focused'|'disabled'
  *   rtl            boolean
  *   onChange       function — called with new boolean value
@@ -26,6 +25,36 @@ import { Icon } from '../icons/Icon';
  *   onChange       function
  */
 
+/* ── Inline icons (replaces external Icon dependency) ────────── */
+function TickIcon({ size = 10, className }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 10 10"
+      fill="none" aria-hidden="true" className={className}
+    >
+      <path
+        d="M1.5 5l2.5 2.5 4.5-5"
+        stroke="currentColor" strokeWidth="1.5"
+        strokeLinecap="round" strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function AlertIcon({ size = 16 }) {
+  return (
+    <svg
+      width={size} height={size} viewBox="0 0 16 16"
+      fill="none" aria-hidden="true"
+    >
+      <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M8 5v3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="8" cy="11" r="0.75" fill="currentColor" />
+    </svg>
+  );
+}
+
+/* ── State map ───────────────────────────────────────────────── */
 const STATE_MAP = {
   default:  'stateDefault',
   hovered:  'stateHovered',
@@ -46,6 +75,17 @@ export function Switch({
 }) {
   const isDisabled = state === 'disabled';
 
+  /* squishing: true for ~150 ms after every toggle, adds .thumbSquish
+     which widens the thumb to 22 px via CSS transition (squish effect).
+     CSS transitions on left/right handle the slide. No @keyframes needed. */
+  const [squishing, setSquishing] = useState(false);
+
+  useEffect(() => {
+    if (!squishing) return;
+    const t = setTimeout(() => setSquishing(false), 150);
+    return () => clearTimeout(t);
+  }, [squishing]);
+
   const trackCls = [
     styles.track,
     checked ? styles.trackOn : styles.trackOff,
@@ -60,10 +100,14 @@ export function Switch({
     checked ? styles.thumbOn : styles.thumbOff,
     rtl && styles.thumbRtl,
     checked && rtl && styles.thumbRtlOn,
+    squishing && styles.thumbSquish,
   ].filter(Boolean).join(' ');
 
   const handleChange = () => {
-    if (!isDisabled) onChange?.(!checked);
+    if (!isDisabled) {
+      setSquishing(true);
+      onChange?.(!checked);
+    }
   };
 
   return (
@@ -80,7 +124,7 @@ export function Switch({
     >
       <span className={thumbCls}>
         {showIcon && checked && (
-          <Icon name="tick" size={10} className={styles.thumbIcon} />
+          <TickIcon size={10} className={styles.thumbIcon} />
         )}
       </span>
     </button>
@@ -131,7 +175,7 @@ export function SwitchLabel({
       {alertMessage && (
         <div className={styles.alertRow}>
           <span className={styles.alertIcon} aria-hidden="true">
-            <Icon name="alert" size={16} />
+            <AlertIcon size={16} />
           </span>
           <span className={styles.alertText}>{alertMessage}</span>
         </div>
