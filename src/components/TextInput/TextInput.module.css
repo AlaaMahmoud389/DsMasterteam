@@ -1,0 +1,341 @@
+/*
+ * TextInput.module.css — Masterteam Design System
+ *
+ * Design tokens:
+ *
+ *   Field height:      Medium = 32px   Large = 40px
+ *   Border:            1px solid  border-radius 4px
+ *   Padding (LTR):     inline-start 8px  inline-end 8px
+ *   Padding (RTL):     inline-start 8px  inline-end 8px  (logical — flips automatically)
+ *   Icon gap:          8px (gap between icon and input text)
+ *
+ *   Border colors by state:
+ *     Default   #D2D6DB
+ *     Hovered   #1F2A37
+ *     Pressed   #D2D6DB
+ *     Focused   #D2D6DB
+ *     Read-only #CED3DC
+ *     Disabled  #E5E7EB
+ *     Error     #A30000
+ *
+ *   Background colors by state:
+ *     Default   #ffffff
+ *     Hovered   #ffffff
+ *     Pressed   #F3F4F6
+ *     Focused   #ffffff
+ *     Read-only transparent
+ *     Disabled  transparent
+ *     Error     #ffffff
+ *
+ *   Label Medium:      14px / 400 / 20px lh   color #000B36
+ *   Label Large:       16px / 400 / 24px lh   color #000B36
+ *   Label Semibold:    weight 600
+ *   Label Disabled:    color #6C7C96
+ *   Required asterisk: color #A30000  gap 4px  matches label size
+ *   Label → Field gap: 8px
+ *
+ *   Placeholder color: #B6BDCA
+ *   Input text color:  #000B36
+ *   Disabled text:     #6C7C96
+ *
+ *   Leading icon:      20×20px  gap 8px from text
+ *   Helper icon:       16×16px  color #384250
+ *   Helper text:       14px / 400 / 20px lh  gap-icon 8px
+ *     Normal color:    #384250
+ *     Error color:     #A30000
+ *   Field → Helper gap: 8px
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Wrapper
+   ══════════════════════════════════════════════════════════════════ */
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Label row
+   ══════════════════════════════════════════════════════════════════ */
+.labelRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px !important;
+}
+
+.label {
+  color: #000b36;
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.labelMedium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.labelLarge {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.labelSemibold {
+  font-weight: 600;
+}
+
+.labelDisabled {
+  color: #6c7c96;
+}
+
+.required {
+  color: #a30000;
+  font-family: inherit;
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.requiredMedium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.requiredLarge {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Field container
+   ══════════════════════════════════════════════════════════════════ */
+.field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding-inline-start: 8px;
+  padding-inline-end: 8px;
+  width: 100%;
+  transition: border-color 100ms ease, background 100ms ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Bottom indicator bar ── */
+.field::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  border-radius: 9999px;
+  background: transparent;
+  left: 50%;
+  right: 50%;
+  transition: left 150ms ease, right 150ms ease;
+}
+
+/* Pressed: 1/3 width centered */
+.fieldPressed::after,
+.fieldDefault:active::after {
+  background: #1849a9;
+  left: 33.33%;
+  right: 33.33%;
+}
+
+/* Focused: full width */
+.fieldFocused::after,
+.fieldDefault:focus-within::after {
+  background: #1849a9;
+  left: 0;
+  right: 0;
+}
+
+/* Error + pressed: 1/3 width bar in error color */
+.fieldError.fieldPressed::after,
+.fieldError:active::after {
+  background: #a30000;
+  left: 33.33%;
+  right: 33.33%;
+}
+
+/* Error + focused: full-width bar in error color */
+.fieldError.fieldFocused::after,
+.fieldError:focus-within::after {
+  background: #a30000;
+  left: 0;
+  right: 0;
+}
+
+.fieldMedium { height: 32px; }
+.fieldLarge  { height: 40px; }
+
+/* ── State classes ── */
+.fieldDefault  { border-color: #d2d6db; background: #ffffff; }
+.fieldHovered  { border-color: #1f2a37; background: #ffffff; }
+.fieldPressed  { border-color: #d2d6db; background: #f3f4f6; }
+.fieldFocused  { border-color: #d2d6db; background: #ffffff; }
+.fieldReadOnly { border-color: #ced3dc; background: transparent; }
+.fieldDisabled { border-color: #e5e7eb; background: transparent; pointer-events: none; }
+.fieldError    { border-color: #a30000; background: #ffffff; }
+
+/* ── Interactive hover (only applies in default/no-override state) ── */
+.fieldDefault:hover        { border-color: #1f2a37; }
+.fieldDefault:focus-within { border-color: #d2d6db; background: #ffffff; }
+.fieldDefault:active       { background: #f3f4f6; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Native input element
+   ══════════════════════════════════════════════════════════════════ */
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  color: #000b36;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.inputMedium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.inputLarge {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.input::placeholder {
+  color: #b6bdca;
+  opacity: 1;
+}
+
+.input:disabled {
+  color: #6c7c96;
+}
+
+.input[readonly] {
+  cursor: default;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Helper text row
+   ══════════════════════════════════════════════════════════════════ */
+.helperRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px !important;
+}
+
+.helperText {
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.helperTextNormal { color: #384250; }
+.helperTextError  { color: #a30000; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Variant — Filled Darker
+   ══════════════════════════════════════════════════════════════════ */
+.variantFilledDarker.fieldDefault  { border-color: transparent; background: #f3f4f6; }
+.variantFilledDarker.fieldHovered  { border-color: #d2d6db;     background: #f3f4f6; }
+.variantFilledDarker.fieldPressed  { border-color: #d2d6db;     background: #f3f4f6; }
+.variantFilledDarker.fieldFocused  { border-color: #d2d6db;     background: #ffffff; }
+.variantFilledDarker.fieldReadOnly { border-color: #ced3dc;     background: transparent; }
+.variantFilledDarker.fieldDisabled { border-color: #e5e7eb;     background: transparent; }
+.variantFilledDarker.fieldError    { border-color: #a30000;     background: #f3f4f6; }
+
+/* Interactive overrides for filled-darker default state */
+.variantFilledDarker.fieldDefault:hover        { border-color: #d2d6db; background: #f3f4f6; }
+.variantFilledDarker.fieldDefault:focus-within { border-color: #d2d6db; background: #ffffff; }
+.variantFilledDarker.fieldDefault:active       { border-color: #d2d6db; background: #f3f4f6; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Variant — Filled Lighter
+   ══════════════════════════════════════════════════════════════════ */
+.variantFilledLighter.fieldDefault  { border-color: transparent; background: #fcfcfd; }
+.variantFilledLighter.fieldHovered  { border-color: #d2d6db;     background: #fcfcfd; }
+.variantFilledLighter.fieldPressed  { border-color: #d2d6db;     background: #f3f4f6; }
+.variantFilledLighter.fieldFocused  { border-color: #d2d6db;     background: #ffffff; }
+.variantFilledLighter.fieldReadOnly { border-color: #d2d6db;     background: transparent; }
+.variantFilledLighter.fieldDisabled { border-color: #e5e7eb;     background: transparent; }
+.variantFilledLighter.fieldError    { border-color: #a30000;     background: #fcfcfd; }
+
+/* Interactive overrides for filled-lighter default state */
+.variantFilledLighter.fieldDefault:hover        { border-color: #d2d6db; background: #fcfcfd; }
+.variantFilledLighter.fieldDefault:focus-within { border-color: #d2d6db; background: #ffffff; }
+.variantFilledLighter.fieldDefault:active       { border-color: #d2d6db; background: #f3f4f6; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Field layout modifiers for prefix / suffix
+   ══════════════════════════════════════════════════════════════════ */
+.fieldHasPrefix { padding-inline-start: 0; }
+.fieldHasSuffix { padding-inline-end:   0; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Affix — base (shared by prefix and suffix)
+   ══════════════════════════════════════════════════════════════════ */
+.affix {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  align-self: stretch;
+  padding: 0 8px;
+  margin: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  transition: background 100ms ease;
+}
+
+/* Separator line */
+.affixPrefix { border-inline-end:   1px solid #d2d6db; }
+.affixSuffix { border-inline-start: 1px solid #d2d6db; }
+
+/* Sizes — font only; height is controlled by align-self: stretch */
+.affixMedium { font-size: 14px; line-height: 20px; }
+.affixLarge  { font-size: 16px; line-height: 24px; }
+
+/* ── Solid style ── */
+.affixSolidDefault  { background: #f3f4f6; color: #000b36; }
+.affixSolidHovered  { background: #e5e7eb; color: #000b36; }
+.affixSolidPressed  { background: #d2d6db; color: #000b36; }
+.affixSolidSelected { background: #4d5761; color: #f9fafb; }
+.affixSolidFocused  { background: #e5e7eb; color: #000b36; box-shadow: inset 0 0 0 4px #000b36; }
+.affixSolidDisabled { background: #d2d6db; color: #6c7c96; cursor: default; pointer-events: none; }
+
+/* ── Subtle style ── */
+.affixSubtleDefault  { background: transparent; color: #000b36; }
+.affixSubtleHovered  { background: #e5e7eb;     color: #000b36; }
+.affixSubtlePressed  { background: #d2d6db;     color: #000b36; }
+.affixSubtleSelected { background: #4d5761;     color: #f9fafb; }
+.affixSubtleFocused  { background: #e5e7eb;     color: #000b36; box-shadow: inset 0 0 0 4px #000b36; }
+.affixSubtleDisabled { background: transparent; color: #6c7c96; cursor: default; pointer-events: none; }

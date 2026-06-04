@@ -1,0 +1,787 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import React, { useState } from 'react';
+import { TextInput } from './TextInput';
+
+export const InteractiveDemo = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        label="Label"
+        placeholder="Placeholder"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showHelperText
+        helperText="Helper text"
+      />
+    </div>
+  );
+};
+
+export const InteractiveLarge = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        size="large"
+        label="Label"
+        placeholder="Placeholder"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showHelperText
+        helperText="Helper text"
+      />
+    </div>
+  );
+};
+
+export const InteractiveWithIcon = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        label="Label"
+        placeholder="Placeholder"
+        showIcon
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showHelperText
+        helperText="Helper text"
+      />
+    </div>
+  );
+};
+
+export const InteractivePrefix = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        label="Amount"
+        placeholder="0.00"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showPrefix
+        prefixType="dropdown"
+        prefixStyle="solid"
+        prefixText="USD"
+        showHelperText
+        helperText="Enter the transaction amount"
+      />
+    </div>
+  );
+};
+
+export const InteractiveSuffix = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        label="Website"
+        placeholder="yoursite"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showSuffix
+        suffixType="dropdown"
+        suffixStyle="solid"
+        suffixText=".com"
+        showHelperText
+        helperText="Choose your domain extension"
+      />
+    </div>
+  );
+};
+
+export const InteractiveBoth = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        label="Price"
+        placeholder="0.00"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showPrefix
+        prefixType="dropdown"
+        prefixStyle="solid"
+        prefixText="USD"
+        showSuffix
+        suffixType="text"
+        suffixStyle="subtle"
+        suffixText="per unit"
+        showHelperText
+        helperText="Unit price before tax"
+      />
+    </div>
+  );
+};
+
+export const InteractiveFilledDarker = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        variant="filled-darker"
+        label="Label"
+        placeholder="Placeholder"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showHelperText
+        helperText="Helper text"
+      />
+    </div>
+  );
+};
+
+export const InteractiveFilledLighter = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        variant="filled-lighter"
+        label="Label"
+        placeholder="Placeholder"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showHelperText
+        helperText="Helper text"
+      />
+    </div>
+  );
+};
+
+export const InteractiveRTL = () => {
+  const [val, setVal] = useState('');
+  return (
+    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif', maxWidth: 320 }}>
+      <TextInput
+        rtl
+        label="تسمية"
+        placeholder="النص التوضيحي"
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        showHelperText
+        helperText="نص المساعدة"
+      />
+    </div>
+  );
+};
+
+<Meta title="Components/TextInput/Docs" />
+
+# Text Input
+
+A single-line text field with optional label, leading icon, and helper text. Supports two sizes, seven visual states, error mode, required marking, and RTL layout.
+
+---
+
+## Interactive — Medium
+
+<InteractiveDemo />
+
+## Interactive — Large
+
+<InteractiveLarge />
+
+## Interactive — With Leading Icon
+
+<InteractiveWithIcon />
+
+## Interactive — With Prefix
+
+<InteractivePrefix />
+
+## Interactive — With Suffix
+
+<InteractiveSuffix />
+
+## Interactive — Prefix & Suffix
+
+<InteractiveBoth />
+
+## Interactive — Filled Darker
+
+<InteractiveFilledDarker />
+
+## Interactive — Filled Lighter
+
+<InteractiveFilledLighter />
+
+## Interactive — RTL
+
+<InteractiveRTL />
+
+---
+
+## States
+
+### Default
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="default" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Hovered
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="hovered" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Pressed
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="pressed" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Focused
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="focused" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Read-only
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="read-only" label="Label" defaultValue="Read-only value" showHelperText helperText="Helper text" />
+</div>
+
+### Disabled
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="disabled" label="Label" defaultValue="Disabled value" showHelperText helperText="Helper text" />
+</div>
+
+### Error
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput error label="Label" placeholder="Placeholder" showHelperText helperText="This field has an error" />
+</div>
+
+---
+
+## Sizes
+
+### Medium (32px)
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput size="medium" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Large (40px)
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput size="large" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+---
+
+## Label Variants
+
+### Regular (default)
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput label="Regular Label" labelType="regular" placeholder="Placeholder" />
+</div>
+
+### Semibold
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput label="Semibold Label" labelType="semibold" placeholder="Placeholder" />
+</div>
+
+### Required — Medium
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput label="Required Field" required size="medium" placeholder="Placeholder" />
+</div>
+
+### Required — Large
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput label="Required Field" required size="large" placeholder="Placeholder" />
+</div>
+
+### Disabled Label
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput label="Disabled Label" state="disabled" placeholder="Placeholder" />
+</div>
+
+---
+
+## With Leading Icon
+
+### Default + Icon
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput showIcon label="Label" placeholder="Placeholder" />
+</div>
+
+### Large + Icon
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput size="large" showIcon label="Label" placeholder="Placeholder" />
+</div>
+
+### Disabled + Icon
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput state="disabled" showIcon label="Label" placeholder="Placeholder" />
+</div>
+
+### Error + Icon
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput error showIcon label="Label" placeholder="Placeholder" showHelperText helperText="This field has an error" />
+</div>
+
+---
+
+## Helper Text
+
+### Normal
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput label="Label" placeholder="Placeholder" showHelperText helperText="This is a helper message" />
+</div>
+
+### Error
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput error label="Label" placeholder="Placeholder" showHelperText helperText="This field is required" />
+</div>
+
+---
+
+## Prefix
+
+A prefix element sits at the leading edge of the field (left in LTR, right in RTL). Three types are available: Dropdown, Dropdown + Icon, and Text Only.
+
+### Prefix — Types (Solid)
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Dropdown</div><TextInput label="Label" placeholder="Placeholder" showPrefix prefixType="dropdown" prefixStyle="solid" prefixText="USD" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Dropdown + Icon</div><TextInput label="Label" placeholder="Placeholder" showPrefix prefixType="dropdown-icon" prefixStyle="solid" prefixText="USD" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Text Only</div><TextInput label="Label" placeholder="Placeholder" showPrefix prefixType="text" prefixStyle="solid" prefixText="USD" /></div>
+</div>
+
+### Prefix — States (Solid)
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  {['default','hovered','pressed','selected','focused','disabled'].map(s => (
+    <div key={s}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>{s}</div>
+      <TextInput label="Label" placeholder="Placeholder" showPrefix prefixType="dropdown" prefixStyle="solid" prefixState={s} prefixText="USD" />
+    </div>
+  ))}
+</div>
+
+### Prefix — States (Subtle)
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  {['default','hovered','pressed','selected','focused','disabled'].map(s => (
+    <div key={s}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>{s}</div>
+      <TextInput label="Label" placeholder="Placeholder" showPrefix prefixType="dropdown" prefixStyle="subtle" prefixState={s} prefixText="USD" />
+    </div>
+  ))}
+</div>
+
+### Prefix — Large
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Solid · Large</div><TextInput size="large" label="Label" placeholder="Placeholder" showPrefix prefixType="dropdown-icon" prefixStyle="solid" prefixText="USD" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Subtle · Large</div><TextInput size="large" label="Label" placeholder="Placeholder" showPrefix prefixType="dropdown-icon" prefixStyle="subtle" prefixText="USD" /></div>
+</div>
+
+### Prefix — RTL
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>RTL — Solid</div><TextInput rtl label="تسمية" placeholder="النص التوضيحي" showPrefix prefixType="dropdown" prefixStyle="solid" prefixText="SAR" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>RTL — Subtle</div><TextInput rtl label="تسمية" placeholder="النص التوضيحي" showPrefix prefixType="dropdown" prefixStyle="subtle" prefixText="SAR" /></div>
+</div>
+
+---
+
+## Suffix
+
+A suffix element sits at the trailing edge of the field (right in LTR, left in RTL). Same three types and two styles as the prefix.
+
+### Suffix — Types (Solid)
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Dropdown</div><TextInput label="Label" placeholder="Placeholder" showSuffix suffixType="dropdown" suffixStyle="solid" suffixText=".com" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Dropdown + Icon</div><TextInput label="Label" placeholder="Placeholder" showSuffix suffixType="dropdown-icon" suffixStyle="solid" suffixText=".com" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Text Only</div><TextInput label="Label" placeholder="Placeholder" showSuffix suffixType="text" suffixStyle="solid" suffixText=".com" /></div>
+</div>
+
+### Suffix — States (Solid)
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  {['default','hovered','pressed','selected','focused','disabled'].map(s => (
+    <div key={s}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>{s}</div>
+      <TextInput label="Label" placeholder="Placeholder" showSuffix suffixType="dropdown" suffixStyle="solid" suffixState={s} suffixText=".com" />
+    </div>
+  ))}
+</div>
+
+### Suffix — States (Subtle)
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  {['default','hovered','pressed','selected','focused','disabled'].map(s => (
+    <div key={s}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>{s}</div>
+      <TextInput label="Label" placeholder="Placeholder" showSuffix suffixType="dropdown" suffixStyle="subtle" suffixState={s} suffixText=".com" />
+    </div>
+  ))}
+</div>
+
+### Prefix & Suffix Combined
+
+<div style={{ padding: '8px 0', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Both — Solid</div><TextInput label="Label" placeholder="0.00" showPrefix prefixType="dropdown" prefixStyle="solid" prefixText="USD" showSuffix suffixType="text" suffixStyle="solid" suffixText=".00" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Both — Subtle</div><TextInput label="Label" placeholder="0.00" showPrefix prefixType="dropdown" prefixStyle="subtle" prefixText="USD" showSuffix suffixType="text" suffixStyle="subtle" suffixText=".00" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Both — Error</div><TextInput error label="Label" placeholder="0.00" showPrefix prefixType="dropdown" prefixStyle="solid" prefixText="USD" showSuffix suffixType="text" suffixStyle="solid" suffixText=".00" showHelperText helperText="Invalid amount" /></div>
+  <div><div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8 }}>Both — RTL</div><TextInput rtl label="تسمية" placeholder="النص التوضيحي" showPrefix prefixType="dropdown" prefixStyle="solid" prefixText="SAR" showSuffix suffixType="text" suffixStyle="subtle" suffixText="شهرياً" /></div>
+</div>
+
+---
+
+## Variant — Filled Darker
+
+### Default
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" state="default" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Hovered
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" state="hovered" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Pressed
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" state="pressed" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Focused
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" state="focused" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Read-only
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" state="read-only" label="Label" defaultValue="Read-only value" showHelperText helperText="Helper text" />
+</div>
+
+### Disabled
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" state="disabled" label="Label" defaultValue="Disabled value" showHelperText helperText="Helper text" />
+</div>
+
+### Error
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-darker" error label="Label" placeholder="Placeholder" showHelperText helperText="This field has an error" />
+</div>
+
+---
+
+## Variant — Filled Lighter
+
+### Default
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" state="default" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Hovered
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" state="hovered" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Pressed
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" state="pressed" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Focused
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" state="focused" label="Label" placeholder="Placeholder" showHelperText helperText="Helper text" />
+</div>
+
+### Read-only
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" state="read-only" label="Label" defaultValue="Read-only value" showHelperText helperText="Helper text" />
+</div>
+
+### Disabled
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" state="disabled" label="Label" defaultValue="Disabled value" showHelperText helperText="Helper text" />
+</div>
+
+### Error
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput variant="filled-lighter" error label="Label" placeholder="Placeholder" showHelperText helperText="This field has an error" />
+</div>
+
+---
+
+## RTL
+
+### RTL — Default
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput rtl label="تسمية" placeholder="النص التوضيحي" showHelperText helperText="نص المساعدة" />
+</div>
+
+### RTL — Required
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput rtl label="حقل مطلوب" required placeholder="النص التوضيحي" />
+</div>
+
+### RTL — With Icon
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput rtl showIcon label="تسمية" placeholder="النص التوضيحي" />
+</div>
+
+### RTL — Error
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput rtl error label="تسمية" placeholder="النص التوضيحي" showHelperText helperText="هذا الحقل مطلوب" />
+</div>
+
+### RTL — Disabled
+
+<div style={{ padding: '8px 0', maxWidth: 320, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
+  <TextInput rtl state="disabled" label="تسمية" defaultValue="قيمة معطّلة" />
+</div>
+
+---
+
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['label',          'string',                                                                    "'Label'",       'Label text shown above the input'],
+        ['showLabel',      'boolean',                                                                   'true',          'Show or hide the label'],
+        ['labelType',      "'regular' | 'semibold'",                                                    "'regular'",     'Font weight of the label'],
+        ['required',       'boolean',                                                                   'false',         'Show a red * before the label to mark the field as required'],
+        ['size',           "'medium' | 'large'",                                                        "'medium'",      'Height of the input field — medium=32px, large=40px'],
+        ['state',          "'default' | 'hovered' | 'pressed' | 'focused' | 'read-only' | 'disabled'", "'default'",     'Visual state of the field — drives border and background color'],
+        ['error',          'boolean',                                                                   'false',         'Applies error border (#A30000) and changes helper text color to red'],
+        ['variant',        "'default' | 'filled-darker' | 'filled-lighter'",                             "'default'",     'Visual style variant — controls field background and border color per state'],
+        ['placeholder',    'string',                                                                    "'Placeholder'", 'Placeholder text shown when the field is empty'],
+        ['value',          'string',                                                                    '—',             'Controlled input value — requires onChange'],
+        ['defaultValue',   'string',                                                                    '—',             'Uncontrolled initial value'],
+        ['onChange',       '(e: ChangeEvent) => void',                                                  '—',             'Called on every keystroke when used in controlled mode'],
+        ['showIcon',       'boolean',                                                                   'false',         'Show the leading icon inside the field'],
+        ['icon',           'ReactNode',                                                                 '—',             'Custom leading icon (20×20px); defaults to a generic list icon'],
+        ['showHelperText', 'boolean',                                                                   'false',         'Show the helper text row below the field'],
+        ['helperText',     'string',                                                                    "'Helper text'", 'Helper message — red when error=true'],
+        ['helperIcon',     'ReactNode',                                                                 '—',             'Custom helper icon (16×16px); defaults to help-circle'],
+        ['rtl',            'boolean',                                                                   'false',         'Right-to-left layout — flips padding and icon position'],
+        ['showPrefix',     'boolean',                                                                   'false',         'Show a prefix element at the leading edge of the field'],
+        ['prefixType',     "'dropdown' | 'dropdown-icon' | 'text'",                                     "'dropdown'",    'Dropdown: text + chevron. Dropdown+Icon: icon + text + chevron. Text: label only'],
+        ['prefixStyle',    "'solid' | 'subtle'",                                                        "'solid'",       'Solid has a filled background; Subtle has a transparent background by default'],
+        ['prefixState',    "'default' | 'hovered' | 'pressed' | 'selected' | 'focused' | 'disabled'",  "'default'",     'Visual state of the prefix element'],
+        ['prefixText',     'string',                                                                    "'Prefix'",      'Text label shown inside the prefix'],
+        ['prefixIcon',     'ReactNode',                                                                 '—',             'Custom leading icon for dropdown-icon type (24×24px)'],
+        ['onPrefixClick',  '() => void',                                                               '—',             'Click handler for the prefix button'],
+        ['showSuffix',     'boolean',                                                                   'false',         'Show a suffix element at the trailing edge of the field'],
+        ['suffixType',     "'dropdown' | 'dropdown-icon' | 'text'",                                     "'dropdown'",    'Same type options as prefixType'],
+        ['suffixStyle',    "'solid' | 'subtle'",                                                        "'solid'",       'Same style options as prefixStyle'],
+        ['suffixState',    "'default' | 'hovered' | 'pressed' | 'selected' | 'focused' | 'disabled'",  "'default'",     'Visual state of the suffix element'],
+        ['suffixText',     'string',                                                                    "'Suffix'",      'Text label shown inside the suffix'],
+        ['suffixIcon',     'ReactNode',                                                                 '—',             'Custom leading icon for dropdown-icon type (24×24px)'],
+        ['onSuffixClick',  '() => void',                                                               '—',             'Click handler for the suffix button'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['Field height — medium',          '32px',      'Height of the medium text input field'],
+        ['Field height — large',           '40px',      'Height of the large text input field'],
+        ['Border width',                   '1px',       'Stroke thickness on all four sides'],
+        ['Border radius',                  '4px',       'Corner radius on all four corners'],
+        ['Padding inline-start (LTR left)','8px',       'Left padding in LTR; right padding in RTL'],
+        ['Padding inline-end (LTR right)', '8px',       'Right padding in LTR; left padding in RTL'],
+        ['Border — default',               '#D2D6DB',   'Border color in default state'],
+        ['Border — hovered',               '#1F2A37',   'Border color on hover'],
+        ['Border — pressed',               '#D2D6DB',   'Border color in pressed (active) state'],
+        ['Border — focused',               '#D2D6DB',   'Border color in focused state'],
+        ['Border — read-only',             '#CED3DC',   'Border color when read-only'],
+        ['Border — disabled',              '#E5E7EB',   'Border color when disabled'],
+        ['Border — error',                 '#A30000',   'Border color when error=true'],
+        ['Background — default',           '#ffffff',   'Background in default state'],
+        ['Background — hovered',           '#ffffff',   'Background on hover'],
+        ['Background — pressed',           '#F3F4F6',   'Background in pressed (active) state'],
+        ['Background — focused',           '#ffffff',   'Background in focused state'],
+        ['Background — read-only',         'transparent','No background when read-only'],
+        ['Background — disabled',          'transparent','No background when disabled'],
+        ['Background — error',             '#ffffff',   'Background when error=true'],
+        ['Placeholder color',              '#B6BDCA',   'Color of placeholder text inside the field'],
+        ['Input text color',               '#000B36',   'Color of typed text in active fields'],
+        ['Input text — disabled',          '#6C7C96',   'Text color when the field is disabled'],
+        ['Label color',                    '#000B36',   'Label text color when not disabled'],
+        ['Label color — disabled',         '#6C7C96',   'Label text color when state=disabled'],
+        ['Label — medium size',            '14px / 20px','Font size / line-height for medium label'],
+        ['Label — large size',             '16px / 24px','Font size / line-height for large label'],
+        ['Label — semibold weight',        '600',       'Font weight when labelType="semibold"'],
+        ['Label → field gap',              '8px',       'Vertical space between the label row and the input field'],
+        ['Required asterisk color',        '#A30000',   'Color of the * shown when required=true'],
+        ['Required asterisk — medium',     '14px / 20px','Size matches medium label'],
+        ['Required asterisk — large',      '16px / 24px','Size matches large label'],
+        ['Required asterisk gap',          '4px',       'Gap between the * character and the label text'],
+        ['Leading icon size',              '20×20px',   'Width and height of the leading icon inside the field'],
+        ['Leading icon gap',               '8px',       'Gap between the leading icon and the input text'],
+        ['Helper icon size',               '16×16px',   'Width and height of the helper icon below the field'],
+        ['Helper icon color',              '#384250',   'Stroke/fill color of the helper icon (always, regardless of error)'],
+        ['Helper text size',               '14px / 20px','Font size / line-height for helper text'],
+        ['Helper text — normal',           '#384250',   'Helper text color when error=false'],
+        ['Helper text — error',            '#A30000',   'Helper text color when error=true'],
+        ['Helper icon–text gap',           '8px',       'Gap between helper icon and helper text'],
+        ['Field → helper gap',             '8px',       'Vertical space between the field and the helper text row'],
+        ['Affix padding',                    '0 8px',     'Horizontal padding inside the prefix / suffix element'],
+        ['Affix separator',                 '1px #D2D6DB','Border between the affix and the input area'],
+        ['Affix internal gap',              '4px',       'Gap between icon, text, and chevron within the affix'],
+        ['Affix medium font',               '14px / 20px','Font size / line-height for medium affix'],
+        ['Affix large font',                '16px / 24px','Font size / line-height for large affix'],
+        ['Affix dropdown icon size',        '16×16px',   'Size of the chevron icon in dropdown and dropdown-icon types'],
+        ['Affix leading icon size',         '24×24px',   'Size of the leading icon in dropdown-icon type'],
+        ['Solid — default bg',              '#F3F4F6',   'Background in default state'],
+        ['Solid — hovered bg',              '#E5E7EB',   'Background on hover'],
+        ['Solid — pressed bg',              '#D2D6DB',   'Background in pressed state'],
+        ['Solid — selected bg',             '#4D5761',   'Background when selected'],
+        ['Solid — focused bg',              '#E5E7EB',   'Background when focused'],
+        ['Solid — disabled bg',             '#D2D6DB',   'Background when disabled'],
+        ['Subtle — default bg',             'transparent','No background in default state'],
+        ['Subtle — hovered bg',             '#E5E7EB',   'Background on hover'],
+        ['Subtle — pressed bg',             '#D2D6DB',   'Background in pressed state'],
+        ['Subtle — selected bg',            '#4D5761',   'Background when selected'],
+        ['Subtle — focused bg',             '#E5E7EB',   'Background when focused'],
+        ['Subtle — disabled bg',            'transparent','No background when disabled'],
+        ['Affix text — default',            '#000B36',   'Text / icon color in default, hovered, pressed, and focused states'],
+        ['Affix text — selected',           '#F9FAFB',   'Text / icon color in selected state'],
+        ['Affix text — disabled',           '#6C7C96',   'Text / icon color when disabled'],
+        ['Affix focus ring',                'inset 4px #000B36','Inner box-shadow used as focus indicator'],
+        ['Filled Darker — default bg',       '#F3F4F6',   'Field background in default state (no border)'],
+        ['Filled Darker — hovered border',  '#D2D6DB',   'Border color on hover; bg stays #F3F4F6'],
+        ['Filled Darker — pressed border',  '#D2D6DB',   'Border color in pressed state; bg stays #F3F4F6'],
+        ['Filled Darker — focused bg',      '#ffffff',   'Field background switches to white when focused'],
+        ['Filled Darker — error bg',        '#F3F4F6',   'Field background when error=true'],
+        ['Filled Lighter — default bg',     '#FCFCFD',   'Field background in default state (no border)'],
+        ['Filled Lighter — hovered border', '#D2D6DB',   'Border color on hover; bg stays #FCFCFD'],
+        ['Filled Lighter — pressed bg',     '#F3F4F6',   'Field background switches to #F3F4F6 in pressed state'],
+        ['Filled Lighter — focused bg',     '#ffffff',   'Field background switches to white when focused'],
+        ['Filled Lighter — error bg',       '#FCFCFD',   'Field background when error=true'],
+        ['Bottom indicator color',          '#1849A9',   'Color of the bottom bar shown in pressed and focused states'],
+        ['Bottom indicator height',         '2px',       'Height of the bottom indicator bar'],
+        ['Bottom indicator width — pressed','33.33%',    'Width of the bar in pressed state; centered horizontally'],
+        ['Bottom indicator width — focused','100%',      'Width of the bar in focused state; spans full field width'],
+        ['Font family',                    'IBM Plex Sans Arabic','Font used for all text in the component'],
+      ].map(([token, value, usage]) => (
+        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
+          <td style={{ padding: '10px 14px' }}>
+            {value.startsWith('#') ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
+                <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+              </span>
+            ) : (
+              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+            )}
+          </td>
+          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Usage
+
+```jsx
+import { TextInput } from './TextInput';
+
+// Controlled interactive input
+const [value, setValue] = useState('');
+<TextInput
+  label="Email"
+  placeholder="Enter your email"
+  value={value}
+  onChange={(e) => setValue(e.target.value)}
+  showHelperText
+  helperText="We'll never share your email"
+/>
+
+// Required field with semibold label
+<TextInput label="Full Name" labelType="semibold" required placeholder="John Doe" />
+
+// Error state
+<TextInput
+  label="Password"
+  error
+  placeholder="Enter password"
+  showHelperText
+  helperText="Password must be at least 8 characters"
+/>
+
+// Large with leading icon
+<TextInput size="large" showIcon label="Search" placeholder="Search..." />
+
+// Read-only
+<TextInput state="read-only" label="Username" defaultValue="faisal.rashid" />
+
+// Disabled
+<TextInput state="disabled" label="Email" defaultValue="user@example.com" />
+
+// RTL
+<TextInput rtl label="البريد الإلكتروني" placeholder="أدخل بريدك الإلكتروني" />
+```
