@@ -1,0 +1,169 @@
+/* AreaChart — Masterteam Design System
+   Figma: WTmRAkJVvw0IvZMA7wBdTC / node 4549:4404
+   ──────────────────────────────────────────────────
+   Token map:
+     card bg      → --charts/container/background/default       = #ffffff
+     card pad     → --charts/container/chart-card-2xl-padding   = 24px
+     card radius  → --charts/container/chart-card-radius-sm     = 8px
+     card border  → --charts/container/border/default           = #f3f4f6
+     title        → --charts/header-title/title                 = #000b36  18px/600
+     subtitle     → --charts/header-title/subtitle              = #3c5073  14px/400
+     kpi value    → --charts/progress-bar/text-color/label      = #3c5073  display-sm 30px/600
+     kpi badge bg → --charts/kpi/badge/icon/icon-bg             = rgba(0,97,33,0.1)
+     kpi positive → --charts/kpi/badge/trend/positive-trend     = #006121  12px/500 Inter
+     y-axis label → --charts/axis/title/label-color             = #6c7c96  14px/500
+     y-tick label → --charts/axis/title/label-color             = #6c7c96  14px/400
+     x-cat label  → --charts/header-title/title                 = #000b36  14px/400
+     x-axis title → --charts/axis/title/label-color             = #6c7c96  14px/500
+     gridlines    → --charts/container/border/default           = #f3f4f6
+     series-1…6   → see SERIES_STYLES in JSX
+*/
+
+/* ── Card ─────────────────────────────────────────── */
+
+.card {
+  background: var(--chart-container-bg, #ffffff);
+  border-radius: var(--chart-container-radius, 8px);
+  border: 1px solid var(--chart-border, #f3f4f6);
+  padding: var(--chart-container-padding, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--font-sans, 'IBM Plex Sans Arabic', sans-serif);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ── Header ───────────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: var(--chart-title, #000b36);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--chart-subtitle, #3c5073);
+  margin: 0;
+}
+
+/* ── KPI block ────────────────────────────────────── */
+
+.kpiBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.kpiValue {
+  /* Figma: display-sm / Semibold → 30px / 600 / line-height 38px */
+  font-family: var(--font-display, 'IBM Plex Sans Arabic', sans-serif);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  color: var(--chart-subtitle, #3c5073);
+  margin: 0;
+}
+
+.kpiRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kpiBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 24px;
+  background: var(--chart-kpi-bg, rgba(0, 97, 33, 0.1));
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--chart-kpi-positive, #006121);
+  white-space: nowrap;
+}
+
+.kpiBadgeIcon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.kpiLabel {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--chart-subtitle, #3c5073);
+  white-space: nowrap;
+}
+
+/* ── Content (legend + SVG) ───────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── SVG canvas ───────────────────────────────────── */
+
+.svg {
+  display: block;
+  overflow: visible;
+}
+
+/* ── Hover-only data dots ─────────────────────────── */
+
+.dot {
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  cursor: pointer;
+  outline: none;
+}
+
+.dot:hover,
+.dot:focus-visible {
+  opacity: 1;
+}
+
+/* ── Skeleton ─────────────────────────────────────── */
+
+@keyframes skelPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+.skelPulse  { animation: skelPulse 1.5s ease-in-out infinite; }
+.skelDelay1 { animation-delay: 0.1s; }
+.skelDelay2 { animation-delay: 0.2s; }
+.skelDelay3 { animation-delay: 0.3s; }
+
+/* ── Screen-reader table ──────────────────────────── */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

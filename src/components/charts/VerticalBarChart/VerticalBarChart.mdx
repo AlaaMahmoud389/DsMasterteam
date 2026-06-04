@@ -1,0 +1,1163 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { VerticalBarChart } from './VerticalBarChart';
+import * as VerticalBarChartStories from './VerticalBarChart.stories';
+
+<Meta of={VerticalBarChartStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Charts / Vertical Bar Chart</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Vertical Bar Chart</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>Vertical bars place categories on the horizontal axis and values on the vertical axis. Ideal for time-based categories (months, quarters), short category labels, and natural left-to-right reading order. Supports single, group, stacked, and combo (bar + line overlay) modes with full RTL support.</div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>v 1.0.0</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Figma: 4471:3525</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4471-3525" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['States','#states'],['Interaction States','#interaction-states'],['Axis States','#axis-states'],['Card States','#card-states'],['Tooltip States','#tooltip-states'],['Chart Structure','#chart-structure'],['Data Format','#data-format'],['Sizes / Layout','#sizes--layout-rules'],['RTL Support','#rtl-support'],['Legend Usage','#legend-usage'],['Series Colors','#series-colors'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],["Do / Don't",'#do--dont'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 10, padding: 24, marginBottom: 16, maxWidth: 560 }}>
+  <VerticalBarChart
+    title="Monthly Active Users"
+    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+    series={[{ id: 1, label: 'Active Users', data: [500, 240, 270, 180, 430, 200, 130] }]}
+    barType="single"
+    kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'from last week' } }}
+    showKpi={true}
+    yAxisTitle="Active users"
+    xAxisTitle="Month"
+    dir="ltr"
+  />
+</div>
+
+Single-bar vertical chart from Figma node `4471:3525`. 7 monthly categories on the horizontal axis. Value axis 0–600 on the left. KPI block above the chart area. All tokens sourced from Figma.
+
+---
+
+## Anatomy
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Chart Card Anatomy</div>
+{[
+['1','Card container','background #ffffff · padding 24px · radius 8px · border #f3f4f6 · gap 20px'],
+['2','Card title','18px/28px Semibold IBM Plex Sans Arabic · color #000b36'],
+['3','KPI value','32px/40px Semibold · color #3c5073 (Display sm/Semibold)'],
+['4','KPI trend badge','12px Inter Medium · bg rgba(0,97,33,0.1) · text #006121 · radius 24px'],
+['5','Legend row (multi-series)','8px circle markers · 14px Regular · gap 12px'],
+['6','Y-axis title (rotated)','12px Medium · color #6c7c96 · rotated −90° in LTR, +90° in RTL'],
+['7','Y-axis value labels','12px Regular · color #3c5073 · text-anchor end · left of plot'],
+['8','Horizontal grid lines','stroke #f3f4f6 · stroke-width 1 · one per Y-axis tick'],
+['9','Vertical bars','Series-1 #1849a9 · width 34px (single) · 10px (group) · rx 2px'],
+['10','X-axis category labels','12px Regular · color #3c5073 · centered below each bar'],
+['11','X-axis title','12px Medium · color #6c7c96 · centered below labels'],
+].map(([n, el, spec], i) => (
+<div key={n} style={{ display: 'grid', gridTemplateColumns: '28px 220px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+<span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{el}</span>
+<span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{spec}</span>
+</div>
+))}
+</div>
+
+---
+
+## Variants
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Single Bar (Default)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Monthly Users"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Users', data: [500, 240, 270, 180, 430] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>One colour (series-1 #1849a9). Best for time-series comparisons — e.g., monthly activity.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Group Bar (3 Series)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Comparative Data"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Series 1', data: [300, 280, 300, 290] },
+    { id: 2, label: 'Series 2', data: [200, 185, 220, 170] },
+    { id: 3, label: 'Series 3', data: [100, 110, 130, 90] },
+  ]}
+  barType="group"
+  showKpi={false}
+  showLegend={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>3 bars per category. 10px width each, 4px gap. Requires legend.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Stacked Bar</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Share by Category"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Type A', data: [150, 120, 180, 100] },
+    { id: 2, label: 'Type B', data: [90, 80, 70, 100] },
+    { id: 3, label: 'Type C', data: [60, 40, 50, 100] },
+  ]}
+  barType="stacked"
+  showKpi={false}
+  showLegend={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Series stacked vertically. Total bar height = sum of all series. Good for part-to-whole breakdown.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>RTL Direction</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="المستخدمون الشهريون"
+  categories={['يناير', 'فبراير', 'مارس', 'أبريل']}
+  series={[{ id: 1, label: 'المستخدمون', data: [500, 240, 270, 180] }]}
+  barType="single"
+  kpi={{ value: '٧٨٬٩٠٩', badge: { icon: '↑', text: '٤٫٥٪', label: 'الأسبوع الماضي' } }}
+  showKpi={true}
+  yAxisTitle="المستخدمون"
+  xAxisTitle="الشهر"
+  dir="rtl"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Category order reverses. First category on right, last on left. Y-axis title rotates +90°.</div>
+</div>
+</div>
+
+<div style={{ marginBottom: 16, marginTop: 20 }}>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Combo Chart (Bar + Line)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Sales vs Growth Rate"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+  series={[
+    { id: 1, label: 'Sales',       data: [300, 200, 250, 180, 400, 220, 150] },
+    { id: 2, label: 'Growth Rate', data: [220, 180, 200, 160, 350, 200, 130] },
+  ]}
+  barType="combo"
+  showKpi={false}
+  showLegend={true}
+  yAxisTitle="Value"
+  xAxisTitle="Month"
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>series[0] renders as bars; series[1+] render as polylines with dot markers. Best for overlaying a trend line on top of volume bars.</div>
+</div>
+
+---
+
+## States
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Loading (Skeleton)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<div style={{ background: '#ffffff', border: '1px solid #f3f4f6', borderRadius: 8, padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}>
+  <div style={{ height: 20, width: 140, background: '#e7e9ed', borderRadius: 4 }} />
+  <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, height: 120, paddingTop: 16 }}>
+    {[65, 40, 80, 50, 70, 35, 90].map((pct, i) => (
+      <div key={i} style={{ flex: 1, background: '#e7e9ed', borderRadius: '2px 2px 0 0', height: pct + '%' }} />
+    ))}
+  </div>
+  <div style={{ display: 'flex', gap: 8 }}>
+    {[1,2,3,4,5,6,7].map(i => (
+      <div key={i} style={{ flex: 1, height: 10, background: '#e7e9ed', borderRadius: 3 }} />
+    ))}
+  </div>
+</div>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Skeleton placeholder while data loads. Use <code>--chart-skeleton</code> (#e7e9ed) fill and a CSS pulse animation on the styled divs.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Empty (No Data)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="No Data Available"
+  categories={[]}
+  series={[]}
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Empty <code>categories</code> and <code>series</code> arrays. Chart renders with title only and a minimal SVG plot frame (tick labels auto-generated).</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Partial Data (Zero Values)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Partial Activity"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Activity', data: [500, 0, 240, 0, 190] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Zero-value bars render with negligible height. Axis scale is set by the maximum non-zero value. Tooltip still shows "0" on hover.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Long Category Labels</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Department Headcount"
+  categories={['Engineering', 'Marketing', 'Sales', 'Support', 'Design']}
+  series={[{ id: 1, label: 'Headcount', data: [120, 85, 200, 60, 45] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Long X-axis labels crowd the category row. Each label is clipped at the SVG column boundary. Switch to Horizontal Bar Chart for labels over ~6 characters.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>High Values (Large Numbers)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Revenue by Quarter"
+  categories={['Q1', 'Q2', 'Q3', 'Q4']}
+  series={[{ id: 1, label: 'SAR', data: [1250000, 980000, 1430000, 870000] }]}
+  barType="single"
+  kpi={{ value: '4,530,000', badge: { icon: '↑', text: '12.3%', label: 'vs last year' } }}
+  showKpi={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Large tick values auto-scale via <code>computeTicks()</code>. Pre-format <code>kpi.value</code> as a locale-ready string before passing it as a prop.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Single Zero Category</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Completion Rate"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Done', data: [100, 75, 0, 90, 60] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>A single zero renders no bar. The category label still appears on the X-axis. Tooltip shows "0" on hover.</div>
+</div>
+</div>
+
+| State | Data condition | Visual behavior |
+|---|---|---|
+| Loading | Awaiting API response | Static skeleton using styled divs with `--chart-skeleton` (#e7e9ed) fill |
+| Empty | `series={[]}` or `categories={[]}` | Chart title visible; SVG renders empty plot area with auto-generated ticks |
+| Partial data | Some data points are `0` | Zero bars invisible; axis scale set by max non-zero value |
+| Long labels | Category name > 6 chars | SVG clips label text at column width — switch to Horizontal Bar Chart |
+| High values | Numbers > 100,000 | Axis ticks auto-step; pre-format `kpi.value` for locale display |
+| Zero values | One or more values = 0 | Zero bars invisible; tooltip still shows "0" on hover |
+
+---
+
+## Interaction States
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Interaction Behavior Reference</div>
+{[
+['Bar — hover','Mouse enter bar rect','Tooltip shows "Category · SeriesLabel: value". Fires showTooltipAt() with cursor coordinates.'],
+['Bar — focus','Tab key to bar rect','Tooltip shows at bar top via SVG coordinate conversion (showTooltipFromFocus()). Keyboard accessible.'],
+['Bar — blur / mouse leave','Tab away or cursor exits card','Tooltip hides via hideTooltip(). Fires on bar blur and on card-level onMouseLeave.'],
+['Legend click','Click series dot or label','Toggles series visibility. hiddenSeries Set updates. Guard prevents hiding all series simultaneously.'],
+['Legend focus','Tab to legend button','Button receives focus ring. Space or Enter toggles the series visibility.'],
+['Legend hidden state','Series toggled off','Legend dot uses --chart-legend-hidden (#d2d6db). All bars for that series disappear from plot.'],
+].map(([state, trigger, behavior], i) => (
+<div key={state} style={{ display: 'grid', gridTemplateColumns: '160px 200px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+<span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{state}</span>
+<span style={{ fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{trigger}</span>
+<span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{behavior}</span>
+</div>
+))}
+</div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Hover Tooltip — Single Series</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Hover any bar"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Activity', data: [500, 200, 340, 130, 420] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Hover any bar → tooltip: "Jan · Activity: 500". Tooltip follows cursor within the card boundary.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Legend Toggle — Multi-Series</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Click legend items"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Series 1', data: [300, 200, 250, 180] },
+    { id: 2, label: 'Series 2', data: [180, 150, 200, 140] },
+    { id: 3, label: 'Series 3', data: [90, 80, 110, 75] },
+  ]}
+  barType="group"
+  showKpi={false}
+  showLegend={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Click a legend dot to hide/show that series. At least one series always stays visible.</div>
+</div>
+</div>
+
+---
+
+## Axis States
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Both Axis Titles</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="With Axis Titles"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Users', data: [500, 200, 340, 130, 420] }]}
+  barType="single"
+  showKpi={false}
+  yAxisTitle="Active users"
+  xAxisTitle="Month"
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>yAxisTitle rotates −90° (LTR) beside the Y-axis tick labels. xAxisTitle centers below the category row.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>No Axis Titles</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="No Axis Titles"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Users', data: [500, 200, 340, 130, 420] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Both title columns collapse. The plot area widens by ~44 px to recover the space.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>RTL — Both Titles</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="مع عناوين المحاور"
+  categories={['يناير', 'فبراير', 'مارس', 'أبريل']}
+  series={[{ id: 1, label: 'المستخدمون', data: [500, 200, 340, 130] }]}
+  barType="single"
+  showKpi={false}
+  yAxisTitle="المستخدمون"
+  xAxisTitle="الشهر"
+  dir="rtl"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>RTL: category order reverses (first category on right). yAxisTitle rotates +90°. Y-axis stays on the left.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Group with Horizontal Grid Lines</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Grid Lines"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Series A', data: [300, 200, 250, 180] },
+    { id: 2, label: 'Series B', data: [180, 150, 200, 140] },
+  ]}
+  barType="group"
+  showKpi={false}
+  showLegend={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Horizontal grid lines span the plot at each Y-axis tick. stroke=#f3f4f6 · stroke-width=1.</div>
+</div>
+</div>
+
+| Axis prop | Value | Effect |
+|---|---|---|
+| `yAxisTitle` | `undefined` | Y-axis title column (22 px) collapses — bars gain ~22 px width |
+| `yAxisTitle` | `string` | Rotated label at −90° (LTR) or +90° (RTL) beside Y-axis labels |
+| `xAxisTitle` | `undefined` | X-axis title row (22 px) collapses |
+| `xAxisTitle` | `string` | Centered label below category row |
+| `dir` | `"rtl"` | Category column order reverses; Y-axis title rotates +90° |
+
+---
+
+## Card States
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 16 }}>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>With KPI + Trend Badge</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Monthly Activity"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Users', data: [500, 200, 340, 130, 420] }]}
+  barType="single"
+  kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'from last week' } }}
+  showKpi={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Full card: title → 32px KPI value → trend badge + label → chart SVG.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>KPI Value Only (No Badge)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Monthly Activity"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Users', data: [500, 200, 340, 130, 420] }]}
+  barType="single"
+  kpi={{ value: '78,909.72' }}
+  showKpi={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>kpi.badge omitted. KPI value displays alone without the trend row below it.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>No KPI — Multi-Series Legend</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Comparative Data"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Series 1', data: [300, 200, 250, 180] },
+    { id: 2, label: 'Series 2', data: [180, 150, 200, 140] },
+  ]}
+  barType="group"
+  showKpi={false}
+  showLegend={true}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>showKpi=false removes the KPI block. Legend appears directly below the title gap.</div>
+</div>
+<div>
+<div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.06em', color: '#6b7280', marginBottom: 8 }}>Minimal (No KPI, No Legend)</div>
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 16 }}>
+<VerticalBarChart
+  title="Compact View"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Activity', data: [500, 200, 340, 130, 420] }]}
+  barType="single"
+  showKpi={false}
+  showLegend={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ fontSize: 12, color: '#6b7280', marginTop: 8, lineHeight: 1.5 }}>Compact form: title + chart only. Ideal for embedded dashboard tiles with limited vertical space.</div>
+</div>
+</div>
+
+---
+
+## Tooltip States
+
+The `ChartTooltip` renders as a dark overlay (`--chart-tooltip-bg: #1a2236`) positioned absolutely within the card boundary.
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Tooltip Content by Scenario</div>
+{[
+['Single series hover','Jan · Active Users: 500','One row: "Category · SeriesLabel: value"'],
+['Group bar hover','Jan · Series 1: 300  |  Jan · Series 2: 180','One row per visible series at the hovered category'],
+['Stacked bar hover','Jan · Type A: 150  |  Jan · Type B: 90','One row per segment in stack order; hidden series excluded'],
+['Combo chart hover','Jan · Sales: 300  |  Jan · Growth Rate: 220','Bars and line series both appear in the tooltip'],
+['RTL chart hover','يناير · المستخدمون: 500','Same format; text renders RTL inside tooltip'],
+['Long value string','Q3 · Revenue: 1,430,000','No truncation — tooltip width grows to fit'],
+['Hidden series','Visible series only shown','Toggled-off series rows are excluded from tooltip rows'],
+].map(([scenario, content, note], i) => (
+<div key={scenario} style={{ display: 'grid', gridTemplateColumns: '200px 260px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+<span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{scenario}</span>
+<code style={{ fontSize: 11, color: '#6b7280', lineHeight: 1.6 }}>{content}</code>
+<span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Tooltip Design Tokens</div>
+{[
+['--chart-tooltip-bg','#1a2236','Dark surface background'],
+['--chart-tooltip-text','#ffffff','White text on dark'],
+['--chart-tooltip-radius','6px','Corner radius'],
+['--chart-tooltip-padding-v','8px','Vertical padding (top + bottom)'],
+['--chart-tooltip-padding-h','12px','Horizontal padding (left + right)'],
+['--chart-tooltip-shadow','0 4px 12px rgba(0,0,0,0.18)','Drop shadow'],
+].map(([t, v, u], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '240px 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ fontSize: 12, color: '#111827' }}>{v}</span>
+<span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
+</div>
+))}
+</div>
+
+---
+
+## Chart Structure
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>SVG Layout (LTR — viewBox 0 0 560 ×height)</div>
+{[
+['Y-axis title area','22 px wide','Rotated label; omitted when yAxisTitle is undefined'],
+['Y-axis value area','44 px wide','Tick values, right-aligned (text-anchor end)'],
+['Plot area','560 − 66 − 16 = 478 px wide','Bars + grid lines; fixed height 250px'],
+['Right padding','16 px','Prevents last bar touching SVG edge'],
+['X-axis label row','26 px high','Category names, centered under each bar column'],
+['X-axis title row','22 px high','Omitted when xAxisTitle is undefined'],
+['Plot height','250 px (fixed)','Grid lines and bars scale within this space'],
+['Single bar width','34 px (from Figma)','Figma node 4563:3857 — capped at 55% of column slot'],
+['Group bar width','10 px each, 4 px gap','3-series cluster = 38px total width'],
+['Stacked bar width','34 px','Same as single bar; segments stack upward'],
+].map(([area, val, note], i) => (
+<div key={area} style={{ display: 'grid', gridTemplateColumns: '180px 180px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+<span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{area}</span>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{val}</code>
+<span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+</div>
+))}
+</div>
+
+---
+
+## Data Format
+
+```js
+// Single series
+const series = [
+  { id: 1, label: 'Active Users', data: [500, 240, 270, 180, 430, 200, 130] }
+];
+const categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
+
+// Multi-series (group or stacked)
+const groupSeries = [
+  { id: 1, label: 'Series 1', data: [300, 280, 300, 290] },
+  { id: 2, label: 'Series 2', data: [200, 185, 220, 170] },
+  { id: 3, label: 'Series 3', data: [100, 110, 130, 90] },
+];
+// categories.length must equal series[n].data.length
+
+// KPI block
+const kpi = {
+  value: '78,909.72',
+  badge: { icon: '↑', text: '4.5%', label: 'from last week' }
+};
+```
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `series[].label` | `string` | Yes | Legend text + accessible name |
+| `series[].data` | `number[]` | Yes | One value per category |
+| `series[].color` | `string` | No | Override series color (CSS value) |
+| `categories` | `string[]` | Yes | X-axis labels; length = data length |
+| `kpi.value` | `string` | No | Formatted number string |
+| `kpi.badge.text` | `string` | No | e.g. `"4.5%"` |
+| `kpi.badge.label` | `string` | No | e.g. `"from last week"` |
+
+---
+
+## Sizes / Layout Rules
+
+| Measurement | Figma value | Token / prop |
+|---|---|---|
+| Card padding | 24 px | `--chart-container-padding` |
+| Card border-radius | 8 px | `--chart-container-radius` |
+| Card border | 1 px #f3f4f6 | `--chart-border` |
+| Card gap (title → content) | 20 px | `--charts/container/chart-card-xl-gap` |
+| Content inner gap | 14 px | KPI → SVG spacing |
+| Single bar width | 34 px | Figma node 4563:3857 |
+| Group bar width | 10 px | Proportional to Figma group spec |
+| Group bar gap | 4 px | Between bars in cluster |
+| Single bar radius | 2 px (`rx="2"`) | Figma |
+| Group bar radius | 1 px (`rx="1"`) | Figma |
+| Grid line stroke | 1 px | `--chart-border` |
+| Plot height | 250 px (SVG units) | Fixed — bars scale within this space |
+| X-axis label area | 26 px high | Below baseline of bars |
+
+---
+
+## RTL Support
+
+<div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 8, padding: 20, marginBottom: 16 }}>
+<div style={{ fontWeight: 600, color: '#111827', marginBottom: 12, fontSize: 14 }}>RTL layout changes — vertical bar chart</div>
+{[
+['Category order reverses — first category appears on the right','colCenterX: uses (catCount - 1 - ci) * colW for RTL'],
+['Y-axis (value labels) stays on the left side','Value axis has no LTR/RTL directionality'],
+['Y-axis title rotation changes to +90°','rotate(+90) instead of −90'],
+['X-axis title stays horizontally centered','plotX + plotW / 2 is symmetric'],
+['Group bar cluster order stays consistent','Series 1 always leftmost within cluster'],
+['Stacked segments maintain bottom-to-top order','First series anchored at baseline'],
+['Apply dir="rtl" to the card container','Cascades to text layout inside card'],
+].map(([rule, impl], i) => (
+<div key={i} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: i < 6 ? '1px solid #e5e7eb' : 'none', alignItems: 'flex-start' }}>
+<span style={{ color: '#1849a9', fontWeight: 700, flexShrink: 0, marginTop: 2 }}>→</span>
+<div style={{ flex: 1 }}>
+<div style={{ fontSize: 13, color: '#111827', lineHeight: 1.4 }}>{rule}</div>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{impl}</code>
+</div>
+</div>
+))}
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>Important:</strong> Do not fake RTL by using only <code>text-align: right</code>. Set <code>dir="rtl"</code> on the component so category order mirrors correctly at the SVG coordinate level.
+</div>
+
+---
+
+## Legend Usage
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Legend Rules</div>
+{[
+['Single series','showLegend=false','Legend not required — bar color + axis labels are sufficient'],
+['Multi-series (group or stacked)','showLegend=true (required)','Each series needs a legend item for color independence'],
+['Legend markers','8 px circle','color = series fill; series order matches left-to-right in chart'],
+['Legend text','14px Regular #3c5073','Matches Figma --charts/header-title/subtitle token'],
+['Legend gap','12px between items','Matches Figma spacing-lg token'],
+['Legend position','Centered, above SVG chart area','Below KPI block, before the chart'],
+].map(([when, prop, rule], i) => (
+<div key={when} style={{ display: 'grid', gridTemplateColumns: '1fr 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+<span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{when}</span>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', alignSelf: 'center' }}>{prop}</code>
+<span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{rule}</span>
+</div>
+))}
+</div>
+
+---
+
+## Series Colors
+
+Up to 6 series — each bar group is assigned a token in order:
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 10, marginBottom: 24 }}>
+{[
+  { token: '--chart-series-1', hex: '#1849a9', label: 'Series 1' },
+  { token: '--chart-series-2', hex: '#175cd3', label: 'Series 2' },
+  { token: '--chart-series-3', hex: '#2e90fa', label: 'Series 3' },
+  { token: '--chart-series-4', hex: '#53b1fd', label: 'Series 4' },
+  { token: '--chart-series-5', hex: '#b2ddff', label: 'Series 5' },
+  { token: '--chart-series-6', hex: '#d1e9ff', label: 'Series 6' },
+].map(({ token, hex, label }) => (
+  <div key={token} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', textAlign: 'center' }}>
+    <div style={{ height: 36, background: hex }} />
+    <div style={{ padding: '8px 6px' }}>
+      <div style={{ fontSize: 12, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{label}</div>
+      <code style={{ fontSize: 10, color: '#6b7280' }}>{hex}</code>
+    </div>
+  </div>
+))}
+</div>
+
+Override a specific bar color by passing a `color` field inside the series object. All 6 tokens draw from the same Figma blue-scale palette used across all design system charts.
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Container</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Figma resolved value</span><span>Figma path</span></div>
+{[
+['--chart-container-bg','#ffffff','charts/container/background/default'],
+['--chart-container-padding','24 px','charts/container/chart-card-2xl-padding'],
+['--chart-container-radius','8 px','charts/container/chart-card-radius-sm'],
+['--chart-border','#f3f4f6','charts/container/border/default + grid lines'],
+].map(([t, v, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ fontSize: 13, color: '#111827' }}>{v}</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Typography &amp; Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Figma path</span></div>
+{[
+['--chart-title','#000b36','charts/header-title/title'],
+['--chart-subtitle','#3c5073','charts/progress-bar/text-color/label (KPI value + axis labels)'],
+['--chart-axis-label','#6c7c96','charts/axis/title/label-color (Y-axis title, X-axis title)'],
+['--chart-kpi-bg','rgba(0,97,33,0.1)','charts/KPI/badge/icon/icon-bg'],
+['--chart-kpi-positive','#006121','charts/KPI/badge/trend/positive-trend'],
+].map(([t, h, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+<span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+<code style={{ fontSize: 11, color: '#111827' }}>{h}</code>
+</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Series &amp; Data</div>
+<div style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>CSS Token</span><span>Value</span><span>Figma path</span></div>
+{[
+['--chart-series-1','#1849a9','charts/data-and-legend/data/series-1'],
+['--chart-series-3','#2e90fa','charts/data-and-legend/data/series-3'],
+['--chart-series-4','#53b1fd','charts/data-and-legend/data/series-4'],
+['--chart-null','#d2d6db','charts/data-and-legend/data/null (zero-value bars)'],
+].map(([t, h, f], i) => (
+<div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 150px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+<code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+<span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+<span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: h, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+<code style={{ fontSize: 11, color: '#111827' }}>{h}</code>
+</span>
+<code style={{ fontSize: 11, color: '#6b7280' }}>{f}</code>
+</div>
+))}
+</div>
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 110px 80px 1fr 160px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span><span>Visual effect</span></div>
+{[
+{n:'title',type:'string',req:true,tb:'#eff3fb',tc:'#1849a9',def:'—',d:'Chart title displayed at top of card',v:'Card heading + SVG aria-label'},
+{n:'series',type:'SeriesItem[]',req:true,tb:'#eff3fb',tc:'#1849a9',def:'—',d:'{ id, label, data: number[], color? }',v:'Bar heights and colors'},
+{n:'categories',type:'string[]',req:true,tb:'#eff3fb',tc:'#1849a9',def:'—',d:'X-axis column labels — must match series data length',v:'Category labels below bars'},
+{n:'barType',type:'enum',req:false,tb:'#fff7ed',tc:'#c2410c',def:"'single'",d:"'single' | 'group' | 'stacked' | 'combo'",v:'Bar layout mode'},
+{n:'maxValue',type:'number',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'auto',d:'Override computed Y-axis maximum',v:'Y-axis scale ceiling'},
+{n:'kpi',type:'KpiConfig',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'undefined',d:'{ value, badge?: { icon, text, label } }',v:'KPI block above chart'},
+{n:'showKpi',type:'boolean',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'true',d:'Toggle KPI block visibility',v:'Show / hide KPI row'},
+{n:'showLegend',type:'boolean',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Show legend for multi-series charts',v:'Legend row with color markers'},
+{n:'yAxisTitle',type:'string',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'undefined',d:'Rotated label for value (Y) axis',v:'Rotated text beside Y-axis labels'},
+{n:'xAxisTitle',type:'string',req:false,tb:'#f3f0ff',tc:'#7c3aed',def:'undefined',d:'Label for category (X) axis',v:'Centered text below category labels'},
+{n:'dir',type:'enum',req:false,tb:'#fff7ed',tc:'#c2410c',def:"'ltr'",d:"'ltr' | 'rtl' — reverses category column order",v:'Full chart RTL layout'},
+].map(({n,type,req,tb,tc,def,d,v},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'130px 110px 80px 1fr 160px',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:tb,padding:'2px 6px',borderRadius:4,color:tc,fontWeight:600}}>{n}{req&&<span style={{color:'#ef4444'}}> *</span>}</code>
+<span style={{background:'#f3f4f6',color:'#374151',fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:500,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.4}}>{v}</span>
+</div>
+))}
+</div>
+
+### Prop Decision Guide
+
+| User need | Use this prop | Example |
+|---|---|---|
+| Show one dataset | `barType="single"` | Monthly revenue |
+| Compare multiple series | `barType="group"` | Regions by quarter |
+| Show part-to-whole | `barType="stacked"` | Contribution by segment |
+| Arabic dashboard | `dir="rtl"` | المستخدمون الشهريون |
+| Show KPI above chart | `showKpi={true}` + `kpi={...}` | 78,909.72 |
+| Hide KPI, show legend | `showKpi={false}` + `showLegend={true}` | Stacked bar |
+| Override axis ceiling | `maxValue={800}` | When comparing across views |
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+{cat:'SVG Role & Labels',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'SVG',items:[
+{title:'role="img" + aria-label on SVG',desc:'The SVG receives role="img" and aria-label={title} so screen readers announce it as a named image.'},
+{title:'<title> as first SVG child',desc:'A <title> element is the first child of the SVG. This is the accessible name for AT that reads SVG title elements.'},
+{title:'Each bar rect has aria-label',desc:'Every <rect> carries aria-label="Category: value" (single) or "SeriesLabel — Category: value" (multi). This lets users navigate individual values.'},
+]},
+{cat:'Colour Independence',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'◑',items:[
+{title:'Do not rely on colour alone',desc:'Series are differentiated by colour AND label (legend text). The accessible data table provides a colour-independent fallback.'},
+{title:'Contrast ratios',desc:'Series-1 (#1849a9) on white: 6.3:1 ✓  Axis labels (#3c5073): 5.2:1 ✓  Both exceed WCAG 1.4.3 AA minimum (4.5:1).'},
+{title:'Hidden data table',desc:'A <table> with visually-hidden CSS (.srOnly) mirrors all chart data. Screen readers expose it; sighted users see only the SVG.'},
+]},
+{cat:'RTL Accessibility',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'RTL',items:[
+{title:'dir="rtl" on container',desc:'Cascades to all text nodes inside the card. Triggers SVG column order reversal.'},
+{title:'Bar aria-labels remain accurate',desc:'aria-label values are data-based ("category: value"), not position-based. RTL does not affect accessible names.'},
+{title:'Category labels follow column position',desc:'Each bar carries its category in its aria-label, so visual position is not the only indicator.'},
+]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:28,height:28,borderRadius:6,background:catIconBg,color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div>
+<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
+<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
+</div>
+</div>
+))}
+</div>
+))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 0 }}>
+    {[['Criterion','Level','Requirement','Status']].map(([a,b,c,d]) => (
+      <div key="hdr" style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb' }}>{a}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{b}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb' }}>{c}</div>
+        <div style={{ padding: '9px 14px', background: '#f8fafc', fontWeight: 700, fontSize: 12, color: '#374151', borderBottom: '2px solid #e5e7eb', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>{d}</div>
+      </div>
+    ))}
+    {[
+      ['1.1.1 Non-text Content', 'A', 'SVG role="img" + aria-label + <title>'],
+      ['1.3.1 Info & Relationships', 'A', 'Each bar carries category + value in aria-label'],
+      ['1.4.3 Contrast (text)', 'AA', 'Axis labels #3c5073 on white: 5.2:1'],
+      ['1.4.11 Non-text Contrast', 'AA', 'Series-1 #1849a9 on white: 6.3:1'],
+      ['1.4.10 Reflow', 'AA', 'SVG uses width="100%" — scales to container'],
+    ].map(([criterion, level, req]) => (
+      <div key={criterion} style={{ display: 'contents' }}>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', fontFamily: 'monospace', fontSize: 12, color: '#1849a9', fontWeight: 600 }}>{criterion}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: level === 'AAA' ? '#ede9fe' : '#dbeafe', color: level === 'AAA' ? '#6d28d9' : '#1849a9' }}>{level}</span>
+        </div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', fontSize: 12, color: '#374151', lineHeight: 1.4 }}>{req}</div>
+        <div style={{ padding: '9px 14px', background: '#fff', borderBottom: '1px solid #f3f4f6', borderLeft: '1px solid #e5e7eb', textAlign: 'center' }}>
+          <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 10, background: '#d1fae5', color: '#059669' }}>✓ Pass</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '24px 20px', background: '#fff' }}>
+<VerticalBarChart
+  title="Monthly Activity"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May']}
+  series={[{ id: 1, label: 'Activity', data: [420, 310, 270, 190, 380] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Time-series + short labels</div>
+{['Use vertical bars for time-based categories (months, quarters, years).','Keep category labels short — Jan, Feb, Q1, Q2.','Start the value axis at zero — never truncate.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '24px 20px', background: '#fff' }}>
+<VerticalBarChart
+  title="Department Names"
+  categories={['Engineering', 'Marketing', 'Sales', 'Support']}
+  series={[{ id: 1, label: 'Headcount', data: [120, 85, 200, 60] }]}
+  barType="single"
+  showKpi={false}
+  dir="ltr"
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Long category labels</div>
+{["Don't use vertical bars for long category names — they crowd the X-axis.","Switch to Horizontal Bar Chart when labels exceed 6 characters.","Don't rotate labels to compensate — use Horizontal Bar Chart instead."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+</div>
+
+---
+
+## Do / Don't
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24, marginBottom: 24 }}>
+
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', background: '#fff' }}>
+<VerticalBarChart
+  title="Monthly Traffic"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']}
+  series={[{ id: 1, label: 'Visits', data: [480, 310, 270, 390, 430, 520] }]}
+  barType="single"
+  showKpi={false}
+  showLegend={false}
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Short time labels — X-axis stays readable</div>
+{['Vertical bars are ideal for time-based categories: months, quarters, years.','Short labels (Jan, Feb, Q1) fit cleanly below each bar column.','Start the Y-axis at zero for accurate comparisons.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', background: '#fff' }}>
+<VerticalBarChart
+  title="Department Headcount"
+  categories={['Engineering', 'Marketing', 'Product Mgmt', 'Operations']}
+  series={[{ id: 1, label: 'Headcount', data: [120, 85, 200, 60] }]}
+  barType="single"
+  showKpi={false}
+  showLegend={false}
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Long category labels crowd the X-axis</div>
+{["Long names overlap below bars and force truncation or rotation.","Switch to Horizontal Bar Chart when labels exceed ~6 characters.","Don't compensate by rotating labels — use the correct chart type."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
+<div style={{ padding: '20px 16px', background: '#fff' }}>
+<VerticalBarChart
+  title="Quarterly Revenue"
+  categories={['Q1', 'Q2', 'Q3', 'Q4']}
+  series={[
+    { id: 1, label: 'Product A', data: [300, 280, 340, 290] },
+    { id: 2, label: 'Product B', data: [200, 185, 220, 170] },
+    { id: 3, label: 'Product C', data: [100, 110, 130, 90]  },
+  ]}
+  barType="group"
+  showKpi={false}
+  showLegend={true}
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>3-series group + legend — clear comparison</div>
+{['Up to 3 series in group mode creates distinct, touchable bar clusters.','Always show showLegend={true} so users can identify series without colour alone.','Use only the Figma series tokens: --chart-series-1, -3, -4.'].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+
+<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
+<div style={{ padding: '20px 16px', background: '#fff' }}>
+<VerticalBarChart
+  title="Multi-Series Data"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Alpha',   data: [300, 280, 320, 290] },
+    { id: 2, label: 'Beta',    data: [200, 185, 220, 170] },
+    { id: 3, label: 'Gamma',   data: [150, 160, 140, 180] },
+    { id: 4, label: 'Delta',   data: [100, 110, 130, 90]  },
+    { id: 5, label: 'Epsilon', data: [80,  75,  90,  85]  },
+  ]}
+  barType="group"
+  showKpi={false}
+  showLegend={true}
+/>
+</div>
+<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>5-series group — bars too thin to read</div>
+{["Don't exceed 3 series in a group — sub-bars become unreadably thin.","5 series forces bars to ~10px wide, losing hover targets and visual clarity.","Split into multiple charts or switch to stacked if part-to-whole is the goal."].map((r,i)=>(
+<div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+))}
+</div>
+</div>
+
+</div>
+
+| Rule | Do | Don't | Reason |
+|---|---|---|---|
+| Use vertical bars for short labels | Use Jan, Feb, Mar | Use "Engineering Department" | Long labels crowd the X-axis |
+| Start axis at zero | Y-axis starts at 0 | Truncated Y-axis at non-zero | Exaggerates differences |
+| Keep grouped bars limited | 2–3 series | 5+ series | Too many bars reduce readability |
+| Long labels → Horizontal chart | Switch to Horizontal Bar Chart | Rotate many long labels | Improves readability significantly |
+| Part-to-whole | Stacked with 3–4 segments | Stacked with 6+ segments | Too many segments to compare |
+| Legend | Always show for multi-series | Hide for multi-series | Color independence required |
+
+---
+
+## Implementation Examples
+
+```jsx
+import { VerticalBarChart } from '@/components/charts/VerticalBarChart';
+
+// Single bar — time series
+<VerticalBarChart
+  title="Monthly Active Users"
+  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+  series={[{ id: 1, label: 'Active Users', data: [500, 240, 270, 180, 430, 200, 130] }]}
+  barType="single"
+  kpi={{ value: '78,909.72', badge: { icon: '↑', text: '4.5%', label: 'from last week' } }}
+  showKpi={true}
+  yAxisTitle="Active users"
+  xAxisTitle="Month"
+/>
+
+// Group bar — 3 series comparison
+<VerticalBarChart
+  title="Comparative Monthly Data"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Series 1', data: [300, 280, 300, 290] },
+    { id: 2, label: 'Series 2', data: [200, 185, 220, 170] },
+    { id: 3, label: 'Series 3', data: [100, 110, 130, 90] },
+  ]}
+  barType="group"
+  showKpi={true}
+  showLegend={true}
+  yAxisTitle="Value"
+  xAxisTitle="Month"
+/>
+
+// Stacked bar — part-to-whole
+<VerticalBarChart
+  title="Share by Category"
+  categories={['Jan', 'Feb', 'Mar', 'Apr']}
+  series={[
+    { id: 1, label: 'Type A', data: [150, 120, 180, 100] },
+    { id: 2, label: 'Type B', data: [90, 80, 70, 100] },
+    { id: 3, label: 'Type C', data: [60, 40, 50, 100] },
+  ]}
+  barType="stacked"
+  showKpi={false}
+  showLegend={true}
+/>
+
+// RTL Arabic
+<VerticalBarChart
+  title="المستخدمون الشهريون"
+  categories={['يناير', 'فبراير', 'مارس', 'أبريل']}
+  series={[{ id: 1, label: 'المستخدمون', data: [500, 240, 270, 180] }]}
+  barType="single"
+  kpi={{ value: '٧٨٬٩٠٩', badge: { icon: '↑', text: '٤٫٥٪', label: 'الأسبوع الماضي' } }}
+  showKpi={true}
+  yAxisTitle="المستخدمون"
+  xAxisTitle="الشهر"
+  dir="rtl"
+/>
+
+// KPI block with custom value
+<VerticalBarChart
+  title="Quarterly Revenue"
+  categories={['Q1', 'Q2', 'Q3', 'Q4']}
+  series={[{ id: 1, label: 'Revenue', data: [450, 380, 520, 610] }]}
+  kpi={{ value: '1,960,000', badge: { icon: '↑', text: '12.3%', label: 'vs last year' } }}
+  showKpi={true}
+  yAxisTitle="SAR (thousands)"
+  xAxisTitle="Quarter"
+/>
+```
+
+---
+
+## Figma Reference
+
+- **Full component frame:** [4471:3525 — Vertical Bar Chart](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4471-3525)
+- **Single bar reference:** Figma node 4471:3525 — 881×468px · RTL=false · legend=false · card-details=true · barType=single bar
+- **Bar element:** Figma node 4563:3857 — 34px wide bar at series-1 color
+- **Chart tokens:** `charts/container/*`, `charts/header-title/*`, `charts/KPI/*`, `charts/data-and-legend/*`
+
+---
+
+## Axis and Plot Area Spacing
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Layout spacing rules</div>
+{[
+['Category labels','Place below the baseline (plotY + plotH) with 20px offset','Prevents overlap with bars; X_AXIS_H=32px row reserved below plot'],
+['Y-axis tick labels','Position at plotX − 10 with text-anchor end','56px Y_AXIS_W gutter provides room for 4-digit tick values at 14px'],
+['KPI block','20px flex gap in .content wrapper before SVG','Improves visual hierarchy — title → KPI → trend badge → chart plot'],
+['RTL direction','Category order reverses; value axis stays on left','colCenterX uses (catCount−1−ci) in RTL; Y-axis title always on left'],
+['Y-axis title','Stays on left side for both LTR and RTL','Value axis is always left-aligned in vertical charts'],
+['Axis title (X)','22px X_TITLE_H row below tick labels','Separated from tick labels by the full 32px X_AXIS_H row above it'],
+].map(([area, rule, reason], i) => (
+<div key={area} style={{ display: 'grid', gridTemplateColumns: '180px 240px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+<span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{area}</span>
+<span style={{ fontSize: 12, color: '#374151', lineHeight: 1.5 }}>{rule}</span>
+<span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{reason}</span>
+</div>
+))}
+</div>
+
+---
+
+## Mismatch Report
+
+Audit against Figma node `4471:3525` and HorizontalBarChart as documentation reference model.
+
+<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
+<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>19 Matched / Fixed</span>
+<span style={{ background: '#fffbeb', color: '#d97706', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fde68a' }}>4 Missing tokens (added as fallbacks)</span>
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '180px 140px 80px 1fr 120px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Area</span><span>Figma value</span><span>Match</span><span>Notes</span><span>File</span></div>
+{[
+{a:'Container background',f:'#ffffff',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'--chart-container-bg matches Figma charts/container/background/default',file:'tokens.css'},
+{a:'Container padding',f:'24px',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'--chart-container-padding = charts/container/chart-card-2xl-padding',file:'tokens.css'},
+{a:'Container radius',f:'8px',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'--chart-container-radius = charts/container/chart-card-radius-sm',file:'tokens.css'},
+{a:'Card gap (title→content)',f:'20px',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'Figma charts/container/chart-card-xl-gap=20px. Was 12px in HorizontalBarChart — updated to 20px',file:'*.module.css'},
+{a:'Content inner gap',f:'14px',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'Figma content area gap between KPI slot and chart slot is 14px. Added .content wrapper with gap:14px',file:'*.module.css'},
+{a:'Border / grid color',f:'#f3f4f6',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'--chart-border used for grid lines and card border',file:'tokens.css'},
+{a:'Title size / weight',f:'18px / 600',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'Figma: Size/Text/typo-size-text-Ig=18, font-weight-semibold=600',file:'*.module.css'},
+{a:'KPI value size',f:'30px / 600',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'Figma: Size/Display/typo-size-display-sm=30, Semibold',file:'*.module.css'},
+{a:'KPI badge size',f:'12px / 500',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'Figma: Paragraph/XSmall/Medium = 12px Inter',file:'*.module.css'},
+{a:'Axis label font size (SVG)',f:'14px (Figma)',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'SVG fontSize updated from 11 to 12 (≈14px at typical render width). Old value was too small.',file:'*.jsx'},
+{a:'Bar width (single)',f:'34px',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'Figma node 4563:3857 w-[34px]. Implemented as SINGLE_BAR_W=34',file:'VerticalBarChart.jsx'},
+{a:'Series-1 color',f:'#1849a9',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'--chart-series-1 = charts/data-and-legend/data/series-1',file:'tokens.css'},
+{a:'Grid lines',f:'1px #f3f4f6',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'Horizontal lines at each Y-axis tick, stroke --chart-border',file:'VerticalBarChart.jsx'},
+{a:'Y-axis values',f:'0-500, step 100',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'computeTicks() auto-generates nice tick values matching Figma example',file:'VerticalBarChart.jsx'},
+{a:'X-axis category labels',f:'14px Regular #000b36',m:'Match',mb:'#ecfdf5',mt:'#059669',n:'Figma shows text-sm Regular at color #000b36 for category labels',file:'VerticalBarChart.jsx'},
+{a:'Content inner gap',f:'14px → 20px',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'Increased from 14px to 20px for better visual separation between KPI and chart SVG',file:'*.module.css'},
+{a:'Axis label font size (SVG)',f:'14px (Figma)',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'All SVG fontSize updated from "12" to "14px" (absolute CSS px) to match Figma typo-size-text-sm exactly',file:'VerticalBarChart.jsx'},
+{a:'Y-axis gutter width',f:'56px',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'Increased Y_AXIS_W from 44→56 to prevent tick label overflow at 14px font size',file:'VerticalBarChart.jsx'},
+{a:'X-axis label area',f:'32px row',m:'Fixed',mb:'#ecfdf5',mt:'#059669',n:'Increased X_AXIS_H from 26→32 for adequate vertical space below bars',file:'VerticalBarChart.jsx'},
+{a:'Series-2 fill color',f:'Not in Figma',m:'Missing',mb:'#fffbeb',mt:'#d97706',n:'Figma uses series-1 / series-3 / series-4. No series-2 token exists.',file:'—'},
+{a:'Negative KPI badge',f:'Not in Figma',m:'Missing',mb:'#fffbeb',mt:'#d97706',n:'Figma only shows positive-trend token. Negative trend color not defined.',file:'—'},
+{a:'--component-charts-kpi-value-font-size',f:'Not in Figma vars',m:'Added (fallback)',mb:'#ecfdf5',mt:'#059669',n:'No Figma component variable path. Added 30px from Display/sm style to tokens.css',file:'tokens.css'},
+{a:'--component-charts-header-title-subtitle',f:'Not in Figma vars',m:'Added (fallback)',mb:'#ecfdf5',mt:'#059669',n:'Alias for --chart-subtitle (#3c5073). Component-level path not in Figma file.',file:'tokens.css'},
+].map(({a,f,m,mb,mt,n,file},i)=>(
+<div key={a} style={{display:'grid',gridTemplateColumns:'180px 140px 80px 1fr 120px',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<span style={{fontSize:13,color:'#111827',fontWeight:500}}>{a}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
+<span style={{background:mb,color:mt,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',display:'inline-block'}}>{m}</span>
+<span style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</span>
+<code style={{fontSize:11,color:'#6b7280'}}>{file}</code>
+</div>
+))}
+</div>
+
+</div>
