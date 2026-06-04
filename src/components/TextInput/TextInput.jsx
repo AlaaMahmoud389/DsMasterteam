@@ -92,7 +92,8 @@ function Affix({ type, affixStyle, state, text, icon, size, isPrefix, onClick })
     isLarge ? styles.affixLarge : styles.affixMedium,
     isPrefix ? styles.affixPrefix : styles.affixSuffix,
     stateCls,
-  ].join(' ');
+    type === 'text' && styles.affixTextOnly,
+  ].filter(Boolean).join(' ');
 
   return (
     <button

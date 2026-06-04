@@ -339,3 +339,6 @@
 .affixSubtleSelected { background: #4d5761;     color: #f9fafb; }
 .affixSubtleFocused  { background: #e5e7eb;     color: #000b36; box-shadow: inset 0 0 0 4px #000b36; }
 .affixSubtleDisabled { background: transparent; color: #6c7c96; cursor: default; pointer-events: none; }
+
+/* Text-only type: text color is always #6C7C96 regardless of style or state */
+.affixTextOnly { color: #6c7c96; }
