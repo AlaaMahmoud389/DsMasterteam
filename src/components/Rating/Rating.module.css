@@ -1,0 +1,96 @@
+/*
+ * Rating.module.css — Masterteam Design System
+ * Figma node 4250:1940
+ *
+ * Design tokens:
+ *   Star colors:
+ *     Normal          #E5E7EB
+ *     Selected Default #F79009 (amber)
+ *     Selected Brand  #1849A9 (blue)
+ *     Half Default    left #F79009 / right #E5E7EB
+ *     Half Brand      left #1849A9 / right #E5E7EB
+ *     Pressed ring    #F3F4F6
+ *
+ *   Star sizes (width × height):
+ *     Large   48 × 48 px
+ *     Medium  32 × 32 px
+ *     Small   24 × 24 px
+ *
+ *   Pressed outer size = star + 6px (3px ring each side)
+ *     Large pressed   54 × 54 px
+ *     Medium pressed  38 × 38 px
+ *     Small pressed   30 × 30 px
+ *
+ *   Rating row gap    4px
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   RatingStar wrapper
+   ══════════════════════════════════════════════════════════════════ */
+.starWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Rating row
+   ══════════════════════════════════════════════════════════════════ */
+.ratingRow {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Star button (inside Rating)
+   ══════════════════════════════════════════════════════════════════ */
+.starBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  outline: none;
+  transition: opacity 80ms ease;
+  color: inherit;
+  line-height: 0;
+}
+
+.starBtn:focus-visible {
+  outline: 2px solid #1849A9;
+  outline-offset: 2px;
+}
+
+.starBtn:hover {
+  opacity: 0.9;
+}
+
+/* Pressed: filled #F3F4F6 circle behind star.
+   padding: 3px grows the hit area to match the Figma pressed size (sz+6).
+   margin: -3px cancels the layout impact so the row doesn't shift. */
+.starBtnPressed {
+  background: #F3F4F6;
+  border-radius: 50%;
+  padding: 3px;
+  margin: -3px;
+  opacity: 1;
+}
+
+/* ── Read-only: no pointer, no hover feedback ─────────────────── */
+.readOnly {
+  cursor: default;
+  pointer-events: none;
+}
+.readOnly:hover {
+  opacity: 1;
+}

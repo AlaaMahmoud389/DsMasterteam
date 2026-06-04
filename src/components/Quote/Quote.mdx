@@ -1,0 +1,425 @@
+{/* Quote.mdx — Masterteam Design System */}
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Quote } from './Quote';
+import * as QuoteStories from './Quote.stories';
+
+<Meta of={QuoteStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ───────────────────────────────────────────────── */}
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Quote</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Quote</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 680, lineHeight: 1.7 }}>
+    A blockquote card component featuring decorative quotation marks, an optional title, quote body text,
+    and an author row with an optional avatar. Supports two sizes, white or transparent backgrounds, and full RTL layout.
+  </div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>2 sizes</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>2 backgrounds</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>RTL</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4482-3649" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+  </div>
+</div>
+
+{/* ── Default ───────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Default</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Large size with a white card background. Decorative <code>"</code> marks are absolutely positioned at the
+    top-start and bottom-end corners. The body has <code>64px</code> inline padding to keep text clear of the marks.
+  </p>
+  <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8 }}>
+    <Quote
+      size="large"
+      whiteBackground
+      quoteTitle="Title of quote"
+      quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+      authorName="Author's name"
+      authorBrief="Brief or description."
+      showAuthorDetails
+      showQuoteTitle
+      showDescription
+    />
+  </div>
+</div>
+
+{/* ── Sizes ─────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Sizes</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    <strong>Large</strong> constrains to <code>max-width: 848px</code>. <strong>Small</strong> constrains to <code>max-width: 640px</code>.
+  </p>
+  <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Large — max-width 848px</div>
+      <Quote
+        size="large"
+        whiteBackground
+        quoteTitle="Title of quote"
+        quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+        authorName="Author's name"
+        authorBrief="Brief or description."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Small — max-width 640px</div>
+      <Quote
+        size="small"
+        whiteBackground
+        quoteTitle="Title of quote"
+        quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+        authorName="Author's name"
+        authorBrief="Brief or description."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+  </div>
+</div>
+
+{/* ── Backgrounds ───────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Backgrounds</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    <code>whiteBackground=true</code> renders a <code>#FFFFFF</code> card. <code>whiteBackground=false</code> renders with a transparent background — useful when placed on a coloured page section.
+  </p>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8 }}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>White Background (whiteBackground=true)</div>
+      <Quote
+        size="large"
+        whiteBackground
+        quoteTitle="Title of quote"
+        quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+        authorName="Author's name"
+        authorBrief="Brief or description."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+    <div style={{ background: '#ffffff', padding: 24, borderRadius: 8, border: '1px solid #e5e7eb' }}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Transparent Background (whiteBackground=false)</div>
+      <Quote
+        size="large"
+        whiteBackground={false}
+        quoteTitle="Title of quote"
+        quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+        authorName="Author's name"
+        authorBrief="Brief or description."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+  </div>
+</div>
+
+{/* ── Content Visibility ────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Content Visibility</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Each section of the quote card can be independently shown or hidden via boolean props.
+  </p>
+  <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>showQuoteTitle = false</div>
+      <Quote whiteBackground showQuoteTitle={false} showDescription showAuthorDetails />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>showDescription = false</div>
+      <Quote whiteBackground showQuoteTitle showDescription={false} showAuthorDetails />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>showAuthorDetails = false</div>
+      <Quote whiteBackground showQuoteTitle showDescription showAuthorDetails={false} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Quote text only (title + author hidden)</div>
+      <Quote whiteBackground showQuoteTitle={false} showDescription showAuthorDetails={false} />
+    </div>
+  </div>
+</div>
+
+{/* ── Avatar ────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>With Avatar</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Set <code>showAvatar=true</code> to display an 80×80px avatar (Avatar 2xl) beside the author name.
+    Pass <code>avatarSrc</code> for an image; otherwise initials are derived from <code>authorName</code>.
+  </p>
+  <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>showAvatar = true (initials)</div>
+      <Quote
+        size="large"
+        whiteBackground
+        showAvatar
+        quoteTitle="Title of quote"
+        quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+        authorName="Author Name"
+        authorBrief="Brief or description."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>showAvatar = false (default)</div>
+      <Quote
+        size="large"
+        whiteBackground
+        showAvatar={false}
+        quoteTitle="Title of quote"
+        quoteText="The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept."
+        authorName="Author's name"
+        authorBrief="Brief or description."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+  </div>
+</div>
+
+{/* ── RTL ───────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>RTL</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Set <code>rtl=true</code> to flip the layout. The opening <code>«</code> mark moves to the top-right corner,
+    the closing mark to the bottom-left, and all text alignment and padding follow RTL direction via CSS logical properties.
+  </p>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8 }}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>RTL — Large / White Background</div>
+      <Quote
+        size="large"
+        whiteBackground
+        rtl
+        quoteTitle="عنوان الاقتباس"
+        quoteText="يُوضع الاقتباس هنا لإبراز قول معين أو لتقديم عبارة موجزة تعبّر عن فكرة أو مفهوم مهم."
+        authorName="اسم المؤلف"
+        authorBrief="وصف مختصر."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+    <div style={{ background: '#f3f4f6', padding: 24, borderRadius: 8 }}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>RTL — Small / White Background</div>
+      <Quote
+        size="small"
+        whiteBackground
+        rtl
+        quoteTitle="عنوان الاقتباس"
+        quoteText="يُوضع الاقتباس هنا لإبراز قول معين أو لتقديم عبارة موجزة تعبّر عن فكرة أو مفهوم مهم."
+        authorName="اسم المؤلف"
+        authorBrief="وصف مختصر."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+    <div style={{ background: '#ffffff', padding: 24, borderRadius: 8, border: '1px solid #e5e7eb' }}>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>RTL — Large / Transparent Background</div>
+      <Quote
+        size="large"
+        whiteBackground={false}
+        rtl
+        quoteTitle="عنوان الاقتباس"
+        quoteText="يُوضع الاقتباس هنا لإبراز قول معين أو لتقديم عبارة موجزة تعبّر عن فكرة أو مفهوم مهم."
+        authorName="اسم المؤلف"
+        authorBrief="وصف مختصر."
+        showAuthorDetails
+        showQuoteTitle
+        showDescription
+      />
+    </div>
+  </div>
+</div>
+
+{/* ── Full Figma Matrix ──────────────────────────────────────── */}
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Full Figma Matrix</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    All 8 variants from the Figma file: RTL × Size × Background.
+  </p>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+    {[false, true].map((rtl) =>
+      ['large', 'small'].map((size) =>
+        [true, false].map((whiteBg) => (
+          <div key={`${rtl}-${size}-${whiteBg}`} style={{ background: whiteBg ? '#f3f4f6' : '#ffffff', padding: 24, borderRadius: 8, border: '1px solid #e5e7eb' }}>
+            <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>
+              {rtl ? 'RTL' : 'LTR'} · {size} · {whiteBg ? 'white bg' : 'transparent bg'}
+            </div>
+            <Quote
+              size={size}
+              whiteBackground={whiteBg}
+              rtl={rtl}
+              quoteTitle={rtl ? 'عنوان الاقتباس' : 'Title of quote'}
+              quoteText={rtl
+                ? 'يُوضع الاقتباس هنا لإبراز قول معين أو لتقديم عبارة موجزة تعبّر عن فكرة أو مفهوم مهم.'
+                : 'The quote is placed here to highlight a specific saying or to present a brief quote that expresses an important idea or concept.'}
+              authorName={rtl ? 'اسم المؤلف' : "Author's name"}
+              authorBrief={rtl ? 'وصف مختصر.' : 'Brief or description.'}
+              showAuthorDetails
+              showQuoteTitle
+              showDescription
+            />
+          </div>
+        ))
+      )
+    )}
+  </div>
+</div>
+
+{/* ── Props ─────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['quoteTitle', 'string', "'Title of quote'", 'Title displayed above the quote text'],
+        ['showQuoteTitle', 'boolean', 'true', 'Show or hide the title'],
+        ['quoteText', 'string', "'The quote is placed here…'", 'Main body of the quote'],
+        ['showDescription', 'boolean', 'true', 'Show or hide the quote text'],
+        ['authorName', 'string', "'Author\\'s name'", 'Name shown in the author row'],
+        ['authorBrief', 'string', "'Brief or description.'", 'Short description below the author name'],
+        ['showAuthorDetails', 'boolean', 'true', 'Show or hide the entire author row'],
+        ['avatarSrc', 'string', '—', 'Image URL for the avatar; omit for initials'],
+        ['showAvatar', 'boolean', 'false', 'Show an 80×80px avatar beside the author'],
+        ['whiteBackground', 'boolean', 'true', 'White card background vs transparent'],
+        ['size', "'large'|'small'", "'large'", 'Large (max 848px) or Small (max 640px)'],
+        ['rtl', 'boolean', 'false', 'RTL layout — flips quote mark positions and text direction'],
+        ['className', 'string', '—', 'Extra class(es) on the container element'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+{/* ── Design Tokens ─────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['White background', '#FFFFFF', 'Card background when whiteBackground=true'],
+        ['Quote mark color', '#1849A9', 'Decorative " " marks'],
+        ['Border radius', '8px', 'Container corner radius'],
+        ['Container padding', '20px', 'All sides'],
+        ['Body gap', '48px', 'Gap between body section and author row'],
+        ['Body padding-inline', '64px', 'Horizontal padding clearing quote marks'],
+        ['Body gap (title ↔ text)', '16px', 'Gap between quoteTitle and quoteText'],
+        ['Quote title color', '#000B36', '24px / 500 / 32px line-height'],
+        ['Quote text color', '#233A61', '20px / 400 / 30px line-height'],
+        ['Author name color', '#000B36', '20px / 500 / 30px line-height'],
+        ['Author brief color', '#233A61', '18px / 400 / 28px line-height'],
+        ['Author row gap', '16px', 'Gap between avatar and author info'],
+        ['Author info gap', '8px', 'Gap between name and brief'],
+        ['Avatar size', '80×80px', 'Avatar 2xl in the author row'],
+        ['Quote mark font-size', '128px', 'Decorative mark character size'],
+        ['Quote mark offset', '12px', 'Distance from container edges'],
+      ].map(([token, value, usage]) => (
+        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
+          <td style={{ padding: '10px 14px' }}>
+            {value.startsWith('#') ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
+                <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+              </span>
+            ) : (
+              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+            )}
+          </td>
+          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+{/* ── Usage ─────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 16 }}>Usage</h2>
+  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 8, padding: 20, fontSize: 13, lineHeight: 1.7, overflowX: 'auto', color: '#374151' }}>{`import { Quote } from './Quote';
+
+// Basic usage
+<Quote
+  quoteTitle="Title of quote"
+  quoteText="The quote body goes here."
+  authorName="Author's name"
+  authorBrief="Brief or description."
+/>
+
+// Small, transparent background
+<Quote
+  size="small"
+  whiteBackground={false}
+  quoteTitle="Title of quote"
+  quoteText="The quote body goes here."
+  authorName="Author's name"
+  authorBrief="Brief or description."
+/>
+
+// With avatar
+<Quote
+  showAvatar
+  avatarSrc="/images/author.jpg"
+  authorName="Author's name"
+  authorBrief="CEO, Company"
+  quoteText="The quote body goes here."
+/>
+
+// Hide title and author
+<Quote
+  showQuoteTitle={false}
+  showAuthorDetails={false}
+  quoteText="The quote body goes here."
+/>
+
+// RTL (Arabic)
+<Quote
+  rtl
+  size="large"
+  whiteBackground
+  quoteTitle="عنوان الاقتباس"
+  quoteText="يُوضع الاقتباس هنا لإبراز قول معين."
+  authorName="اسم المؤلف"
+  authorBrief="وصف مختصر."
+/>`}</pre>
+</div>
+
+</div>

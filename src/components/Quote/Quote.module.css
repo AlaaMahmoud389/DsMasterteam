@@ -1,0 +1,163 @@
+/*
+ * Quote.module.css — Masterteam Design System
+ * Figma node 4482:3649
+ *
+ * Design tokens (from Figma API inspection):
+ *   Container padding      : 20px all sides
+ *   Container gap          : 48px (body → author)
+ *   Border-radius          : 8px
+ *   White bg               : #FFFFFF
+ *   Large max-width        : 848px
+ *   Small max-width        : 640px
+ *
+ *   Decorative marks       : SVG vector paths, color #1849A9
+ *   Opening mark size      : 46×32px  (top-start corner, 20px from edges)
+ *   Closing mark size      : 47×33px  (bottom-end corner, 20px from edges)
+ *   LTR: open top-left / close bottom-right
+ *   RTL: open top-right / close bottom-left  (different SVG paths)
+ *
+ *   Body padding-inline    : 64px  (clears the decorative marks)
+ *   Body gap (title ↔ text): 16px
+ *
+ *   Quote title   : #000B36  24px / 500 / 32px lh
+ *   Quote text    : #233A61  20px / 400 / 30px lh
+ *   Author name   : #000B36  20px / 500 / 30px lh
+ *   Author brief  : #233A61  18px / 400 / 28px lh
+ *   Author gap    : 8px
+ *   Avatar size   : 80×80px  (Avatar 2xl)
+ *   Author row gap: 16px
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Container
+   ══════════════════════════════════════════════════════════════════ */
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  width: 100%;
+  max-width: 848px;
+}
+
+.whiteBg {
+  background: #ffffff;
+}
+
+.transparentBg {
+  background: transparent;
+}
+
+.sizeSmall {
+  max-width: 640px;
+}
+
+/* ── RTL ────────────────────────────────────────────────────────── */
+.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Decorative SVG quote marks
+   Absolutely positioned at the start/end corners.
+   The SVG paths are the exact Figma vector paths — LTR and RTL
+   variants have different shapes (not just mirror transforms).
+   ══════════════════════════════════════════════════════════════════ */
+.quoteMark {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* Opening mark — top-start (left in LTR, right in RTL) */
+.quoteOpen {
+  top: 20px;
+  inset-inline-start: 20px;
+}
+
+/* Closing mark — bottom-end (right in LTR, left in RTL) */
+.quoteClose {
+  bottom: 20px;
+  inset-inline-end: 20px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Body (title + quote text)
+   ══════════════════════════════════════════════════════════════════ */
+.body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* 64px inline padding clears the ~46px decorative mark + breathing room */
+  padding-inline-start: 64px;
+  padding-inline-end: 64px;
+}
+
+.quoteTitle {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #000b36;
+  font-family: inherit;
+  margin: 0;
+}
+
+.quoteText {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #233a61;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Author row
+   Sits at the start of the cross axis (left in LTR, right in RTL).
+   No extra inline padding — the container's 20px padding is enough.
+   ══════════════════════════════════════════════════════════════════ */
+.authorDetails {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatarWrap {
+  flex-shrink: 0;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.authorName {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  color: #000b36;
+  font-family: inherit;
+}
+
+.authorBrief {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #233a61;
+  font-family: inherit;
+}

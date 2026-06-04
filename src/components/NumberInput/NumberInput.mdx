@@ -1,0 +1,447 @@
+{/* NumberInput.mdx — Masterteam Design System */}
+import { Meta } from '@storybook/addon-docs/blocks';
+import { InputPrefixSuffix, NumberInput } from './NumberInput';
+import * as NumberInputStories from './NumberInput.stories';
+
+<Meta of={NumberInputStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ───────────────────────────────────────────────── */}
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Number Input</div>
+  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Number Input</h1>
+  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 680, lineHeight: 1.7 }}>
+    A numeric stepper composed of two components: a standalone <strong>Input Prefix-Suffix</strong> button
+    (Plus or Minus, in Solid or Subtle style) and a full <strong>Number Input</strong> field that combines
+    the buttons with a text field, label, and helper text. Supports 6 states, 3 input styles, 2 sizes,
+    error feedback, and RTL layout.
+  </div>
+  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
+      Available
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>6 states</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>3 styles</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>2 sizes</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>RTL</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1944" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+  </div>
+</div>
+
+{/* ── Default state ─────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Default</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    The default state shows a white field with a <code>#D2D6DB</code> border,
+    an optional label above, and optional helper text below.
+  </p>
+  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Empty (Filled=Off)</div>
+      <NumberInput label="Label" showLabel helperText="Help Text" showHelperText value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Filled (Filled=On)</div>
+      <NumberInput label="Label" showLabel helperText="Help Text" showHelperText value={42} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Required</div>
+      <NumberInput label="Label" showLabel required value={0} />
+    </div>
+  </div>
+</div>
+
+{/* ── All States ────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>All States</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    6 interactive states. Focused replaces the bottom border with a 2px <code>#1849A9</code> underline.
+    Disabled and Read-only remove the fill and mute the border.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28 }}>
+    {['default', 'hovered', 'pressed', 'focused', 'disabled', 'read-only'].map((state) => (
+      <div key={state}>
+        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{state}</div>
+        <NumberInput
+          label="Label"
+          showLabel
+          helperText="Help Text"
+          showHelperText
+          state={state}
+          value={state === 'read-only' ? 42 : 0}
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* ── Error States ──────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Error States</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    When <code>error=true</code>, the border turns <code>#A30000</code> and the helper text turns red
+    (<code>#B42318</code>) with a warning icon.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28 }}>
+    {['default', 'hovered', 'focused', 'disabled'].map((state) => (
+      <div key={state}>
+        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{state} + error</div>
+        <NumberInput
+          label="Label"
+          showLabel
+          helperText="Help Text"
+          showHelperText
+          state={state}
+          error
+          value={0}
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* ── Sizes ─────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Sizes</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Large (40px field, 56px buttons) and Medium (32px field, 48px buttons).
+  </p>
+  <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Large</div>
+      <NumberInput label="Label" showLabel size="large" value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Medium</div>
+      <NumberInput label="Label" showLabel size="medium" value={0} />
+    </div>
+  </div>
+</div>
+
+{/* ── Input Styles ──────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Input Styles</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Three fill styles for the field background. <em>Filled lighter</em> and <em>Filled darker</em> remove the border.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32 }}>
+    {[
+      { inputStyle: 'default',        label: 'Default — bg #FFFFFF' },
+      { inputStyle: 'filled-lighter', label: 'Filled Lighter — bg #FCFCFD' },
+      { inputStyle: 'filled-darker',  label: 'Filled Darker — bg #F3F4F6' },
+    ].map(({ inputStyle, label }) => (
+      <div key={inputStyle}>
+        <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{label}</div>
+        <NumberInput label="Label" showLabel inputStyle={inputStyle} value={42} />
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* ── Button Styles ─────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Button Styles</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    <strong>Solid</strong> buttons have a <code>#F3F4F6</code> background. <strong>Subtle</strong> buttons are transparent and only show a background on interaction.
+  </p>
+  <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Solid</div>
+      <NumberInput label="Label" showLabel btnStyle="solid" value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Subtle</div>
+      <NumberInput label="Label" showLabel btnStyle="subtle" value={0} />
+    </div>
+  </div>
+</div>
+
+{/* ── Label Variants ────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Label Variants</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Labels support Regular (400) and Semibold (600) weight, a Required asterisk, Disabled state, and two sizes (Medium 14px, Large 16px).
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 28 }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>No label</div>
+      <NumberInput showLabel={false} value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Regular</div>
+      <NumberInput label="Label" showLabel labelType="regular" value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Semibold</div>
+      <NumberInput label="Label" showLabel labelType="semibold" value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Required</div>
+      <NumberInput label="Label" showLabel required value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>Disabled</div>
+      <NumberInput label="Label" showLabel state="disabled" value={0} />
+    </div>
+  </div>
+</div>
+
+{/* ── RTL ───────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>RTL</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    In RTL mode, the layout mirrors: the Minus button appears on the right and Plus on the left. Text alignment and label follow the RTL direction.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32 }}>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Default</div>
+      <NumberInput label="تسمية" showLabel helperText="نص مساعد" showHelperText rtl value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Error</div>
+      <NumberInput label="تسمية" showLabel helperText="نص مساعد" showHelperText error rtl value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Disabled</div>
+      <NumberInput label="تسمية" showLabel state="disabled" rtl value={0} />
+    </div>
+    <div>
+      <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>RTL — Filled + Required</div>
+      <NumberInput label="تسمية" showLabel required inputStyle="filled-darker" rtl value={42} />
+    </div>
+  </div>
+</div>
+
+{/* ── Input Prefix-Suffix — All States ─────────────────────── */}
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Input Prefix-Suffix — All States</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    The standalone Plus and Minus buttons in both Solid and Subtle styles across all 6 states.
+  </p>
+  <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+    {[
+      { type: 'plus',  btnStyle: 'solid',  label: 'Plus — Solid' },
+      { type: 'minus', btnStyle: 'solid',  label: 'Minus — Solid' },
+      { type: 'plus',  btnStyle: 'subtle', label: 'Plus — Subtle' },
+      { type: 'minus', btnStyle: 'subtle', label: 'Minus — Subtle' },
+    ].map(({ type, btnStyle, label }) => (
+      <div key={`${type}-${btnStyle}`}>
+        <div style={{ fontSize: 13, color: '#000b36', fontWeight: 500, marginBottom: 16 }}>{label}</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {['default', 'hovered', 'pressed', 'selected', 'focused', 'disabled'].map((state) => (
+            <div key={state} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', width: 70 }}>{state}</div>
+              <InputPrefixSuffix type={type} state={state} btnStyle={btnStyle} size="large" />
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+{/* ── Input Prefix-Suffix — Sizes ───────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 6 }}>Input Prefix-Suffix — Sizes</h2>
+  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.7 }}>
+    Large (56×40px) and Medium (48×32px) in both Solid and Subtle styles.
+  </p>
+  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+    {['solid', 'subtle'].map((btnStyle) =>
+      ['plus', 'minus'].map((type) =>
+        ['large', 'medium'].map((size) => (
+          <div key={`${btnStyle}-${type}-${size}`}>
+            <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 10 }}>{btnStyle} {type} {size}</div>
+            <InputPrefixSuffix type={type} btnStyle={btnStyle} size={size} />
+          </div>
+        ))
+      )
+    )}
+  </div>
+</div>
+
+{/* ── Props: NumberInput ────────────────────────────────────── */}
+<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — NumberInput</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['value', 'number | string', '—', 'Controlled value'],
+        ['onChange', 'function(n: number)', '—', 'Called with new numeric value'],
+        ['label', 'string', "'Label'", 'Label text shown above the field'],
+        ['showLabel', 'boolean', 'true', 'Show or hide the label row'],
+        ['helperText', 'string', "'Help Text'", 'Helper text below the field'],
+        ['showHelperText', 'boolean', 'false', 'Show or hide helper text'],
+        ['placeholder', 'string', "'00000'", 'Placeholder shown when empty'],
+        ['state', "'default'|'hovered'|'pressed'|'focused'|'disabled'|'read-only'", "'default'", 'Visual/interactive state'],
+        ['error', 'boolean', 'false', 'Error state — red border, red helper text'],
+        ['size', "'large'|'medium'", "'large'", 'Field and button height'],
+        ['inputStyle', "'default'|'filled-lighter'|'filled-darker'", "'default'", 'Background fill style'],
+        ['btnStyle', "'solid'|'subtle'", "'solid'", 'Plus/Minus button background style'],
+        ['labelType', "'regular'|'semibold'", "'regular'", 'Label font weight'],
+        ['required', 'boolean', 'false', 'Show required asterisk on label'],
+        ['rtl', 'boolean', 'false', 'RTL layout'],
+        ['min', 'number', '—', 'Minimum allowed value'],
+        ['max', 'number', '—', 'Maximum allowed value'],
+        ['step', 'number', '1', 'Increment/decrement amount'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+{/* ── Props: InputPrefixSuffix ──────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props — InputPrefixSuffix</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['type', "'plus'|'minus'", "'plus'", 'Plus (+) or Minus (−) icon'],
+        ['state', "'default'|'hovered'|'pressed'|'focused'|'selected'|'disabled'", "'default'", 'Visual state'],
+        ['btnStyle', "'solid'|'subtle'", "'solid'", 'Solid has a bg fill; subtle is transparent'],
+        ['size', "'large'|'medium'", "'large'", 'Large 56×40px or Medium 48×32px'],
+        ['onClick', 'function', '—', 'Click handler'],
+      ].map(([prop, type, def, desc]) => (
+        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
+          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+{/* ── Design Tokens ─────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
+  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#f9fafb' }}>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
+        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[
+        ['Default border', '#D2D6DB', 'Input field border in default state'],
+        ['Hovered border', '#1F2A37', 'Input field border on hover'],
+        ['Pressed bg', '#F3F4F6', 'Input field background on press'],
+        ['Focused underline', '#1849A9', '2px bottom border in focused state'],
+        ['Disabled border', '#E5E7EB', 'Input field border when disabled'],
+        ['Read-only border', '#CED3DC', 'Input field border when read-only'],
+        ['Error border', '#A30000', 'Input field border in error state'],
+        ['Filled lighter bg', '#FCFCFD', 'Background for filled-lighter style'],
+        ['Filled darker bg', '#F3F4F6', 'Background for filled-darker style'],
+        ['Label text', '#000B36', 'Label colour'],
+        ['Required asterisk', '#A30000', 'Required * marker'],
+        ['Placeholder', '#B6BDCA', 'Placeholder text colour'],
+        ['Value text', '#000B36', 'Entered value colour (16px/400)'],
+        ['Helper text', '#384250', 'Helper text in normal state'],
+        ['Helper error', '#B42318', 'Helper text in error state'],
+        ['Button solid default', '#F3F4F6', 'Solid button background'],
+        ['Button hovered', '#E5E7EB', 'Button background on hover/selected'],
+        ['Button pressed', '#D2D6DB', 'Button background on press'],
+        ['Button focus ring', '#00001C', 'Focus outline for keyboard navigation'],
+      ].map(([token, value, usage]) => (
+        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
+          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
+          <td style={{ padding: '10px 14px' }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
+              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
+            </span>
+          </td>
+          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+{/* ── Usage ─────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 16 }}>Usage</h2>
+  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 8, padding: 20, fontSize: 13, lineHeight: 1.7, overflowX: 'auto', color: '#374151' }}>{`import { NumberInput, InputPrefixSuffix } from './NumberInput';
+
+// Basic controlled usage
+const [qty, setQty] = useState(0);
+<NumberInput value={qty} onChange={setQty} />
+
+// With label, helper text, and bounds
+<NumberInput
+  label="Quantity"
+  showLabel
+  helperText="Enter a value between 0 and 100"
+  showHelperText
+  value={qty}
+  onChange={setQty}
+  min={0}
+  max={100}
+  step={1}
+  required
+/>
+
+// Error state
+<NumberInput
+  label="Amount"
+  showLabel
+  helperText="Value cannot be negative"
+  showHelperText
+  error
+  value={qty}
+  onChange={setQty}
+/>
+
+// Filled darker style, medium size, subtle buttons
+<NumberInput
+  inputStyle="filled-darker"
+  btnStyle="subtle"
+  size="medium"
+  value={qty}
+  onChange={setQty}
+/>
+
+// RTL
+<NumberInput
+  label="الكمية"
+  showLabel
+  helperText="أدخل رقمًا"
+  showHelperText
+  rtl
+  value={qty}
+  onChange={setQty}
+/>
+
+// Standalone button
+<InputPrefixSuffix type="plus" btnStyle="solid" size="large" onClick={increment} />
+<InputPrefixSuffix type="minus" btnStyle="subtle" size="medium" onClick={decrement} />`}</pre>
+</div>
+
+</div>

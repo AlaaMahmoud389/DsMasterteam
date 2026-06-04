@@ -1,0 +1,344 @@
+/*
+ * Tabs.module.css — Masterteam Design System
+ * Figma: node 4747:83313
+ *
+ * Design tokens:
+ *
+ * ── Vertical Tab ────────────────────────────────────────────────────
+ *   Heights:    Small=36px  Medium=44px  Large=52px
+ *   Padding TB: Small=8px   Medium=12px  Large=14px
+ *   Padding LR: Small=6px   Medium=12px  Large=12px
+ *   Left bar:   3px wide × full height  pill-rounded ends  color #1849A9
+ *   Disabled selected bar: #D2D6DB
+ *   Text:       Small/Medium=14px  Large=16px  weight: unselected=400 selected=600
+ *   Text color: #000B36  disabled: #6C7C96
+ *   Hover bg (unselected): #E5E7EB
+ *   Hover bar (unselected): #1F2A37
+ *   Pressed bg (unselected): #D2D6DB
+ *   Focused: 2px solid #1849A9 outline offset 2px
+ *
+ * ── Horizontal Tab ──────────────────────────────────────────────────
+ *   Heights:    Small=36px  Medium=44px  Large=52px
+ *   Padding TB: Small=8px   Medium=12px  Large=16px
+ *   Padding LR: Small=12px  Medium=16px  Large=16px
+ *   Bottom bar: 3px, full width of tab  color #1849A9
+ *   Disabled selected bar: #6C7C96
+ *   Text:       always 14px  weight: unselected=500  selected=700
+ *   Text color: #000B36  disabled: #6C7C96
+ *   Hover bg: #E5E7EB
+ *   Pressed bg: #D2D6DB
+ *
+ * ── Vertical Tab List ───────────────────────────────────────────────
+ *   Width: 150px  flex-direction: column  gap: 0
+ *
+ * ── Horizontal Tab List ─────────────────────────────────────────────
+ *   Width: 100%  flex-direction: row
+ *   Divider: 3px solid #D2D6DB on container bottom edge
+ *   Flush: wrapper margin-inline-start −16px (M/L) or −12px (S)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Shared resets
+   ══════════════════════════════════════════════════════════════════ */
+.vtab,
+.htab {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  color: #000b36;
+  white-space: nowrap;
+  position: relative;
+  box-sizing: border-box;
+  outline: none;
+  text-align: start;
+}
+
+.vtab {
+  border-radius: 4px;
+}
+
+.htab {
+  border-radius: 4px;
+}
+
+.tabLabel {
+  font-family: inherit;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Vertical Tab
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Sizes ── */
+.vtabSmall {
+  height: 36px;
+  padding: 8px 6px 8px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.vtabMedium {
+  height: 44px;
+  padding: 12px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.vtabLarge {
+  height: 52px;
+  padding: 14px 12px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+/* ── Left indicator bar via ::before ── */
+.vtab::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  border-radius: 9999px;
+  background: transparent;
+}
+
+.vtabSmall::before,
+.vtabMedium::before {
+  height: 16px;
+}
+
+.vtabLarge::before {
+  height: 24px;
+}
+
+/* ── Selected state ── */
+.vtabSelected {
+  font-weight: 600;
+}
+
+.vtabSelected::before {
+  background: #1849a9;
+}
+
+/* ── Disabled state ── */
+.vtabDisabled {
+  color: #6c7c96;
+  cursor: not-allowed;
+}
+
+.vtabDisabled.vtabSelected::before {
+  background: #d2d6db;
+}
+
+/* ── Hover (unselected only) ── */
+.vtabHovered {
+  background: #e5e7eb;
+}
+
+.vtabHovered::before {
+  background: #1f2a37;
+}
+
+/* ── Pressed (unselected only) ── */
+.vtabPressed {
+  background: #d2d6db;
+}
+
+/* ── Focused ── */
+.vtabFocused {
+  outline: 3px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ── Interactive hover/active (for VerticalTabList buttons) ── */
+.vtab:not(.vtabSelected):not(.vtabDisabled):hover {
+  background: #e5e7eb;
+}
+
+.vtab:not(.vtabSelected):not(.vtabDisabled):hover::before {
+  background: #1f2a37;
+}
+
+.vtab:not(.vtabSelected):not(.vtabDisabled):active {
+  background: #d2d6db;
+}
+
+.vtab:focus-visible {
+  outline: 3px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Vertical Tab List
+   ══════════════════════════════════════════════════════════════════ */
+.vtabList {
+  display: inline-flex;
+  flex-direction: column;
+  width: 150px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.vtabList .vtab {
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Horizontal Tab
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── Sizes ── */
+.htabSmall {
+  height: 52px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.htabMedium {
+  height: 52px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.htabLarge {
+  height: 52px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+/* ── Bottom indicator bar via ::after ── */
+.htab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 16px;
+  inset-inline-end: 16px;
+  height: 3px;
+  background: transparent;
+  border-radius: 9999px;
+}
+
+/* ── More (three-dots) button — no indicator bar, icon only ── */
+.htabMore::after {
+  display: none;
+}
+
+/* ── Selected state ── */
+.htabSelected {
+  font-weight: 700;
+}
+
+.htabSelected::after {
+  background: #1849a9;
+}
+
+/* ── Disabled state ── */
+.htabDisabled {
+  color: #6c7c96;
+  cursor: not-allowed;
+}
+
+.htabDisabled.htabSelected::after {
+  background: #6c7c96;
+}
+
+/* ── Hover ── */
+.htabHovered {
+  background: #e5e7eb;
+}
+
+.htabHovered::after {
+  background: #1f2a37;
+}
+
+/* ── Pressed ── */
+.htabPressed {
+  background: #d2d6db;
+}
+
+/* ── Focused ── */
+.htabFocused {
+  outline: 3px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ── Interactive hover/active (for HorizontalTabList buttons) ── */
+.htab:not(.htabDisabled):not(.htabSelected):hover {
+  background: #e5e7eb;
+}
+
+.htab:not(.htabDisabled):not(.htabSelected):hover::after {
+  background: #1f2a37;
+}
+
+.htab:not(.htabDisabled):not(.htabSelected):active {
+  background: #d2d6db;
+}
+
+.htab:focus-visible {
+  outline: 3px solid #1849a9;
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Horizontal Tab List
+   ══════════════════════════════════════════════════════════════════ */
+.htabListContainer {
+  width: 100%;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Divider — inset shadow so the line sits inside the content area,
+   at the same vertical level as the tab indicator bars */
+.htabListDivider {
+  box-shadow: inset 0 -3px 0 0 #d2d6db;
+}
+
+
+.htabList {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* ── Flush variants: pull the tab wrapper back by the tab's LR padding ── */
+.htabListFlushSmall  { margin-inline-start: -12px; }
+.htabListFlushMedium { margin-inline-start: -16px; }
+.htabListFlushLarge  { margin-inline-start: -16px; }
+
+/* ── Flush: first tab's indicator starts at the container edge (no divider
+   visible to its left). Applies to the first item only — all others keep
+   their normal 16px inset on both sides. ── */
+.htabListFlushSmall  > button:first-child::after,
+.htabListFlushMedium > button:first-child::after,
+.htabListFlushLarge  > button:first-child::after {
+  inset-inline-start: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RTL support
+   ══════════════════════════════════════════════════════════════════ */
+.rtl {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+/* Left-bar flips to right side in RTL — border-radius is already 9999px on all corners */
