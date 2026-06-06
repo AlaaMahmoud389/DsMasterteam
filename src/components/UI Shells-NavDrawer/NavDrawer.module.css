@@ -1,0 +1,336 @@
+/* ==========================================================
+   Nav Drawer — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:10501
+   ========================================================== */
+
+/* ── Design tokens
+   --nav-drawer/text/filled:            #000b36
+   --nav-drawer/text/oncolor:           #f9fafb
+   --nav-drawer/text/disabled:          #9da4ae
+   --nav-drawer/bg/hover:               #f3f4f6
+   --nav-drawer/bg/pressed:             #e5e7eb
+   --nav-drawer/bg/selected:            #e5e7eb
+   --nav-drawer/accent:                 #1849a9  (indicator + selected text)
+   --nav-drawer/indicator/hover:        #e7e9ed
+   Text sm/Semibold:  14px / 600 / 20px  (L1 label)
+   Text sm/Regular:   14px / 400 / 20px  (L2 label)
+   Text 2xs/Semibold: 10px / 600 / 14px  (badge)
+   ──────────────────────────────────────────────────────── */
+
+/* ── Drawer container ─────────────────────────────────── */
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  padding: 8px;
+  background: #ffffff;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.drawerOnColor { background: #111827; }
+
+.drawerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Item base ────────────────────────────────────────── */
+/* Figma: w-224px, padding 8px 16px, gap 8px, r-4px       */
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s ease;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  text-align: start;
+  width: 224px;
+}
+
+/* Full (224px) vs icon-only (48×32) */
+.itemFull { width: 224px; }
+.itemIcon {
+  width: 48px;
+  height: 32px;
+  padding: 8px;
+  justify-content: center;
+}
+
+/* Level 2: 40px left indent (LTR) */
+.itemLevel2    { padding: 8px 16px 8px 40px; }
+.itemLevel2Rtl { padding: 8px 40px 8px 16px; }
+
+/* RTL: reverse item direction */
+.itemRtl { flex-direction: row-reverse; }
+
+/* ── Interactive states ───────────────────────────────── */
+
+.item:hover:not(:disabled)  { background: #f3f4f6; }
+.item:active:not(:disabled) { background: #e5e7eb; }
+.item:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}
+
+/* Forced story states */
+.itemHovered  { background: #f3f4f6; }
+.itemPressed  { background: #e5e7eb; }
+.itemFocused  { outline: 2px solid #1849a9; outline-offset: -2px; }
+.itemSelected { background: #e5e7eb; }
+.itemDisabled { cursor: not-allowed; }
+
+/* ── On-color (dark sidebar) states ──────────────────── */
+
+.itemOnColor:hover:not(:disabled)  { background: rgba(255, 255, 255, 0.08); }
+.itemOnColor:active:not(:disabled) { background: rgba(255, 255, 255, 0.12); }
+.itemOnColor.itemHovered           { background: rgba(255, 255, 255, 0.08); }
+.itemOnColor.itemPressed           { background: rgba(255, 255, 255, 0.12); }
+.itemOnColor.itemSelected          { background: rgba(255, 255, 255, 0.12); }
+
+/* ── Selection indicator (vertical 6px pill on left) ─── */
+/* Figma: absolute, left-0, top-0, bottom-0, py-6px, w-6px */
+
+.indicator {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 6px;
+  border-radius: 9999px;
+  background: #1849a9;
+  pointer-events: none;
+}
+
+.indicatorHover { background: #e7e9ed; }
+
+/* RTL: indicator on right */
+.itemRtl .indicator {
+  left: auto;
+  right: 0;
+}
+
+/* ── Icon wrapper (16×16) ─────────────────────────────── */
+
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Label ────────────────────────────────────────────── */
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #000b36;
+  white-space: nowrap;
+  flex: 1 0 0;
+  min-width: 1px;
+  text-align: start;
+}
+
+/* Level 2 uses regular weight */
+.labelLevel2   { font-weight: 400; }
+
+.labelSelected { color: #1849a9; }
+.labelDisabled { color: #9da4ae; }
+.labelOnColor  { color: #f9fafb; }
+
+/* ── Chevron (16×16) ──────────────────────────────────── */
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ── External link icon (16×16) ──────────────────────── */
+
+.externalIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ── Badge pill ───────────────────────────────────────── */
+/* Figma: h-20px, px-8px, r-full, bg #f3f4f6, border #d2d6db */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 0 8px;
+  background: #f3f4f6;
+  border: 1px solid #d2d6db;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.badgeOnColor {
+  background: #1f2a37;
+  border-color: transparent;
+}
+
+.badgeText {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  color: #000b36;
+  white-space: nowrap;
+}
+
+.badgeTextOnColor { color: #f9fafb; }
+
+/* ──────────────────────────────────────────────────────
+   Full Panel (NavDrawerPanel) — Figma node 5005:11026
+   ────────────────────────────────────────────────────── */
+
+/* ── Panel container ──────────────────────────────────── */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  background: #ffffff;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.panelOnColor   { background: #102a56; }
+.panelCollapsed { width: 64px; }
+
+.panelOverlay {
+  box-shadow: 4px 16px 24px 0px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.panelBorderRight { border-right: 1px solid #d2d6db; }
+.panelBorderLeft  { border-left:  1px solid #d2d6db; }
+
+/* ── Panel header ─────────────────────────────────────── */
+
+.panelHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 73px;
+  padding: 24px 32px;
+  background: #ffffff;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.panelHeaderOnColor { background: #3c5073; }
+.panelHeaderRtl     { flex-direction: row-reverse; }
+
+.panelHeaderCollapsed {
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+/* ── Logo ─────────────────────────────────────────────── */
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoText {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000b36;
+  line-height: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+
+.logoTextOnColor { color: #f9fafb; }
+
+/* ── Sidebar toggle button ───────────────────────────── */
+
+.sidebarToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+  padding: 0;
+}
+
+.sidebarToggle:hover         { background: #f3f4f6; }
+.sidebarToggleOnColor:hover  { background: rgba(255, 255, 255, 0.08); }
+
+/* ── Panel items area ─────────────────────────────────── */
+
+.panelItems {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 16px 80px 16px;
+}
+
+.panelItemsCollapsed {
+  padding: 16px 8px 80px 8px;
+}
+
+.panelItemsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Divider ─────────────────────────────────────────── */
+
+.dividerItem {
+  padding: 8px 0;
+  list-style: none;
+}
+
+.dividerLine {
+  height: 1px;
+  background: #d2d6db;
+  border: none;
+  margin: 0;
+}
+
+.dividerItemOnColor .dividerLine { background: rgba(255, 255, 255, 0.12); }

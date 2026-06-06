@@ -18,14 +18,16 @@
   flex-direction: column;
   gap: 24px;
   padding: 16px;
-  width: 360px;
+  width: 100%;
+  max-width: 360px;
+  min-width: 0;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
   box-sizing: border-box;
   font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
-  overflow: hidden;
   align-self: flex-start;
+  container-type: inline-size;
 }
 
 /* ─── Upper Section row ─────────────────────────────────────────────────────── */
@@ -114,13 +116,13 @@
   display: flex;
   align-items: flex-end;
   width: 100%;
+  min-width: 0;
   flex-shrink: 0;
 }
 
 .bodyLtr {
   flex-direction: row;
-  gap: 24px;
-  justify-content: flex-end;
+  gap: 16px;
 }
 
 .bodyRtl {
@@ -132,8 +134,8 @@
 .valueBlock {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  flex: 1 0 0;
+  gap: 8px;
+  flex: 1 0 auto;
   min-width: 0;
 }
 
@@ -157,6 +159,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 .infoRowFlex1 {
@@ -215,16 +219,21 @@
   font-weight: 400;
   line-height: 20px;
   color: #3c5073;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   margin: 0;
+  min-width: 0;
 }
 
 /* ─── Sparkline — Small (128×64) ────────────────────────────────────────────── */
 .chartSmall {
   position: relative;
-  width: 128px;
+  width: 100%;
+  max-width: 165px;
+  min-width: 0;
   height: 64px;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  align-self: flex-end;
 }
 
 /* ─── Sparkline — Large (full width, 64px) ──────────────────────────────────── */
@@ -369,8 +378,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 32px;
+  min-height: 32px;
   width: 100%;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .settingsBtn {

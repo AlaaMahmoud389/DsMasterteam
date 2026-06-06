@@ -1,0 +1,434 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as NavHeaderStories from './NavHeader.stories';
+
+<Meta of={NavHeaderStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>UI Shells / Nav Header / Nav Items</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Nav Items</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>The Navigation Header appears at the top of every page. It contains the brand logo, primary navigation links (menu items with chevrons), and utility action buttons. Fully responsive across three breakpoints with first-class RTL support.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 5005:5361</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Menu Item States: 5005:4922</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Action States: 5005:5055</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/ui-shell/navigation-header" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-5361" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Playground','#playground'],['Breakpoints','#breakpoints'],['RTL Support','#rtl-support'],['Menu Item States','#menu-item-states'],['Action States','#action-states'],['Props','#props'],['Design Tokens','#design-tokens']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Playground
+
+<Canvas of={NavHeaderStories.Playground} />
+<Controls of={NavHeaderStories.Playground} />
+
+---
+
+## Breakpoints
+
+The `breakpoint` prop selects the responsive layout variant. It maps directly to the Figma variant of the same name.
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>breakpoint</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Viewport</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Bar max-width</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Padding</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Layout</th>
+</tr>
+</thead>
+<tbody>
+{[
+['>960',    'Desktop', '1320 px (1728 px if fullWidth)', '32 px', 'Logo + menu items · Actions'],
+['600>960', 'Tablet',  '960 px',                         '32 px', 'Nav menu btn · Logo (center) · Icon action + Utility btn'],
+['<600',    'Mobile',  '600 px',                         '16 px', 'Nav menu btn · Logo (center) · Utility btn'],
+].map(([bp, vp, mw, pad, layout], i) => (
+<tr key={bp} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{bp}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{vp}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{mw}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{pad}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{layout}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '10px 16px', marginBottom: 16, fontSize: 13, color: '#92400e' }}>
+  <strong>Note:</strong> <code>fullWidth</code> only affects the <code>&gt;960</code> breakpoint — tablet and mobile always use their fixed widths.
+</div>
+
+### Desktop (`>960`)
+
+<Canvas of={NavHeaderStories.DefaultLTR} />
+
+The desktop bar contains three zones:
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '18%' }}>Zone</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Contents</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Logo', 'Inline SVG sparkle mark (#334DFF, Figma node 5046:11130) inside a 3.073px padded 4.8px rounded container, followed by the masterteam text image (146.843 × 17.287 px)'],
+['Menu items', 'Text label + arrow-down-01 chevron (20×20). The leading login-square-01 icon is NOT shown in the bar — it appears only in the isolated state stories'],
+['Actions', 'login-square-01 icon (24×24) + text label. One action can be selected (bg #f9fafb, SemiBold, blue #1849a9 bottom indicator at top: 66px)'],
+].map(([zone, contents], i) => (
+<tr key={zone} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'top', fontWeight: 600, color: '#111827', whiteSpace: 'nowrap' }}>{zone}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'top' }}>{contents}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+<Canvas of={NavHeaderStories.DefaultRTL} />
+
+<Canvas of={NavHeaderStories.FullWidth} />
+
+### Tablet (`600>960`)
+
+<Canvas of={NavHeaderStories.TabletLTR} />
+
+<Canvas of={NavHeaderStories.TabletRTL} />
+
+Three-column layout:
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '16%' }}>Column</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>LTR</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>RTL</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Start',  'Nav Menu btn (40×40, arrow-down-01)', 'Utility btn + icon-only action'],
+['Center', 'Logo',                                 'Logo'],
+['End',    'Icon-only action + Utility btn (40×40, arrow-down-01)', 'Nav Menu btn'],
+].map(([col, ltr, rtl], i) => (
+<tr key={col} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontWeight: 600, color: '#111827', verticalAlign: 'middle' }}>{col}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{ltr}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{rtl}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### Mobile (`<600`)
+
+<Canvas of={NavHeaderStories.MobileLTR} />
+
+<Canvas of={NavHeaderStories.MobileRTL} />
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Button</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Icon</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Figma node</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>LTR</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>RTL</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Nav Menu',     'more-horizontal (3 dots)', '4732:17582', 'Left',  'Right'],
+['Utility Menu', 'menu-01 (hamburger)',       '5005:4745',  'Right', 'Left'],
+].map(([btn, icon, node, ltr, rtl], i) => (
+<tr key={btn} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontWeight: 600, color: '#111827', verticalAlign: 'middle' }}>{btn}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{icon}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{node}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{ltr}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{rtl}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### All breakpoints
+
+<Canvas of={NavHeaderStories.AllBreakpoints} />
+
+---
+
+## RTL Support
+
+RTL is implemented with physical CSS mirroring — no `dir="rtl"` wrapper is placed on the header or its children.
+
+- **Menu items RTL** — `flex-direction: row-reverse` on the item renders `[chevron][label]` visually (chevron on the left).
+- **Actions RTL** — `flex-direction: row-reverse` renders `[label][icon]` visually (icon on the right).
+- **Logo+menu container RTL** — `justify-content: flex-end` keeps both logo and menu items right-aligned. DOM order swaps (menu items first in DOM) so both sit at the right edge.
+- **Tablet RTL** — utility side on the left, nav-menu button on the right.
+- **Mobile RTL** — utility (hamburger) on the left, nav-menu (3 dots) on the right.
+
+<Canvas of={NavHeaderStories.FigmaReference} />
+
+---
+
+## Menu Item States
+
+All interactive states from Figma node [5005:4922](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-4922). Each item shows the `login-square-01` leading icon (24×24) + label + `arrow-down-01` chevron (20×20).
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '18%' }}>State</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Unselected bg</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Selected bg</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Indicator</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Default',         'transparent',              '#f9fafb',                                             'Blue #1849a9 (6px pill, top: 66px)'],
+['Hovered',         '#f3f4f6',                  '#f3f4f6',                                             'Gray #9da4ae (unselected) / Blue (selected)'],
+['Pressed',         '#e5e7eb',                  '#e5e7eb',                                             'Gray (unselected) / Blue (selected)'],
+['Focused',         'outline: 2px #1849a9 −2px','outline: 2px #1849a9 −2px',                          'Blue'],
+['Focused+Selected','—',                         'bg #1849a9, white text+icons, white inner border',   '—'],
+['Disabled',        'transparent, text #9da4ae', '—',                                                  'Hidden'],
+].map(([state, unsel, sel, indicator], i) => (
+<tr key={state} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle', fontWeight: 600, color: '#111827' }}>{state}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{unsel}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{sel}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{indicator}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+<Canvas of={NavHeaderStories.MenuItemStatesLTR} />
+
+<Canvas of={NavHeaderStories.MenuItemStatesRTL} />
+
+---
+
+## Action States
+
+<div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+  <span style={{ fontSize: 14, color: '#374151' }}>All interactive states from Figma node</span>
+  <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-5055&t=EJoRFKNE3ELU8q3X-4" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#fff7ed', color: '#c2410c', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 20, textDecoration: 'none', border: '1px solid #fed7aa' }}>
+    Figma: Node 5005:5055 ↗
+  </a>
+</div>
+
+Action icon: `login-square-01` (24×24).
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 8 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '18%' }}>State</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Unselected bg</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Selected bg</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Indicator</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Default',         'transparent',              '#f9fafb',                                                         'Blue #1849a9 (6px pill, top: 66px)'],
+['Hovered',         '#f3f4f6',                  '#f3f4f6',                                                         'Blue'],
+['Pressed',         '#e5e7eb',                  '#e5e7eb',                                                         'Blue'],
+['Focused',         'outline: 2px #1849a9',     'outline: 2px #1849a9',                                            'Blue'],
+['Focused+Selected','—',                         'bg #e5e7eb + outline: 2px #1849a9 + white inner overlay',         '—'],
+['Disabled',        'transparent, text #9da4ae', '—',                                                               'Hidden'],
+].map(([state, unsel, sel, indicator], i) => (
+<tr key={state} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle', fontWeight: 600, color: '#111827' }}>{state}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{unsel}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{sel}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{indicator}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '10px 16px', marginBottom: 16, fontSize: 13, color: '#92400e' }}>
+  <strong>Note:</strong> Focused+Selected differs from menu items — action keeps <code>#e5e7eb</code> (pressed) background, not the blue <code>#1849a9</code>. Text and icon remain dark.
+</div>
+
+<Canvas of={NavHeaderStories.ActionStatesLTR} />
+
+<Canvas of={NavHeaderStories.ActionStatesRTL} />
+
+---
+
+## Props
+
+### `NavHeader`
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Type</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Default</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+{[
+['breakpoint', "'>960' | '600>960' | '<600'", "'>960'", 'Responsive layout variant matching Figma'],
+['rtl', 'boolean', 'false', 'Physical RTL mirroring via CSS — no dir="rtl" wrapper'],
+['fullWidth', 'boolean', 'false', 'Expands desktop bar to 1728 px max-width'],
+['menuItems', 'Array<{ label, labelAr, selected, icon? }>', '[]', 'Desktop nav links — only ONE should have selected: true'],
+['actions', 'Array<{ label, labelAr, selected }>', '[]', 'Desktop action buttons — only ONE selected: true; first shown icon-only on tablet'],
+].map(([prop, type, def, desc], i) => (
+<tr key={prop} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{def}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### `NavMenuItem`
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Type</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Default</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+{[
+['label', 'string', "'Link'", 'LTR label text'],
+['labelAr', 'string', "'تبويب'", 'RTL Arabic label text'],
+['selected', 'boolean', 'false', 'Active / selected state'],
+['state', "'Default'|'Hovered'|'Pressed'|'Focused'|'Disabled'", "'Default'", 'Forced interactive state — used in state stories'],
+['rtl', 'boolean', 'false', 'Mirrors chevron position (chevron appears before label in RTL)'],
+['icon', 'boolean', 'false', 'Shows login-square-01 leading icon — state stories only, not in the bar'],
+].map(([prop, type, def, desc], i) => (
+<tr key={prop} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{def}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### `NavAction`
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Type</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Default</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+{[
+['label', 'string', "'Action'", 'LTR label text'],
+['labelAr', 'string', "'إجراء'", 'RTL Arabic label text'],
+['selected', 'boolean', 'false', 'Active / selected state'],
+['state', "'Default'|'Hovered'|'Pressed'|'Focused'|'Disabled'", "'Default'", 'Forced interactive state — used in state stories'],
+['rtl', 'boolean', 'false', 'Mirrors icon/text position (icon appears after label in RTL)'],
+['iconOnly', 'boolean', 'false', 'Hides label — used automatically for the tablet first-action slot'],
+].map(([prop, type, def, desc], i) => (
+<tr key={prop} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{def}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Design Tokens
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '30%' }}>Token / Property</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '20%' }}>Value</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Usage</th>
+</tr>
+</thead>
+<tbody>
+{[
+['--nav-drawer-&-header/background/light', '#ffffff', 'Header bar background'],
+['--…/text/default-filled', '#000b36', 'Labels, chevrons, icons (light bg)'],
+['--…/text/default-oncolor', '#f9fafb', 'Text on blue focused+selected bg'],
+['--…/text/disabled', '#9da4ae', 'Disabled item text and icons'],
+['--…/tab-light/bg/default', '#f9fafb', 'Selected item background'],
+['--…/tab-light/bg/hover', '#f3f4f6', 'Hovered item background'],
+['--…/tab-light/bg/pressed', '#e5e7eb', 'Pressed item background'],
+['--…/tab-light/border/selected', '#1849a9', 'Blue selection indicator + focus border'],
+['--…/tab-dark/border/hovered', '#9da4ae', 'Gray indicator on unselected hover'],
+['--…/tab-dark/border/focused', '#ffffff', 'Focus border on focused+selected (actions)'],
+['Logo mark fill', '#334DFF', 'Inline SVG sparkle, 24.611×24.584 px'],
+['Logo wrap', '3.073px padding · 4.8px radius', 'Container around sparkle mark'],
+['Logo text image', '146.843×17.287 px', 'masterteam wordmark as SVG image'],
+['Selection indicator', '6px h · pill · top 66px', 'Blue tab underline within 72px item'],
+['Label Medium', 'IBM Plex Sans Arabic 16px/500/24px', 'Default item label weight'],
+['Label SemiBold', 'IBM Plex Sans Arabic 16px/600/24px', 'Selected item label weight'],
+['Bar shadow', '0 1px 3px rgba(16,24,40,.10), 0 1px 2px rgba(16,24,40,.06)', 'Header drop shadow'],
+].map(([token, value, usage], i) => (
+<tr key={token} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 11, color: '#374151' }}>{token}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+  {value.startsWith('#') ? (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: value, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, color: '#111827' }}>{value}</code>
+    </span>
+  ) : <code style={{ fontSize: 12, color: '#374151', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{value}</code>}
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{usage}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+</div>

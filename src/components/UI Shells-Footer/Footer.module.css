@@ -1,0 +1,382 @@
+/* ==========================================================
+   Footer — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:14313
+   ========================================================== */
+
+/* ── Design tokens (from Figma)
+   --footer/background/default          → #f9fafb  (Default bg)
+   --footer/background/secondrary       → #1849a9  (Primary bg)
+   --footer/text/label                  → #000b36  (Default text)
+   --footer/text/label-oncolor          → #f9fafb  (Primary text)
+   --link/neutral/default               → #1f2a37  (Default links)
+   --link/link-oncolor                  → #ffffff   (Primary links)
+   --divider/color/neutral              → #d2d6db  (Default divider)
+   --divider/color/oncolor-neutral      → rgba(255,255,255,0.3) (Primary divider)
+   --button/neutral/background/default  → #e5e7eb  (icon btn bg — Default)
+   --logo-placeholder/text/default      → #b6bdca  (logo label color)
+   Inner max-width: 1280px · Padding: 32px
+   Nav links: pt-40px pb-24px · gap 24px
+   Section gap (nav→legal): 48px equivalent
+   Legal: py-16px
+   Font md/Medium: 16px/500/24px  (group labels — desktop)
+   Font md/Semibold: 16px/600/24px (group labels — mobile)
+   Font sm/Regular: 14px/400/20px  (footer links, legal links)
+   Font sm/Semibold: 14px/600/20px (copyright)
+   Font xs/Medium: 12px/500/18px  (logo text)
+   Action button: 32×32px · border-radius: 4px
+   ─────────────────────────────────────────────────────── */
+
+/* ── Root ────────────────────────────────────────────────── */
+
+.root {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.rootDefault { background: #f9fafb; }
+.rootPrimary { background: #1849a9; }
+
+/* ── Inner container ─────────────────────────────────────── */
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+/* ── Color tokens ────────────────────────────────────────── */
+
+.textDefault  { color: #000b36; }
+.textOnColor  { color: #f9fafb; }
+
+.linkDefault {
+  color: #1f2a37;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+.linkDefault:hover  { opacity: 0.75; }
+.linkDefault:active { opacity: 0.55; }
+
+.linkOnColor {
+  color: #ffffff;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+.linkOnColor:hover  { opacity: 0.8; }
+.linkOnColor:active { opacity: 0.6; }
+
+/* ── Dividers ────────────────────────────────────────────── */
+
+.divider {
+  height: 1px;
+  width: 192px;
+  flex-shrink: 0;
+}
+.dividerDefault  { background: #d2d6db; }
+.dividerOnColor  { background: rgba(255, 255, 255, 0.3); }
+
+.sectionDivider {
+  width: 100%;
+  height: 1px;
+  flex-shrink: 0;
+}
+
+/* ── Nav links section ───────────────────────────────────── */
+
+.navLinks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 40px;
+  padding-bottom: 24px;
+  align-items: flex-start;
+}
+
+/* RTL: groups flow right-to-left and are pushed to the right edge */
+.navLinksRtl {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* ── Standard link group (label + divider + 5 links) ─────── */
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 160px;
+}
+
+/* RTL: right-align label, divider, and links within the column */
+.linkGroupRtl { align-items: flex-end; }
+
+.groupLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footerLink {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+/* ── Special group: Social + Accessibility ───────────────── */
+
+.specialGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 160px;
+}
+
+.specialGroupRtl    { align-items: flex-end; }
+
+.specialSubGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.specialSubGroupRtl { align-items: flex-end; }
+
+.btnRow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ── Icon button (32×32, Figma: buttons-md) ───────────────── */
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  font-family: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+/* Default variant states */
+.iconBtnDefault {
+  background: #e5e7eb;
+}
+.iconBtnDefault:hover        { background: #d1d5db; }
+.iconBtnDefault:active       { background: #c4c9d4; }
+.iconBtnDefault:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}
+
+/* Primary (blue) variant states */
+.iconBtnPrimary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.iconBtnPrimary:hover        { background: rgba(255, 255, 255, 0.12); }
+.iconBtnPrimary:active       { background: rgba(255, 255, 255, 0.24); }
+.iconBtnPrimary:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
+}
+
+/* ── Legal row ───────────────────────────────────────────── */
+/* RTL positioning is handled by DOM order swap in JSX (logos first = left).
+   No flex-direction override needed — space-between does the work. */
+
+.legalRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+}
+
+/* ── Legal content block ─────────────────────────────────── */
+
+.legalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* RTL: right-align legal links, copyright, and terms rows */
+.legalContentRtl { align-items: flex-end; }
+
+.legalLinks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.legalLinksRtl { justify-content: flex-end; }
+
+.legalLink {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legalBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* RTL: right-align copyright and terms links within the column */
+.legalBottomRtl { align-items: flex-end; }
+
+.copyright {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.termsLinks {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+/* RTL: reverse Terms / Privacy order to match Arabic reading direction */
+.termsLinksRtl { flex-direction: row-reverse; }
+
+/* ── Logo block ──────────────────────────────────────────── */
+
+.logoBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.logoItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.7;
+}
+
+.logoImg {
+  color: #b6bdca;
+}
+
+.logoImgPrimary {
+  color: rgba(249, 250, 251, 0.7);
+}
+
+.logoText {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  color: #b6bdca;
+  white-space: nowrap;
+}
+
+.logoTextPrimary {
+  color: rgba(249, 250, 251, 0.7);
+}
+
+/* ── Mobile responsive (<600px) ─────────────────────────── */
+
+@media (max-width: 599px) {
+  .inner {
+    padding: 0 16px;
+  }
+
+  .navLinks {
+    padding-top: 24px;
+    padding-bottom: 16px;
+    gap: 16px;
+  }
+
+  /* Two-column grid for link groups */
+  .linkGroup {
+    width: calc(50% - 8px);
+    min-width: unset;
+  }
+
+  /* Divider stretches full width in mobile (Figma: no fixed 192px) */
+  .divider {
+    width: 100%;
+  }
+
+  /* Semibold group labels on mobile */
+  .groupLabel {
+    font-weight: 600;
+  }
+
+  /* Special group: side by side on mobile */
+  .specialGroup {
+    width: 100%;
+    flex-direction: row;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .specialSubGroup {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  /* Legal: stack vertically and center on mobile */
+  .legalRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .legalContent,
+  .legalContentRtl {
+    width: 100%;
+    align-items: center;
+  }
+
+  .legalLinks,
+  .legalLinksRtl {
+    justify-content: center;
+  }
+
+  .legalBottom,
+  .legalBottomRtl {
+    align-items: center;
+    text-align: center;
+  }
+
+  .termsLinks,
+  .termsLinksRtl {
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  /* Logos: spread on mobile */
+  .logoBlock {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

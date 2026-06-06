@@ -1,0 +1,302 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as SubMenuStories from './SubMenu.stories';
+
+<Meta of={SubMenuStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>UI Shells / Nav Header / Sub Menu</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Sub Menu</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A mega-menu panel that drops directly below the navigation bar. It organises navigation links into labelled columns and supports three link styles (Text only, Simple icon, Boxed icon) and two backgrounds (Default white and Dark green).</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 5005:5487</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>States: 5005:4793</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/ui-shell/navigation-header" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-5487" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Playground','#playground'],['Backgrounds','#backgrounds'],['Link Styles','#link-styles'],['RTL Support','#rtl-support'],['Item States','#item-states'],['Real Content','#real-content'],['Props','#props'],['Design Tokens','#design-tokens']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Playground
+
+<Canvas of={SubMenuStories.Playground} />
+<Controls of={SubMenuStories.Playground} />
+
+---
+
+## Backgrounds
+
+The `background` prop switches the panel between two colour modes. All text and icon colours adapt automatically.
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Value</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Panel bg</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Text</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Helper text</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Icon</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Default',    '#ffffff', '#000b36', '#233a61', '#000b36 / #1849a9 (boxed)'],
+['Dark green', '#102a56', '#f9fafb', '#f9fafb', '#f9fafb'],
+].map(([val, bg, text, helper, icon], i) => (
+<tr key={val} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{val}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: bg, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} /><code style={{ fontSize: 12, color: '#111827' }}>{bg}</code></span></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: text, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} /><code style={{ fontSize: 12, color: '#111827' }}>{text}</code></span></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: helper, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} /><code style={{ fontSize: 12, color: '#111827' }}>{helper}</code></span></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontSize: 12 }}>{icon}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### Default (white)
+
+<Canvas of={SubMenuStories.DefaultBackground} />
+
+### Dark green
+
+<Canvas of={SubMenuStories.DarkGreenBackground} />
+
+---
+
+## Link Styles
+
+Three icon styles control the visual density of each menu item. Switch with the `linkStyle` prop.
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Value</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Icon</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Helper text</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Icon colour — Default bg</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Icon colour — Dark green</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Text only',   'None',               'Hidden',         null,      null],
+['Simple icon', '24×24 flush',        'Hidden',         '#000b36', '#f9fafb'],
+['Boxed icon',  '24×24 in 48×48 box', 'Shown below label', '#1849a9', '#f9fafb'],
+].map(([val, icon, helper, colorLight, colorDark], i) => (
+<tr key={val} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{val}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{icon}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{helper}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+  {colorLight ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: colorLight, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} /><code style={{ fontSize: 12, color: '#111827' }}>{colorLight}</code></span> : <span style={{ color: '#9ca3af' }}>—</span>}
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+  {colorDark ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: colorDark, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} /><code style={{ fontSize: 12, color: '#111827' }}>{colorDark}</code></span> : <span style={{ color: '#9ca3af' }}>—</span>}
+</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### Text only
+
+<Canvas of={SubMenuStories.TextOnly} />
+
+### Simple icon
+
+<Canvas of={SubMenuStories.SimpleIcon} />
+
+<Canvas of={SubMenuStories.SimpleIconDark} />
+
+### Boxed icon
+
+Boxed icon items always include a `helperText` below the label. Pass it in the `columns[].items[].helperText` (LTR) and `helperTextAr` (RTL) fields.
+
+<Canvas of={SubMenuStories.BoxedIcon} />
+
+<Canvas of={SubMenuStories.BoxedIconDark} />
+
+---
+
+## RTL Support
+
+RTL is driven by the `rtl` prop. No `dir="rtl"` wrapper is added to containers. Instead, the column row reverses direction (`flex-direction: row-reverse` on `.content`), and each item renders its text block **before** the icon in the DOM while using `justify-content: flex-end` to push it to the right — matching the exact Figma layout for node 5005:4793 RTL.
+
+<Canvas of={SubMenuStories.DefaultRTL} />
+
+<Canvas of={SubMenuStories.DarkGreenRTL} />
+
+<Canvas of={SubMenuStories.SimpleIconRTL} />
+
+<Canvas of={SubMenuStories.BoxedIconRTL} />
+
+---
+
+## Item States
+
+All interactive states from Figma node [5005:4793](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-4793). States are handled via CSS pseudo-classes; the label underlines on Hovered / Pressed / Focused.
+
+| State | Light bg overlay | Dark green overlay | Focus border |
+|---|---|---|---|
+| Default | none | none | — |
+| Hovered | `#f3f4f6` | `rgba(22,22,22,0.2)` | — |
+| Pressed | `#e5e7eb` | `rgba(22,22,22,0.5)` | — |
+| Focused | none | none | `2px solid #1849a9` (light) / `2px solid #fff` (dark) |
+
+<Canvas of={SubMenuStories.ItemStatesLTR} />
+
+<Canvas of={SubMenuStories.ItemStatesRTL} />
+
+---
+
+## Real Content
+
+Example with realistic design-system site navigation — Design, Development, and Resources columns.
+
+<Canvas of={SubMenuStories.RealContentTextOnly} />
+
+<Canvas of={SubMenuStories.RealContentBoxed} />
+
+<Canvas of={SubMenuStories.RealContentRTL} />
+
+<Canvas of={SubMenuStories.RealContentDark} />
+
+<Canvas of={SubMenuStories.FigmaReference} />
+
+---
+
+## Props
+
+### `SubMenu`
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Type</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Default</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+{[
+['background', "'Default' | 'Dark green'", "'Default'", 'Panel background — white (#ffffff) or dark navy (#102a56)'],
+['linkStyle', "'Text only' | 'Simple icon' | 'Boxed icon'", "'Text only'", 'Icon style applied to every item in the panel'],
+['fullWidth', 'boolean', 'false', 'Expands panel to 1440 px max-width (default 1320 px)'],
+['rtl', 'boolean', 'false', 'Right-to-left layout — physical CSS + DOM reorder, no dir="rtl"'],
+['columns', 'Column[]', '[]', 'Array of column objects — each has a label and items list'],
+].map(([prop, type, def, desc], i) => (
+<tr key={prop} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{def}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+### `Column` shape
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Field</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Type</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Description</th>
+</tr>
+</thead>
+<tbody>
+{[
+['label', 'string', 'LTR group heading label'],
+['labelAr', 'string', 'RTL Arabic group heading label'],
+['items[].text', 'string', 'LTR item label text'],
+['items[].textAr', 'string', 'RTL Arabic item label text'],
+['items[].helperText', 'string?', 'LTR helper text — shown below label when provided (any link style)'],
+['items[].helperTextAr', 'string?', 'RTL Arabic helper text'],
+].map(([field, type, desc], i) => (
+<tr key={field} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{field}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 12 }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151', verticalAlign: 'middle' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Design Tokens
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '32%' }}>Token / Property</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', width: '22%' }}>Value</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Usage</th>
+</tr>
+</thead>
+<tbody>
+{[
+['Panel bg — Default', '#ffffff', 'White panel background'],
+['Panel bg — Dark green', '#102a56', 'Dark navy panel background'],
+['Text — default filled', '#000b36', 'Item label on white bg'],
+['Text — oncolor', '#f9fafb', 'Item label on dark green bg'],
+['Helper text — light', '#233a61', 'Helper text on white bg'],
+['Helper text — dark', '#f9fafb', 'Helper text on dark green bg'],
+['Simple icon — light bg', '#000b36', 'checkmark-square-02 fill on white'],
+['Simple icon — dark bg', '#f9fafb', 'checkmark-square-02 fill on dark green'],
+['Boxed icon — light bg', '#1849a9', 'checkmark-square-02 fill in blue box'],
+['Boxed icon — dark bg', '#f9fafb', 'checkmark-square-02 fill in dark box'],
+['Boxed icon container — light', 'bg #eff8ff · r-8px · p-12px', 'Icon box on white panel'],
+['Boxed icon container — dark', 'bg rgba(255,255,255,0.1)', 'Icon box on dark green panel'],
+['Item hover — light bg', '#f3f4f6', 'Item hover overlay'],
+['Item press — light bg', '#e5e7eb', 'Item press overlay'],
+['Item focus — light bg', 'border 2px solid #1849a9', 'Item focus ring'],
+['Item hover — dark bg', 'rgba(22,22,22,0.2)', 'Item hover overlay on dark green'],
+['Item press — dark bg', 'rgba(22,22,22,0.5)', 'Item press overlay on dark green'],
+['Item focus — dark bg', 'border 2px solid #ffffff', 'Item focus ring on dark green'],
+['Panel shadow', '0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03)', 'Drop shadow'],
+['Group label', 'IBM Plex Sans Arabic 18px/600/28px', 'Column heading typography'],
+['Item label', 'IBM Plex Sans Arabic 16px/500/24px', 'Link label typography'],
+['Helper text', 'IBM Plex Sans Arabic 14px/400/20px', 'Helper text typography'],
+].map(([token, value, usage], i) => (
+<tr key={token} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle', fontFamily: 'monospace', fontSize: 11, color: '#374151' }}>{token}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+  {value.startsWith('#') ? (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: value, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, color: '#111827' }}>{value}</code>
+    </span>
+  ) : <code style={{ fontSize: 12, color: '#374151', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{value}</code>}
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{usage}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+</div>
