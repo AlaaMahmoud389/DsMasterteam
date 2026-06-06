@@ -1,10 +1,10 @@
 import { MapChart } from './MapChart';
 
-const FIGMA_URL      = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-5177';
-const FIGMA_FILLED   = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-5176';
-const FIGMA_OUTLINE  = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-5175';
+const FIGMA_URL     = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-5177';
+const FIGMA_FILLED  = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-5176';
+const FIGMA_OUTLINE = 'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4560-5175';
 
-/* ── Saudi Arabia — 13 administrative regions (population in thousands) */
+/* ── Saudi Arabia population data (population in thousands) */
 const SAUDI_DATA = [
   { id: 'riyadh',           value: 8420 },
   { id: 'makkah',           value: 8560 },
@@ -37,7 +37,6 @@ const SAUDI_DATA_VISITORS = [
   { id: 'qassim',           value: 3800  },
 ];
 
-/* Partial — shows NULL_COLOR for regions without data */
 const PARTIAL_DATA = [
   { id: 'riyadh',  value: 8420 },
   { id: 'makkah',  value: 8560 },
@@ -52,147 +51,127 @@ export default {
   parameters: {
     layout: 'padded',
     design: { type: 'figma', url: FIGMA_URL },
+    docs: {
+      description: {
+        component:
+          'Saudi Arabia choropleth map powered by **Google Charts GeoChart** ' +
+          '(`https://www.gstatic.com/charts/loader.js`). Renders all 13 administrative ' +
+          'provinces using ISO 3166-2:SA codes. Requires network access to the ' +
+          '`gstatic.com` CDN. Matches Figma node `4560:5177`.',
+      },
+    },
   },
-  tags: [],
   argTypes: {
-    title:            { control: 'text' },
-    variant:          { control: 'radio', options: ['choropleth', 'filled', 'outline'] },
-    showColorScale:   { control: 'boolean', description: 'Show colour gradient legend (choropleth only)' },
-    showRegionLabels: { control: 'boolean', description: 'Show region name labels inside SVG' },
-    loading:          { control: 'boolean' },
-    empty:            { control: 'boolean' },
-    dir:              { control: 'radio', options: ['ltr', 'rtl'] },
-    data:             { control: false },
-    regions:          { control: false },
+    title:          { control: 'text' },
+    variant:        { control: 'radio', options: ['choropleth', 'filled', 'outline'] },
+    showColorScale: { control: 'boolean', description: 'Show colour gradient legend (choropleth only)' },
+    loading:        { control: 'boolean' },
+    empty:          { control: 'boolean' },
+    dir:            { control: 'radio', options: ['ltr', 'rtl'] },
+    data:           { control: false },
   },
   args: {
-    title:            'Saudi Arabia — Population Distribution',
-    data:             SAUDI_DATA,
-    variant:          'choropleth',
-    showColorScale:   true,
-    showRegionLabels: true,
-    loading:          false,
-    empty:            false,
-    dir:              'ltr',
+    title:          'Saudi Arabia — Population Distribution',
+    data:           SAUDI_DATA,
+    variant:        'choropleth',
+    showColorScale: true,
+    loading:        false,
+    empty:          false,
+    dir:            'ltr',
   },
 };
 
-/* ── Playground ─────────────────────────────────────────────── */
+/* ── Playground ─────────────────────────────────────────── */
 
 export const Playground = {};
 
-/* ── Figma — filled=true (node 4560:5176) ───────────────────── */
+/* ── Choropleth — population ────────────────────────────── */
+
+export const ChoroplethPopulation = {
+  name: 'Choropleth — Population (thousands)',
+  parameters: { design: { type: 'figma', url: FIGMA_URL } },
+  args: {
+    title:          'Saudi Arabia — Population by Region',
+    data:           SAUDI_DATA,
+    variant:        'choropleth',
+    showColorScale: true,
+  },
+};
+
+/* ── Choropleth — tourist visitors ─────────────────────── */
+
+export const ChoroplethVisitors = {
+  name: 'Choropleth — Tourist Visitors',
+  parameters: { design: { type: 'figma', url: FIGMA_URL } },
+  args: {
+    title:          'Saudi Arabia — Tourist Arrivals by Region',
+    data:           SAUDI_DATA_VISITORS,
+    variant:        'choropleth',
+    showColorScale: true,
+  },
+};
+
+/* ── Partial data ───────────────────────────────────────── */
+
+export const PartialData = {
+  name: 'Partial Data — Some Regions Empty',
+  args: {
+    title:          'Coverage Map',
+    data:           PARTIAL_DATA,
+    variant:        'choropleth',
+    showColorScale: true,
+  },
+};
+
+/* ── RTL — Arabic ───────────────────────────────────────── */
+
+export const RTLArabic = {
+  name: 'RTL — Arabic',
+  args: {
+    title:          'المملكة العربية السعودية — توزيع السكان',
+    data:           SAUDI_DATA,
+    variant:        'choropleth',
+    showColorScale: true,
+    dir:            'rtl',
+  },
+};
+
+/* ── Filled (Figma 4560:5176) ───────────────────────────── */
 
 export const FigmaFilled = {
   name: 'Figma — Filled (4560:5176)',
   parameters: { design: { type: 'figma', url: FIGMA_FILLED } },
   args: {
-    title:            'Saudi Arabia',
-    data:             [],
-    variant:          'filled',
-    showColorScale:   false,
-    showRegionLabels: false,
+    title:          'Saudi Arabia',
+    data:           [],
+    variant:        'filled',
+    showColorScale: false,
   },
 };
 
-/* ── Figma — filled=false / outline (node 4560:5175) ─────────── */
+/* ── Outline (Figma 4560:5175) ──────────────────────────── */
 
 export const FigmaOutline = {
   name: 'Figma — Outline (4560:5175)',
   parameters: { design: { type: 'figma', url: FIGMA_OUTLINE } },
   args: {
-    title:            'Saudi Arabia',
-    data:             [],
-    variant:          'outline',
-    showColorScale:   false,
-    showRegionLabels: false,
+    title:          'Saudi Arabia',
+    data:           [],
+    variant:        'outline',
+    showColorScale: false,
   },
 };
 
-/* ── Choropleth — population ────────────────────────────────── */
-
-export const ChoroplethPopulation = {
-  name: 'Choropleth — Population (thousands)',
-  args: {
-    title:            'Saudi Arabia — Population by Region',
-    data:             SAUDI_DATA,
-    variant:          'choropleth',
-    showColorScale:   true,
-    showRegionLabels: true,
-  },
-};
-
-/* ── Choropleth — visitors ──────────────────────────────────── */
-
-export const ChoroplethVisitors = {
-  name: 'Choropleth — Tourist Visitors',
-  args: {
-    title:            'Saudi Arabia — Tourist Arrivals by Region',
-    data:             SAUDI_DATA_VISITORS,
-    variant:          'choropleth',
-    showColorScale:   true,
-    showRegionLabels: true,
-  },
-};
-
-/* ── Partial data (some regions no data) ────────────────────── */
-
-export const PartialData = {
-  name: 'Partial Data — Some Regions Empty',
-  args: {
-    title:            'Coverage Map',
-    data:             PARTIAL_DATA,
-    variant:          'choropleth',
-    showColorScale:   true,
-    showRegionLabels: true,
-  },
-};
-
-/* ── RTL — Arabic ───────────────────────────────────────────── */
-
-export const RTLArabic = {
-  name: 'RTL — Arabic Labels',
-  args: {
-    title:            'المملكة العربية السعودية — توزيع السكان',
-    data:             SAUDI_DATA,
-    variant:          'choropleth',
-    showColorScale:   true,
-    showRegionLabels: true,
-    dir:              'rtl',
-  },
-};
-
-/* ── No region labels ───────────────────────────────────────── */
-
-export const NoLabels = {
-  name: 'No Region Labels',
-  args: {
-    title:            'Saudi Arabia',
-    data:             SAUDI_DATA,
-    variant:          'choropleth',
-    showColorScale:   true,
-    showRegionLabels: false,
-  },
-};
-
-/* ── Loading state ──────────────────────────────────────────── */
+/* ── Loading state ──────────────────────────────────────── */
 
 export const LoadingState = {
   name: 'Loading State',
-  args: {
-    title:   'Saudi Arabia',
-    data:    [],
-    loading: true,
-  },
+  args: { title: 'Saudi Arabia', data: [], loading: true },
 };
 
-/* ── Empty state ────────────────────────────────────────────── */
+/* ── Empty state ────────────────────────────────────────── */
 
-export const EmptyState = {
+export const EmptyStateStory = {
   name: 'Empty State',
-  args: {
-    title: 'Saudi Arabia',
-    data:  [],
-    empty: true,
-  },
+  args: { title: 'Saudi Arabia', data: [], empty: true },
 };
