@@ -1,0 +1,125 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as FooterStories from './Footer.stories';
+
+<Meta of={FooterStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>UI Shells / Footer</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Footer</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>
+    The Footer is a full-width site footer that sits below all page content. It contains an optional
+    nav-links section (five link groups plus Social Media and Accessibility Tools icon buttons) and a
+    persistent legal bar (eight footer links, copyright notice, Terms / Privacy links, and two logo
+    placeholders). Supports both Default (light) and Primary (blue) colour schemes with full RTL mirroring.
+  </p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 5005:14313</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/ui-shell/footer" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-14313" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Playground','#playground'],['All Variants','#all-variants'],['Color Schemes','#color-schemes'],['RTL Support','#rtl-support'],['Nav Links','#nav-links'],['Legal Only','#legal-only'],['Props','#props'],['Design Tokens','#design-tokens']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Playground
+
+<Canvas of={FooterStories.Playground} />
+<Controls of={FooterStories.Playground} />
+
+---
+
+## All Variants
+
+<Canvas of={FooterStories.AllVariants} />
+
+---
+
+## Color Schemes
+
+### Default (Light)
+
+<Canvas of={FooterStories.DefaultLTR} />
+
+### Primary (Blue)
+
+<Canvas of={FooterStories.PrimaryLTR} />
+
+---
+
+## RTL Support
+
+<Canvas of={FooterStories.DefaultRTL} />
+<Canvas of={FooterStories.PrimaryRTL} />
+
+---
+
+## Nav Links
+
+The nav-links section (`showNavLinks`) contains five standard link groups (group label + horizontal divider + five footer links) and one special group that houses two button lists:
+
+- **Social Media** — 4 × 32×32 icon buttons (`arrow-right-02-sharp`)
+- **Accessibility Tools** — 3 × 32×32 icon buttons (`arrow-right-02-sharp`)
+
+In the Primary variant the icon buttons use a transparent background with a `rgba(255,255,255,0.3)` border.
+
+---
+
+## Legal Only
+
+<Canvas of={FooterStories.NoNavLinks} />
+<Canvas of={FooterStories.LegalOnlyVariants} />
+
+---
+
+## Design Tokens
+
+| Token | Value | Usage |
+|---|---|---|
+| `--footer/background/default` | `#f9fafb` | Default variant background |
+| `--footer/background/secondrary` | `#1849a9` | Primary variant background |
+| `--footer/text/label` | `#000b36` | Text color (Default variant) |
+| `--footer/text/label-oncolor` | `#f9fafb` | Text color (Primary variant) |
+| `--link/neutral/default` | `#1f2a37` | Link color (Default variant) |
+| `--link/link-oncolor` | `#ffffff` | Link color (Primary variant) |
+| `--divider/color/neutral` | `#d2d6db` | Divider (Default variant) |
+| `--divider/color/oncolor-neutral` | `rgba(255,255,255,0.3)` | Divider (Primary variant) |
+| `--button/neutral/background/default` | `#e5e7eb` | Icon button bg (Default variant) |
+| `--logo-placeholder/text/default` | `#b6bdca` | Logo placeholder label color |
+| Inner max-width | `1280px` | Inner container width |
+| Horizontal padding | `32px` | Left/right padding (desktop) |
+| Nav links pt | `40px` | Top padding of nav links section |
+| Nav links pb | `24px` | Bottom padding of nav links section |
+| Group gap | `24px` | Gap between link groups |
+| Legal padding | `16px` (top/bottom) | Legal bar vertical padding |
+| Action button size | `32×32px` | Social/accessibility button dimensions |
+| Border-radius | `4px` | Action button corner radius |
+
+### Typography
+
+| Usage | Size | Weight | Line height |
+|---|---|---|---|
+| Group label (desktop) | 16px | 500 (Medium) | 24px |
+| Group label (mobile) | 16px | 600 (Semibold) | 24px |
+| Footer link | 14px | 400 (Regular) | 20px |
+| Copyright | 14px | 600 (Semibold) | 20px |
+| Logo placeholder text | 12px | 500 (Medium) | 18px |
+
+### Icons used
+
+| Slot | Icon name | Figma node |
+|---|---|---|
+| Social / Accessibility buttons | `arrow-right-02-sharp` | — |
+| Logo placeholder | Palm & Swords SVG | `5005:14313` area |
+
+</div>

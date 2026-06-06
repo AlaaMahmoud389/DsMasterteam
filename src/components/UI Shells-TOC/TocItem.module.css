@@ -1,0 +1,200 @@
+/* ==========================================================
+   TocItem — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:13372
+   ========================================================== */
+
+/* ── Design token values ────────────────────────────────── */
+/* --toc/text/primary          → #000b36                    */
+/* --toc/text/secondary        → #6c7c96                    */
+/* --toc/border/selected-primary   → #194185                */
+/* --toc/border/selected-secondary → #d2d6db                */
+/* --toc/border/unselected-primary → #9da4ae                */
+/* --toc/border/focus          → #1849a9                    */
+/* --toc/background/hover      → #eff8ff                    */
+/* --toc/background/pressed    → #eff8ff                    */
+
+/* ── Root item container ────────────────────────────────── */
+/* Figma: content-stretch flex items-center justify-center  */
+/* min-w-[140px] w-[200px] pl-[16px] pr-[8px]              */
+/* relative rounded-[2px]                                   */
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 140px;
+  width: 200px;
+  padding: 0 8px 0 16px;       /* LTR: pl-16px pr-8px */
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  background: none;
+}
+
+/* RTL: swaps padding — physical mirroring, no dir="rtl" on container */
+.itemRtl {
+  padding: 0 16px 0 8px;       /* RTL: pl-8px pr-16px */
+}
+
+/* ── Interaction states ─────────────────────────────────── */
+
+.hovered {
+  background: #eff8ff;
+  cursor: pointer;
+}
+
+.pressed {
+  background: #eff8ff;
+}
+
+.focused {
+  border: 2px solid #1849a9;
+  background: none;
+}
+
+/* ── Tab title area ─────────────────────────────────────── */
+/* Figma: content-stretch flex flex-[1_0_0] items-start    */
+/* min-w-px py-[6px] relative                              */
+
+.tabTitle {
+  display: flex;
+  flex: 1 0 0;
+  align-items: flex-start;
+  min-width: 1px;
+  padding: 6px 0;
+}
+
+/* ── Text wrapper ───────────────────────────────────────── */
+/* Figma: flex flex-col justify-end leading-[0] flex-[1_0_0] */
+/* min-w-px text-[14px]                                    */
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1 0 0;
+  min-width: 1px;
+  line-height: 0;
+}
+
+/* ── Text <p> ───────────────────────────────────────────── */
+/* Figma: leading-[20px] (applied on <p> inside textWrap)  */
+
+.text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  word-break: break-word;
+}
+
+.textSelected {
+  font-weight: 600;
+  color: #000b36;
+}
+
+.textUnselected {
+  font-weight: 400;
+  color: #6c7c96;
+}
+
+/* Hovered or Pressed + unselected → text flips to primary color */
+.textActive {
+  color: #000b36;
+}
+
+/* RTL: text-right on the wrapper div */
+.textWrapRtl {
+  text-align: right;
+}
+
+/* ── Selection indicator bar (LTR: absolute left, RTL: right) */
+/* Figma: absolute bottom-0 left-0 top-0 flex flex-col     */
+/* items-center justify-center                             */
+
+.indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.indicatorRtl {
+  left: auto;
+  right: 0;
+}
+
+/* Figma focused+selected: absolute bottom-[-2px] left-[-2px] top-[-2px] w-[3px] */
+/* Empty div — no background. Offsets account for 2px border inset.              */
+.indicatorFocused {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: -2px;
+  width: 3px;
+}
+
+.indicatorFocusedRtl {
+  left: auto;
+  right: -2px;
+}
+
+/* ── Bar inside the selection indicator ─────────────────── */
+/* Figma: flex-[1_0_0] min-h-px rounded-full w-[3px]       */
+
+.bar {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: 3px;
+  border-radius: 9999px;
+}
+
+.barSelected {
+  background: #194185;
+}
+
+.barUnselected {
+  background: #9da4ae;
+}
+
+/* ── Nesting indent wraps (Level 2 = 1×, Level 3 = 2×) ─── */
+/* Figma outer: flex flex-row items-center self-stretch     */
+
+.nestingWrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+}
+
+/* Figma inner: flex flex-col h-full items-start justify-center */
+/* shrink-0 w-[16px] relative                                  */
+
+.nestingIndicator {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  align-items: flex-start;   /* LTR: bar at left edge of 16px container */
+}
+
+/* RTL: items-end puts the 2px bar at the physical right edge */
+/* (container has no inherited dir="rtl", so end = right)    */
+.nestingIndicatorRtl {
+  align-items: flex-end;
+}
+
+/* Figma: flex-[1_0_0] min-h-px w-[2px] bg-[#d2d6db]       */
+.nestingBar {
+  flex: 1 0 0;
+  min-height: 1px;
+  width: 2px;
+  background: #d2d6db;
+}

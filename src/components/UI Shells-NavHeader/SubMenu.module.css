@@ -1,0 +1,229 @@
+/* ==========================================================
+   Nav Header Sub-Menu — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:5487
+   ========================================================== */
+
+/* ── Root wrapper ─────────────────────────────────────────── */
+
+.subMenu {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ── Panel ────────────────────────────────────────────────── */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow:
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08),
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1320px;
+  padding: 0 32px;
+}
+
+.panelFullWidth { max-width: 1440px; }
+.panelDark { background: #102a56; }
+
+/* ── Content row ──────────────────────────────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 1280px;
+  width: 100%;
+  padding: 32px 0;
+  box-sizing: border-box;
+}
+
+.contentRtl { flex-direction: row-reverse; }
+
+/* ── Column ───────────────────────────────────────────────── */
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 0 0;
+  min-width: 240px;
+  align-items: flex-start;
+  position: relative;
+}
+
+.columnRtl { align-items: flex-end; }
+
+/* ── Group label row ──────────────────────────────────────── */
+
+.groupLabelRow {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.groupLabel {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #1849a9;
+  word-break: break-word;
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+.groupLabelRtl { text-align: right; }
+.groupLabelDark { color: #ffffff; }
+
+/* ── Items list ───────────────────────────────────────────── */
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* ── Item row ─────────────────────────────────────────────── */
+/* Figma: flex, gap-16px, px-16px, py-8px, rounded-8px       */
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  position: relative;
+}
+
+/* Figma: Hovered → bg #f3f4f6, label underlined */
+.item:hover { background: #f3f4f6; }
+
+/* Figma: Pressed → bg #e5e7eb, label underlined */
+.item:active { background: #e5e7eb; }
+
+/* Figma: Focused → border 2px #1849a9, label underlined */
+.item:focus-visible {
+  outline: none;
+  border: 2px solid #1849a9;
+}
+
+/* Cascade label underline on interactive states */
+.item:hover .itemLabel,
+.item:active .itemLabel,
+.item:focus-visible .itemLabel {
+  text-decoration: underline;
+}
+
+/* Dark (on-color) variants — higher specificity overrides light rules */
+.item.itemDark:hover  { background: rgba(22, 22, 22, 0.2); }
+.item.itemDark:active { background: rgba(22, 22, 22, 0.5); }
+.item.itemDark:focus-visible { border: 2px solid #ffffff; }
+
+/* RTL: content block first in DOM order, icon second → justify-end packs right */
+.itemRtl { justify-content: flex-end; }
+
+/* ── Simple icon wrapper ──────────────────────────────────── */
+
+.iconSimple {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ── Boxed icon wrapper ───────────────────────────────────── */
+
+.iconBoxed {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 8px;
+  background: #eff8ff;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+.iconBoxedDark { background: rgba(255, 255, 255, 0.1); }
+
+/* ── Item text block ──────────────────────────────────────── */
+
+.itemTextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 0 0;
+  min-width: 1px;
+  align-items: flex-start;
+}
+
+.itemTextBlockRtl { align-items: flex-end; }
+
+/* ── Text-and-badge row ───────────────────────────────────── */
+
+.textAndBadge {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.textAndBadgeRtl { justify-content: flex-end; }
+
+/* ── Item label ───────────────────────────────────────────── */
+
+.itemLabel {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000b36;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.itemLabelRtl { text-align: right; }
+.itemLabelDark { color: #f9fafb; }
+
+/* ── Item helper text (Boxed icon only) ───────────────────── */
+
+.itemHelper {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #233a61;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.itemHelperRtl { text-align: right; }
+.itemHelperDark { color: #f9fafb; }

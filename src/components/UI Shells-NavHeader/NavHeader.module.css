@@ -1,0 +1,381 @@
+/* ==========================================================
+   Nav Header Bar — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:5361
+   ========================================================== */
+
+/* ── Design tokens (from Figma)
+   --nav-drawer-&-header/background/light                  → #ffffff
+   --nav-drawer-&-header/text/default-filled               → #000b36
+   --nav-drawer-&-header/text/default-oncolor              → #f9fafb
+   --nav-drawer-&-header/text/disabled                     → #9da4ae
+   --nav-drawer-&-header/tab/tab-light/bg/default          → #f9fafb  (selected)
+   --nav-drawer-&-header/tab/tab-light/bg/hover            → #f3f4f6
+   --nav-drawer-&-header/tab/tab-light/bg/pressed          → #e5e7eb
+   --nav-drawer-&-header/tab/tab-light/border/selected     → #1849a9
+   --nav-drawer-&-header/tab/tab-light/border/focused      → #1849a9
+   --nav-drawer-&-header/tab/tab-dark/border/hovered       → #9da4ae
+   --nav-drawer-&-header/tab/tab-dark/border/focused       → white
+   Text md/Medium:   16px / 500 / 24px
+   Text md/SemiBold: 16px / 600 / 24px
+   ─────────────────────────────────────────────────────── */
+
+/* ── Root wrapper ─────────────────────────────────────────── */
+
+.navHeader {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  background: #ffffff;
+  box-shadow:
+    0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Inner bar (max-width container) ─────────────────────── */
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1320px;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+
+.barFullWidth { max-width: 1728px; }
+
+/* ── Logo & Menu Items wrapper ────────────────────────────── */
+
+.logoAndMenu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex: 1 0 0;
+  min-width: 1px;
+  overflow: hidden;
+}
+
+.logoAndMenuRtl { justify-content: flex-end; }
+
+/* ── Logo ─────────────────────────────────────────────────── */
+/* Figma: gap 7.043px, height 30.733px                        */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.logoRtl { flex-direction: row-reverse; }
+
+/* Logo mark: padding + clip container (Figma: p-3.073px, r-4.8px) */
+.logoMarkWrap {
+  padding: 3.073px;
+  border-radius: 4.8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Logo text: exact Figma image — 146.843 × 17.287px */
+.logoTextImg {
+  width: 146.843px;
+  height: 17.287px;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Menu Items list ──────────────────────────────────────── */
+
+.menuItems {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+/* ── Header Menu Item ─────────────────────────────────────── */
+/* Figma: h-72px, gap-4px, px-16px, py-8px, rounded-4px      */
+
+.menuItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 72px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+.menuItem:hover  { background: #f3f4f6; }
+.menuItem:active { background: #e5e7eb; }
+
+/* Unselected hovered/pressed: gray bottom indicator */
+.menuItem:not(.menuItemSelected):hover  .indicator { background: #9da4ae; opacity: 1; }
+.menuItem:not(.menuItemSelected):active .indicator { background: #9da4ae; opacity: 1; }
+
+.menuItem:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}
+
+/* Selected: bg #f9fafb, SemiBold text, blue indicator */
+.menuItemSelected { background: #f9fafb; }
+
+/* Forced states for story / design-token snapshots */
+.menuItemHovered  { background: #f3f4f6; }
+.menuItemPressed  { background: #e5e7eb; }
+.menuItemFocused  { outline: 2px solid #1849a9; outline-offset: -2px; }
+.menuItemFocusedSelected {
+  background: #1849a9;
+  overflow: hidden;
+}
+.menuItemDisabled { cursor: not-allowed; opacity: 1; }
+
+/* RTL: [chevron][label][icon] visual order */
+.menuItemRtl { flex-direction: row-reverse; }
+
+/* ── Menu Item leading icon (login-square-01, 24×24) ─────── */
+
+.menuItemLeadingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ── Menu Item label ──────────────────────────────────────── */
+
+.menuItemLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000b36;
+  white-space: nowrap;
+}
+
+.menuItemLabelSelected        { font-weight: 600; }
+.menuItemLabelFocusedSelected { color: #f9fafb; }
+.menuItemLabelDisabled        { color: #9da4ae; }
+
+/* ── Menu item chevron (arrow-down-01, 20×20) ─────────────── */
+
+.menuItemChevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ── Selection indicator ──────────────────────────────────── */
+/* Figma: absolute, left-0/right-0, top-66px, h-6px, px-8px  */
+
+.indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 66px;
+  display: flex;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+.indicatorBar {
+  height: 6px;
+  width: 100%;
+  border-radius: 9999px;
+  background: #1849a9;
+}
+
+.indicatorBarGray { background: #9da4ae; }
+
+/* Focus outline overlay — white inner border (menu item Focused+Selected,
+   action Focused+Selected) */
+.focusOutlineOverlay {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* ── Actions list ─────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.actionsRtl { flex-direction: row-reverse; }
+
+/* ── Header Action ────────────────────────────────────────── */
+/* Figma: h-72px, gap-4px, px-16px, py-8px, min-w-72px       */
+
+.action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 72px;
+  min-width: 72px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+.action:hover  { background: #f3f4f6; }
+.action:active { background: #e5e7eb; }
+
+.action:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}
+
+/* Selected action: bg #f9fafb + blue indicator */
+.actionSelected { background: #f9fafb; }
+
+/* Forced states for story use */
+.actionHovered  { background: #f3f4f6; }
+.actionPressed  { background: #e5e7eb; }
+.actionFocused  { outline: 2px solid #1849a9; outline-offset: -2px; }
+
+/* Focused+Selected action: pressed bg + blue border + white overlay
+   (text and icon remain dark — different from menu item focused+selected) */
+.actionFocusedSelected {
+  background: #e5e7eb;
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+  overflow: hidden;
+}
+
+.actionDisabled { cursor: not-allowed; }
+
+/* RTL: [text][icon] visual order */
+.actionRtl { flex-direction: row-reverse; }
+
+/* ── Action icon (login-square-01, 24×24) ─────────────────── */
+
+.actionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ── Action label ─────────────────────────────────────────── */
+
+.actionLabel {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #000b36;
+  white-space: nowrap;
+}
+
+.actionLabelSelected { font-weight: 600; }
+.actionLabelDisabled { color: #9da4ae; }
+
+/* ── Breakpoint variants ────────────────────────────────────── */
+
+/* Tablet bar (600>960): same 32px padding, max-width 960px */
+.barTablet { max-width: 960px; }
+
+/* Mobile bar (<600): 16px padding, max-width 600px */
+.barMobile {
+  max-width: 600px;
+  padding: 0 16px;
+}
+
+/* ── Responsive 3-col columns ─────────────────────────────── */
+/* Start column (left in LTR / left in RTL for utility side) */
+.respStartCol {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 0 0;
+  max-width: 144px;
+  min-width: 1px;
+}
+
+/* Center column (logo) — tablet only */
+.respLogoCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+/* End column (right in LTR / right in RTL for navMenu side) */
+.respEndCol {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 0 0;
+  max-width: 144px;
+  min-width: 1px;
+}
+
+/* ── 40×40 icon-only button (tablet / mobile) ─────────────── */
+/* Figma: Button, size 40×40, rounded-sm 4px               */
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+
+.iconBtn:hover  { background: #f3f4f6; }
+.iconBtn:active { background: #e5e7eb; }
+
+.iconBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}

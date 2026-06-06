@@ -1,0 +1,150 @@
+/* ==========================================================
+   Second Nav Header — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:13162
+   ========================================================== */
+
+/* ── Design tokens (from Figma)
+   --command/background/default   → #ffffff  (Gray bg)
+   --command/background/secondary → #1849a9  (Primary bg)
+   --command/text/primary         → #000b36  (Gray text)
+   --command/text/dark            → #f9fafb  (Primary text)
+   --command/border/default       → #e5e7eb  (Gray divider)
+   Height: 40px · Padding: 32px · Font: IBM Plex Sans Arabic 16px/400/24px
+   Content gap: 16px · Item icon+text gap: 4px · Actions gap: 6px
+   Action button: 32×32px · border-radius: 4px
+   ─────────────────────────────────────────────────────── */
+
+/* ── Root wrapper ─────────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 40px;
+  padding: 0 32px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.rootGray    { background: #ffffff; }
+.rootPrimary { background: #1849a9; }
+
+/* ── Content row (full-width flex container) ─────────────── */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+/* ── Content section (sub-header items) ─────────────────── */
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  flex: 1 0 0;
+  min-width: 1px;
+}
+
+/* RTL: items push to the right end of the flex container */
+.contentRtl { justify-content: flex-end; }
+
+/* ── Individual sub-header item (icon + label) ───────────── */
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* RTL: label renders before icon ([text][icon] order) */
+.itemRtl { flex-direction: row-reverse; }
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.itemText {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.itemTextGray    { color: #000b36; }
+.itemTextPrimary { color: #f9fafb; }
+
+/* ── Actions section ─────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* ── Action button (32×32 icon-only, Figma: buttons-md) ──── */
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 0;
+  font-family: inherit;
+  transition: background 0.15s ease;
+  overflow: hidden;
+}
+
+/* Gray variant states */
+.actionBtnGray:hover        { background: #f3f4f6; }
+.actionBtnGray:active       { background: #e5e7eb; }
+.actionBtnGray:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: -2px;
+}
+
+/* Primary (blue) variant states */
+.actionBtnPrimary:hover        { background: rgba(255, 255, 255, 0.12); }
+.actionBtnPrimary:active       { background: rgba(255, 255, 255, 0.24); }
+.actionBtnPrimary:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: -2px;
+}
+
+/* ── Bottom divider (absolute, 1px) ──────────────────────── */
+
+.divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* Gray: Figma token --command/border/default */
+.dividerGray    { background: #e5e7eb; }
+
+/* Primary: Figma token --command/background/default (white) */
+.dividerPrimary { background: #ffffff; }
