@@ -17,9 +17,9 @@ import { ChartLegend } from '../shared/ChartLegend';
  */
 
 const N_AXES = 7;
-const CX = 220;
-const CY = 200;
-const R  = 155;
+const CX = 300;
+const CY = 180;
+const R  = 130;
 const RINGS = [0.2, 0.4, 0.6, 0.8, 1.0];
 
 /* ── Figma series color tokens (series-1 = darkest, series-6 = lightest) ── */
@@ -116,9 +116,9 @@ export function RadarChart({
 
   const hideTip = useCallback(() => setTooltip(t => ({ ...t, visible: false })), []);
 
-  const VIEW_W   = 440;
-  const VIEW_H   = 400;
-  const R_LABEL  = R + 26;
+  const VIEW_W   = 600;
+  const VIEW_H   = 360;
+  const R_LABEL  = R + 31;
   const seriesOrder = [...series.keys()].reverse();
 
   /* ── Skeleton ── */
@@ -181,7 +181,7 @@ export function RadarChart({
 
       <div className={styles.content}>
         {/* SVG radar chart */}
-        <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} width="100%"
+        <svg viewBox={`0 0 ${VIEW_W} ${VIEW_H}`} width="100%" height={VIEW_H}
           role="img" aria-label={title || 'Radar chart'} className={styles.svg}>
           <title>{title || 'Radar chart'}</title>
 

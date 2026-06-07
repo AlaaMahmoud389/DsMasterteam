@@ -126,7 +126,7 @@ export function AreaChart({
   /* ── SVG layout ─────────────────────────────────────── */
   const VIEW_W = 560;
   const PLOT_H = 200;
-  const margin = { top: 16, right: isRtl ? 56 : 20, bottom: 56, left: isRtl ? 20 : 56 };
+  const margin = { top: 16, right: isRtl ? 80 : 20, bottom: 64, left: isRtl ? 20 : 56 };  /* RTL: 12px gap + ~40px label + title room */
   const SVG_H = margin.top + PLOT_H + margin.bottom;
   const plotX = margin.left;
   const plotW = VIEW_W - margin.left - margin.right;
@@ -147,9 +147,10 @@ export function AreaChart({
   const yPos = v => plotY + PLOT_H - (v / finalMax) * PLOT_H;
   const baseY = plotY + PLOT_H;
 
-  const tickLabelX = isRtl ? plotX + plotW + 8 : plotX - 8;
+  const tickLabelX = isRtl ? plotX + plotW + 12 : plotX - 8;  /* 12px outside plot edge in RTL */
   const tickAnchor = isRtl ? 'start' : 'end';
-  const yTitleX = isRtl ? VIEW_W - 12 : 12;
+  const yTitleX    = isRtl ? VIEW_W - 16 : 12;               /* title at far edge with padding */
+  const yAxisLineX = isRtl ? plotX + plotW : plotX;          /* axis line on right in RTL */
 
   function makePts(dataArr) {
     return dataArr.map((v, ci) => [xPos(ci), yPos(v)]);
@@ -286,10 +287,25 @@ export function AreaChart({
                 <line x1={plotX} y1={yPos(t)} x2={plotX + plotW} y2={yPos(t)}
                   stroke="var(--chart-border, #f3f4f6)" strokeWidth="1" />
                 <text x={tickLabelX} y={yPos(t) + 5} textAnchor={tickAnchor}
+                  direction="ltr"
                   fontSize="14" fill="var(--chart-axis, #6c7c96)"
                   fontFamily="IBM Plex Sans Arabic,sans-serif">{t}</text>
               </g>
             ))}
+          </g>
+
+          {/* X-axis baseline + Y-axis line */}
+          <g aria-hidden="true">
+            <line
+              x1={plotX} y1={baseY}
+              x2={plotX + plotW} y2={baseY}
+              stroke="var(--chart-border, #e5e7eb)" strokeWidth="1.5"
+            />
+            <line
+              x1={yAxisLineX} y1={plotY}
+              x2={yAxisLineX} y2={baseY}
+              stroke="var(--chart-border, #e5e7eb)" strokeWidth="1.5"
+            />
           </g>
 
           {/* ── Multi mode: gradient area fills (back-to-front) ── */}
@@ -377,18 +393,20 @@ export function AreaChart({
           {showContent && (
             <g aria-hidden="true">
               {categories.map((cat, ci) => (
-                <text key={ci} x={xPos(ci)} y={baseY + 18} textAnchor="middle"
+                <text key={ci} x={xPos(ci)} y={baseY + 26} textAnchor="middle"
                   fontSize="14" fill="var(--chart-title, #000b36)"
-                  fontFamily="IBM Plex Sans Arabic,sans-serif">{cat}</text>
+                  fontFamily="IBM Plex Sans Arabic,sans-serif"
+                  direction={isRtl ? 'rtl' : undefined}>{cat}</text>
               ))}
             </g>
           )}
 
           {/* X-axis title */}
           {showXAxisLabel && xAxisTitle && (
-            <text x={plotX + plotW / 2} y={SVG_H - 4} textAnchor="middle"
+            <text x={plotX + plotW / 2} y={SVG_H - 6} textAnchor="middle"
               fontSize="14" fontWeight="500" fill="var(--chart-axis, #6c7c96)"
-              fontFamily="IBM Plex Sans Arabic,sans-serif" aria-hidden="true">
+              fontFamily="IBM Plex Sans Arabic,sans-serif"
+              direction={isRtl ? 'rtl' : undefined} aria-hidden="true">
               {xAxisTitle}
             </text>
           )}

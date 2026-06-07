@@ -288,6 +288,7 @@ export function LineChart({
                   x={isRtl ? plotX + plotW + 6 : plotX - 6}
                   y={(yPos(t) + 5).toFixed(1)}
                   textAnchor={isRtl ? 'start' : 'end'}
+                  direction="ltr"
                   fontSize="14" fontWeight="400"
                   fill="var(--chart-axis, #6c7c96)"
                   fontFamily="IBM Plex Sans Arabic,sans-serif"

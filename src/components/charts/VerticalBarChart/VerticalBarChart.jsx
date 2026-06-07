@@ -116,8 +116,8 @@ export function VerticalBarChart({
 
   const margin = {
     top:    32,
-    right:  isRtl ? 72 : 24,
-    bottom: 44,
+    right:  isRtl ? 88 : 24,   /* RTL: 12px gap + ~40px label + 20px title breathing room */
+    bottom: 56,
     left:   isRtl ? 24 : 72,
   };
 
@@ -176,12 +176,13 @@ export function VerticalBarChart({
   const valY      = v => plotY + PLOT_H - scale(v);
   const baselineY = plotY + PLOT_H;
 
-  /* Y-axis — moves to RIGHT in RTL */
-  const tickLabelX      = isRtl ? plotX + plotW + 8 : plotX - 8;
+  /* Y-axis — right side in RTL, left side in LTR */
+  const tickLabelX      = isRtl ? plotX + plotW + 12 : plotX - 8;  /* 12px outside plot edge in RTL */
   const tickLabelAnchor = isRtl ? 'start' : 'end';
-  const yTitleX         = isRtl ? VIEW_W - 14 : 14;
+  const yTitleX         = isRtl ? VIEW_W - 18 : 14;                /* title at far edge with padding */
   const yTitleRotate    = isRtl ? 90 : -90;
   const yTitleMidY      = plotY + PLOT_H / 2;
+  const yAxisLineX      = isRtl ? plotX + plotW : plotX;           /* axis line on right in RTL */
 
   return (
     <div className={styles.card} dir={dir} ref={cardRef}>
@@ -257,6 +258,7 @@ export function VerticalBarChart({
                     x={tickLabelX}
                     y={ty + 4}
                     textAnchor={tickLabelAnchor}
+                    direction="ltr"
                     fontSize="14px"
                     fill="var(--chart-title, #000b36)"
                     fontFamily="IBM Plex Sans Arabic, sans-serif"
@@ -268,16 +270,31 @@ export function VerticalBarChart({
             })}
           </g>
 
+          {/* X-axis baseline + Y-axis line */}
+          <g aria-hidden="true">
+            <line
+              x1={plotX} y1={baselineY}
+              x2={plotX + plotW} y2={baselineY}
+              stroke="var(--chart-border, #e5e7eb)" strokeWidth="1.5"
+            />
+            <line
+              x1={yAxisLineX} y1={plotY}
+              x2={yAxisLineX} y2={baselineY}
+              stroke="var(--chart-border, #e5e7eb)" strokeWidth="1.5"
+            />
+          </g>
+
           {/* X-axis title — Figma VBC: charts/header-title/title = #000b36 */}
           {xAxisTitle && (
             <text
               x={plotX + plotW / 2}
-              y={SVG_H - 6}
+              y={SVG_H - 8}
               textAnchor="middle"
               fontSize="14px"
               fontWeight="500"
               fill="var(--chart-title, #000b36)"
               fontFamily="IBM Plex Sans Arabic, sans-serif"
+              direction={isRtl ? 'rtl' : undefined}
               aria-hidden="true"
             >
               {xAxisTitle}
@@ -455,11 +472,12 @@ export function VerticalBarChart({
                 {/* Category label — Figma VBC: charts/header-title/title = #000b36 */}
                 <text
                   x={cx}
-                  y={baselineY + 20}
+                  y={baselineY + 28}
                   textAnchor="middle"
                   fontSize="14px"
                   fill="var(--chart-title, #000b36)"
                   fontFamily="IBM Plex Sans Arabic, sans-serif"
+                  direction={isRtl ? 'rtl' : undefined}
                   aria-hidden="true"
                 >
                   {cat}
