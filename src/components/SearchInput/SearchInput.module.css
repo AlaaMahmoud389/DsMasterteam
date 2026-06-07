@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/*
+ * SearchInput.module.css — Masterteam Design System
+ *
+ * Field chrome (wrapper, label, field box, input, helper text) comes
+ * entirely from TextInput.module.css via textStyles.* imports.
+ *
+ * This file only covers the SearchInput-specific elements:
+ *   - Leading search icon wrapper
+ *   - Trailing group (clear button + divider + mic button)
+ *   - Vertical divider between clear and mic
+ */
+
+/* ══════════════════════════════════════════════════════════════════
+   Leading search icon
+   ══════════════════════════════════════════════════════════════════ */
+.searchIcon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #6c7c96;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Trailing group — wraps clear button, divider, and mic button
+   ══════════════════════════════════════════════════════════════════ */
+.trailingGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Clear (×) button
+   ══════════════════════════════════════════════════════════════════ */
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: #000b36;
+  outline: none;
+  border-radius: 2px;
+  transition: color 100ms ease;
+}
+
+.clearButton:hover {
+  color: #4d5761;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Vertical divider
+   ══════════════════════════════════════════════════════════════════ */
+.divider {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: #d2d6db;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Mic button
+   ══════════════════════════════════════════════════════════════════ */
+.micButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: #000b36;
+  outline: none;
+  border-radius: 2px;
+  transition: color 100ms ease, opacity 100ms ease;
+}
+
+.micButton:hover:not(:disabled) {
+  color: #1849a9;
+}
+
+.micButton:disabled {
+  color: #6c7c96;
+  cursor: default;
+  pointer-events: none;
+}
+
+.micButton:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 2px;
+}

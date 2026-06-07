@@ -1,0 +1,432 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SearchInputStories from './SearchInput.stories';
+import { SearchInput } from './SearchInput';
+
+<Meta of={SearchInputStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8, letterSpacing: '0.02em' }}>
+    Components / SearchInput
+  </div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>
+    Search Input
+  </h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 680 }}>
+    Search Input is a text field optimised for search interactions. It always shows a leading search
+    icon and a trailing mic icon for voice input. When the field is focused and contains text, a
+    clear button (×) appears between the input and the mic icon, letting users reset the query in one
+    click. Built on the same visual foundation as TextInput — same states, sizes, variants, and
+    RTL support.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>2 Sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>6 States</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Voice Search</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL Support</span>
+  </div>
+</div>
+
+{/* ── On this page ───────────────────────────────────────────────── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',      'Overview'],
+      ['#anatomy',       'Anatomy'],
+      ['#states',        'States'],
+      ['#clear-button',  'Clear Button'],
+      ['#sizes',         'Sizes'],
+      ['#variants',      'Variants'],
+      ['#helper-text',   'Helper Text'],
+      ['#rtl-support',   'RTL Support'],
+      ['#usage',         'Usage Guidelines'],
+      ['#tokens',        'Design Tokens'],
+      ['#properties',    'Properties'],
+      ['#accessibility', 'Accessibility'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+{/* ── Overview ───────────────────────────────────────────────────── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Use the interactive playground below to explore all SearchInput props. Type in the field to see the
+  clear button appear automatically when the state is focused.
+</p>
+
+<Canvas of={SearchInputStories.Playground} />
+<Controls of={SearchInputStories.Playground} />
+
+---
+
+{/* ── Anatomy ────────────────────────────────────────────────────── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  The field row is always present. The clear button only appears when the field is focused and
+  contains a non-empty value.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 180px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Always shown</span><span>Notes</span>
+  </div>
+  {[
+    ['1', 'Label',        'Conditional',  'Hidden when showLabel={false}'],
+    ['2', 'Required mark','Conditional',  'Red asterisk when required={true}'],
+    ['3', 'Search icon',  'Always',       'Leading magnifying-glass icon — non-interactive'],
+    ['4', 'Input',        'Always',       'Controlled text input — value + onChange'],
+    ['5', 'Clear button', 'Conditional',  'Appears when focused + value is non-empty; clears the field on click'],
+    ['6', 'Divider',      'Conditional',  '1 px vertical rule that appears alongside the clear button'],
+    ['7', 'Mic button',   'Always',       'Trailing microphone icon — triggers voice input'],
+    ['8', 'Helper text',  'Conditional',  'Secondary hint below the field — enabled by showHelperText={true}'],
+  ].map(([num, part, always, notes]) => (
+    <div key={num} style={{ display: 'grid', gridTemplateColumns: '40px 180px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{num}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: always === 'Always' ? '#065f46' : '#6b7280', fontWeight: always === 'Always' ? 600 : 400 }}>{always}</span>
+      <span style={{ color: '#374151' }}>{notes}</span>
+    </div>
+  ))}
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fcd34d', borderRadius: 8, padding: '14px 18px', marginBottom: 28 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#92400e', marginBottom: 6 }}>Trailing group layout</div>
+  <p style={{ margin: 0, fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+    When the clear button is visible, the trailing group renders left-to-right as:<br />
+    <strong>[× clear]</strong> → <strong>8 px gap</strong> → <strong>[1 px divider]</strong> → <strong>8 px gap</strong> → <strong>[mic]</strong>
+  </p>
+</div>
+
+---
+
+{/* ── States ─────────────────────────────────────────────────────── */}
+<h2 id="states" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>States</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  SearchInput supports six states — the same set as DropdownInput, minus the error state.
+  The <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>state</code> prop
+  controls both the visual appearance and the clear-button visibility.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '130px 1fr 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Border / Background</span><span>Notes</span>
+  </div>
+  {[
+    ['Default',   '#D2D6DB border, white bg',              'Resting state'],
+    ['Hovered',   '#1F2A37 border, white bg',              'Mouse over the field'],
+    ['Pressed',   '#D2D6DB border, #F3F4F6 bg + blue bar', 'Clicked — 1/3-width bottom indicator'],
+    ['Focused',   '#D2D6DB border, white bg + blue bar',   'Typing — full-width bottom indicator; clear button shown if value is set'],
+    ['Read-only', '#CED3DC border, transparent bg',        'Displays value but blocks editing; no clear or mic interaction'],
+    ['Disabled',  '#E5E7EB border, transparent bg',        'Not interactive; all icons dimmed to #6C7C96'],
+  ].map(([state, tokens, notes]) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '130px 1fr 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{state}</span>
+      <span style={{ color: '#374151', fontFamily: 'monospace', fontSize: 12 }}>{tokens}</span>
+      <span style={{ color: '#374151' }}>{notes}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={SearchInputStories.FieldStates} />
+
+---
+
+{/* ── Clear Button ───────────────────────────────────────────────── */}
+<h2 id="clear-button" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Clear Button</h2>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 20 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>When it appears</div>
+  <p style={{ margin: 0, fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+    The × button is shown only when <strong>both</strong> conditions are true:
+    <br />1. The field is focused (either via the <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>state="focused"</code> prop or real browser focus).
+    <br />2. The controlled <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>value</code> is non-empty.
+    <br /><br />
+    Clicking × calls <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>onClear()</code> if provided, otherwise fires
+    <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>onChange</code> with an empty string.
+    The button has <code>tabIndex={-1}</code> so it does not break the Tab flow.
+  </p>
+</div>
+
+<Canvas of={SearchInputStories.ClearButton} />
+
+---
+
+{/* ── Sizes ──────────────────────────────────────────────────────── */}
+<h2 id="sizes" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Sizes</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 100px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Height</span><span>Font size</span><span>When to use</span>
+  </div>
+  {[
+    ['medium (default)', '32 px', '14 px', 'Standard density — headers, toolbars, sidebars'],
+    ['large',            '40 px', '16 px', 'Prominent search bars, hero sections, mobile layouts'],
+  ].map(([size, h, fs, use]) => (
+    <div key={size} style={{ display: 'grid', gridTemplateColumns: '100px 100px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{size}</code>
+      <span style={{ color: '#374151' }}>{h}</span>
+      <span style={{ color: '#374151' }}>{fs}</span>
+      <span style={{ color: '#374151' }}>{use}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={SearchInputStories.Sizes} />
+
+---
+
+{/* ── Variants ───────────────────────────────────────────────────── */}
+<h2 id="variants" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Variants</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Three background variants match the TextInput family. All share identical state behavior.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>Resting background</span><span>When to use</span>
+  </div>
+  {[
+    ['default',        'White #FFFFFF',   'Standard — high contrast on light backgrounds'],
+    ['filled-darker',  'Grey #F3F4F6',    'Inside grey page sections or cards'],
+    ['filled-lighter', '#FCFCFD',         'Subtle fill variant on white pages'],
+  ].map(([v, bg, use]) => (
+    <div key={v} style={{ display: 'grid', gridTemplateColumns: '160px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{v}</code>
+      <span style={{ color: '#374151', fontFamily: 'monospace', fontSize: 12 }}>{bg}</span>
+      <span style={{ color: '#374151' }}>{use}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={SearchInputStories.Variants} />
+
+---
+
+{/* ── Helper Text ────────────────────────────────────────────────── */}
+<h2 id="helper-text" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Helper Text</h2>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 20 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>Usage</div>
+  <p style={{ margin: 0, fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+    Set <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>showHelperText={'{true}'}</code> and
+    provide a <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>helperText</code> string
+    to add a hint below the search field — for example, describing what can be searched or the expected
+    input format. SearchInput has no error state, so helper text is always shown in its normal
+    (non-error) color.
+  </p>
+</div>
+
+<Canvas of={SearchInputStories.WithHelperText} />
+
+---
+
+{/* ── RTL Support ────────────────────────────────────────────────── */}
+<h2 id="rtl-support" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 20 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>Right-to-left layout</div>
+  <p style={{ margin: 0, fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+    Set <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 6px', borderRadius: 4 }}>rtl={'{true}'}</code> to
+    mirror the entire component. The search icon moves to the trailing (right) side, the mic icon
+    moves to the leading (left) side, and text alignment flips — matching Arabic and Hebrew reading
+    direction. The clear button and divider mirror position within the trailing group accordingly.
+  </p>
+</div>
+
+<Canvas of={SearchInputStories.RTL} />
+
+---
+
+{/* ── Usage Guidelines ───────────────────────────────────────────── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use for free-text search queries — not for structured selection (use DropdownInput instead)</li>
+      <li>Provide a descriptive <code>placeholder</code> so users know what they can search for</li>
+      <li>Wire up <code>onClear</code> to reset your search results immediately</li>
+      <li>Use <code>size="large"</code> for the primary search bar in a page header</li>
+      <li>Provide a visible label or <code>aria-label</code> for accessibility</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't use for password or email inputs — use TextInput with the appropriate type</li>
+      <li>Don't hide the label in dense forms without providing an <code>aria-label</code></li>
+      <li>Don't add an error state — SearchInput has no error variant; show result-count feedback instead</li>
+      <li>Don't disable the mic button separately — it follows the field's disabled state</li>
+    </ul>
+  </div>
+</div>
+
+<div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 8, padding: '20px 24px', marginBottom: 28 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#000b36', marginBottom: 16 }}>Live example — interactive search field</div>
+  <div style={{ maxWidth: 360 }}>
+    <SearchInput
+      label="Search components"
+      placeholder="e.g. Button, Switch, Input..."
+      value=""
+      onChange={() => {}}
+      showHelperText={true}
+      helperText="Type to search across all 40+ components"
+    />
+  </div>
+</div>
+
+---
+
+{/* ── Design Tokens ──────────────────────────────────────────────── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Field — Border &amp; Background</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Border default',   '#D2D6DB', 'Resting border'],
+    ['Border hovered',   '#1F2A37', 'Hover border'],
+    ['Border read-only', '#CED3DC', 'Read-only border'],
+    ['Border disabled',  '#E5E7EB', 'Disabled border'],
+    ['Indicator bar',    '#1849A9', 'Pressed/focused blue bottom bar'],
+    ['Background press', '#F3F4F6', 'Pressed state background'],
+    ['Placeholder',      '#B6BDCA', 'Placeholder text'],
+    ['Input text',       '#000B36', 'Typed text color'],
+    ['Disabled text',    '#6C7C96', 'Text color when disabled'],
+    ['Label color',      '#000B36', 'Label text'],
+    ['Helper text',      '#384250', 'Helper text color'],
+  ].map(([token, hex, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '160px 60px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, background: hex, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{hex}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Icons &amp; Controls</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 60px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Search icon color',     '#6C7C96', 'Leading search icon (all states except disabled)'],
+    ['Mic icon color',        '#000B36', 'Trailing mic icon — active state'],
+    ['Mic icon disabled',     '#6C7C96', 'Trailing mic icon — disabled state'],
+    ['Clear icon color',      '#000B36', 'Default × icon color'],
+    ['Clear icon hover',      '#4D5761', '× icon color on hover'],
+    ['Vertical divider',      '#D2D6DB', '1 px rule between clear and mic'],
+    ['Mic focus ring',        '#1849A9', 'Keyboard focus ring on mic button'],
+  ].map(([token, hex, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '200px 60px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, background: hex, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{hex}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Geometry &amp; Typography</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Field height — medium',  '32 px',                    'Default field height'],
+    ['Field height — large',   '40 px',                    'Large size field height'],
+    ['Border radius',          '4 px',                     'Field corner radius'],
+    ['Font family',            'IBM Plex Sans Arabic',     'All text'],
+    ['Input font — medium',    '14 px / 400 / 20 lh',     'Medium field input text'],
+    ['Input font — large',     '16 px / 400 / 24 lh',     'Large field input text'],
+    ['Horizontal padding',     '8 px (inline-start/end)',  'Field content padding'],
+    ['Gap (flex children)',    '8 px',                     'Gap between search icon, input, and trailing group'],
+    ['Trailing group gap',     '8 px',                     'Gap between clear, divider, and mic'],
+    ['Divider width',          '1 px',                     'Vertical rule between clear and mic'],
+    ['Divider height',         '16 px',                    'Height of the vertical rule'],
+    ['Bottom indicator',       '2 px height',              'Blue accent bar at field bottom'],
+  ].map(([token, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '200px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Properties ─────────────────────────────────────────────────── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 200px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['label',          'string',                                                            '"Label"',    'Label text above the field'],
+    ['showLabel',      'boolean',                                                           'true',       'Show or hide the label element'],
+    ['labelType',      "'regular' | 'semibold'",                                           "'regular'",  'Label font weight'],
+    ['required',       'boolean',                                                           'false',      'Appends a red asterisk to the label'],
+    ['size',           "'medium' | 'large'",                                               "'medium'",   'Field height — 32 px or 40 px'],
+    ['state',          "'default'|'hovered'|'pressed'|'focused'|'read-only'|'disabled'",  "'default'",  'Visual and interaction state'],
+    ['variant',        "'default' | 'filled-darker' | 'filled-lighter'",                   "'default'",  'Field background variant'],
+    ['placeholder',    'string',                                                            '"Search..."','Placeholder text'],
+    ['value',          'string',                                                            '""',         'Controlled field value'],
+    ['onChange',       '(e: React.ChangeEvent) => void',                                   '—',          'Input change handler'],
+    ['onClear',        '() => void',                                                        '—',          'Called when × is clicked; falls back to onChange("") if omitted'],
+    ['showHelperText', 'boolean',                                                           'false',      'Renders helper text row below the field'],
+    ['helperText',     'string',                                                            '"Helper text"', 'Helper message text'],
+    ['helperIcon',     'ReactNode',                                                         '—',          'Custom icon in the helper row (defaults to HelperCircleIcon)'],
+    ['rtl',            'boolean',                                                           'false',      'Enables right-to-left layout'],
+    ['className',      'string',                                                            '—',          'Extra CSS class on the root wrapper'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 200px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Accessibility ──────────────────────────────────────────────── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Label',             'The <label> is linked to the <input> via htmlFor/id — screen readers announce the label on focus'],
+    ['Search icon',       'Wrapped in aria-hidden="true" span — decorative only, not announced'],
+    ['Mic button',        'Has aria-label="Voice search"; disabled attribute set when field is disabled'],
+    ['Clear button',      'Has aria-label="Clear search"; tabIndex={-1} keeps it out of the Tab order so pressing Tab always reaches the next real field'],
+    ['Keyboard nav',      'Tab focuses the input; Shift+Tab moves backward; mic button is reachable with Tab after the input'],
+    ['Read-only',         'readOnly and aria-readonly="true" set on the native input'],
+    ['Disabled',          'disabled attribute removes the field from tab order; mic button is also disabled'],
+    ['RTL',               'dir="rtl" on root wrapper; CSS logical properties ensure reliable mirroring across all parts'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
+</div>
+
+</div>
