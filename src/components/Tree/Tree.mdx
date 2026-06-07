@@ -1,0 +1,482 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './Tree.stories';
+
+<Meta of={Stories} />
+
+# Tree
+
+A hierarchical list component for displaying nested data structures. Supports up to 4 levels of nesting, 5 interaction states, optional icons, action icons, switches, and full RTL layout.
+
+---
+
+## Playground — Tree
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Playground — TreeItem
+
+<Canvas of={Stories.PlaygroundItem} />
+<Controls of={Stories.PlaygroundItem} />
+
+---
+
+## States
+
+Five states are supported. `disabled` items block interaction; `selected` and `hovered` use the same background color (`#E5E7EB`).
+
+<Canvas of={Stories.AllStates} />
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>State</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Background</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Text / Icon</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Cursor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>default</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>transparent</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#000B36</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>pointer</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>hovered</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#E5E7EB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#000B36</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>pointer</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>pressed</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#D2D6DB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#000B36</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>pointer</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>selected</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#E5E7EB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#000B36</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>pointer</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>disabled</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#D2D6DB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#6C7C96</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>not-allowed</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Levels
+
+Each level adds **16px** of inline-start padding. Level 1 starts at 8px. The right side padding is always 8px.
+
+<Canvas of={Stories.AllLevels} />
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Level</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>paddingInlineStart</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Formula</th>
+      </tr>
+    </thead>
+    <tbody>
+      {[1,2,3,4].map((l, i) => (
+        <tr key={l} style={{ background: i % 2 ? '#F9FAFB' : undefined }}>
+          <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>{l}</td>
+          <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>{8 + (l-1)*16}px</td>
+          <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>8 + ({l} − 1) × 16</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Row Anatomy
+
+Each row follows this left-to-right layout:
+
+```
+[chevron 24px]  gap 12px  [icon 24px]  gap 12px  [label flex:1]  gap 12px  [icon1] [icon2] [icon3] [switch]
+```
+
+- **Chevron** — always present; spacer (24×24px invisible block) when the item has no children
+- **Icon** — optional lead icon (24×24px)
+- **Label** — flex:1, truncates with ellipsis if too long
+- **Right group** — any combination of up to 3 action icons and/or a switch
+
+---
+
+## With Right Icons
+
+<Canvas of={Stories.WithRightIcons} />
+
+---
+
+## With Switch
+
+<Canvas of={Stories.WithSwitch} />
+
+The switch inherits the disabled state from the tree item. When `state="disabled"`, the switch renders with `state="disabled"` and its `onChange` is suppressed.
+
+---
+
+## Interactive Tree
+
+<Canvas of={Stories.Interactive} />
+
+Clicking a row with `children` toggles its expanded state. The chevron rotates 90° when expanded, 0° when collapsed (180° in RTL collapsed).
+
+---
+
+## Tree with Switches
+
+<Canvas of={Stories.TreeWithSwitches} />
+
+---
+
+## RTL
+
+<Canvas of={Stories.RTL} />
+
+Set `rtl={true}` on `<Tree>` to flip the layout. Indentation uses `paddingInlineStart` so levels automatically mirror. The chevron points left (180°) when collapsed in RTL, and 90° (down) when expanded.
+
+---
+
+## Full Featured
+
+<Canvas of={Stories.FullFeatured} />
+
+---
+
+## Props — Tree
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Prop</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Type</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Default</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>items</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>TreeNode[]</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>[]</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Recursive tree data array</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>rtl</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Enable right-to-left layout</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>className</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Extra class on the root element</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## TreeNode Shape
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Field</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Type</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Required</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>id</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string | number</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>✓</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Unique key for the node</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>label</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>✓</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Display text</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>children</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>TreeNode[]</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Nested child nodes</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>state</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'default' | 'hovered' | 'pressed' | 'selected' | 'disabled'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Visual state (default: 'default')</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>icon</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactElement</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Lead icon (24×24)</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>showIcon1</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Show first action icon</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>icon1</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactElement</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>First action icon element</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>showIcon2</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Show second action icon</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>icon2</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactElement</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Second action icon element</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>showIcon3</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Show third action icon</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>icon3</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactElement</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Third action icon element</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>showSwitch</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Show switch in right group</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>switchChecked</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Initial checked state of the switch</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Props — TreeItem
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Prop</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Type</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Default</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>label</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'Item'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Row label text</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>level</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>1 | 2 | 3 | 4</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>1</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Nesting depth (controls indent)</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>state</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'default' | 'hovered' | 'pressed' | 'selected' | 'disabled'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'default'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Visual interaction state</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>hasChildren</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Shows expand chevron</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>isExpanded</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Chevron rotation (90° = expanded)</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>icon</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactElement</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Lead icon after chevron</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>showIcon1–3</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Toggle visibility of action icons</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>icon1–3</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactElement</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Action icon elements (right group)</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>showSwitch</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Show switch in right group</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>switchChecked</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Switch checked state</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>onSwitchChange</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>(checked: boolean) => void</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Switch toggle handler</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>rtl</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>boolean</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>false</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Right-to-left layout</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>onClick</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>() => void</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Row click handler (suppressed when disabled)</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>className</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Extra class on the row element</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Design Tokens
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Token</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Value</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Usage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Row height</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>40px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>All items</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Corner radius</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>8px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>All items</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Border</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>1px solid #D2D6DB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>All items</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Gap between elements</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>12px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Chevron, icon, label, right group</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Padding inline end</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>8px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Right side of all items</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Level 1 indent</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>8px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>paddingInlineStart</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Level step</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>+16px per level</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Levels 2–4</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Icon size</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24×24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Chevron, lead icon, action icons</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Gap between items</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>2px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Vertical spacing between rows</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Font size</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>16px / 24px line-height</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Label text</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Text color (active)</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>
+          <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: '#000B36', verticalAlign: 'middle', marginRight: 6, border: '1px solid #D2D6DB' }} />
+          #000B36
+        </td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>default / hovered / pressed / selected</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Text color (disabled)</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>
+          <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: '#6C7C96', verticalAlign: 'middle', marginRight: 6, border: '1px solid #D2D6DB' }} />
+          #6C7C96
+        </td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>disabled state</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

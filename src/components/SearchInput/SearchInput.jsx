@@ -90,6 +90,8 @@ export function SearchInput({
   helperText     = 'Helper text',
   helperIcon,
 
+  showMic        = true,
+
   rtl            = false,
   className,
   ...rest
@@ -194,31 +196,35 @@ export function SearchInput({
         />
 
         {/* Trailing group: [clear ×] [divider] [mic] */}
-        <div className={styles.trailingGroup}>
-          {showClear && (
-            <>
+        {(showClear || showMic) && (
+          <div className={styles.trailingGroup}>
+            {showClear && (
+              <>
+                <button
+                  type="button"
+                  className={styles.clearButton}
+                  onClick={handleClear}
+                  aria-label="Clear search"
+                  tabIndex={-1}
+                >
+                  <ClearIcon color="#000B36" />
+                </button>
+                {showMic && <span className={styles.divider} aria-hidden="true" />}
+              </>
+            )}
+            {showMic && (
               <button
                 type="button"
-                className={styles.clearButton}
-                onClick={handleClear}
-                aria-label="Clear search"
-                tabIndex={-1}
+                className={styles.micButton}
+                aria-label="Voice search"
+                disabled={isDisabled}
+                tabIndex={isDisabled ? -1 : 0}
               >
-                <ClearIcon color="#000B36" />
+                <MicIcon color={micColor} />
               </button>
-              <span className={styles.divider} aria-hidden="true" />
-            </>
-          )}
-          <button
-            type="button"
-            className={styles.micButton}
-            aria-label="Voice search"
-            disabled={isDisabled}
-            tabIndex={isDisabled ? -1 : 0}
-          >
-            <MicIcon color={micColor} />
-          </button>
-        </div>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Helper text */}

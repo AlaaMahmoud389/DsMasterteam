@@ -69,7 +69,11 @@
       "Bash(Get-Content *)",
       "Bash(python3 *)",
       "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); nodes=data.get\\('nodes',{}\\); key=list\\(nodes.keys\\(\\)\\)[0]; doc=nodes[key]['document']; print\\('TOP NODE:', doc['name'], doc['type']\\); children=doc.get\\('children',[]\\); print\\('CHILDREN COUNT:', len\\(children\\)\\); [print\\(f'  [{i}] id={c[\\\\\"id\\\\\"]} name={c[\\\\\"name\\\\\"]} type={c[\\\\\"type\\\\\"]}'\\) for i,c in enumerate\\(children\\)]\")",
-      "Bash(powershell *)"
+      "Bash(powershell *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\" -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "PowerShell(Get-ChildItem -Path \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\" -Recurse -Directory | Where-Object { $_.Name -match '\\(logo|[Ll]og|[Ff]oundation\\)' } | Select-Object -ExpandProperty FullName)",
+      "Bash(Get-ChildItem -Path \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\\\\src\\\\components\" -Recurse -Include \"*ropdown*\")"
     ]
   }
 }

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   StatusTag
+   ══════════════════════════════════════════════════════════════════ */
+
+.statusTag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+  /* height, paddingInlineStart/End, fontSize, lineHeight,
+     backgroundColor, color, gap — set inline */
+}
+
+.statusCircle {
+  display: inline-block;
+  border-radius: 50%;
+  flex-shrink: 0;
+  /* width, height, backgroundColor — set inline */
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Tag
+   ══════════════════════════════════════════════════════════════════ */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+  /* height, paddingInlineStart/End, fontSize, lineHeight,
+     backgroundColor, borderColor, color — set inline */
+}
+
+.tagIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* width, height, color — set inline */
+}
+
+.tagText {
+  flex-shrink: 0;
+}

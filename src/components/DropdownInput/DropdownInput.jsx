@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import textStyles from '../TextInput/TextInput.module.css';
 import styles from './DropdownInput.module.css';
 import { Checkbox } from '../Checkbox/Checkbox';
+import { SearchInput } from '../SearchInput/SearchInput';
 
 /**
  * DropdownInput — Masterteam Design System
@@ -127,6 +128,9 @@ export function DropdownInput({
   /* ── Open state ── */
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
+  /* ── Icon-grid search ── */
+  const [iconSearch, setIconSearch] = useState('');
+
   /* ── Internal selection state (uncontrolled fallback) ── */
   const [internalSingle, setInternalSingle] = useState(null);
   const [internalMulti,  setInternalMulti]  = useState([]);
@@ -142,6 +146,7 @@ export function DropdownInput({
     const handle = (e) => {
       if (containerRef.current && !containerRef.current.contains(e.target)) {
         setIsOpen(false);
+        setIconSearch('');
       }
     };
     document.addEventListener('mousedown', handle);
@@ -168,6 +173,7 @@ export function DropdownInput({
   /* ── Interaction ── */
   const handleFieldClick = () => {
     if (isDisabled || isReadOnly) return;
+    if (!isOpen) setIconSearch('');
     setIsOpen((prev) => !prev);
   };
 
@@ -231,6 +237,11 @@ export function DropdownInput({
   ].filter(Boolean).join(' ');
 
   const chevronColor = isDisabled ? '#6C7C96' : '#000B36';
+
+  /* ── Icon-mode: find selected item to show its icon in the field ── */
+  const selectedIconItem = listType === 'icon' && currentSingle
+    ? flatItems.find((i) => i.value === currentSingle)
+    : null;
 
   /* ── Item renderer ── */
   const renderItem = (item, index) => {
@@ -324,19 +335,80 @@ export function DropdownInput({
           style={{ cursor: isDisabled || isReadOnly ? 'default' : 'pointer' }}
           {...rest}
         >
-          <span className={displayCls}>
-            {displayText || placeholder}
-          </span>
+          {selectedIconItem ? (
+            <>
+              <span className={styles.displayIconSelected}>
+                {selectedIconItem.icon}
+              </span>
+              <span className={styles.displayIconSpacer} aria-hidden="true" />
+            </>
+          ) : (
+            <span className={displayCls}>
+              {displayText || placeholder}
+            </span>
+          )}
           <ChevronDownIcon color={chevronColor} open={isOpen} />
         </div>
 
         {isOpen && (
           <div
-            className={styles.dropdownList}
+            className={[
+              styles.dropdownList,
+              listType === 'icon' && styles.dropdownListIcon,
+            ].filter(Boolean).join(' ')}
             role="listbox"
             aria-multiselectable={isMulti || undefined}
           >
-            {items.map(renderItem)}
+            {listType === 'icon' ? (
+              <>
+                {/* Search bar — uses the design system SearchInput */}
+                <div
+                  className={styles.iconSearchWrap}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <SearchInput
+                    showLabel={false}
+                    placeholder="Search icons…"
+                    value={iconSearch}
+                    onChange={(e) => setIconSearch(e.target.value)}
+                    onClear={() => setIconSearch('')}
+                    showMic={false}
+                    autoFocus
+                  />
+                </div>
+
+                {/* Icon grid */}
+                <div className={styles.iconGrid}>
+                  {flatItems
+                    .filter((item) =>
+                      !iconSearch || item.label.toLowerCase().includes(iconSearch.toLowerCase())
+                    )
+                    .map((item) => {
+                      const isSelected = currentSingle === item.value;
+                      return (
+                        <div
+                          key={item.value}
+                          className={[
+                            styles.iconGridItem,
+                            isSelected    && styles.iconGridItemSelected,
+                            item.disabled && styles.iconGridItemDisabled,
+                          ].filter(Boolean).join(' ')}
+                          role="option"
+                          aria-selected={isSelected}
+                          aria-label={item.label}
+                          title={item.label}
+                          onClick={() => !item.disabled && handleSelect(item.value)}
+                        >
+                          {item.icon}
+                        </div>
+                      );
+                    })
+                  }
+                </div>
+              </>
+            ) : (
+              items.map(renderItem)
+            )}
           </div>
         )}
       </div>

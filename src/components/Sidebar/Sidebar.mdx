@@ -1,0 +1,389 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as Stories from './Sidebar.stories';
+
+<Meta of={Stories} />
+
+# Sidebar
+
+A full navigation sidebar with logo, search, menu items, a dismissible featured card, and a user profile section at the bottom. Supports three variants: **LTR**, **RTL**, and **Icon-only** (collapsed).
+
+---
+
+## Playground
+
+<Canvas of={Stories.Playground} />
+<Controls of={Stories.Playground} />
+
+---
+
+## Variant — LTR
+
+<Canvas of={Stories.LTR} />
+
+---
+
+## Variant — RTL
+
+<Canvas of={Stories.RTL} />
+
+In RTL mode `dir="rtl"` is applied to the sidebar container. CSS logical properties (`border-inline-end`, `padding-inline-start`, `inset-inline-end`) automatically mirror the layout so the border appears on the left and all content flows right-to-left.
+
+---
+
+## Variant — Icon Only
+
+<Canvas of={Stories.IconOnly} />
+
+In icon-only mode:
+- Width shrinks to **80px** (padding reduces to 12px horizontal)
+- Logo text is hidden; only the mark is shown
+- Search bar is hidden
+- Menu items show only their **24px icons**, centred
+- Featured card is hidden
+- Profile shows only the **avatar**
+
+---
+
+## All Variants
+
+<Canvas of={Stories.AllVariants} />
+
+---
+
+## Custom Logo
+
+<Canvas of={Stories.CustomLogo} />
+
+Pass any `ReactNode` via the `logo` prop to replace the built-in Masterteam mark.
+
+---
+
+## Anatomy
+
+```
+┌──────────────────────────┐
+│ [Logo]         [Collapse]│  ← header row
+│                          │
+│ [Search bar]             │  ← gap 24px
+│                          │
+│  • Home                  │  ← menu items — gap 24px
+│  • Messages    +5        │
+│  • Analytics             │
+│  • Notifications         │
+│  • Settings              │
+│                          │
+│ ┌────────────────────┐   │  ← featured card — gap 24px
+│ │ Title           ×  │   │
+│ │ Subtext            │   │
+│ │ [Video Player]     │   │
+│ │ [Primary Button]   │   │
+│ └────────────────────┘   │
+│                          │
+│ ──────────────────────── │  ← divider — gap 24px
+│                          │
+│ [Av]  Name               │  ← profile — gap 24px
+│       email@example.com  │
+└──────────────────────────┘
+```
+
+---
+
+## Featured Card
+
+The featured card has a **close button** (×) in the top-right corner. Clicking it dismisses the card — the sidebar layout collapses accordingly and the divider + profile rise to fill the space.
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Token</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Background</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>
+          <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: '#F5FAFF', verticalAlign: 'middle', marginRight: 6, border: '1px solid #D2D6DB' }} />
+          #F5FAFF
+        </td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Border radius</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>8px</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Padding</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>16px</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Title</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>14px / 600 / 20px lh / #000B36</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Subtext</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>14px / 400 / 20px lh / #233A61</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Button</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Primary / sm / full-width</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Profile Section
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Element</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Spec</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Avatar</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Image type / size sm (32px)</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Gap (avatar → text)</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>12px</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Name</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>16px / 400 / 24px lh / <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: '#233A61', verticalAlign: 'middle', marginRight: 4 }} />#233A61</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Email</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>16px / 400 / 24px lh / <span style={{ display: 'inline-block', width: 10, height: 10, borderRadius: 2, background: '#3C5073', verticalAlign: 'middle', marginRight: 4 }} />#3C5073</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Design Tokens
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Token</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Value</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>LTR/RTL</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Icon-only</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Width</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>320px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>320px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>80px</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Padding (vertical)</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Padding (horizontal)</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>12px</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Border (inline-end)</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>1px solid #E5E7EB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>right in LTR, left in RTL</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>same</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Background</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#FFFFFF</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#FFFFFF</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>#FFFFFF</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Section gap</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>24px</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Divider</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>1px / #E5E7EB</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>shown</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## Props
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Prop</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Type</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Default</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>variant</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'ltr' | 'rtl' | 'icon-only'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'ltr'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Layout direction or collapsed state</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>logo</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ReactNode</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Masterteam mark</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Custom logo element</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>menuItems</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>MenuItem[]</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>5 default items</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Navigation items array</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>searchValue</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>''</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Initial search field value</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>onSearchChange</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>ChangeEventHandler</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Search field change callback</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>featuredTitle</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'Getting Started'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Featured card heading</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>featuredSubtext</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Featured card body text</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>featuredVideoSrc</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Video URL for the embedded player</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>featuredVideoPoster</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Poster image URL for the video player</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>featuredButtonLabel</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'Get Started'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>CTA button label inside card</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>onFeaturedButtonClick</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>() => void</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>CTA button click handler</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>userName</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'Nora Ahmed'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Display name in profile section</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>userEmail</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'nora.ahmed@email.com'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Email shown below name</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>userAvatarSrc</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Figma demo photo</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Avatar image URL</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>className</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>—</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Extra class on the root element</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+## MenuItem Shape
+
+<div style={{ overflowX: 'auto' }}>
+  <table style={{ borderCollapse: 'collapse', width: '100%', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", fontSize: 14 }}>
+    <thead>
+      <tr style={{ background: '#F9FAFB' }}>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Field</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Type</th>
+        <th style={{ padding: '8px 12px', border: '1px solid #E5E7EB', textAlign: 'left' }}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>id</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Unique key for the item</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>label</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Display text (also used as tooltip in icon-only mode)</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>leadIcon</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Icon name from the Icon registry (e.g. 'home', 'mail', 'setting')</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>state</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'default' | 'selected' | 'disabled' | …</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Visual state of the item</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>trailElement</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>'none' | 'text' | 'icon' | 'tag' | 'switch'</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Optional trailing element (badge, count, etc.)</td>
+      </tr>
+      <tr style={{ background: '#F9FAFB' }}>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>trailText</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>string</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Text badge when trailElement='text' (e.g. '+5')</td>
+      </tr>
+      <tr>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}><code>onClick</code></td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>() => void</td>
+        <td style={{ padding: '8px 12px', border: '1px solid #E5E7EB' }}>Click handler for the item</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,526 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TagsStories from './Tags.stories';
+
+<Meta of={TagsStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / Tags</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Tags</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Two distinct label primitives for categorising and communicating status. <strong>Status Tags</strong> are
+    pill-shaped with a colour-coded dot indicator — ideal for conveying lifecycle states (active, error,
+    pending). <strong>Tags</strong> are rectangular with an optional lead or trail icon — ideal for taxonomy,
+    filtering, and metadata labelling.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>5 Color Styles</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Subtle / Ghost / Inverted</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Lead & Trail Icons</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL</span>
+  </div>
+</div>
+
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',          'Overview'],
+      ['#status-anatomy',    'Status Tag — Anatomy'],
+      ['#status-types',      'Status Tag — Types'],
+      ['#status-sizes',      'Status Tag — Sizes'],
+      ['#tag-anatomy',       'Tag — Anatomy'],
+      ['#tag-styles',        'Tag — Styles'],
+      ['#tag-sizes',         'Tag — Sizes'],
+      ['#tag-icons',         'Tag — Icons'],
+      ['#tag-outline',       'Tag — Outline'],
+      ['#tag-rounded',       'Tag — Rounded Variant'],
+      ['#rtl',               'RTL Support'],
+      ['#usage',             'Usage Guidelines'],
+      ['#tokens-status',     'Tokens — Status Tag'],
+      ['#tokens-tag',        'Tokens — Tag'],
+      ['#properties',        'Properties'],
+      ['#accessibility',     'Accessibility'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Use the controls panel to explore both components. Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>type</code> between
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> subtle</code>,
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> ghost</code>, and
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> inverted</code> for Status Tags,
+  and use <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showLeadIcon</code> /
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showTrailIcon</code> for Tags.
+</p>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Status Tag</h3>
+<Canvas of={TagsStories.StatusTagPlayground} />
+<Controls of={TagsStories.StatusTagPlayground} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12, marginTop: 32 }}>Tag</h3>
+<Canvas of={TagsStories.TagPlayground} />
+<Controls of={TagsStories.TagPlayground} />
+
+---
+
+{/* ── Status Tag Anatomy ── */}
+<h2 id="status-anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Status Tag — Anatomy</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['1', 'Container',   'Full-rounded pill. Background and text colour vary by style and type. No border.'],
+    ['2', 'Status dot',  'Solid filled circle. Colour matches the text colour for every style. Fixed at 10 × 10 px across all sizes.'],
+    ['3', 'Label',       'IBM Plex Sans Arabic, weight 500. Font size and line-height scale with the size token.'],
+  ].map(([n, part, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Status Tag Types ── */}
+<h2 id="status-types" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Status Tag — Types</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Three display types control contrast and background treatment. All three share the same dot and text
+  colours within each colour style.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Type</span><span>Description</span>
+  </div>
+  {[
+    ['subtle',   'Soft tinted background — the most common choice. Use on white or light-grey surfaces.'],
+    ['inverted', 'Vivid filled background — the tag carries full colour saturation. Use to draw strong attention or on dark surfaces.'],
+    ['ghost',    'No background, no border — text and dot only. Use when the tag must not compete with surrounding content.'],
+  ].map(([type, desc]) => (
+    <div key={type} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{type}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TagsStories.StatusTagAllStyles} />
+
+---
+
+{/* ── Status Tag Sizes ── */}
+<h2 id="status-sizes" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Status Tag — Sizes</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 80px 140px 80px 80px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Height</span><span>Padding X</span><span>Font</span><span>Dot</span><span>Line Height</span>
+  </div>
+  {[
+    ['medium', '32 px', '16 px', '16 px', '10 px', '24 px'],
+    ['small',  '24 px', '8 px',  '14 px', '10 px', '20 px'],
+    ['xsmall', '20 px', '8 px',  '10 px', '10 px', '14 px'],
+  ].map(([sz, h, px, fs, dot, lh]) => (
+    <div key={sz} style={{ display: 'grid', gridTemplateColumns: '100px 80px 140px 80px 80px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{sz}</code>
+      <span style={{ color: '#374151' }}>{h}</span>
+      <span style={{ color: '#374151' }}>{px}</span>
+      <span style={{ color: '#374151' }}>{fs}</span>
+      <span style={{ color: '#374151' }}>{dot}</span>
+      <span style={{ color: '#374151' }}>{lh}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TagsStories.StatusTagSizes} />
+
+---
+
+{/* ── Tag Anatomy ── */}
+<h2 id="tag-anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Tag — Anatomy</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['1', 'Container',    'Rounded-rectangle (radius 4 px) with a 1 px stroke border. Background tint and border colour vary per style.'],
+    ['2', 'Lead icon',    'Optional. Rendered before the label with 4 px gap. Size scales with the size token (16 / 14 / 12 px). Inherits the icon colour token.'],
+    ['3', 'Label',        'IBM Plex Sans Arabic, weight 500. Hidden when iconOnly={true}.'],
+    ['4', 'Trail icon',   'Optional. Rendered after the label with 4 px gap. Same sizing rules as the lead icon.'],
+  ].map(([n, part, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Tag Styles ── */}
+<h2 id="tag-styles" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Tag — Styles</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Five colour styles cover the full semantic range. Each style has a unique background tint, stroke
+  border, text colour, and icon colour — all chosen to pass WCAG AA contrast on the matching surface.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 60px 140px 60px 140px 60px 140px 60px 140px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Style</span><span></span><span>Background</span><span></span><span>Stroke</span><span></span><span>Text / Icon</span><span></span><span>Corner radius</span>
+  </div>
+  {[
+    ['neutral', '#F3F4F6', '#D2D6DB', '#000B36'],
+    ['success', '#E6F4EE', '#9CD4BB', '#006121'],
+    ['primary', '#F3F4F6', '#CED3DC', '#1849A9'],
+    ['warning', '#FEF4E6', '#FDDEB5', '#DD7600'],
+    ['error',   '#FDECEB', '#F68F87', '#A30000'],
+  ].map(([style, bg, stroke, text]) => (
+    <div key={style} style={{ display: 'grid', gridTemplateColumns: '100px 60px 140px 60px 140px 60px 140px 60px 140px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{style}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: bg, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{bg}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: stroke, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{stroke}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: text, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{text}</code>
+      <span />
+      <span style={{ color: '#374151' }}>4 px</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TagsStories.TagAllStyles} />
+
+---
+
+{/* ── Tag Sizes ── */}
+<h2 id="tag-sizes" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Tag — Sizes</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 80px 140px 80px 80px 80px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Height</span><span>Padding X</span><span>Font</span><span>Line-H</span><span>Icon</span><span>Radius</span>
+  </div>
+  {[
+    ['medium', '32 px', '16 px', '16 px', '24 px', '16 px', '4 px'],
+    ['small',  '24 px', '8 px',  '14 px', '20 px', '14 px', '4 px'],
+    ['xsmall', '20 px', '8 px',  '10 px', '14 px', '12 px', '4 px'],
+  ].map(([sz, h, px, fs, lh, ic, r]) => (
+    <div key={sz} style={{ display: 'grid', gridTemplateColumns: '100px 80px 140px 80px 80px 80px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{sz}</code>
+      <span style={{ color: '#374151' }}>{h}</span>
+      <span style={{ color: '#374151' }}>{px}</span>
+      <span style={{ color: '#374151' }}>{fs}</span>
+      <span style={{ color: '#374151' }}>{lh}</span>
+      <span style={{ color: '#374151' }}>{ic}</span>
+      <span style={{ color: '#374151' }}>{r}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TagsStories.TagSizes} />
+
+---
+
+{/* ── Tag Icons ── */}
+<h2 id="tag-icons" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Tag — Icons</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Pass any React element to <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>leadIcon</code> or
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> trailIcon</code>.
+  The component injects the correct <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code> prop
+  automatically via <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>React.cloneElement</code>.
+  The icon wrapper sets <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>color</code> via CSS,
+  so SVG icons must use <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>currentColor</code> for
+  their stroke or fill.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop combination</span><span>iconOnly</span><span>Result</span>
+  </div>
+  {[
+    ['leadIcon only',            'false', 'Icon → gap 4 px → label'],
+    ['trailIcon only',           'false', 'Label → gap 4 px → icon'],
+    ['leadIcon + trailIcon',     'false', 'Icon → gap 4 px → label → gap 4 px → icon'],
+    ['leadIcon, iconOnly',       'true',  'Lead icon only; label hidden; padding unchanged'],
+    ['trailIcon, iconOnly',      'true',  'Trail icon only (used when no leadIcon provided); label hidden'],
+    ['No icon, iconOnly',        'true',  'Empty tag — avoid this combination'],
+  ].map(([combo, only, result]) => (
+    <div key={combo} style={{ display: 'grid', gridTemplateColumns: '160px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{combo}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{only}</code>
+      <span style={{ color: '#374151' }}>{result}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TagsStories.TagLeadIcon} />
+<Canvas of={TagsStories.TagTrailIcon} />
+<Canvas of={TagsStories.TagBothIcons} />
+<Canvas of={TagsStories.TagIconOnly} />
+
+---
+
+{/* ── Tag Outline ── */}
+<h2 id="tag-outline" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Tag — Outline</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>outline={'{true}'}</code> to
+  replace the default lighter stroke with a 1 px border that matches the text colour of the chosen style.
+  This creates stronger visual definition while keeping the same background tint. Combines with <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>rounded</code>.
+</p>
+
+<Canvas of={TagsStories.TagOutline} />
+
+---
+
+{/* ── Tag Rounded ── */}
+<h2 id="tag-rounded" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Tag — Rounded Variant</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>rounded={'{true}'}</code> to
+  switch the corner radius from 4 px to a full pill shape (border-radius 9999 px). All other tokens —
+  background, stroke, text, icon colour, padding, and size — remain unchanged.
+</p>
+
+<Canvas of={TagsStories.TagRounded} />
+
+---
+
+{/* ── RTL ── */}
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Both components accept an <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>rtl</code> boolean
+  prop that sets <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>dir="rtl"</code> and
+  switches horizontal padding to CSS logical properties
+  (<code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>paddingInlineStart</code> /
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>paddingInlineEnd</code>)
+  so the layout mirrors naturally without any extra CSS.
+</p>
+
+<Canvas of={TagsStories.StatusTagRTL} />
+<Canvas of={TagsStories.TagRTL} />
+
+---
+
+{/* ── Usage Guidelines ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use <strong>Status Tags</strong> to communicate system or item lifecycle states (active, pending, error)</li>
+      <li>Use <strong>Tags</strong> for taxonomy, categories, or metadata where icons add meaningful context</li>
+      <li>Pick <code>inverted</code> type when a Status Tag must stand out strongly on a light background</li>
+      <li>Use <code>ghost</code> type in dense layouts where the full background would create visual clutter</li>
+      <li>Keep labels short — 1 to 3 words maximum for readability across all sizes</li>
+      <li>Use semantic colour styles consistently — don't use <code>error</code> red for non-error states</li>
+      <li>Ensure icon SVGs use <code>currentColor</code> so they adopt the correct colour token automatically</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't mix Status Tags and Tags in the same group — they serve different purposes</li>
+      <li>Don't use more than two or three tags in a row — group into a chip list if you need more</li>
+      <li>Don't use <code>xsmall</code> size for long labels — text becomes illegible at 10 px</li>
+      <li>Don't hardcode icon colour via the SVG's fill/stroke — always use <code>currentColor</code></li>
+      <li>Don't use <code>iconOnly</code> without a tooltip — the icon alone carries no accessible label</li>
+      <li>Don't combine <code>leadIcon</code> and <code>iconOnly</code> with a <code>trailIcon</code> and expect the trail to show — leadIcon takes priority in icon-only mode</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+{/* ── Design Tokens — Status Tag ── */}
+<h2 id="tokens-status" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens — Status Tag</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Subtle</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 20 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 60px 140px 60px 140px 60px 140px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Style</span><span></span><span>Background</span><span></span><span>Text</span><span></span><span>Circle</span>
+  </div>
+  {[
+    ['neutral', '#F3F4F6', '#000B36', '#000B36'],
+    ['success', '#E6F4EE', '#006121', '#006121'],
+    ['primary', '#F3F4F6', '#1849A9', '#1849A9'],
+    ['warning', '#FEF4E6', '#DD7600', '#DD7600'],
+    ['error',   '#FDECEB', '#A30000', '#A30000'],
+  ].map(([style, bg, text, circle]) => (
+    <div key={style} style={{ display: 'grid', gridTemplateColumns: '100px 60px 140px 60px 140px 60px 140px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{style}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: bg, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{bg}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: text, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{text}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: '50%', background: circle, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{circle}</code>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Inverted</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 20 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 60px 140px 60px 200px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Style</span><span></span><span>Background</span><span></span><span>Text &amp; Circle</span>
+  </div>
+  {[
+    ['neutral', '#1F2A37'],
+    ['success', '#007B3B'],
+    ['primary', '#1570EF'],
+    ['warning', '#F79009'],
+    ['error',   '#F04438'],
+  ].map(([style, bg]) => (
+    <div key={style} style={{ display: 'grid', gridTemplateColumns: '100px 60px 140px 60px 200px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{style}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: bg, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{bg}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: '#F3F4F6', border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>#F3F4F6 (text + circle)</code>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Ghost</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 240px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Style</span><span>Background</span><span>Text &amp; Circle (same as Subtle)</span>
+  </div>
+  {[
+    ['neutral', '#000B36'],
+    ['success', '#006121'],
+    ['primary', '#1849A9'],
+    ['warning', '#DD7600'],
+    ['error',   '#A30000'],
+  ].map(([style, color]) => (
+    <div key={style} style={{ display: 'grid', gridTemplateColumns: '100px 240px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{style}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>transparent (no background)</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{color}</code>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Design Tokens — Tag ── */}
+<h2 id="tokens-tag" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens — Tag</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 60px 130px 60px 130px 60px 130px 60px 130px', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Style</span><span></span><span>Background</span><span></span><span>Stroke</span><span></span><span>Text</span><span></span><span>Icon</span>
+  </div>
+  {[
+    ['neutral', '#F3F4F6', '#D2D6DB', '#000B36', '#000B36'],
+    ['success', '#E6F4EE', '#9CD4BB', '#006121', '#006121'],
+    ['primary', '#F3F4F6', '#CED3DC', '#1849A9', '#1849A9'],
+    ['warning', '#FEF4E6', '#FDDEB5', '#DD7600', '#DD7600'],
+    ['error',   '#FDECEB', '#F68F87', '#A30000', '#A30000'],
+  ].map(([style, bg, stroke, text, icon]) => (
+    <div key={style} style={{ display: 'grid', gridTemplateColumns: '100px 60px 130px 60px 130px 60px 130px 60px 130px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{style}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: bg, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 11, color: '#374151' }}>{bg}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: stroke, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 11, color: '#374151' }}>{stroke}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: text, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 11, color: '#374151' }}>{text}</code>
+      <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: 4, background: icon, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 11, color: '#374151' }}>{icon}</code>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>StatusTag</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 220px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['status',   "'neutral' | 'success' | 'primary' | 'warning' | 'error'", "'neutral'", 'Colour style of the tag'],
+    ['type',     "'subtle' | 'ghost' | 'inverted'",                         "'subtle'",  'Display treatment — tinted / transparent / filled'],
+    ['size',     "'medium' | 'small' | 'xsmall'",                           "'medium'",  'Height, padding, font-size, and dot size'],
+    ['rtl',      'boolean',                                                  'false',     'Enables right-to-left layout via dir="rtl"'],
+    ['children', 'ReactNode',                                                "'Status'",  'Label text content'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '120px 220px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Tag</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 220px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['status',    "'neutral' | 'success' | 'primary' | 'warning' | 'error'", "'neutral'",   'Colour style — controls background, stroke, text and icon colours'],
+    ['size',      "'medium' | 'small' | 'xsmall'",                           "'medium'",    'Height, padding, font-size, and icon size'],
+    ['rounded',   'boolean',                                                  'false',       'When true, border-radius becomes 9999 px (full pill). Default is 4 px.'],
+    ['outline',   'boolean',                                                  'false',       'When true, the 1 px border uses the text colour instead of the default lighter stroke colour.'],
+    ['rtl',       'boolean',                                                  'false',       'Enables right-to-left layout via dir="rtl"'],
+    ['iconOnly',  'boolean',                                                  'false',       'Hides the label; renders only the lead icon (or trail if no lead)'],
+    ['leadIcon',  'ReactElement',                                             'null',        'Icon before the label. Must accept a size prop. Use currentColor in the SVG.'],
+    ['trailIcon', 'ReactElement',                                             'null',        'Icon after the label. Same rules as leadIcon.'],
+    ['children',  'ReactNode',                                                "'Tag'",       'Label text — hidden when iconOnly={true}'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '120px 220px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Semantic element',     'Both components render as a `<span>` — a non-interactive inline element. Do not wrap them in `<button>` unless they are clickable.'],
+    ['Status dot',           '`aria-hidden="true"` — purely decorative; the meaning is conveyed by the label text and colour alone.'],
+    ['Icon wrapper',         '`aria-hidden="true"` on the icon wrapper — icons are supplementary. The label must carry the full meaning without the icon.'],
+    ['Icon-only tags',       'When `iconOnly={true}`, add a wrapping element with `aria-label` or `title` so screen readers understand the intent.'],
+    ['Colour contrast',      'All five colour styles for both components pass WCAG AA (4.5 : 1) text contrast against their respective backgrounds.'],
+    ['RTL',                  '`dir="rtl"` is applied to the root element and CSS logical properties handle padding and layout flip automatically.'],
+    ['Font scaling',         'All sizes use relative `em`-friendly line heights and `px` font sizes. Ensure the parent document allows user font scaling.'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
+</div>
+
+</div>

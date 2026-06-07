@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Container
+   ══════════════════════════════════════════════════════════════════ */
+.container {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  border-radius: 20px;
+  overflow: hidden;
+  user-select: none;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  cursor: pointer;
+}
+
+/* Fullscreen: remove border-radius */
+.containerFullscreen {
+  border-radius: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Video element
+   ══════════════════════════════════════════════════════════════════ */
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Placeholder (no src)
+   ══════════════════════════════════════════════════════════════════ */
+.placeholder {
+  position: absolute;
+  inset: 0;
+  background: #1a1a2e;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Paused overlay — dark tint + center play button
+   ══════════════════════════════════════════════════════════════════ */
+.pauseOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.centerPlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Controls gradient backdrop
+   ══════════════════════════════════════════════════════════════════ */
+.controlsGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Controls bar
+   ══════════════════════════════════════════════════════════════════ */
+.controls {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeInControls 180ms ease;
+}
+
+@keyframes fadeInControls {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Row: left controls | right controls */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controlsLeft {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.controlsRight {
+  display: flex;
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Progress bar
+   ══════════════════════════════════════════════════════════════════ */
+.progressWrapper {
+  position: relative;
+  height: 16px;           /* clickable hit area */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+
+.progressWrapper:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* The visible 4px bar */
+.progressTrack {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: rgba(22, 22, 22, 0.20);
+  border-radius: 9999px;
+}
+
+/* Buffer overlay */
+.progressBuffer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.50);
+  border-radius: 9999px;
+  transition: width 300ms linear;
+}
+
+/* Progress fill */
+.progressFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #1849a9;
+  border-radius: 9999px;
+}
+
+/* Thumb — sits on top of the track row */
+.progressThumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #194185;
+  pointer-events: none;
+  transition: width 80ms ease, height 80ms ease, background 80ms ease;
+}
+
+.progressWrapper:hover .progressThumb,
+.progressDragging .progressThumb {
+  width: 8px;
+  height: 8px;
+  background: #102a56;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Timestamp
+   ══════════════════════════════════════════════════════════════════ */
+.timestamp {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(22, 22, 22, 0.20);
+  color: #ffffff;
+  border-radius: 6px;
+  padding: 8px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Buttons — shared base
+   ══════════════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+  outline: none;
+  font-family: inherit;
+}
+
+/* Fixed size: volume & resize buttons */
+.btnFixed {
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+}
+
+/* ── Semi-transparent ── */
+.btnSemiTransparent {
+  background: rgba(22, 22, 22, 0.20);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.btnSemiTransparent:hover:not(:disabled) {
+  background: rgba(22, 22, 22, 0.40);
+}
+
+.btnSemiTransparent:active:not(:disabled) {
+  background: rgba(22, 22, 22, 0.50);
+}
+
+.btnSemiTransparent:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(22, 22, 22, 0.20), 0 0 0 5px #ffffff;
+}
+
+/* ── Primary ── */
+.btnPrimary {
+  background: #1849a9;
+  border-color: #1849a9;
+  color: #f9fafb;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  background: #194185;
+  border-color: #194185;
+}
+
+.btnPrimary:active:not(:disabled) {
+  background: #102a56;
+  border-color: #102a56;
+}
+
+.btnPrimary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #1849a9, 0 0 0 5px #f9fafb;
+}
+
+/* ── Neutral ── */
+.btnNeutral {
+  background: #f3f4f6;
+  border-color: #f3f4f6;
+  color: #000b36;
+}
+
+.btnNeutral:hover:not(:disabled) {
+  background: #e5e7eb;
+  border-color: #e5e7eb;
+}
+
+.btnNeutral:active:not(:disabled) {
+  background: #d2d6db;
+  border-color: #d2d6db;
+}
+
+.btnNeutral:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #f3f4f6, 0 0 0 5px #1849a9;
+}
+
+/* ── Disabled (all styles) ── */
+.btnDisabled {
+  background: #d2d6db;
+  border-color: #d2d6db;
+  color: #6c7c96;
+  cursor: not-allowed;
+  pointer-events: none;
+}

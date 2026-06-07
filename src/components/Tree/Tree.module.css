@@ -1,0 +1,120 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Tree container
+   ═══════════════════════════════════════════════════════════════════ */
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Row
+   ═══════════════════════════════════════════════════════════════════ */
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #D2D6DB;
+  padding-inline-start: 8px;
+  padding-inline-end: 8px;
+  gap: 12px;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  user-select: none;
+  transition: background-color 100ms ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Interactive states
+   ═══════════════════════════════════════════════════════════════════ */
+
+.row:not(.stateDisabled):hover {
+  background: #E5E7EB;
+}
+
+.row:not(.stateDisabled):active {
+  background: #D2D6DB;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   State modifiers (static — for Storybook demos)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.stateDefault {
+  background: transparent;
+}
+
+.stateHovered {
+  background: #E5E7EB;
+}
+
+.statePressed {
+  background: #D2D6DB;
+}
+
+.stateSelected {
+  background: #E5E7EB;
+}
+
+.stateDisabled {
+  background: #D2D6DB;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Chevron
+   ═══════════════════════════════════════════════════════════════════ */
+
+.chevronWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Icon wrapper — auto-sizes to its SVG child
+   ═══════════════════════════════════════════════════════════════════ */
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Label
+   ═══════════════════════════════════════════════════════════════════ */
+
+.label {
+  flex: 1;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Right group — action icons + switch
+   ═══════════════════════════════════════════════════════════════════ */
+
+.rightGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}

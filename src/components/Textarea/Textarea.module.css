@@ -1,0 +1,134 @@
+/* ══════════════════════════════════════════════════════════════════
+   Textarea field — overrides TextInput .field
+   ══════════════════════════════════════════════════════════════════ */
+
+.textareaField {
+  align-items: flex-start !important;
+  height: auto !important;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  overflow: visible !important;
+  position: relative;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Textarea element
+   ══════════════════════════════════════════════════════════════════ */
+
+.textarea {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  color: #000b36;
+  padding: 0;
+  padding-bottom: 18px; /* space so text never overlaps the resize handle */
+  margin: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.textareaMedium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.textareaLarge {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.textarea::placeholder {
+  color: #b6bdca;
+  opacity: 1;
+}
+
+.textarea:disabled {
+  color: #6c7c96;
+  cursor: not-allowed;
+}
+
+.textarea[readonly] {
+  cursor: default;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Custom scrollbar
+   • dir="ltr" on the textarea → scrollbar on the right  (default)
+   • dir="rtl" on the textarea → scrollbar on the left   (RTL)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Firefox */
+.textarea {
+  scrollbar-width: thin;
+  scrollbar-color: #CED3DC transparent;
+}
+
+/* Chromium / Safari */
+.textarea::-webkit-scrollbar {
+  width: 4px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* LTR: 1px stroke on the left side of the scrollbar track */
+.textarea[dir="ltr"]::-webkit-scrollbar-track {
+  box-shadow: -1px 0 0 0 #D2D6DB;
+}
+
+/* RTL: 1px stroke on the right side of the scrollbar track */
+.textarea[dir="rtl"]::-webkit-scrollbar-track {
+  box-shadow: 1px 0 0 0 #D2D6DB;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background: #CED3DC;
+  border-radius: 9999px;
+}
+
+.textarea::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+.textarea::-webkit-scrollbar-thumb:active {
+  background: #6C7C96;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Divider between scrollbar and resize handle
+   ══════════════════════════════════════════════════════════════════ */
+
+.scrollbarDivider {
+  position: absolute;
+  /* sits just above the resize icon (icon 12px + 4px gap + 4px bottom = 20px) */
+  bottom: 20px;
+  inset-inline-end: 0;
+  width: 4px;   /* matches scrollbar width */
+  height: 1px;
+  background: #D2D6DB;
+  pointer-events: none;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Resize handle
+   ══════════════════════════════════════════════════════════════════ */
+
+.resizeHandle {
+  position: absolute;
+  bottom: 4px;
+  inset-inline-end: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: se-resize;
+  line-height: 0;
+  user-select: none;
+  z-index: 1;
+}

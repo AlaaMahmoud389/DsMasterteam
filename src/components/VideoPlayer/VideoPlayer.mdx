@@ -1,0 +1,417 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as VideoPlayerStories from './VideoPlayer.stories';
+
+<Meta of={VideoPlayerStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / VideoPlayer</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Video Player</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    A fully interactive HTML5 video player built from design-system primitives. Provides play/pause,
+    mute, seek, fullscreen, and a progress bar with buffer indication. Controls appear on hover when
+    the video is playing and disappear when the cursor leaves — keeping the experience clean and
+    distraction-free.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Button Styles</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Button Sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Progress + Buffer</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Fullscreen</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Volume Toggle</span>
+  </div>
+</div>
+
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',      'Overview'],
+      ['#anatomy',       'Anatomy'],
+      ['#states',        'Interaction States'],
+      ['#play-button',   'Play/Pause Button'],
+      ['#controls-bar',  'Controls Bar'],
+      ['#progress',      'Progress Bar'],
+      ['#timestamp',     'Timestamp'],
+      ['#volume',        'Volume Button'],
+      ['#resize',        'Resize Button'],
+      ['#usage',         'Usage Guidelines'],
+      ['#tokens',        'Design Tokens'],
+      ['#properties',    'Properties'],
+      ['#accessibility', 'Accessibility'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Add a <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>src</code> URL
+  in the controls panel and click ▶ to try the player. Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>buttonStyle</code> and
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> buttonSize</code> to
+  see the center play button variants.
+</p>
+
+<Canvas of={VideoPlayerStories.Playground} />
+<Controls of={VideoPlayerStories.Playground} />
+
+---
+
+{/* ── Anatomy ── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['1', 'Video area',      'The `<video>` element fills the container. When no `src` is given, a dark placeholder shows instead.'],
+    ['2', 'Center play btn', 'Visible when the video is paused or not yet started. Disappears once the video plays.'],
+    ['3', 'Pause overlay',   'Semi-transparent dark tint behind the center button — makes it readable over any poster image.'],
+    ['4', 'Controls gradient','Linear gradient at the bottom of the frame — provides contrast for the controls bar.'],
+    ['5', 'Progress bar',    'Full-width at the top of the controls bar. Shows track, buffered range, and play progress.'],
+    ['6', 'Play/Pause btn',  'Small semi-transparent button inside the controls bar (always 32 × 32 px).'],
+    ['7', 'Volume button',   'Toggles mute/unmute (32 × 32 px, semi-transparent).'],
+    ['8', 'Timestamp',       'Shows `currentTime / duration` in `M:SS / M:SS` format.'],
+    ['9', 'Resize button',   'Enters / exits native fullscreen (32 × 32 px, semi-transparent).'],
+  ].map(([n, part, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Interaction States ── */}
+<h2 id="states" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Interaction States</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>What is shown</span>
+  </div>
+  {[
+    ['Not started / Paused', 'Dark tint overlay + center play button in the chosen style and size. No controls bar.'],
+    ['Playing — not hovering', 'Clean video only. No buttons, no controls bar, no overlay.'],
+    ['Playing — hovering', 'Bottom gradient + controls bar (progress bar + play/pause + volume + timestamp + fullscreen).'],
+    ['Fullscreen', 'Same as playing-hovering, but `border-radius: 0` and the native fullscreen API is active.'],
+  ].map(([state, desc]) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{state}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={VideoPlayerStories.ControlsBar} />
+
+---
+
+{/* ── Play/Pause Button ── */}
+<h2 id="play-button" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Play / Pause Button</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The center play button is configurable via <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>buttonStyle</code> and
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> buttonSize</code>.
+  The controls-bar play/pause button is always semi-transparent at 32 × 32 px.
+</p>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Styles</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 20 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Style</span><span>Token behavior</span>
+  </div>
+  {[
+    ['semi-transparent (default)', 'Default: rgba(22,22,22,0.20) · Hover: rgba(22,22,22,0.40) · Pressed: rgba(22,22,22,0.50) · Focus ring: white · Disabled: #D2D6DB bg, #6C7C96 icon'],
+    ['primary',  'Default: #1849A9 · Hover: #194185 · Pressed: #102A56 · Focus ring: inner #1849A9 + outer #F9FAFB · Disabled: #D2D6DB bg'],
+    ['neutral',  'Default: #F3F4F6 · Hover: #E5E7EB · Pressed: #D2D6DB · Icon color: #000B36 · Focus ring: inner #F3F4F6 + outer #1849A9 · Disabled: #D2D6DB bg'],
+  ].map(([style, desc]) => (
+    <div key={style} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{style}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Sizes</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 100px 100px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Button</span><span>Icon</span><span>Radius</span><span>Use</span>
+  </div>
+  {[
+    ['small',  '32 × 32 px', '24 × 24 px', '5 px',  'Compact UI, controls bar'],
+    ['medium', '48 × 48 px', '24 × 24 px', '8 px',  'Default center button'],
+    ['large',  '64 × 64 px', '32 × 32 px', '12 px', 'Hero / large player'],
+  ].map(([sz, btn, icon, r, use]) => (
+    <div key={sz} style={{ display: 'grid', gridTemplateColumns: '100px 100px 100px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{sz}</code>
+      <span style={{ color: '#374151' }}>{btn}</span>
+      <span style={{ color: '#374151' }}>{icon}</span>
+      <span style={{ color: '#374151' }}>{r}</span>
+      <span style={{ color: '#374151' }}>{use}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={VideoPlayerStories.ButtonStyles} />
+<Canvas of={VideoPlayerStories.ButtonSizes} />
+
+---
+
+{/* ── Controls Bar ── */}
+<h2 id="controls-bar" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Controls Bar</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The controls bar is anchored 16 px from the bottom, with 16 px left and right inset. It fades in
+  (180 ms ease) when the cursor enters the playing video and disappears on mouse leave.
+</p>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 20 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>Layout</div>
+  <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+    <strong>Row 1 (top):</strong> Progress bar — full width<br />
+    <strong>Row 2 (bottom):</strong> Left group <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 4px', borderRadius: 4 }}>[play] [volume] [timestamp]</code> — gap 4 px between each · Right group <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 4px', borderRadius: 4 }}>[fullscreen]</code>
+  </div>
+</div>
+
+---
+
+{/* ── Progress Bar ── */}
+<h2 id="progress" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Progress Bar</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 60px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Layer</span><span>Swatch</span><span>Color</span><span>Description</span>
+  </div>
+  {[
+    ['Track',   'rgba(22,22,22,0.20)', 'Background of the full bar — 4 px tall', '#161616_20'],
+    ['Buffer',  'rgba(255,255,255,0.50)', 'How much has been buffered/loaded', '#FFFFFF_50'],
+    ['Progress','#1849A9',            'Played portion — solid brand blue', '#1849A9'],
+    ['Thumb',   '#194185',            'Drag handle — 6 × 6 px circle at the playhead', '#194185'],
+    ['Thumb hover/drag', '#102A56',   'Thumb grows to 8 × 8 px while hovered or dragging', '#102A56'],
+  ].map(([layer, color, desc, swatchBg]) => (
+    <div key={layer} style={{ display: 'grid', gridTemplateColumns: '120px 60px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{layer}</span>
+      <span style={{
+        display: 'inline-block', width: 24, height: 24, borderRadius: 6, flexShrink: 0,
+        background: swatchBg === '#161616_20' ? 'rgba(22,22,22,0.20)' :
+                    swatchBg === '#FFFFFF_50' ? 'rgba(255,255,255,0.50)' : swatchBg,
+        border: '1px solid #e5e7eb',
+      }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{color}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 24 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>Interaction</div>
+  <p style={{ margin: 0, fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+    Clicking anywhere on the progress bar seeks to that position. Dragging is supported — while
+    dragging, global <code>mousemove</code>/<code>mouseup</code> listeners track the pointer even
+    outside the player bounds. The thumb grows from 6 px to 8 px on hover and while dragging.
+    Arrow keys (← →) seek ±5 seconds when the progress bar has keyboard focus.
+  </p>
+</div>
+
+---
+
+{/* ── Timestamp ── */}
+<h2 id="timestamp" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Timestamp</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Property</span><span>Value</span>
+  </div>
+  {[
+    ['Background',    'rgba(22, 22, 22, 0.20) — matches semi-transparent button default'],
+    ['Text color',    '#ffffff'],
+    ['Format',        'M:SS / M:SS  (e.g. "0:04 / 0:57")'],
+    ['Corner radius', '6 px'],
+    ['Padding',       '8 px (all four sides)'],
+    ['Font',          'IBM Plex Sans Arabic, 12 px / 500 weight'],
+  ].map(([prop, val]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{prop}</span>
+      <span style={{ color: '#374151' }}>{val}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Volume ── */}
+<h2 id="volume" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Volume Button</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Toggles between full volume (speaker + waves icon) and muted (speaker + ✕ icon). Uses the same
+  semi-transparent token set as the resize button. Fixed at 32 × 32 px, corner radius 5 px.
+</p>
+
+---
+
+{/* ── Resize ── */}
+<h2 id="resize" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Resize Button</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Calls the browser's Fullscreen API (<code>requestFullscreen</code> / <code>exitFullscreen</code>).
+  Icon switches between expand-arrows (small screen) and collapse-arrows (fullscreen). Fixed at
+  32 × 32 px, icon 16 × 16 px, corner radius 5 px. Semi-transparent style identical to the
+  volume button.
+</p>
+
+---
+
+{/* ── Usage Guidelines ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Always provide a <code>poster</code> image so the dark placeholder is avoided</li>
+      <li>Use <code>buttonStyle="primary"</code> when the player sits on a dark page background</li>
+      <li>Use <code>buttonStyle="neutral"</code> when the player sits on a white/light card</li>
+      <li>Keep <code>buttonSize="large"</code> for hero / above-the-fold placements</li>
+      <li>Let users control volume — don't force <code>muted</code> without a clear visual cue</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't use <code>autoPlay</code> without <code>muted</code> — browsers block unmuted autoplay</li>
+      <li>Don't embed the player in a container smaller than ~240 px wide — controls become cramped</li>
+      <li>Don't change <code>buttonStyle</code> between plays — pick one style per player instance</li>
+      <li>Don't rely on fullscreen for mobile — use the native video player for mobile contexts</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+{/* ── Design Tokens ── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Container &amp; Overlays</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 60px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Container bg',          '#000000',  'background: #000000', 'Black bg behind letterboxed video'],
+    ['Container radius',      null,       '20 px',               'Small-screen / widget mode'],
+    ['Fullscreen radius',     null,       '0 px',                'When fullscreen is active'],
+    ['Pause overlay tint',    'rgba(0,0,0,0.3)',  'rgba(0,0,0,0.30)',   'Tint behind center play button'],
+    ['Controls gradient',     null,       '→ rgba(0,0,0,0.75)',  'Linear gradient, 140 px tall'],
+    ['Semi-transparent btn',  'rgba(22,22,22,0.2)', 'rgba(22,22,22,0.20)', 'Default state of ctrl buttons'],
+    ['Semi-transparent hover','rgba(22,22,22,0.4)', 'rgba(22,22,22,0.40)', 'Hovered ctrl buttons'],
+    ['Semi-transparent press','rgba(22,22,22,0.5)', 'rgba(22,22,22,0.50)', 'Pressed ctrl buttons'],
+    ['Icon color (ctrl btns)','#ffffff',   '#ffffff',             'All control-bar button icons'],
+    ['Disabled btn bg',       '#D2D6DB',  '#D2D6DB',             'Disabled state all styles'],
+    ['Disabled icon',         '#6C7C96',  '#6C7C96',             'Icon color when disabled'],
+  ].map(([token, swatchColor, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '200px 60px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      {swatchColor ? (
+        <span style={{
+          display: 'inline-block', width: 24, height: 24, borderRadius: 6, flexShrink: 0,
+          background: swatchColor, border: '1px solid #e5e7eb',
+        }} />
+      ) : <span />}
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Progress Bar</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 60px 200px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Track',             '#161616_20', 'rgba(22, 22, 22, 0.20)',  'Full-width bar background'],
+    ['Buffer',            '#FFFFFF_50', 'rgba(255, 255, 255, 0.50)', 'Loaded/buffered region'],
+    ['Progress fill',     '#1849A9',   '#1849A9',                 'Played portion'],
+    ['Thumb default',     '#194185',   '#194185 · 6 × 6 px',     'Drag handle at rest'],
+    ['Thumb hover/drag',  '#102A56',   '#102A56 · 8 × 8 px',     'Drag handle active'],
+    ['Bar height',        null,        '4 px',                    'Visible track height'],
+    ['Hit area',          null,        '16 px',                   'Clickable/draggable height'],
+  ].map(([token, swatchKey, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '180px 60px 200px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      {swatchKey && swatchKey !== null ? (
+        <span style={{
+          display: 'inline-block', width: 24, height: 24, borderRadius: 6, flexShrink: 0,
+          background: swatchKey === '#161616_20' ? 'rgba(22,22,22,0.2)' :
+                      swatchKey === '#FFFFFF_50'  ? 'rgba(255,255,255,0.5)' : swatchKey,
+          border: '1px solid #e5e7eb',
+        }} />
+      ) : <span />}
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 180px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['src',            'string',                                          '—',                  'Video source URL passed to the native `<video>` element'],
+    ['poster',         'string',                                          '—',                  'Poster image URL shown before the video plays'],
+    ['buttonStyle',    "'semi-transparent' | 'primary' | 'neutral'",     "'semi-transparent'", 'Visual style of the center play button'],
+    ['buttonSize',     "'small' | 'medium' | 'large'",                   "'medium'",           'Size of the center play button (32 / 48 / 64 px)'],
+    ['autoPlay',       'boolean',                                         'false',              'Auto-play on mount (combine with muted to satisfy browser policy)'],
+    ['loop',           'boolean',                                         'false',              'Loop the video when it ends'],
+    ['initialPlaying', 'boolean',                                         'false',              'Start the component in the playing state (useful for demos / stories)'],
+    ['className',      'string',                                          '—',                  'Extra CSS class on the container element'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 180px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Play / Pause',       '`aria-label="Play"` / `"Pause"` on the button; role="button" on the pause overlay'],
+    ['Volume',             '`aria-label="Mute"` / `"Unmute"` on the volume button'],
+    ['Fullscreen',         '`aria-label="Enter fullscreen"` / `"Exit fullscreen"` on the resize button'],
+    ['Progress bar',       'role="slider" with aria-valuemin, aria-valuemax, aria-valuenow, aria-valuetext (human-readable time)'],
+    ['Keyboard — progress','Arrow ← → on the focused progress bar seek ±5 seconds'],
+    ['Keyboard — space',   'Space toggles play/pause when focus is inside the container'],
+    ['Keyboard — tab',     'All interactive elements (pause overlay, progress bar, control buttons) are in the tab order'],
+    ['Controls gradient',  'aria-hidden="true" — purely decorative'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
+</div>
+
+</div>

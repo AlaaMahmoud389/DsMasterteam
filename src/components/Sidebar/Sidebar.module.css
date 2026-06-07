@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Sidebar container
+   ══════════════════════════════════════════════════════════════════ */
+
+.sidebar {
+  width: 320px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  border-inline-end: 1px solid #E5E7EB;
+  background: #ffffff;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  overflow-y: auto;
+}
+
+/* Icon-only collapsed variant */
+.sidebarIconOnly {
+  width: 80px;
+  padding: 24px 12px;
+  align-items: center;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Header — Logo + Collapse button
+   ══════════════════════════════════════════════════════════════════ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sidebarIconOnly .header {
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.logoInner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.logoMark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #334DFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoText {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #000B36;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.collapseBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #6C7C96;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.collapseBtn:hover {
+  background: #F3F4F6;
+  color: #000B36;
+}
+
+.collapseBtn:active {
+  background: #E5E7EB;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Logo toggle button (collapsed state)
+   ══════════════════════════════════════════════════════════════════ */
+
+.logoToggleBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background 100ms ease;
+}
+
+.logoToggleBtn:hover {
+  background: #F3F4F6;
+}
+
+.logoToggleBtn:active {
+  background: #E5E7EB;
+}
+
+.logoToggleDefault {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 100ms ease;
+}
+
+.logoToggleHover {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  color: #6C7C96;
+  transition: opacity 100ms ease, color 100ms ease;
+  pointer-events: none;
+}
+
+.logoToggleBtn:hover .logoToggleDefault {
+  opacity: 0;
+}
+
+.logoToggleBtn:hover .logoToggleHover {
+  opacity: 1;
+  color: #000B36;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Menu list — normal mode
+   ══════════════════════════════════════════════════════════════════ */
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Menu — icon-only mode
+   ══════════════════════════════════════════════════════════════════ */
+
+.iconOnlyMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.iconOnlyItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #6C7C96;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.iconOnlyItem:hover {
+  background: #E5E7EB;
+  color: #000B36;
+}
+
+.iconOnlyItem:active {
+  background: #D2D6DB;
+}
+
+.iconOnlyItemSelected {
+  background: #E5E7EB;
+  color: #000B36;
+}
+
+.iconOnlyItemDisabled {
+  color: #CED3DC;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Featured card
+   ══════════════════════════════════════════════════════════════════ */
+
+.featuredCard {
+  position: relative;
+  background: #F5FAFF;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.featuredClose {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #6C7C96;
+  padding: 0;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.featuredClose:hover {
+  background: #E5F0FF;
+  color: #000B36;
+}
+
+.featuredTitle {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #000B36;
+  margin: 0;
+  padding-inline-end: 28px; /* space for close button */
+  font-family: inherit;
+}
+
+.featuredSubtext {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #233A61;
+  margin: 0;
+  font-family: inherit;
+}
+
+.featuredVideo {
+  width: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Spacer — pushes divider + profile to the bottom
+   ══════════════════════════════════════════════════════════════════ */
+
+.spacer {
+  flex: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Divider
+   ══════════════════════════════════════════════════════════════════ */
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: #E5E7EB;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Profile section
+   ══════════════════════════════════════════════════════════════════ */
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+
+.sidebarIconOnly .profile {
+  justify-content: center;
+}
+
+.profileText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.profileName {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #233A61;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: inherit;
+}
+
+.profileEmail {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #3C5073;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: inherit;
+}

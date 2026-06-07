@@ -132,3 +132,78 @@
   flex-shrink: 0;
   pointer-events: none;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Icon-grid dropdown overrides
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Removes scroll from the whole panel — the grid area scrolls instead */
+.dropdownListIcon {
+  max-height: none;
+  overflow: visible;
+  padding: 0;
+}
+
+/* Search bar row — wraps the SearchInput component */
+.iconSearchWrap {
+  padding: 8px 8px 0 8px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+/* Scrollable grid — 8 equal columns */
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  padding: 8px;
+  overflow-y: auto;
+}
+
+/* Individual icon cell */
+.iconGridItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #000b36;
+  transition: background 100ms ease;
+}
+
+.iconGridItem:hover {
+  background: #e5e7eb;
+}
+
+.iconGridItem:active {
+  background: #d2d6db;
+}
+
+.iconGridItemSelected {
+  background: #E5E7EB;
+}
+
+.iconGridItemSelected:hover {
+  background: #d2d6db;
+}
+
+.iconGridItemDisabled {
+  color: #b6bdca;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Selected icon — sits at the leading edge of the field */
+.displayIconSelected {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Pushes chevron to the trailing edge when an icon is selected */
+.displayIconSpacer {
+  flex: 1;
+}

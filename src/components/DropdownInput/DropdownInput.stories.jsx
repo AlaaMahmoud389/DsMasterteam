@@ -1,31 +1,6 @@
 import React, { useState } from 'react';
 import { DropdownInput } from './DropdownInput';
-
-/* ── Sample icon (reused across stories) ─────────────────────────── */
-function SampleIcon({ color = '#000B36' }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <circle cx="10" cy="8" r="3.5" stroke={color} strokeWidth="1.5" />
-      <path d="M3 17c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function FlagIcon({ color = '#000B36' }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M4 3v14M4 3h10l-2 4 2 4H4" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function StarIcon({ color = '#000B36' }) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path d="M10 2l2.4 5 5.6.8-4 3.9.9 5.3L10 14.5l-4.9 2.5.9-5.3L2 7.8l5.6-.8L10 2z" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+import { Icon } from '../icons/Icon';
 
 /* ── Item sets ───────────────────────────────────────────────────── */
 const TEXT_ITEMS = [
@@ -40,9 +15,38 @@ const TEXT_ITEMS = [
 ];
 
 const ICON_ITEMS = [
-  { type: 'item', value: 'user',  label: 'User',  icon: <SampleIcon /> },
-  { type: 'item', value: 'flag',  label: 'Flag',  icon: <FlagIcon /> },
-  { type: 'item', value: 'star',  label: 'Star',  icon: <StarIcon />, disabled: true },
+  { type: 'item', value: 'home',             label: 'Home',             icon: <Icon name="home"             size={20} /> },
+  { type: 'item', value: 'user',             label: 'User',             icon: <Icon name="user"             size={20} /> },
+  { type: 'item', value: 'users',            label: 'Users',            icon: <Icon name="users"            size={20} /> },
+  { type: 'item', value: 'user-circle',      label: 'User Circle',      icon: <Icon name="user-circle"      size={20} /> },
+  { type: 'item', value: 'message',          label: 'Message',          icon: <Icon name="message"          size={20} /> },
+  { type: 'item', value: 'mail',             label: 'Mail',             icon: <Icon name="mail"             size={20} /> },
+  { type: 'item', value: 'phone',            label: 'Phone',            icon: <Icon name="phone"            size={20} /> },
+  { type: 'item', value: 'bell',             label: 'Bell',             icon: <Icon name="bell"             size={20} /> },
+  { type: 'item', value: 'setting',          label: 'Settings',         icon: <Icon name="setting"          size={20} /> },
+  { type: 'item', value: 'search',           label: 'Search',           icon: <Icon name="search"           size={20} /> },
+  { type: 'item', value: 'filter',           label: 'Filter',           icon: <Icon name="filter"           size={20} /> },
+  { type: 'item', value: 'sort',             label: 'Sort',             icon: <Icon name="sort"             size={20} /> },
+  { type: 'item', value: 'star',             label: 'Star',             icon: <Icon name="star"             size={20} /> },
+  { type: 'item', value: 'heart',            label: 'Heart',            icon: <Icon name="heart"            size={20} /> },
+  { type: 'item', value: 'bookmark',         label: 'Bookmark',         icon: <Icon name="bookmark"         size={20} /> },
+  { type: 'item', value: 'calendar',         label: 'Calendar',         icon: <Icon name="calendar"         size={20} /> },
+  { type: 'item', value: 'chart-bar',        label: 'Chart Bar',        icon: <Icon name="chart-bar"        size={20} /> },
+  { type: 'item', value: 'chart-line',       label: 'Chart Line',       icon: <Icon name="chart-line"       size={20} /> },
+  { type: 'item', value: 'database',         label: 'Database',         icon: <Icon name="database"         size={20} /> },
+  { type: 'item', value: 'edit',             label: 'Edit',             icon: <Icon name="edit"             size={20} /> },
+  { type: 'item', value: 'copy',             label: 'Copy',             icon: <Icon name="copy"             size={20} /> },
+  { type: 'item', value: 'delete',           label: 'Delete',           icon: <Icon name="delete"           size={20} /> },
+  { type: 'item', value: 'download',         label: 'Download',         icon: <Icon name="download"         size={20} /> },
+  { type: 'item', value: 'upload',           label: 'Upload',           icon: <Icon name="upload"           size={20} /> },
+  { type: 'item', value: 'share',            label: 'Share',            icon: <Icon name="share"            size={20} /> },
+  { type: 'item', value: 'link',             label: 'Link',             icon: <Icon name="link"             size={20} /> },
+  { type: 'item', value: 'grid',             label: 'Grid',             icon: <Icon name="grid"             size={20} /> },
+  { type: 'item', value: 'list',             label: 'List',             icon: <Icon name="list"             size={20} /> },
+  { type: 'item', value: 'alert',            label: 'Alert',            icon: <Icon name="alert"            size={20} /> },
+  { type: 'item', value: 'help-circle',      label: 'Help',             icon: <Icon name="help-circle"      size={20} /> },
+  { type: 'item', value: 'information-circle', label: 'Info',           icon: <Icon name="information-circle" size={20} /> },
+  { type: 'item', value: 'time',             label: 'Time',             icon: <Icon name="time"             size={20} /> },
 ];
 
 const ICON_TEXT_ITEMS = [

@@ -1,0 +1,344 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as TextareaStories from './Textarea.stories';
+
+<Meta of={TextareaStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / Textarea</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Textarea</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    A multi-line text input built on the same token set as TextInput. Shares all states, variants,
+    label, helper text, and leading icon behaviour. Comes with a default height of 96 px and a
+    branded resize handle in the bottom-right corner that lets users drag to extend the field vertically.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>6 States</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Drag to Resize</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL</span>
+  </div>
+</div>
+
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',      'Overview'],
+      ['#anatomy',       'Anatomy'],
+      ['#states',        'States'],
+      ['#variants',      'Variants'],
+      ['#sizes',         'Sizes'],
+      ['#helper-text',   'Helper Text'],
+      ['#resize',        'Resize Handle'],
+      ['#rtl',           'RTL'],
+      ['#usage',         'Usage Guidelines'],
+      ['#tokens',        'Design Tokens'],
+      ['#properties',    'Properties'],
+      ['#accessibility', 'Accessibility'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Use the controls panel to explore all props. Drag the blue resize handle in the bottom-right corner of
+  the field to change the height at runtime.
+</p>
+
+<Canvas of={TextareaStories.Playground} />
+<Controls of={TextareaStories.Playground} />
+
+---
+
+{/* ── Anatomy ── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['1', 'Label row',      'Optional label with optional required asterisk (*). Matches TextInput label tokens exactly.'],
+    ['2', 'Field container','Bordered rectangle that holds the icon, textarea, and resize handle. Shares all state and variant tokens with TextInput.'],
+    ['3', 'Textarea',      'Native <textarea> element. Default height 96 px, user-resizable via the drag handle. resize: none — custom handle takes over.'],
+    ['4', 'Resize handle', 'Absolute-positioned grip icon in the bottom-right corner (bottom: 4 px, inset-inline-end: 4 px). Color #1849A9. Hidden when disabled or read-only.'],
+    ['5', 'Helper row',    'Optional helper icon + helper text below the field. Turns red when error={true}.'],
+  ].map(([n, part, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── States ── */}
+<h2 id="states" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>States</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 140px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Border</span><span>Background</span><span>Notes</span>
+  </div>
+  {[
+    ['default',   '#D2D6DB', '#FFFFFF',     'Standard resting state'],
+    ['hovered',   '#1F2A37', '#FFFFFF',     'Mouse over — darker border'],
+    ['pressed',   '#D2D6DB', '#F3F4F6',     'Mouse down — grey background + 1/3-width bottom indicator'],
+    ['focused',   '#D2D6DB', '#FFFFFF',     'Keyboard focus — full-width bottom indicator in #1849A9'],
+    ['read-only', '#CED3DC', 'transparent', 'Content visible, not editable. Resize handle hidden.'],
+    ['disabled',  '#E5E7EB', 'transparent', 'Non-interactive. Text color #6C7C96. Resize handle hidden.'],
+  ].map(([state, border, bg, note]) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '120px 140px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{state}</code>
+      <span style={{ color: '#374151' }}>{border}</span>
+      <span style={{ color: '#374151' }}>{bg}</span>
+      <span style={{ color: '#374151' }}>{note}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TextareaStories.AllStates} />
+<Canvas of={TextareaStories.ErrorState} />
+
+---
+
+{/* ── Variants ── */}
+<h2 id="variants" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Variants</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Three fill variants match the TextInput variants exactly — use the same variant across both
+  components to maintain consistency within a form.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>Behaviour</span>
+  </div>
+  {[
+    ['default',        'White background, visible border in default state'],
+    ['filled-darker',  'Grey (#F3F4F6) background, no border in default/hover — border appears on interaction'],
+    ['filled-lighter', 'Off-white (#FCFCFD) background, no border in default/hover — border appears on interaction'],
+  ].map(([variant, desc]) => (
+    <div key={variant} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{variant}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TextareaStories.Variants} />
+
+---
+
+{/* ── Sizes ── */}
+<h2 id="sizes" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Sizes</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 120px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Default height</span><span>Font</span><span>Line height</span>
+  </div>
+  {[
+    ['medium', '96 px (min)', '14 px', '20 px'],
+    ['large',  '96 px (min)', '16 px', '24 px'],
+  ].map(([size, h, fs, lh]) => (
+    <div key={size} style={{ display: 'grid', gridTemplateColumns: '100px 120px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{size}</code>
+      <span style={{ color: '#374151' }}>{h}</span>
+      <span style={{ color: '#374151' }}>{fs}</span>
+      <span style={{ color: '#374151' }}>{lh}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={TextareaStories.Sizes} />
+
+---
+
+{/* ── Helper Text ── */}
+<h2 id="helper-text" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Helper Text</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showHelperText={'{true}'}</code> to
+  show the helper row below the field. Pass a custom icon via
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> helperIcon</code> or use
+  the default circle-question icon. Text turns red when
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}> error={'{true}'}</code>.
+</p>
+
+<Canvas of={TextareaStories.WithHelperText} />
+<Canvas of={TextareaStories.Controlled} />
+
+---
+
+{/* ── Resize Handle ── */}
+<h2 id="resize" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Resize Handle</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The native <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>resize</code> CSS
+  property is disabled on the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{`<textarea>`}</code>.
+  Instead, a custom drag handle is absolutely positioned at the bottom-right corner of the field.
+  Dragging it downward increases the textarea height; dragging upward decreases it (minimum 96 px).
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Property</span><span>Value</span>
+  </div>
+  {[
+    ['Icon color',   '#1849A9'],
+    ['Icon size',    '12 × 12 px (3 diagonal grip lines)'],
+    ['Position',     'bottom: 4 px · inset-inline-end: 4 px (RTL-aware)'],
+    ['Cursor',       'se-resize'],
+    ['Min height',   '96 px — cannot drag below this'],
+    ['Disabled',     'Handle is hidden (display: none) when state="disabled" or state="read-only"'],
+    ['RTL',          'inset-inline-end flips automatically — handle appears in bottom-left in RTL'],
+  ].map(([prop, val]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{prop}</span>
+      <span style={{ color: '#374151' }}>{val}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── RTL ── */}
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>rtl={'{true}'}</code> to
+  apply <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>dir="rtl"</code> to
+  the wrapper. All layout, padding, and the resize handle position use CSS logical properties and flip
+  automatically.
+</p>
+
+<Canvas of={TextareaStories.RTL} />
+
+---
+
+{/* ── Usage ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use Textarea for multi-line free-form input (messages, descriptions, comments)</li>
+      <li>Use a helper text to indicate character limits or formatting requirements</li>
+      <li>Match the <code>variant</code> to the surrounding form fields (all default or all filled)</li>
+      <li>Use the controlled pattern with <code>value</code> + <code>onChange</code> to drive live character counts</li>
+      <li>Keep the default 96 px height — resize is available for users who need more space</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't use Textarea for single-line input — use TextInput instead</li>
+      <li>Don't set a very small height that hides content — 96 px is the enforced minimum</li>
+      <li>Don't use prefix/suffix affixes — they are not available on Textarea</li>
+      <li>Don't use <code>autoPlay</code> or other single-line-only attributes</li>
+      <li>Don't forget to pair a visible label or <code>aria-label</code> — placeholder text alone is not accessible</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+{/* ── Design Tokens ── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  All field tokens are inherited from TextInput. Only the Textarea-specific tokens are listed here.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 60px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Default height',         null,      '96 px',     'Minimum textarea height'],
+    ['Resize handle color',    '#1849A9', '#1849A9',   'Grip icon stroke — matches primary brand blue'],
+    ['Resize handle size',     null,      '12 × 12 px','Grip icon bounding box'],
+    ['Resize handle position', null,      '4 px / 4 px','bottom / inset-inline-end'],
+    ['Textarea padding bottom',null,      '18 px',     'Space reserved so text never overlaps the handle'],
+  ].map(([token, swatch, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '200px 60px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      {swatch ? (
+        <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, background: swatch, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+      ) : <span />}
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 220px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['label',          'string',                                                      "'Label'",          'Label text above the field'],
+    ['showLabel',      'boolean',                                                     'true',             'Toggle label visibility'],
+    ['labelType',      "'regular' | 'semibold'",                                     "'regular'",        'Label font weight'],
+    ['required',       'boolean',                                                     'false',            'Shows a red asterisk before the label'],
+    ['size',           "'medium' | 'large'",                                          "'medium'",         'Font size inside the textarea (14 px / 16 px)'],
+    ['state',          "'default' | 'hovered' | 'pressed' | 'focused' | 'read-only' | 'disabled'", "'default'", 'Visual and interaction state'],
+    ['error',          'boolean',                                                     'false',            'Applies error border (#A30000) and red helper text'],
+    ['variant',        "'default' | 'filled-darker' | 'filled-lighter'",             "'default'",        'Background fill treatment'],
+    ['placeholder',    'string',                                                      "'Placeholder'",    'Placeholder text when empty'],
+    ['value',          'string',                                                      '—',                'Controlled value'],
+    ['defaultValue',   'string',                                                      '—',                'Uncontrolled default value'],
+    ['onChange',       '(e: ChangeEvent) => void',                                   '—',                'Change handler (required when value is set)'],
+    ['showHelperText', 'boolean',                                                     'false',            'Show the helper row below the field'],
+    ['helperText',     'string',                                                      "'Helper text'",    'Helper message text'],
+    ['helperIcon',     'ReactElement',                                                '—',                'Custom helper icon (falls back to circle-question)'],
+    ['rtl',            'boolean',                                                     'false',            'Right-to-left layout'],
+    ['className',      'string',                                                      '—',                'Extra CSS class on the wrapper'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 220px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 11, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Label association',    'Wrap Textarea in a <label> or add htmlFor / id to connect the label text to the <textarea> element.'],
+    ['Placeholder',          'Placeholder text is not a substitute for a visible label — always provide showLabel={true} or an aria-label.'],
+    ['Disabled',             'Sets the native disabled attribute on <textarea>. Cursor and color indicate non-interactivity.'],
+    ['Read-only',            'Sets the native readOnly attribute. Content is selectable but not editable.'],
+    ['Error',                'Pair error={true} with showHelperText and a descriptive helperText so the error is communicated in text, not just colour.'],
+    ['Resize handle',        'aria-hidden="true" — the handle is purely presentational. Resizing affects layout only, with no semantic change.'],
+    ['RTL',                  'dir="rtl" is applied to the wrapper. CSS logical properties (inset-inline-end) ensure the resize handle appears in the correct corner.'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '200px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
+</div>
+
+</div>
