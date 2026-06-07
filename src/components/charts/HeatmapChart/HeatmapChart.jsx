@@ -182,6 +182,7 @@ export function HeatmapChart({
               x={Y_TITLE_W + Y_TITLE_GAP + Y_TICK_W - 4}
               y={gridLineY[i]}
               textAnchor="end"
+              direction="ltr"
               dominantBaseline="middle"
               className={styles.tickLabel}
             >

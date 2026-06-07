@@ -1,0 +1,261 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as NavDrawerStories from './NavDrawer.stories';
+import * as NavDrawerPanelStories from './NavDrawerPanel.stories';
+import * as NavDrawerIconStories from './NavDrawerIcons.stories';
+
+<Meta of={NavDrawerStories} />
+
+# Nav Drawer
+
+<div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 24 }}>
+  <span style={{ fontSize: 14, color: '#374151' }}>Figma source</span>
+  <a
+    href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-10501"
+    target="_blank"
+    rel="noreferrer"
+    style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#eff3fb', color: '#1849a9', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 20, textDecoration: 'none', border: '1px solid #c7d6f5' }}
+  >
+    Figma: Node 5005:10501 ↗
+  </a>
+</div>
+
+A vertical navigation sidebar composed of **Nav Drawer Items**. Each item maps to a page, section, or collapsible sub-menu. Supports light and dark (`onColor`) themes, RTL, and a collapsed icon-only mode.
+
+## Playground
+
+<Canvas of={NavDrawerStories.Playground} />
+<Controls of={NavDrawerStories.Playground} />
+
+---
+
+## Default — LTR
+
+<Canvas of={NavDrawerStories.DefaultLTR} />
+
+## Default — RTL
+
+<Canvas of={NavDrawerStories.DefaultRTL} />
+
+## With Expanded Sub-menu
+
+Parent items (`type="parent"`) toggle their chevron on `expanded`. Clicking reveals Level 2 children beneath with 40 px left indent (LTR) / 40 px right indent (RTL).
+
+<Canvas of={NavDrawerStories.WithExpandedSubmenu} />
+
+## On-Color (Dark Sidebar)
+
+<Canvas of={NavDrawerStories.OnColorLTR} />
+<Canvas of={NavDrawerStories.OnColorRTL} />
+
+## Icon-Only (Collapsed Sidebar)
+
+<Canvas of={NavDrawerStories.IconOnlyLTR} />
+<Canvas of={NavDrawerStories.IconOnlyRTL} />
+
+---
+
+## Item States — LTR
+
+All interactive states from Figma node 5005:10501.
+
+<Canvas of={NavDrawerStories.DrawerItemStatesLTR} />
+
+## Item States — RTL
+
+<Canvas of={NavDrawerStories.DrawerItemStatesRTL} />
+
+## Item States — On-Color
+
+<Canvas of={NavDrawerStories.DrawerItemStatesOnColor} />
+
+## Icon-Only States
+
+<Canvas of={NavDrawerStories.IconOnlyStates} />
+
+---
+
+## Full Panel (NavDrawerPanel)
+
+The `NavDrawerPanel` wraps items + header into a complete sidebar. Fetched from Figma node [5005:11026](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-11026).
+
+### Panel — Dark LTR
+
+`onColor=true` — panel bg `#102a56`, header bg `#3c5073`. Pass `{ divider: true }` items to insert horizontal separators.
+
+<Canvas of={NavDrawerPanelStories.FullPanelDarkLTR} />
+
+### Panel — White LTR
+
+<Canvas of={NavDrawerPanelStories.FullPanelWhiteLTR} />
+
+### Panel — White RTL
+
+<Canvas of={NavDrawerPanelStories.FullPanelWhiteRTL} />
+
+### Panel — Dark RTL
+
+<Canvas of={NavDrawerPanelStories.FullPanelDarkRTL} />
+
+### Panel — Overlay
+
+`overlay=true` adds `box-shadow` + `backdrop-filter: blur(12px)` for a floating panel over page content.
+
+<Canvas of={NavDrawerPanelStories.FullPanelOverlay} />
+
+### Panel — Icon-Only (Collapsed)
+
+`full=false` — 64px wide, header shows only the toggle button, items render as icon-only 48×32 buttons.
+
+<Canvas of={NavDrawerPanelStories.FullPanelIconOnly} />
+
+---
+
+## Props — NavDrawerItem
+
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, fontFamily: 'system-ui, sans-serif' }}>
+  <thead>
+    <tr style={{ background: '#f3f4f6' }}>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Prop</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Type</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Default</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ['label',        'string',                                       '"Link"',    'LTR display text'],
+      ['labelAr',      'string',                                       '"رابط"',    'RTL display text (Arabic)'],
+      ['type',         '"link" | "parent"',                           '"link"',    'Link = plain navigation. Parent = has chevron + expandable sub-menu'],
+      ['level',        '1 | 2',                                        '1',         'Level 1 = full padding + icon. Level 2 = 40px indent, no leading icon, regular weight'],
+      ['state',        '"Default" | "Hovered" | "Pressed" | "Focused" | "Selected" | "Disabled"', '"Default"', 'Forced interaction state for docs/testing'],
+      ['rtl',          'boolean',                                      'false',     'Mirrors flex direction; moves selection indicator to right edge'],
+      ['full',         'boolean',                                      'true',      'true = 224px with icon+text. false = 48×32 icon-only (collapsed sidebar)'],
+      ['onColor',      'boolean',                                      'false',     'Dark sidebar theme — inverts text (#f9fafb) and badge colors'],
+      ['badge',        'boolean',                                      'false',     'Show count badge pill on the trailing edge'],
+      ['badgeCount',   'string',                                       '"+99"',     'Badge label text'],
+      ['expanded',     'boolean',                                      'false',     'Rotates chevron 180° (Parent type only)'],
+      ['externalLink', 'boolean',                                      'false',     'Show external-link icon (Level 2 Link type only)'],
+      ['icon',         'boolean',                                      'true',      'Show leading home icon (Level 1 only)'],
+    ].map(([prop, type, def, desc], i) => (
+      <tr key={prop} style={{ background: i % 2 === 0 ? '#ffffff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#1849a9', background: '#eff3fb', borderRadius: 4, whiteSpace: 'nowrap' }}>{prop}</td>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#374151', fontSize: 12 }}>{type}</td>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{def}</td>
+        <td style={{ padding: '10px 16px', color: '#374151' }}>{desc}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+---
+
+## Props — NavDrawer (container)
+
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, fontFamily: 'system-ui, sans-serif' }}>
+  <thead>
+    <tr style={{ background: '#f3f4f6' }}>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Prop</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Type</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Default</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ['items',   'NavItem[]', '[]',    'Array of nav item config objects — each maps to a NavDrawerItem'],
+      ['rtl',     'boolean',   'false', 'Applied to every item in the list'],
+      ['onColor', 'boolean',   'false', 'Dark sidebar mode — applied to container background + all items'],
+      ['full',    'boolean',   'true',  'Switches all items between full (224px) and icon-only (48×32)'],
+    ].map(([prop, type, def, desc], i) => (
+      <tr key={prop} style={{ background: i % 2 === 0 ? '#ffffff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#1849a9', background: '#eff3fb', borderRadius: 4, whiteSpace: 'nowrap' }}>{prop}</td>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#374151', fontSize: 12 }}>{type}</td>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{def}</td>
+        <td style={{ padding: '10px 16px', color: '#374151' }}>{desc}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+---
+
+## Props — NavDrawerPanel
+
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, fontFamily: 'system-ui, sans-serif' }}>
+  <thead>
+    <tr style={{ background: '#f3f4f6' }}>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Prop</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Type</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Default</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ['items',      'NavItem[]',                        '[]',      'Flat array of nav item objects. Add `{ divider: true }` to insert a horizontal separator line.'],
+      ['rtl',        'boolean',                          'false',   'Mirrors header (logo ↔ button), item direction, and indicator side'],
+      ['onColor',    'boolean',                          'false',   'Dark panel — bg `#102a56`, header `#3c5073`, text `#f9fafb`, dividers at 12% white'],
+      ['full',       'boolean',                          'true',    'Full 256px sidebar vs 64px collapsed icon-only mode'],
+      ['showHeader', 'boolean',                          'true',    'Render the panel header with logo and sidebar-toggle button'],
+      ['border',     '"none" | "right" | "left"',        '"none"',  '1px `#d2d6db` border on the specified edge. Use `right` for LTR, `left` for RTL'],
+      ['overlay',    'boolean',                          'false',   'Floating panel — `box-shadow: 4px 16px 24px 0 rgba(0,0,0,0.1)` + `backdrop-filter: blur(12px)`'],
+      ['onToggle',   'function',                         'undefined','Called when the sidebar-toggle button is clicked'],
+    ].map(([prop, type, def, desc], i) => (
+      <tr key={prop} style={{ background: i % 2 === 0 ? '#ffffff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#1849a9', background: '#eff3fb', borderRadius: 4, whiteSpace: 'nowrap' }}>{prop}</td>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#374151', fontSize: 12 }}>{type}</td>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{def}</td>
+        <td style={{ padding: '10px 16px', color: '#374151' }}>{desc}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+---
+
+## Design Tokens
+
+<table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13, fontFamily: 'system-ui, sans-serif' }}>
+  <thead>
+    <tr style={{ background: '#f3f4f6' }}>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Token</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Value</th>
+      <th style={{ padding: '10px 16px', textAlign: 'left', fontWeight: 700, color: '#111827', borderBottom: '2px solid #e5e7eb' }}>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ['--nav-drawer/text/filled',         '#000b36', 'Default text color (light theme)'],
+      ['--nav-drawer/text/oncolor',        '#f9fafb', 'Text color on dark sidebar'],
+      ['--nav-drawer/text/disabled',       '#9da4ae', 'Disabled label + icon'],
+      ['--nav-drawer/accent',              '#1849a9', 'Selected text + indicator + focus ring'],
+      ['--nav-drawer/bg/hover',            '#f3f4f6', 'Hover background'],
+      ['--nav-drawer/bg/pressed',          '#e5e7eb', 'Pressed background'],
+      ['--nav-drawer/bg/selected',         '#e5e7eb', 'Selected background'],
+      ['--nav-drawer/indicator/hover',     '#e7e9ed', 'Left-edge indicator on hover (unselected)'],
+      ['--nav-drawer/badge/bg',            '#f3f4f6', 'Badge background (light)'],
+      ['--nav-drawer/badge/border',        '#d2d6db', 'Badge border (light)'],
+      ['--nav-drawer/badge/bg-oncolor',    '#1f2a37', 'Badge background (dark sidebar)'],
+    ].map(([token, value, usage], i) => (
+      <tr key={token} style={{ background: i % 2 === 0 ? '#ffffff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+        <td style={{ padding: '10px 16px', fontFamily: 'monospace', fontSize: 12, color: '#374151' }}>{token}</td>
+        <td style={{ padding: '10px 16px' }}>
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid rgba(0,0,0,0.1)', flexShrink: 0 }} />
+            <code style={{ fontFamily: 'monospace', fontSize: 12, color: '#1849a9', background: '#eff3fb', padding: '2px 6px', borderRadius: 4 }}>{value}</code>
+          </span>
+        </td>
+        <td style={{ padding: '10px 16px', color: '#374151' }}>{usage}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+---
+
+## Anatomy
+
+- **Selection indicator** — `position: absolute; left: 0; top: 6px; bottom: 6px; width: 6px; border-radius: 9999px`. Blue (`#1849a9`) when selected, gray (`#e7e9ed`) when hovered. Moves to `right: 0` in RTL.
+- **Level 2 indent** — `padding-left: 40px` (LTR) / `padding-right: 40px` (RTL). No leading icon; label uses `font-weight: 400`.
+- **Badge** — pill with `height: 20px; padding: 0 8px; border-radius: 9999px`. Light: `bg #f3f4f6 border #d2d6db`. Dark: `bg #1f2a37 border none`.
+- **Chevron** — 16×16 `arrow-down-01`. Rotates 180° when `expanded=true` via CSS `transform`.

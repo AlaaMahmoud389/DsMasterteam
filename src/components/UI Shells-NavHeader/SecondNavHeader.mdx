@@ -1,0 +1,113 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as SecondNavHeaderStories from './SecondNavHeader.stories';
+
+<Meta of={SecondNavHeaderStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>UI Shells / Secondary Nav Header</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Secondary Nav Header</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>
+    The Secondary Nav Header is a 40 px contextual bar that sits above the primary Nav Header.
+    It displays up to four informational items (weather, date, time, location) on one side, and up to three
+    icon-only action buttons (mic, zoom-out, zoom-in) on the other. Supports both Gray (white) and Primary (blue)
+    colour schemes with full RTL mirroring.
+  </p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 5005:13162</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/ui-shell/second-nav-header" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=5005-13162" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Playground','#playground'],['All Variants','#all-variants'],['Color Schemes','#color-schemes'],['RTL Support','#rtl-support'],['Content & Actions','#content-actions'],['Props','#props'],['Design Tokens','#design-tokens']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Playground
+
+<Canvas of={SecondNavHeaderStories.Playground} />
+<Controls of={SecondNavHeaderStories.Playground} />
+
+---
+
+## All Variants
+
+<Canvas of={SecondNavHeaderStories.AllVariants} />
+
+---
+
+## Color Schemes
+
+### Gray (Default)
+
+<Canvas of={SecondNavHeaderStories.DefaultLTRGray} />
+
+### Primary (Blue)
+
+<Canvas of={SecondNavHeaderStories.DefaultLTRPrimary} />
+
+---
+
+## RTL Support
+
+<Canvas of={SecondNavHeaderStories.DefaultRTLGray} />
+<Canvas of={SecondNavHeaderStories.DefaultRTLPrimary} />
+
+---
+
+## Content & Actions
+
+### Actions Only
+
+<Canvas of={SecondNavHeaderStories.ActionsOnly} />
+
+### Content Only
+
+<Canvas of={SecondNavHeaderStories.ContentOnly} />
+
+### Partial Items
+
+<Canvas of={SecondNavHeaderStories.PartialItems} />
+
+### No Divider
+
+<Canvas of={SecondNavHeaderStories.NoDivider} />
+
+---
+
+## Design Tokens
+
+| Token | Value | Usage |
+|---|---|---|
+| `--command/background/default` | `#ffffff` | Gray variant background |
+| `--command/background/secondary` | `#1849a9` | Primary variant background |
+| `--command/text/primary` | `#000b36` | Text color (Gray variant) |
+| `--command/text/dark` | `#f9fafb` | Text color (Primary variant) |
+| `--command/border/default` | `#e5e7eb` | Divider (Gray variant) |
+| Height | `40px` | Component height |
+| Horizontal padding | `32px` (`--spacing-4xl`) | Left/right padding |
+| Content gap | `16px` (`--global/spacing-xl`) | Gap between content items |
+| Item icon+text gap | `4px` (`--global/spacing-xs`) | Icon–label spacing within an item |
+| Actions gap | `6px` (`--global/spacing-sm`) | Gap between action buttons |
+| Action button size | `32×32px` | Button dimensions |
+| Border-radius | `4px` (`--radius/radius-sm`) | Action button corner radius |
+
+### Icons used
+
+| Slot | Icon name | Figma node |
+|---|---|---|
+| Content items | `cloud-loading` | — |
+| Action 1 | `mic-01` | `4804:120206` |
+| Action 2 | `zoom-out-area` | `5005:13035` |
+| Action 3 | `zoom-in-area` | `5005:13060` |
+
+</div>

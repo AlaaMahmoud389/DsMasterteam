@@ -1,55 +1,55 @@
-import styles from './Metric.module.css';
+﻿import styles from './Metric.module.css';
 
 const A = 'https://www.figma.com/api/mcp/asset/';
 
 // ─── Change badge icons ─────────────────────────────────────────────────────
-const ICON_ARROW_POS  = A + '471a028e-2b88-4982-9e62-d25e902ccac7'; // arrow-up-02 positive
-const ICON_ARROW_NEG  = A + 'cfac78f6-14ec-4811-b373-0becd29183ca'; // arrow-up-02 negative
+const ICON_ARROW_POS  = A + '7688b61b-ed56-4fd9-aeb0-7743641d78a8'; // arrow-up-02 positive
+const ICON_ARROW_NEG  = A + '7688b61b-ed56-4fd9-aeb0-7743641d78a8'; // arrow-up-02 negative
 const ICON_TRADE_UP   = A + '7263cd5b-39b0-4d3f-b704-467da3422049'; // trade-up
 const ICON_TRADE_DOWN = A + '6bffedd8-aac4-479a-827f-d04f11a5ef8b'; // trade-down
 
 // ─── Small Chart assets 128 × 64 ───────────────────────────────────────────
 const SM = {
-  Wavy:     { Positive: { bg: A+'d6378dd4-daa6-4ade-abe2-f0c408790309', line: A+'3d94b41d-2749-42cc-b99b-07b22a53ae81' },
-              Negative: { bg: A+'9947f32a-48a6-4d78-8e5f-3a51d2fad8da', line: A+'fa14a446-0223-4811-9b28-a389efccb081', mirror: true } },
-  Realistic:{ Positive: { bg: A+'27934ea2-e469-47ba-a984-99d319ed3d63', line: A+'fe17cf88-cee0-40a5-8f5d-10af722d9ade' },
-              Negative: { bg: A+'5ce026ec-174c-4233-a258-353dce7cd78e', line: A+'f22377da-0e41-40c9-a915-639a456cb4f9' } },
-  Straight: { Positive: { bg: A+'6ac2b450-3cf1-4e6b-8d66-c68205f67298', line: A+'3d010701-042d-4d9c-bb39-f3e1cfcc9bc9' },
-              Negative: { bg: A+'a5ee92b5-cb0e-4551-93ad-c9fa26d31707', line: A+'955ab3fb-cf7a-4c51-b021-d372d3c6a35c' } },
-  Layers:   { Positive: { bg: A+'fd8bc0eb-e99c-4826-b8d0-4f0228eabda9', line: A+'1a8b072b-ec0d-45b5-89c6-1c2d54c647e0', layerTop: '12px' },
-              Negative: { bg: A+'becc706e-90ad-4644-8824-92531caf751f', line: A+'e1c8da81-c96d-47be-bb0f-a0121eb9bfa9', layerTop: '18px' } },
+  Wavy:     { Positive: { bg: A+'704475df-f20a-4c34-a187-84f04e2e91b8', line: A+'5fa3ea06-0d6c-48d9-9f46-3cc3c8f0bc01' },
+              Negative: { bg: A+'783d5747-3697-4549-8a6e-c783265ad768', line: A+'94ed11f2-965e-4402-803a-5264ac1fc08b', mirror: true } },
+  Realistic:{ Positive: { bg: A+'56ff198c-2e6d-408b-bd17-c5bb4d46fa04', line: A+'a7514274-a760-46c3-9ce7-aed99ccb7d2e' },
+              Negative: { bg: A+'6bc93a82-eaf5-4986-be96-7daf88d29cda', line: A+'bb3c6439-e2a9-44eb-a54e-40daba7c6aeb' } },
+  Straight: { Positive: { bg: A+'c4bf7782-2001-4ff4-88ef-40e45af67d66', line: A+'4b65dffc-258e-4612-9829-22e9ddf9a11e' },
+              Negative: { bg: A+'cd0ef5da-bfc8-488e-a1f8-1f9bd36b255c', line: A+'fada34f9-4536-4b66-b254-c951f67b4e1d' } },
+  Layers:   { Positive: { bg: A+'106726ab-bf84-42bc-8842-b0e6043b103e', line: A+'bb9721b0-8bcf-4fdb-8df8-b24d60c4b209', layerTop: '12px' },
+              Negative: { bg: A+'00c3018b-0c9f-4eda-ac7f-1ed2e20422aa', line: A+'4ace226b-1857-4a32-9729-54de4a92011b', layerTop: '18px' } },
 };
 
 // ─── Large Chart assets 328 × 64 ───────────────────────────────────────────
 const LG = {
-  Wavy:     { Positive: { bg: A+'3bcbba6c-69b1-471b-be80-4d732ceaad2c', line: A+'6c501c9a-9b9f-4568-9ec8-2036b847387b' },
-              Negative: { bg: A+'a3eaa951-0b19-45a7-8272-674027eb16bd', line: A+'d7aadf99-63e0-4a0d-ac58-a72e83486fd7', mirror: true } },
-  Realistic:{ Positive: { bg: A+'0d7988b2-ad5f-4ef1-8c76-396ddcf13bc4', line: A+'6afada0b-b121-4ace-8e38-c7eaefac945b' },
-              Negative: { bg: A+'adb2ff16-5dbc-4507-a460-69adfef8ed82', line: A+'a717b559-8f08-47ce-a4d3-fe4baaf2854b', separateBg: true } },
-  Straight: { Positive: { bg: A+'9d491451-3c03-435d-b98a-15fae007ac66', line: A+'2ce2e21f-3be7-45a8-9775-d6c841d521e6' },
-              Negative: { bg: A+'28fd2245-1754-4d09-8793-75556caad407', line: A+'25a6af24-6f7c-4bf9-a909-9acb426fea11' } },
-  Layers:   { Positive: { bg: A+'a810276a-f0aa-4200-b60e-bbb0a8f9de5a', line: A+'e92d4f78-1b8a-4c27-8ccc-42f61dd11808', layerTop: '12px' },
-              Negative: { bg: A+'1b843122-1966-437b-9b49-4b1e54c4ca33', line: A+'836edcca-fff8-4a4f-b886-cc1dfc2b0d63', layerTop: '18px' } },
+  Wavy:     { Positive: { bg: A+'386ca56b-03c1-47ce-a184-5bdb717082c4', line: A+'18830759-b9eb-4bb2-8198-422d68eabf9b' },
+              Negative: { bg: A+'5cbd3cab-54b7-4527-bc03-6239855e407b', line: A+'ef0cf04f-5f1b-4c27-a97c-1ea27f48b8be', mirror: true } },
+  Realistic:{ Positive: { bg: A+'d78518c8-bda1-4391-ab3d-453732a02ba7', line: A+'22f2425a-8901-4825-9c39-20252d569c0d' },
+              Negative: { bg: A+'e3bb5192-7496-4a9a-9a26-fdcc4e11f565', line: A+'e8cf712c-1e6d-4de2-b88a-d90f7530895d', separateBg: true } },
+  Straight: { Positive: { bg: A+'677c55d0-1c92-413b-aef6-e8061055e42c', line: A+'06a56cb7-b8e4-4a0e-852f-abd1d2fbb6e3' },
+              Negative: { bg: A+'bfdec1d2-6d89-417f-9d78-df93c1b127e0', line: A+'01df3866-6538-4306-84e8-417080d858e5' } },
+  Layers:   { Positive: { bg: A+'05526599-67d1-4d9d-af7d-efe0e7b75bfa', line: A+'ab286bda-2f9c-42da-8334-dbfee44a19ce', layerTop: '12px' },
+              Negative: { bg: A+'eeae8f31-1540-4ead-8917-6dc8300ddbee', line: A+'8b5d979f-ceb6-432d-adc4-a5f6d1747935', layerTop: '18px' } },
 };
 
 // ─── Featured icon badge (gear) — fresh per variant ─────────────────────────
-const ICON_FT_SM_LTR = A + 'da52b5a6-0c78-469d-bd81-19fbf189c2f1'; // SM LTR
-const ICON_FT_RTL    = A + '961c7083-bd3e-4062-9b17-c1de2b97cd76'; // SM RTL + LG RTL
-const ICON_FT_LG_LTR = A + 'c1d6a80d-1257-40d6-9904-2ffcf597fcb1'; // LG LTR
+const ICON_FT_SM_LTR = A + '24950801-61d3-4150-99c5-ced2f7da933a'; // SM LTR
+const ICON_FT_RTL    = A + '3855559f-670a-4068-9123-ff6fbc6e8974'; // SM RTL + LG RTL
+const ICON_FT_LG_LTR = A + '6dfd98e8-4a7e-48b0-91ea-e8f71f4fb329'; // LG LTR
 
 // ─── More-vertical icon (⋮) "elements" sprite — exact Figma inset rendering ─
-const ICON_MORE_VERT     = A + '905c6488-bd1e-4fa3-b888-d57e905dafb4'; // SM / RTL / LG RTL
-const ICON_MORE_VERT_LGL = A + '8b22207f-8613-4c91-92d5-a31b011fbe7b'; // LG LTR (slightly different offset)
+const ICON_MORE_VERT     = A + 'e601344b-29c6-4c9b-8745-92430098c8b7'; // SM / RTL / LG RTL
+const ICON_MORE_VERT_LGL = A + '2b75c897-2f84-4d93-b434-12ac723fde02'; // LG LTR (slightly different offset)
 
 // ─── Settings icon — fresh per variant ──────────────────────────────────────
-const ICON_SETTINGS_SM_LTR = A + 'ee7617c0-c255-469c-948a-9aa1138b4d7b';
-const ICON_SETTINGS_SM_RTL = A + '553ef906-0299-48af-9ae4-b533cc86810c';
-const ICON_SETTINGS_LG_LTR = A + '260d5e5c-1162-4e66-8d89-f9d0465eed36';
-const ICON_SETTINGS_LG_RTL = A + '8019bc7b-8acb-41ec-97b5-ebaa8cb22a5d';
+const ICON_SETTINGS_SM_LTR = A + '373effc1-7438-497b-aaec-b832ea16c03e';
+const ICON_SETTINGS_SM_RTL = A + '7b8371f6-9cc5-4606-87ac-d05bc0f7214d';
+const ICON_SETTINGS_LG_LTR = A + 'ac7950ba-688f-428e-8229-26e8eeac5c9e';
+const ICON_SETTINGS_LG_RTL = A + '7cb9ebb3-8987-455a-863f-f744750d38f8';
 
 // ─── Report arrow icons — "elements" sprite, container-query rotation ────────
-const ICON_REPORT_RIGHT = A + 'ed641b69-db5e-4cca-8b71-2a1bbbdc92d1'; // → LTR
-const ICON_REPORT_LEFT  = A + '0f541ba2-0e49-4f04-b0b0-9552ca5b560e'; // ← RTL
+const ICON_REPORT_RIGHT = A + '7142e1ed-a3dd-4df7-862a-476a952e6d64'; // → LTR
+const ICON_REPORT_LEFT  = A + '2b1088e6-1476-48d6-b78e-05a10c09a1e7'; // ← RTL
 
 // ─── Marker positions (translated from Figma Tailwind insets) ───────────────
 function getSmallMarkers(chartType, trend) {
@@ -57,8 +57,8 @@ function getSmallMarkers(chartType, trend) {
   switch (chartType) {
     case 'Wavy':
       return isPos
-        ? [{ top: '21.88%', right: '9.38%', bottom: '43.75%', left: '73.44%' }]
-        : [{ top: '53.13%', right: '9.38%', bottom: '12.5%',  left: '73.44%' }];
+        ? [{ top: '21.88%', right: '11.4%', bottom: '43.75%', left: '75.4%' }]
+        : [{ top: '53.13%', right: '11.4%', bottom: '12.5%',  left: '75.4%' }];
     case 'Realistic':
       return isPos
         ? [{ top: 3, bottom: 39, left: 'calc(50% + 21px)', transform: 'translateX(-50%)', width: 22 }]

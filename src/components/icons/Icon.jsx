@@ -15,6 +15,14 @@ import PropTypes from 'prop-types';
 /* ── Icon path registry ─────────────────────────────────────────── */
 
 const ICONS = {
+  /* Weather / Context --------------------------------------------- */
+  'cloud-loading':        'M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z M12 15v1.5M11 15.75h2',
+
+  /* Mic & Zoom (SecondNavHeader action buttons) ------------------- */
+  'mic-01':               'M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z M5 10a7 7 0 0 0 14 0M12 19v3M8 22h8',
+  'zoom-out-area':        'M3 3l6 6M3 3h5M3 3v5M21 3l-6 6M21 3h-5M21 3v5M3 21l6-6M3 21h5M3 21v-5M21 21l-6-6M21 21h-5M21 21v-5',
+  'zoom-in-area':         'M3 3h5M3 3v5M9 9L3 3M21 3h-5M21 3v5M15 9L21 3M3 21h5M3 21v-5M9 15L3 21M21 21h-5M21 21v-5M15 15L21 21',
+
   /* Arrows -------------------------------------------------------- */
   'arrow-right':          'M5 12H19M19 12L13 6M19 12L13 18',
   'arrow-left':           'M19 12H5M5 12L11 6M5 12L11 18',

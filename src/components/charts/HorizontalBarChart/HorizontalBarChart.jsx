@@ -155,7 +155,7 @@ export function HorizontalBarChart({
 
   /* Category labels — 14px gap from plot edge (Figma: gap-[14px]) */
   const catLabelX      = isRtl ? plotX + plotW + 14 : plotX - 14;
-  const catLabelAnchor = isRtl ? 'start' : 'end';
+  const catLabelAnchor = 'end';
 
   const yTitleX      = isRtl ? VIEW_W - 16 : 16;
   const yTitleRotate = isRtl ? 90 : -90;
@@ -339,6 +339,7 @@ export function HorizontalBarChart({
                     x={tx}
                     y={margin.top + catCount * rowH + 22}
                     textAnchor="middle"
+                    direction="ltr"
                     fontSize="14px"
                     fill="var(--chart-subtitle, #3c5073)"
                     fontFamily="IBM Plex Sans Arabic, sans-serif"

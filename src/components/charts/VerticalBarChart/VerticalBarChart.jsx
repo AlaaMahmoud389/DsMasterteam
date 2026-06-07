@@ -24,6 +24,9 @@ const SERIES_COLORS = [
   'var(--chart-series-1, #1849a9)',
   'var(--chart-series-3, #2e90fa)',
   'var(--chart-series-4, #53b1fd)',
+  'var(--chart-series-2, #175cd3)',
+  'var(--chart-series-5, #b2ddff)',
+  'var(--chart-series-6, #d1e9ff)',
 ];
 
 function computeTicks(maxVal) {
@@ -109,11 +112,11 @@ export function VerticalBarChart({
 
   /* ── SVG layout — margin-based, direction-aware ──── */
   const VIEW_W = 560;
-  const PLOT_H  = 250;
+  const PLOT_H  = 180;
 
   const margin = {
     top:    32,
-    right:  isRtl ? 72 : 24,
+    right:  isRtl ? 88 : 24,   /* RTL: 12px gap + ~40px label + 20px title breathing room */
     bottom: 56,
     left:   isRtl ? 24 : 72,
   };
@@ -140,6 +143,19 @@ export function VerticalBarChart({
       }, 0);
       if (sum > dataMax) dataMax = sum;
     }
+  } else if (barType === 'stacked-combo') {
+    for (let i = 0; i < catCount; i++) {
+      const sum = series.reduce((acc, s, si) => {
+        if (hiddenSeries.has(si) || s.type === 'line') return acc;
+        return acc + (s.data[i] || 0);
+      }, 0);
+      if (sum > dataMax) dataMax = sum;
+    }
+    series.forEach((s, si) => {
+      if (!hiddenSeries.has(si) && s.type === 'line') {
+        s.data.forEach(v => { if (v > dataMax) dataMax = v; });
+      }
+    });
   } else {
     series.forEach((s, si) => {
       if (hiddenSeries.has(si)) return;
@@ -160,12 +176,13 @@ export function VerticalBarChart({
   const valY      = v => plotY + PLOT_H - scale(v);
   const baselineY = plotY + PLOT_H;
 
-  /* Y-axis — moves to RIGHT in RTL */
-  const tickLabelX      = isRtl ? plotX + plotW + 8 : plotX - 8;
+  /* Y-axis — right side in RTL, left side in LTR */
+  const tickLabelX      = isRtl ? plotX + plotW + 12 : plotX - 8;  /* 12px outside plot edge in RTL */
   const tickLabelAnchor = isRtl ? 'start' : 'end';
-  const yTitleX         = isRtl ? VIEW_W - 14 : 14;
+  const yTitleX         = isRtl ? VIEW_W - 18 : 14;                /* title at far edge with padding */
   const yTitleRotate    = isRtl ? 90 : -90;
   const yTitleMidY      = plotY + PLOT_H / 2;
+  const yAxisLineX      = isRtl ? plotX + plotW : plotX;           /* axis line on right in RTL */
 
   return (
     <div className={styles.card} dir={dir} ref={cardRef}>
@@ -241,6 +258,7 @@ export function VerticalBarChart({
                     x={tickLabelX}
                     y={ty + 4}
                     textAnchor={tickLabelAnchor}
+                    direction="ltr"
                     fontSize="14px"
                     fill="var(--chart-title, #000b36)"
                     fontFamily="IBM Plex Sans Arabic, sans-serif"
@@ -252,16 +270,31 @@ export function VerticalBarChart({
             })}
           </g>
 
+          {/* X-axis baseline + Y-axis line */}
+          <g aria-hidden="true">
+            <line
+              x1={plotX} y1={baselineY}
+              x2={plotX + plotW} y2={baselineY}
+              stroke="var(--chart-border, #e5e7eb)" strokeWidth="1.5"
+            />
+            <line
+              x1={yAxisLineX} y1={plotY}
+              x2={yAxisLineX} y2={baselineY}
+              stroke="var(--chart-border, #e5e7eb)" strokeWidth="1.5"
+            />
+          </g>
+
           {/* X-axis title — Figma VBC: charts/header-title/title = #000b36 */}
           {xAxisTitle && (
             <text
               x={plotX + plotW / 2}
-              y={SVG_H - 6}
+              y={SVG_H - 8}
               textAnchor="middle"
               fontSize="14px"
               fontWeight="500"
               fill="var(--chart-title, #000b36)"
               fontFamily="IBM Plex Sans Arabic, sans-serif"
+              direction={isRtl ? 'rtl' : undefined}
               aria-hidden="true"
             >
               {xAxisTitle}
@@ -397,6 +430,40 @@ export function VerticalBarChart({
                   style={{ cursor: 'pointer', outline: 'none' }}
                 />
               );
+
+            } else if (barType === 'stacked-combo') {
+              let offset = 0;
+              bars = series.map((s, si) => {
+                if (s.type === 'line') return null;
+                if (hiddenSeries.has(si)) return null;
+                const val     = s.data[ci] ?? 0;
+                const segTopY = valY(offset + val);
+                const segH    = scale(val);
+                offset += val;
+                const fill = val === 0
+                  ? 'var(--chart-null, #d2d6db)'
+                  : (s.color || SERIES_COLORS[si % SERIES_COLORS.length]);
+                const tooltipRows = [
+                  { label: cat,     value: String(val) },
+                  { label: s.label, value: '', marker: fill },
+                ];
+                return (
+                  <rect
+                    key={`${cat}-sc${si}`}
+                    x={cx - singleBarW / 2} y={segTopY}
+                    width={singleBarW} height={Math.max(segH, 0)}
+                    fill={fill}
+                    aria-label={`${s.label} — ${cat}: ${val}`}
+                    tabIndex={0}
+                    onMouseEnter={e => showTooltipAt(e, tooltipRows)}
+                    onMouseLeave={hideTooltip}
+                    onFocus={() => showTooltipFromFocus(cx - singleBarW / 2, segTopY, singleBarW, tooltipRows)}
+                    onBlur={hideTooltip}
+                    onKeyDown={e => e.key === 'Escape' && hideTooltip()}
+                    style={{ cursor: 'pointer', outline: 'none' }}
+                  />
+                );
+              });
             }
 
             return (
@@ -405,11 +472,12 @@ export function VerticalBarChart({
                 {/* Category label — Figma VBC: charts/header-title/title = #000b36 */}
                 <text
                   x={cx}
-                  y={baselineY + 20}
+                  y={baselineY + 28}
                   textAnchor="middle"
                   fontSize="14px"
                   fill="var(--chart-title, #000b36)"
                   fontFamily="IBM Plex Sans Arabic, sans-serif"
+                  direction={isRtl ? 'rtl' : undefined}
                   aria-hidden="true"
                 >
                   {cat}
@@ -418,10 +486,12 @@ export function VerticalBarChart({
             );
           })}
 
-          {/* Combo: line series overlay for series[1+] */}
-          {barType === 'combo' && series.slice(1).map((s, si) => {
-            if (hiddenSeries.has(si + 1)) return null;
-            const color = s.color || SERIES_COLORS[si + 1] || SERIES_COLORS[1];
+          {/* Combo / stacked-combo: line series overlay */}
+          {(barType === 'combo' || barType === 'stacked-combo') && series.map((s, si) => {
+            const isLine = barType === 'combo' ? si > 0 : s.type === 'line';
+            if (!isLine) return null;
+            if (hiddenSeries.has(si)) return null;
+            const color = s.color || SERIES_COLORS[si % SERIES_COLORS.length];
             const points = categories.map((_, ci) => {
               const cx  = colCenterX(ci);
               const val = s.data[ci] ?? 0;
@@ -507,10 +577,11 @@ VerticalBarChart.propTypes = {
       label: PropTypes.string.isRequired,
       data:  PropTypes.arrayOf(PropTypes.number).isRequired,
       color: PropTypes.string,
+      type:  PropTypes.oneOf(['bar', 'line']),
     })
   ).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  barType:    PropTypes.oneOf(['single', 'group', 'stacked', 'combo']),
+  barType:    PropTypes.oneOf(['single', 'group', 'stacked', 'combo', 'stacked-combo']),
   maxValue:   PropTypes.number,
   kpi: PropTypes.shape({
     value: PropTypes.string,

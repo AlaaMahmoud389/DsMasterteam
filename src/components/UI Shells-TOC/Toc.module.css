@@ -1,0 +1,114 @@
+/* ==========================================================
+   TOC (Table of Contents) — Masterteam Design System
+   Source: Figma WTmRAkJVvw0IvZMA7wBdTC / node 5005:13679
+   ========================================================== */
+
+/* ── Design token values ────────────────────────────────── */
+/* --toc/text/primary   → #000b36                           */
+/* --toc/text/secondary → #6c7c96                           */
+/* --size/text/typo-size-text-sm  → 14px                   */
+/* --size/text/typo-size-text-xl  → 20px                   */
+/* --line-height/text/line-heights-text-sm → 20px           */
+/* --line-height/text/line-heights-text-xl → 30px           */
+
+/* ── Root container ─────────────────────────────────────── */
+/* Figma: content-stretch flex flex-col gap-[8px] relative  */
+/* w-[222px] items-start (LTR) / items-end (RTL)            */
+
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 222px;
+  align-items: flex-start;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+}
+
+.tocRtl {
+  align-items: flex-end;
+}
+
+/* ── Page name header section ───────────────────────────── */
+/* Figma: content-stretch flex flex-col gap-[8px] w-full    */
+/* word-break:break-word leading-[0] items-start (LTR)      */
+/* items-end text-right (RTL)                               */
+
+.pageNameSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  word-break: break-word;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.pageNameSectionRtl {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* ── "On this page" label ───────────────────────────────── */
+/* Figma: font-weight-medium (500), text-sm (14px),         */
+/* line-height 20px, color: #6c7c96                         */
+/* flex flex-col justify-end leading-[0] relative shrink-0  */
+
+.pageLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  line-height: 0;   /* Figma leading-[0] on wrapper */
+}
+
+.pageLabelText {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #6c7c96;
+}
+
+/* ── "[Page Name]" title ────────────────────────────────── */
+/* Figma: font-weight-semibold (600), text-xl (20px),       */
+/* line-height 30px, color: #000b36                         */
+/* flex flex-col justify-end leading-[0] relative shrink-0  */
+
+.pageTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  line-height: 0;   /* Figma leading-[0] on wrapper */
+}
+
+.pageTitleText {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 30px;
+  color: #000b36;
+}
+
+/* ── TOC Items list ─────────────────────────────────────── */
+/* Figma: content-stretch flex flex-col relative shrink-0   */
+/* w-full items-start (LTR) / items-end (RTL)               */
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.itemsListRtl {
+  align-items: flex-end;
+}

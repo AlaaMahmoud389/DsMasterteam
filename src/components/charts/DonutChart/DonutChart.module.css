@@ -12,8 +12,12 @@
   gap: 20px; /* charts/container/chart-card-xl-gap = 20px */
   font-family: var(--font-sans, 'IBM Plex Sans Arabic', sans-serif);
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
   position: relative; /* required for absolutely-positioned tooltip */
+  container-type: inline-size;
+  overflow: hidden;
 }
 
 /* ── Header ─────────────────────────────────────── */
@@ -240,14 +244,27 @@
   align-items: center;
   gap: 20px;
   width: 100%;
+  min-width: 0;
 }
 
 .tableSide {
-  flex: 1 0 0;
+  flex: 1 1 0;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+}
+
+/* Stack chart + legend vertically on narrow cards */
+@container (max-width: 520px) {
+  .landscapeLayout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .tableSide {
+    gap: 12px;
+  }
 }
 
 /* ── Percentage Table (Figma: Type=Table) ─────────── */
