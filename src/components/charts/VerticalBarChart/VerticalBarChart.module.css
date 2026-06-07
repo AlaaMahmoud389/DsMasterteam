@@ -12,8 +12,11 @@
   gap: 20px; /* charts/container/chart-card-xl-gap = 20px — title → content */
   font-family: var(--font-sans, 'IBM Plex Sans Arabic', sans-serif);
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
   position: relative; /* required for absolutely-positioned tooltip */
+  overflow: hidden;
 }
 
 /* ── Header ─────────────────────────────────────── */
