@@ -1,0 +1,525 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { FloatingButton } from './FloatingButton';
+import { PlusIcon, ArrowRightIcon } from '../Button/ButtonIcons';
+import * as FloatingButtonStories from './FloatingButton.stories';
+
+<Meta of={FloatingButtonStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Actions / Floating Button</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Floating Button</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A Floating Button is a circular button that floats above the UI surface and represents the primary or most important action on a screen. It always contains an icon, and optionally a label (pill mode). Choose the variant that matches the action importance and surface color.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4380:12202</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/actions/floating-Button" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4380-12202" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Sizes','#sizes'],['States','#states'],['State Table','#state-table'],['On Color','#on-color'],['RTL Support','#rtl-support'],['Icon vs Pill','#icon-vs-pill'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 20px', display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', marginBottom: 16 }}>
+  <FloatingButton variant="neutral" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+  <FloatingButton variant="brand" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+  <FloatingButton variant="secondary" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+  <FloatingButton variant="brand" size="lg" iconOnly={false} leadIcon={<PlusIcon />}>Button</FloatingButton>
+  <FloatingButton variant="brand" size="sm" aria-label="Add small"><PlusIcon /></FloatingButton>
+  <FloatingButton variant="brand" size="lg" disabled aria-label="Disabled"><PlusIcon /></FloatingButton>
+</div>
+
+Three visual styles · two sizes · six states · icon-only (circle) and with-label (pill) · on-color variant · full RTL support. All tokens sourced from Figma node `4380:12202`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '40px 32px 28px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 28, marginBottom: 24 }}>
+  <div style={{ display: 'flex', gap: 32, alignItems: 'flex-end', flexWrap: 'wrap', justifyContent: 'center' }}>
+    <div style={{ textAlign: 'center' }}>
+      <FloatingButton variant="brand" size="lg" aria-label="Add" style={{ outline: '3px solid rgba(24,73,169,.3)', outlineOffset: 6 }}><PlusIcon /></FloatingButton>
+      <div style={{ fontSize: 11, color: '#6b7280', marginTop: 8, fontWeight: 600 }}>Icon-only (circle)</div>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <FloatingButton variant="brand" size="lg" iconOnly={false} leadIcon={<PlusIcon />} style={{ outline: '3px solid rgba(24,73,169,.3)', outlineOffset: 6 }}>Button</FloatingButton>
+      <div style={{ fontSize: 11, color: '#6b7280', marginTop: 8, fontWeight: 600 }}>With label (pill)</div>
+    </div>
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 24px', justifyContent: 'center' }}>
+    {[['1','Container (border-radius 9999px)'],['2','Icon (24 × 24 px, always present)'],['3','Label text (pill mode only)'],['4','Focus ring (keyboard nav)']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+{['#','Element','Required'].map(h => <th key={h} style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>{h}</th>)}
+</tr>
+</thead>
+<tbody>
+{[['1','Container','Always'],['2','Icon (24 × 24 px)','Required'],['3','Label text','Pill mode only'],['4','Focus ring','Auto on keyboard nav']].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0?'#fff':'#fafafa' }}>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6' }}><span style={{ width:20,height:20,borderRadius:'50%',background:'#1849a9',color:'#fff',fontSize:10,fontWeight:700,display:'inline-flex',alignItems:'center',justifyContent:'center' }}>{n}</span></td>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6', color:'#111827' }}>{el}</td>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6', color:'#6b7280' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Variants
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+  {[
+    ['neutral',   'Primary-Neutral',  '#1f2a37', 'Dark navy · secondary actions · best on light surfaces'],
+    ['brand',     'Primary-Brand',    '#1849a9', 'Brand blue · primary FAB action · most prominent'],
+    ['secondary', 'Secondary-Solid',  'rgba(24,73,169,.2)', 'Brand tint · softer secondary · pairs with brand'],
+  ].map(([v, figmaName, bg, desc]) => (
+    <div key={v} style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+      <FloatingButton variant={v} size="lg" aria-label={figmaName}><PlusIcon /></FloatingButton>
+      <FloatingButton variant={v} size="lg" iconOnly={false} leadIcon={<PlusIcon />}>Button</FloatingButton>
+      <div>
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}><code style={{ fontSize: 12, background: '#eff3fb', padding: '1px 6px', borderRadius: 4, color: '#1849a9' }}>{v}</code> — {figmaName}</div>
+        <div style={{ fontSize: 12, color: '#6b7280', marginTop: 2 }}>{desc}</div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '130px 170px 220px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>variant</span><span>Figma Style</span><span>Background</span><span>Text</span></div>
+{[
+{v:'neutral',  fs:'Primary-Neutral',  bg:'#1f2a37',            tx:'#f9fafb'},
+{v:'brand',    fs:'Primary-Brand',    bg:'#1849a9',            tx:'#f9fafb'},
+{v:'secondary',fs:'Secondary-Solid',  bg:'rgba(24,73,169,.2)', tx:'#1849a9'},
+].map(({v,fs,bg,tx},i)=>(
+<div key={v} style={{display:'grid',gridTemplateColumns:'130px 170px 220px 100px',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{v}</code>
+<code style={{fontSize:11,color:'#6b7280'}}>{fs}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:bg,border:'1px solid rgba(0,0,0,.12)',flexShrink:0}}/><code style={{fontSize:11}}>{bg}</code></span>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:tx,border:'1px solid rgba(0,0,0,.12)',flexShrink:0}}/><code style={{fontSize:11}}>{tx}</code></span>
+</div>
+))}
+</div>
+
+---
+
+## Sizes
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '4px 20px', marginBottom: 16 }}>
+  {[
+    ['Large', 'h: 64 px · padding: 20 px · icon: 24 px', 'lg'],
+    ['Small', 'h: 56 px · padding: 16 px · icon: 24 px', 'sm'],
+  ].map(([name, spec, sz]) => (
+    <div key={sz} style={{ display: 'flex', alignItems: 'center', gap: 18, padding: '16px 0', borderBottom: '1px solid #e5e7eb' }}>
+      <div style={{ minWidth: 180 }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
+        <div style={{ fontSize: 11, color: '#6b7280', marginTop: 2 }}>{spec}</div>
+      </div>
+      <FloatingButton variant="brand" size={sz} aria-label="Add"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="brand" size={sz} iconOnly={false} leadIcon={<PlusIcon />}>Button</FloatingButton>
+    </div>
+  ))}
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead><tr style={{ background: '#f0f1f3' }}>
+{['size','Height','Padding','Icon','Font','Line-height','Border-radius'].map(h=><th key={h} style={{ padding:'8px 16px', textAlign:'left', fontSize:11, fontWeight:600, color:'#6b7280', borderBottom:'1px solid #e5e7eb' }}>{h}</th>)}
+</tr></thead>
+<tbody>
+{[['lg','64 px','20 px','24 px','16 px','24 px','9999 px'],['sm','56 px','16 px','24 px','16 px','24 px','9999 px']].map(([sz,...vals],i)=>(
+<tr key={sz} style={{ background: i%2===0?'#fff':'#fafafa' }}>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6' }}><code style={{ fontSize:12, background:'#eff3fb', padding:'2px 7px', borderRadius:4, color:'#1849a9', fontWeight:600 }}>{sz}</code></td>
+{vals.map((v,j)=><td key={j} style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6', color:'#111827', fontWeight:600 }}>{v}</td>)}
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+All sizes share: `border-radius: 9999px` · `gap: 8px` · `font-weight: 500` · `font-family: IBM Plex Sans Arabic`.
+
+---
+
+## States
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(155px, 1fr))', gap: 14, marginBottom: 16 }}>
+  {[
+    ['Default',  <FloatingButton key="d"   variant="brand" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>, 'brand/bg/default · #1849a9'],
+    ['Hovered',  <FloatingButton key="h"   variant="brand" size="lg" aria-label="Add" style={{ backgroundColor:'#194185' }}><PlusIcon /></FloatingButton>, 'brand/bg/hover · #194185'],
+    ['Pressed',  <FloatingButton key="p"   variant="brand" size="lg" aria-label="Add" style={{ backgroundColor:'#102a56' }}><PlusIcon /></FloatingButton>, 'brand/bg/pressed · #102a56'],
+    ['Focused',  <FloatingButton key="f"   variant="brand" size="lg" aria-label="Add" style={{ boxShadow:'0 0 0 2px #1849a9, 0 0 0 5px #f9fafb' }}><PlusIcon /></FloatingButton>, 'focus ring · 2px+5px'],
+    ['Disabled', <FloatingButton key="dis" variant="brand" size="lg" disabled aria-label="Disabled"><PlusIcon /></FloatingButton>, 'disabled/bg · #d2d6db'],
+  ].map(([name, btn, tok]) => (
+    <div key={name} style={{ background:'#fff', border:'1px solid #e5e7eb', borderRadius:10, padding:'18px 14px 13px', display:'flex', flexDirection:'column', gap:11, alignItems:'flex-start' }}>
+      <span style={{ fontSize:10, fontWeight:700, textTransform:'uppercase', letterSpacing:'.08em', color:'#6b7280' }}>{name}</span>
+      {btn}
+      <code style={{ fontSize:11, background:'#f3f4f6', padding:'1px 6px', borderRadius:4, color:'#1849a9' }}>{tok}</code>
+    </div>
+  ))}
+</div>
+
+| State | How triggered | Visual change |
+|---|---|---|
+| Default | — | Base background |
+| Hovered | `:hover` | Darker background |
+| Pressed | `:active` | Darkest bg (Neutral: lighter per Figma) |
+| Selected | `aria-pressed="true"` | Same as pressed |
+| Focused | `:focus-visible` | 2px inner ring + 5px outer ring |
+| Disabled | `disabled` prop | `#d2d6db` bg · `#6c7c96` icon · no interaction |
+
+---
+
+## State Table
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead><tr style={{ background: '#f0f1f3' }}>
+{['Variant','State','Background','Figma token'].map(h=><th key={h} style={{ padding:'8px 16px', textAlign:'left', fontSize:11, fontWeight:600, color:'#6b7280', borderBottom:'1px solid #e5e7eb' }}>{h}</th>)}
+</tr></thead>
+<tbody>
+{[
+{v:'neutral',  st:'Default', bg:'#1f2a37',            f:'buttons/neutral/bg/default'},
+{v:'neutral',  st:'Hovered', bg:'#0d121c',            f:'buttons/neutral/bg/hover'},
+{v:'neutral',  st:'Pressed', bg:'#4d5761',            f:'buttons/neutral/bg/pressed'},
+{v:'brand',    st:'Default', bg:'#1849a9',            f:'buttons/primary/bg/default'},
+{v:'brand',    st:'Hovered', bg:'#194185',            f:'buttons/primary/bg/hover'},
+{v:'brand',    st:'Pressed', bg:'#102a56',            f:'buttons/primary/bg/pressed'},
+{v:'secondary',st:'Default', bg:'rgba(24,73,169,.2)', f:'buttons/secondary-solid/bg/default'},
+{v:'secondary',st:'Hovered', bg:'rgba(24,73,169,.1)', f:'buttons/secondary-solid/bg/hover'},
+{v:'secondary',st:'Pressed', bg:'rgba(24,73,169,.3)', f:'buttons/secondary-solid/bg/pressed'},
+{v:'on-color', st:'Default', bg:'#ffffff',            f:'button/button-background-oncolor-default'},
+{v:'on-color', st:'Hovered', bg:'rgba(255,255,255,.8)',f:'button/button-background-oncolor-hovered'},
+{v:'disabled', st:'—',       bg:'#d2d6db',            f:'disabled/background/disabled'},
+].map(({v,st,bg,f},i)=>(
+<tr key={`${v}-${st}`} style={{ background:i%2===0?'#fff':'#fafafa' }}>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6' }}><code style={{ fontSize:11, background:'#eff3fb', padding:'2px 5px', borderRadius:4, color:'#1849a9', fontWeight:600 }}>{v}</code></td>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6', color:'#6b7280' }}>{st}</td>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6' }}><span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:12,height:12,borderRadius:2,background:bg,border:'1px solid rgba(0,0,0,.12)',flexShrink:0}}/><code style={{fontSize:11}}>{bg}</code></span></td>
+<td style={{ padding:'10px 16px', borderBottom:'1px solid #f3f4f6' }}><code style={{ fontSize:11, color:'#6b7280' }}>{f}</code></td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## On Color
+
+Use `onColor` when the button sits on a colored, brand, or dark-image background. The button renders white with brand-tinted content.
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 14 }}>Default (on white)</div>
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+      <FloatingButton variant="neutral"   size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="brand"     size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="secondary" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+    </div>
+  </div>
+  <div style={{ background: '#1849a9', borderRadius: 10, padding: 20 }}>
+    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: 'rgba(255,255,255,.7)', marginBottom: 14 }}>On Color (on brand bg)</div>
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+      <FloatingButton variant="neutral"   size="lg" onColor aria-label="Add"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="brand"     size="lg" onColor aria-label="Add"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="secondary" size="lg" onColor aria-label="Add"><PlusIcon /></FloatingButton>
+    </div>
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>Rule:</strong> Use <code>onColor</code> only when placed directly on a brand-colored or dark surface. On white or neutral backgrounds the button will appear invisible.
+</div>
+
+---
+
+## RTL Support
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <FloatingButton variant="brand" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="brand" size="lg" iconOnly={false} leadIcon={<ArrowRightIcon />}>Next</FloatingButton>
+    </div>
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: 20 }} dir="rtl">
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14, direction: 'ltr' }}>
+      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
+      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <FloatingButton variant="brand" size="lg" dir="rtl" aria-label="إضافة"><PlusIcon /></FloatingButton>
+      <FloatingButton variant="brand" size="lg" dir="rtl" iconOnly={false} leadIcon={<ArrowRightIcon style={{ transform: 'scaleX(-1)' }} />}>التالي</FloatingButton>
+    </div>
+  </div>
+</div>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
+  <strong>Icon mirroring rule:</strong> Directional icons (arrows, chevrons) <strong>must</strong> be flipped with <code>transform: scaleX(-1)</code> in RTL. Symmetrical icons (plus, close) must <strong>never</strong> be flipped.
+</div>
+
+---
+
+## Icon vs Pill
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12, marginBottom: 16 }}>
+  {[
+    ['Icon-only — Large', <FloatingButton key="ol" variant="brand" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>],
+    ['Icon-only — Small', <FloatingButton key="os" variant="brand" size="sm" aria-label="Add"><PlusIcon /></FloatingButton>],
+    ['Pill — Large',      <FloatingButton key="pl" variant="brand" size="lg" iconOnly={false} leadIcon={<PlusIcon />}>Button</FloatingButton>],
+    ['Pill — Small',      <FloatingButton key="ps" variant="brand" size="sm" iconOnly={false} leadIcon={<PlusIcon />}>Button</FloatingButton>],
+    ['Neutral icon',      <FloatingButton key="n"  variant="neutral" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>],
+    ['Secondary icon',    <FloatingButton key="s"  variant="secondary" size="lg" aria-label="Add"><PlusIcon /></FloatingButton>],
+  ].map(([label, btn]) => (
+    <div key={label} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '18px 16px 14px', display: 'flex', flexDirection: 'column', gap: 11 }}>
+      <span style={{ fontSize: 11, color: '#6b7280', fontWeight: 600 }}>{label}</span>
+      {btn}
+    </div>
+  ))}
+</div>
+
+| Mode | `iconOnly` | Shape | When to use |
+|---|---|---|---|
+| Circle | `true` (default) | Square aspect ratio, round corners | Primary FAB, single action |
+| Pill | `false` | Auto width, round corners | When label adds clarity |
+
+```jsx
+// Icon-only (circle) — always provide aria-label
+<FloatingButton variant="brand" aria-label="Create new item">
+  <PlusIcon />
+</FloatingButton>
+
+// Pill mode — label replaces aria-label requirement
+<FloatingButton variant="brand" iconOnly={false} leadIcon={<PlusIcon />}>
+  Create
+</FloatingButton>
+```
+
+---
+
+## Token Table
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Sizing & Spacing</div>
+<div style={{ display: 'grid', gridTemplateColumns: '200px 90px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Figma token</span><span>Value</span><span>Usage</span><span>Size</span></div>
+{[
+{f:'floating-buttons/size/small/height',   v:'56 px',  u:'Button height',       s:'sm'},
+{f:'floating-buttons/size/large/height',   v:'64 px',  u:'Button height',       s:'lg'},
+{f:'floating-buttons/size/small/padding-x',v:'16 px',  u:'Horizontal padding',  s:'sm'},
+{f:'floating-buttons/size/large/padding-x',v:'20 px',  u:'Horizontal padding',  s:'lg'},
+{f:'floating-buttons/size/small/padding-y',v:'16 px',  u:'Vertical padding',    s:'sm'},
+{f:'floating-buttons/size/large/padding-y',v:'20 px',  u:'Vertical padding',    s:'lg'},
+{f:'floating-buttons/size/*/radius-rounded',v:'9999 px',u:'Border radius',      s:'all'},
+{f:'global/spacing-md',                    v:'8 px',   u:'Icon-to-label gap',   s:'all'},
+].map(({f,v,u,s},i)=>(
+<div key={f} style={{display:'grid',gridTemplateColumns:'200px 90px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:11,background:'#eff3fb',padding:'2px 5px',borderRadius:4,color:'#1849a9'}}>{f}</code>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+<code style={{fontSize:11,color:'#374151'}}>{s}</code>
+</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
+<div style={{ display: 'grid', gridTemplateColumns: '230px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Figma token</span><span>Value</span><span>Usage</span></div>
+{[
+{f:'buttons/neutral/bg/default',                  h:'#1f2a37',             u:'Neutral default bg'},
+{f:'buttons/neutral/bg/hover',                    h:'#0d121c',             u:'Neutral hover bg'},
+{f:'buttons/neutral/bg/pressed',                  h:'#4d5761',             u:'Neutral pressed bg'},
+{f:'buttons/primary/bg/default',                  h:'#1849a9',             u:'Brand default bg'},
+{f:'buttons/primary/bg/hover',                    h:'#194185',             u:'Brand hover bg'},
+{f:'buttons/primary/bg/pressed',                  h:'#102a56',             u:'Brand pressed bg'},
+{f:'buttons/secondary-solid/bg/default',          h:'rgba(24,73,169,.2)', u:'Secondary default bg'},
+{f:'button/button-background-oncolor-default',    h:'#ffffff',             u:'On-color default bg'},
+{f:'button/button-background-oncolor-hovered',    h:'rgba(255,255,255,.8)',u:'On-color hover bg'},
+{f:'buttons/neutral/label/default',               h:'#f9fafb',             u:'Neutral text'},
+{f:'buttons/primary/label/default',               h:'#f9fafb',             u:'Brand text'},
+{f:'buttons/secondary-solid/label/default',       h:'#1849a9',             u:'Secondary text'},
+{f:'disabled/background/disabled',                h:'#d2d6db',             u:'Disabled bg (all variants)'},
+{f:'disabled/text/disabled',                      h:'#6c7c96',             u:'Disabled text/icon'},
+].map(({f,h,u},i)=>(
+<div key={f} style={{display:'grid',gridTemplateColumns:'230px 160px 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
+<code style={{fontSize:11,background:'#eff3fb',padding:'2px 5px',borderRadius:4,color:'#1849a9'}}>{f}</code>
+<span style={{display:'inline-flex',alignItems:'center',gap:6}}><span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,.12)',flexShrink:0}}/><code style={{fontSize:11,color:'#111827'}}>{h}</code></span>
+<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
+</div>
+))}
+</div>
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '110px 100px 76px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
+{[
+{n:'children', type:'node',    tb:'#ecfdf5',tc:'#059669',def:'—',       d:'Icon node (iconOnly) or label text (pill mode). Required.'},
+{n:'variant',  type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'brand',   d:'neutral · brand · secondary — maps to Figma Primary-Neutral / Primary-Brand / Secondary-Solid'},
+{n:'size',     type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'lg',      d:'sm = 56 px · lg = 64 px — full-circle or pill height'},
+{n:'disabled', type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',   d:'Disabled — uses dedicated token colors, not opacity'},
+{n:'iconOnly', type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'true',    d:'true → circle; false → pill (requires leadIcon + label children)'},
+{n:'onColor',  type:'boolean', tb:'#f3f0ff',tc:'#7c3aed',def:'false',   d:'White button for placement on colored/dark surfaces'},
+{n:'leadIcon', type:'node',    tb:'#ecfdf5',tc:'#059669',def:'null',    d:'Icon before label — pill mode only (iconOnly=false)'},
+{n:'dir',      type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'—',       d:'ltr · rtl — text direction for Arabic content'},
+{n:'type',     type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'button',  d:'button · submit · reset'},
+{n:'onClick',  type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',       d:'Click handler'},
+].map(({n,type,tb,tc,def,d},i)=>(
+<div key={n} style={{display:'grid',gridTemplateColumns:'110px 100px 76px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
+<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
+<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
+<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
+<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
+</div>
+))}
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+{[
+{cat:'Keyboard Navigation',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'⌨',items:[
+{title:'Fully keyboard operable',desc:'Tab focuses the button. Enter or Space activates it — native <button> behavior.'},
+{title:'Focus ring on :focus-visible',desc:'2px inner ring (variant color) + 5px outer ring (#f9fafb) is always visible.'},
+{title:'Disabled removed from tab order',desc:'HTML disabled attribute removes the button from the focus sequence automatically.'},
+]},
+{cat:'ARIA & Semantics',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'A',items:[
+{title:'Always a native <button>',desc:'Never use div or span as trigger. The native element provides role, keyboard, and AT support.'},
+{title:'Icon-only requires aria-label',desc:'Without visible label text, always provide aria-label="Describe the action" for screen reader users.'},
+{title:'Icons are decorative',desc:'All icon slots receive aria-hidden="true" — the aria-label or label text is the accessible name.'},
+{title:'aria-disabled on disabled state',desc:'Set alongside HTML disabled so screen readers announce the state correctly.'},
+]},
+{cat:'Visual',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
+{title:'Disabled uses tokens, not opacity',desc:'#d2d6db bg · #6c7c96 icon/text. No opacity — keeps contrast predictable for low-vision users.'},
+{title:'Focus ring meets WCAG 2.2',desc:'2 px #1849a9 inner + 5 px #f9fafb outer achieves ≥ 3:1 contrast on most backgrounds.'},
+]},
+].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
+<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
+<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
+<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
+<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
+</div>
+{items.map(({title,desc},j)=>(
+<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
+<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
+<div><div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div><div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div></div>
+</div>
+))}
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width:16,height:16,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center' }}>✓</span>Do</div>
+{['Use brand FAB for the single most important action on a screen.','Use neutral FAB for secondary global actions on light backgrounds.','Place only one FAB per screen (or per major section).','Use pill mode when the label adds critical clarity for new users.','Always provide aria-label for icon-only buttons.','Use onColor when the FAB sits on a brand-colored or image surface.'].map((r,i)=>(
+<div key={i} style={{ display:'flex',alignItems:'flex-start',gap:8,padding:'8px 14px',borderBottom:'1px solid #f3f4f6',background:'#fff',fontSize:13,color:'#111827',lineHeight:1.45 }}><span style={{color:'#059669',fontWeight:700,flexShrink:0,marginTop:1}}>✓</span>{r}</div>
+))}
+</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width:16,height:16,borderRadius:'50%',background:'#dc2626',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center' }}>✕</span>Don't</div>
+{["Don't place more than one FAB per screen without clear hierarchy.","Don't use FAB for navigation — use nav bars or links instead.","Don't use FAB for destructive actions without a confirmation step.","Don't use onColor on white or light surfaces — it will disappear.","Don't use pill mode when the icon alone is universally understood.","Don't use iconOnly without aria-label — it breaks accessibility."].map((r,i)=>(
+<div key={i} style={{ display:'flex',alignItems:'flex-start',gap:8,padding:'8px 14px',borderBottom:'1px solid #f3f4f6',background:'#fff',fontSize:13,color:'#111827',lineHeight:1.45 }}><span style={{color:'#dc2626',fontWeight:700,flexShrink:0,marginTop:1}}>✕</span>{r}</div>
+))}
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { FloatingButton } from '@/components/FloatingButton';
+import { PlusIcon, ArrowRightIcon } from '@/components/Button/ButtonIcons';
+
+// Brand FAB — primary action (most common)
+<FloatingButton variant="brand" aria-label="Create new item">
+  <PlusIcon />
+</FloatingButton>
+
+// Neutral FAB — secondary action
+<FloatingButton variant="neutral" size="sm" aria-label="Add">
+  <PlusIcon />
+</FloatingButton>
+
+// Secondary FAB — softer brand tint
+<FloatingButton variant="secondary" aria-label="Add">
+  <PlusIcon />
+</FloatingButton>
+
+// Pill mode — icon + label
+<FloatingButton variant="brand" iconOnly={false} leadIcon={<PlusIcon />}>
+  Create
+</FloatingButton>
+
+// On colored background
+<FloatingButton variant="brand" onColor aria-label="Add">
+  <PlusIcon />
+</FloatingButton>
+
+// Disabled
+<FloatingButton variant="brand" disabled aria-label="Add (unavailable)">
+  <PlusIcon />
+</FloatingButton>
+
+// RTL pill
+<FloatingButton variant="brand" dir="rtl" iconOnly={false}
+  leadIcon={<ArrowRightIcon style={{ transform: 'scaleX(-1)' }} />}>
+  إضافة
+</FloatingButton>
+```
+
+---
+
+## Figma Reference
+
+- **Component node:** [4380:12202 — Floating Button](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4380-12202)
+- **DGA Guidelines:** [design.dga.gov.sa/guidelines/components/actions/floating-Button](https://design.dga.gov.sa/guidelines/components/actions/floating-Button)
+
+### Figma Properties → Component Props
+
+| Figma property | Values in Figma | Prop |
+|---|---|---|
+| Style | Primary-Neutral · Primary-Brand · Secondary-Solid | `variant` → neutral · brand · secondary |
+| Size | Small · Large | `size` → sm · lg |
+| State | Default · Hovered · Pressed · Selected · Focused · Disabled | CSS states + `disabled` prop |
+| Icon only | True · False | `iconOnly` |
+| On color | Yes · No | `onColor` |
+| RTL | True · False | `dir` → rtl · ltr |
+
+</div>

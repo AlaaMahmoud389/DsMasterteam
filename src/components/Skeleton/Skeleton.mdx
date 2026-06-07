@@ -1,0 +1,294 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { SkeletonLine, SkeletonRectangle, SkeletonCircle, SkeletonSquare, SkeletonTemplate } from './Skeleton';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Feedback / Skeleton</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Skeleton</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>Animated placeholder shapes used to represent loading content before actual data is available. Built from four primitives — Line, Rectangle, Circle, Square — that can be composed into five ready-made composite templates. All shapes share a horizontal shimmer animation using the neutral colour ramp from the design system.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4250:1948</span>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1948" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Primitives','#primitives'],['Line','#line'],['Rectangle','#rectangle'],['Circle','#circle'],['Square','#square'],['Composite Templates','#composite-templates'],['Shimmer Animation','#shimmer-animation'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Figma Reference','#figma-reference']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 32, alignItems: 'flex-start', marginBottom: 24 }}>
+  <div style={{ width: 280 }}>
+    <p style={{ margin: '0 0 8px', fontSize: 11, color: '#6b7280' }}>chart-content template</p>
+    <SkeletonTemplate type="chart-content" />
+  </div>
+  <div style={{ width: 280 }}>
+    <p style={{ margin: '0 0 8px', fontSize: 11, color: '#6b7280' }}>image-profile template</p>
+    <SkeletonTemplate type="image-profile" />
+  </div>
+  <div style={{ width: 280 }}>
+    <p style={{ margin: '0 0 8px', fontSize: 11, color: '#6b7280' }}>icon-list template</p>
+    <SkeletonTemplate type="icon-list" />
+  </div>
+</div>
+
+Four primitives (Line, Rectangle, Circle, Square) each carry a horizontal shimmer gradient animation. Five composite `SkeletonTemplate` variants assemble these primitives into common UI patterns (chart, image card, profile card, inline row, icon list). All tokens sourced from Figma node `4250:1948`.
+
+---
+
+## Primitives
+
+### Line
+
+`SkeletonLine` represents a row of text. Two height variants match the body text scale.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 320, marginBottom: 24, marginTop: 16 }}>
+  <div>
+    <p style={{ margin: '0 0 6px', fontSize: 11, color: '#6b7280' }}>Large — 22 px height · border-radius 8 px</p>
+    <SkeletonLine size="large" />
+  </div>
+  <div>
+    <p style={{ margin: '0 0 6px', fontSize: 11, color: '#6b7280' }}>Small — 14 px height · border-radius 8 px</p>
+    <SkeletonLine size="small" />
+  </div>
+</div>
+
+| Prop | Type | Default | Values |
+|------|------|---------|--------|
+| `size` | string | `'large'` | `'large'` · `'small'` |
+
+---
+
+### Rectangle
+
+`SkeletonRectangle` represents a button, chip, or narrow image strip. Size controls height; length controls width.
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24, marginTop: 16 }}>
+  {[
+    { size: 'large',  length: 'long',  label: 'Large + Long (40 × 320 px)' },
+    { size: 'large',  length: 'short', label: 'Large + Short (40 × 90 px)' },
+    { size: 'medium', length: 'long',  label: 'Medium + Long (32 × 320 px)' },
+    { size: 'medium', length: 'short', label: 'Medium + Short (32 × 75 px)' },
+    { size: 'small',  length: 'long',  label: 'Small + Long (24 × 320 px)' },
+    { size: 'small',  length: 'short', label: 'Small + Short (24 × 59 px)' },
+  ].map(({ size, length, label }) => (
+    <div key={label}>
+      <p style={{ margin: '0 0 4px', fontSize: 11, color: '#6b7280' }}>{label}</p>
+      <SkeletonRectangle size={size} length={length} />
+    </div>
+  ))}
+</div>
+
+| Prop | Type | Default | Values |
+|------|------|---------|--------|
+| `size` | string | `'large'` | `'large'` · `'medium'` · `'small'` |
+| `length` | string | `'long'` | `'long'` · `'short'` |
+| `fullWidth` | boolean | `false` | stretches to container width |
+
+---
+
+### Circle
+
+`SkeletonCircle` represents avatars, profile photos, or chart donuts. Seven sizes match the icon/avatar scale.
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-end', marginBottom: 24, marginTop: 16 }}>
+  {[24, 48, 64, 80, 120, 170, 240].map((size) => (
+    <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+      <SkeletonCircle size={size} />
+      <span style={{ fontSize: 11, color: '#6b7280' }}>{size}px</span>
+    </div>
+  ))}
+</div>
+
+| Prop | Type | Default | Values |
+|------|------|---------|--------|
+| `size` | number | `48` | `24` · `48` · `64` · `80` · `120` · `170` · `240` |
+
+---
+
+### Square
+
+`SkeletonSquare` represents thumbnails, icons on a square background, or image tiles. Same seven sizes as Circle.
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 20, alignItems: 'flex-end', marginBottom: 24, marginTop: 16 }}>
+  {[24, 48, 64, 80, 120, 170, 240].map((size) => (
+    <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+      <SkeletonSquare size={size} />
+      <span style={{ fontSize: 11, color: '#6b7280' }}>{size}px</span>
+    </div>
+  ))}
+</div>
+
+| Prop | Type | Default | Values |
+|------|------|---------|--------|
+| `size` | number | `48` | `24` · `48` · `64` · `80` · `120` · `170` · `240` |
+
+---
+
+## Composite Templates
+
+`SkeletonTemplate` composes primitives into five ready-made content patterns. Use these to match common card and list layouts without wiring primitives manually.
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 40, alignItems: 'flex-start', marginBottom: 24, marginTop: 16 }}>
+  {[
+    { type: 'chart-content',     label: 'chart-content',     desc: 'Large circle + 3 text lines' },
+    { type: 'image-content',     label: 'image-content',     desc: 'Image block + 3 lines + button' },
+    { type: 'image-profile',     label: 'image-profile',     desc: 'Image + avatar/name row + 3 lines + button' },
+    { type: 'image-button-text', label: 'image-button-text', desc: 'Circle icon + text line + button (row)' },
+    { type: 'icon-list',         label: 'icon-list',         desc: 'Square icon + 3 small lines (row)' },
+  ].map(({ type, label, desc }) => (
+    <div key={type} style={{ width: 280 }}>
+      <p style={{ margin: '0 0 2px', fontSize: 12, fontWeight: 600, color: '#111827', fontFamily: 'monospace' }}>{label}</p>
+      <p style={{ margin: '0 0 10px', fontSize: 11, color: '#6b7280' }}>{desc}</p>
+      <SkeletonTemplate type={type} />
+    </div>
+  ))}
+</div>
+
+| `type` | Layout | Primary shape |
+|--------|--------|---------------|
+| `chart-content` | Column | 240 px circle + 3 large lines |
+| `image-content` | Column | 221 px image (r=16) + 3 lines + small btn |
+| `image-profile` | Column | image + [24 px avatar + name line] + 3 lines + small btn |
+| `image-button-text` | Row | 48 px circle + [small line + medium btn] |
+| `icon-list` | Row | 48 px square + 3 small lines |
+
+---
+
+## Shimmer Animation
+
+The shimmer effect is a 90° horizontal gradient that scrolls across the shape:
+
+```
+Light ──► Mid ──► Dark ──► Mid ──► Light
+rgba(229,231,235, .2) · rgba(210,214,219, .2) · rgba(157,164,174, .2)
+```
+
+The gradient background-size is `800 px` wide and animates `background-position` from `-400 px` to `+400 px` over **1.6 s** with `ease-in-out` timing, creating a smooth sweep. This matches the Start → End gradient states in the Figma design tokens.
+
+---
+
+## Token Table
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+  <tr style={{ background: '#f9fafb' }}>
+    <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 700, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Token</th>
+    <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 700, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Value</th>
+    <th style={{ textAlign: 'left', padding: '10px 16px', fontWeight: 700, color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Usage</th>
+  </tr>
+</thead>
+<tbody>
+  {[
+    ['--background/background-neutral-200', 'rgba(229,231,235, .2)', 'Shimmer start/end (lightest)'],
+    ['--background/background-neutral-300', 'rgba(210,214,219, .2)', 'Shimmer mid transition'],
+    ['--background/background-neutral-400', 'rgba(157,164,174, .2)', 'Shimmer peak (darkest)'],
+    ['--radius/radius-xs',  '2 px',     'Square border-radius'],
+    ['--radius/radius-sm',  '4 px',     'Rectangle border-radius'],
+    ['--radius/radius-md',  '8 px',     'Line border-radius'],
+    ['--radius/radius-full','9999 px',  'Circle border-radius'],
+  ].map(([token, value, usage], i) => (
+    <tr key={token} style={{ background: i % 2 === 0 ? '#fff' : '#f9fafb' }}>
+      <td style={{ padding: '10px 16px', fontFamily: 'monospace', color: '#7c3aed', borderBottom: '1px solid #e5e7eb' }}>{token}</td>
+      <td style={{ padding: '10px 16px', fontFamily: 'monospace', borderBottom: '1px solid #e5e7eb' }}>{value}</td>
+      <td style={{ padding: '10px 16px', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>{usage}</td>
+    </tr>
+  ))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Properties
+
+### SkeletonLine
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'large' \| 'small'` | `'large'` | Height variant — 22 px or 14 px |
+| `style` | CSSProperties | — | Inline styles (e.g. custom width) |
+| `className` | string | — | Additional CSS class |
+
+### SkeletonRectangle
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'large' \| 'medium' \| 'small'` | `'large'` | Controls height (40 / 32 / 24 px) |
+| `length` | `'long' \| 'short'` | `'long'` | Controls width (320 px vs size-specific short) |
+| `fullWidth` | boolean | `false` | Stretch to 100% container width |
+
+### SkeletonCircle
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `24 \| 48 \| 64 \| 80 \| 120 \| 170 \| 240` | `48` | Diameter in px |
+
+### SkeletonSquare
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `24 \| 48 \| 64 \| 80 \| 120 \| 170 \| 240` | `48` | Side length in px |
+
+### SkeletonTemplate
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `type` | `'chart-content' \| 'image-content' \| 'image-profile' \| 'image-button-text' \| 'icon-list'` | `'chart-content'` | Composite layout to render |
+
+---
+
+## Accessibility
+
+- All skeleton primitives and templates render with `aria-hidden="true"` — screen readers skip them entirely.
+- Do **not** place interactive content inside a skeleton wrapper.
+- Replace skeleton markup with real content as soon as data loads; do not leave skeletons visible indefinitely.
+- Users with `prefers-reduced-motion` still see the static gradient shape — the animation pauses gracefully because no `animation` override is needed (the static gradient is always visible as the base).
+
+---
+
+## Usage Guidelines
+
+**Do**
+- Use skeletons during the **initial load** of async content, not for refresh/refetch operations (use a spinner for those).
+- Match the skeleton shape as closely as possible to the real content it replaces.
+- Use `SkeletonTemplate` for common card/list patterns; compose primitives manually only for custom layouts.
+- Keep skeleton durations short — if data hasn't loaded in 2–3 s, consider showing an error state instead.
+
+**Don't**
+- Don't use skeletons for content that loads in under ~300 ms (a flash of skeleton is worse than no skeleton).
+- Don't stack multiple layers of skeleton inside a skeleton (one level of placeholder is sufficient).
+- Don't animate indefinitely — always replace with real content once loaded.
+- Don't use skeleton for form fields or interactive controls.
+
+---
+
+## Figma Reference
+
+**File:** Masterteam Ds For Experiment ONLY  
+**Node:** `4250:1948` — Skeleton canvas
+
+Key child frames:
+
+| Frame | Node ID | Content |
+|-------|---------|---------|
+| Skeleton Line | `4730:320` | Large (22 px) + Small (14 px) |
+| Skeleton Circle | `4730:305` | 7 sizes: 24–240 px |
+| Skeleton Rectangle | `4730:292` | 6 variants (size × length) |
+| Skeleton Square | `4730:277` | 7 sizes: 24–240 px |
+| Skeleton Components | `4730:192` | 5 composite templates |
+
+</div>
