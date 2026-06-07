@@ -24,6 +24,9 @@ const SERIES_COLORS = [
   'var(--chart-series-1, #1849a9)',
   'var(--chart-series-3, #2e90fa)',
   'var(--chart-series-4, #53b1fd)',
+  'var(--chart-series-2, #175cd3)',
+  'var(--chart-series-5, #b2ddff)',
+  'var(--chart-series-6, #d1e9ff)',
 ];
 
 function computeTicks(maxVal) {
@@ -109,12 +112,12 @@ export function VerticalBarChart({
 
   /* ── SVG layout — margin-based, direction-aware ──── */
   const VIEW_W = 560;
-  const PLOT_H  = 250;
+  const PLOT_H  = 180;
 
   const margin = {
     top:    32,
     right:  isRtl ? 72 : 24,
-    bottom: 56,
+    bottom: 44,
     left:   isRtl ? 24 : 72,
   };
 
@@ -140,6 +143,19 @@ export function VerticalBarChart({
       }, 0);
       if (sum > dataMax) dataMax = sum;
     }
+  } else if (barType === 'stacked-combo') {
+    for (let i = 0; i < catCount; i++) {
+      const sum = series.reduce((acc, s, si) => {
+        if (hiddenSeries.has(si) || s.type === 'line') return acc;
+        return acc + (s.data[i] || 0);
+      }, 0);
+      if (sum > dataMax) dataMax = sum;
+    }
+    series.forEach((s, si) => {
+      if (!hiddenSeries.has(si) && s.type === 'line') {
+        s.data.forEach(v => { if (v > dataMax) dataMax = v; });
+      }
+    });
   } else {
     series.forEach((s, si) => {
       if (hiddenSeries.has(si)) return;
@@ -397,6 +413,40 @@ export function VerticalBarChart({
                   style={{ cursor: 'pointer', outline: 'none' }}
                 />
               );
+
+            } else if (barType === 'stacked-combo') {
+              let offset = 0;
+              bars = series.map((s, si) => {
+                if (s.type === 'line') return null;
+                if (hiddenSeries.has(si)) return null;
+                const val     = s.data[ci] ?? 0;
+                const segTopY = valY(offset + val);
+                const segH    = scale(val);
+                offset += val;
+                const fill = val === 0
+                  ? 'var(--chart-null, #d2d6db)'
+                  : (s.color || SERIES_COLORS[si % SERIES_COLORS.length]);
+                const tooltipRows = [
+                  { label: cat,     value: String(val) },
+                  { label: s.label, value: '', marker: fill },
+                ];
+                return (
+                  <rect
+                    key={`${cat}-sc${si}`}
+                    x={cx - singleBarW / 2} y={segTopY}
+                    width={singleBarW} height={Math.max(segH, 0)}
+                    fill={fill}
+                    aria-label={`${s.label} — ${cat}: ${val}`}
+                    tabIndex={0}
+                    onMouseEnter={e => showTooltipAt(e, tooltipRows)}
+                    onMouseLeave={hideTooltip}
+                    onFocus={() => showTooltipFromFocus(cx - singleBarW / 2, segTopY, singleBarW, tooltipRows)}
+                    onBlur={hideTooltip}
+                    onKeyDown={e => e.key === 'Escape' && hideTooltip()}
+                    style={{ cursor: 'pointer', outline: 'none' }}
+                  />
+                );
+              });
             }
 
             return (
@@ -418,10 +468,12 @@ export function VerticalBarChart({
             );
           })}
 
-          {/* Combo: line series overlay for series[1+] */}
-          {barType === 'combo' && series.slice(1).map((s, si) => {
-            if (hiddenSeries.has(si + 1)) return null;
-            const color = s.color || SERIES_COLORS[si + 1] || SERIES_COLORS[1];
+          {/* Combo / stacked-combo: line series overlay */}
+          {(barType === 'combo' || barType === 'stacked-combo') && series.map((s, si) => {
+            const isLine = barType === 'combo' ? si > 0 : s.type === 'line';
+            if (!isLine) return null;
+            if (hiddenSeries.has(si)) return null;
+            const color = s.color || SERIES_COLORS[si % SERIES_COLORS.length];
             const points = categories.map((_, ci) => {
               const cx  = colCenterX(ci);
               const val = s.data[ci] ?? 0;
@@ -507,10 +559,11 @@ VerticalBarChart.propTypes = {
       label: PropTypes.string.isRequired,
       data:  PropTypes.arrayOf(PropTypes.number).isRequired,
       color: PropTypes.string,
+      type:  PropTypes.oneOf(['bar', 'line']),
     })
   ).isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  barType:    PropTypes.oneOf(['single', 'group', 'stacked', 'combo']),
+  barType:    PropTypes.oneOf(['single', 'group', 'stacked', 'combo', 'stacked-combo']),
   maxValue:   PropTypes.number,
   kpi: PropTypes.shape({
     value: PropTypes.string,
