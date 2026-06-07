@@ -1,0 +1,160 @@
+/* ==========================================================
+   Skeleton — Masterteam Design System
+   Figma node: WTmRAkJVvw0IvZMA7wBdTC / 4250:1948
+   ========================================================== */
+
+/* ── Shimmer animation ─────────────────────────────────────── */
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+/* ── Base shimmer fill (shared by all primitives) ──────────── */
+
+.shimmer {
+  background-color: rgba(229, 231, 235, 0.2);           /* --background/background-neutral-200 */
+  background-image: linear-gradient(
+    90deg,
+    rgba(229, 231, 235, 0.2)  0%,                       /* --background/background-neutral-200 */
+    rgba(210, 214, 219, 0.2) 40%,                       /* --background/background-neutral-300 */
+    rgba(157, 164, 174, 0.2) 60%,                       /* --background/background-neutral-400 */
+    rgba(210, 214, 219, 0.2) 80%,                       /* --background/background-neutral-300 */
+    rgba(229, 231, 235, 0.2) 100%                       /* --background/background-neutral-200 */
+  );
+  background-size: 800px 100%;
+  background-repeat: no-repeat;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── SkeletonLine ──────────────────────────────────────────── */
+
+.line {
+  display: block;
+  width: 100%;
+  border-radius: 8px;                                   /* --radius/radius-md */
+}
+
+.lineLarge { height: 22px; }
+.lineSmall { height: 14px; }
+
+/* ── SkeletonRectangle ─────────────────────────────────────── */
+
+.rectangle {
+  display: block;
+  border-radius: 4px;                                   /* --radius/radius-sm */
+  flex-shrink: 0;
+}
+
+/* Heights by size */
+.rectangleLarge  { height: 40px; }
+.rectangleMedium { height: 32px; }
+.rectangleSmall  { height: 24px; }
+
+/* Widths by length */
+.rectangleLong  { width: 320px; }
+.rectangleShortLarge  { width: 90px; }
+.rectangleShortMedium { width: 75px; }
+.rectangleShortSmall  { width: 59px; }
+
+/* Full-width override (for stacked/layout uses) */
+.rectangleFull { width: 100%; }
+
+/* ── SkeletonCircle ────────────────────────────────────────── */
+
+.circle {
+  display: block;
+  border-radius: 9999px;                                /* --radius/radius-full */
+  flex-shrink: 0;
+}
+
+/* ── SkeletonSquare ────────────────────────────────────────── */
+
+.square {
+  display: block;
+  border-radius: 2px;                                   /* --radius/radius-xs */
+  flex-shrink: 0;
+}
+
+/* ── Shared size utilities (circle + square share the same sizes) ── */
+
+.size24  { width: 24px;  height: 24px; }
+.size48  { width: 48px;  height: 48px; }
+.size64  { width: 64px;  height: 64px; }
+.size80  { width: 80px;  height: 80px; }
+.size120 { width: 120px; height: 120px; }
+.size170 { width: 170px; height: 170px; }
+.size240 { width: 240px; height: 240px; }
+
+/* ── SkeletonTemplate — composite layouts ──────────────────── */
+
+.template {
+  display: flex;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* chart-content & image-content & image-profile: column layout */
+.templateColumn {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* image-button-text & icon-list: row layout */
+.templateRow {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Lines group inside templates */
+.linesGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Profile row: avatar + name text line side by side */
+.profileRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Content group (lines + button) in row templates */
+.rowContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Image placeholder (rectangle with larger radius) */
+.imagePlaceholder {
+  display: block;
+  width: 100%;
+  height: 221px;
+  border-radius: 16px;
+  flex-shrink: 0;
+}
+
+/* Small button placeholder */
+.btnSmall {
+  display: block;
+  height: 24px;
+  width: 80px;
+  border-radius: 4px;
+}
+
+/* Medium button placeholder */
+.btnMedium {
+  display: block;
+  height: 32px;
+  width: 100px;
+  border-radius: 4px;
+}

@@ -1,0 +1,226 @@
+/* ==========================================================
+   Modal — Masterteam Design System
+   Figma node: WTmRAkJVvw0IvZMA7wBdTC / 4393:101686
+   ========================================================== */
+
+/* ── Root card ─────────────────────────────────────────────── */
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                                         /* --modals/layout/gap */
+  background-color: #ffffff;                        /* --modals/background/default */
+  border-radius: 8px;                               /* --radius/radius-md */
+  padding: 24px;                                    /* --modals/layout/padding-x & padding-y */
+  width: 600px;
+  box-shadow: 0px 32px 64px -12px rgba(16, 24, 40, 0.14); /* Shadows/shadow-3xl */
+  overflow: hidden;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+.root.mobile {
+  width: 320px;
+}
+
+/* ── Close button ──────────────────────────────────────────── */
+/* Absolutely positioned: top-left (RTL) / top-right (LTR)    */
+/* top: padding(24) − overhang(10) = 14 px from card edge     */
+
+.closeBtn {
+  position: absolute;
+  top: -10px;
+  inset-inline-end: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;                                      /* --buttons/spacing/button-height-md */
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;                               /* --radius/radius-sm */
+  color: #000b36;
+  padding: 0;
+  transition: background-color 0.15s ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid #000b36;
+  outline-offset: 2px;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;                                         /* --model/modal-gap */
+  width: 100%;
+}
+
+/* Row containing featured icon + absolutely-positioned close */
+.titleRow {
+  position: relative;
+  display: flex;
+  gap: 8px;                                         /* --global/spacing-md */
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Featured icon circle — 40 × 40 px */
+.iconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;                                      /* --featured-icons/size/medium/width */
+  height: 40px;                                     /* --featured-icons/size/medium/height */
+  border-radius: 9999px;                            /* --featured-icons/radius/rounded */
+  background-color: #f3f4f6;                        /* --featured-icons/bg/default */
+  color: #233a61;
+  flex-shrink: 0;
+}
+
+/* Title — full-width row below the icon */
+.title {
+  margin: 0;
+  font-size: 18px;                                  /* --size/text/typo-size-text-Ig */
+  font-weight: 600;                                 /* --font-weight/font-weight-semibold */
+  line-height: 28px;                                /* --line-height/text/line-heights-text-Ig */
+  color: #000b36;                                   /* --modals/text/header */
+  word-break: break-word;
+}
+
+[dir='rtl'] .title {
+  text-align: right;
+}
+
+/* ── Body ──────────────────────────────────────────────────── */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 16px;                             /* --model/modal-content-bottom-padding */
+  width: 100%;
+}
+
+.description {
+  margin: 0;
+  font-size: 14px;                                  /* --size/text/typo-size-text-sm */
+  font-weight: 400;                                 /* --font-weight/font-weight-regular */
+  line-height: 20px;                                /* --line-height/text/line-heights-text-sm */
+  color: #233a61;                                   /* --modals/text/subtext */
+  word-break: break-word;
+  width: 100%;
+}
+
+[dir='rtl'] .description {
+  text-align: right;
+}
+
+/* ── Actions row ───────────────────────────────────────────── */
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;                                         /* --button/buttons-group-gap */
+  width: 100%;
+}
+
+/* Mobile: stacked column */
+.actionsMobile {
+  flex-direction: column;
+}
+
+/* Tertiary takes remaining space on desktop, pushing primary+secondary to the end */
+.tertiaryWrapper {
+  flex: 1 0 0;
+  display: flex;
+  align-items: center;
+}
+
+[dir='rtl'] .tertiaryWrapper {
+  justify-content: flex-end;
+}
+
+/* ── Action buttons ────────────────────────────────────────── */
+
+.actionPrimary,
+.actionSecondary,
+.actionTertiary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;                                         /* --buttons/spacing/buttons-sm-gap */
+  height: 32px;
+  padding: 0 8px;                                   /* --buttons/spacing/buttons-sm-padding */
+  border-radius: 4px;                               /* --buttons/spacing/button-radius */
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;                                  /* --size/text/typo-size-text-sm */
+  font-weight: 500;                                 /* --font-weight/font-weight-medium */
+  line-height: 20px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+/* Full-width on mobile */
+.actionFull {
+  width: 100%;
+}
+
+/* Primary — filled dark-blue */
+.actionPrimary {
+  background-color: #1849a9;                        /* --button/primary/background/default */
+  color: #f9fafb;                                   /* --button/primary/text/default */
+}
+
+.actionPrimary:hover {
+  background-color: #153e99;
+}
+
+/* Secondary — tinted blue */
+.actionSecondary {
+  background-color: rgba(24, 73, 169, 0.2);        /* --button/secondary/background/default */
+  color: #1849a9;                                   /* --button/secondary/text/default */
+}
+
+.actionSecondary:hover {
+  background-color: rgba(24, 73, 169, 0.3);
+}
+
+/* Tertiary — ghost/transparent */
+.actionTertiary {
+  background: transparent;
+  color: #175cd3;                                   /* --button/transparent/text/default */
+}
+
+.actionTertiary:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.actionPrimary:focus-visible,
+.actionSecondary:focus-visible,
+.actionTertiary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ── Arrow icon ────────────────────────────────────────────── */
+/* Flip horizontally in RTL so the arrow points toward "start" */
+
+.arrow {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+[dir='rtl'] .arrow {
+  transform: scaleX(-1);
+}

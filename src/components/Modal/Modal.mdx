@@ -1,0 +1,456 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Modal } from './Modal';
+import * as ModalStories from './Modal.stories';
+
+<Meta of={ModalStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 12, marginBottom: 24 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 6 }}>Components / Feedback / Modal</div>
+  <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, color: '#000b36' }}>Modal</h1>
+  <p style={{ margin: '8px 0 0', fontSize: 14, color: '#3c5073', lineHeight: 1.6 }}>A popup dialog that appears on top of the main screen to grab user attention for immediate actions or input. Contains a featured icon, title, optional description, and up to three action buttons (primary, secondary, tertiary). Available in desktop (600 px) and mobile (320 px) layouts with full RTL / Arabic support.</p>
+  <div style={{ display: 'flex', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
+    <span style={{ background: '#d1fae5', color: '#059669', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Available</span>
+    <span style={{ background: '#f0f4ff', color: '#1849a9', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20 }}>Node ID: 4393:101686</span>
+    <a href="https://design.dga.gov.sa/guidelines/components/feedback/modal" target="_blank" rel="noreferrer" style={{ background: '#fdf4ff', color: '#7c3aed', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>DGA Guidelines ↗</a>
+    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4393-101686" target="_blank" rel="noreferrer" style={{ background: '#fff7ed', color: '#c2410c', fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, textDecoration: 'none' }}>Figma ↗</a>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+    {[['Overview','#overview'],['Anatomy','#anatomy'],['Desktop vs Mobile','#desktop-vs-mobile'],['Actions Layout','#actions-layout'],['RTL Support','#rtl-support'],['Dismissible','#dismissible'],['Optional Content','#optional-content'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference'],['Mismatch Report','#mismatch-report']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+## Overview
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start', marginBottom: 16 }}>
+  <Modal />
+  <Modal mobile={true} />
+</div>
+
+White card with drop shadow · featured icon circle · semibold title · optional description · three-button footer (primary, secondary, tertiary) · desktop 600 px / mobile 320 px · full RTL / Arabic support. All tokens sourced from Figma node `4393:101686`.
+
+---
+
+## Anatomy
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px 24px', display: 'flex', flexDirection: 'column', gap: 28, marginBottom: 24 }}>
+  <div>
+    <Modal />
+  </div>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 24px' }}>
+    {[['1','Featured icon circle (40 × 40 px)'],['2','Close button (× — absolutely positioned)'],['3','Title (18 px semibold)'],['4','Description (14 px regular, optional)'],['5','Tertiary action (ghost, left-aligned desktop)'],['6','Secondary action (tinted)'],['7','Primary action (filled)']].map(([n, label]) => (
+      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
+        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
+        {label}
+      </div>
+    ))}
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+<th style={{ width: 32, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>#</th>
+<th style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Element</th>
+<th style={{ width: 200, padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>Required</th>
+</tr>
+</thead>
+<tbody>
+{[
+  ['1','Featured icon circle — 40 × 40 px, bg #f3f4f6, info icon inside','Always'],
+  ['2','Close button (×) — 32 × 32 px, absolute top-right (LTR) / top-left (RTL)','When dismissible=true (default)'],
+  ['3','Title — 18 px semibold, color #000b36','Always'],
+  ['4','Description — 14 px regular, color #233a61','When showDescription=true (default)'],
+  ['5','Tertiary action — ghost button, left-aligned desktop / stacked last mobile','When showActions=true (default)'],
+  ['6','Secondary action — tinted button rgba(24,73,169,0.2)','When showActions=true (default)'],
+  ['7','Primary action — filled button #1849a9','When showActions=true (default)'],
+].map(([n,el,req],i)=>(
+<tr key={n} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', verticalAlign: 'middle' }}>
+<span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{n}</span>
+</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#111827', verticalAlign: 'middle' }}>{el}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#6b7280', verticalAlign: 'middle' }}>{req}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Desktop vs Mobile
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start', marginBottom: 16 }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>Desktop — 600 px</div>
+    <Modal mobile={false} />
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>Mobile — 320 px</div>
+    <Modal mobile={true} />
+  </div>
+</div>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Property</span><span>Desktop</span><span>Mobile</span>
+</div>
+{[
+  ['Width','600 px','320 px'],
+  ['Border radius','8 px','8 px'],
+  ['Padding','24 px all sides','24 px all sides'],
+  ['Actions layout','Tertiary left · Secondary + Primary right','All three stacked full-width (Primary → Secondary → Tertiary)'],
+  ['Close button','Top-right (LTR) / top-left (RTL)','Top-right (LTR) / top-left (RTL)'],
+].map(([prop,desk,mob],i)=>(
+<div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', padding: '9px 16px', gap: 12, fontSize: 13, background: i%2===0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+  <span style={{ fontWeight: 500, color: '#374151' }}>{prop}</span>
+  <span style={{ color: '#111827' }}>{desk}</span>
+  <span style={{ color: '#111827' }}>{mob}</span>
+</div>
+))}
+</div>
+
+---
+
+## Actions Layout
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Desktop LTR — Tertiary left · Secondary + Primary right</div>
+    <Modal mobile={false} />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Mobile — All stacked full-width</div>
+    <Modal mobile={true} />
+  </div>
+  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 20px' }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>No Actions</div>
+    <Modal showActions={false} />
+  </div>
+</div>
+
+The three buttons follow a clear visual hierarchy:
+
+| Button | Style | Desktop position | Mobile position |
+|--------|-------|-----------------|-----------------|
+| **Primary** | Filled `#1849a9` | Far right | First (top) |
+| **Secondary** | Tinted `rgba(24,73,169,.2)` | Next to primary | Second |
+| **Tertiary** | Ghost `#175cd3` | Far left (flex-1) | Third (bottom) |
+
+---
+
+## RTL Support
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start', marginBottom: 16 }}>
+  <Modal rtl={true} title="عنوان الرسالة يُكتب هنا" description="يُكتب المحتوى الاضافي هنا في حال أن رسالة الاشعار أو التنبيه تحتاج الى شرح أو تفصيل." primaryActionLabel="إجراء" secondaryActionLabel="إجراء" tertiaryActionLabel="إجراء" />
+  <Modal rtl={true} mobile={true} title="عنوان الرسالة يُكتب هنا" description="يُكتب المحتوى الاضافي هنا في حال أن رسالة الاشعار أو التنبيه تحتاج الى شرح أو تفصيل." primaryActionLabel="إجراء" secondaryActionLabel="إجراء" tertiaryActionLabel="إجراء" />
+</div>
+
+Setting `rtl={true}` adds `dir="rtl"` to the root element. The browser automatically mirrors all flex directions. Key RTL behaviors:
+
+- **Close button** — moves to top-left via `inset-inline-end` (CSS logical property)
+- **Title and description** — right-aligned (`text-align: right`)
+- **Arrow icons** — flipped horizontally with `transform: scaleX(-1)` so arrows point in the semantically correct direction
+- **Desktop actions** — Tertiary moves to the right, Primary+Secondary to the left
+
+---
+
+## Dismissible
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, marginBottom: 16 }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>Dismissible (default)</div>
+    <Modal />
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>Non-dismissible</div>
+    <Modal dismissible={false} />
+  </div>
+</div>
+
+When `dismissible={false}` the × button is hidden. Dismiss behaviour (show/hide, animation) is the responsibility of the consuming page, not this component.
+
+---
+
+## Optional Content
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start', marginBottom: 16 }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>With description (default)</div>
+    <Modal />
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>Title only</div>
+    <Modal showDescription={false} />
+  </div>
+</div>
+
+`showDescription={false}` hides the body paragraph. `showActions={false}` hides the entire footer row.
+
+---
+
+## Token Table
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '220px 140px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Token</span><span>Value</span><span>Usage</span>
+</div>
+{[
+  ['--modals/background/default','#ffffff','Card background'],
+  ['--radius/radius-md','8px','Card border radius'],
+  ['--modals/layout/padding-x','24px','Horizontal card padding'],
+  ['--modals/layout/padding-y','24px','Vertical card padding'],
+  ['--modals/layout/gap','8px','Gap between header / body / actions'],
+  ['Shadows/shadow-3xl','0 32px 64px -12px rgba(16,24,40,.14)','Card drop shadow'],
+  ['--modals/text/header','#000b36','Title color'],
+  ['--modals/text/subtext','#233a61','Description color'],
+  ['--featured-icons/bg/default','#f3f4f6','Icon circle background'],
+  ['--featured-icons/size/medium','40×40 px','Icon circle dimensions'],
+  ['--model/modal-gap','8px','Header internal gap (icon row → title)'],
+  ['--model/modal-content-bottom-padding','16px','Body bottom padding'],
+  ['--button/primary/background/default','#1849a9','Primary button fill'],
+  ['--button/primary/text/default','#f9fafb','Primary button text'],
+  ['--button/secondary/background/default','rgba(24,73,169,.2)','Secondary button fill'],
+  ['--button/secondary/text/default','#1849a9','Secondary button text'],
+  ['--button/transparent/text/default','#175cd3','Tertiary button text'],
+  ['--buttons/spacing/button-height-md','32px','All action button height'],
+  ['--buttons/spacing/buttons-sm-padding','8px','Action button horizontal padding'],
+  ['--buttons/spacing/buttons-sm-gap','4px','Gap between icon and label in button'],
+  ['--buttons/spacing/button-radius','4px','Action button border radius'],
+].map(([tok,val,use],i)=>(
+<div key={tok} style={{ display: 'grid', gridTemplateColumns: '220px 140px 1fr', padding: '9px 16px', gap: 12, fontSize: 13, background: i%2===0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+  <code style={{ fontSize: 12, color: '#374151', fontFamily: 'monospace', background: 'transparent' }}>{tok}</code>
+  <code style={{ fontSize: 12, color: '#1849a9', fontFamily: 'monospace', background: 'transparent' }}>{val}</code>
+  <span style={{ color: '#6b7280' }}>{use}</span>
+</div>
+))}
+</div>
+
+---
+
+## Properties
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'inherit', fontSize: 13 }}>
+<thead>
+<tr style={{ background: '#f0f1f3' }}>
+{['Prop','Type','Default','Description'].map(h=>(
+<th key={h} style={{ padding: '8px 16px', textAlign: 'left', fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>{h}</th>
+))}
+</tr>
+</thead>
+<tbody>
+{[
+  ['mobile','boolean','false','Mobile 320 px card vs desktop 600 px card'],
+  ['rtl','boolean','false','Right-to-left layout for Arabic content'],
+  ['dismissible','boolean','true','Show the × close button'],
+  ['showDescription','boolean','true','Show the supporting description paragraph'],
+  ['showActions','boolean','true','Show the three action buttons'],
+  ['title','string','\'Title goes here\'','Modal heading text'],
+  ['description','string','\'When a Modal needs…\'','Supporting body text'],
+  ['primaryActionLabel','string','\'Button\'','Primary (filled) action label'],
+  ['secondaryActionLabel','string','\'Button\'','Secondary (tinted) action label'],
+  ['tertiaryActionLabel','string','\'Button\'','Tertiary (ghost) action label'],
+  ['onClose','function','—','Called when × is clicked'],
+  ['onPrimaryAction','function','—','Called when primary action is clicked'],
+  ['onSecondaryAction','function','—','Called when secondary action is clicked'],
+  ['onTertiaryAction','function','—','Called when tertiary action is clicked'],
+].map(([prop,type,def,desc],i)=>(
+<tr key={prop} style={{ background: i%2===0 ? '#fff' : '#fafafa' }}>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6' }}><code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{prop}</code></td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#7c3aed', fontFamily: 'monospace', fontSize: 12 }}>{type}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#059669', fontFamily: 'monospace', fontSize: 12 }}>{def}</td>
+<td style={{ padding: '10px 16px', borderBottom: '1px solid #f3f4f6', color: '#374151' }}>{desc}</td>
+</tr>
+))}
+</tbody>
+</table>
+</div>
+
+---
+
+## Accessibility
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+{[
+  ['role="dialog"','Announces the element as a modal dialog to screen readers'],
+  ['aria-modal="true"','Signals assistive technology that content behind the modal is inert'],
+  ['aria-label on close button','"Close modal" labels the × for screen readers (no visible text)'],
+  ['Keyboard focus','Wrap with a focus-trap library in production to keep Tab inside the modal'],
+  ['Backdrop / inert','The component renders the card only — implement backdrop + inert behind it in the page'],
+  ['Focus on open','Move focus to the modal container or the first interactive element when the modal opens'],
+  ['Escape key','Wire onClose to keydown Escape in the wrapping controller'],
+].map(([item,desc],i)=>(
+<div key={item} style={{ display: 'grid', gridTemplateColumns: '240px 1fr', padding: '10px 16px', gap: 12, fontSize: 13, background: i%2===0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+  <code style={{ fontSize: 12, color: '#374151', background: 'transparent', fontFamily: 'monospace' }}>{item}</code>
+  <span style={{ color: '#374151' }}>{desc}</span>
+</div>
+))}
+</div>
+
+---
+
+## Usage Guidelines
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 16 }}>
+<div style={{ flex: '1 1 280px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: '16px 20px' }}>
+  <div style={{ fontWeight: 700, color: '#15803d', marginBottom: 8, fontSize: 13 }}>✓ Do</div>
+  <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#166534', lineHeight: 1.8 }}>
+    <li>Use for actions requiring explicit user confirmation</li>
+    <li>Keep title concise — one clear sentence</li>
+    <li>Use description only when additional context genuinely helps</li>
+    <li>Trap keyboard focus inside the modal while open</li>
+    <li>Move focus back to the trigger element when the modal closes</li>
+    <li>Support Escape key to close</li>
+    <li>Use mobile layout on small viewports</li>
+  </ul>
+</div>
+<div style={{ flex: '1 1 280px', background: '#fff1f2', border: '1px solid #fecdd3', borderRadius: 10, padding: '16px 20px' }}>
+  <div style={{ fontWeight: 700, color: '#be123c', marginBottom: 8, fontSize: 13 }}>✗ Don't</div>
+  <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#9f1239', lineHeight: 1.8 }}>
+    <li>Don't use modals for non-blocking notifications — use Inline Alert or Toast</li>
+    <li>Don't stack multiple modals</li>
+    <li>Don't put excessive content or forms inside the modal card</li>
+    <li>Don't leave background content interactive while modal is open</li>
+    <li>Don't omit a way to dismiss (at minimum, provide a close button)</li>
+    <li>Don't auto-close without user action on confirmation modals</li>
+  </ul>
+</div>
+</div>
+
+---
+
+## Implementation Examples
+
+```jsx
+import { Modal } from '@/components/Modal';
+
+// Basic usage
+<Modal
+  title="Confirm Action"
+  description="This will permanently delete the record. Are you sure?"
+  primaryActionLabel="Delete"
+  secondaryActionLabel="Cancel"
+  tertiaryActionLabel="Learn more"
+  onClose={() => setOpen(false)}
+  onPrimaryAction={handleDelete}
+  onSecondaryAction={() => setOpen(false)}
+  onTertiaryAction={openHelpCenter}
+/>
+
+// Mobile layout
+<Modal mobile title="Confirm" onClose={close} />
+
+// RTL / Arabic
+<Modal
+  rtl
+  title="عنوان الرسالة يُكتب هنا"
+  description="يُكتب المحتوى الاضافي هنا في حال أن رسالة الاشعار أو التنبيه تحتاج الى شرح أو تفصيل."
+  primaryActionLabel="إجراء"
+  secondaryActionLabel="إجراء"
+  tertiaryActionLabel="إجراء"
+  onClose={close}
+/>
+
+// Non-dismissible, no actions (info-only)
+<Modal
+  dismissible={false}
+  showActions={false}
+  title="Processing…"
+  description="Please wait while we process your request."
+/>
+```
+
+**Page-level wiring pattern:**
+
+```jsx
+const [modalOpen, setModalOpen] = useState(false);
+
+// Render backdrop + modal card
+{modalOpen && (
+  <div
+    style={{
+      position: 'fixed', inset: 0,
+      background: 'rgba(0,0,0,0.45)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      zIndex: 1000,
+    }}
+    onClick={() => setModalOpen(false)}
+  >
+    <div onClick={(e) => e.stopPropagation()}>
+      <Modal
+        onClose={() => setModalOpen(false)}
+        onPrimaryAction={handleConfirm}
+        onSecondaryAction={() => setModalOpen(false)}
+        onTertiaryAction={handleTertiary}
+      />
+    </div>
+  </div>
+)}
+```
+
+---
+
+## Figma Reference
+
+**Node:** `4393:101686` — [Open in Figma](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4393-101686)
+
+| Figma layer | Code element |
+|---|---|
+| `_Modal Header` | `.header` flex column |
+| `Title` (icon row) | `.titleRow` with relative positioning |
+| `Button-Close` | `.closeBtn` absolute `top:-10px inset-inline-end:-10px` |
+| `Text and supporting text` | `.title` paragraph |
+| `_Modal Body` | `.body` with `padding-bottom: 16px` |
+| `_Modal Actions` | `.actions` flex row (desktop) / `.actionsMobile` flex column |
+| `Primary Action` | `.actionPrimary` filled `#1849a9` |
+| `Secondary Action` | `.actionSecondary` tinted `rgba(24,73,169,.2)` |
+| `Tertiary Action` | `.actionTertiary` ghost `#175cd3` |
+
+---
+
+## Mismatch Report
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+<div style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr 100px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+  <span>Element</span><span>Figma spec</span><span>Code implementation</span><span>Status</span>
+</div>
+{[
+  ['Card background','white (--modals/background/default)','#ffffff','✓ Match'],
+  ['Card shadow','0px 32px 64px -12px rgba(16,24,40,.14)','Same','✓ Match'],
+  ['Card radius','8px (radius-md)','8px','✓ Match'],
+  ['Card padding','24px all (padding-x + padding-y)','24px','✓ Match'],
+  ['Desktop width','600px','600px','✓ Match'],
+  ['Mobile width','320px','320px','✓ Match'],
+  ['Title color','#000b36 (modals/text/header)','#000b36','✓ Match'],
+  ['Title size/weight','18px / 600 semibold','18px / 600','✓ Match'],
+  ['Description color','#233a61 (modals/text/subtext)','#233a61','✓ Match'],
+  ['Icon circle bg','#f3f4f6 (featured-icons/bg/default)','#f3f4f6','✓ Match'],
+  ['Button icons','arrow-right-02-sharp (Figma asset, 7-day TTL)','Inline SVG arrow path','⚠ Approximation — using inline SVG to avoid expiring URLs'],
+  ['Desktop actions','Tertiary flex-1 left · Sec+Pri right','Same via DOM order + flex-1','✓ Match'],
+  ['Mobile actions','Primary → Secondary → Tertiary stacked','Same via conditional rendering','✓ Match'],
+  ['Close position','top:-10px right:-10px relative to titleRow','Same via absolute CSS','✓ Match'],
+  ['RTL close position','top:-10px left:-10px (LTR equivalent)','inset-inline-end (logical)','✓ Match'],
+  ['Backdrop','Not part of this Figma node','Not rendered — consuming page responsibility','⚠ By design — page-level concern'],
+  ['Focus trap','ARIA pattern requirement','Not built-in — consuming page responsibility','⚠ By design — page-level concern'],
+].map(([el,fig,code,status],i)=>(
+<div key={el} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr 100px', padding: '9px 16px', gap: 12, fontSize: 12, background: i%2===0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6' }}>
+  <span style={{ fontWeight: 500, color: '#374151' }}>{el}</span>
+  <span style={{ color: '#6b7280', fontFamily: 'monospace', fontSize: 11 }}>{fig}</span>
+  <span style={{ color: '#374151', fontFamily: 'monospace', fontSize: 11 }}>{code}</span>
+  <span style={{ color: status.startsWith('✓') ? '#15803d' : '#b45309', fontWeight: 600 }}>{status}</span>
+</div>
+))}
+</div>
+
+</div>
