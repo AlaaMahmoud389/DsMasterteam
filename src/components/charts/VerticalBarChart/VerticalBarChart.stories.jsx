@@ -35,6 +35,20 @@ const COMBO_SERIES = [
   { id: 2, label: 'معدل النمو',  data: [220, 180, 200, 160, 350, 200, 130] },
 ];
 
+const STACKED_COMBO_SERIES = [
+  { id: 1, label: 'Series 1', data: [120, 80,  130, 100, 60,  70,  75] },
+  { id: 2, label: 'Series 2', data: [100, 65,  110,  90, 50,  60,  65] },
+  { id: 3, label: 'Series 3', data: [ 80, 50,   90,  70, 40,  45,  50] },
+  { id: 4, label: 'Trend',    type: 'line', data: [350, 280, 390, 320, 210, 250, 270] },
+];
+
+const RTL_STACKED_COMBO_SERIES = [
+  { id: 1, label: 'السلسلة 1', data: [120, 80,  130, 100, 60,  70,  75] },
+  { id: 2, label: 'السلسلة 2', data: [100, 65,  110,  90, 50,  60,  65] },
+  { id: 3, label: 'السلسلة 3', data: [ 80, 50,   90,  70, 40,  45,  50] },
+  { id: 4, label: 'الاتجاه',   type: 'line', data: [350, 280, 390, 320, 210, 250, 270] },
+];
+
 const RTL_CATS = ['يناير', 'فبراير', 'مارس', 'أبريل'];
 
 const KPI_DEFAULT = {
@@ -59,7 +73,7 @@ export default {
     },
     barType: {
       control: 'select',
-      options: ['single', 'group', 'stacked', 'combo'],
+      options: ['single', 'group', 'stacked', 'combo', 'stacked-combo'],
       description: 'Bar layout mode from Figma',
       table: { defaultValue: { summary: 'single' } },
     },
@@ -187,6 +201,36 @@ export const ComboChart = {
     yAxisTitle: 'Value',
     xAxisTitle: 'Month',
     dir:        'ltr',
+  },
+};
+
+export const StackedComboChart = {
+  name: 'Stacked Combo Chart',
+  args: {
+    title:      'Monthly Performance — Stacked Bars + Trend Line',
+    categories: MONTHS_7,
+    series:     STACKED_COMBO_SERIES,
+    barType:    'stacked-combo',
+    showKpi:    false,
+    showLegend: true,
+    yAxisTitle: 'Value',
+    xAxisTitle: 'Month',
+    dir:        'ltr',
+  },
+};
+
+export const StackedComboChartRTL = {
+  name: 'Stacked Combo Chart — RTL',
+  args: {
+    title:      'الأداء الشهري — أعمدة مكدسة + خط الاتجاه',
+    categories: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو'],
+    series:     RTL_STACKED_COMBO_SERIES,
+    barType:    'stacked-combo',
+    showKpi:    false,
+    showLegend: true,
+    yAxisTitle: 'القيمة',
+    xAxisTitle: 'الشهر',
+    dir:        'rtl',
   },
 };
 

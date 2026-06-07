@@ -155,7 +155,7 @@ export function DonutChart({
   // Half donut: crop the SVG to just the upper arc + a small notch for center text
   const viewBox = isHalf ? `0 0 280 145` : `0 0 280 280`;
   const svgWidth = '100%';
-  const svgStyle = isHalf ? { maxWidth: 280, aspectRatio: '280/145' } : { maxWidth: 280, aspectRatio: '1' };
+  const svgStyle = isHalf ? { maxWidth: 320, aspectRatio: '280/145' } : { maxWidth: 280, aspectRatio: '1' };
 
   /* ── Skeleton placeholder segments (6 equal slices) ─ */
   const SKEL_DELAYS = [0, 0.15, 0.3, 0.45, 0.6, 0.75];
@@ -338,7 +338,7 @@ export function DonutChart({
 
               {!isPie && !isHalf && <circle cx={CX} cy={CY} r={innerR} fill="white" aria-hidden="true" />}
               {!isPie && isHalf && (
-                <path d={`M ${CX - innerR} ${CY} A ${innerR} ${innerR} 0 0 1 ${CX + innerR} ${CY} Z`}
+                <path d={`M ${CX - innerR} ${CY} A ${innerR} ${innerR} 0 0 0 ${CX + innerR} ${CY} Z`}
                   fill="white" aria-hidden="true" />
               )}
 

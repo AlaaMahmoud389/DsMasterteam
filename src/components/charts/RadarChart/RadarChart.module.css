@@ -27,8 +27,11 @@
   gap: 20px;
   font-family: var(--font-sans, 'IBM Plex Sans Arabic', sans-serif);
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
   position: relative;
+  overflow: hidden;
 }
 
 /* ── Header ───────────────────────────────────── */
