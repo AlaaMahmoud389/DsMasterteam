@@ -51,10 +51,10 @@ const ICON_ITEMS = [
 
 const ICON_TEXT_ITEMS = [
   { type: 'group', label: 'People' },
-  { type: 'item', value: 'user',  label: 'User Profile', icon: <SampleIcon /> },
-  { type: 'item', value: 'flag',  label: 'Country Flag', icon: <FlagIcon /> },
+  { type: 'item', value: 'user',  label: 'User Profile', icon: <Icon name="user"     size={20} /> },
+  { type: 'item', value: 'users', label: 'Country Flag', icon: <Icon name="users"    size={20} /> },
   { type: 'group', label: 'Ratings' },
-  { type: 'item', value: 'star',  label: 'Starred', icon: <StarIcon /> },
+  { type: 'item', value: 'star',  label: 'Starred',      icon: <Icon name="star"     size={20} /> },
   { type: 'item', value: 'none',  label: 'No Icon',  disabled: true },
 ];
 
