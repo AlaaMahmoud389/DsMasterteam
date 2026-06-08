@@ -33,7 +33,7 @@ export function ChipTrailIcon({ size = 16 }) {
 function XIcon({ size = 12 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 12 12" fill="none" aria-hidden="true">
-      <path d="M1.5 1.5L10.5 10.5M10.5 1.5L1.5 10.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M1.5 1.5L10.5 10.5M10.5 1.5L1.5 10.5" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }
@@ -169,7 +169,7 @@ export function Chip({
           tabIndex={isDisabled ? -1 : 0}
           disabled={isDisabled}
         >
-          <XIcon size={iconSize} />
+          <XIcon size={12} />
         </button>
       )}
     </span>
