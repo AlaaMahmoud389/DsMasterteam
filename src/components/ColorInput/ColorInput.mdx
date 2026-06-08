@@ -1,51 +1,73 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import { ColorInput } from './ColorInput';
 import * as ColorInputStories from './ColorInput.stories';
 
 <Meta of={ColorInputStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Form / Color Input</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Color Input</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 700, lineHeight: 1.7 }}>
+
+<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '2px solid #e5e7eb' }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Form / ColorInput</div>
+  <h1 style={{ fontSize: 28, fontWeight: 700, margin: '0 0 12px', color: '#000b36' }}>Color Input</h1>
+  <p style={{ fontSize: 15, color: '#374151', maxWidth: 700, lineHeight: 1.6, margin: '0 0 16px' }}>
     A specialised form field for capturing and displaying colour values. Combines a colour swatch preview, a hex text display, an optional suffix label, and an inline colour picker panel that opens on focus. Supports two sizes, three background styles, all standard input states, and full RTL layout.
-  </div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+  </p>
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#ecfdf5', border: '1px solid #a7f3d0', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#059669', fontWeight: 500 }}>
       <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
       Available
     </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>216 variants</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4798:23371</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4747-83318" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff6ff', border: '1px solid #bfdbfe', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#1849a9', fontWeight: 500 }}>216 variants</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff6ff', border: '1px solid #bfdbfe', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#1849a9', fontWeight: 500 }}>Node 4798:23371</span>
+  </div>
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 10, padding: '20px 24px', marginBottom: 40 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.06em' }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 24px' }}>
+    {[
+      ['overview',     'Overview'],
+      ['anatomy',      'Anatomy'],
+      ['state',        'Property: State'],
+      ['filled',       'Property: Filled'],
+      ['error',        'Property: Error'],
+      ['size',         'Property: Size'],
+      ['style',        'Property: Style'],
+      ['label',        'Property: Label'],
+      ['prefix',       'Property: Prefix'],
+      ['suffix',       'Property: Suffix'],
+      ['icon',         'Property: Icon'],
+      ['helper-text',  'Property: Helper Text'],
+      ['picker-panel', 'Colour Picker Panel'],
+      ['rtl',          'RTL Support'],
+      ['token-table',  'Token Table'],
+      ['properties',   'Properties'],
+      ['accessibility','Accessibility'],
+      ['usage',        'Usage Guidelines'],
+    ].map(([id, label]) => (
+      <a key={id} href={`#${id}`} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 1.6 }}>{label}</a>
+    ))}
   </div>
 </div>
 
 ---
 
-## Overview
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
 
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 16 }}>
-  <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Default (unfilled)</div>
-      <ColorInput label="Colour" defaultValue="" />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Filled with value</div>
-      <ColorInput label="Brand colour" defaultValue="#7C53EE" />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>With helper text</div>
-      <ColorInput label="Colour" defaultValue="#1849A9" showHelperText helperText="Pick a brand colour" />
-    </div>
-  </div>
-</div>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Use the Playground below to interactively explore all props. The Controls panel lets you toggle states, sizes, and styles in real time.
+</p>
+
+<Canvas of={ColorInputStories.Playground} />
+<Controls of={ColorInputStories.Playground} />
 
 ---
 
-## Anatomy
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
+
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The Color Input is composed of up to eight distinct parts. Each part is independently toggleable via props.
+</p>
 
 <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 24 }}>
   <div style={{ marginBottom: 20 }}>
@@ -72,9 +94,11 @@ import * as ColorInputStories from './ColorInput.stories';
 
 ---
 
-## Property: State
+<h2 id="state" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: State</h2>
 
-Seven interaction states covering the full input lifecycle.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Seven interaction states covering the full input lifecycle.
+</p>
 
 <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 16 }}>
   {[
@@ -86,46 +110,50 @@ Seven interaction states covering the full input lifecycle.
     { st: 'Error',                el: <ColorInput label="Error" error defaultValue="#7C53EE" showHelperText helperText="Invalid colour value" /> },
   ].map(({ st, el }) => (
     <div key={st} style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap' }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 180, fontFamily: 'system-ui' }}>{st}</span>
+      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 180, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>{st}</span>
       {el}
     </div>
   ))}
 </div>
 
 <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ display: 'grid', gridTemplateColumns: '140px 120px 120px 120px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
-  <span>State</span><span>Input BG</span><span>Border</span><span>Underline</span><span>Notes</span>
-</div>
-{[
-  { st: 'Default',       bg: '#FFFFFF',       border: '#D3D7DC 1px',  ul: 'none',     note: 'Prefix bg=#F4F5F7 · text #B7BECB (placeholder) or #000C37 (filled)' },
-  { st: 'Hovered',       bg: '#FFFFFF',       border: '#202B38 1px',  ul: 'none',     note: 'Border darkens on hover' },
-  { st: 'Pressed',       bg: '#F4F5F7',       border: '#D3D7DC 1px',  ul: '#194AAA',  note: 'Filled bg + primary underline appears' },
-  { st: 'Focused',       bg: '#FFFFFF',       border: '#D3D7DC 1px',  ul: '#194AAA',  note: '2px bottom underline · no outer ring' },
-  { st: 'Focused Picker',bg: '#FFFFFF',       border: '#D3D7DC 1px',  ul: '#194AAA',  note: 'Same as Focused + colour picker panel shown (height expands to 282px)' },
-  { st: 'Read-only',     bg: 'transparent',   border: '#CFD4DD 1px',  ul: 'none',     note: 'Prefix still shown · no picker opens' },
-  { st: 'Disabled',      bg: 'transparent',   border: '#E6E8EC 1px',  ul: 'none',     note: 'Prefix bg=#E6E8EC · text #6D7D97 · pointer-events:none' },
-].map(({ st, bg, border, ul, note }, i) => (
-  <div key={st} style={{ display: 'grid', gridTemplateColumns: '140px 120px 120px 120px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
-    <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{st}</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: bg, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
-      <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
-    </span>
-    <code style={{ fontSize: 10, color: '#374151' }}>{border}</code>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-      {ul !== 'none' && <span style={{ display: 'inline-block', width: 12, height: 4, background: ul, flexShrink: 0, borderRadius: 1 }} />}
-      <code style={{ fontSize: 10, color: '#374151' }}>{ul}</code>
-    </span>
-    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+  <div style={{ display: 'grid', gridTemplateColumns: '140px 120px 120px 120px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Input BG</span><span>Border</span><span>Underline</span><span>Notes</span>
   </div>
-))}
+  {[
+    { st: 'Default',        bg: '#FFFFFF',     border: '#D3D7DC 1px',  ul: 'none',    note: 'Prefix bg=#F4F5F7 · text #B7BECB (placeholder) or #000C37 (filled)' },
+    { st: 'Hovered',        bg: '#FFFFFF',     border: '#202B38 1px',  ul: 'none',    note: 'Border darkens on hover' },
+    { st: 'Pressed',        bg: '#F4F5F7',     border: '#D3D7DC 1px',  ul: '#194AAA', note: 'Filled bg + primary underline appears' },
+    { st: 'Focused',        bg: '#FFFFFF',     border: '#D3D7DC 1px',  ul: '#194AAA', note: '2px bottom underline · no outer ring' },
+    { st: 'Focused Picker', bg: '#FFFFFF',     border: '#D3D7DC 1px',  ul: '#194AAA', note: 'Same as Focused + colour picker panel shown (height expands to 282px)' },
+    { st: 'Read-only',      bg: 'transparent', border: '#CFD4DD 1px',  ul: 'none',    note: 'Prefix still shown · no picker opens' },
+    { st: 'Disabled',       bg: 'transparent', border: '#E6E8EC 1px',  ul: 'none',    note: 'Prefix bg=#E6E8EC · text #6D7D97 · pointer-events:none' },
+  ].map(({ st, bg, border, ul, note }, i) => (
+    <div key={st} style={{ display: 'grid', gridTemplateColumns: '140px 120px 120px 120px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{st}</span>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+        <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: bg, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
+        <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
+      </span>
+      <code style={{ fontSize: 10, color: '#374151' }}>{border}</code>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+        {ul !== 'none' && <span style={{ display: 'inline-block', width: 12, height: 4, background: ul, flexShrink: 0, borderRadius: 1 }} />}
+        <code style={{ fontSize: 10, color: '#374151' }}>{ul}</code>
+      </span>
+      <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{note}</span>
+    </div>
+  ))}
 </div>
+
+<Canvas of={ColorInputStories.States} />
 
 ---
 
-## Property: Filled
+<h2 id="filled" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Filled</h2>
 
-`Filled` tracks whether a colour value has been entered. When `Filled=False` the text area shows the placeholder; when `Filled=True` it shows the hex value in dark text (#000C37) and the swatch shows the current colour.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>Filled</code> tracks whether a colour value has been entered. When <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>Filled=False</code> the text area shows the placeholder; when <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>Filled=True</code> it shows the hex value in dark text (#000C37) and the swatch shows the current colour.
+</p>
 
 <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
   <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
@@ -138,16 +166,30 @@ Seven interaction states covering the full input lifecycle.
   </div>
 </div>
 
-| `Filled` | Swatch colour | Text shown | Text colour |
-|---|---|---|---|
-| `false` | `#E6E8EC` (grey placeholder) | Placeholder text | `#B7BECB` |
-| `true` | The entered hex colour | Hex value (e.g. `7C53EE`) | `#000C37` |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 160px 160px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Filled</span><span>Swatch colour</span><span>Text shown</span><span>Text colour</span>
+  </div>
+  {[
+    { filled: 'false', swatch: '#E6E8EC (grey placeholder)', text: 'Placeholder text', textColor: '#B7BECB' },
+    { filled: 'true',  swatch: 'The entered hex colour',    text: 'Hex value (e.g. 7C53EE)', textColor: '#000C37' },
+  ].map(({ filled, swatch, text, textColor }, i) => (
+    <div key={filled} style={{ display: 'grid', gridTemplateColumns: '100px 160px 160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{filled}</code>
+      <span style={{ fontSize: 13, color: '#374151' }}>{swatch}</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{text}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{textColor}</code>
+    </div>
+  ))}
+</div>
 
 ---
 
-## Property: Error
+<h2 id="error" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Error</h2>
 
-`error` applies a red border and turns the helper text red. In Figma, Error=True only appears on **Read-only** and **Disabled** states — indicating a pre-existing invalid value rather than a live validation error.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>error</code> applies a red border and turns the helper text red. In Figma, Error=True only appears on <strong>Read-only</strong> and <strong>Disabled</strong> states — indicating a pre-existing invalid value rather than a live validation error.
+</p>
 
 <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
   <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
@@ -162,17 +204,30 @@ Seven interaction states covering the full input lifecycle.
   </div>
 </div>
 
-| Element | Normal | Error |
-|---|---|---|
-| Input border | `#D3D7DC` | `#A40000` |
-| Helper icon | `#243B62` | `#A40000` |
-| Helper text | `#243B62` | `#A40000` |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Element</span><span>Normal</span><span>Error</span>
+  </div>
+  {[
+    { el: 'Input border', normal: '#D3D7DC', error: '#A40000' },
+    { el: 'Helper icon',  normal: '#243B62', error: '#A40000' },
+    { el: 'Helper text',  normal: '#243B62', error: '#A40000' },
+  ].map(({ el, normal, error }, i) => (
+    <div key={el} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{el}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{normal}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{error}</code>
+    </div>
+  ))}
+</div>
 
 ---
 
-## Property: Size
+<h2 id="size" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Size</h2>
 
-Two sizes control the input height and swatch dimensions.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Two sizes control the input height and swatch dimensions.
+</p>
 
 <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -181,7 +236,7 @@ Two sizes control the input height and swatch dimensions.
       { sz: 'md', label: 'Medium (md)' },
     ].map(({ sz, label }) => (
       <div key={sz} style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 12, color: '#6b7280', minWidth: 100, fontFamily: 'system-ui' }}>{label}</span>
+        <span style={{ fontSize: 12, color: '#6b7280', minWidth: 100, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>{label}</span>
         <ColorInput size={sz} label={label} defaultValue="#1849A9" />
       </div>
     ))}
@@ -189,36 +244,40 @@ Two sizes control the input height and swatch dimensions.
 </div>
 
 <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ display: 'grid', gridTemplateColumns: '80px 100px 90px 90px 80px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
-  <span>Size</span><span>Input H</span><span>Prefix W</span><span>Swatch</span><span>Font</span><span>LH</span><span>Total height</span>
-</div>
-{[
-  { sz: 'Large (lg)', h: '40 px', pw: '48 px', sw: '16 × 16 px', fs: '16 px', lh: '24 px', total: '68 px (with label)' },
-  { sz: 'Medium (md)', h: '32 px', pw: '40 px', sw: '14 × 14 px', fs: '14 px', lh: '20 px', total: '60 px (with label)' },
-].map(({ sz, h, pw, sw, fs, lh, total }, i) => (
-  <div key={sz} style={{ display: 'grid', gridTemplateColumns: '80px 100px 90px 90px 80px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
-    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 5px', borderRadius: 3, color: '#1849a9' }}>{sz}</code>
-    <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{h}</span>
-    <span style={{ fontSize: 12, color: '#374151' }}>{pw}</span>
-    <span style={{ fontSize: 12, color: '#374151' }}>{sw}</span>
-    <span style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{fs}</span>
-    <span style={{ fontSize: 12, color: '#374151' }}>{lh}</span>
-    <span style={{ fontSize: 12, color: '#6b7280' }}>{total}</span>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 100px 90px 90px 80px 100px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Input H</span><span>Prefix W</span><span>Swatch</span><span>Font</span><span>LH</span><span>Total height</span>
   </div>
-))}
+  {[
+    { sz: 'Large (lg)',  h: '40 px', pw: '48 px', sw: '16 × 16 px', fs: '16 px', lh: '24 px', total: '68 px (with label)' },
+    { sz: 'Medium (md)', h: '32 px', pw: '40 px', sw: '14 × 14 px', fs: '14 px', lh: '20 px', total: '60 px (with label)' },
+  ].map(({ sz, h, pw, sw, fs, lh, total }, i) => (
+    <div key={sz} style={{ display: 'grid', gridTemplateColumns: '100px 100px 90px 90px 80px 100px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{sz}</code>
+      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{h}</span>
+      <span style={{ fontSize: 12, color: '#374151' }}>{pw}</span>
+      <span style={{ fontSize: 12, color: '#374151' }}>{sw}</span>
+      <span style={{ fontSize: 12, fontWeight: 600, color: '#111827' }}>{fs}</span>
+      <span style={{ fontSize: 12, color: '#374151' }}>{lh}</span>
+      <span style={{ fontSize: 12, color: '#6b7280' }}>{total}</span>
+    </div>
+  ))}
 </div>
+
+<Canvas of={ColorInputStories.Sizes} />
 
 ---
 
-## Property: Style
+<h2 id="style" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Style</h2>
 
-Three background style variants adapt the input to different surface contexts.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Three background style variants adapt the input to different surface contexts.
+</p>
 
 <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
   {[
-    { fs: 'default',        bg: '#f9fafb', label: 'Default — white bg, 1 px border', desc: 'Use on white surfaces.' },
-    { fs: 'filled-darker',  bg: '#e5e7eb', label: 'Filled darker — #F4F5F7 bg, no border', desc: 'Use on slightly tinted surfaces.' },
-    { fs: 'filled-lighter', bg: '#f0f1f3', label: 'Filled lighter — #FDFDFE bg, no border', desc: 'Use on near-white or light card surfaces.' },
+    { fs: 'default',        bg: '#f9fafb', label: 'Default — white bg, 1 px border',           desc: 'Use on white surfaces.' },
+    { fs: 'filled-darker',  bg: '#e5e7eb', label: 'Filled darker — #F4F5F7 bg, no border',     desc: 'Use on slightly tinted surfaces.' },
+    { fs: 'filled-lighter', bg: '#f0f1f3', label: 'Filled lighter — #FDFDFE bg, no border',    desc: 'Use on near-white or light card surfaces.' },
   ].map(({ fs, bg, label, desc }) => (
     <div key={fs} style={{ background: bg, borderRadius: 8, padding: '16px 20px', border: '1px solid #e5e7eb' }}>
       <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 10 }}>{label}</div>
@@ -231,40 +290,44 @@ Three background style variants adapt the input to different surface contexts.
 </div>
 
 <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ display: 'grid', gridTemplateColumns: '160px 120px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
-  <span>fieldStyle</span><span>Background</span><span>Border</span><span>Use when</span>
-</div>
-{[
-  { fs: '"default"', bg: '#FFFFFF', border: '1px #D3D7DC', use: 'Standard form fields on white or light grey page backgrounds' },
-  { fs: '"filled-darker"', bg: '#F4F5F7', border: 'none', use: 'Fields placed inside card panels or slightly tinted background areas' },
-  { fs: '"filled-lighter"', bg: '#FDFDFE', border: 'none', use: 'Fields inside white cards where a subtle fill still distinguishes the input' },
-].map(({ fs, bg, border, use }, i) => (
-  <div key={fs} style={{ display: 'grid', gridTemplateColumns: '160px 120px 100px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
-    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{fs}</code>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 2, background: bg, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
-      <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
-    </span>
-    <code style={{ fontSize: 10, color: '#374151' }}>{border}</code>
-    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{use}</span>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 130px 110px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>fieldStyle</span><span>Background</span><span>Border</span><span>Use when</span>
   </div>
-))}
+  {[
+    { fs: '"default"',       bg: '#FFFFFF', border: '1px #D3D7DC', use: 'Standard form fields on white or light grey page backgrounds' },
+    { fs: '"filled-darker"', bg: '#F4F5F7', border: 'none',        use: 'Fields placed inside card panels or slightly tinted background areas' },
+    { fs: '"filled-lighter"',bg: '#FDFDFE', border: 'none',        use: 'Fields inside white cards where a subtle fill still distinguishes the input' },
+  ].map(({ fs, bg, border, use }, i) => (
+    <div key={fs} style={{ display: 'grid', gridTemplateColumns: '180px 130px 110px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{fs}</code>
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+        <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 2, background: bg, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
+        <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
+      </span>
+      <code style={{ fontSize: 10, color: '#374151' }}>{border}</code>
+      <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{use}</span>
+    </div>
+  ))}
 </div>
+
+<Canvas of={ColorInputStories.Styles} />
 
 ---
 
-## Property: Label
+<h2 id="label" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Label</h2>
 
-The label sits above the input field. It has its own properties: **RTL**, **Type** (optional/required), **Size**, **Disabled**, **Required** asterisk, and **Text**.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The label sits above the input field. It has its own properties: <strong>RTL</strong>, <strong>Type</strong> (optional/required), <strong>Size</strong>, <strong>Disabled</strong>, <strong>Required</strong> asterisk, and <strong>Text</strong>.
+</p>
 
 <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
     {[
-      { desc: 'LTR label', el: <ColorInput label="Colour" defaultValue="#1849A9" /> },
-      { desc: 'RTL label', el: <ColorInput label="اللون" dir="rtl" defaultValue="#1849A9" /> },
+      { desc: 'LTR label',    el: <ColorInput label="Colour" defaultValue="#1849A9" /> },
+      { desc: 'RTL label',    el: <ColorInput label="اللون" dir="rtl" defaultValue="#1849A9" /> },
       { desc: 'Required (*)', el: <ColorInput label="Required colour" required defaultValue="#1849A9" /> },
-      { desc: 'Disabled', el: <ColorInput label="Disabled" disabled defaultValue="#1849A9" /> },
-      { desc: 'No label', el: <ColorInput showLabel={false} defaultValue="#1849A9" /> },
+      { desc: 'Disabled',     el: <ColorInput label="Disabled" disabled defaultValue="#1849A9" /> },
+      { desc: 'No label',     el: <ColorInput showLabel={false} defaultValue="#1849A9" /> },
     ].map(({ desc, el }) => (
       <div key={desc}>
         <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>{desc}</div>
@@ -275,29 +338,33 @@ The label sits above the input field. It has its own properties: **RTL**, **Type
 </div>
 
 <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Label specifications (Figma)</div>
-{[
-  { prop: 'Text',     val: 'Any string', desc: 'Label text content. Set via label prop.' },
-  { prop: 'Required', val: 'true / false', desc: 'Shows red asterisk (*) before label text. Color: #A40000 · 14px Regular.' },
-  { prop: 'RTL',      val: 'ltr / rtl',  desc: 'Direction mirrors with the parent input via the dir prop.' },
-  { prop: 'Size',     val: 'Large / Medium', desc: 'Label height is 20px for both sizes. Font stays 14px.' },
-  { prop: 'Disabled', val: 'true / false', desc: 'Label text colour changes to #6D7D97 when disabled.' },
-  { prop: 'Show Label', val: 'true / false', desc: 'Toggle visibility via showLabel prop.' },
-  { prop: 'Font',     val: 'IBM Plex Sans Arabic · 14px · w400 · lh=20px', desc: 'Normal label. Color: #000C37.' },
-].map(({ prop, val, desc }, i) => (
-  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '130px 220px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code>
-    <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
-    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
-  </div>
-))}
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#6b7280' }}>Label specifications (Figma)</div>
+  {[
+    { prop: 'Text',       val: 'Any string',                                 desc: 'Label text content. Set via label prop.' },
+    { prop: 'Required',   val: 'true / false',                               desc: 'Shows red asterisk (*) before label text. Color: #A40000 · 14px Regular.' },
+    { prop: 'RTL',        val: 'ltr / rtl',                                  desc: 'Direction mirrors with the parent input via the dir prop.' },
+    { prop: 'Size',       val: 'Large / Medium',                             desc: 'Label height is 20px for both sizes. Font stays 14px.' },
+    { prop: 'Disabled',   val: 'true / false',                               desc: 'Label text colour changes to #6D7D97 when disabled.' },
+    { prop: 'Show Label', val: 'true / false',                               desc: 'Toggle visibility via showLabel prop.' },
+    { prop: 'Font',       val: 'IBM Plex Sans Arabic · 14px · w400 · lh=20px', desc: 'Normal label. Color: #000C37.' },
+  ].map(({ prop, val, desc }, i) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '130px 240px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151', fontWeight: 600 }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{val}</code>
+      <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+    </div>
+  ))}
 </div>
+
+<Canvas of={ColorInputStories.LabelVariants} />
 
 ---
 
-## Property: Prefix (Colour Swatch)
+<h2 id="prefix" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Prefix (Colour Swatch)</h2>
 
-The **Prefix** is the left/start panel containing the colour swatch preview rectangle. It acts as the button that opens the colour picker. Controlled by the `showPrefix` prop.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The <strong>Prefix</strong> is the left/start panel containing the colour swatch preview rectangle. It acts as the button that opens the colour picker. Controlled by the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>showPrefix</code> prop.
+</p>
 
 <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
   <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
@@ -311,36 +378,40 @@ The **Prefix** is the left/start panel containing the colour swatch preview rect
 </div>
 
 <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Prefix (colour swatch) specifications</div>
-{[
-  { prop: 'Figma layer',      val: '_Input Prefix-Suffix', desc: 'Shared with other form components in the design system' },
-  { prop: 'Large size',       val: '48 × 40 px',          desc: 'Width=48px · height matches input (40px)' },
-  { prop: 'Medium size',      val: '40 × 32 px',          desc: 'Width=40px · height matches input (32px)' },
-  { prop: 'Background',       val: '#F4F5F7',              desc: 'Light grey — same as Figma variable. Disabled: #E6E8EC' },
-  { prop: 'Swatch rectangle', val: '16 × 16 px',          desc: 'Inner coloured square showing the selected colour. Border-radius: 2px.' },
-  { prop: 'RTL',              val: 'auto-mirrors',         desc: 'In RTL the prefix appears on the right side via inline-end positioning' },
-  { prop: 'Interaction',      val: 'Click opens picker',  desc: 'Triggers "Focused Picker" state, showing the colour picker panel below' },
-].map(({ prop, val, desc }, i) => (
-  <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 160px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{prop}</code>
-    <code style={{ fontSize: 11, color: '#374151' }}>{val}</code>
-    <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
-  </div>
-))}
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#6b7280' }}>Prefix (colour swatch) specifications</div>
+  {[
+    { prop: 'Figma layer',      val: '_Input Prefix-Suffix', desc: 'Shared with other form components in the design system' },
+    { prop: 'Large size',       val: '48 × 40 px',          desc: 'Width=48px · height matches input (40px)' },
+    { prop: 'Medium size',      val: '40 × 32 px',          desc: 'Width=40px · height matches input (32px)' },
+    { prop: 'Background',       val: '#F4F5F7',              desc: 'Light grey — same as Figma variable. Disabled: #E6E8EC' },
+    { prop: 'Swatch rectangle', val: '16 × 16 px',          desc: 'Inner coloured square showing the selected colour. Border-radius: 2px.' },
+    { prop: 'RTL',              val: 'auto-mirrors',         desc: 'In RTL the prefix appears on the right side via inline-end positioning' },
+    { prop: 'Interaction',      val: 'Click opens picker',  desc: 'Triggers "Focused Picker" state, showing the colour picker panel below' },
+  ].map(({ prop, val, desc }, i) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '180px 160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151', fontWeight: 600 }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{val}</code>
+      <span style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</span>
+    </div>
+  ))}
 </div>
+
+<Canvas of={ColorInputStories.PrefixSuffix} />
 
 ---
 
-## Property: Suffix
+<h2 id="suffix" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Suffix</h2>
 
-The **Suffix** is the right/end panel showing a short text label (e.g. "HEX"). Controlled by `showSuffix` and `suffixText` props.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The <strong>Suffix</strong> is the right/end panel showing a short text label (e.g. "HEX"). Controlled by <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>showSuffix</code> and <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>suffixText</code> props.
+</p>
 
 <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
   {[
     { desc: 'Default suffix (HEX)', el: <ColorInput label="HEX suffix" defaultValue="#7C53EE" /> },
-    { desc: 'Custom suffix text', el: <ColorInput label="Custom suffix" defaultValue="#7C53EE" suffixText="CSS" /> },
-    { desc: 'No suffix', el: <ColorInput label="No suffix" defaultValue="#7C53EE" showSuffix={false} /> },
-    { desc: 'RTL suffix', el: <ColorInput label="هكس" dir="rtl" defaultValue="#7C53EE" suffixText="هكس" /> },
+    { desc: 'Custom suffix text',   el: <ColorInput label="Custom suffix" defaultValue="#7C53EE" suffixText="CSS" /> },
+    { desc: 'No suffix',            el: <ColorInput label="No suffix" defaultValue="#7C53EE" showSuffix={false} /> },
+    { desc: 'RTL suffix',           el: <ColorInput label="هكس" dir="rtl" defaultValue="#7C53EE" suffixText="هكس" /> },
   ].map(({ desc, el }) => (
     <div key={desc} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px' }}>
       <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>{desc}</div>
@@ -349,19 +420,31 @@ The **Suffix** is the right/end panel showing a short text label (e.g. "HEX"). C
   ))}
 </div>
 
-| Detail | Value |
-|---|---|
-| Background | `#F4F5F7` |
-| Font | IBM Plex Sans Arabic · 14 px · Regular (400) · `#6D7D97` |
-| Border | `1px solid #D3D7DC` on inline-start edge |
-| Min width | ~60 px (Large) · ~52 px (Medium) |
-| RTL | In RTL, suffix appears on inline-end (left side) |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Detail</span><span>Value</span>
+  </div>
+  {[
+    { detail: 'Background',  value: '#F4F5F7' },
+    { detail: 'Font',        value: 'IBM Plex Sans Arabic · 14 px · Regular (400) · #6D7D97' },
+    { detail: 'Border',      value: '1px solid #D3D7DC on inline-start edge' },
+    { detail: 'Min width',   value: '~60 px (Large) · ~52 px (Medium)' },
+    { detail: 'RTL',         value: 'In RTL, suffix appears on inline-end (left side)' },
+  ].map(({ detail, value }, i) => (
+    <div key={detail} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{detail}</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{value}</span>
+    </div>
+  ))}
+</div>
 
 ---
 
-## Property: Icon
+<h2 id="icon" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Icon</h2>
 
-The **Icon** property adds an optional leading icon inside the text area, to the left of the text content. Controlled by `showIcon` and `icon` props.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The <strong>Icon</strong> property adds an optional leading icon inside the text area, to the left of the text content. Controlled by <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>showIcon</code> and <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>icon</code> props.
+</p>
 
 <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
   <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
@@ -376,9 +459,11 @@ The **Icon** property adds an optional leading icon inside the text area, to the
 
 ---
 
-## Property: Show Helper Text
+<h2 id="helper-text" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Show Helper Text</h2>
 
-The helper text row sits below the input field. Use it to provide guidance, context, or validation feedback.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The helper text row sits below the input field. Use it to provide guidance, context, or validation feedback.
+</p>
 
 <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
   <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
@@ -391,20 +476,34 @@ The helper text row sits below the input field. Use it to provide guidance, cont
   </div>
 </div>
 
-| Detail | Value |
-|---|---|
-| Font | IBM Plex Sans Arabic · 14 px · Regular (400) · line-height 20 px |
-| Normal colour | `#243B62` |
-| Error colour | `#A40000` |
-| Icon | 16×16 help-circle icon · same colour as text |
-| Visibility | Hidden by default (showHelperText=false) |
-| RTL | Direction mirrors with parent via dir attribute |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Detail</span><span>Value</span>
+  </div>
+  {[
+    { detail: 'Font',       value: 'IBM Plex Sans Arabic · 14 px · Regular (400) · line-height 20 px' },
+    { detail: 'Normal',     value: '#243B62' },
+    { detail: 'Error',      value: '#A40000' },
+    { detail: 'Icon',       value: '16×16 help-circle icon · same colour as text' },
+    { detail: 'Visibility', value: 'Hidden by default (showHelperText=false)' },
+    { detail: 'RTL',        value: 'Direction mirrors with parent via dir attribute' },
+  ].map(({ detail, value }, i) => (
+    <div key={detail} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{detail}</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{value}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={ColorInputStories.HelperText} />
 
 ---
 
-## Colour Picker Panel (Focused Picker state)
+<h2 id="picker-panel" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Colour Picker Panel (Focused Picker state)</h2>
 
-Clicking the swatch opens the inline colour picker panel. It is a 3-part panel: colour space gradient, hue slider, and hex input.
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Clicking the swatch opens the inline colour picker panel. It is a 3-part panel: colour space gradient, hue slider, and hex input.
+</p>
 
 <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start' }}>
@@ -415,9 +514,9 @@ Clicking the swatch opens the inline colour picker panel. It is a 3-part panel: 
     <div>
       <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 10 }}>Panel structure (Focused Picker state)</div>
       {[
-        ['Color Space', '304 × 150 px gradient canvas — saturation (X) × brightness (Y). Click or drag to pick.'],
-        ['Hue slider', '304 × 10 px range input — rainbow gradient, draggable thumb selects the base hue.'],
-        ['Hex input', 'Text field pre-populated with the hex code. Type a 6-digit hex to jump directly to a colour.'],
+        ['Color Space',    '304 × 150 px gradient canvas — saturation (X) × brightness (Y). Click or drag to pick.'],
+        ['Hue slider',     '304 × 10 px range input — rainbow gradient, draggable thumb selects the base hue.'],
+        ['Hex input',      'Text field pre-populated with the hex code. Type a 6-digit hex to jump directly to a colour.'],
         ['Current swatch', '24 × 24 px preview square showing the selected colour in real-time.'],
       ].map(([name, desc]) => (
         <div key={name} style={{ display: 'flex', gap: 10, marginBottom: 8 }}>
@@ -429,19 +528,33 @@ Clicking the swatch opens the inline colour picker panel. It is a 3-part panel: 
   </div>
 </div>
 
-| Panel spec | Value |
-|---|---|
-| Panel width | 320 px (matches input) |
-| Panel height | 206 px (Figma: Color Picker component) |
-| Total component height (Focused Picker) | 282 px (68 px input + 8 px gap + 206 px picker) |
-| Panel background | `#ffffff` |
-| Panel border | `1px solid #D3D7DC` · `border-radius: 4px` |
-| Panel shadow | `0 4px 16px rgba(0,0,0,0.12)` |
-| Close behaviour | Click outside or press Escape |
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Panel spec</span><span>Value</span>
+  </div>
+  {[
+    { spec: 'Panel width',                              val: '320 px (matches input)' },
+    { spec: 'Panel height',                             val: '206 px (Figma: Color Picker component)' },
+    { spec: 'Total component height (Focused Picker)',  val: '282 px (68 px input + 8 px gap + 206 px picker)' },
+    { spec: 'Panel background',                         val: '#ffffff' },
+    { spec: 'Panel border',                             val: '1px solid #D3D7DC · border-radius: 4px' },
+    { spec: 'Panel shadow',                             val: '0 4px 16px rgba(0,0,0,0.12)' },
+    { spec: 'Close behaviour',                          val: 'Click outside or press Escape' },
+  ].map(({ spec, val }, i) => (
+    <div key={spec} style={{ display: 'grid', gridTemplateColumns: '280px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{spec}</span>
+      <span style={{ fontSize: 13, color: '#374151' }}>{val}</span>
+    </div>
+  ))}
+</div>
 
 ---
 
-## RTL Support
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>dir="rtl"</code> to mirror the full component layout for right-to-left languages.
+</p>
 
 <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 16 }}>
   <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
@@ -458,250 +571,220 @@ Clicking the swatch opens the inline colour picker panel. It is a 3-part panel: 
   <strong>RTL changes:</strong> Prefix (swatch) moves to the right · Suffix moves to the left · Text content aligns right · Label + helper text align right · Picker panel content mirrors · Close button aria-label switches to Arabic (إزالة).
 </div>
 
+<Canvas of={ColorInputStories.RTL} />
+
 ---
 
-## Token Table
+<h2 id="token-table" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Token Table</h2>
+
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  All sizing and colour values are exposed as CSS custom properties for theming.
+</p>
 
 <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Sizing tokens</div>
-<div style={{ display: 'grid', gridTemplateColumns: '240px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Usage</span></div>
-{[
-  { t: '--ci-width',          v: '320px', u: 'Component width (fixed)' },
-  { t: '--ci-height-lg',      v: '40px',  u: 'Large input field height' },
-  { t: '--ci-height-md',      v: '32px',  u: 'Medium input field height' },
-  { t: '--ci-prefix-w-lg',    v: '48px',  u: 'Large prefix (swatch) width' },
-  { t: '--ci-prefix-w-md',    v: '40px',  u: 'Medium prefix (swatch) width' },
-  { t: '--ci-swatch-size',    v: '16px',  u: 'Inner colour swatch rectangle size' },
-  { t: '--ci-radius',         v: '4px',   u: 'Input field corner radius' },
-  { t: '--ci-underline-h',    v: '2px',   u: 'Focus underline height' },
-  { t: '--ci-gap',            v: '8px',   u: 'Vertical gap between label / field / helper' },
-].map(({ t, v, u }, i) => (
-  <div key={t} style={{ display: 'grid', gridTemplateColumns: '240px 80px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
-    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
-    <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{v}</span>
-    <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
-  </div>
-))}
-</div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colour tokens</div>
-<div style={{ display: 'grid', gridTemplateColumns: '250px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Usage</span></div>
-{[
-  { t: '--ci-border-default',     v: '#D3D7DC', u: 'Default state border' },
-  { t: '--ci-border-hover',       v: '#202B38', u: 'Hovered state border' },
-  { t: '--ci-border-readonly',    v: '#CFD4DD', u: 'Read-only border' },
-  { t: '--ci-border-disabled',    v: '#E6E8EC', u: 'Disabled border' },
-  { t: '--ci-border-error',       v: '#A40000', u: 'Error state border' },
-  { t: '--ci-underline',          v: '#194AAA', u: 'Focus / Pressed / Focused Picker underline' },
-  { t: '--ci-bg-pressed',         v: '#F4F5F7', u: 'Pressed state background' },
-  { t: '--ci-prefix-bg',          v: '#F4F5F7', u: 'Prefix swatch area background' },
-  { t: '--ci-prefix-bg-disabled', v: '#E6E8EC', u: 'Prefix background in disabled state' },
-  { t: '--ci-suffix-bg',          v: '#F4F5F7', u: 'Suffix area background' },
-  { t: '--ci-text-filled',        v: '#000C37', u: 'Entered (filled) text colour' },
-  { t: '--ci-text-placeholder',   v: '#B7BECB', u: 'Placeholder text colour' },
-  { t: '--ci-text-disabled',      v: '#6D7D97', u: 'Text in disabled state' },
-  { t: '--ci-text-suffix',        v: '#6D7D97', u: 'Suffix label text colour' },
-  { t: '--ci-label-text',         v: '#000C37', u: 'Label text colour' },
-  { t: '--ci-required-mark',      v: '#A40000', u: 'Required asterisk colour' },
-  { t: '--ci-helper-text',        v: '#243B62', u: 'Helper text colour (normal)' },
-  { t: '--ci-helper-error',       v: '#A40000', u: 'Helper text colour (error)' },
-  { t: '--ci-darker-bg',          v: '#F4F5F7', u: 'Filled darker style background' },
-  { t: '--ci-lighter-bg',         v: '#FDFDFE', u: 'Filled lighter style background' },
-].map(({ t, v, u }, i) => (
-  <div key={t} style={{ display: 'grid', gridTemplateColumns: '250px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
-    <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: v, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
-      <code style={{ fontSize: 10, color: '#111827' }}>{v}</code>
-    </span>
-    <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
-  </div>
-))}
-</div>
-</div>
-
----
-
-## Properties
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#4b5563' }}>ColorInput</div>
-<div style={{ display: 'grid', gridTemplateColumns: '160px 80px 140px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
-{[
-  { n: 'value',           type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '—',              d: 'Controlled hex colour value (e.g. "#7C53EE"). Makes component controlled.' },
-  { n: 'defaultValue',    type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '"#7C53EE"',      d: 'Default colour for uncontrolled mode.' },
-  { n: 'onChange',        type: 'function', tb: '#fdf4ff', tc: '#9333ea', def: '—',              d: 'Called with the hex string whenever the colour changes.' },
-  { n: 'size',            type: 'enum',     tb: '#fff7ed', tc: '#c2410c', def: '"lg"',            d: '"lg" (40px input) or "md" (32px input). (Size in Figma)' },
-  { n: 'fieldStyle',      type: 'enum',     tb: '#fff7ed', tc: '#c2410c', def: '"default"',       d: '"default" · "filled-darker" · "filled-lighter". (Style in Figma)' },
-  { n: 'error',           type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',           d: 'Error state — red border, red helper text. (Error in Figma)' },
-  { n: 'readOnly',        type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',           d: 'Read-only — dashed border, picker does not open.' },
-  { n: 'disabled',        type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',           d: 'Disabled — all interactions blocked, muted colours.' },
-  { n: 'dir',             type: 'enum',     tb: '#fff7ed', tc: '#c2410c', def: '"ltr"',            d: '"ltr" or "rtl". Mirrors layout direction. (RTL in Figma)' },
-  { n: 'label',           type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '"Label"',          d: 'Label text above the input. (Text in Label sub-component)' },
-  { n: 'required',        type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',           d: 'Shows red asterisk (*) on the label. (Required in Label Figma)' },
-  { n: 'showLabel',       type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'true',            d: 'Toggle label visibility. (Show Label in Figma)' },
-  { n: 'helperText',      type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '"Help Text"',      d: 'Helper/error text below the field.' },
-  { n: 'showHelperText',  type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',           d: 'Toggle helper text visibility. (Show Helper Text in Figma)' },
-  { n: 'showIcon',        type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',           d: 'Show leading icon in the text area. (Icon in Figma)' },
-  { n: 'icon',            type: 'ReactNode',tb: '#ecfdf5', tc: '#059669', def: 'search icon',      d: 'Custom leading icon element.' },
-  { n: 'showPrefix',      type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'true',            d: 'Show colour swatch prefix panel. (Prefix in Figma)' },
-  { n: 'showSuffix',      type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'true',            d: 'Show suffix label panel. (Suffix in Figma)' },
-  { n: 'suffixText',      type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '"HEX"',            d: 'Suffix label text. Defaults to "هكس" in RTL.' },
-  { n: 'placeholder',     type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '"Enter colour…"', d: 'Placeholder text shown when Filled=False. (Filled Text in Figma)' },
-  { n: 'className',       type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '""',               d: 'Additional CSS class.' },
-].map(({ n, type, tb, tc, def, d }, i) => (
-  <div key={n} style={{ display: 'grid', gridTemplateColumns: '160px 80px 140px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-    <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-    <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600, display: 'inline-block', alignSelf: 'center' }}>{type}</span>
-    <code style={{ fontSize: 11, color: '#6b7280', alignSelf: 'center' }}>{def}</code>
-    <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
-  </div>
-))}
-</div>
-
----
-
-## Accessibility
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-{[
-  { cat: 'Keyboard', bg: '#eff3fb', border: '#dbeafe', iconBg: '#1849a9', icon: '⌨', items: [
-    { title: 'Tab reaches the swatch button', desc: 'The colour swatch prefix is a focusable <button> element. Tab moves focus to it first, then to close the picker.' },
-    { title: 'Enter / Space opens/closes picker', desc: 'The swatch button has aria-haspopup="dialog" and aria-expanded. Keyboard activation toggles the picker panel.' },
-    { title: 'Escape closes the picker', desc: 'Pressing Escape dismisses the colour picker panel and returns focus.' },
-    { title: 'Click outside closes picker', desc: 'Mousedown outside the component wrapper closes the panel automatically.' },
-  ]},
-  { cat: 'ARIA & Semantics', bg: '#fdf4ff', border: '#e9d5ff', iconBg: '#9333ea', icon: 'A', items: [
-    { title: 'role="group" on input field', desc: 'The input field row uses role="group" with aria-label matching the label text.' },
-    { title: 'role="dialog" on picker panel', desc: 'The colour picker panel uses role="dialog" with aria-label in the current language.' },
-    { title: 'aria-haspopup + aria-expanded on swatch', desc: 'Swatch button communicates popup state. aria-label describes the current colour value.' },
-    { title: 'aria-disabled on disabled inputs', desc: 'Disabled fields have aria-disabled="true" and pointer-events: none.' },
-  ]},
-  { cat: 'Colour & Contrast', bg: '#ecfdf5', border: '#a7f3d0', iconBg: '#059669', icon: '◉', items: [
-    { title: 'Error not colour-only', desc: 'Error state changes both the border colour AND adds the helper text — meaning is not conveyed through colour alone.' },
-    { title: 'Focus underline is 2px tall', desc: 'The 2px #194AAA underline provides a clear focus indicator that does not rely solely on colour.' },
-    { title: 'Swatch border ensures visibility on any colour', desc: 'The 16×16 colour swatch has a 1px semi-transparent border so very light colours (e.g. white) remain visible.' },
-    { title: 'Disabled uses dedicated tokens', desc: '#E6E8EC bg and #6D7D97 text tokens are used for disabled state — no opacity shortcut.' },
-  ]},
-].map(({ cat, bg, border, iconBg, icon, items }) => (
-  <div key={cat} style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 16px', background: bg, borderBottom: `1px solid ${border}` }}>
-      <span style={{ width: 24, height: 24, borderRadius: '50%', background: iconBg, color: '#fff', fontSize: 12, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</span>
-      <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{cat}</span>
-    </div>
-    {items.map(({ title, desc }, j) => (
-      <div key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '11px 16px', borderBottom: j < items.length - 1 ? '1px solid #f3f4f6' : 'none', background: '#fff' }}>
-        <span style={{ width: 17, height: 17, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>✓</span>
-        <div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: '#111827', marginBottom: 2 }}>{title}</div>
-          <div style={{ fontSize: 12, color: '#6b7280', lineHeight: 1.5 }}>{desc}</div>
-        </div>
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#6b7280' }}>Sizing tokens</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '240px 80px 1fr', background: '#f0f1f3', padding: '8px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}><span>Token</span><span>Value</span><span>Usage</span></div>
+    {[
+      { t: '--ci-width',       v: '320px', u: 'Component width (fixed)' },
+      { t: '--ci-height-lg',   v: '40px',  u: 'Large input field height' },
+      { t: '--ci-height-md',   v: '32px',  u: 'Medium input field height' },
+      { t: '--ci-prefix-w-lg', v: '48px',  u: 'Large prefix (swatch) width' },
+      { t: '--ci-prefix-w-md', v: '40px',  u: 'Medium prefix (swatch) width' },
+      { t: '--ci-swatch-size', v: '16px',  u: 'Inner colour swatch rectangle size' },
+      { t: '--ci-radius',      v: '4px',   u: 'Input field corner radius' },
+      { t: '--ci-underline-h', v: '2px',   u: 'Focus underline height' },
+      { t: '--ci-gap',         v: '8px',   u: 'Vertical gap between label / field / helper' },
+    ].map(({ t, v, u }, i) => (
+      <div key={t} style={{ display: 'grid', gridTemplateColumns: '240px 80px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+        <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{t}</code>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#111827' }}>{v}</span>
+        <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
       </div>
     ))}
   </div>
-))}
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#6b7280' }}>Colour tokens</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '250px 130px 1fr', background: '#f0f1f3', padding: '8px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}><span>Token</span><span>Value</span><span>Usage</span></div>
+    {[
+      { t: '--ci-border-default',     v: '#D3D7DC', u: 'Default state border' },
+      { t: '--ci-border-hover',       v: '#202B38', u: 'Hovered state border' },
+      { t: '--ci-border-readonly',    v: '#CFD4DD', u: 'Read-only border' },
+      { t: '--ci-border-disabled',    v: '#E6E8EC', u: 'Disabled border' },
+      { t: '--ci-border-error',       v: '#A40000', u: 'Error state border' },
+      { t: '--ci-underline',          v: '#194AAA', u: 'Focus / Pressed / Focused Picker underline' },
+      { t: '--ci-bg-pressed',         v: '#F4F5F7', u: 'Pressed state background' },
+      { t: '--ci-prefix-bg',          v: '#F4F5F7', u: 'Prefix swatch area background' },
+      { t: '--ci-prefix-bg-disabled', v: '#E6E8EC', u: 'Prefix background in disabled state' },
+      { t: '--ci-suffix-bg',          v: '#F4F5F7', u: 'Suffix area background' },
+      { t: '--ci-text-filled',        v: '#000C37', u: 'Entered (filled) text colour' },
+      { t: '--ci-text-placeholder',   v: '#B7BECB', u: 'Placeholder text colour' },
+      { t: '--ci-text-disabled',      v: '#6D7D97', u: 'Text in disabled state' },
+      { t: '--ci-text-suffix',        v: '#6D7D97', u: 'Suffix label text colour' },
+      { t: '--ci-label-text',         v: '#000C37', u: 'Label text colour' },
+      { t: '--ci-required-mark',      v: '#A40000', u: 'Required asterisk colour' },
+      { t: '--ci-helper-text',        v: '#243B62', u: 'Helper text colour (normal)' },
+      { t: '--ci-helper-error',       v: '#A40000', u: 'Helper text colour (error)' },
+      { t: '--ci-darker-bg',          v: '#F4F5F7', u: 'Filled darker style background' },
+      { t: '--ci-lighter-bg',         v: '#FDFDFE', u: 'Filled lighter style background' },
+    ].map(({ t, v, u }, i) => (
+      <div key={t} style={{ display: 'grid', gridTemplateColumns: '250px 130px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
+        <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{t}</code>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: v, border: '1px solid rgba(0,0,0,0.12)', flexShrink: 0 }} />
+          <code style={{ fontSize: 10, color: '#111827' }}>{v}</code>
+        </span>
+        <span style={{ fontSize: 12, color: '#6b7280' }}>{u}</span>
+      </div>
+    ))}
+  </div>
 </div>
 
 ---
 
-## Usage Guidelines
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
-{[
-  'Always provide a label — colour inputs lack inherent context without one.',
-  'Use showHelperText to indicate expected format (e.g. "6-digit hex like #1849A9").',
-  'Use required=true for form fields where colour selection is mandatory.',
-  'Use fieldStyle="filled-darker" inside card panels to maintain visual hierarchy.',
-  'Use the onColor variant with defaultValue pre-populated for brand-colour settings.',
-  'Wire onChange to immediately preview the colour in the UI.',
-].map((r, i) => (
-  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
-))}
-</div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
-{[
-  "Don't use the Color Input for non-colour text fields — use a standard Text Input.",
-  "Don't disable the prefix swatch — the swatch is the primary interaction surface.",
-  "Don't place the component inside overflow: hidden containers — the picker panel clips.",
-  "Don't use error state without providing a helper text explanation.",
-  "Don't use readOnly without visually indicating it — add a lock icon or label suffix.",
-  "Don't use multiple Color Inputs without clear labels — context is critical.",
-].map((r, i) => (
-  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
-))}
-</div>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Full prop reference for the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>ColorInput</code> component.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#4b5563' }}>ColorInput</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 100px 140px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    { n: 'value',          type: 'string',    def: '—',              d: 'Controlled hex colour value (e.g. "#7C53EE"). Makes component controlled.' },
+    { n: 'defaultValue',   type: 'string',    def: '"#7C53EE"',      d: 'Default colour for uncontrolled mode.' },
+    { n: 'onChange',       type: 'function',  def: '—',              d: 'Called with the hex string whenever the colour changes.' },
+    { n: 'size',           type: 'enum',      def: '"lg"',           d: '"lg" (40px input) or "md" (32px input). (Size in Figma)' },
+    { n: 'fieldStyle',     type: 'enum',      def: '"default"',      d: '"default" · "filled-darker" · "filled-lighter". (Style in Figma)' },
+    { n: 'error',          type: 'boolean',   def: 'false',          d: 'Error state — red border, red helper text. (Error in Figma)' },
+    { n: 'readOnly',       type: 'boolean',   def: 'false',          d: 'Read-only — dashed border, picker does not open.' },
+    { n: 'disabled',       type: 'boolean',   def: 'false',          d: 'Disabled — all interactions blocked, muted colours.' },
+    { n: 'dir',            type: 'enum',      def: '"ltr"',          d: '"ltr" or "rtl". Mirrors layout direction. (RTL in Figma)' },
+    { n: 'label',          type: 'string',    def: '"Label"',        d: 'Label text above the input. (Text in Label sub-component)' },
+    { n: 'required',       type: 'boolean',   def: 'false',          d: 'Shows red asterisk (*) on the label. (Required in Label Figma)' },
+    { n: 'showLabel',      type: 'boolean',   def: 'true',           d: 'Toggle label visibility. (Show Label in Figma)' },
+    { n: 'helperText',     type: 'string',    def: '"Help Text"',    d: 'Helper/error text below the field.' },
+    { n: 'showHelperText', type: 'boolean',   def: 'false',          d: 'Toggle helper text visibility. (Show Helper Text in Figma)' },
+    { n: 'showIcon',       type: 'boolean',   def: 'false',          d: 'Show leading icon in the text area. (Icon in Figma)' },
+    { n: 'icon',           type: 'ReactNode', def: 'search icon',    d: 'Custom leading icon element.' },
+    { n: 'showPrefix',     type: 'boolean',   def: 'true',           d: 'Show colour swatch prefix panel. (Prefix in Figma)' },
+    { n: 'showSuffix',     type: 'boolean',   def: 'true',           d: 'Show suffix label panel. (Suffix in Figma)' },
+    { n: 'suffixText',     type: 'string',    def: '"HEX"',          d: 'Suffix label text. Defaults to "هكس" in RTL.' },
+    { n: 'placeholder',    type: 'string',    def: '"Enter colour…"',d: 'Placeholder text shown when Filled=False. (Filled Text in Figma)' },
+    { n: 'className',      type: 'string',    def: '""',             d: 'Additional CSS class.' },
+  ].map(({ n, type, def, d }, i) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '160px 100px 140px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 11, color: '#6b7280', alignSelf: 'center' }}>{def}</code>
+      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
+    </div>
+  ))}
 </div>
 
 ---
 
-## Code Examples
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
 
-```jsx
-import { ColorInput } from '@/components/ColorInput';
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The Color Input is fully keyboard operable and uses semantic ARIA roles for the picker panel.
+</p>
 
-// Basic uncontrolled
-<ColorInput label="Brand colour" defaultValue="#7C53EE" />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', background: '#f9fafb', padding: '10px 16px', gap: 16, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    {
+      c: 'Tab focus on swatch button',
+      i: "The colour swatch prefix is a focusable <button> element. Tab moves focus to it first, then to the close control inside the picker.",
+    },
+    {
+      c: 'Enter / Space opens/closes picker',
+      i: "The swatch button has aria-haspopup=\"dialog\" and aria-expanded. Keyboard activation toggles the picker panel.",
+    },
+    {
+      c: 'Escape closes the picker',
+      i: "Pressing Escape dismisses the colour picker panel and returns focus to the swatch button.",
+    },
+    {
+      c: 'Click outside closes picker',
+      i: "Mousedown outside the component wrapper closes the picker panel automatically.",
+    },
+    {
+      c: 'role=\"group\" on input field',
+      i: "The input field row uses role=\"group\" with aria-label matching the label text, grouping the swatch + text area semantically.",
+    },
+    {
+      c: 'role=\"dialog\" on picker panel',
+      i: "The colour picker panel uses role=\"dialog\" with an aria-label in the current language (English or Arabic).",
+    },
+    {
+      c: 'aria-haspopup + aria-expanded on swatch',
+      i: "The swatch button communicates its popup state. Its aria-label also describes the current colour value.",
+    },
+    {
+      c: 'aria-disabled on disabled inputs',
+      i: "Disabled fields have aria-disabled=\"true\" and pointer-events: none to block all interactions.",
+    },
+    {
+      c: 'Error not colour-only',
+      i: "Error state changes both the border colour AND adds helper text — meaning is never conveyed through colour alone.",
+    },
+    {
+      c: 'Focus underline visibility',
+      i: "The 2px #194AAA underline provides a clear focus indicator that does not rely solely on colour difference.",
+    },
+    {
+      c: 'Swatch border on any colour',
+      i: "The 16×16 colour swatch has a 1px semi-transparent border so very light colours (e.g. white) remain visible against the panel background.",
+    },
+    {
+      c: 'Disabled uses dedicated tokens',
+      i: "#E6E8EC bg and #6D7D97 text tokens are used for disabled state — no opacity shortcut that could affect contrast unpredictably.",
+    },
+  ].map(({ c, i }, idx) => (
+    <div key={idx} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', background: idx % 2 === 0 ? '#fff' : '#fafafa', gap: 16, alignItems: 'start' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{c}</span>
+      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{i}</span>
+    </div>
+  ))}
+</div>
 
-// Controlled
-const [colour, setColour] = useState('#1849A9');
-<ColorInput
-  label="Primary colour"
-  value={colour}
-  onChange={setColour}
-  required
-  showHelperText
-  helperText="Used for buttons and links"
-/>
+---
 
-// Medium size
-<ColorInput size="md" label="Accent colour" defaultValue="#059669" />
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
 
-// Filled darker style (inside a card)
-<ColorInput fieldStyle="filled-darker" label="Background colour" />
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Follow these guidelines to ensure the Color Input is used appropriately and accessibly.
+</p>
 
-// Error state
-<ColorInput
-  label="Colour"
-  error
-  showHelperText
-  helperText="Invalid colour — must be 6-digit hex"
-/>
-
-// Read-only
-<ColorInput label="System colour" defaultValue="#D97706" readOnly />
-
-// Disabled
-<ColorInput label="Restricted" defaultValue="#6B7280" disabled />
-
-// RTL
-<ColorInput
-  dir="rtl"
-  label="لون العلامة التجارية"
-  defaultValue="#1849A9"
-  showHelperText
-  helperText="أدخل قيمة هكس"
-/>
-
-// Custom suffix + no prefix
-<ColorInput
-  label="CSS Colour"
-  showPrefix={false}
-  showSuffix
-  suffixText="CSS"
-  defaultValue="#1849A9"
-/>
-
-// With leading icon, no suffix
-<ColorInput
-  label="Colour picker"
-  showIcon
-  showSuffix={false}
-  defaultValue="#7C53EE"
-/>
-```
+<div style={{ display: 'flex', gap: 24, marginBottom: 16, flexWrap: 'wrap' }}>
+  <div style={{ flex: '1 1 280px', border: '1px solid #a7f3d0', borderRadius: 8, padding: '16px 20px', background: '#ecfdf5' }}>
+    <div style={{ fontSize: 14, fontWeight: 700, color: '#059669', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
+      <li>Always provide a label — colour inputs lack inherent context without one.</li>
+      <li>Use <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>showHelperText</code> to indicate expected format (e.g. "6-digit hex like #1849A9").</li>
+      <li>Use <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>required=true</code> for form fields where colour selection is mandatory.</li>
+      <li>Use <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>fieldStyle="filled-darker"</code> inside card panels to maintain visual hierarchy.</li>
+      <li>Use with <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>defaultValue</code> pre-populated for brand-colour settings.</li>
+      <li>Wire <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>onChange</code> to immediately preview the colour in the UI.</li>
+    </ul>
+  </div>
+  <div style={{ flex: '1 1 280px', border: '1px solid #fecaca', borderRadius: 8, padding: '16px 20px', background: '#fef2f2' }}>
+    <div style={{ fontSize: 14, fontWeight: 700, color: '#dc2626', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.7 }}>
+      <li>Don't use the Color Input for non-colour text fields — use a standard Text Input.</li>
+      <li>Don't disable the prefix swatch — the swatch is the primary interaction surface.</li>
+      <li>Don't place the component inside <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>overflow: hidden</code> containers — the picker panel clips.</li>
+      <li>Don't use error state without providing a helper text explanation.</li>
+      <li>Don't use <code style={{ fontSize: 12, background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: 3 }}>readOnly</code> without visually indicating it — add a lock icon or label suffix.</li>
+      <li>Don't use multiple Color Inputs without clear labels — context is critical.</li>
+    </ul>
+  </div>
+</div>
 
 </div>
