@@ -1,694 +1,435 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import { Carousel, CarouselNavButton } from './Carousel';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CarouselStories from './Carousel.stories';
 
 <Meta of={CarouselStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Navigation / Carousel</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Carousel</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>The carousel displays a series of content items one at a time within a fixed frame. It provides prev/next navigation buttons and dot indicators to help users understand position and move between slides.</div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-      Available
-    </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4112:16</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4112-16" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / Carousel</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Carousel</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    A fully accessible slide viewer built from design-system primitives. Displays one slide at a time
+    within a fixed viewport. Provides circular prev/next navigation buttons and clickable dot indicators
+    so users always know their position and can move freely between slides.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>2 Nav Variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Nav Sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Dot Indicators</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Auto Play</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL Support</span>
   </div>
 </div>
 
----
-
-## Overview
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 20px', marginBottom: 16 }}>
-  <Carousel
-    slides={[
-      <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '40px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-        <div style={{ fontSize: 18, fontWeight: 600, color: '#1849a9', marginBottom: 8 }}>Slide 1</div>
-        <div style={{ fontSize: 14, color: '#6b7280' }}>Swap this placeholder with any component</div>
-      </div>,
-      <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '40px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-        <div style={{ fontSize: 18, fontWeight: 600, color: '#059669', marginBottom: 8 }}>Slide 2</div>
-        <div style={{ fontSize: 14, color: '#6b7280' }}>Cards, images, or rich content all fit here</div>
-      </div>,
-      <div key="3" style={{ background: '#fffbeb', border: '1px dashed #d97706', borderRadius: 8, padding: '40px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-        <div style={{ fontSize: 18, fontWeight: 600, color: '#d97706', marginBottom: 8 }}>Slide 3</div>
-        <div style={{ fontSize: 14, color: '#6b7280' }}>Dots indicate position — click to jump directly</div>
-      </div>,
-      <div key="4" style={{ background: '#fef2f2', border: '1px dashed #dc2626', borderRadius: 8, padding: '40px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-        <div style={{ fontSize: 18, fontWeight: 600, color: '#dc2626', marginBottom: 8 }}>Slide 4</div>
-        <div style={{ fontSize: 14, color: '#6b7280' }}>Enable loop=true to cycle continuously</div>
-      </div>,
-    ]}
-    navVariant="primary"
-    navSize="md"
-  />
-</div>
-
-Two nav variants · three sizes · dot indicators · loop · autoPlay · full RTL support. All tokens sourced from Figma node `4112:16`.
-
----
-
-## Anatomy
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px', marginBottom: 24 }}>
-  <div style={{ maxWidth: 560, margin: '0 auto' }}>
-    <Carousel
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: '#1849a9' }}>Content Slot</div>
-        </div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: '#059669' }}>Slide 2</div>
-        </div>,
-      ]}
-      navVariant="primary"
-      navSize="md"
-    />
-  </div>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 24px', justifyContent: 'center', marginTop: 24 }}>
-    {[['1','Prev nav button (circular, optional)'],['2','Slide viewport (flex: 1)'],['3','Next nav button (circular, optional)'],['4','Dot indicators (below track, optional)'],['5','Active dot (filled primary blue)'],['6','Inactive dot (gray)']].map(([n,label])=>(
-      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
-        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
-        {label}
-      </div>
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',    'Overview'],
+      ['#anatomy',     'Anatomy'],
+      ['#states',      'Interaction States'],
+      ['#nav-button',  'Nav Button'],
+      ['#layout',      'Layout Modes'],
+      ['#dots',        'Dot Indicators'],
+      ['#rtl',         'RTL Support'],
+      ['#usage',       'Usage Guidelines'],
+      ['#tokens',      'Design Tokens'],
+      ['#properties',  'Properties'],
+      ['#accessibility','Accessibility'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
     ))}
   </div>
 </div>
 
-| # | Element | Required |
-|---|---|---|
-| 1 | Prev nav button — circular, `showNavigation` prop | Optional |
-| 2 | Slide viewport — `flex: 1`, shows one slide at a time | Always |
-| 3 | Next nav button — circular, `showNavigation` prop | Optional |
-| 4 | Dot indicators — below the track, `showDots` prop | Optional |
-| 5 | Active dot — filled `#1849a9` | Auto |
-| 6 | Inactive dots — gray `#d2d6db`, clickable to jump | Auto |
+---
+
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>navVariant</code> and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>navSize</code> in the controls panel
+  to see button styles and sizes. Enable <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>loop</code> or{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>autoPlay</code> for continuous cycling.
+</p>
+
+<Canvas of={CarouselStories.Playground} />
+<Controls of={CarouselStories.Playground} />
 
 ---
 
-## Variants
+{/* ── Anatomy ── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 16 }}>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Primary (navVariant="primary")</div>
-    <Carousel
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '36px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-          <div style={{ fontSize: 16, fontWeight: 600, color: '#1849a9' }}>Solid blue nav buttons</div>
-        </div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '36px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-          <div style={{ fontSize: 16, fontWeight: 600, color: '#059669' }}>White chevron on blue background</div>
-        </div>,
-      ]}
-      navVariant="primary"
-      navSize="md"
-    />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Description</span>
   </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Subtle (navVariant="subtle")</div>
-    <Carousel
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '36px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-          <div style={{ fontSize: 16, fontWeight: 600, color: '#1849a9' }}>Gray fill nav buttons</div>
-        </div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '36px 32px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-          <div style={{ fontSize: 16, fontWeight: 600, color: '#059669' }}>Dark chevron on light gray background</div>
-        </div>,
-      ]}
-      navVariant="subtle"
-      navSize="md"
-    />
-  </div>
-</div>
-
-| Variant | Background | Icon color | Use case |
-|---|---|---|---|
-| `primary` | `#1849a9` | `#f9fafb` white | High-emphasis navigation; primary brand context |
-| `subtle` | `#f3f4f6` | `#000b36` dark | Low-emphasis; over light backgrounds, inside cards |
-
----
-
-## Sizes
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px', marginBottom: 16 }}>
   {[
-    ['Large', 'navSize="lg"', 48, 'lg', 24],
-    ['Medium', 'navSize="md"', 40, 'md', 20],
-    ['Small', 'navSize="sm"', 32, 'sm', 16],
-  ].map(([name, code, px, size, iconPx]) => (
-    <div key={size} style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '16px 0', borderBottom: '1px solid #f3f4f6' }}>
-      <div style={{ minWidth: 160 }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
-        <code style={{ fontSize: 11, color: '#6b7280' }}>{code}</code>
-      </div>
-      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-        <CarouselNavButton direction="prev" variant="primary" size={size} />
-        <CarouselNavButton direction="next" variant="primary" size={size} />
-        <CarouselNavButton direction="prev" variant="subtle" size={size} />
-        <CarouselNavButton direction="next" variant="subtle" size={size} />
-      </div>
-      <div style={{ fontSize: 12, color: '#6b7280', marginLeft: 8 }}>{px}×{px}px · {iconPx}px icon</div>
+    ['1', 'Prev nav button',  'Circular button on the left (LTR). Hidden when `showNavigation=false`. Disabled at first slide unless `loop=true`.'],
+    ['2', 'Slide viewport',   '`flex: 1` container — always rendered. Shows exactly one slide at a time; inactive slides are `display: none`.'],
+    ['3', 'Next nav button',  'Circular button on the right (LTR). Hidden when `showNavigation=false`. Disabled at last slide unless `loop=true`.'],
+    ['4', 'Dot indicators',   'Row of clickable dots below the track. Hidden when `showDots=false` or when only one slide is provided.'],
+    ['5', 'Active dot',       'Filled `#1849a9` — marks the currently visible slide. Non-interactive (cursor: default).'],
+    ['6', 'Inactive dot',     'Gray `#d2d6db` — clickable, jumps directly to the corresponding slide on click.'],
+  ].map(([n, part, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
   ))}
 </div>
 
-| Size prop | Button size | Icon size | Figma token |
-|---|---|---|---|
-| `lg` | 48 × 48 px | 24 px | `Carousel/Size/large/*` |
-| `md` | 40 × 40 px | 20 px | `Carousel/Size/medium/*` |
-| `sm` | 32 × 32 px | 16 px | `Carousel/Size/small/*` |
-
-All sizes use `border-radius: 9999px` (fully circular).
-
 ---
 
-## States
+{/* ── Interaction States ── */}
+<h2 id="states" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Interaction States</h2>
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14, marginBottom: 16 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Behaviour</span>
+  </div>
   {[
-    ['Default', <CarouselNavButton key="d" direction="next" variant="primary" size="md" />],
-    ['Hover', <div key="h" style={{ width: 40, height: 40, borderRadius: '50%', background: '#194185', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
-    ['Pressed', <div key="p" style={{ width: 40, height: 40, borderRadius: '50%', background: '#102a56', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
-    ['Focused', <div key="f" style={{ width: 40, height: 40, borderRadius: '50%', background: '#1849a9', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#f9fafb', boxShadow: '0 0 0 2px #ffffff, 0 0 0 5px #00001c' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
-    ['Disabled', <CarouselNavButton key="dis" direction="next" variant="primary" size="md" disabled />],
-  ].map(([name, comp]) => (
-    <div key={name} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 14px 12px', display: 'flex', flexDirection: 'column', gap: 11 }}>
-      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>{name}</span>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 48 }}>{comp}</div>
+    ['First slide (loop=false)',  'Prev button is disabled — `#d2d6db` background, `#6c7c96` icon. Next button remains active.'],
+    ['Last slide (loop=false)',   'Next button is disabled — `#d2d6db` background, `#6c7c96` icon. Prev button remains active.'],
+    ['Middle slide',             'Both nav buttons are active. Active dot updates to match the visible slide index.'],
+    ['loop=true',                'Both nav buttons are always active. Next after last wraps to first; prev before first goes to last.'],
+    ['autoPlay active',          'Slides advance automatically every `interval` ms. Requires at least 2 slides to activate.'],
+    ['Disabled nav button',      'Uses dedicated disabled tokens — not opacity. Pointer events removed; button excluded from tab order.'],
+  ].map(([state, desc]) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{state}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
   ))}
 </div>
 
-<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 14, marginBottom: 16 }}>
+<Canvas of={CarouselStories.NavButtonPrimaryAllStates} />
+<Canvas of={CarouselStories.NavButtonSubtleAllStates} />
+
+---
+
+{/* ── Nav Button ── */}
+<h2 id="nav-button" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Nav Button</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The circular navigation button is configurable via{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>navVariant</code> and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>navSize</code>.
+  All sizes use <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>border-radius: 9999px</code> (fully circular).
+  The button is also exported as <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>CarouselNavButton</code> for standalone use.
+</p>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Variants</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 20 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 120px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>Background</span><span>Icon color</span><span>Use case</span>
+  </div>
   {[
-    ['Subtle — Default', <CarouselNavButton key="sd" direction="next" variant="subtle" size="md" />],
-    ['Subtle — Hover', <div key="sh" style={{ width: 40, height: 40, borderRadius: '50%', background: '#e5e7eb', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000b36' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
-    ['Subtle — Pressed', <div key="sp" style={{ width: 40, height: 40, borderRadius: '50%', background: '#d2d6db', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000b36' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
-    ['Subtle — Focused', <div key="sf" style={{ width: 40, height: 40, borderRadius: '50%', background: '#f3f4f6', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#000b36', boxShadow: '0 0 0 2px #f3f4f6, 0 0 0 5px #00001c' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div>],
-    ['Subtle — Disabled', <CarouselNavButton key="sdis" direction="next" variant="subtle" size="md" disabled />],
-  ].map(([name, comp]) => (
-    <div key={name} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '16px 14px 12px', display: 'flex', flexDirection: 'column', gap: 11 }}>
-      <span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>{name}</span>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 48 }}>{comp}</div>
+    ['primary (default)', '#1849a9', '#f9fafb white', 'High-emphasis navigation; hero areas and primary brand context'],
+    ['subtle',            '#f3f4f6', '#000b36 dark',  'Low-emphasis; inside cards or over light backgrounds with existing blue elements'],
+  ].map(([variant, bg, icon, use]) => (
+    <div key={variant} style={{ display: 'grid', gridTemplateColumns: '120px 120px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{variant}</code>
+      <span style={{ color: '#374151' }}>{bg}</span>
+      <span style={{ color: '#374151' }}>{icon}</span>
+      <span style={{ color: '#374151' }}>{use}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={CarouselStories.NavVariants} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Sizes</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '80px 120px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Button</span><span>Icon</span><span>Use</span>
+  </div>
+  {[
+    ['sm', '32 × 32 px', '16 px', 'Compact UI, tight card layouts'],
+    ['md', '40 × 40 px', '20 px', 'Default — general content carousels'],
+    ['lg', '48 × 48 px', '24 px', 'Hero / large-format carousels'],
+  ].map(([sz, btn, icon, use]) => (
+    <div key={sz} style={{ display: 'grid', gridTemplateColumns: '80px 120px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{sz}</code>
+      <span style={{ color: '#374151' }}>{btn}</span>
+      <span style={{ color: '#374151' }}>{icon}</span>
+      <span style={{ color: '#374151' }}>{use}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={CarouselStories.NavSizes} />
+
+---
+
+{/* ── Layout Modes ── */}
+<h2 id="layout" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Layout Modes</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Use <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showNavigation</code> and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showDots</code> independently to
+  choose which controls are visible. Both default to <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>true</code>.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '140px 140px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Mode</span><span>showNavigation</span><span>showDots</span><span>When to use</span>
+  </div>
+  {[
+    ['Full (default)', 'true',  'true',  'Standard layout — both controls visible for maximum user orientation'],
+    ['Dots only',      'false', 'true',  'Auto-play and touch-first surfaces where arrows would be distracting'],
+    ['Nav only',       'true',  'false', 'Minimal UI when exact position indicator is not needed'],
+    ['Neither',        'false', 'false', 'Programmatically controlled carousel — slide is driven externally'],
+  ].map(([mode, nav, dots, when]) => (
+    <div key={mode} style={{ display: 'grid', gridTemplateColumns: '140px 140px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{mode}</span>
+      <code style={{ fontSize: 12, color: '#374151' }}>{nav}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{dots}</code>
+      <span style={{ color: '#374151' }}>{when}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={CarouselStories.DotsOnly} />
+<Canvas of={CarouselStories.NavigationOnly} />
+<Canvas of={CarouselStories.AutoPlayStory} />
+
+---
+
+{/* ── Dot Indicators ── */}
+<h2 id="dots" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Dot Indicators</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Each dot is a native <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{`<button role="tab" aria-selected>`}</code> element.
+  Clicking it jumps directly to the corresponding slide. The dot row is hidden automatically when
+  only one slide exists. The active dot is non-interactive (<code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>cursor: default</code>).
+</p>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 24 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>Colors</div>
+  <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+    <strong>Active:</strong> <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 4px', borderRadius: 4 }}>#1849a9</code> — matches the primary nav button background.<br />
+    <strong>Inactive:</strong> <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 4px', borderRadius: 4 }}>#d2d6db</code> — matches the disabled button background token.<br />
+    <strong>Inactive hover:</strong> <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 4px', borderRadius: 4 }}>#e5e7eb</code> — subtle gray, 120 ms transition.
+  </div>
+</div>
+
+---
+
+{/* ── RTL Support ── */}
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Pass <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>dir="rtl"</code> on the Carousel to switch to Arabic reading order.
+  The left button visually shows a right-pointing chevron and triggers <em>next</em>, while the right button
+  shows a left-pointing chevron and triggers <em>prev</em> — matching the RTL convention where content flows right-to-left.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Direction</span><span>Behaviour</span>
+  </div>
+  {[
+    ['ltr (default)', 'Prev button on the left (‹ chevron) · Next button on the right (› chevron) · Slides advance left-to-right.'],
+    ['rtl',           'Left button shows › and triggers next · Right button shows ‹ and triggers prev · Both buttons and dots respect Arabic flow.'],
+  ].map(([dir, desc]) => (
+    <div key={dir} style={{ display: 'grid', gridTemplateColumns: '100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{dir}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={CarouselStories.RTLArabic} />
+
+---
+
+{/* ── Usage Guidelines ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use for image galleries, featured articles, or onboarding step sequences</li>
+      <li>Keep slide count between 2–7 — more slides create poor user orientation</li>
+      <li>Use <code>loop=true</code> for continuous browsing contexts such as galleries</li>
+      <li>Use <code>navVariant="primary"</code> on hero and banner areas</li>
+      <li>Use <code>navVariant="subtle"</code> inside cards or content panels</li>
+      <li>Always include <code>showDots</code> when users may enter from any slide</li>
+      <li>Test with keyboard — verify all dots and nav buttons reach Tab focus</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't hide mandatory form fields or required steps inside slides</li>
+      <li>Don't use carousel as primary navigation — use tabs or a sidebar instead</li>
+      <li>Don't <code>autoPlay</code> news, alerts, or time-sensitive critical content</li>
+      <li>Don't use more than 7 slides without switching to a different pattern</li>
+      <li>Don't mix <code>navVariant</code> or <code>navSize</code> within the same carousel</li>
+      <li>Don't disable both <code>showNavigation</code> and <code>showDots</code> simultaneously</li>
+    </ul>
+  </div>
+</div>
+
+---
+
+{/* ── Design Tokens ── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Nav Button — Sizing</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['--carousel-btn-sm',  '32 px',   'Small nav button diameter'],
+    ['--carousel-btn-md',  '40 px',   'Medium nav button diameter (default)'],
+    ['--carousel-btn-lg',  '48 px',   'Large nav button diameter'],
+    ['--radius-full',      '9999 px', 'Nav button border-radius — fully circular'],
+  ].map(([token, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '220px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Nav Button — Colors</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '240px 60px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['--carousel-primary-bg',          '#1849a9', '#1849a9', 'Primary button default background'],
+    ['--carousel-primary-bg-hover',    '#194185', '#194185', 'Primary button hover background'],
+    ['--carousel-primary-bg-pressed',  '#102a56', '#102a56', 'Primary button pressed background'],
+    ['--carousel-primary-icon',        '#f9fafb', '#f9fafb', 'Chevron color on primary button'],
+    ['--carousel-subtle-bg',           '#f3f4f6', '#f3f4f6', 'Subtle button default background'],
+    ['--carousel-subtle-bg-hover',     '#e5e7eb', '#e5e7eb', 'Subtle button hover background'],
+    ['--carousel-subtle-bg-pressed',   '#d2d6db', '#d2d6db', 'Subtle button pressed background'],
+    ['--carousel-subtle-icon',         '#000b36', '#000b36', 'Chevron color on subtle button'],
+    ['--carousel-disabled-bg',         '#d2d6db', '#d2d6db', 'Disabled state — all variants'],
+    ['--carousel-disabled-icon',       '#6c7c96', '#6c7c96', 'Icon color when disabled'],
+    ['--carousel-focus-ring',          '#00001c', '#00001c', 'Outer focus ring (subtle variant)'],
+  ].map(([token, swatchColor, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '240px 60px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+      <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, flexShrink: 0, background: swatchColor, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Dot Indicators</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 60px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['--carousel-dot-size',     null,      '8 px',    'Dot diameter'],
+    ['--carousel-dot-gap',      null,      '6 px',    'Gap between dots'],
+    ['--carousel-dot-active',   '#1849a9', '#1849a9', 'Active / current slide dot fill'],
+    ['--carousel-dot-inactive', '#d2d6db', '#d2d6db', 'Inactive slide dot fill'],
+  ].map(([token, swatchColor, value, usage]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '200px 60px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+      {swatchColor
+        ? <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, flexShrink: 0, background: swatchColor, border: '1px solid #e5e7eb' }} />
+        : <span />
+      }
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
     </div>
   ))}
 </div>
 
 ---
 
-## State Table
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
 
-| State | Trigger | Primary bg | Subtle bg | Icon |
-|---|---|---|---|---|
-| Default | Resting | `#1849a9` | `#f3f4f6` | white / `#000b36` |
-| Hover | `:hover` | `#194185` | `#e5e7eb` | unchanged |
-| Pressed | `:active` | `#102a56` | `#d2d6db` | unchanged |
-| Focused | `:focus-visible` | `#1849a9` + ring | `#f3f4f6` + ring | unchanged |
-| Disabled | `disabled` prop | `#d2d6db` | `#d2d6db` | `#6c7c96` |
-
-**Focus ring pattern** — Primary: `box-shadow: 0 0 0 2px #1849a9, 0 0 0 5px #ffffff` (inner blue + outer white). Subtle: `box-shadow: 0 0 0 2px #f3f4f6, 0 0 0 5px #00001c` (inner gray + outer near-black from `Carousel/Focus Ring/focus ring`).
-
-**Disabled** — uses dedicated tokens (`--carousel-disabled-bg: #d2d6db` / `--carousel-disabled-icon: #6c7c96`), not opacity.
-
----
-
-## Layout Modes
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>With Navigation + Dots</div>
-    <Carousel
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '28px 20px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#1849a9' }}>Slide 1 of 3</div></div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '28px 20px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#059669' }}>Slide 2 of 3</div></div>,
-        <div key="3" style={{ background: '#fffbeb', border: '1px dashed #d97706', borderRadius: 8, padding: '28px 20px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#d97706' }}>Slide 3 of 3</div></div>,
-      ]}
-      navVariant="primary"
-      navSize="sm"
-      showNavigation={true}
-      showDots={true}
-    />
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Carousel</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 220px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
   </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Dots Only (no nav)</div>
-    <Carousel
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '28px 20px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#1849a9' }}>Slide 1 of 3</div></div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '28px 20px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#059669' }}>Slide 2 of 3</div></div>,
-        <div key="3" style={{ background: '#fffbeb', border: '1px dashed #d97706', borderRadius: 8, padding: '28px 20px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#d97706' }}>Slide 3 of 3</div></div>,
-      ]}
-      showNavigation={false}
-      showDots={true}
-    />
-  </div>
-</div>
-
-| Mode | `showNavigation` | `showDots` | When to use |
-|---|---|---|---|
-| Full | `true` | `true` | Default — both controls visible |
-| Dots only | `false` | `true` | Auto-play context, touch-first surfaces |
-| Nav only | `true` | `false` | Minimal UI, when position indicator isn't needed |
-| Neither | `false` | `false` | Programmatically controlled carousel |
-
----
-
-## RTL Support
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 16 }}>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
-      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
+  {[
+    ['slides',          'ReactNode[]',                       '[]',        'Array of React nodes — each item is one slide rendered inside the viewport'],
+    ['navVariant',      "'primary' | 'subtle'",              "'primary'", 'Visual style of the circular nav buttons'],
+    ['navSize',         "'sm' | 'md' | 'lg'",               "'md'",      'Nav button size — sm=32px · md=40px · lg=48px'],
+    ['showNavigation',  'boolean',                           'true',      'Render prev/next arrow buttons flanking the slide viewport'],
+    ['showDots',        'boolean',                           'true',      'Render clickable dot indicators below the slide track'],
+    ['loop',            'boolean',                           'false',     'Wrap from last slide back to first (and vice-versa)'],
+    ['autoPlay',        'boolean',                           'false',     'Auto-advance slides on a repeating timer. Pair with loop=true to cycle indefinitely'],
+    ['interval',        'number',                            '3000',      'Milliseconds between auto-advances. Only active when autoPlay=true'],
+    ['dir',             "'ltr' | 'rtl'",                    "'ltr'",     'Text direction — rtl flips arrow orientation and logical navigation for Arabic layouts'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 220px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
-    <Carousel
-      dir="ltr"
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '28px 16px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>← Prev on left · Next on right →</div></div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '28px 16px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 13, fontWeight: 600, color: '#059669' }}>Slide 2</div></div>,
-      ]}
-      navVariant="primary"
-      navSize="sm"
-    />
-  </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px' }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-      <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
-      <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
-    </div>
-    <Carousel
-      dir="rtl"
-      slides={[
-        <div key="1" style={{ background: '#eff8ff', border: '1px dashed #1849a9', borderRadius: 8, padding: '28px 16px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", direction: 'rtl' }}><div style={{ fontSize: 13, fontWeight: 600, color: '#1849a9' }}>السابق على اليمين · التالي على اليسار</div></div>,
-        <div key="2" style={{ background: '#f0fdf4', border: '1px dashed #059669', borderRadius: 8, padding: '28px 16px', textAlign: 'center', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", direction: 'rtl' }}><div style={{ fontSize: 13, fontWeight: 600, color: '#059669' }}>الشريحة الثانية</div></div>,
-      ]}
-      navVariant="primary"
-      navSize="sm"
-    />
-  </div>
-</div>
-
-<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
-  <strong>RTL behaviour:</strong> Pass <code>dir="rtl"</code> on the Carousel. The left button visually shows a right-pointing chevron (‹ becomes ›) and triggers <em>next</em>, while the right button shows a left-pointing chevron and triggers <em>prev</em>. This matches the Arabic reading convention where content flows right-to-left.
-</div>
-
----
-
-## Dot Indicators
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '24px 20px', marginBottom: 16 }}>
-  <div style={{ display: 'flex', gap: 32, alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-      <div style={{ display: 'flex', gap: 6 }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#1849a9' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-      </div>
-      <div style={{ fontSize: 11, color: '#6b7280' }}>Slide 1 active</div>
-    </div>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-      <div style={{ display: 'flex', gap: 6 }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#1849a9' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-      </div>
-      <div style={{ fontSize: 11, color: '#6b7280' }}>Slide 2 active</div>
-    </div>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-      <div style={{ display: 'flex', gap: 6 }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db' }} />
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#1849a9' }} />
-      </div>
-      <div style={{ fontSize: 11, color: '#6b7280' }}>Slide 4 active</div>
-    </div>
-  </div>
-  <div style={{ display: 'flex', gap: 24, justifyContent: 'center', flexWrap: 'wrap', fontSize: 12, color: '#6b7280' }}>
-    <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-      <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#1849a9', display: 'inline-block' }} />
-      Active — <code style={{ fontSize: 11, color: '#1849a9' }}>#1849a9</code>
-    </span>
-    <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-      <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#d2d6db', display: 'inline-block', border: '1px solid #e5e7eb' }} />
-      Inactive — <code style={{ fontSize: 11, color: '#6b7280' }}>#d2d6db</code>
-    </span>
-  </div>
-</div>
-
-Each dot is a native `<button role="tab" aria-selected>` — clicking it jumps directly to that slide. Dots are hidden when there is only one slide.
-
----
-
-## Token Table
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Sizing</div>
-<div style={{ display: 'grid', gridTemplateColumns: '220px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
-{[{t:'--carousel-btn-sm',v:'32px',f:'Carousel/Size/small/width + height',u:'Small nav button diameter'},{t:'--carousel-btn-md',v:'40px',f:'Carousel/Size/medium/width + height',u:'Medium nav button diameter'},{t:'--carousel-btn-lg',v:'48px',f:'Carousel/Size/large/width + height',u:'Large nav button diameter'},{t:'--carousel-dot-size',v:'8px',f:'(derived from design)',u:'Dot diameter'},{t:'--carousel-dot-gap',v:'6px',f:'(derived from design)',u:'Gap between dots'},{t:'--radius-full',v:'9999px',f:'Carousel/Size/*/radius-rounded',u:'Nav button border-radius'}].map(({t,v,f,u},i)=>(
-<div key={t} style={{display:'grid',gridTemplateColumns:'220px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
-<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
-<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
-<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
-</div>
-))}
-</div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
-<div style={{ display: 'grid', gridTemplateColumns: '245px 120px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
-{[
-{t:'--carousel-primary-bg',h:'#1849a9',f:'Carousel/Primary/Bg/default',u:'Primary button default bg'},
-{t:'--carousel-primary-bg-hover',h:'#194185',f:'Carousel/Primary/Bg/hover',u:'Primary button hover bg'},
-{t:'--carousel-primary-bg-pressed',h:'#102a56',f:'Carousel/Primary/Bg/pressed',u:'Primary button pressed bg'},
-{t:'--carousel-primary-icon',h:'#f9fafb',f:'Carousel/Primary/Icon/default',u:'Primary button chevron color'},
-{t:'--carousel-subtle-bg',h:'#f3f4f6',f:'Carousel/Subtle/Bg/default',u:'Subtle button default bg'},
-{t:'--carousel-subtle-bg-hover',h:'#e5e7eb',f:'Carousel/Subtle/Bg/hover',u:'Subtle button hover bg'},
-{t:'--carousel-subtle-bg-pressed',h:'#d2d6db',f:'Carousel/Subtle/Bg/pressed',u:'Subtle button pressed bg'},
-{t:'--carousel-subtle-icon',h:'#000b36',f:'Carousel/Subtle/Icon/default',u:'Subtle button chevron color'},
-{t:'--carousel-disabled-bg',h:'#d2d6db',f:'Carousel/Disabled/bg/disable',u:'Disabled button background'},
-{t:'--carousel-disabled-icon',h:'#6c7c96',f:'Carousel/Disabled/Icon/disable',u:'Disabled button icon'},
-{t:'--carousel-focus-ring',h:'#00001c',f:'Carousel/Focus Ring/focus ring',u:'Subtle focus outer ring color'},
-{t:'--carousel-dot-active',h:'#1849a9',f:'(mirrors primary bg)',u:'Active dot fill'},
-{t:'--carousel-dot-inactive',h:'#d2d6db',f:'(mirrors disabled bg)',u:'Inactive dot fill'},
-].map(({t,h,f,u},i)=>(
-<div key={t} style={{display:'grid',gridTemplateColumns:'245px 120px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
-<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
-<code style={{fontSize:11,color:'#111827'}}>{h}</code>
-</span>
-<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
-<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
-</div>
-))}
-</div>
-</div>
-
----
-
-## Properties
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#4b5563' }}>Carousel</div>
-<div style={{ display: 'grid', gridTemplateColumns: '130px 90px 76px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
-{[
-{n:'slides',type:'array',tb:'#f0fdf4',tc:'#166534',def:'[]',d:'Array of React nodes — each item is one slide. The carousel renders one slide at a time.'},
-{n:'navVariant',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'primary',d:'primary — solid blue fill · subtle — light gray fill'},
-{n:'navSize',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'md',d:'sm=32px · md=40px · lg=48px — controls circular button diameter and icon size'},
-{n:'showNavigation',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'true',d:'Render prev/next arrow buttons flanking the slide viewport'},
-{n:'showDots',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'true',d:'Render clickable dot indicators below the slide track'},
-{n:'loop',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Wrap around — next after last returns to first, prev before first goes to last'},
-{n:'autoPlay',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Auto-advance slides on a repeating timer. Pair with loop=true to cycle indefinitely.'},
-{n:'interval',type:'node',tb:'#ecfdf5',tc:'#059669',def:'3000',d:'Milliseconds between auto-advances. Only active when autoPlay=true.'},
-{n:'dir',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'ltr',d:'ltr · rtl — flips arrow orientation and logical navigation direction for Arabic layouts'},
-].map(({n,type,tb,tc,def,d},i)=>(
-<div key={n} style={{display:'grid',gridTemplateColumns:'130px 90px 76px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
-<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
-<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
-<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
-</div>
-))}
-</div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#4b5563' }}>CarouselNavButton (sub-component)</div>
-<div style={{ display: 'grid', gridTemplateColumns: '130px 90px 76px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
-{[
-{n:'direction',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'next',d:'prev — left chevron (LTR) / right chevron (RTL) · next — right chevron (LTR) / left chevron (RTL)'},
-{n:'variant',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'primary',d:'primary · subtle — matches Carousel navVariant'},
-{n:'size',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'md',d:'sm · md · lg'},
-{n:'disabled',type:'boolean',tb:'#f3f0ff',tc:'#7c3aed',def:'false',d:'Disabled state — applies dedicated tokens, not opacity'},
-{n:'dir',type:'enum',tb:'#fff7ed',tc:'#c2410c',def:'ltr',d:'ltr · rtl — flips chevron direction'},
-{n:'onClick',type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',d:'Click handler'},
-{n:'aria-label',type:'node',tb:'#ecfdf5',tc:'#059669',def:'auto',d:'Accessible label — defaults to "Previous slide" / "Next slide"'},
-].map(({n,type,tb,tc,def,d},i)=>(
-<div key={n} style={{display:'grid',gridTemplateColumns:'130px 90px 76px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
-<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
-<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
-<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
-</div>
-))}
-</div>
-
----
-
-## Accessibility
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-{[
-{cat:'Keyboard Navigation',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'⌨',items:[
-{title:'Tab reaches nav buttons and dots',desc:'Both CarouselNavButton and each dot are native <button> elements — they receive Tab focus automatically.'},
-{title:'Enter or Space activates controls',desc:'Nav buttons advance/retreat slides. Dot buttons jump to the corresponding slide.'},
-{title:'Focus ring on :focus-visible only',desc:'box-shadow focus ring appears only on keyboard navigation, not mouse clicks, avoiding visual noise.'},
-{title:'Disabled nav buttons removed from tab order',desc:'The HTML disabled attribute prevents disabled nav buttons from receiving focus — matches project disabled pattern.'},
-]},
-{cat:'ARIA & Semantics',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'A',items:[
-{title:'aria-roledescription="carousel" on wrapper',desc:'Tells screen readers this is a carousel pattern, not a generic container.'},
-{title:'aria-live="polite" on viewport',desc:'Announces slide changes after the user initiates them, without interrupting ongoing speech.'},
-{title:'role="group" + aria-roledescription="slide"',desc:'Each slide is announced as a slide by AT — e.g. "Slide 2 of 4".'},
-{title:'Dot buttons use role="tab" + aria-selected',desc:'Screen readers announce dots as tabs, and the active dot as selected — consistent with tab-list semantics.'},
-{title:'Nav buttons have aria-label',desc:'Defaults to "Previous slide" / "Next slide". Pass a custom aria-label when context requires more specificity.'},
-{title:'Chevron icons are aria-hidden="true"',desc:'The icon SVGs are decorative — the accessible name lives on the parent <button> aria-label.'},
-]},
-{cat:'Visual & Focus',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
-{title:'Double box-shadow focus ring — WCAG 2.2 compliant',desc:'Primary: 2px #1849a9 inner + 5px #fff outer — passes Focus Appearance 3:1 contrast. Subtle: 2px #f3f4f6 + 5px #00001c outer.'},
-{title:'Disabled tokens — no opacity',desc:'Dedicated disabled tokens (#d2d6db bg / #6c7c96 icon) ensure disabled controls remain perceptible at all opacity levels.'},
-{title:'aria-hidden slides hidden from AT tree',desc:'Inactive slides carry aria-hidden="true" so screen readers only announce the visible slide, not hidden content.'},
-{title:'autoPlay pause on focus',desc:'When autoPlay is enabled, keyboard users can navigate without the slide changing under them — Tab focus does not pause autoPlay in this implementation; see Mismatch Report.'},
-]},
-].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
-<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
-<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
-<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
-<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
-</div>
-{items.map(({title,desc},j)=>(
-<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
-<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
-<div>
-<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
-<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
-</div>
-</div>
-))}
-</div>
-))}
-</div>
-
----
-
-## Usage Guidelines
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
-<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff' }}>
-  <Carousel
-    slides={[
-      <div key="1" style={{ background: '#eff8ff', border: '1px solid #bfdbfe', borderRadius: 8, padding: '20px', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#1849a9', marginBottom: 4 }}>Featured item</div><div style={{ fontSize: 12, color: '#6b7280' }}>Supplementary content the user may wish to browse</div></div>,
-      <div key="2" style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 8, padding: '20px', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}><div style={{ fontSize: 14, fontWeight: 600, color: '#059669', marginBottom: 4 }}>Related article</div><div style={{ fontSize: 12, color: '#6b7280' }}>A second browsable item in the same category</div></div>,
-    ]}
-    navVariant="subtle"
-    navSize="sm"
-  />
-</div>
-<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Browse supplementary or related content</div>
-  {['Use for image galleries, featured articles, or onboarding steps.','Limit to 5–7 slides — more creates poor orientation.','Use loop=true for continuous browsing contexts (galleries).','Prefer subtle variant in content cards, primary on hero areas.'].map((r,i)=>(
-    <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
   ))}
 </div>
-</div>
-<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
-<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff', display: 'flex', flexDirection: 'column', gap: 8 }}>
-  <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 8, padding: '16px 20px', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-    <div style={{ fontSize: 14, fontWeight: 600, color: '#dc2626', marginBottom: 4 }}>Step 1 — Required action</div>
-    <div style={{ fontSize: 12, color: '#6b7280' }}>Hiding critical form steps in a carousel</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>CarouselNavButton</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 220px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
   </div>
-</div>
-<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Hide required content or primary actions</div>
-  {["Don't hide mandatory form fields or required steps inside slides.","Don't use for primary navigation — use tabs or a sidebar.","Don't autoPlay critical information — users may miss it.","Don't use more than 7 slides without a different pattern."].map((r,i)=>(
-    <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+  {[
+    ['direction',   "'prev' | 'next'",       "'next'",    'Which arrow direction this button represents'],
+    ['variant',     "'primary' | 'subtle'",  "'primary'", 'Visual style — matches Carousel navVariant'],
+    ['size',        "'sm' | 'md' | 'lg'",    "'md'",      'Button size — sm=32px · md=40px · lg=48px'],
+    ['disabled',    'boolean',               'false',     'Disabled state — uses dedicated tokens, not opacity'],
+    ['dir',         "'ltr' | 'rtl'",         "'ltr'",     'Flips chevron direction in RTL mode'],
+    ['onClick',     'function',              '—',         'Click handler'],
+    ['aria-label',  'string',                'auto',      'Accessible label — defaults to "Previous slide" / "Next slide"'],
+  ].map(([prop, type, def, desc]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '160px 220px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
   ))}
 </div>
-</div>
-</div>
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
-{['Use primary variant on hero or banner areas for strong visual anchoring.','Use subtle variant inside cards or when the page already has strong blue elements.','Always include showDots when users may enter from any slide.','Set aria-label on the Carousel wrapper to describe the content collection.','Use loop=true + autoPlay=true only for non-critical decorative content.','Test with keyboard — verify dots and nav buttons are all reachable by Tab.'].map((r,i)=>(
-<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
-))}
-</div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
-{["Don't hide required information — it may remain collapsed.","Don't use carousel for primary navigation (use tabs/sidebar).","Don't autoPlay news, alerts, or time-sensitive content.","Don't use more than 7 slides — orientation becomes impractical.","Don't mix navVariant or navSize within the same carousel.","Don't disable both showNavigation and showDots simultaneously."].map((r,i)=>(
-<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
-))}
-</div>
-</div>
 
 ---
 
-## Code Examples
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
 
-```jsx
-import { Carousel, CarouselNavButton } from '@/components/Carousel';
-
-// Default — primary nav, md size, 4 slides
-<Carousel
-  slides={[
-    <MyCard title="Slide 1" />,
-    <MyCard title="Slide 2" />,
-    <MyCard title="Slide 3" />,
-    <MyCard title="Slide 4" />,
-  ]}
-/>
-
-// Subtle variant, large buttons
-<Carousel
-  navVariant="subtle"
-  navSize="lg"
-  slides={[ <MyCard title="A" />, <MyCard title="B" /> ]}
-/>
-
-// Dots only (no nav arrows)
-<Carousel
-  showNavigation={false}
-  showDots={true}
-  slides={slides}
-/>
-
-// Loop + auto-play every 4 seconds
-<Carousel
-  loop={true}
-  autoPlay={true}
-  interval={4000}
-  slides={slides}
-/>
-
-// RTL Arabic
-<Carousel
-  dir="rtl"
-  slides={[
-    <div style={{ direction: 'rtl' }}>الشريحة الأولى</div>,
-    <div style={{ direction: 'rtl' }}>الشريحة الثانية</div>,
-  ]}
-/>
-
-// Standalone nav button (custom prev/next wiring)
-<CarouselNavButton
-  direction="prev"
-  variant="primary"
-  size="md"
-  aria-label="Previous item"
-  onClick={handlePrev}
-/>
-<CarouselNavButton
-  direction="next"
-  variant="subtle"
-  size="md"
-  disabled={isLastSlide}
-  onClick={handleNext}
-/>
-```
-
----
-
-## Figma Reference
-
-- **Component set:** [4112:16 — Masterteam DS Carousel](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4112-16)
-
----
-
-## Mismatch Report
-
-Audit against Figma node `4112:16`.
-
-<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
-<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>16 Match</span>
-<span style={{ background: '#fffbeb', color: '#d97706', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fde68a' }}>2 Deviation</span>
-<span style={{ background: '#eff3fb', color: '#1849a9', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #bfdbfe' }}>3 New token</span>
-<span style={{ background: '#f3f4f6', color: '#6b7280', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #e5e7eb' }}>1 Enhancement</span>
-</div>
-<div style={{ border: '1px solid #fde68a', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#fffbeb', padding: '10px 16px', borderBottom: '1px solid #fde68a', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#d97706' }}>Deviations — requires attention</div>
-{[
-{a:'Focus ring',fig:'Figma variable Carousel/Focus Ring/focus ring = #00001c applied as solid outline',impl:'Double box-shadow: 0 0 0 2px [variant-bg], 0 0 0 5px #00001c (subtle) / #fff (primary)',n:'Figma specifies a single ring token. Project double box-shadow pattern applied to match WCAG 2.2 Focus Appearance and the Button/Accordion focus ring convention established in this design system.'},
-{a:'autoPlay — pause on focus/hover',fig:'Not specified in Figma',impl:'autoPlay does not pause when keyboard focus enters the carousel',n:'WCAG 2.2 SC 2.2.2 (Pause, Stop, Hide) requires a mechanism to pause auto-advancing content. This is an implementation enhancement pending design guidance — currently the autoPlay timer runs continuously.'},
-].map(({a,fig,impl,n},i)=>(
-<div key={a} style={{padding:'12px 16px',background:i%2===0?'#fff':'#fffef5',borderBottom:'1px solid #fef9c3'}}>
-<div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
-<span style={{background:'#fffbeb',color:'#d97706',fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,border:'1px solid #fde68a'}}>Deviation</span>
-<span style={{fontSize:13,fontWeight:600,color:'#111827'}}>{a}</span>
-</div>
-<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:6}}>
-<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Figma</div><code style={{fontSize:12,color:'#374151'}}>{fig}</code></div>
-<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Implementation</div><code style={{fontSize:12,color:'#374151'}}>{impl}</code></div>
-</div>
-<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
-</div>
-))}
-</div>
-<div style={{ border: '1px solid #bfdbfe', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#eff3fb', padding: '10px 16px', borderBottom: '1px solid #bfdbfe', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9' }}>New tokens added</div>
-{[
-{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--carousel-dot-size: 8px',n:'Dot indicator diameter not defined in Figma variables. Derived from Figma design inspection.'},
-{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--carousel-dot-gap: 6px',n:'Gap between dot indicators not defined in Figma variables. Derived from Figma design inspection.'},
-{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--carousel-dot-active / --carousel-dot-inactive',n:'Dot fill colors not defined in Figma Carousel variables. Active mirrors --carousel-primary-bg (#1849a9); inactive mirrors --carousel-disabled-bg (#d2d6db).'},
-{s:'Enhancement',sb:'#f3f4f6',st:'#6b7280',a:'CarouselNavButton as exported sub-component',n:'Not separate in Figma component set. Exported as a standalone component so consumers can build custom carousel wrappers or use the circular nav button in other contexts.'},
-].map(({s,sb,st,a,n},i)=>(
-<div key={a} style={{display:'flex',alignItems:'flex-start',gap:12,padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6'}}>
-<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',flexShrink:0,border:`1px solid ${sb==='#eff3fb'?'#bfdbfe':'#e5e7eb'}`}}>{s}</span>
-<div>
-<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{a}</div>
-<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
-</div>
-</div>
-))}
-</div>
-<details style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<summary style={{ background: '#f9fafb', padding: '10px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#374151', borderBottom: '1px solid #e5e7eb', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 700, border: '1px solid #a7f3d0' }}>16 Match</span>
-View all matched properties
-</summary>
-<div style={{ background: '#fff' }}>
-{[
-['Primary bg default','#1849a9','--carousel-primary-bg ✓'],
-['Primary bg hover','#194185','--carousel-primary-bg-hover ✓'],
-['Primary bg pressed','#102a56','--carousel-primary-bg-pressed ✓'],
-['Primary icon color','#f9fafb','--carousel-primary-icon ✓'],
-['Subtle bg default','#f3f4f6','--carousel-subtle-bg ✓'],
-['Subtle bg hover','#e5e7eb','--carousel-subtle-bg-hover ✓'],
-['Subtle bg pressed','#d2d6db','--carousel-subtle-bg-pressed ✓'],
-['Subtle icon color','#000b36','--carousel-subtle-icon ✓'],
-['Disabled bg','#d2d6db','--carousel-disabled-bg ✓'],
-['Disabled icon','#6c7c96','--carousel-disabled-icon ✓'],
-['Focus ring token','#00001c','--carousel-focus-ring ✓'],
-['Button sm size','32×32px','--carousel-btn-sm ✓'],
-['Button md size','40×40px','--carousel-btn-md ✓'],
-['Button lg size','48×48px','--carousel-btn-lg ✓'],
-['Border radius all sizes','9999px','var(--radius-full) ✓'],
-['Font family','IBM Plex Sans Arabic','var(--font-sans) ✓'],
-].map(([area,figma,impl],i)=>(
-<div key={area} style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',padding:'8px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center',fontSize:12}}>
-<span style={{color:'#111827',fontWeight:500}}>{area}</span>
-<code style={{color:'#6b7280'}}>{figma}</code>
-<code style={{color:'#059669'}}>{impl}</code>
-</div>
-))}
-</div>
-</details>
-<div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#6b7280' }}>
-<span style={{ fontWeight: 700, color: '#374151' }}>Missing design decisions not in Figma:</span> Dot indicator exact sizes and colors (implemented via derived values) · Slide transition animation (none applied — Figma does not specify) · autoPlay pause-on-hover/focus behaviour (WCAG 2.2.2 requirement — pending design decision) · Swipe gesture support for touch devices (not specified, not implemented)
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Carousel wrapper',      '`aria-roledescription="carousel"` + `aria-label="Content carousel"` on the root div — tells screen readers this is a carousel pattern'],
+    ['Slide viewport',        '`aria-live="polite"` + `aria-atomic="true"` — announces slide changes after user initiation without interrupting ongoing speech'],
+    ['Individual slides',     '`role="group"` + `aria-roledescription="slide"` + `aria-label="Slide N of M"` — each slide announced as "Slide 2 of 4"'],
+    ['Hidden slides',         '`aria-hidden="true"` on all inactive slides — AT only announces the visible slide, not hidden content'],
+    ['Nav buttons',           '`aria-label="Previous slide"` / `"Next slide"` by default; pass a custom `aria-label` for more specific contexts'],
+    ['Disabled nav buttons',  '`disabled` HTML attribute on the button element — removes from tab order and prevents focus; dedicated token styling (not opacity)'],
+    ['Dot indicators',        '`role="tab"` + `aria-selected` on each dot button — announced as tabs; active dot is selected'],
+    ['Dot list',              '`role="tablist"` + `aria-label="Slide indicators"` on the dot container'],
+    ['Chevron icons',         '`aria-hidden="true"` on all SVG icons — decorative; accessible name lives on the parent `<button>`'],
+    ['Keyboard — Tab',        'All nav buttons and dot buttons are native `<button>` elements — receive Tab focus automatically'],
+    ['Keyboard — Enter/Space','Nav buttons advance or retreat slides. Dot buttons jump to the corresponding slide index'],
+    ['Focus ring',            '`box-shadow` focus ring on `:focus-visible` only — not on mouse clicks. Primary: 2px #1849a9 + 5px #fff. Subtle: 2px #f3f4f6 + 5px #00001c'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
 </div>
 
 </div>
