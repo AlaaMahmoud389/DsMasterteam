@@ -90,7 +90,8 @@ export function Checkbox({
   const boxClass = [
     styles.box,
     styles[`size_${size}`],
-    disabled                          ? styles.disabled           :
+    disabled && !isFilled             ? styles.disabled_unchecked :
+    disabled &&  isFilled             ? styles.disabled_checked   :
     readOnly && !isFilled             ? styles.readOnly_unchecked :
     readOnly &&  isFilled             ? styles[`readOnly_${variant}`] :
     isFilled                          ? styles[`variant_${variant}`] :
