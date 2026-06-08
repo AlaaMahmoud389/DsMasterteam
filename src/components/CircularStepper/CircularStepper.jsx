@@ -49,16 +49,16 @@ export function CircularStepper({
   const hasContent = !!(label || description || onNext || onBack);
 
   /* ── SVG arc geometry ── */
-  const r           = (px - stroke) / 2;
-  const cx          = px / 2;
-  const cy          = px / 2;
-  const circumf     = 2 * Math.PI * r;
-  const progress    = Math.min(Math.max(currentStep / totalSteps, 0), 1);
-  const dashOffset  = circumf * (1 - progress);
+  const r          = (px - stroke) / 2;
+  const cx         = px / 2;
+  const cy         = px / 2;
+  const circumf    = 2 * Math.PI * r;
+  const progress   = Math.min(Math.max(currentStep / totalSteps, 0), 1);
+  const dashOffset = circumf * (1 - progress);
 
   /* ── Colors ── */
   const trackColor = isDark
-    ? 'var(--stepper-track-dark)'
+    ? 'var(--stepper-track-dark, rgba(255,255,255,0.30))'
     : 'var(--stepper-track, #e5e7eb)';
 
   const arcColor = isDark

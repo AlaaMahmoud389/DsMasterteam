@@ -1,599 +1,423 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import { CircularStepper } from './CircularStepper';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as CircularStepperStories from './CircularStepper.stories';
 
 <Meta of={CircularStepperStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Navigation / Circular Stepper</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Circular Stepper</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>The Circular Stepper shows a user's progress through a multi-step flow using a circular arc that fills clockwise. The inner counter displays the current step out of the total. An optional text area alongside the circle shows a step label, description, and navigation controls.</div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-      Available
-    </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4250:1945</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1945" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma</a>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / Navigation / Circular Stepper</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Circular Stepper</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    The Circular Stepper shows a user's progress through a multi-step flow using a circular arc that fills clockwise.
+    The inner counter displays the current step out of the total. An optional text area alongside the circle shows
+    a step label, description, and navigation controls.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>2 Variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>5 Sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Light & Dark Theme</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL Support</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Navigation Controls</span>
   </div>
 </div>
 
----
-
-## Overview
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 16 }}>
-  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, alignItems: 'flex-start' }}>
-      <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 4 }}>Indicator only</div>
-      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-        {[1,2,3,4].map(s => <CircularStepper key={s} size="lg" currentStep={s} totalSteps={4} variant="primary" />)}
-      </div>
-    </div>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flex: 1, minWidth: 260 }}>
-      <div style={{ fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 4 }}>With label &amp; navigation</div>
-      <CircularStepper
-        size="xl"
-        currentStep={1}
-        totalSteps={4}
-        variant="primary"
-        label="Step One"
-        description="This is step description"
-        onNext={() => {}}
-      />
-    </div>
-  </div>
-</div>
-
-Two fill variants · five sizes (40–120 px) · light and dark themes · optional label/description/navigation · full RTL support. All tokens from Figma node `4250:1945`.
-
----
-
-## Anatomy
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '32px 24px', marginBottom: 24 }}>
-  <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'center' }}>
-    <div style={{ position: 'relative', display: 'inline-block' }}>
-      <CircularStepper size="xl" currentStep={2} totalSteps={4} variant="primary" label="Step Two" description="This is step description" onBack={() => {}} onNext={() => {}} />
-    </div>
-  </div>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 28px', justifyContent: 'center', marginTop: 28 }}>
-    {[['1','Inactive track — gray arc (full 360°)'],['2',"Active arc — fills clockwise from 12 o'clock"],['3','Inner counter — "N of M" text'],['4','Step label (optional)'],['5','Description (optional)'],['6','Navigation — Back / Next buttons (optional)']].map(([n,label])=>(
-      <div key={n} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 13, color: '#111827' }}>
-        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{n}</span>
-        {label}
-      </div>
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',        'Overview'],
+      ['#anatomy',         'Anatomy'],
+      ['#variants',        'Variants'],
+      ['#sizes',           'Sizes'],
+      ['#step-progression','Step Progression'],
+      ['#with-content',    'With Content'],
+      ['#dark-theme',      'Dark Theme'],
+      ['#rtl',             'RTL Support'],
+      ['#tokens',          'Token Table'],
+      ['#properties',      'Properties'],
+      ['#accessibility',   'Accessibility'],
+      ['#usage',           'Usage Guidelines'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
     ))}
   </div>
 </div>
 
-| # | Element | Required |
-|---|---|---|
-| 1 | Inactive track — full circle arc in `#e5e7eb` | Always |
-| 2 | Active arc — clockwise fill, color from variant token | Always |
-| 3 | Inner counter — `N of M` / `N من M` (RTL), `color: #233a61` | Always |
-| 4 | Step label — 16px Semibold `#000b36`, shown when `label` prop provided | Optional |
-| 5 | Description — 14px Regular `#233a61`, shown when `description` prop provided | Optional |
-| 6 | Back / Next navigation — text buttons, shown when `onBack`/`onNext` provided | Optional |
+---
+
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>variant</code> and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code> in the controls panel to explore styles.
+  Add <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>label</code> and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>description</code> to activate the text content area.
+  Two fill variants · five sizes (40–120 px) · light and dark themes · optional label/description/navigation · full RTL support.
+</p>
+
+<Canvas of={CircularStepperStories.Playground} />
+<Controls of={CircularStepperStories.Playground} />
 
 ---
 
-## Variants
+{/* ── Anatomy ── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Primary (variant="primary")</div>
-    <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-      {[1,2,3,4].map(s => <CircularStepper key={s} size="lg" currentStep={s} totalSteps={4} variant="primary" />)}
-    </div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 220px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Element</span><span>Required</span><span>Description</span>
   </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Neutral (variant="neutral")</div>
-    <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-      {[1,2,3,4].map(s => <CircularStepper key={s} size="lg" currentStep={s} totalSteps={4} variant="neutral" />)}
-    </div>
-  </div>
-</div>
-
-| Variant | Arc fill color | Use case |
-|---|---|---|
-| `primary` | `#1849a9` blue | Default — brand-aligned flows, onboarding |
-| `neutral` | `#1f2a37` dark navy | Neutral/dark-themed UIs, content-heavy layouts |
-
----
-
-## Sizes
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
   {[
-    ['X-Large','size="xl"','xl','120px','10px','20px'],
-    ['Large',  'size="lg"','lg', '80px', '8px','16px'],
-    ['Medium', 'size="md"','md', '64px', '6px','13px'],
-    ['Small',  'size="sm"','sm', '48px', '5px','10px'],
-    ['X-Small','size="xs"','xs', '40px', '4px', '9px'],
-  ].map(([name, code, size, diameter, stroke, font]) => (
-    <div key={size} style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '14px 0', borderBottom: '1px solid #f3f4f6' }}>
-      <div style={{ minWidth: 140 }}>
-        <div style={{ fontSize: 13, fontWeight: 600, color: '#111827' }}>{name}</div>
-        <code style={{ fontSize: 11, color: '#6b7280' }}>{code}</code>
-      </div>
-      <CircularStepper size={size} currentStep={2} totalSteps={4} variant="primary" />
-      <CircularStepper size={size} currentStep={2} totalSteps={4} variant="neutral" />
-      <div style={{ fontSize: 12, color: '#6b7280', marginLeft: 8 }}>{diameter} · {stroke} stroke · {font} inner text</div>
+    ['1', 'Inactive track',   'Always',   'Full circle arc in #e5e7eb — the background ring behind the active fill'],
+    ['2', 'Active arc',       'Always',   "Clockwise fill from 12 o'clock — color from variant token. Progress = currentStep ÷ totalSteps"],
+    ['3', 'Inner counter',    'Always',   'N of M (LTR) / N من M (RTL) text — color: #233a61 in light theme'],
+    ['4', 'Step label',       'Optional', '16px Semibold #000b36 — shown when label prop is provided'],
+    ['5', 'Description',      'Optional', '14px Regular #233a61 — shown when description prop is provided'],
+    ['6', 'Back / Next nav',  'Optional', 'Text buttons — shown when onBack / onNext props are provided'],
+  ].map(([n, part, req, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 220px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: req === 'Always' ? '#059669' : '#6b7280', fontSize: 12 }}>{req}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
   ))}
 </div>
 
-| Size prop | Diameter | Stroke width | Inner font | Figma token |
-|---|---|---|---|---|
-| `xl` | 120 px | 10 px | 20 px | `Circular Stepper/Size/120ox` |
-| `lg` | 80 px  | 8 px  | 16 px | `Circular Stepper/Size/80px` |
-| `md` | 64 px  | 6 px  | 13 px | `Circular Stepper/Size/64px` |
-| `sm` | 48 px  | 5 px  | 10 px | `Circular Stepper/Size/48px` |
-| `xs` | 40 px  | 4 px  | 9 px  | `Circular Stepper/Size/40px` |
-
 ---
 
-## Step Progression
+{/* ── Variants ── */}
+<h2 id="variants" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Variants</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Two fill variants control the arc colour via the{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>variant</code> prop.
+</p>
 
-The arc fills clockwise from 12 o'clock. Progress = `currentStep ÷ totalSteps`.
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
-  {['primary','neutral'].map(v => (
-    <div key={v} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>{v}</div>
-      <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-        {[1,2,3,4].map(step => (
-          <div key={step} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-            <CircularStepper size="xl" currentStep={step} totalSteps={4} variant={v} />
-            <span style={{ fontSize: 11, color: '#6b7280' }}>{Math.round(step/4*100)}%</span>
-          </div>
-        ))}
-      </div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>Arc Fill Color</span><span>Use Case</span>
+  </div>
+  {[
+    ['primary', '#1849a9 blue',    'Default — brand-aligned flows, onboarding'],
+    ['neutral', '#1f2a37 dark navy','Neutral/dark-themed UIs, content-heavy layouts'],
+  ].map(([variant, color, use]) => (
+    <div key={variant} style={{ display: 'grid', gridTemplateColumns: '120px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{variant}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{color}</code>
+      <span style={{ color: '#374151' }}>{use}</span>
     </div>
   ))}
 </div>
 
-| Step | Progress | Arc fill |
-|---|---|---|
-| 1 of 4 | 25% | ¼ clockwise |
-| 2 of 4 | 50% | ½ clockwise |
-| 3 of 4 | 75% | ¾ clockwise |
-| 4 of 4 | 100% | Full circle |
+<Canvas of={CircularStepperStories.Variants} />
 
 ---
 
-## With Content
+{/* ── Sizes ── */}
+<h2 id="sizes" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Sizes</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Five sizes from Figma: X-Small (40 px) through X-Large (120 px). Set via the{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code> prop.
+</p>
 
-When `label`, `description`, or navigation props are provided, the stepper renders in **full mode** — the circle sits beside a text content area.
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Indicator only (no props)</div>
-    <CircularStepper size="xl" currentStep={2} totalSteps={4} variant="primary" />
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '80px 70px 100px 100px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Prop</span><span>Diameter</span><span>Stroke</span><span>Inner Font</span><span>Figma Token</span>
   </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>With label only</div>
-    <CircularStepper size="xl" currentStep={2} totalSteps={4} variant="primary" label="Step Two" />
-  </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>With label + description</div>
-    <CircularStepper size="xl" currentStep={2} totalSteps={4} variant="primary" label="Step Two" description="This is step description" />
-  </div>
-  <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>With label + description + navigation</div>
-    <CircularStepper size="xl" currentStep={2} totalSteps={4} variant="primary" label="Step Two" description="This is step description" onBack={() => {}} onNext={() => {}} />
-  </div>
-</div>
-
-| Slot | Prop | Condition to show |
-|---|---|---|
-| Step label | `label` | When string provided |
-| Description | `description` | When string provided |
-| Back button | `onBack` | When function provided |
-| Next button | `onNext` | When function provided |
-
----
-
-## Dark Theme
-
-Pass `theme="dark"` for use on dark backgrounds. The arc color becomes white for both variants, and all text uses on-dark tokens.
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-  <div style={{ background: '#0d121c', border: '1px solid #1f2a37', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6c737f', marginBottom: 16 }}>Indicator — Steps 1–4</div>
-    <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' }}>
-      {[1,2,3,4].map(s => <CircularStepper key={s} size="lg" currentStep={s} totalSteps={4} variant="primary" theme="dark" />)}
+  {[
+    ['X-Large', '"xl"', '120 px', '10 px', '20 px', 'Circular Stepper/Size/120ox'],
+    ['Large',   '"lg"', '80 px',  '8 px',  '16 px', 'Circular Stepper/Size/80px'],
+    ['Medium',  '"md"', '64 px',  '6 px',  '13 px', 'Circular Stepper/Size/64px'],
+    ['Small',   '"sm"', '48 px',  '5 px',  '10 px', 'Circular Stepper/Size/48px'],
+    ['X-Small', '"xs"', '40 px',  '4 px',  '9 px',  'Circular Stepper/Size/40px'],
+  ].map(([name, prop, diameter, stroke, font, token]) => (
+    <div key={name} style={{ display: 'grid', gridTemplateColumns: '80px 70px 100px 100px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{name}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <span style={{ color: '#374151' }}>{diameter}</span>
+      <span style={{ color: '#374151' }}>{stroke}</span>
+      <span style={{ color: '#374151' }}>{font}</span>
+      <code style={{ fontSize: 11, color: '#374151' }}>{token}</code>
     </div>
-  </div>
-  <div style={{ background: '#0d121c', border: '1px solid #1f2a37', borderRadius: 10, padding: '20px 24px' }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6c737f', marginBottom: 16 }}>Full variant on dark</div>
-    <CircularStepper
-      size="xl"
-      currentStep={1}
-      totalSteps={4}
-      variant="primary"
-      theme="dark"
-      label="Step One"
-      description="This is step description"
-      onNext={() => {}}
-    />
-  </div>
-</div>
-
-| Token | Light | Dark |
-|---|---|---|
-| Active arc | `#1849a9` / `#1f2a37` | `#ffffff` |
-| Inactive track | `#e5e7eb` | `rgba(255,255,255,0.30)` |
-| Inner counter | `#233a61` | `#ffffff` |
-| Label | `#000b36` | `#ffffff` |
-| Description | `#233a61` | `rgba(255,255,255,0.80)` |
-| Navigation | `#3c5073` | `rgba(255,255,255,0.70)` |
-
----
-
-## RTL Support
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-    <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-        <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>LTR</span>
-        <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="ltr"</span>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div style={{ display: 'flex', gap: 12 }}>
-          {[1,2,3,4].map(s => <CircularStepper key={s} size="md" currentStep={s} totalSteps={4} variant="primary" dir="ltr" />)}
-        </div>
-        <CircularStepper size="lg" currentStep={1} totalSteps={4} variant="primary" dir="ltr" label="Step One" description="This is step description" onNext={() => {}} />
-      </div>
-    </div>
-    <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '20px 24px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
-        <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL</span>
-        <span style={{ background: '#eff3fb', color: '#1849a9', padding: '2px 8px', borderRadius: 100, fontSize: 10, fontWeight: 700 }}>dir="rtl"</span>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div style={{ display: 'flex', gap: 12, direction: 'rtl' }}>
-          {[1,2,3,4].map(s => <CircularStepper key={s} size="md" currentStep={s} totalSteps={4} variant="primary" dir="rtl" />)}
-        </div>
-        <CircularStepper size="lg" currentStep={1} totalSteps={4} variant="primary" dir="rtl" label="الخطوة الأولى" description="يكتب المحتوى الإضافي هنا في حال ان عنوان الاختيار يحتاج." onNext={() => {}} />
-      </div>
-    </div>
-  </div>
-</div>
-
-<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#d97706', marginBottom: 16 }}>
-  <strong>RTL behaviour:</strong> Pass <code>dir="rtl"</code>. The text content area moves to the left of the circle (flex direction respects <code>dir</code>). The inner counter switches to <code>N من M</code> Arabic format. The circular arc direction does NOT flip — it always fills clockwise from 12 o'clock.
-</div>
-
----
-
-## Token Table
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 16 }}>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Sizing</div>
-<div style={{ display: 'grid', gridTemplateColumns: '200px 68px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
-{[
-{t:'--stepper-size-xs',v:'40px', f:'Circular Stepper/Size/40px',  u:'X-small circle diameter'},
-{t:'--stepper-size-sm',v:'48px', f:'Circular Stepper/Size/48px',  u:'Small circle diameter'},
-{t:'--stepper-size-md',v:'64px', f:'Circular Stepper/Size/64px',  u:'Medium circle diameter'},
-{t:'--stepper-size-lg',v:'80px', f:'Circular Stepper/Size/80px',  u:'Large circle diameter'},
-{t:'--stepper-size-xl',v:'120px',f:'Circular Stepper/Size/120ox', u:'X-large circle diameter'},
-{t:'--stepper-content-gap',v:'8px', f:'Global/spacing-md',u:'Gap between circle and text'},
-{t:'--stepper-text-gap', v:'4px', f:'Spacing/Progress Indicator/progress-text-content-gap',u:'Gap between label/description/nav'},
-].map(({t,v,f,u},i)=>(
-<div key={t} style={{display:'grid',gridTemplateColumns:'200px 68px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
-<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{v}</span>
-<code style={{fontSize:11,color:'#6b7280'}}>{f}</code>
-<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
-</div>
-))}
-</div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Colors</div>
-<div style={{ display: 'grid', gridTemplateColumns: '240px 130px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Token</span><span>Value</span><span>Figma token</span><span>Usage</span></div>
-{[
-{t:'--stepper-fill-primary',   h:'#1849a9',   f:'Circular Stepper/fill/primary',u:'Primary active arc — light theme'},
-{t:'--stepper-fill-neutral',   h:'#1f2a37',   f:'Circular Stepper/fill/neutral',u:'Neutral active arc — light theme'},
-{t:'--stepper-track',          h:'#e5e7eb',   f:'Background/background-neutral-200',u:'Inactive track — light theme'},
-{t:'--stepper-track-dark',     h:'rgba(255,255,255,0.30)',f:'Alpha/alpha-white-30',u:'Inactive track — dark theme'},
-{t:'--stepper-inner-text',     h:'#233a61',   f:'Circular Stepper/step-text/step-inner-text',u:'Inner counter text — light'},
-{t:'--stepper-label',          h:'#000b36',   f:'Circular Stepper/step-text/label',u:'Step title — light'},
-{t:'--stepper-subtext',        h:'#233a61',   f:'Circular Stepper/step-text/subtext',u:'Description — light'},
-{t:'--stepper-secondary-text', h:'#3c5073',   f:'Circular Stepper/step-text/secondary text',u:'Navigation text — light'},
-{t:'--stepper-tertiary',       h:'#6c737f',   f:'Stepper/stepper-text-tertiary',u:'Tertiary text'},
-{t:'--stepper-oncolor-primary',h:'#ffffff',   f:'Text/text-oncolor-primary',u:'Inner counter + label — dark'},
-{t:'--stepper-oncolor-secondary',h:'rgba(255,255,255,0.80)',f:'Text/text-oncolor-secondary',u:'Description — dark'},
-{t:'--stepper-oncolor-tertiary',h:'rgba(255,255,255,0.70)',f:'Text/text-oncolor-tertiary',u:'Navigation — dark'},
-].map(({t,h,f,u},i)=>(
-<div key={t} style={{display:'grid',gridTemplateColumns:'240px 130px 1fr 1fr',padding:'9px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center'}}>
-<code style={{fontSize:11,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9'}}>{t}</code>
-<span style={{display:'inline-flex',alignItems:'center',gap:6}}>
-<span style={{display:'inline-block',width:14,height:14,borderRadius:3,background:h,border:'1px solid rgba(0,0,0,0.12)',flexShrink:0}}/>
-<code style={{fontSize:10,color:'#111827'}}>{h}</code>
-</span>
-<code style={{fontSize:10,color:'#6b7280'}}>{f}</code>
-<span style={{fontSize:12,color:'#6b7280'}}>{u}</span>
-</div>
-))}
-</div>
-</div>
-
----
-
-## Properties
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#f9fafb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#4b5563' }}>CircularStepper</div>
-<div style={{ display: 'grid', gridTemplateColumns: '120px 90px 90px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}><span>Prop</span><span>Type</span><span>Default</span><span>Description</span></div>
-{[
-{n:'currentStep', type:'node',    tb:'#ecfdf5',tc:'#059669',def:'1',    d:'Current step number (1-indexed). Controls how much of the arc is filled.'},
-{n:'totalSteps',  type:'node',    tb:'#ecfdf5',tc:'#059669',def:'4',    d:'Total number of steps. Defines the full arc = 100%.'},
-{n:'size',        type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'md',   d:'Circle diameter — xs=40 · sm=48 · md=64 · lg=80 · xl=120 px'},
-{n:'variant',     type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'primary',d:'primary — blue arc (#1849a9) · neutral — dark navy arc (#1f2a37)'},
-{n:'theme',       type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'light',d:'light — standard tokens · dark — inverted (white arc, on-dark text, semi-transparent track)'},
-{n:'label',       type:'node',    tb:'#ecfdf5',tc:'#059669',def:'—',    d:'Step title text — 16px Semibold. Activates the text content area when provided.'},
-{n:'description', type:'node',    tb:'#ecfdf5',tc:'#059669',def:'—',    d:'Step description — 14px Regular, shown below label.'},
-{n:'onNext',      type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',    d:'Next button click handler. The Next button renders only when this prop is provided.'},
-{n:'onBack',      type:'function',tb:'#fdf4ff',tc:'#9333ea',def:'—',    d:'Back button click handler. The Back button renders only when this prop is provided.'},
-{n:'nextLabel',   type:'node',    tb:'#ecfdf5',tc:'#059669',def:'Next / التالي',d:'Override text for the Next button. Defaults to "Next" (LTR) or "التالي" (RTL).'},
-{n:'backLabel',   type:'node',    tb:'#ecfdf5',tc:'#059669',def:'Back / السابق',d:'Override text for the Back button. Defaults to "Back" (LTR) or "السابق" (RTL).'},
-{n:'dir',         type:'enum',    tb:'#fff7ed',tc:'#c2410c',def:'ltr',  d:'ltr · rtl — flips layout (circle ↔ text), switches counter to N من M format.'},
-].map(({n,type,tb,tc,def,d},i)=>(
-<div key={n} style={{display:'grid',gridTemplateColumns:'120px 90px 90px 1fr',padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'start'}}>
-<code style={{fontSize:12,background:'#eff3fb',padding:'2px 6px',borderRadius:4,color:'#1849a9',fontWeight:600}}>{n}</code>
-<span style={{background:tb,color:tc,fontSize:11,padding:'2px 7px',borderRadius:4,fontWeight:600,display:'inline-block',alignSelf:'center'}}>{type}</span>
-<code style={{fontSize:12,color:'#6b7280',alignSelf:'center'}}>{def}</code>
-<span style={{fontSize:13,color:'#374151',lineHeight:1.5}}>{d}</span>
-</div>
-))}
-</div>
-
----
-
-## Accessibility
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
-{[
-{cat:'Keyboard Navigation',catBg:'#eff3fb',catBorder:'#dbeafe',catIconBg:'#1849a9',catIcon:'⌨',items:[
-{title:'Next and Back are native <button> elements',desc:'Standard keyboard interaction: Tab to reach, Enter or Space to activate. No custom keyboard handling required.'},
-{title:'Focus ring on :focus-visible',desc:'box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #1849a9 — appears on keyboard navigation only.'},
-{title:'Circle indicator is aria-hidden',desc:'The SVG and inner counter are visual-only. Screen readers get the full description via aria-label on the root element.'},
-]},
-{cat:'ARIA & Semantics',catBg:'#fdf4ff',catBorder:'#e9d5ff',catIconBg:'#9333ea',catIcon:'A',items:[
-{title:'role="status" on the root element',desc:'Announces step changes to screen readers when currentStep updates, without interrupting the user.'},
-{title:'aria-label with full context',desc:'Computed as "Step N of M: [label]" (LTR) or "الخطوة N من M: [label]" (RTL). Always conveys the step position and optional title.'},
-{title:'Navigation buttons are labelled by their visible text',desc:'"Next" / "Back" (or Arabic equivalents) serve as their own accessible name — no additional aria-label needed.'},
-{title:'SVG arcs are aria-hidden="true"',desc:'The circular track and progress arc are decorative — all meaning is communicated via the root aria-label.'},
-]},
-{cat:'Visual & Focus',catBg:'#ecfdf5',catBorder:'#a7f3d0',catIconBg:'#059669',catIcon:'◎',items:[
-{title:'Progress communicated without colour alone',desc:'The inner "N of M" counter provides a text-based progress reading — colour (arc fill) is supplementary, not the only indicator.'},
-{title:'Dark theme maintains contrast ratios',desc:'White arc on dark track provides strong visual contrast. Text-oncolor tokens maintain ≥ 4.5:1 against dark backgrounds.'},
-{title:'RTL counter uses correct format',desc:'In dir="rtl" the counter renders as "N من M" — matching Arabic reading conventions without reversing the arc direction.'},
-]},
-].map(({cat,catBg,catBorder,catIconBg,catIcon,items})=>(
-<div key={cat} style={{border:'1px solid #e5e7eb',borderRadius:10,overflow:'hidden'}}>
-<div style={{display:'flex',alignItems:'center',gap:10,padding:'11px 16px',background:catBg,borderBottom:`1px solid ${catBorder}`}}>
-<span style={{width:24,height:24,borderRadius:'50%',background:catIconBg,color:'#fff',fontSize:12,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>{catIcon}</span>
-<span style={{fontSize:13,fontWeight:700,color:'#111827'}}>{cat}</span>
-</div>
-{items.map(({title,desc},j)=>(
-<div key={j} style={{display:'flex',alignItems:'flex-start',gap:10,padding:'11px 16px',borderBottom:j<items.length-1?'1px solid #f3f4f6':'none',background:'#fff'}}>
-<span style={{width:17,height:17,borderRadius:'50%',background:'#059669',color:'#fff',fontSize:10,fontWeight:800,display:'inline-flex',alignItems:'center',justifyContent:'center',flexShrink:0,marginTop:2}}>✓</span>
-<div>
-<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{title}</div>
-<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{desc}</div>
-</div>
-</div>
-))}
-</div>
-))}
-</div>
-
----
-
-## Usage Guidelines
-
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #a7f3d0' }}>
-<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff', display: 'flex', justifyContent: 'center' }}>
-  <CircularStepper size="xl" currentStep={2} totalSteps={5} variant="primary" label="Step 2 of 5" description="Complete your profile details." onBack={() => {}} onNext={() => {}} />
-</div>
-<div style={{ padding: '10px 14px', background: '#ecfdf5', borderTop: '1px solid #a7f3d0' }}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#059669', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✓</span>Linear multi-step flows</div>
-  {['Use for onboarding, wizards, or checkout flows with a clear step sequence.','Show the full variant (with label + description) when users need context about the current step.','Use xl or lg sizes when the stepper is the primary focal point of the view.','Combine with a stepper list or breadcrumb for complex flows with many steps.'].map((r,i)=>(
-    <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#065f46', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
   ))}
 </div>
-</div>
-<div style={{ borderRadius: 10, overflow: 'hidden', border: '2px solid #fecaca' }}>
-<div style={{ padding: '24px 20px', minHeight: 120, background: '#fff', display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center' }}>
-  <CircularStepper size="xs" currentStep={1} totalSteps={12} variant="primary" />
-  <span style={{ fontSize: 12, color: '#dc2626' }}>12 steps in xs size</span>
-</div>
-<div style={{ padding: '10px 14px', background: '#fef2f2', borderTop: '1px solid #fecaca' }}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12, fontWeight: 700, color: '#dc2626', marginBottom: 6 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>✕</span>Too many steps / too small</div>
-  {["Don't use for more than 8–10 steps — the arc segments become indistinguishable.","Don't use xs or sm as the primary progress indicator in large layouts.","Don't use for non-linear navigation (use tabs instead).","Don't omit navigation handlers when the user needs to go back."].map((r,i)=>(
-    <div key={i} style={{ display: 'flex', gap: 6, fontSize: 12, color: '#991b1b', marginTop: 4, lineHeight: 1.4 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>·</span>{r}</div>
+
+<Canvas of={CircularStepperStories.AllSizes} />
+
+---
+
+{/* ── Step Progression ── */}
+<h2 id="step-progression" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Step Progression</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The arc fills clockwise from 12 o'clock. Progress = <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>currentStep ÷ totalSteps</code>.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Step</span><span>Progress</span><span>Arc Fill</span>
+  </div>
+  {[
+    ['1 of 4', '25%',  '¼ clockwise'],
+    ['2 of 4', '50%',  '½ clockwise'],
+    ['3 of 4', '75%',  '¾ clockwise'],
+    ['4 of 4', '100%', 'Full circle'],
+  ].map(([step, progress, fill]) => (
+    <div key={step} style={{ display: 'grid', gridTemplateColumns: '100px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{step}</span>
+      <span style={{ color: '#374151' }}>{progress}</span>
+      <span style={{ color: '#374151' }}>{fill}</span>
+    </div>
   ))}
 </div>
+
+<Canvas of={CircularStepperStories.StepProgression} />
+
+---
+
+{/* ── With Content ── */}
+<h2 id="with-content" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>With Content</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  When <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>label</code>,{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>description</code>, or navigation props are provided,
+  the stepper renders in <strong>full mode</strong> — the circle sits beside a text content area.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Slot</span><span>Prop</span><span>Condition to Show</span>
+  </div>
+  {[
+    ['Step label',    'label',       'When a string is provided'],
+    ['Description',  'description', 'When a string is provided'],
+    ['Back button',  'onBack',      'When a function is provided'],
+    ['Next button',  'onNext',      'When a function is provided'],
+  ].map(([slot, prop, cond]) => (
+    <div key={slot} style={{ display: 'grid', gridTemplateColumns: '160px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{slot}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <span style={{ color: '#374151' }}>{cond}</span>
+    </div>
+  ))}
 </div>
+
+<Canvas of={CircularStepperStories.WithContent} />
+<Canvas of={CircularStepperStories.AllSizesWithContent} />
+
+---
+
+{/* ── Dark Theme ── */}
+<h2 id="dark-theme" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Dark Theme</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Pass <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>theme="dark"</code> for use on dark backgrounds.
+  The arc colour becomes white for both variants, and all text uses on-dark tokens.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Light</span><span>Dark</span>
+  </div>
+  {[
+    ['Active arc',    '#1849a9 / #1f2a37',    '#ffffff'],
+    ['Inactive track','#e5e7eb',               'rgba(255,255,255,0.30)'],
+    ['Inner counter', '#233a61',               '#ffffff'],
+    ['Label',         '#000b36',               '#ffffff'],
+    ['Description',   '#233a61',               'rgba(255,255,255,0.80)'],
+    ['Navigation',    '#3c5073',               'rgba(255,255,255,0.70)'],
+  ].map(([token, light, dark]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '200px 1fr 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{token}</span>
+      <code style={{ fontSize: 12, color: '#374151' }}>{light}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{dark}</code>
+    </div>
+  ))}
 </div>
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#ecfdf5', padding: '9px 14px', borderBottom: '1px solid #a7f3d0', fontSize: 12, fontWeight: 700, color: '#059669', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#059669', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>Do</div>
-{['Use md–xl sizes for the primary stepper; xs–sm for compact indicators.','Use theme="dark" on dark-colored section backgrounds.','Use role="status" (built-in) — it fires when currentStep changes.','Use the neutral variant when the primary blue clashes with surrounding content.','Always provide both onBack and onNext when the flow supports bidirectional navigation.','Test with screen readers — verify the aria-label updates when step changes.'].map((r,i)=>(
-<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#059669', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✓</span>{r}</div>
-))}
+
+<Canvas of={CircularStepperStories.DarkTheme} />
+<Canvas of={CircularStepperStories.DarkNeutral} />
+
+---
+
+{/* ── RTL Support ── */}
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Pass <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>dir="rtl"</code> to switch to Arabic reading order.
+  The text content area moves to the left of the circle. The inner counter switches to{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>N من M</code> Arabic format.
+  The circular arc direction does <strong>not</strong> flip — it always fills clockwise from 12 o'clock.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Aspect</span><span>LTR (dir="ltr")</span><span>RTL (dir="rtl")</span>
+  </div>
+  {[
+    ['Layout',         'Circle on the left, text on the right', 'Circle on the right, text on the left'],
+    ['Counter format', 'N of M',                                 'N من M'],
+    ['Arc direction',  "Clockwise from 12 o'clock",              "Clockwise from 12 o'clock — unchanged"],
+    ['Next button',    '"Next"',                                  '"التالي" (or custom nextLabel)'],
+    ['Back button',    '"Back"',                                  '"السابق" (or custom backLabel)'],
+    ['Flex direction', 'left → right',                           'right → left via HTML dir'],
+  ].map(([aspect, ltr, rtl]) => (
+    <div key={aspect} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{aspect}</span>
+      <span style={{ color: '#374151' }}>{ltr}</span>
+      <span style={{ color: '#374151' }}>{rtl}</span>
+    </div>
+  ))}
 </div>
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden' }}>
-<div style={{ background: '#fef2f2', padding: '9px 14px', borderBottom: '1px solid #fecaca', fontSize: 12, fontWeight: 700, color: '#dc2626', display: 'flex', alignItems: 'center', gap: 7 }}><span style={{ width: 16, height: 16, borderRadius: '50%', background: '#dc2626', color: '#fff', fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✕</span>Don't</div>
-{["Don't use for more than 8–10 steps — arcs become unreadable.","Don't rely on colour alone to communicate progress — the counter text is required.","Don't use on dark backgrounds without theme=\"dark\" — track and text will be invisible.","Don't place multiple large steppers (xl) on the same view.","Don't use for non-linear or optional flows — use a tab or breadcrumb instead.","Don't omit the label prop when the user may not know which step they are on."].map((r,i)=>(
-<div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '8px 14px', borderBottom: '1px solid #f3f4f6', background: '#fff', fontSize: 13, color: '#111827', lineHeight: 1.45 }}><span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>✕</span>{r}</div>
-))}
+
+<Canvas of={CircularStepperStories.RTLArabic} />
+
+---
+
+{/* ── Token Table ── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Token Table</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Sizing Tokens</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 80px 220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Value</span><span>Figma Token</span><span>Usage</span>
+  </div>
+  {[
+    ['--stepper-size-xs',    '40px',  'Circular Stepper/Size/40px',                          'X-small circle diameter'],
+    ['--stepper-size-sm',    '48px',  'Circular Stepper/Size/48px',                          'Small circle diameter'],
+    ['--stepper-size-md',    '64px',  'Circular Stepper/Size/64px',                          'Medium circle diameter'],
+    ['--stepper-size-lg',    '80px',  'Circular Stepper/Size/80px',                          'Large circle diameter'],
+    ['--stepper-size-xl',    '120px', 'Circular Stepper/Size/120ox',                         'X-large circle diameter'],
+    ['--stepper-content-gap','8px',   'Global/spacing-md',                                   'Gap between circle and text content area'],
+    ['--stepper-text-gap',   '4px',   'Spacing/Progress Indicator/progress-text-content-gap','Gap between label / description / nav'],
+  ].map(([t, v, f, u]) => (
+    <div key={t} style={{ display: 'grid', gridTemplateColumns: '220px 80px 220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{v}</code>
+      <code style={{ fontSize: 11, color: '#374151' }}>{f}</code>
+      <span style={{ color: '#374151' }}>{u}</span>
+    </div>
+  ))}
 </div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Colour Tokens</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '260px 60px 200px 220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Swatch</span><span>Value</span><span>Figma Token</span><span>Usage</span>
+  </div>
+  {[
+    ['--stepper-fill-primary',    '#1849a9',              '#1849a9',              'Circular Stepper/fill/primary',                    'Primary active arc — light theme'],
+    ['--stepper-fill-neutral',    '#1f2a37',              '#1f2a37',              'Circular Stepper/fill/neutral',                    'Neutral active arc — light theme'],
+    ['--stepper-track',           '#e5e7eb',              '#e5e7eb',              'Background/background-neutral-200',                'Inactive track — light theme'],
+    ['--stepper-track-dark',      'rgba(255,255,255,.30)','rgba(255,255,255,.30)','Alpha/alpha-white-30',                             'Inactive track — dark theme'],
+    ['--stepper-inner-text',      '#233a61',              '#233a61',              'Circular Stepper/step-text/step-inner-text',       'Inner counter text — light'],
+    ['--stepper-label',           '#000b36',              '#000b36',              'Circular Stepper/step-text/label',                 'Step title — light'],
+    ['--stepper-subtext',         '#233a61',              '#233a61',              'Circular Stepper/step-text/subtext',               'Description — light'],
+    ['--stepper-secondary-text',  '#3c5073',              '#3c5073',              'Circular Stepper/step-text/secondary text',        'Navigation text — light'],
+    ['--stepper-tertiary',        '#6c737f',              '#6c737f',              'Stepper/stepper-text-tertiary',                    'Tertiary text'],
+    ['--stepper-oncolor-primary', '#ffffff',              '#ffffff',              'Text/text-oncolor-primary',                        'Inner counter + label — dark'],
+    ['--stepper-oncolor-secondary','rgba(255,255,255,.80)','rgba(255,255,255,.80)','Text/text-oncolor-secondary',                    'Description — dark'],
+    ['--stepper-oncolor-tertiary','rgba(255,255,255,.70)','rgba(255,255,255,.70)','Text/text-oncolor-tertiary',                      'Navigation — dark'],
+  ].map(([t, swatchColor, v, f, u]) => (
+    <div key={t} style={{ display: 'grid', gridTemplateColumns: '260px 60px 200px 220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{t}</code>
+      <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, flexShrink: 0, background: swatchColor, border: '1px solid #e5e7eb' }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{v}</code>
+      <code style={{ fontSize: 11, color: '#374151' }}>{f}</code>
+      <span style={{ color: '#374151' }}>{u}</span>
+    </div>
+  ))}
 </div>
 
 ---
 
-## Code Examples
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
 
-```jsx
-import { CircularStepper } from '@/components/CircularStepper';
-
-// Indicator only — default size + primary variant
-<CircularStepper currentStep={2} totalSteps={4} />
-
-// Neutral variant
-<CircularStepper currentStep={3} totalSteps={5} variant="neutral" />
-
-// Large size
-<CircularStepper currentStep={1} totalSteps={4} size="xl" variant="primary" />
-
-// Full variant — with label, description, navigation
-<CircularStepper
-  currentStep={2}
-  totalSteps={4}
-  size="xl"
-  variant="primary"
-  label="Step Two"
-  description="Fill in your contact information to continue."
-  onBack={() => setStep(s => s - 1)}
-  onNext={() => setStep(s => s + 1)}
-/>
-
-// Dark theme
-<CircularStepper
-  currentStep={1}
-  totalSteps={4}
-  size="lg"
-  variant="primary"
-  theme="dark"
-  label="Step One"
-  description="This is step description"
-  onNext={() => {}}
-/>
-
-// RTL Arabic
-<CircularStepper
-  currentStep={1}
-  totalSteps={4}
-  size="xl"
-  variant="primary"
-  dir="rtl"
-  label="الخطوة الأولى"
-  description="يكتب المحتوى الإضافي هنا في حال ان عنوان الاختيار يحتاج إلى شرح."
-  onNext={() => {}}
-/>
-
-// Controlled interactive stepper
-const [step, setStep] = useState(1);
-const TOTAL = 4;
-
-<CircularStepper
-  currentStep={step}
-  totalSteps={TOTAL}
-  size="xl"
-  variant="primary"
-  label={`Step ${step} of ${TOTAL}`}
-  onBack={step > 1     ? () => setStep(s => s - 1) : undefined}
-  onNext={step < TOTAL ? () => setStep(s => s + 1) : undefined}
-/>
-```
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>CircularStepper</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 280px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['currentStep', 'number',                                      '1',         'Current step number (1-indexed). Controls how much of the arc is filled.'],
+    ['totalSteps',  'number',                                      '4',         'Total number of steps. Defines the full arc = 100%.'],
+    ['size',        "'xs' | 'sm' | 'md' | 'lg' | 'xl'",          "'md'",      'Circle diameter — xs=40 · sm=48 · md=64 · lg=80 · xl=120 px'],
+    ['variant',     "'primary' | 'neutral'",                      "'primary'", 'primary — blue arc (#1849a9) · neutral — dark navy arc (#1f2a37)'],
+    ['theme',       "'light' | 'dark'",                           "'light'",   'light — standard tokens · dark — white arc, on-dark text, semi-transparent track'],
+    ['label',       'string',                                      '—',         'Step title text — 16px Semibold. Activates the text content area when provided.'],
+    ['description', 'string',                                      '—',         'Step description — 14px Regular, shown below label.'],
+    ['onNext',      'function',                                    '—',         'Next button click handler. The Next button renders only when this prop is provided.'],
+    ['onBack',      'function',                                    '—',         'Back button click handler. The Back button renders only when this prop is provided.'],
+    ['nextLabel',   'string',                                      '"Next" / "التالي"', 'Override text for the Next button. Defaults to "Next" (LTR) or "التالي" (RTL).'],
+    ['backLabel',   'string',                                      '"Back" / "السابق"', 'Override text for the Back button. Defaults to "Back" (LTR) or "السابق" (RTL).'],
+    ['dir',         "'ltr' | 'rtl'",                              "'ltr'",     'ltr · rtl — flips layout (circle ↔ text), switches counter to N من M format.'],
+  ].map(([n, type, def, d]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '160px 280px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{n}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{d}</span>
+    </div>
+  ))}
+</div>
 
 ---
 
-## Figma Reference
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
 
-- **Component set:** [4250:1945 — Masterteam DS Circular Stepper](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1945)
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Navigation buttons',      'Next and Back are native <button> elements — Tab to reach, Enter or Space to activate. No custom keyboard handling required.'],
+    ['Focus ring',              'box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #1849a9 on :focus-visible — appears on keyboard navigation only.'],
+    ['Circle indicator',        'The SVG and inner counter are aria-hidden — all meaning is communicated via aria-label on the root element.'],
+    ['role="status"',           'Applied to the root element — announces step changes to screen readers when currentStep updates, without interrupting the user.'],
+    ['aria-label',              'Computed as "Step N of M: [label]" (LTR) or "الخطوة N من M: [label]" (RTL). Always conveys step position and optional title.'],
+    ['Navigation button labels','Visible "Next" / "Back" text (or Arabic equivalents) serves as the accessible name — no additional aria-label needed.'],
+    ['SVG arcs',                'aria-hidden="true" on circular track and progress arc — decorative; all meaning conveyed via the root aria-label.'],
+    ['Progress without colour', 'Inner "N of M" counter provides text-based progress — colour (arc fill) is supplementary, not the only indicator.'],
+    ['Dark theme contrast',     'White arc on dark track provides strong visual contrast. Text-oncolor tokens maintain ≥ 4.5:1 against dark backgrounds.'],
+    ['RTL counter format',      'In dir="rtl" the counter renders as "N من M" — matching Arabic reading conventions without reversing the arc direction.'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
+</div>
 
 ---
 
-## Mismatch Report
+{/* ── Usage Guidelines ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
 
-Audit against Figma node `4250:1945`.
-
-<div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 16 }}>
-<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #a7f3d0' }}>18 Match</span>
-<span style={{ background: '#fffbeb', color: '#d97706', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #fde68a' }}>2 Deviation</span>
-<span style={{ background: '#eff3fb', color: '#1849a9', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #bfdbfe' }}>2 New token</span>
-<span style={{ background: '#f3f4f6', color: '#6b7280', fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 100, border: '1px solid #e5e7eb' }}>1 Enhancement</span>
-</div>
-<div style={{ border: '1px solid #fde68a', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#fffbeb', padding: '10px 16px', borderBottom: '1px solid #fde68a', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#d97706' }}>Deviations — requires attention</div>
-{[
-{a:'Stroke width per size',fig:'Figma does not publish stroke-width as named tokens; values inferred from visual inspection',impl:'Hardcoded per size config in JS: xs=4px, sm=5px, md=6px, lg=8px, xl=10px. Stored in SIZE_CFG constant.',n:'Proportionally consistent with the Figma component at each size. If Figma adds explicit stroke tokens in a future update, replace with CSS custom properties.'},
-{a:'Inner font size per size',fig:'No named typography token per size for the inner counter — derived from visual inspection across the 5 size variants',impl:'Hardcoded per size config: xs=9px, sm=10px, md=13px, lg=16px, xl=20px.',n:'Matches the visual weight at each size from the Figma screenshot. Could be formalised as --stepper-inner-font-{size} tokens when Figma publishes them.'},
-].map(({a,fig,impl,n},i)=>(
-<div key={a} style={{padding:'12px 16px',background:i%2===0?'#fff':'#fffef5',borderBottom:'1px solid #fef9c3'}}>
-<div style={{display:'flex',alignItems:'center',gap:8,marginBottom:6}}>
-<span style={{background:'#fffbeb',color:'#d97706',fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,border:'1px solid #fde68a'}}>Deviation</span>
-<span style={{fontSize:13,fontWeight:600,color:'#111827'}}>{a}</span>
-</div>
-<div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10,marginBottom:6}}>
-<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Figma</div><code style={{fontSize:12,color:'#374151'}}>{fig}</code></div>
-<div><div style={{fontSize:10,fontWeight:700,textTransform:'uppercase',color:'#6b7280',marginBottom:3}}>Implementation</div><code style={{fontSize:12,color:'#374151'}}>{impl}</code></div>
-</div>
-<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
-</div>
-))}
-</div>
-<div style={{ border: '1px solid #bfdbfe', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<div style={{ background: '#eff3fb', padding: '10px 16px', borderBottom: '1px solid #bfdbfe', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9' }}>New tokens &amp; enhancements</div>
-{[
-{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--stepper-content-gap: 8px',n:'Gap between the circular indicator and the text content area. Sourced from Global/spacing-md (8px). Not a named Circular Stepper token in Figma.'},
-{s:'New token',sb:'#eff3fb',st:'#1849a9',a:'--stepper-text-gap: 4px',n:'Vertical gap between label, description, and navigation inside the content area. From Spacing/Progress Indicator/progress-text-content-gap (4px).'},
-{s:'Enhancement',sb:'#f3f4f6',st:'#6b7280',a:'nextLabel / backLabel props with RTL defaults',n:'Figma shows navigation as "Next" / "Back" (LTR) and "التالي" / "السابق" (RTL). Props added to allow custom overrides. Defaults auto-switch based on dir prop.'},
-].map(({s,sb,st,a,n},i)=>(
-<div key={a} style={{display:'flex',alignItems:'flex-start',gap:12,padding:'10px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6'}}>
-<span style={{background:sb,color:st,fontSize:11,padding:'2px 8px',borderRadius:4,fontWeight:700,whiteSpace:'nowrap',flexShrink:0,border:`1px solid ${sb==='#eff3fb'?'#bfdbfe':'#e5e7eb'}`}}>{s}</span>
-<div>
-<div style={{fontSize:13,fontWeight:600,color:'#111827',marginBottom:2}}>{a}</div>
-<div style={{fontSize:12,color:'#6b7280',lineHeight:1.5}}>{n}</div>
-</div>
-</div>
-))}
-</div>
-<details style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-<summary style={{ background: '#f9fafb', padding: '10px 16px', cursor: 'pointer', fontSize: 13, fontWeight: 600, color: '#374151', listStyle: 'none', display: 'flex', alignItems: 'center', gap: 8 }}>
-<span style={{ background: '#ecfdf5', color: '#059669', fontSize: 11, padding: '2px 8px', borderRadius: 4, fontWeight: 700, border: '1px solid #a7f3d0' }}>18 Match</span>
-View all matched properties
-</summary>
-<div style={{ background: '#fff' }}>
-{[
-['Fill — primary','#1849a9','--stepper-fill-primary ✓'],
-['Fill — neutral','#1f2a37','--stepper-fill-neutral ✓'],
-['Track — light','#e5e7eb','--stepper-track ✓'],
-['Track — dark','rgba(255,255,255,0.30)','--stepper-track-dark ✓'],
-['Inner text color','#233a61','--stepper-inner-text ✓'],
-['Label color','#000b36','--stepper-label ✓'],
-['Subtext color','#233a61','--stepper-subtext ✓'],
-['Secondary text','#3c5073','--stepper-secondary-text ✓'],
-['Tertiary text','#6c737f','--stepper-tertiary ✓'],
-['On-dark primary','#ffffff','--stepper-oncolor-primary ✓'],
-['On-dark secondary','rgba(255,255,255,0.80)','--stepper-oncolor-secondary ✓'],
-['On-dark tertiary','rgba(255,255,255,0.70)','--stepper-oncolor-tertiary ✓'],
-['Size xs','40px','--stepper-size-xs ✓'],
-['Size sm','48px','--stepper-size-sm ✓'],
-['Size md','64px','--stepper-size-md ✓'],
-['Size lg','80px','--stepper-size-lg ✓'],
-['Size xl','120px','--stepper-size-xl ✓'],
-['Arc direction',"clockwise from 12 o'clock",'SVG rotate(-90deg) ✓'],
-].map(([area,figma,impl],i)=>(
-<div key={area} style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',padding:'8px 16px',background:i%2===0?'#fff':'#fafafa',borderBottom:'1px solid #f3f4f6',gap:12,alignItems:'center',fontSize:12}}>
-<span style={{color:'#111827',fontWeight:500}}>{area}</span>
-<code style={{color:'#6b7280'}}>{figma}</code>
-<code style={{color:'#059669'}}>{impl}</code>
-</div>
-))}
-</div>
-</details>
-<div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#6b7280' }}>
-<span style={{ fontWeight: 700, color: '#374151' }}>Missing design decisions not in Figma:</span> Stroke width per size (hardcoded from visual inspection — no named token) · Inner font size per size (same — derived from visual) · Navigation text hover color (using --stepper-fill-primary as a logical default) · Arc start angle (12 o'clock / top — inferred from screenshots, no explicit spec)
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use for onboarding, wizards, or checkout flows with a clear step sequence</li>
+      <li>Use <code>md–xl</code> sizes for the primary stepper; <code>xs–sm</code> for compact indicators</li>
+      <li>Use <code>theme="dark"</code> on dark-colored section backgrounds</li>
+      <li>Use the neutral variant when the primary blue clashes with surrounding content</li>
+      <li>Always provide both <code>onBack</code> and <code>onNext</code> when the flow supports bidirectional navigation</li>
+      <li>Test with screen readers — verify the <code>aria-label</code> updates when step changes</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't use for more than 8–10 steps — arc segments become indistinguishable</li>
+      <li>Don't rely on colour alone to communicate progress — the counter text is required</li>
+      <li>Don't use on dark backgrounds without <code>theme="dark"</code> — track and text will be invisible</li>
+      <li>Don't place multiple large steppers (<code>xl</code>) on the same view</li>
+      <li>Don't use for non-linear or optional flows — use a tab or breadcrumb instead</li>
+      <li>Don't omit the <code>label</code> prop when users may not know which step they are on</li>
+    </ul>
+  </div>
 </div>
 
 </div>
