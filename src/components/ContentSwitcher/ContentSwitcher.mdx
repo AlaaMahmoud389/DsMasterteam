@@ -1,5 +1,5 @@
 {/* ContentSwitcher.mdx — Masterteam Design System */}
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import { ContentSwitcher } from './ContentSwitcher';
 import * as ContentSwitcherStories from './ContentSwitcher.stories';
 
@@ -8,58 +8,69 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
 
 {/* ── Header ───────────────────────────────────────────────── */}
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Content Switcher</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Content Switcher</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / Content Switcher</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Content Switcher</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
     A segmented control that lets users switch between two or more mutually-exclusive views, modes, or content sections.
     Only one item can be active at a time.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>12 variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>4 states</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>On-colour</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL Support</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Node 4157:86138</span>
   </div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-      Available
-    </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>12 variants</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Node 4157:86138</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4140-89803" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+</div>
+
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',      'Overview'],
+      ['#anatomy',       'Anatomy'],
+      ['#size',          'Property: Size'],
+      ['#state',         'Property: State'],
+      ['#on-color',      'Property: On-colour'],
+      ['#item-count',    'Property: Item Count'],
+      ['#corner-radius', 'Item Type — Corner Radius'],
+      ['#rtl',           'RTL Support'],
+      ['#properties',    'Properties'],
+      ['#accessibility', 'Accessibility'],
+      ['#usage',         'Usage Guidelines'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
   </div>
 </div>
 
 ---
 
-## Overview
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Use the Playground to explore all props interactively. Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code>, <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>onColor</code>, and <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>disabled</code> in the Controls panel below.
+</p>
 
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 16 }}>
-  <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Small (default)</div>
-      <ContentSwitcher items={[{ label: 'List', value: 'list' }, { label: 'Grid', value: 'grid' }, { label: 'Map', value: 'map' }]} value="list" size="sm" />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Medium</div>
-      <ContentSwitcher items={[{ label: 'List', value: 'list' }, { label: 'Grid', value: 'grid' }, { label: 'Map', value: 'map' }]} value="grid" size="md" />
-    </div>
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>Large</div>
-      <ContentSwitcher items={[{ label: 'List', value: 'list' }, { label: 'Grid', value: 'grid' }, { label: 'Map', value: 'map' }]} value="map" size="lg" />
-    </div>
-    <div style={{ background: '#00001C', padding: '12px 16px', borderRadius: 8 }}>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#f9fafb', marginBottom: 12 }}>On-colour</div>
-      <ContentSwitcher items={[{ label: 'List', value: 'list' }, { label: 'Grid', value: 'grid' }, { label: 'Map', value: 'map' }]} value="list" size="sm" onColor />
-    </div>
-  </div>
-</div>
-
-**12 variants** · 3 sizes · 4 states · RTL support · on-colour · 2–4 items. All tokens sourced from Figma node `4157:86138`.
+<Canvas of={ContentSwitcherStories.Playground} />
+<Controls of={ContentSwitcherStories.Playground} />
 
 ---
 
-## Anatomy
+{/* ── Anatomy ── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
 
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 24 }}>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The ContentSwitcher is a <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>div[role=group]</code> containing a series of <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>button</code> elements. The First and Last items carry rounded corners; Middle items have none.
+</p>
+
+<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '28px 24px', marginBottom: 24 }}>
   <div style={{ marginBottom: 20 }}>
-    <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>All three item types</div>
+    <p style={{ margin: '0 0 10px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>All three item types</p>
     <ContentSwitcher
       items={[{ label: 'First', value: 'first' }, { label: 'Middle', value: 'mid' }, { label: 'Last', value: 'last' }]}
       value="first"
@@ -84,24 +95,27 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
 
 ---
 
-## Property: Size
+{/* ── Property: Size ── */}
+<h2 id="size" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Size</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Three sizes from Figma: Small (32 px) · Medium (40 px) · Large (48 px). Set via the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code> prop.
+</p>
 
-<div style={{ marginBottom: 20 }}>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 20 }}>
   {[
     { sz: 'sm', label: 'Small (sm)' },
     { sz: 'md', label: 'Medium (md)' },
     { sz: 'lg', label: 'Large (lg)' },
   ].map(({ sz, label }) => (
-    <div key={sz} style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 110, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>{label}</span>
+    <div key={sz}>
+      <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>{label}</p>
       <ContentSwitcher items={[{ label: 'Option A', value: 'a' }, { label: 'Option B', value: 'b' }, { label: 'Option C', value: 'c' }]} value="a" size={sz} />
     </div>
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Size tokens</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '90px 60px 90px 90px 100px 90px 90px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '90px 60px 90px 90px 100px 90px 90px', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Size</span><span>Prop</span><span>Height</span><span>H-Padding</span><span>Font Size</span><span>Font Weight</span><span>Line Height</span>
   </div>
   {[
@@ -109,9 +123,9 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
     { size: 'Medium', prop: '"md"', h: '40 px', p: '12 px', f: '18 px', fw: '400 — Regular', lh: '28 px' },
     { size: 'Large',  prop: '"lg"', h: '48 px', p: '16 px', f: '20 px', fw: '400 — Regular', lh: '30 px' },
   ].map(({ size, prop, h, p, f, fw, lh }, i) => (
-    <div key={size} style={{ display: 'grid', gridTemplateColumns: '90px 60px 90px 90px 100px 90px 90px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'start' }}>
-      <span style={{ fontSize: 13, color: '#374151', fontWeight: 500 }}>{size}</span>
-      <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+    <div key={size} style={{ display: 'grid', gridTemplateColumns: '90px 60px 90px 90px 100px 90px 90px', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'start' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{size}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
       <span style={{ fontSize: 13, color: '#374151' }}>{h}</span>
       <span style={{ fontSize: 13, color: '#374151' }}>{p}</span>
       <span style={{ fontSize: 13, color: '#374151' }}>{f}</span>
@@ -121,26 +135,32 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
   ))}
 </div>
 
+<Canvas of={ContentSwitcherStories.Sizes} />
+
 ---
 
-## Property: State
+{/* ── Property: State ── */}
+<h2 id="state" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: State</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Four interaction states. The <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>Selected</code> state uses a solid primary fill; <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>Disabled</code> mutes both background and text.
+</p>
 
-<div style={{ marginBottom: 20 }}>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 20 }}>
   {[
     { st: 'Normal',   chips: <ContentSwitcher items={[{ label: 'Option A', value: 'a' }, { label: 'Option B', value: 'b' }, { label: 'Option C', value: 'c' }]} size="sm" /> },
     { st: 'Selected', chips: <ContentSwitcher items={[{ label: 'Option A', value: 'a' }, { label: 'Option B', value: 'b' }, { label: 'Option C', value: 'c' }]} value="b" size="sm" /> },
     { st: 'Disabled', chips: <ContentSwitcher items={[{ label: 'Option A', value: 'a' }, { label: 'Option B', value: 'b' }, { label: 'Option C', value: 'c' }]} value="a" size="sm" disabled /> },
   ].map(({ st, chips }) => (
-    <div key={st} style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 80, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>{st}</span>
+    <div key={st}>
+      <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>{st}</p>
       {chips}
     </div>
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>State colour reference — OnColor=False</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 16 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>State colour reference — OnColor=False</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>State</span><span>Background</span><span>Border</span><span>Text</span><span>Border Weight</span>
   </div>
   {[
@@ -150,8 +170,8 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
     { st: 'Focused',  bg: '#1849a9', bc: '#1849a9', tc: '#f9fafb', bw: '2 px inside' },
     { st: 'Disabled', bg: '#f3f4f6', bc: '#e5e7eb', tc: '#9da4ae', bw: '1 px' },
   ].map(({ st, bg, bc, tc, bw }, i) => (
-    <div key={st} style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
-      <span style={{ fontSize: 13, color: '#374151', fontWeight: 500 }}>{st}</span>
+    <div key={st} style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{st}</span>
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
         <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: bg, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
         <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
@@ -174,9 +194,9 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>State colour reference — OnColor=True</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>State colour reference — OnColor=True</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>State</span><span>Background</span><span>Border</span><span>Text</span><span>Border Weight</span>
   </div>
   {[
@@ -186,8 +206,8 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
     { st: 'Focused',  bg: '#1849a9', bc: '#000b36', tc: '#f9fafb', bw: '2 px inside' },
     { st: 'Disabled', bg: '#f3f4f6', bc: '#e5e7eb', tc: '#9da4ae', bw: '1 px' },
   ].map(({ st, bg, bc, tc, bw }, i) => (
-    <div key={st} style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
-      <span style={{ fontSize: 13, color: '#374151', fontWeight: 500 }}>{st}</span>
+    <div key={st} style={{ display: 'grid', gridTemplateColumns: '90px 180px 100px 180px 100px', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{st}</span>
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
         <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 2, background: bg, border: '1px solid rgba(0,0,0,.12)', flexShrink: 0 }} />
         <code style={{ fontSize: 10, color: '#374151' }}>{bg}</code>
@@ -205,73 +225,89 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
   ))}
 </div>
 
+<Canvas of={ContentSwitcherStories.States} />
+
 ---
 
-## Property: On-colour
+{/* ── Property: On-colour ── */}
+<h2 id="on-color" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: On-colour</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>onColor</code> prop activates a dark variant for use on coloured or dark backgrounds. Item backgrounds shift to dark navy (<code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>#0b2550</code>) with a visible border (<code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>#3c5073</code>) so the component remains legible.
+</p>
 
 <div style={{ background: '#00001C', padding: 24, borderRadius: 8, marginBottom: 24 }}>
   <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
     {[
-      { label: 'Small', size: 'sm' },
+      { label: 'Small',  size: 'sm' },
       { label: 'Medium', size: 'md' },
-      { label: 'Large', size: 'lg' },
+      { label: 'Large',  size: 'lg' },
     ].map(({ label, size }) => (
-      <div key={size} style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-        <span style={{ fontSize: 12, color: '#f9fafb', minWidth: 70, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>{label}</span>
+      <div key={size}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#93aee5' }}>{label}</p>
         <ContentSwitcher items={[{ label: 'Option A', value: 'a' }, { label: 'Option B', value: 'b' }, { label: 'Option C', value: 'c' }]} value="a" size={size} onColor />
       </div>
     ))}
   </div>
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>When to use On-colour</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr', padding: '10px 16px', background: '#fff', gap: 8 }}>
-    <div style={{ fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>When to use On-colour</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr', padding: '12px 16px', background: '#fff', gap: 8 }}>
+    <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
       Use <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>onColor</code> when the Content Switcher sits on a <strong>dark or coloured background</strong> (e.g. a primary-blue header or a branded hero section). The item backgrounds shift to dark navy (<code style={{ fontSize: 11, color: '#374151' }}>#0b2550</code>) with a visible border (<code style={{ fontSize: 11, color: '#374151' }}>#3c5073</code>) so the component remains legible.
-    </div>
+    </span>
   </div>
 </div>
 
+<Canvas of={ContentSwitcherStories.OnColor} />
+
 ---
 
-## Property: Item Count
+{/* ── Property: Item Count ── */}
+<h2 id="item-count" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Item Count</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The ContentSwitcher supports 2–4 items. Pass them via the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>items</code> array. The component automatically derives First / Mid / Last position from the array index.
+</p>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Supported item counts</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Count</span><span>Item Types</span><span>Notes</span>
   </div>
   {[
-    { count: '2', types: 'First + Last', note: 'Minimum — binary toggle (e.g. List / Grid)' },
-    { count: '3', types: 'First + Mid + Last', note: 'Recommended — three options (e.g. List / Grid / Map)' },
+    { count: '2', types: 'First + Last',           note: 'Minimum — binary toggle (e.g. List / Grid)' },
+    { count: '3', types: 'First + Mid + Last',      note: 'Recommended — three options (e.g. List / Grid / Map)' },
     { count: '4', types: 'First + Mid + Mid + Last', note: 'Maximum recommended — beyond 4 consider a different pattern' },
   ].map(({ count, types, note }, i) => (
-    <div key={count} style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'start' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{count}</code>
+    <div key={count} style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'start' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{count}</code>
       <span style={{ fontSize: 13, color: '#374151' }}>{types}</span>
       <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{note}</span>
     </div>
   ))}
 </div>
 
+<Canvas of={ContentSwitcherStories.ItemCount} />
+
 ---
 
-## Item Type — Corner Radius
+{/* ── Item Type — Corner Radius ── */}
+<h2 id="corner-radius" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Item Type — Corner Radius</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  CSS logical properties handle corner radii automatically, so the component mirrors correctly in both LTR and RTL without extra CSS.
+</p>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Corner radii by position</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '80px 130px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '80px 130px 130px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 10, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Type</span><span>CSS Class</span><span>Radius (Figma)</span><span>CSS Logical Property</span>
   </div>
   {[
     { type: 'First', cls: '.itemFirst', r: 'TL=8 BL=8', css: 'border-start-start-radius: 8px; border-end-start-radius: 8px' },
-    { type: 'Mid',   cls: '.item',      r: 'all 0',    css: 'border-radius: 0 (inherited)' },
+    { type: 'Mid',   cls: '.item',      r: 'all 0',     css: 'border-radius: 0 (inherited)' },
     { type: 'Last',  cls: '.itemLast',  r: 'TR=8 BR=8', css: 'border-start-end-radius: 8px; border-end-end-radius: 8px' },
   ].map(({ type, cls, r, css }, i) => (
-    <div key={type} style={{ display: 'grid', gridTemplateColumns: '80px 130px 130px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'start' }}>
-      <span style={{ fontSize: 13, color: '#374151', fontWeight: 500 }}>{type}</span>
-      <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{cls}</code>
+    <div key={type} style={{ display: 'grid', gridTemplateColumns: '80px 130px 130px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'start' }}>
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#000b36' }}>{type}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{cls}</code>
       <span style={{ fontSize: 13, color: '#374151' }}>{r}</span>
       <code style={{ fontSize: 11, color: '#6b7280' }}>{css}</code>
     </div>
@@ -283,79 +319,86 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
 
 ---
 
-## RTL Support
+{/* ── RTL Support ── */}
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>dir="rtl"</code> to flip the layout for right-to-left languages. Provide <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>labelAr</code> on each item so Arabic text is shown automatically.
+</p>
 
-<div style={{ marginBottom: 16 }}>
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 16 }}>
   {[
     { label: 'LTR (default)', dir: 'ltr', items: [{ label: 'First', value: 'first' }, { label: 'Middle', value: 'mid' }, { label: 'Last', value: 'last' }] },
     { label: 'RTL (Arabic)', dir: 'rtl', items: [{ label: 'الأول', value: 'first' }, { label: 'الوسط', value: 'mid' }, { label: 'الأخير', value: 'last' }] },
   ].map(({ label, dir, items }) => (
-    <div key={dir} style={{ display: 'flex', gap: 24, alignItems: 'center', flexWrap: 'wrap', marginBottom: 12 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 110, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>{label}</span>
+    <div key={dir}>
+      <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>{label}</p>
       <ContentSwitcher items={items} value="first" size="sm" dir={dir} />
     </div>
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL implementation notes</div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>RTL implementation notes</div>
   {[
-    { topic: 'dir attribute', detail: 'Set dir="rtl" on the ContentSwitcher. The HTML dir attribute is forwarded to the container div, which causes the browser to lay out children right-to-left.' },
-    { topic: 'Corner radii', detail: 'CSS logical properties (border-start-start-radius etc.) auto-flip so the First item\'s rounded corners always appear on the reading-start side.' },
+    { topic: 'dir attribute',  detail: 'Set dir="rtl" on the ContentSwitcher. The HTML dir attribute is forwarded to the container div, which causes the browser to lay out children right-to-left.' },
+    { topic: 'Corner radii',   detail: "CSS logical properties (border-start-start-radius etc.) auto-flip so the First item's rounded corners always appear on the reading-start side." },
     { topic: 'Border collapse', detail: 'margin-inline-start: -1px collapses shared borders correctly in both LTR and RTL.' },
-    { topic: 'Label', detail: 'Provide labelAr on each item. The component renders labelAr when dir="rtl" and labelAr is present, otherwise falls back to label.' },
+    { topic: 'Label',          detail: 'Provide labelAr on each item. The component renders labelAr when dir="rtl" and labelAr is present, otherwise falls back to label.' },
   ].map(({ topic, detail }, i) => (
     <div key={topic} style={{ display: 'grid', gridTemplateColumns: '140px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{topic}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{topic}</code>
       <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{detail}</span>
     </div>
   ))}
 </div>
 
+<Canvas of={ContentSwitcherStories.RTL} />
+
 ---
 
-## Properties
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>ContentSwitcher props</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '150px 90px 130px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>ContentSwitcher</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '150px 100px 130px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
   </div>
   {[
-    { n: 'items',     tb: '#fff7ed', tc: '#c2410c', type: 'array',     def: '[]',       d: 'Array of { label, labelAr?, value, disabled? }. Minimum 2 items. The component derives First / Mid / Last from index.' },
-    { n: 'value',     tb: '#f3f0ff', tc: '#7c3aed', type: 'any',       def: 'undefined', d: 'Currently active value. Should match one of the values in items[].' },
-    { n: 'onChange',  tb: '#fdf4ff', tc: '#9333ea', type: 'function',  def: 'undefined', d: 'Called with the new value when the user clicks an item: (value) => void.' },
-    { n: 'size',      tb: '#fff7ed', tc: '#c2410c', type: 'enum',      def: '"sm"',      d: '"sm" | "md" | "lg" — Small (32 px) · Medium (40 px) · Large (48 px).' },
-    { n: 'onColor',   tb: '#f3f0ff', tc: '#7c3aed', type: 'boolean',   def: 'false',     d: 'Activates the on-colour dark variant for use on coloured backgrounds.' },
-    { n: 'disabled',  tb: '#f3f0ff', tc: '#7c3aed', type: 'boolean',   def: 'false',     d: 'Disables all items. Individual items can also be disabled via item.disabled.' },
-    { n: 'dir',       tb: '#fff7ed', tc: '#c2410c', type: 'enum',      def: '"ltr"',     d: '"ltr" | "rtl" — Sets reading direction. Logical CSS properties handle corner radius mirroring.' },
-    { n: 'ariaLabel', tb: '#ecfdf5', tc: '#059669', type: 'string',    def: '"Content switcher"', d: 'Accessible label for the group container (role="group" aria-label).' },
-    { n: 'className', tb: '#ecfdf5', tc: '#059669', type: 'string',    def: '""',        d: 'Additional CSS class applied to the container.' },
-  ].map(({ n, tb, tc, type, def, d }, i) => (
-    <div key={n} style={{ display: 'grid', gridTemplateColumns: '150px 90px 130px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    { n: 'items',     type: 'array',    def: '[]',                  d: 'Array of { label, labelAr?, value, disabled? }. Minimum 2 items. The component derives First / Mid / Last from index.' },
+    { n: 'value',     type: 'any',      def: 'undefined',           d: 'Currently active value. Should match one of the values in items[].' },
+    { n: 'onChange',  type: 'function', def: 'undefined',           d: 'Called with the new value when the user clicks an item: (value) => void.' },
+    { n: 'size',      type: 'enum',     def: '"sm"',                d: '"sm" | "md" | "lg" — Small (32 px) · Medium (40 px) · Large (48 px).' },
+    { n: 'onColor',   type: 'boolean',  def: 'false',               d: 'Activates the on-colour dark variant for use on coloured backgrounds.' },
+    { n: 'disabled',  type: 'boolean',  def: 'false',               d: 'Disables all items. Individual items can also be disabled via item.disabled.' },
+    { n: 'dir',       type: 'enum',     def: '"ltr"',               d: '"ltr" | "rtl" — Sets reading direction. Logical CSS properties handle corner radius mirroring.' },
+    { n: 'ariaLabel', type: 'string',   def: '"Content switcher"',  d: 'Accessible label for the group container (role="group" aria-label).' },
+    { n: 'className', type: 'string',   def: '""',                  d: 'Additional CSS class applied to the container.' },
+  ].map(({ n, type, def, d }, i) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '150px 100px 130px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
       <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600 }}>{type}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
       <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
       <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
     </div>
   ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Item object shape</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '120px 90px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Item object shape</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 100px 80px 1fr', background: '#f9fafb', padding: '10px 16px', gap: 12, fontSize: 12, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Key</span><span>Type</span><span>Required</span><span>Description</span>
   </div>
   {[
-    { n: 'label',    tb: '#ecfdf5', tc: '#059669', type: 'string',  req: 'Yes', d: 'Display text for LTR (or when no labelAr is set).' },
-    { n: 'labelAr',  tb: '#ecfdf5', tc: '#059669', type: 'string',  req: 'No',  d: 'Arabic display text — shown when dir="rtl" and this key is present.' },
-    { n: 'value',    tb: '#f3f0ff', tc: '#7c3aed', type: 'any',     req: 'Yes', d: 'Unique identifier compared against the top-level value prop.' },
-    { n: 'disabled', tb: '#f3f0ff', tc: '#7c3aed', type: 'boolean', req: 'No',  d: 'Disables this individual item. Also disabled when top-level disabled=true.' },
-  ].map(({ n, tb, tc, type, req, d }, i) => (
-    <div key={n} style={{ display: 'grid', gridTemplateColumns: '120px 90px 80px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
+    { n: 'label',    type: 'string',  req: 'Yes', d: 'Display text for LTR (or when no labelAr is set).' },
+    { n: 'labelAr',  type: 'string',  req: 'No',  d: 'Arabic display text — shown when dir="rtl" and this key is present.' },
+    { n: 'value',    type: 'any',     req: 'Yes', d: 'Unique identifier compared against the top-level value prop.' },
+    { n: 'disabled', type: 'boolean', req: 'No',  d: 'Disables this individual item. Also disabled when top-level disabled=true.' },
+  ].map(({ n, type, req, d }, i) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '120px 100px 80px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
       <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600 }}>{type}</span>
-      <span style={{ fontSize: 13, color: req === 'Yes' ? '#059669' : '#9da4ae', fontWeight: req === 'Yes' ? 600 : 400 }}>{req}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
+      <span style={{ fontSize: 13, fontWeight: req === 'Yes' ? 600 : 400, color: req === 'Yes' ? '#059669' : '#9da4ae' }}>{req}</span>
       <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
     </div>
   ))}
@@ -363,180 +406,63 @@ import * as ContentSwitcherStories from './ContentSwitcher.stories';
 
 ---
 
-## Accessibility
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The ContentSwitcher is fully keyboard operable. Each item is a native <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>&lt;button&gt;</code> with <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>aria-pressed</code> communicating selection state.
+</p>
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
-  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#eff3fb', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#1849a9' }}>Keyboard interaction</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        ['Tab', 'Moves focus to the next interactive element inside the switcher, then out of it.'],
-        ['Enter / Space', 'Activates (selects) the focused item.'],
-        ['Arrow keys', 'Not natively mapped — implement via onKeyDown if you want left/right arrow navigation between items.'],
-      ].map(([key, desc]) => (
-        <div key={key} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <code style={{ background: '#f3f4f6', padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600, flexShrink: 0, color: '#1849a9' }}>{key}</code>
-          <span style={{ lineHeight: 1.5 }}>{desc}</span>
-        </div>
-      ))}
-    </div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
   </div>
-
-  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#fdf4ff', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#9333ea' }}>ARIA roles &amp; attributes</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        ['role="group"', 'Applied to the container. Groups related buttons for assistive technologies.'],
-        ['aria-label', 'Descriptive label for the group (default "Content switcher"). Pass ariaLabel prop to customise.'],
-        ['aria-pressed', 'Applied to each button. true when the item is selected, false otherwise.'],
-        ['disabled', 'Native HTML attribute on disabled buttons. Communicates unavailability to screen readers.'],
-      ].map(([attr, desc]) => (
-        <div key={attr} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <code style={{ background: '#f3f0ff', padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600, flexShrink: 0, color: '#7c3aed' }}>{attr}</code>
-          <span style={{ lineHeight: 1.5 }}>{desc}</span>
-        </div>
-      ))}
+  {[
+    ['Tab navigation',          'Moves focus to the next interactive element inside the switcher, then out of it.'],
+    ['Enter / Space',           'Activates (selects) the focused item.'],
+    ['Arrow key navigation',    'Not natively mapped — implement via onKeyDown if you want left/right arrow navigation between items.'],
+    ['role="group"',            'Applied to the container. Groups related buttons for assistive technologies.'],
+    ['aria-label',              'Descriptive label for the group (default "Content switcher"). Pass ariaLabel prop to customise.'],
+    ['aria-pressed',            'Applied to each button. true when the item is selected, false otherwise.'],
+    ['disabled attribute',      'Native HTML attribute on disabled buttons. Communicates unavailability to screen readers.'],
+    ['Normal text contrast',    '#000b36 on #f3f4f6 — Passes WCAG AA (>4.5:1)'],
+    ['Selected text contrast',  '#f9fafb on #1849a9 — Passes WCAG AA (>4.5:1)'],
+    ['OnColor Normal contrast', '#f9fafb on #0b2550 — Passes WCAG AAA (>7:1)'],
+    ['Disabled text contrast',  '#9da4ae on #f3f4f6 — Intentionally low contrast — communicates unavailability'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
     </div>
-  </div>
-
-  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#ecfdf5', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#059669' }}>Colour contrast</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        ['Normal text', '#000b36 on #f3f4f6', 'Passes WCAG AA (>4.5:1)'],
-        ['Selected text', '#f9fafb on #1849a9', 'Passes WCAG AA (>4.5:1)'],
-        ['OnColor Normal', '#f9fafb on #0b2550', 'Passes WCAG AAA (>7:1)'],
-        ['Disabled text', '#9da4ae on #f3f4f6', 'Intentionally low contrast — communicates unavailability'],
-      ].map(([pair, colours, result]) => (
-        <div key={pair} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <span style={{ minWidth: 130, fontWeight: 500, flexShrink: 0 }}>{pair}</span>
-          <code style={{ fontSize: 11, color: '#374151', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{colours}</code>
-          <span style={{ color: '#059669', fontSize: 12, fontWeight: 500 }}>{result}</span>
-        </div>
-      ))}
-    </div>
-  </div>
+  ))}
 </div>
 
 ---
 
-## Usage Guidelines
+{/* ── Usage Guidelines ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
-  <div style={{ border: '1px solid #d1fae5', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#ecfdf5', padding: '8px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#059669' }}>✓ Do</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        'Use for mutually exclusive options only — exactly one item must be active at a time.',
-        'Keep labels short (1–2 words). Long labels break the compact visual rhythm.',
-        'Use 2–4 items. More than 4 should be a dropdown or tabs instead.',
-        'Use onColor on dark/coloured backgrounds for sufficient contrast.',
-        'Provide a meaningful ariaLabel for screen reader context.',
-        'Provide labelAr when using dir="rtl" so Arabic text is displayed.',
-      ].map((t, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>✓</span>
-          <span style={{ lineHeight: 1.5 }}>{t}</span>
-        </div>
-      ))}
-    </div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use for mutually exclusive options only — exactly one item must be active at a time.</li>
+      <li>Keep labels short (1–2 words). Long labels break the compact visual rhythm.</li>
+      <li>Use 2–4 items. More than 4 should be a dropdown or tabs instead.</li>
+      <li>Use <code style={{ fontSize: 12 }}>onColor</code> on dark/coloured backgrounds for sufficient contrast.</li>
+      <li>Provide a meaningful <code style={{ fontSize: 12 }}>ariaLabel</code> for screen reader context.</li>
+      <li>Provide <code style={{ fontSize: 12 }}>labelAr</code> when using <code style={{ fontSize: 12 }}>dir="rtl"</code> so Arabic text is displayed.</li>
+    </ul>
   </div>
-  <div style={{ border: '1px solid #fee2e2', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#fef2f2', padding: '8px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#dc2626' }}>✗ Don't</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        'Don\'t use for multi-select — that\'s a Chip group or a set of checkboxes.',
-        'Don\'t use more than 4 items — legibility and touch target size degrade.',
-        'Don\'t use on a white/light background with onColor=true — the dark fills will look out of place.',
-        'Don\'t mix different sizes in the same switcher.',
-        'Don\'t use as navigation between separate pages — use Tabs or a nav pattern instead.',
-        'Don\'t disable all items — at least one should remain selectable at all times.',
-      ].map((t, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>✗</span>
-          <span style={{ lineHeight: 1.5 }}>{t}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-
----
-
-## Code Examples
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Basic controlled usage</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`import { useState } from 'react';
-import { ContentSwitcher } from '@/components/ContentSwitcher';
-
-const items = [
-  { label: 'List',  value: 'list' },
-  { label: 'Grid',  value: 'grid' },
-  { label: 'Map',   value: 'map'  },
-];
-
-function ViewSwitcher() {
-  const [view, setView] = useState('list');
-
-  return (
-    <ContentSwitcher
-      items={items}
-      value={view}
-      onChange={setView}
-      size="sm"
-    />
-  );
-}`}</pre>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>On-colour (dark background)</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`<ContentSwitcher
-  items={items}
-  value={view}
-  onChange={setView}
-  size="sm"
-  onColor
-/>`}</pre>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>RTL with Arabic labels</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`const arItems = [
-  { label: 'List',  labelAr: 'قائمة', value: 'list' },
-  { label: 'Grid',  labelAr: 'شبكة',  value: 'grid' },
-  { label: 'Map',   labelAr: 'خريطة', value: 'map'  },
-];
-
-<ContentSwitcher
-  items={arItems}
-  value={view}
-  onChange={setView}
-  size="sm"
-  dir="rtl"
-/>`}</pre>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Per-item disabled</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`<ContentSwitcher
-  items={[
-    { label: 'List',  value: 'list' },
-    { label: 'Grid',  value: 'grid', disabled: true },
-    { label: 'Map',   value: 'map'  },
-  ]}
-  value={view}
-  onChange={setView}
-  size="sm"
-/>`}</pre>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't use for multi-select — that's a Chip group or a set of checkboxes.</li>
+      <li>Don't use more than 4 items — legibility and touch target size degrade.</li>
+      <li>Don't use on a white/light background with <code style={{ fontSize: 12 }}>onColor=true</code> — the dark fills will look out of place.</li>
+      <li>Don't mix different sizes in the same switcher.</li>
+      <li>Don't use as navigation between separate pages — use Tabs or a nav pattern instead.</li>
+      <li>Don't disable all items — at least one should remain selectable at all times.</li>
+    </ul>
   </div>
 </div>
 
