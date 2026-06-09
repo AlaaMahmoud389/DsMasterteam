@@ -13,6 +13,15 @@ import { Meta } from '@storybook/addon-docs/blocks';
   </div>
 </div>
 
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px 0' }}>
+    {[['Primary Blue','#primary-blue-info-palette'],['Secondary — Indigo','#secondary--indigo'],['Success','#success'],['Warning','#warning'],['Error','#error'],['Gray Scale','#gray-scale'],['Brand Blue','#brand-blue'],['Danger / Red','#danger--red'],['Surface & Text','#surface-text-disabled--focus'],['Token Usage Rules','#token-usage-rules']].map(([label, href]) => (
+      <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
+    ))}
+  </div>
+</div>
+
 ---
 
 ## Primary Blue (Info palette)
