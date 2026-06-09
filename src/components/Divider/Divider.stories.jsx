@@ -1,16 +1,12 @@
 import React from 'react';
 import { Divider } from './Divider';
 
-const FONT = "'IBM Plex Sans Arabic', system-ui, sans-serif";
-
-const DARK_BG  = '#000b36';
-const LIGHT_BG = '#f3f4f6';
+/* ── Story meta ─────────────────────────────────────────────── */
 
 export default {
   title: 'Components/Divider',
   component: Divider,
   parameters: { layout: 'padded' },
-  tags: [],
   argTypes: {
     orientation: {
       control: 'radio',
@@ -39,7 +35,8 @@ export const Playground = {
   render: (args) => (
     <div
       style={{
-        background: args.onColor ? DARK_BG : LIGHT_BG,
+        fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif",
+        background: args.onColor ? '#000b36' : '#f3f4f6',
         padding: 32,
         borderRadius: 8,
         display: 'flex',
@@ -57,16 +54,16 @@ export const Playground = {
 export const HorizontalDefault = {
   name: 'Horizontal — Default (Neutral · Primary)',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: FONT }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       {[
         { color: 'neutral', label: 'Neutral  (#ffffff / 30%)' },
         { color: 'primary', label: 'Primary  (#1849A9)' },
       ].map(({ color, label }) => (
         <div key={color}>
-          <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>
             {label}
-          </div>
-          <div style={{ background: LIGHT_BG, padding: '20px 24px', borderRadius: 6 }}>
+          </p>
+          <div style={{ background: '#f3f4f6', padding: '20px 24px', borderRadius: 6 }}>
             <Divider orientation="horizontal" color={color} />
           </div>
         </div>
@@ -79,16 +76,16 @@ export const HorizontalDefault = {
 export const HorizontalOnColor = {
   name: 'Horizontal — OnColor (Neutral · Solid White)',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: FONT }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       {[
         { color: 'neutral',    label: 'Neutral  (#ffffff / 30%)' },
         { color: 'solidWhite', label: 'Solid White  (#ffffff)' },
       ].map(({ color, label }) => (
         <div key={color}>
-          <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>
             {label}
-          </div>
-          <div style={{ background: DARK_BG, padding: '20px 24px', borderRadius: 6 }}>
+          </p>
+          <div style={{ background: '#000b36', padding: '20px 24px', borderRadius: 6 }}>
             <Divider orientation="horizontal" color={color} onColor />
           </div>
         </div>
@@ -101,16 +98,16 @@ export const HorizontalOnColor = {
 export const VerticalDefault = {
   name: 'Vertical — Default (Neutral · Primary)',
   render: () => (
-    <div style={{ display: 'flex', gap: 48, fontFamily: FONT }}>
+    <div style={{ display: 'flex', gap: 48, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       {[
         { color: 'neutral', label: 'Neutral  (#ffffff / 30%)' },
         { color: 'primary', label: 'Primary  (#1849A9)' },
       ].map(({ color, label }) => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-          <div style={{ fontSize: 11, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', textAlign: 'center' }}>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96', textAlign: 'center' }}>
             {label}
-          </div>
-          <div style={{ background: LIGHT_BG, padding: '16px 24px', borderRadius: 6, height: 100, display: 'flex', alignItems: 'stretch' }}>
+          </p>
+          <div style={{ background: '#f3f4f6', padding: '16px 24px', borderRadius: 6, height: 100, display: 'flex', alignItems: 'stretch' }}>
             <Divider orientation="vertical" color={color} />
           </div>
         </div>
@@ -123,16 +120,16 @@ export const VerticalDefault = {
 export const VerticalOnColor = {
   name: 'Vertical — OnColor (Neutral · Solid White)',
   render: () => (
-    <div style={{ display: 'flex', gap: 48, fontFamily: FONT }}>
+    <div style={{ display: 'flex', gap: 48, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       {[
         { color: 'neutral',    label: 'Neutral  (#ffffff / 30%)' },
         { color: 'solidWhite', label: 'Solid White  (#ffffff)' },
       ].map(({ color, label }) => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-          <div style={{ fontSize: 11, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', textAlign: 'center' }}>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96', textAlign: 'center' }}>
             {label}
-          </div>
-          <div style={{ background: DARK_BG, padding: '16px 24px', borderRadius: 6, height: 100, display: 'flex', alignItems: 'stretch' }}>
+          </p>
+          <div style={{ background: '#000b36', padding: '16px 24px', borderRadius: 6, height: 100, display: 'flex', alignItems: 'stretch' }}>
             <Divider orientation="vertical" color={color} onColor />
           </div>
         </div>
@@ -158,22 +155,20 @@ export const FullMatrix = {
       { orientation: 'vertical', color: 'solidWhite', onColor: true,  label: 'Vertical · Solid White · OnColor' },
     ];
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, fontFamily: FONT }}>
-        {/* Horizontal rows */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
         {rows.map(({ orientation, color, onColor, label }) => (
           <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <span style={{ fontSize: 11, color: '#6b7280', minWidth: 260 }}>{label}</span>
-            <div style={{ flex: 1, background: onColor ? DARK_BG : LIGHT_BG, padding: '16px 20px', borderRadius: 6 }}>
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#6C7C96', minWidth: 260 }}>{label}</span>
+            <div style={{ flex: 1, background: onColor ? '#000b36' : '#f3f4f6', padding: '16px 20px', borderRadius: 6 }}>
               <Divider orientation={orientation} color={color} onColor={onColor} />
             </div>
           </div>
         ))}
-        {/* Vertical columns */}
         <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginTop: 8 }}>
           {cols.map(({ orientation, color, onColor, label }) => (
             <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
-              <span style={{ fontSize: 11, color: '#6b7280', maxWidth: 150 }}>{label}</span>
-              <div style={{ background: onColor ? DARK_BG : LIGHT_BG, padding: '12px 24px', borderRadius: 6, height: 80, display: 'flex', alignItems: 'stretch' }}>
+              <span style={{ fontSize: 12, fontWeight: 600, color: '#6C7C96', maxWidth: 150 }}>{label}</span>
+              <div style={{ background: onColor ? '#000b36' : '#f3f4f6', padding: '12px 24px', borderRadius: 6, height: 80, display: 'flex', alignItems: 'stretch' }}>
                 <Divider orientation={orientation} color={color} onColor={onColor} />
               </div>
             </div>
@@ -188,10 +183,9 @@ export const FullMatrix = {
 export const InContextHorizontal = {
   name: 'In Context — Horizontal separating content',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: FONT }}>
-      {/* Default context */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Default context</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Default context</p>
         <div style={{ background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ fontSize: 14, color: '#111827' }}>Section heading</div>
           <Divider orientation="horizontal" color="primary" />
@@ -202,11 +196,9 @@ export const InContextHorizontal = {
           <div style={{ fontSize: 13, color: '#6b7280' }}>Another content region.</div>
         </div>
       </div>
-
-      {/* OnColor context */}
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor context (#000B36)</div>
-        <div style={{ background: DARK_BG, borderRadius: 8, padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>OnColor context (#000B36)</p>
+        <div style={{ background: '#000b36', borderRadius: 8, padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ fontSize: 14, color: '#f9fafb' }}>Section heading</div>
           <Divider orientation="horizontal" color="solidWhite" onColor />
           <div style={{ fontSize: 13, color: '#d1d5db', lineHeight: 1.6 }}>
@@ -224,10 +216,9 @@ export const InContextHorizontal = {
 export const InContextVertical = {
   name: 'In Context — Vertical separating columns',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: FONT }}>
-      {/* Default context */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>Default context</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Default context</p>
         <div style={{ background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '20px 24px', display: 'inline-flex', alignItems: 'stretch', gap: 20 }}>
           <div style={{ fontSize: 13, color: '#374151' }}>Left column</div>
           <Divider orientation="vertical" color="primary" />
@@ -236,11 +227,9 @@ export const InContextVertical = {
           <div style={{ fontSize: 13, color: '#374151' }}>Right column</div>
         </div>
       </div>
-
-      {/* OnColor context */}
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor context (#000B36)</div>
-        <div style={{ background: DARK_BG, borderRadius: 8, padding: '20px 24px', display: 'inline-flex', alignItems: 'stretch', gap: 20 }}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>OnColor context (#000B36)</p>
+        <div style={{ background: '#000b36', borderRadius: 8, padding: '20px 24px', display: 'inline-flex', alignItems: 'stretch', gap: 20 }}>
           <div style={{ fontSize: 13, color: '#f9fafb' }}>Left column</div>
           <Divider orientation="vertical" color="solidWhite" onColor />
           <div style={{ fontSize: 13, color: '#f9fafb' }}>Middle column</div>
