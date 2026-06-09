@@ -2,15 +2,10 @@ import React from 'react';
 import { FeaturedIcon } from './FeaturedIcon';
 import { Icon, ICON_NAMES } from '../icons/Icon';
 
-const FIGMA_URL =
-  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4388-1265';
-
-const FONT     = "'IBM Plex Sans Arabic', system-ui, sans-serif";
-const DARK_BG  = '#00001c';   /* OnColor=Yes container background */
+/* ── Shared data ─────────────────────────────────────────────── */
 const ALL_COLORS = ['default', 'info', 'success', 'warning', 'error', 'brand', 'gray-attention'];
 const ALL_SIZES  = ['sm', 'md', 'lg', 'xl'];
 
-/* icon picked per semantic color to aid recognition in docs */
 const COLOR_ICON = {
   'default':        'setting',
   'info':           'information-circle',
@@ -31,14 +26,12 @@ const COLOR_LABEL = {
   'gray-attention': 'Gray-attention',
 };
 
+/* ── Story meta ─────────────────────────────────────────────── */
+
 export default {
   title: 'Components/FeaturedIcon',
   component: FeaturedIcon,
-  parameters: {
-    layout: 'padded',
-    design: { type: 'figma', url: FIGMA_URL },
-  },
-  tags: [],
+  parameters: { layout: 'padded' },
   argTypes: {
     size: {
       control: 'radio',
@@ -46,7 +39,7 @@ export default {
       description: 'Container + icon size',
     },
     color: {
-      control: 'select',
+      control: 'radio',
       options: ALL_COLORS,
       description: 'Semantic color token',
     },
@@ -59,7 +52,7 @@ export default {
       description: 'true → colored background fill  ·  false → white bg with border',
     },
     icon: {
-      control: 'select',
+      control: 'radio',
       options: ICON_NAMES,
       description: 'Icon name from the design-system registry',
     },
@@ -77,8 +70,10 @@ export const Playground = {
   },
   render: (args) => (
     <div style={{
-      background: args.onColor ? DARK_BG : '#ffffff',
-      padding: 24, borderRadius: 8,
+      fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif",
+      background: args.onColor ? '#00001c' : '#ffffff',
+      padding: 24,
+      borderRadius: 8,
       display: 'inline-flex',
     }}>
       <FeaturedIcon {...args} />
@@ -86,11 +81,11 @@ export const Playground = {
   ),
 };
 
-/* ── Colors — OnColor (with colored background) ─────────────── */
+/* ── Colors — OnColor=Yes ────────────────────────────────────── */
 export const ColorsOnBackground = {
   name: 'Colors — OnColor=Yes (on #00001C)',
   render: () => (
-    <div style={{ background: DARK_BG, padding: 24, borderRadius: 8, display: 'inline-flex', gap: 20, flexWrap: 'wrap', fontFamily: FONT }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", background: '#00001c', padding: 24, borderRadius: 8, display: 'inline-flex', gap: 20, flexWrap: 'wrap' }}>
       {ALL_COLORS.map((color) => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
           <FeaturedIcon size="md" color={color} onColor icon={COLOR_ICON[color]} />
@@ -101,11 +96,11 @@ export const ColorsOnBackground = {
   ),
 };
 
-/* ── Colors — White background ───────────────────────────────── */
+/* ── Colors — OnColor=No ─────────────────────────────────────── */
 export const ColorsWhiteBackground = {
   name: 'Colors — OnColor=No (white background + border)',
   render: () => (
-    <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', fontFamily: FONT }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', gap: 20, flexWrap: 'wrap' }}>
       {ALL_COLORS.map((color) => (
         <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
           <FeaturedIcon size="md" color={color} onColor={false} icon={COLOR_ICON[color]} />
@@ -120,11 +115,10 @@ export const ColorsWhiteBackground = {
 export const Sizes = {
   name: 'Sizes — Small · Medium · Large · X Large',
   render: () => (
-    <div style={{ fontFamily: FONT, display: 'flex', flexDirection: 'column', gap: 24 }}>
-      {/* OnColor=Yes row — dark background */}
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor=Yes</div>
-        <div style={{ background: DARK_BG, padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 20, alignItems: 'flex-end', flexWrap: 'wrap' }}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>OnColor=Yes</p>
+        <div style={{ background: '#00001c', padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 20, alignItems: 'flex-end', flexWrap: 'wrap' }}>
           {ALL_SIZES.map((size) => (
             <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
               <FeaturedIcon size={size} color="brand" onColor icon="star" />
@@ -138,10 +132,8 @@ export const Sizes = {
           ))}
         </div>
       </div>
-
-      {/* OnColor=No row — light background */}
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>OnColor=No</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>OnColor=No</p>
         <div style={{ display: 'flex', gap: 20, alignItems: 'flex-end', flexWrap: 'wrap' }}>
           {ALL_SIZES.map((size) => (
             <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
@@ -161,21 +153,22 @@ export const Sizes = {
 export const Shape = {
   name: 'Shape — Circle=Yes vs Circle=No',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontFamily: FONT }}>
-      {/* circle=false */}
-      <div style={{ fontSize: 11, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>Circle=No — 4 px rounded rect</div>
-      <div style={{ background: DARK_BG, padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 14, flexWrap: 'wrap' }}>
-        {ALL_COLORS.map((color) => (
-          <FeaturedIcon key={color} size="md" color={color} circle={false} onColor icon={COLOR_ICON[color]} />
-        ))}
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Circle=No — 4 px rounded rect</p>
+        <div style={{ background: '#00001c', padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 14, flexWrap: 'wrap' }}>
+          {ALL_COLORS.map((color) => (
+            <FeaturedIcon key={color} size="md" color={color} circle={false} onColor icon={COLOR_ICON[color]} />
+          ))}
+        </div>
       </div>
-
-      {/* circle=true */}
-      <div style={{ fontSize: 11, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em', marginTop: 8 }}>Circle=Yes — full circle</div>
-      <div style={{ background: DARK_BG, padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 14, flexWrap: 'wrap' }}>
-        {ALL_COLORS.map((color) => (
-          <FeaturedIcon key={color} size="md" color={color} circle onColor icon={COLOR_ICON[color]} />
-        ))}
+      <div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Circle=Yes — full circle (50%)</p>
+        <div style={{ background: '#00001c', padding: '16px 20px', borderRadius: 8, display: 'inline-flex', gap: 14, flexWrap: 'wrap' }}>
+          {ALL_COLORS.map((color) => (
+            <FeaturedIcon key={color} size="md" color={color} circle onColor icon={COLOR_ICON[color]} />
+          ))}
+        </div>
       </div>
     </div>
   ),
@@ -185,13 +178,10 @@ export const Shape = {
 export const OnColorModes = {
   name: 'OnColor — Yes vs No side by side',
   render: () => (
-    <div style={{ display: 'flex', gap: 32, fontFamily: FONT, flexWrap: 'wrap' }}>
-      {/* OnColor=Yes — dark surface */}
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', gap: 32, flexWrap: 'wrap' }}>
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '.06em' }}>
-          OnColor=Yes — #00001C surface
-        </div>
-        <div style={{ background: DARK_BG, padding: '16px 20px', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>OnColor=Yes — #00001C surface</p>
+        <div style={{ background: '#00001c', padding: '16px 20px', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
             {ALL_COLORS.map((color) => (
               <FeaturedIcon key={color} size="md" color={color} onColor icon={COLOR_ICON[color]} />
@@ -204,12 +194,8 @@ export const OnColorModes = {
           </div>
         </div>
       </div>
-
-      {/* OnColor=No — light surface */}
       <div>
-        <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '.06em' }}>
-          OnColor=No — light background
-        </div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>OnColor=No — light background</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
             {ALL_COLORS.map((color) => (
@@ -227,19 +213,18 @@ export const OnColorModes = {
   ),
 };
 
-/* ── All Sizes × Circle × OnColor for brand ─────────────────── */
+/* ── Sizes Matrix ────────────────────────────────────────────── */
 export const SizesMatrix = {
   name: 'Matrix — All Sizes × Circle × OnColor (Brand)',
   render: () => (
-    <div style={{ fontFamily: FONT, display: 'flex', flexDirection: 'column', gap: 28 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', flexDirection: 'column', gap: 28 }}>
       {ALL_SIZES.map((size) => (
         <div key={size}>
-          <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>
             {size === 'sm' ? 'Small (32px)' : size === 'md' ? 'Medium (40px)' : size === 'lg' ? 'Large (48px)' : 'X Large (56px)'}
-          </div>
+          </p>
           <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', flexWrap: 'wrap' }}>
-            {/* OnColor=Yes pairs — dark bg */}
-            <div style={{ background: DARK_BG, padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 16, alignItems: 'flex-end' }}>
+            <div style={{ background: '#00001c', padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 16, alignItems: 'flex-end' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <FeaturedIcon size={size} color="brand" circle={false} onColor icon="star" />
                 <span style={{ fontSize: 10, color: '#9ca3af' }}>Rect · OnColor</span>
@@ -249,7 +234,6 @@ export const SizesMatrix = {
                 <span style={{ fontSize: 10, color: '#9ca3af' }}>Circle · OnColor</span>
               </div>
             </div>
-            {/* OnColor=No pairs */}
             <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <FeaturedIcon size={size} color="brand" circle={false} onColor={false} icon="star" />
@@ -271,15 +255,14 @@ export const SizesMatrix = {
 export const FullMatrix = {
   name: 'Full Matrix — All Colors × Shape × Mode',
   render: () => (
-    <div style={{ fontFamily: FONT, display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', flexDirection: 'column', gap: 24 }}>
       {ALL_COLORS.map((color) => (
         <div key={color}>
-          <div style={{ fontSize: 11, color: '#6b7280', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>
             {COLOR_LABEL[color]}
-          </div>
+          </p>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'flex-end' }}>
-            {/* OnColor=Yes — dark bg */}
-            <div style={{ background: DARK_BG, padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 16 }}>
+            <div style={{ background: '#00001c', padding: '12px 16px', borderRadius: 8, display: 'flex', gap: 16 }}>
               {[false, true].map((circ) => (
                 <div key={`on-${circ}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <FeaturedIcon size="md" color={color} circle={circ} onColor icon={COLOR_ICON[color]} />
@@ -287,7 +270,6 @@ export const FullMatrix = {
                 </div>
               ))}
             </div>
-            {/* OnColor=No */}
             {[false, true].map((circ) => (
               <div key={`off-${circ}`} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                 <FeaturedIcon size="md" color={color} circle={circ} onColor={false} icon={COLOR_ICON[color]} />
@@ -301,13 +283,11 @@ export const FullMatrix = {
   ),
 };
 
-/* ── In context usage ────────────────────────────────────────── */
+/* ── In Context ──────────────────────────────────────────────── */
 export const InContext = {
   name: 'In Context — Cards and alerts',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, fontFamily: FONT, maxWidth: 560 }}>
-
-      {/* Card with featured icon */}
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', flexDirection: 'column', gap: 20, maxWidth: 560 }}>
       <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 20, display: 'flex', gap: 16, alignItems: 'flex-start', background: '#fff' }}>
         <FeaturedIcon size="md" color="success" onColor icon="tick-circle" />
         <div>
@@ -315,8 +295,6 @@ export const InContext = {
           <div style={{ fontSize: 13, color: '#6b7280', lineHeight: 1.5 }}>Your payment of $240.00 was processed successfully.</div>
         </div>
       </div>
-
-      {/* Alert banner */}
       <div style={{ border: '1px solid #fedf89', borderRadius: 8, padding: '14px 16px', display: 'flex', gap: 12, alignItems: 'flex-start', background: '#fffaeb' }}>
         <FeaturedIcon size="sm" color="warning" onColor icon="alert" />
         <div>
@@ -324,8 +302,6 @@ export const InContext = {
           <div style={{ fontSize: 12, color: '#92400e', lineHeight: 1.5 }}>You will be logged out in 5 minutes due to inactivity.</div>
         </div>
       </div>
-
-      {/* Error state */}
       <div style={{ border: '1px solid #fda29b', borderRadius: 8, padding: '14px 16px', display: 'flex', gap: 12, alignItems: 'flex-start', background: '#fef3f2' }}>
         <FeaturedIcon size="sm" color="error" onColor icon="cancel-circle" />
         <div>
@@ -333,13 +309,11 @@ export const InContext = {
           <div style={{ fontSize: 12, color: '#b42318', lineHeight: 1.5 }}>File size exceeds the 10 MB limit. Please try again.</div>
         </div>
       </div>
-
-      {/* Feature highlight row */}
       <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
         {[
-          { color: 'brand',   icon: 'star',         label: 'Premium',   desc: 'Exclusive features' },
-          { color: 'info',    icon: 'information-circle', label: 'Updates',  desc: 'Latest changes' },
-          { color: 'success', icon: 'tick-circle',   label: 'Verified',  desc: 'Trusted source' },
+          { color: 'brand',   icon: 'star',               label: 'Premium',  desc: 'Exclusive features' },
+          { color: 'info',    icon: 'information-circle',  label: 'Updates',  desc: 'Latest changes' },
+          { color: 'success', icon: 'tick-circle',          label: 'Verified', desc: 'Trusted source' },
         ].map(({ color, icon, label, desc }) => (
           <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flex: '1 1 120px' }}>
             <FeaturedIcon size="lg" color={color} circle onColor icon={icon} />
@@ -352,20 +326,17 @@ export const InContext = {
   ),
 };
 
-/* ── Custom children (non-registry icon) ─────────────────────── */
+/* ── Custom children ─────────────────────────────────────────── */
 export const CustomChildren = {
   name: 'Custom children — pass any SVG / icon element',
   render: () => (
-    <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', fontFamily: FONT, alignItems: 'center' }}>
-      {/* Using the Icon component directly as children */}
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
         <FeaturedIcon size="md" color="info" onColor>
           <Icon name="download" size={20} />
         </FeaturedIcon>
         <span style={{ fontSize: 11, color: '#6b7280' }}>Via children</span>
       </div>
-
-      {/* Custom inline SVG */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
         <FeaturedIcon size="md" color="success" circle onColor>
           <svg viewBox="0 0 24 24" fill="none" width={20} height={20}>

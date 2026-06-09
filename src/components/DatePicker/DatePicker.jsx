@@ -206,14 +206,14 @@ function CalendarGrid({
         )}
         {isRTL && (
           <>
+            <div className={styles.headerStart}>
+              <span className={styles.monthLabel}>{months[month]}</span>
+              <YearDropdown
+                year={year} isOpen={yearDDOpen} isRTL={true}
+                onClick={onYearDDToggle} yearRange={yearRange} onSelect={onYearSelect}
+              />
+            </div>
             <div className={styles.headerNav}>
-              {showPrev && (
-                <button type="button" className={styles.navBtn} onClick={onPrev} aria-label="الشهر السابق">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              )}
               {showNext && (
                 <button type="button" className={styles.navBtn} onClick={onNext} aria-label="الشهر التالي">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -221,13 +221,13 @@ function CalendarGrid({
                   </svg>
                 </button>
               )}
-            </div>
-            <div className={styles.headerEnd}>
-              <YearDropdown
-                year={year} isOpen={yearDDOpen} isRTL={true}
-                onClick={onYearDDToggle} yearRange={yearRange} onSelect={onYearSelect}
-              />
-              <span className={styles.monthLabel}>{months[month]}</span>
+              {showPrev && (
+                <button type="button" className={styles.navBtn} onClick={onPrev} aria-label="الشهر السابق">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              )}
             </div>
           </>
         )}
@@ -584,8 +584,25 @@ export function DatePicker({
       {(inline || open) && (
         <div ref={panelRef} role="dialog" aria-label={isRTL ? 'منتقي التاريخ' : 'Date picker'} className={panelCls}>
 
-          {/* Top: calendar area + quick options */}
+          {/* Top: quick options + calendar area */}
           <div className={styles.panelBody}>
+
+            {/* Quick options sidebar */}
+            {showQuickOptions && (
+              <div className={styles.quickOptions} role="region" aria-label={isRTL ? 'اختصارات' : 'Shortcuts'}>
+                <div className={styles.quickOptionsLabel}>{isRTL ? 'اختصارات' : 'Shortcuts'}</div>
+                {quickOpts.map(({ key, label: optLabel }) => (
+                  <button
+                    key={key}
+                    type="button"
+                    className={`${styles.quickOption} ${activeQuick === key ? styles.quickOptionActive : ''}`}
+                    onClick={() => handleQuickOption(key)}
+                  >
+                    {optLabel}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Calendar & input column */}
             <div className={styles.calendarArea}>
@@ -674,38 +691,12 @@ export function DatePicker({
               </div>
             </div>
 
-            {/* Quick options sidebar */}
-            {showQuickOptions && (
-              <div className={styles.quickOptions} role="region" aria-label={isRTL ? 'اختصارات' : 'Shortcuts'}>
-                <div className={styles.quickOptionsLabel}>{isRTL ? 'اختصارات' : 'Shortcuts'}</div>
-                {quickOpts.map(({ key, label: optLabel }) => (
-                  <button
-                    key={key}
-                    type="button"
-                    className={`${styles.quickOption} ${activeQuick === key ? styles.quickOptionActive : ''}`}
-                    onClick={() => handleQuickOption(key)}
-                  >
-                    {optLabel}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Submit button action bar */}
           {showSubmitButton && (
             <div className={styles.actionsBar}>
               <div className={styles.actionsInner}>
-                <button
-                  type="button"
-                  className={styles.btnApply}
-                  onClick={handleApply}
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                    <path d="M2.5 8.5L6 12L13.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                  {isRTL ? 'تأكيد' : 'Apply'}
-                </button>
                 <button
                   type="button"
                   className={styles.btnCancel}
@@ -715,6 +706,16 @@ export function DatePicker({
                     <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
                   {isRTL ? 'إلغاء' : 'Cancel'}
+                </button>
+                <button
+                  type="button"
+                  className={styles.btnApply}
+                  onClick={handleApply}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M2.5 8.5L6 12L13.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  {isRTL ? 'تأكيد' : 'Apply'}
                 </button>
               </div>
             </div>

@@ -1,239 +1,218 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import React, { useState } from 'react';
-import { RatingStar, Rating } from './Rating';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as RatingStories from './Rating.stories';
 
-export const InteractiveDefault = () => {
-  const [val, setVal] = useState(3);
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: '16px 0' }}>
-      {['large', 'medium', 'small'].map((size) => (
-        <div key={size}>
-          <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-            {size.charAt(0).toUpperCase() + size.slice(1)}
-          </div>
-          <Rating size={size} value={val} onChange={setVal} />
-          <div style={{ marginTop: 6, fontSize: 12, color: '#6b7280', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-            Value: {val}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+<Meta of={RatingStories} />
 
-export const InteractiveBrand = () => {
-  const [val, setVal] = useState(3);
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, padding: '16px 0' }}>
-      {['large', 'medium', 'small'].map((size) => (
-        <div key={size}>
-          <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 8, fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-            {size.charAt(0).toUpperCase() + size.slice(1)} — Brand
-          </div>
-          <Rating size={size} brand value={val} onChange={setVal} />
-          <div style={{ marginTop: 6, fontSize: 12, color: '#6b7280', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-            Value: {val}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-<Meta title="Components/Rating/Docs" />
-
-# Rating
-
-Star rating component from the Masterteam Design System.
-
-**Figma:** [node 4250‑1940](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1940)
-
-Two exports:
-- **`RatingStar`** — single star, matches the `_RatingStar` Figma component set (24 variants)
-- **`Rating`** — interactive 5-star row, matches the `Rating` Figma component set (6 variants)
-
----
-
-## RatingStar — States
-
-### Normal (gray)
-
-<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
-  <RatingStar size="large" state="normal" />
-  <RatingStar size="medium" state="normal" />
-  <RatingStar size="small" state="normal" />
+{/* ── Header ─────────────────────────────────────────────────── */}
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: '40px 0 32px' }}>
+  <h1 style={{ fontSize: 28, fontWeight: 700, color: '#000b36', margin: '0 0 12px' }}>Rating</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    A star-based rating control with support for three sizes, default (amber) and brand (blue) colour styles, half-star values, and a fully interactive or read-only mode. Built from two composable primitives: <code>RatingStar</code> (a single star) and <code>Rating</code> (a row of stars with value management).
+  </p>
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#ecfdf5', color: '#065f46' }}>Available</span>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#eff3fb', color: '#1849a9' }}>3 Sizes</span>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#eff3fb', color: '#1849a9' }}>2 Styles</span>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#eff3fb', color: '#1849a9' }}>Half-star ✓</span>
+  </div>
 </div>
 
-### Selected — Default (amber)
-
-<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
-  <RatingStar size="large" state="selected" brand={false} />
-  <RatingStar size="medium" state="selected" brand={false} />
-  <RatingStar size="small" state="selected" brand={false} />
+{/* ── Table of Contents ──────────────────────────────────────── */}
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 10, padding: '20px 28px', marginBottom: 40, display: 'inline-block', minWidth: 220 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    {[
+      ['#overview',      'Overview'],
+      ['#star-variants', 'RatingStar Variants'],
+      ['#sizes',         'Sizes — Default'],
+      ['#sizes-brand',   'Sizes — Brand'],
+      ['#values',        'Values'],
+      ['#interactive',   'Interactive'],
+      ['#matrix',        'Full Matrix'],
+      ['#props',         'Props'],
+      ['#tokens',        'Design Tokens'],
+      ['#accessibility', 'Accessibility'],
+    ].map(([href, label]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none' }}>{label}</a>
+    ))}
+  </div>
 </div>
 
-### Selected — Brand (blue)
+{/* ── Overview ───────────────────────────────────────────────── */}
+<div id="overview" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Overview</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Use the playground below to explore all <code>Rating</code> props interactively. The second playground targets the underlying <code>RatingStar</code> primitive.
+  </p>
 
-<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
-  <RatingStar size="large" state="selected" brand />
-  <RatingStar size="medium" state="selected" brand />
-  <RatingStar size="small" state="selected" brand />
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Rating</h3>
+  <Canvas of={RatingStories.PlaygroundRating} />
+  <Controls of={RatingStories.PlaygroundRating} />
+
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', margin: '24px 0 8px' }}>RatingStar</h3>
+  <Canvas of={RatingStories.PlaygroundRatingStar} />
+  <Controls of={RatingStories.PlaygroundRatingStar} />
 </div>
 
-### Half — Default (amber)
-
-<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
-  <RatingStar size="large" state="half" brand={false} />
-  <RatingStar size="medium" state="half" brand={false} />
-  <RatingStar size="small" state="half" brand={false} />
+{/* ── RatingStar Variants ────────────────────────────────────── */}
+<div id="star-variants" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>RatingStar Variants</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    All combinations of <code>state</code> (normal, selected, half, pressed) × <code>size</code> (large, medium, small) × <code>brand</code> (default amber / brand blue).
+  </p>
+  <Canvas of={RatingStories.AllStarVariants} />
 </div>
 
-### Half — Brand (blue)
-
-<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
-  <RatingStar size="large" state="half" brand />
-  <RatingStar size="medium" state="half" brand />
-  <RatingStar size="small" state="half" brand />
+{/* ── Sizes — Default ────────────────────────────────────────── */}
+<div id="sizes" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Sizes — Default (Amber)</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Three sizes: large (48 px), medium (32 px), and small (24 px) stars. Shown with the default amber colour at value 3.5.
+  </p>
+  <Canvas of={RatingStories.RatingSizes} />
 </div>
 
-### Pressed
-
-<div style={{ display: 'flex', gap: 16, alignItems: 'flex-end', padding: '16px 0' }}>
-  <RatingStar size="large" state="pressed" />
-  <RatingStar size="medium" state="pressed" />
-  <RatingStar size="small" state="pressed" />
+{/* ── Sizes — Brand ──────────────────────────────────────────── */}
+<div id="sizes-brand" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Sizes — Brand (Blue)</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Same three sizes with <code>brand</code> enabled. Selected and half stars render in <code>#1849A9</code> instead of amber.
+  </p>
+  <Canvas of={RatingStories.RatingSizesBrand} />
 </div>
 
----
-
-## Rating — Sizes
-
-Value `3.5` (3 selected + 1 half + 1 normal) — the Figma demo value.
-
-### Large
-
-<div style={{ padding: '16px 0' }}>
-  <Rating size="large" value={3.5} readOnly />
+{/* ── Values ─────────────────────────────────────────────────── */}
+<div id="values" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Values</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Every valid value from 0 to 5 in 0.5-step increments, showing how full, half, and empty stars are rendered across the range.
+  </p>
+  <Canvas of={RatingStories.RatingValues} />
 </div>
 
-### Medium
-
-<div style={{ padding: '16px 0' }}>
-  <Rating size="medium" value={3.5} readOnly />
+{/* ── Interactive ────────────────────────────────────────────── */}
+<div id="interactive" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Interactive</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Live click-to-rate examples across all sizes and both styles. The current selected value is displayed below each row.
+  </p>
+  <Canvas of={RatingStories.RatingInteractive} />
 </div>
 
-### Small
-
-<div style={{ padding: '16px 0' }}>
-  <Rating size="small" value={3.5} readOnly />
+{/* ── Full Matrix ────────────────────────────────────────────── */}
+<div id="matrix" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Full Matrix</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Complete coverage of all size × style combinations for both the <code>Rating</code> and <code>RatingStar</code> components.
+  </p>
+  <Canvas of={RatingStories.FullMatrix} />
 </div>
 
----
+{/* ── Props ──────────────────────────────────────────────────── */}
+<div id="props" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 24px' }}>Props</h2>
 
-## Rating — Brand variant
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', margin: '0 0 12px' }}>RatingStar</h3>
+  <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr 1fr 2.5fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13, marginBottom: 32 }}>
+    {['Prop','Type','Default','Description'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>size</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'large' | 'medium' | 'small'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'large'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Diameter of the star icon: 48 / 32 / 24 px.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>state</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'normal' | 'selected' | 'half' | 'pressed'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'normal'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Visual state — controls fill, half-clip, and press ring.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>brand</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Switch selected/half fill from amber (#F79009) to brand blue (#1849A9).</div>
+  </div>
 
-### Large — Brand
-
-<div style={{ padding: '16px 0' }}>
-  <Rating size="large" brand value={3.5} readOnly />
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', margin: '0 0 12px' }}>Rating</h3>
+  <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 2fr 1fr 2.5fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13 }}>
+    {['Prop','Type','Default','Description'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>value</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>0</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Current rating value. Supports 0.5 increments from 0 to count.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>onChange</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>(n: number) =&gt; void</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>—</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Callback fired with the new value on star click.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>size</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'large' | 'medium' | 'small'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'large'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Size applied to every star in the row.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>brand</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Use brand (blue) colour scheme for selected and half stars.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>readOnly</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Disables pointer events and keyboard interaction.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>count</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>5</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Number of stars to render.</div>
+  </div>
 </div>
 
-### Medium — Brand
-
-<div style={{ padding: '16px 0' }}>
-  <Rating size="medium" brand value={3.5} readOnly />
+{/* ── Design Tokens ──────────────────────────────────────────── */}
+<div id="tokens" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 16px' }}>Design Tokens</h2>
+  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1.5fr 2.5fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13 }}>
+    {['Token','Value','Description'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Normal star fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#E5E7EB', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#E5E7EB</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Unfilled star colour</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Selected — Amber</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#F79009', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#F79009</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Default selected / half star fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Selected — Brand</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#1849A9', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#1849A9</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Brand selected / half star fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Pressed ring</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#F3F4F6', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#F3F4F6</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Background ring shown on star press</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Size large</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>48 × 48 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Large star dimensions</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Size medium</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>32 × 32 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Medium star dimensions</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Size small</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>24 × 24 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Small star dimensions</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Star gap</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>4 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Space between consecutive stars</div>
+  </div>
 </div>
 
-### Small — Brand
-
-<div style={{ padding: '16px 0' }}>
-  <Rating size="small" brand value={3.5} readOnly />
+{/* ── Accessibility ──────────────────────────────────────────── */}
+<div id="accessibility" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 16px' }}>Accessibility</h2>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13 }}>
+    {['Concern','Implementation'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Keyboard navigation</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Arrow keys increment and decrement the selected value by one step; Enter / Space confirms selection.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Read-only state</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>When <code>readOnly</code> is true, pointer events and keyboard interaction are disabled; the rating still renders its visual value for display.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>ARIA labels</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Each star carries an <code>aria-label</code> that describes its position (e.g. "3 of 5 stars") so screen readers can announce the option clearly.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Screen reader value</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The current rating value is announced on change via an <code>aria-live</code> region or equivalent role attribute.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Half-star support</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Half-step values (0.5 increments) are valid; assistive technology identifies them as "3.5 of 5 stars" rather than rounding to a whole number.</div>
+  </div>
 </div>
-
----
-
-## Rating — Values
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '16px 0' }}>
-  {[0, 0.5, 1, 2, 2.5, 3, 3.5, 4, 4.5, 5].map((v) => (
-    <div key={v} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <span style={{ fontSize: 13, color: '#6b7280', width: 28, textAlign: 'right', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{v}</span>
-      <Rating size="medium" value={v} readOnly />
-    </div>
-  ))}
-</div>
-
----
-
-## Rating — Interactive
-
-Click stars to set the value. Hover to preview.
-
-### Default (amber)
-
-<InteractiveDefault />
-
-### Brand (blue)
-
-<InteractiveBrand />
-
----
-
-## Props
-
-### RatingStar
-
-| Prop      | Type                                         | Default    | Description                         |
-|-----------|----------------------------------------------|------------|-------------------------------------|
-| `size`    | `'large' \| 'medium' \| 'small'`            | `'large'`  | Star size (48 / 32 / 24 px)        |
-| `state`   | `'normal' \| 'selected' \| 'half' \| 'pressed'` | `'normal'` | Visual state                    |
-| `brand`   | `boolean`                                    | `false`    | Blue (#1849A9) instead of amber     |
-
-### Rating
-
-| Prop       | Type                                | Default   | Description                                  |
-|------------|-------------------------------------|-----------|----------------------------------------------|
-| `value`    | `number`                            | `0`       | Current rating (0–count, 0.5 increments)     |
-| `onChange` | `(n: number) => void`               | —         | Called with new integer value on click        |
-| `size`     | `'large' \| 'medium' \| 'small'`   | `'large'` | Star size                                    |
-| `brand`    | `boolean`                           | `false`   | Brand (blue) color scheme                    |
-| `readOnly` | `boolean`                           | `false`   | Disables interaction, removes pointer events |
-| `count`    | `number`                            | `5`       | Number of stars                              |
-
----
-
-## Design Tokens
-
-| Token           | Value     |
-|-----------------|-----------|
-| Normal fill     | `#E5E7EB` |
-| Selected amber  | `#F79009` |
-| Selected brand  | `#1849A9` |
-| Pressed ring    | `#F3F4F6` |
-| Star size large | `48 × 48 px` |
-| Star size medium| `32 × 32 px` |
-| Star size small | `24 × 24 px` |
-| Row gap         | `4 px`    |
-
----
-
-## Usage
-
-```jsx
-import { Rating, RatingStar } from './Rating';
-
-// Interactive 5-star rating
-const [rating, setRating] = useState(0);
-<Rating value={rating} onChange={setRating} size="large" />
-
-// Read-only display (e.g., from API)
-<Rating value={4.5} readOnly size="medium" />
-
-// Brand color
-<Rating value={3} brand size="large" />
-
-// Individual star for custom layouts
-<RatingStar size="large" state="selected" />
-<RatingStar size="medium" state="half" brand />
-<RatingStar size="small" state="pressed" />
-```

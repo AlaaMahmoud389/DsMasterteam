@@ -1,303 +1,303 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import React, { useState } from 'react';
-import { Slider } from './Slider';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SliderStories from './Slider.stories';
 
-export const SingleDemo = () => {
-  const [val, setVal] = useState(20);
-  return (
-    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-      <Slider value={val} onChange={setVal} label="Label" helperText="Help Text" />
-      <div style={{ marginTop: 8, fontSize: 12, color: '#6b7280' }}>Value: {val}%</div>
-    </div>
-  );
-};
+<Meta of={SliderStories} />
 
-export const RangeDemo = () => {
-  const [range, setRange] = useState({ min: 20, max: 70 });
-  return (
-    <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-      <Slider
-        range
-        minValue={range.min} maxValue={range.max} onRangeChange={setRange}
-        label="Label" helperText="Help Text"
-      />
-      <div style={{ marginTop: 8, fontSize: 12, color: '#6b7280' }}>Range: {range.min}% – {range.max}%</div>
-    </div>
-  );
-};
-
-export const RTLSingleDemo = () => (
-  <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-    <Slider value={50} rtl label="عنوان" helperText="نص مساعد" />
+{/* ── Header ─────────────────────────────────────────────────── */}
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: '40px 0 32px' }}>
+  <h1 style={{ fontSize: 28, fontWeight: 700, color: '#000b36', margin: '0 0 12px' }}>Slider</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    A range-input slider for selecting a single value or a value range. Supports two sizes, LTR and RTL layouts, a disabled state, configurable label and helper text, and a dual-handle range mode.
+  </p>
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#ecfdf5', color: '#065f46' }}>Available</span>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#eff3fb', color: '#1849a9' }}>2 Sizes</span>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#eff3fb', color: '#1849a9' }}>Single + Range</span>
+    <span style={{ padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 600, background: '#eff3fb', color: '#1849a9' }}>RTL ✓</span>
   </div>
-);
+</div>
 
-export const RTLRangeDemo = () => (
-  <div style={{ padding: '16px 0', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>
-    <Slider
-      range rtl
-      minValue={30} maxValue={70}
-      label="عنوان" helperText="نص مساعد"
-    />
+{/* ── Table of Contents ──────────────────────────────────────── */}
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 10, padding: '20px 28px', marginBottom: 40, display: 'inline-block', minWidth: 220 }}>
+  <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+    {[
+      ['#overview',     'Overview'],
+      ['#sizes',        'Sizes'],
+      ['#values',       'Values'],
+      ['#range',        'Range Slider'],
+      ['#rtl',          'RTL'],
+      ['#labels',       'Label Variants'],
+      ['#visibility',   'Visibility'],
+      ['#disabled',     'Disabled'],
+      ['#matrix',       'Full Matrix'],
+      ['#props',        'Props'],
+      ['#tokens',       'Design Tokens'],
+      ['#accessibility','Accessibility'],
+    ].map(([href, label]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none' }}>{label}</a>
+    ))}
   </div>
-);
-
-<Meta title="Components/Slider/Docs" />
-
-# Slider
-
-A range-input slider for selecting a value or a value range.
-
-**Figma:** [node 4731‑482](https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4731-482)
-
----
-
-## Single Slider — Interactive
-
-<SingleDemo />
-
-## Range Slider — Interactive
-
-<RangeDemo />
-
----
-
-## Sizes
-
-### Small
-
-<div style={{ padding: '16px 0' }}>
-  <Slider size="small" value={20} label="Label" helperText="Help Text" />
 </div>
 
-### Medium
-
-<div style={{ padding: '16px 0' }}>
-  <Slider size="medium" value={20} label="Label" helperText="Help Text" />
+{/* ── Overview ───────────────────────────────────────────────── */}
+<div id="overview" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Overview</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Use the playground to explore all Slider props interactively. Toggle <code>range</code> to switch between single-value and dual-handle mode.
+  </p>
+  <Canvas of={SliderStories.Playground} />
+  <Controls of={SliderStories.Playground} />
 </div>
 
----
-
-## Values
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: '16px 0' }}>
-  {[0, 20, 50, 100].map((v) => (
-    <div key={v} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', width: 36, textAlign: 'right', fontFamily: 'IBM Plex Sans Arabic, sans-serif' }}>{v}%</span>
-      <Slider value={v} showLabel={false} showHelperText={false} />
-    </div>
-  ))}
+{/* ── Sizes ──────────────────────────────────────────────────── */}
+<div id="sizes" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Sizes</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Two track sizes: <strong>small</strong> (4 px track, 12 px thumb) and <strong>medium</strong> (8 px track, 16 px thumb).
+  </p>
+  <Canvas of={SliderStories.SingleSizes} />
 </div>
 
----
-
-## Range Slider
-
-### 0% – 50%
-
-<div style={{ padding: '16px 0' }}>
-  <Slider range minValue={0} maxValue={50} label="Label" helperText="Help Text" />
+{/* ── Values ─────────────────────────────────────────────────── */}
+<div id="values" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Values</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    The four Figma reference values — 0 %, 20 %, 50 %, and 100 % — showing how the filled track grows across the range.
+  </p>
+  <Canvas of={SliderStories.SingleValues} />
 </div>
 
-### 20% – 70%
-
-<div style={{ padding: '16px 0' }}>
-  <Slider range minValue={20} maxValue={70} label="Label" helperText="Help Text" />
+{/* ── Range Slider ───────────────────────────────────────────── */}
+<div id="range" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Range Slider</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Dual-handle mode enabled with <code>range</code>. Both size variants shown with representative range values.
+  </p>
+  <Canvas of={SliderStories.RangeSizes} />
 </div>
 
----
+{/* ── RTL ────────────────────────────────────────────────────── */}
+<div id="rtl" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>RTL</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Right-to-left layout enabled with <code>rtl</code>. The track fills and thumb travel in the RTL direction; label and helper text are right-aligned.
+  </p>
 
-## RTL
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Single</h3>
+  <Canvas of={SliderStories.RTLSingle} />
 
-### RTL Single
-
-<RTLSingleDemo />
-
-### RTL Range
-
-<RTLRangeDemo />
-
----
-
-## Label Variants
-
-### Regular (default)
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} label="Regular Label" labelType="regular" showHelperText={false} />
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', margin: '24px 0 8px' }}>Range</h3>
+  <Canvas of={SliderStories.RTLRange} />
 </div>
 
-### Semibold
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} label="Semibold Label" labelType="semibold" showHelperText={false} />
+{/* ── Label Variants ─────────────────────────────────────────── */}
+<div id="labels" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Label Variants</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Label weight (<code>regular</code> / <code>semibold</code>), required asterisk, disabled colour, and no-label state.
+  </p>
+  <Canvas of={SliderStories.LabelVariants} />
 </div>
 
-### Required
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} label="Required Field" required showHelperText={false} />
+{/* ── Visibility ─────────────────────────────────────────────── */}
+<div id="visibility" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Visibility</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    All four combinations of <code>showLabel</code> and <code>showHelperText</code> — including track-only with both hidden.
+  </p>
+  <Canvas of={SliderStories.Visibility} />
 </div>
 
-### Disabled
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={50} label="Disabled" disabled showHelperText={false} />
+{/* ── Disabled ───────────────────────────────────────────────── */}
+<div id="disabled" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Disabled</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    Both single and range sliders in the disabled state. Interaction is blocked and the component renders at reduced opacity.
+  </p>
+  <Canvas of={SliderStories.Disabled} />
 </div>
 
----
-
-## Visibility
-
-### Show Label + Helper Text
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} showLabel showHelperText label="Label" helperText="Help Text" />
+{/* ── Full Matrix ────────────────────────────────────────────── */}
+<div id="matrix" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 8px' }}>Full Matrix</h2>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    All 24 Figma variants: 2 sizes × (single 0 / 20 / 50 / 100 % + range 0–50 / 20–70 %) × LTR / RTL.
+  </p>
+  <Canvas of={SliderStories.FullMatrix} />
 </div>
 
-### Show Label only
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} showLabel showHelperText={false} label="Label" />
+{/* ── Props ──────────────────────────────────────────────────── */}
+<div id="props" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 16px' }}>Props</h2>
+  <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 2fr 1fr 2.5fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13 }}>
+    {['Prop','Type','Default','Description'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>value</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>20</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Current value for single slider (0–100).</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>onChange</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>(n: number) =&gt; void</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>—</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Called with new value on single-slider change.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>minValue</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>0</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Range start value.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>maxValue</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>50</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Range end value.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>onRangeChange</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>({'{'} min, max {'}'}) =&gt; void</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>—</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Called on range thumb change.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>min</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>0</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Slider minimum bound.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>max</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>100</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Slider maximum bound.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>step</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>number</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>1</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Increment step.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>size</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'small' | 'medium'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'medium'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Track and thumb size.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>range</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Enable dual-handle range mode.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>rtl</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Right-to-left layout.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>disabled</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Disable interaction (50 % opacity).</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>showLabel</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>true</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Show the label above the track.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>label</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>string</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'Label'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Label text.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>labelType</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'regular' | 'semibold'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'regular'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Label font weight.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>required</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>false</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Show red asterisk before label text.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>showHelperText</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>boolean</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>true</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Show helper text below the track.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>helperText</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>string</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'Help Text'</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Helper text content.</div>
+  </div>
 </div>
 
-### Show Helper Text only
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} showLabel={false} showHelperText helperText="Help Text" />
+{/* ── Design Tokens ──────────────────────────────────────────── */}
+<div id="tokens" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 16px' }}>Design Tokens</h2>
+  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1.5fr 2.5fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13 }}>
+    {['Token','Value','Usage'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Track inactive fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#F3F4F6', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#F3F4F6</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Gray background on the unfilled portion of the track</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Track active fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#1849A9', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#1849A9</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Blue fill on the filled portion and thumb</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Track border-radius</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>4 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Fully rounded ends on both track and fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Track height — small</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>4 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Track thickness for the small size</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Track height — medium</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>8 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Track thickness for the medium size</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Thumb size — small</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>12 × 12 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Circular handle diameter for small size</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Thumb size — medium</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>16 × 16 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Circular handle diameter for medium size</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Thumb fill</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#1849A9', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#1849A9</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Fill color of the draggable thumb</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Thumb stroke</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#175CD3', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#175CD3</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>1 px border on the thumb</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Percentage text</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#233A61', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#233A61</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>12 px / 400 — value label beside the track</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Label (small)</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#000B36', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#000B36</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>14 px / 400 / 20 px line-height</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Label (medium)</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#000B36', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#000B36</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>16 px / 400 / 24 px line-height</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Label semibold</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>600</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Font weight when labelType="semibold"</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Label disabled</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#6C7C96', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#6C7C96</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Label color when disabled=true</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Required asterisk</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#A30000', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#A30000</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Color of the * shown when required=true</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Helper text (small)</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#233A61', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#233A61</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>12 px / 400 / 18 px line-height</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Helper text (medium)</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#233A61', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#233A61</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>14 px / 400 / 20 px line-height</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Helper icon stroke</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: '#384250', border: '1px solid #e5e7eb', flexShrink: 0 }} /><code style={{ color: '#374151', fontSize: 12 }}>#384250</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>1.5 px stroke on the help-circle icon</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Wrapper gap</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>4 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Vertical gap between label, track row, and helper text</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Track-row gap</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>6 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Gap between percentage labels and the track</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Helper-row gap</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>8 px</code></div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Gap between the help icon and helper text</div>
+  </div>
 </div>
 
-### Track only (no label, no helper text)
-
-<div style={{ padding: '12px 0' }}>
-  <Slider value={20} showLabel={false} showHelperText={false} />
+{/* ── Accessibility ──────────────────────────────────────────── */}
+<div id="accessibility" style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", marginBottom: 48 }}>
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', margin: '0 0 16px' }}>Accessibility</h2>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', fontSize: 13 }}>
+    {['Concern','Implementation'].map((h) => (
+      <div key={h} style={{ padding: '10px 14px', background: '#f9fafb', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</div>
+    ))}
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Keyboard navigation</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Arrow keys (← →) move the focused thumb by one step. In range mode each thumb is independently focusable and navigable.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>ARIA role</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Each thumb carries <code>role="slider"</code> with <code>aria-valuenow</code>, <code>aria-valuemin</code>, and <code>aria-valuemax</code> updated on change.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Label association</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The visible label is linked to the slider via <code>aria-labelledby</code> so screen readers announce the label on focus.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>Disabled state</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>When <code>disabled</code> is true the thumb receives <code>aria-disabled="true"</code> and pointer/keyboard events are suppressed.</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', fontWeight: 600, color: '#374151' }}>RTL support</div>
+    <div style={{ padding: '10px 14px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The <code>rtl</code> prop sets <code>dir="rtl"</code> on the wrapper, reversing track fill direction and matching Arabic / Hebrew reading order.</div>
+  </div>
 </div>
-
----
-
-<div style={{ marginBottom: 48, borderTop: '1px solid #e5e7eb', paddingTop: 40 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Props</h2>
-  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Prop</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Type</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Default</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['value',          'number',                 '20',          'Current value for single slider (0–100)'],
-        ['onChange',       '(n: number) => void',    '—',           'Called with new value on change'],
-        ['minValue',       'number',                 '0',           'Range start value'],
-        ['maxValue',       'number',                 '50',          'Range end value'],
-        ['onRangeChange',  '({min, max}) => void',   '—',           'Called on range thumb change'],
-        ['min',            'number',                 '0',           'Slider minimum bound'],
-        ['max',            'number',                 '100',         'Slider maximum bound'],
-        ['step',           'number',                 '1',           'Increment step'],
-        ['size',           "'small' | 'medium'",     "'medium'",    'Track and thumb size'],
-        ['range',          'boolean',                'false',       'Enable dual-handle range mode'],
-        ['rtl',            'boolean',                'false',       'Right-to-left layout'],
-        ['disabled',       'boolean',                'false',       'Disable interaction (50% opacity)'],
-        ['showLabel',      'boolean',                'true',        'Show the label above the track'],
-        ['label',          'string',                 "'Label'",     'Label text'],
-        ['labelType',      "'regular' | 'semibold'", "'regular'",   'Label font weight'],
-        ['required',       'boolean',                'false',       'Show red asterisk before label'],
-        ['showHelperText', 'boolean',                'true',        'Show helper text below the track'],
-        ['helperText',     'string',                 "'Help Text'", 'Helper text content'],
-      ].map(([prop, type, def, desc]) => (
-        <tr key={prop} style={{ borderBottom: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280', fontSize: 13 }}>{type}</td>
-          <td style={{ padding: '10px 14px', fontFamily: 'monospace', color: '#6b7280' }}>{def}</td>
-          <td style={{ padding: '10px 14px', color: '#374151' }}>{desc}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 20, fontWeight: 600, color: '#111827', marginBottom: 20 }}>Design Tokens</h2>
-  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Token</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Value</th>
-        <th style={{ textAlign: 'left', padding: '10px 14px', borderBottom: '1px solid #e5e7eb', color: '#374151', fontWeight: 600 }}>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['Track inactive fill',   '#F3F4F6',    'Gray background on the unfilled portion of the track'],
-        ['Track active fill',     '#1849A9',    'Blue fill on the filled portion and thumb'],
-        ['Track border-radius',   '4px',        'Fully rounded ends on both track and fill'],
-        ['Track height — small',  '4px',        'Track thickness for the small size'],
-        ['Track height — medium', '8px',        'Track thickness for the medium size'],
-        ['Thumb size — small',    '12 × 12 px', 'Circular handle diameter for small size'],
-        ['Thumb size — medium',   '16 × 16 px', 'Circular handle diameter for medium size'],
-        ['Thumb fill',            '#1849A9',    'Fill color of the draggable thumb'],
-        ['Thumb stroke',          '#175CD3',    '1px border on the thumb'],
-        ['Percentage text',       '#233A61',    '12px / 400 — value label beside the track'],
-        ['Label small',           '#000B36',    '14px / 400 / 20px line-height'],
-        ['Label medium',          '#000B36',    '16px / 400 / 24px line-height'],
-        ['Label semibold',        '600',        'Font weight when labelType="semibold"'],
-        ['Label disabled',        '#6C7C96',    'Label color when disabled=true'],
-        ['Required asterisk',     '#A30000',    'Color of the * shown when required=true'],
-        ['Helper text small',     '#233A61',    '12px / 400 / 18px line-height'],
-        ['Helper text medium',    '#233A61',    '14px / 400 / 20px line-height'],
-        ['Helper icon stroke',    '#384250',    '1.5px stroke on the help-circle icon'],
-        ['Wrapper gap',           '4px',        'Vertical gap between label, track row, and helper text'],
-        ['Track-row gap',         '6px',        'Gap between percentage labels and the track'],
-        ['Helper-row gap',        '8px',        'Gap between the help icon and helper text'],
-      ].map(([token, value, usage]) => (
-        <tr key={token} style={{ borderBottom: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 14px', color: '#374151' }}>{token}</td>
-          <td style={{ padding: '10px 14px' }}>
-            {value.startsWith('#') ? (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 16, height: 16, borderRadius: 4, background: value, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
-                <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
-              </span>
-            ) : (
-              <code style={{ fontFamily: 'monospace', color: '#6b7280' }}>{value}</code>
-            )}
-          </td>
-          <td style={{ padding: '10px 14px', color: '#6b7280' }}>{usage}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
----
-
-## Usage
-
-```jsx
-import { Slider } from './Slider';
-
-// Single interactive slider
-const [value, setValue] = useState(20);
-<Slider value={value} onChange={setValue} label="Volume" />
-
-// Range slider
-const [range, setRange] = useState({ min: 20, max: 70 });
-<Slider
-  range
-  minValue={range.min}
-  maxValue={range.max}
-  onRangeChange={setRange}
-  label="Price range"
-/>
-
-// RTL
-<Slider value={20} rtl label="عنوان" helperText="نص مساعد" />
-
-// Small size, semibold label, required
-<Slider size="small" value={50} label="Amount" labelType="semibold" required />
-
-// Read-only display (no onChange)
-<Slider value={75} showHelperText={false} />
-```

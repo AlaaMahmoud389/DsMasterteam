@@ -1,48 +1,26 @@
 import React from 'react';
 import { Quote } from './Quote';
 
-const FIGMA_URL =
-  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4482-3649';
-
-const FONT = "'IBM Plex Sans Arabic', system-ui, sans-serif";
-
 export default {
   title: 'Components/Quote',
-  parameters: {
-    layout: 'padded',
-    design: { type: 'figma', url: FIGMA_URL },
-  },
-  tags: [],
+  parameters: { layout: 'padded' },
 };
 
-const LABEL = {
-  style: {
-    fontSize: 11,
-    color: '#9ca3af',
-    textTransform: 'uppercase',
-    letterSpacing: '.06em',
-    marginBottom: 12,
-    fontFamily: FONT,
-  },
-};
-
-/* ════════════════════════════════════════════════════════════════════
-   Playground
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Playground ─────────────────────────────────────────────── */
 export const Playground = {
   name: 'Playground — Quote',
   argTypes: {
-    size:             { control: 'select', options: ['large', 'small'] },
-    whiteBackground:  { control: 'boolean' },
-    showQuoteTitle:   { control: 'boolean' },
-    showDescription:  { control: 'boolean' },
-    showAuthorDetails:{ control: 'boolean' },
-    showAvatar:       { control: 'boolean' },
-    rtl:              { control: 'boolean' },
-    quoteTitle:       { control: 'text' },
-    quoteText:        { control: 'text' },
-    authorName:       { control: 'text' },
-    authorBrief:      { control: 'text' },
+    size:              { control: 'radio', options: ['large', 'small'] },
+    whiteBackground:   { control: 'boolean' },
+    showQuoteTitle:    { control: 'boolean' },
+    showDescription:   { control: 'boolean' },
+    showAuthorDetails: { control: 'boolean' },
+    showAvatar:        { control: 'boolean' },
+    rtl:               { control: 'boolean' },
+    quoteTitle:        { control: 'text' },
+    quoteText:         { control: 'text' },
+    authorName:        { control: 'text' },
+    authorBrief:       { control: 'text' },
   },
   args: {
     size: 'large',
@@ -59,19 +37,17 @@ export const Playground = {
     authorBrief: 'Brief or description.',
   },
   render: (args) => (
-    <div style={{ fontFamily: FONT, padding: 24, background: args.whiteBackground ? '#f3f4f6' : '#ffffff' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: args.whiteBackground ? '#f3f4f6' : '#ffffff' }}>
       <Quote {...args} />
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Large — White Background
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Large — White Background ───────────────────────────────── */
 export const LargeWhite = {
   name: 'Quote — Large / White Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6' }}>
       <Quote
         size="large"
         whiteBackground
@@ -87,13 +63,11 @@ export const LargeWhite = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Large — Transparent Background
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Large — Transparent Background ────────────────────────── */
 export const LargeTransparent = {
   name: 'Quote — Large / Transparent Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#ffffff' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#ffffff' }}>
       <Quote
         size="large"
         whiteBackground={false}
@@ -109,13 +83,11 @@ export const LargeTransparent = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Small — White Background
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Small — White Background ───────────────────────────────── */
 export const SmallWhite = {
   name: 'Quote — Small / White Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6' }}>
       <Quote
         size="small"
         whiteBackground
@@ -131,13 +103,11 @@ export const SmallWhite = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Small — Transparent Background
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Small — Transparent Background ────────────────────────── */
 export const SmallTransparent = {
   name: 'Quote — Small / Transparent Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#ffffff' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#ffffff' }}>
       <Quote
         size="small"
         whiteBackground={false}
@@ -153,13 +123,11 @@ export const SmallTransparent = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   RTL — Large / White
-   ════════════════════════════════════════════════════════════════════ */
+/* ── RTL — Large / White ────────────────────────────────────── */
 export const RTLLargeWhite = {
   name: 'Quote — RTL / Large / White Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6' }}>
       <Quote
         size="large"
         whiteBackground
@@ -176,13 +144,11 @@ export const RTLLargeWhite = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   RTL — Large / Transparent
-   ════════════════════════════════════════════════════════════════════ */
+/* ── RTL — Large / Transparent ──────────────────────────────── */
 export const RTLLargeTransparent = {
   name: 'Quote — RTL / Large / Transparent Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#ffffff' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#ffffff' }}>
       <Quote
         size="large"
         whiteBackground={false}
@@ -199,13 +165,11 @@ export const RTLLargeTransparent = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   RTL — Small / White
-   ════════════════════════════════════════════════════════════════════ */
+/* ── RTL — Small / White ────────────────────────────────────── */
 export const RTLSmallWhite = {
   name: 'Quote — RTL / Small / White Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6' }}>
       <Quote
         size="small"
         whiteBackground
@@ -222,13 +186,11 @@ export const RTLSmallWhite = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   RTL — Small / Transparent
-   ════════════════════════════════════════════════════════════════════ */
+/* ── RTL — Small / Transparent ──────────────────────────────── */
 export const RTLSmallTransparent = {
   name: 'Quote — RTL / Small / Transparent Background',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#ffffff' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#ffffff' }}>
       <Quote
         size="small"
         whiteBackground={false}
@@ -245,15 +207,13 @@ export const RTLSmallTransparent = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   With Avatar
-   ════════════════════════════════════════════════════════════════════ */
+/* ── With Avatar ────────────────────────────────────────────── */
 export const WithAvatar = {
   name: 'Quote — With Avatar',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6', display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6', display: 'flex', flexDirection: 'column', gap: 32 }}>
       <div>
-        <div style={LABEL.style}>LTR — With Avatar (initials)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>LTR — With Avatar (initials)</p>
         <Quote
           size="large"
           whiteBackground
@@ -266,7 +226,7 @@ export const WithAvatar = {
         />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — With Avatar (initials)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — With Avatar (initials)</p>
         <Quote
           size="large"
           whiteBackground
@@ -285,42 +245,38 @@ export const WithAvatar = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Content Visibility Variants
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Content Visibility ─────────────────────────────────────── */
 export const ContentVariants = {
   name: 'Quote — Content Visibility',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6', display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6', display: 'flex', flexDirection: 'column', gap: 32 }}>
       <div>
-        <div style={LABEL.style}>Show Title = Off</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Show Title = Off</p>
         <Quote whiteBackground showQuoteTitle={false} showDescription showAuthorDetails />
       </div>
       <div>
-        <div style={LABEL.style}>Show Description = Off</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Show Description = Off</p>
         <Quote whiteBackground showQuoteTitle showDescription={false} showAuthorDetails />
       </div>
       <div>
-        <div style={LABEL.style}>Show Author Details = Off</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Show Author Details = Off</p>
         <Quote whiteBackground showQuoteTitle showDescription showAuthorDetails={false} />
       </div>
       <div>
-        <div style={LABEL.style}>Quote text only (no title, no author)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Quote text only (no title, no author)</p>
         <Quote whiteBackground showQuoteTitle={false} showDescription showAuthorDetails={false} />
       </div>
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Sizes Side-by-Side
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Sizes Side-by-Side ─────────────────────────────────────── */
 export const Sizes = {
   name: 'Quote — Sizes',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, background: '#f3f4f6', display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, background: '#f3f4f6', display: 'flex', flexDirection: 'column', gap: 32 }}>
       <div>
-        <div style={LABEL.style}>Large (max-width 848px)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Large (max-width 848px)</p>
         <Quote
           size="large"
           whiteBackground
@@ -334,7 +290,7 @@ export const Sizes = {
         />
       </div>
       <div>
-        <div style={LABEL.style}>Small (max-width 640px)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Small (max-width 640px)</p>
         <Quote
           size="small"
           whiteBackground
@@ -351,20 +307,18 @@ export const Sizes = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Full Figma Matrix (all 8 variants)
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Full Figma Matrix ───────────────────────────────────────── */
 export const FullMatrix = {
   name: 'Quote — Full Figma Matrix',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 24, display: 'flex', flexDirection: 'column', gap: 40 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24, display: 'flex', flexDirection: 'column', gap: 40 }}>
       {[false, true].map((rtl) =>
         ['large', 'small'].map((size) =>
           [true, false].map((whiteBackground) => (
             <div key={`${rtl}-${size}-${whiteBackground}`} style={{ background: whiteBackground ? '#f3f4f6' : '#ffffff', padding: 24, borderRadius: 8, border: '1px solid #e5e7eb' }}>
-              <div style={LABEL.style}>
+              <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>
                 {rtl ? 'RTL' : 'LTR'} · {size} · {whiteBackground ? 'white bg' : 'transparent bg'}
-              </div>
+              </p>
               <Quote
                 size={size}
                 whiteBackground={whiteBackground}

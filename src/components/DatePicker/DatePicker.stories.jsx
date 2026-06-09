@@ -1,69 +1,54 @@
 import { useState } from 'react';
 import { DatePicker } from './DatePicker';
 
-const FIGMA_URL =
-  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1943';
-
-/* ── Meta ───────────────────────────────────────────────────────────────── */
+/* ── Story meta ─────────────────────────────────────────────── */
 
 export default {
   title: 'Components/DatePicker',
   component: DatePicker,
-  parameters: {
-    layout: 'padded',
-    design: { type: 'figma', url: FIGMA_URL },
-  },
-  tags: [],
+  parameters: { layout: 'padded' },
   argTypes: {
     mode: {
-      control: 'select',
+      control: 'radio',
       options: ['single', 'range'],
       description: 'Selection mode',
-      table: { defaultValue: { summary: 'single' } },
     },
     inline: {
       control: 'boolean',
       description: 'Show calendar inline without a trigger field',
-      table: { defaultValue: { summary: 'false' } },
     },
     showInputField: {
       control: 'boolean',
       description: 'Show date display input field(s) above the calendar',
-      table: { defaultValue: { summary: 'false' } },
     },
     dualMonth: {
       control: 'boolean',
       description: 'Show two consecutive calendar months side-by-side',
-      table: { defaultValue: { summary: 'false' } },
     },
     showQuickOptions: {
       control: 'boolean',
       description: 'Show quick-select shortcuts sidebar (Today, This Week, Last 7 Days …)',
-      table: { defaultValue: { summary: 'false' } },
     },
     showSubmitButton: {
       control: 'boolean',
       description: 'Show Apply / Cancel action bar — selection only fires onChange on Apply',
-      table: { defaultValue: { summary: 'false' } },
     },
     dir: {
-      control: 'select',
+      control: 'radio',
       options: ['ltr', 'rtl'],
       description: 'Text direction',
-      table: { defaultValue: { summary: 'ltr' } },
     },
-    disabled: {
-      control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    readOnly: {
-      control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    onChange: { action: 'date changed' },
-    onApply:  { action: 'apply clicked' },
-    onCancel: { action: 'cancel clicked' },
+    disabled: { control: 'boolean' },
+    readOnly:  { control: 'boolean' },
+    onChange:  { action: 'date changed' },
+    onApply:   { action: 'apply clicked' },
+    onCancel:  { action: 'cancel clicked' },
   },
+};
+
+/* ── Playground ─────────────────────────────────────────────── */
+
+export const Playground = {
   args: {
     mode:             'single',
     inline:           false,
@@ -79,11 +64,12 @@ export default {
     errorMessage:     '',
     placeholder:      '',
   },
+  render: (args) => (
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 8 }}>
+      <DatePicker {...args} />
+    </div>
+  ),
 };
-
-/* ── Playground ─────────────────────────────────────────────────────────── */
-
-export const Playground = {};
 
 /* ══════════════════════════════════════════════════════════════════════════
    SINGLE DATE
@@ -325,7 +311,7 @@ export const SubmitButtonRange = {
 };
 
 /* ══════════════════════════════════════════════════════════════════════════
-   FULL-FEATURED — All Options Combined
+   FULL-FEATURED
 ══════════════════════════════════════════════════════════════════════════ */
 
 export const FullFeatured = {
@@ -334,9 +320,9 @@ export const FullFeatured = {
     const [range, setRange] = useState([null, null]);
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 20, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
-        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>
           dualMonth + showInputField + showQuickOptions + showSubmitButton + mode="range"
-        </div>
+        </p>
         <DatePicker
           inline
           mode="range"
@@ -419,11 +405,11 @@ export const LTRvsRTL = {
   render: () => (
     <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>LTR</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>LTR</p>
         <DatePicker inline dir="ltr" />
       </div>
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>RTL</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL</p>
         <DatePicker inline dir="rtl" />
       </div>
     </div>
@@ -447,7 +433,7 @@ export const TriggerStates = {
         { label: 'Disabled',    props: { label: 'Date', disabled: true, defaultValue: new Date(2024, 0, 19) } },
       ].map(({ label, props }) => (
         <div key={label}>
-          <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 8 }}>{label}</div>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>{label}</p>
           <DatePicker {...props} />
         </div>
       ))}

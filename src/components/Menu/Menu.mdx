@@ -1,6 +1,5 @@
 {/* Menu.mdx — Masterteam Design System */}
-import { Meta } from '@storybook/addon-docs/blocks';
-import { MenuListItem, MenuSection, Menu } from './Menu';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as MenuStories from './Menu.stories';
 
 <Meta of={MenuStories} />
@@ -8,487 +7,278 @@ import * as MenuStories from './Menu.stories';
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
 
 {/* ── Header ───────────────────────────────────────────────── */}
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Menu</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Menu</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 720, lineHeight: 1.7 }}>
+<div style={{ marginBottom: 40 }}>
+  <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 12, color: '#000b36' }}>Menu</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
     Two composable components — <strong>MenuListItem</strong> and <strong>Menu</strong> — that together
     build contextual dropdown menus. Each item supports 6 interactive states, 6 trail element types
     (None, Text, Icon, Button, Tag, Switch), a Lead Icon, Sub Item flag, and full RTL support.
     The Menu panel groups items into labelled sections with three style variants.
-  </div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+  </p>
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ecfdf5', color: '#065f46', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>
       <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
       Available
     </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>6 states</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>6 trail elements</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>3 menu styles</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>RTL ✓</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1938" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>6 States</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>6 Trail Elements</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>3 Menu Styles</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>RTL ✓</span>
   </div>
 </div>
 
----
+{/* ── Table of Contents ────────────────────────────────────── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 40, display: 'inline-block', minWidth: 220 }}>
+  <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 700, color: '#000b36', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Contents</p>
+  <ol style={{ margin: 0, padding: '0 0 0 16px', fontSize: 13, color: '#1849a9', lineHeight: 2 }}>
+    <li><a href="#overview" style={{ color: '#1849a9', textDecoration: 'none' }}>Overview</a></li>
+    <li><a href="#states" style={{ color: '#1849a9', textDecoration: 'none' }}>States</a></li>
+    <li><a href="#trail" style={{ color: '#1849a9', textDecoration: 'none' }}>Trail Elements</a></li>
+    <li><a href="#sub-item" style={{ color: '#1849a9', textDecoration: 'none' }}>Sub Item</a></li>
+    <li><a href="#rtl-item" style={{ color: '#1849a9', textDecoration: 'none' }}>RTL (List Item)</a></li>
+    <li><a href="#menu-panel" style={{ color: '#1849a9', textDecoration: 'none' }}>Menu Panel — Style Variants</a></li>
+    <li><a href="#menu-rtl" style={{ color: '#1849a9', textDecoration: 'none' }}>Menu Panel — RTL</a></li>
+    <li><a href="#props" style={{ color: '#1849a9', textDecoration: 'none' }}>Props</a></li>
+    <li><a href="#tokens" style={{ color: '#1849a9', textDecoration: 'none' }}>Design Tokens</a></li>
+    <li><a href="#accessibility" style={{ color: '#1849a9', textDecoration: 'none' }}>Accessibility</a></li>
+  </ol>
+</div>
+
+{/* ── Overview ─────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="overview">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 16 }}>Overview</h2>
+  <Canvas of={MenuStories.PlaygroundListItem} />
+  <Controls of={MenuStories.PlaygroundListItem} />
+</div>
 
 {/* ── States ───────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Menu List Item — States</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.6 }}>
+<div style={{ marginBottom: 48 }} id="states">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Menu List Item — States</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
     Six interactive states. <strong>Hovered</strong> and <strong>Selected</strong> share the same background
     (<code>#E5E7EB</code>). <strong>Focused</strong> shows a 2 px outline. <strong>Disabled</strong> mutes
     all color to <code>#6C7C96</code>.
   </p>
+  <Canvas of={MenuStories.AllStates} />
 
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%', marginBottom: 24 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>State</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Background</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Text / Icon color</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Preview</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['Default',  'transparent',      '#000B36', 'default'],
-        ['Hovered',  '#E5E7EB',          '#000B36', 'hovered'],
-        ['Pressed',  '#D2D6DB',          '#000B36', 'pressed'],
-        ['Focused',  'transparent',      '#000B36', 'focused'],
-        ['Selected', '#E5E7EB',          '#000B36', 'selected'],
-        ['Disabled', 'transparent',      '#6C7C96', 'disabled'],
-      ].map(([state, bg, color, stateVal]) => (
-        <tr key={state} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '12px', fontWeight: 500, color: '#374151' }}>{state}</td>
-          <td style={{ padding: '12px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{bg}</td>
-          <td style={{ padding: '12px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{color}</td>
-          <td style={{ padding: '12px', width: 250 }}><MenuListItem label="Item Label" leadIcon="list" state={stateVal} /></td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13, marginTop: 24 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>State</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Background</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Text & Icon</div>
 
----
-
-{/* ── Trail Elements ───────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Menu List Item — Trail Elements</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.6 }}>
-    Six trail element options sit at the end of each item row. The Lead Icon always appears at the start
-    (left in LTR, right in RTL).
-  </p>
-
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
     {[
-      { label: 'None', props: { trailElement: 'none' } },
-      { label: 'Text (+99)', props: { trailElement: 'text', trailText: '+99' } },
-      { label: 'Icon (tick)', props: { trailElement: 'icon', trailIcon: 'tick' } },
-      { label: 'Button (chevron arrow)', props: { trailElement: 'button' } },
-      { label: 'Tag', props: { trailElement: 'tag', trailTagText: 'Label' } },
-      { label: 'Switch (off)', props: { trailElement: 'switch', switchChecked: false } },
-      { label: 'Switch (on)', props: { trailElement: 'switch', switchChecked: true } },
-    ].map(({ label, props }) => (
-      <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <span style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', width: 180, flexShrink: 0 }}>{label}</span>
-        <MenuListItem label="Item Label" leadIcon="list" {...props} />
-      </div>
+      { state: 'Default',  bg: 'transparent', bgHex: null,      color: '#000B36', colorHex: '#000B36' },
+      { state: 'Hovered',  bg: '#E5E7EB',     bgHex: '#E5E7EB', color: '#000B36', colorHex: '#000B36' },
+      { state: 'Pressed',  bg: '#D2D6DB',     bgHex: '#D2D6DB', color: '#000B36', colorHex: '#000B36' },
+      { state: 'Focused',  bg: 'transparent', bgHex: null,      color: '#000B36', colorHex: '#000B36' },
+      { state: 'Selected', bg: '#E5E7EB',     bgHex: '#E5E7EB', color: '#000B36', colorHex: '#000B36' },
+      { state: 'Disabled', bg: 'transparent', bgHex: null,      color: '#6C7C96', colorHex: '#6C7C96' },
+    ].map(({ state, bg, bgHex, color, colorHex }) => (
+      <>
+        <div key={`${state}-s`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>{state}</div>
+        <div key={`${state}-b`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}>
+          {bgHex && <span style={{ width: 14, height: 14, borderRadius: 3, background: bgHex, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />}
+          <code style={{ color: '#374151', fontSize: 12 }}>{bg}</code>
+        </div>
+        <div key={`${state}-c`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ width: 14, height: 14, borderRadius: 3, background: colorHex, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />
+          <code style={{ color: '#374151', fontSize: 12 }}>{color}</code>
+        </div>
+      </>
     ))}
   </div>
 </div>
 
----
+{/* ── Trail Elements ───────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="trail">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Menu List Item — Trail Elements</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
+    Six trail element options sit at the end of each item row. The Lead Icon always appears at the start
+    (left in LTR, right in RTL).
+  </p>
+  <Canvas of={MenuStories.AllTrailElements} />
+</div>
 
 {/* ── Sub Item ─────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Menu List Item — Sub Item</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.6 }}>
+<div style={{ marginBottom: 48 }} id="sub-item">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Menu List Item — Sub Item</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
     The <code>subItem</code> boolean marks an item as a child of another item. It carries the same visual
     style as a regular item — the semantic distinction is used by the consuming application for accessibility
     and grouping.
   </p>
-
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 0, width: 260 }}>
-    <MenuListItem label="Main Item" leadIcon="list" />
-    <MenuListItem label="Sub Item A" leadIcon="list" subItem />
-    <MenuListItem label="Sub Item B" leadIcon="list" subItem />
-    <MenuListItem label="Another Main Item" leadIcon="list" />
-  </div>
+  <Canvas of={MenuStories.SubItems} />
 </div>
 
----
-
-{/* ── RTL ──────────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Menu List Item — RTL</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.6 }}>
+{/* ── RTL (List Item) ──────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="rtl-item">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Menu List Item — RTL</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
     Set <code>rtl</code> to mirror the item layout. In RTL, the lead icon appears on the right and the trail
     element on the left.
   </p>
+  <Canvas of={MenuStories.RTLItems} />
+</div>
 
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+{/* ── Menu Panel — Style Variants ──────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="menu-panel">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Menu Panel — Style Variants</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
+    The Menu panel groups items into sections separated by dividers. Three style variants control Lead Icon visibility.
+  </p>
+  <Canvas of={MenuStories.AllMenuStyles} />
+
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13, marginTop: 24 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Style</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Behaviour</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>all</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Lead icon always shown regardless of per-item setting.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>text-only</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Lead icon hidden on all items — text and trail element only.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>text-icon</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Lead icon shown per individual item's <code>leadIcon</code> prop.</div>
+  </div>
+</div>
+
+{/* ── Menu Panel — RTL ─────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="menu-rtl">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Menu Panel — RTL</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
+    Setting <code>rtl</code> on the <code>Menu</code> component propagates to all items and the group label.
+  </p>
+  <Canvas of={MenuStories.MenuRTL} />
+</div>
+
+{/* ── Props ─────────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="props">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Props</h2>
+
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', marginBottom: 12 }}>MenuListItem</h3>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13, marginBottom: 32 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Prop</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Type</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Default</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Description</div>
+
     {[
-      { label: 'None', props: { trailElement: 'none' } },
-      { label: 'Icon (tick) — Selected', props: { trailElement: 'icon', trailIcon: 'tick', state: 'selected' } },
-      { label: 'Tag', props: { trailElement: 'tag', trailTagText: 'وسم' } },
-      { label: 'Switch', props: { trailElement: 'switch', switchChecked: true } },
-      { label: 'Disabled', props: { state: 'disabled' } },
-    ].map(({ label, props }) => (
-      <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-        <span style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', width: 200, flexShrink: 0 }}>{label}</span>
-        <MenuListItem label="نص العنصر" leadIcon="list" rtl {...props} />
-      </div>
+      ['label',          'string',                                                                 "'Item Label'",  'The item text.'],
+      ['leadIcon',       'string | null',                                                          "'list'",        'Icon name for the leading icon. Pass null to hide it (text-only style).'],
+      ['trailElement',   "'none'|'text'|'icon'|'button'|'tag'|'switch'",                         "'none'",        'The trailing element type.'],
+      ['trailText',      'string',                                                                 "'+99'",         "Text shown when trailElement='text'."],
+      ['trailIcon',      'string',                                                                 "'tick'",        "Icon name when trailElement='icon'."],
+      ['trailTagText',   'string',                                                                 "'Label'",       "Tag label text when trailElement='tag'."],
+      ['switchChecked',  'boolean',                                                                'false',         "Checked state when trailElement='switch'."],
+      ['onSwitchChange', 'function',                                                               '—',             'Called with new boolean value when switch is toggled.'],
+      ['state',          "'default'|'hovered'|'pressed'|'focused'|'disabled'|'selected'",        "'default'",     'Visual state of the item.'],
+      ['subItem',        'boolean',                                                                'false',         'Marks as a sub-item (semantic flag, no visual indent).'],
+      ['rtl',            'boolean',                                                                'false',         'Right-to-left layout.'],
+      ['onClick',        'function',                                                               '—',             'Click handler (disabled when state=disabled).'],
+    ].map(([prop, type, def, desc]) => (
+      <>
+        <div key={`${prop}-p`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>{prop}</code></div>
+        <div key={`${prop}-t`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>{type}</code></div>
+        <div key={`${prop}-d`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>{def}</code></div>
+        <div key={`${prop}-desc`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>{desc}</div>
+      </>
+    ))}
+  </div>
+
+  <h3 style={{ fontSize: 15, fontWeight: 700, color: '#000b36', marginBottom: 12 }}>Menu</h3>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Prop</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Type</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Default</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Description</div>
+
+    {[
+      ['sections', "Array<{ groupLabel?: string, items: MenuListItem[] }>", '[]',    'Array of sections. Each section has an optional label and an array of item prop objects.'],
+      ['style',    "'all'|'text-only'|'text-icon'",                         "'all'", 'all = lead icon always shown. text-only = lead icon hidden. text-icon = lead icon shown per item.'],
+      ['rtl',      'boolean',                                                'false', 'Propagates RTL to all items and section labels.'],
+    ].map(([prop, type, def, desc]) => (
+      <>
+        <div key={`${prop}-p`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>{prop}</code></div>
+        <div key={`${prop}-t`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>{type}</code></div>
+        <div key={`${prop}-d`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>{def}</code></div>
+        <div key={`${prop}-desc`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>{desc}</div>
+      </>
     ))}
   </div>
 </div>
 
----
+{/* ── Design Tokens ─────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="tokens">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Design Tokens</h2>
 
-{/* ── Menu panel ───────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Menu Panel — Style Variants</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.6 }}>
-    The Menu panel groups items into sections separated by dividers. Three style variants control Lead Icon visibility.
-  </p>
+  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Token</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Value</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Usage</div>
 
-  <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-
-    <div>
-      <div style={{ fontSize: 12, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Style = All</div>
-      <Menu
-        style="all"
-        sections={[
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'icon', trailIcon: 'tick', state: 'selected' },
-              { label: 'Item Label', leadIcon: 'list' },
-              { label: 'Item Label', leadIcon: 'list' },
-              { label: 'Item Label', leadIcon: 'list' },
-            ],
-          },
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'switch', switchChecked: false },
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'switch', switchChecked: true },
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'switch', switchChecked: false },
-            ],
-          },
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'tag', trailTagText: 'Label' },
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'text', trailText: '+99' },
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'button' },
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'none', state: 'disabled' },
-            ],
-          },
-        ]}
-      />
-    </div>
-
-    <div>
-      <div style={{ fontSize: 12, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Style = Text Only</div>
-      <Menu
-        style="text-only"
-        sections={[
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', trailElement: 'icon', trailIcon: 'tick', state: 'selected' },
-              { label: 'Item Label' },
-              { label: 'Item Label' },
-              { label: 'Item Label' },
-            ],
-          },
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', trailElement: 'switch', switchChecked: false },
-              { label: 'Item Label', trailElement: 'switch', switchChecked: true },
-              { label: 'Item Label', trailElement: 'switch', switchChecked: false },
-            ],
-          },
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', trailElement: 'tag', trailTagText: 'Label' },
-              { label: 'Item Label', trailElement: 'text', trailText: '+99' },
-              { label: 'Item Label', trailElement: 'button' },
-              { label: 'Item Label', state: 'disabled' },
-            ],
-          },
-        ]}
-      />
-    </div>
-
-    <div>
-      <div style={{ fontSize: 12, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 12 }}>Style = Text + Icon</div>
-      <Menu
-        style="text-icon"
-        sections={[
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', leadIcon: 'list', trailElement: 'icon', trailIcon: 'tick', state: 'selected' },
-              { label: 'Item Label', leadIcon: 'star' },
-              { label: 'Item Label', leadIcon: 'heart' },
-              { label: 'Item Label', leadIcon: 'bookmark' },
-            ],
-          },
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', leadIcon: 'user', trailElement: 'switch', switchChecked: false },
-              { label: 'Item Label', leadIcon: 'bell', trailElement: 'switch', switchChecked: true },
-              { label: 'Item Label', leadIcon: 'setting', trailElement: 'switch', switchChecked: false },
-            ],
-          },
-          {
-            groupLabel: 'GROUP LABEL',
-            items: [
-              { label: 'Item Label', leadIcon: 'download', trailElement: 'tag', trailTagText: 'Label' },
-              { label: 'Item Label', leadIcon: 'edit', trailElement: 'text', trailText: '+99' },
-              { label: 'Item Label', leadIcon: 'share', trailElement: 'button' },
-              { label: 'Item Label', leadIcon: 'delete', state: 'disabled' },
-            ],
-          },
-        ]}
-      />
-    </div>
-
+    {[
+      { token: 'Item text / icon',              value: '#000B36',                    swatch: '#000B36',  usage: 'Default label and icon color' },
+      { token: 'Item bg — Hovered / Selected',  value: '#E5E7EB',                    swatch: '#E5E7EB',  usage: 'Background on hover and selection' },
+      { token: 'Item bg — Pressed',             value: '#D2D6DB',                    swatch: '#D2D6DB',  usage: 'Background while pressing' },
+      { token: 'Item focus outline',            value: '#00001C 2px',                swatch: '#00001C',  usage: 'Focus ring color and width' },
+      { token: 'Item — Disabled color',         value: '#6C7C96',                    swatch: '#6C7C96',  usage: 'Text and icon color in disabled state' },
+      { token: 'Trail text color',              value: '#3C5073',                    swatch: '#3C5073',  usage: 'Color of trailing text element (e.g. "+99")' },
+      { token: 'Trail button / Tag bg',         value: '#F3F4F6',                    swatch: '#F3F4F6',  usage: 'Background for button and tag trail elements' },
+      { token: 'Tag border',                    value: '#D2D6DB',                    swatch: '#D2D6DB',  usage: 'Border color of the tag trail element' },
+      { token: 'Tag text',                      value: '12px / 500 / 18lh',          swatch: null,       usage: 'Typography for tag label' },
+      { token: 'Switch track (off)',            value: 'border #1F2A37',             swatch: '#1F2A37',  usage: 'Unfilled track with dark border' },
+      { token: 'Switch thumb (off)',            value: '#1F2A37',                    swatch: '#1F2A37',  usage: 'Dark filled circle on left' },
+      { token: 'Switch (on)',                   value: 'bg #1F2A37 + white thumb',   swatch: '#1F2A37',  usage: 'Filled track, white thumb slides right' },
+      { token: 'Menu panel bg',                 value: '#FFFFFF',                    swatch: '#FFFFFF',  usage: 'Menu background' },
+      { token: 'Menu panel border',             value: '#E5E7EB 1px r=8px',          swatch: '#E5E7EB',  usage: 'Menu border and corner radius' },
+      { token: 'Section divider',               value: '#E5E7EB 1px',               swatch: '#E5E7EB',  usage: 'Horizontal rule between sections' },
+      { token: 'Group label',                   value: '#000B36 12px/700/18lh',      swatch: '#000B36',  usage: 'Section header typography' },
+      { token: 'Item height',                   value: '40px',                       swatch: null,       usage: 'Minimum item row height' },
+      { token: 'Item padding',                  value: '8px all sides',              swatch: null,       usage: 'Internal item padding' },
+      { token: 'Item gap',                      value: '8px',                        swatch: null,       usage: 'Gap between lead icon, label, and trail element' },
+      { token: 'Item border-radius',            value: '4px',                        swatch: null,       usage: 'Corner radius of each item' },
+      { token: 'Font',                          value: 'IBM Plex Sans Arabic',        swatch: null,       usage: 'All text, LTR and RTL' },
+      { token: 'Label typography',              value: '16px / 400 / 24lh',          swatch: null,       usage: 'Item label font settings' },
+    ].map(({ token, value, swatch, usage }) => (
+      <>
+        <div key={`${token}-t`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>{token}</div>
+        <div key={`${token}-v`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}>
+          {swatch && <span style={{ width: 14, height: 14, borderRadius: 3, background: swatch, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />}
+          <code style={{ color: '#374151', fontSize: 12 }}>{value}</code>
+        </div>
+        <div key={`${token}-u`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#6b7280' }}>{usage}</div>
+      </>
+    ))}
   </div>
 </div>
 
----
-
-{/* ── Menu RTL ─────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Menu Panel — RTL</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 24, lineHeight: 1.6 }}>
-    Setting <code>rtl</code> on the <code>Menu</code> component propagates to all items and the group label.
-  </p>
-
-  <Menu
-    style="all"
-    rtl
-    sections={[
-      {
-        groupLabel: 'عنوان مجموعة',
-        items: [
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'icon', trailIcon: 'tick', state: 'selected' },
-          { label: 'نص العنصر', leadIcon: 'list' },
-          { label: 'نص العنصر', leadIcon: 'list' },
-        ],
-      },
-      {
-        groupLabel: 'عنوان مجموعة',
-        items: [
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'switch', switchChecked: false },
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'switch', switchChecked: true },
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'switch', switchChecked: false },
-        ],
-      },
-      {
-        groupLabel: 'عنوان مجموعة',
-        items: [
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'tag', trailTagText: 'وسم' },
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'text', trailText: '+99' },
-          { label: 'نص العنصر', leadIcon: 'list', trailElement: 'button' },
-          { label: 'نص العنصر', leadIcon: 'list', state: 'disabled' },
-        ],
-      },
-    ]}
-  />
-</div>
-
----
-
-{/* ── Props ─────────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Props</h2>
-
-  <h3 style={{ fontSize: 16, fontWeight: 600, color: '#111827', marginBottom: 16 }}>MenuListItem</h3>
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%', marginBottom: 32 }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Type</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Default</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['label',          'string',                                                                          "'Item Label'",   'The item text.'],
-        ['leadIcon',       'string | null',                                                                   "'list'",         'Icon name for the leading icon. Pass null to hide it (text-only style).'],
-        ['trailElement',   "'none'|'text'|'icon'|'button'|'tag'|'switch'",                                  "'none'",         'The trailing element type.'],
-        ['trailText',      'string',                                                                          "'+99'",          "Text shown when trailElement='text'."],
-        ['trailIcon',      'string',                                                                          "'tick'",         "Icon name when trailElement='icon'."],
-        ['trailTagText',   'string',                                                                          "'Label'",        "Tag label text when trailElement='tag'."],
-        ['switchChecked',  'boolean',                                                                         'false',          "Checked state when trailElement='switch'."],
-        ['onSwitchChange', 'function',                                                                        '—',              "Called with new boolean value when switch is toggled."],
-        ['state',          "'default'|'hovered'|'pressed'|'focused'|'disabled'|'selected'",                 "'default'",      'Visual state of the item.'],
-        ['subItem',        'boolean',                                                                         'false',          'Marks as a sub-item (semantic flag, no visual indent).'],
-        ['rtl',            'boolean',                                                                         'false',          'Right-to-left layout.'],
-        ['onClick',        'function',                                                                         '—',              'Click handler (disabled when state=disabled).'],
-      ].map(([prop, type, def, desc]) => (
-        <tr key={prop} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{type}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#374151' }}>{def}</td>
-          <td style={{ padding: '10px 12px', color: '#374151' }}>{desc}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-
-  <h3 style={{ fontSize: 16, fontWeight: 600, color: '#111827', marginBottom: 16 }}>Menu</h3>
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%' }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Type</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Default</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['sections', "Array<{ groupLabel?: string, items: MenuListItem[] }>", '[]',       'Array of sections. Each section has an optional label and an array of item prop objects.'],
-        ['style',    "'all'|'text-only'|'text-icon'",                         "'all'",    'all = lead icon always shown. text-only = lead icon hidden. text-icon = lead icon shown per item.'],
-        ['rtl',      'boolean',                                                'false',    'Propagates RTL to all items and section labels.'],
-      ].map(([prop, type, def, desc]) => (
-        <tr key={prop} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{type}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#374151' }}>{def}</td>
-          <td style={{ padding: '10px 12px', color: '#374151' }}>{desc}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
----
-
-{/* ── Design Tokens ─────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Design Tokens</h2>
-
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%' }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Token</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Value</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['Item text / icon', '#000B36', 'Default label and icon color'],
-        ['Item bg — Hovered / Selected', '#E5E7EB', 'Background on hover and selection'],
-        ['Item bg — Pressed', '#D2D6DB', 'Background while pressing'],
-        ['Item focus outline', '#00001C 2px', 'Focus ring color and width'],
-        ['Item — Disabled color', '#6C7C96', 'Text and icon color in disabled state'],
-        ['Trail text color', '#3C5073', 'Color of trailing text element (e.g. "+99")'],
-        ['Trail button / Tag bg', '#F3F4F6', 'Background for button and tag trail elements'],
-        ['Tag border', '#D2D6DB', 'Border color of the tag trail element'],
-        ['Tag text', '12px / 500 / 18lh', 'Typography for tag label'],
-        ['Switch track (off)', 'border #1F2A37', 'Unfilled track with dark border'],
-        ['Switch thumb (off)', '#1F2A37', 'Dark filled circle on left'],
-        ['Switch (on)', 'bg #1F2A37 + white thumb', 'Filled track, white thumb slides right'],
-        ['Menu panel bg', '#FFFFFF', 'Menu background'],
-        ['Menu panel border', '#E5E7EB 1px r=8px', 'Menu border and corner radius'],
-        ['Section divider', '#E5E7EB 1px', 'Horizontal rule between sections'],
-        ['Group label', '#000B36 12px/700/18lh uppercase', 'Section header typography'],
-        ['Item height', '40px', 'Minimum item row height'],
-        ['Item padding', '8px all sides', 'Internal item padding'],
-        ['Item gap', '8px', 'Gap between lead icon, label, and trail element'],
-        ['Item border-radius', '4px', 'Corner radius of each item'],
-        ['Font', 'IBM Plex Sans Arabic', 'All text, LTR and RTL'],
-        ['Label typography', '16px / 400 / 24lh', 'Item label font settings'],
-      ].map(([token, value, usage]) => (
-        <tr key={token} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 12px', color: '#374151', fontWeight: 500 }}>{token}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#1849a9', fontSize: 12 }}>{value}</td>
-          <td style={{ padding: '10px 12px', color: '#6b7280' }}>{usage}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
-
----
-
-{/* ── Usage ─────────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Usage Examples</h2>
-
-  <h3 style={{ fontSize: 16, fontWeight: 600, color: '#111827', marginBottom: 12 }}>Standalone MenuListItem</h3>
-  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 6, padding: 20, fontSize: 13, lineHeight: 1.7, overflow: 'auto' }}>{`import { MenuListItem } from './Menu';
-
-// Default item with lead icon
-<MenuListItem label="Edit" leadIcon="edit" />
-
-// Selected item with tick trail
-<MenuListItem label="Dark Mode" leadIcon="eye" trailElement="icon" trailIcon="tick" state="selected" />
-
-// Item with switch
-<MenuListItem label="Notifications" leadIcon="bell" trailElement="switch" switchChecked={true} onSwitchChange={setNotif} />
-
-// Disabled item
-<MenuListItem label="Delete" leadIcon="delete" state="disabled" />
-
-// RTL item
-<MenuListItem label="نص العنصر" leadIcon="list" rtl trailElement="tag" trailTagText="وسم" />`}</pre>
-
-  <h3 style={{ fontSize: 16, fontWeight: 600, color: '#111827', marginBottom: 12, marginTop: 32 }}>Full Menu Panel</h3>
-  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 6, padding: 20, fontSize: 13, lineHeight: 1.7, overflow: 'auto' }}>{`import { Menu } from './Menu';
-
-<Menu
-  style="all"
-  sections={[
-    {
-      groupLabel: 'ACCOUNT',
-      items: [
-        { label: 'Profile',    leadIcon: 'user',     state: 'selected', trailElement: 'icon', trailIcon: 'tick' },
-        { label: 'Settings',   leadIcon: 'setting',  trailElement: 'none' },
-        { label: 'Dark Mode',  leadIcon: 'eye',      trailElement: 'switch', switchChecked: false },
-      ],
-    },
-    {
-      groupLabel: 'ACTIONS',
-      items: [
-        { label: 'Notifications', leadIcon: 'bell',   trailElement: 'text',   trailText: '+5' },
-        { label: 'Download',      leadIcon: 'download', trailElement: 'button' },
-        { label: 'Delete',        leadIcon: 'delete',   state: 'disabled' },
-      ],
-    },
-  ]}
-/>
-
-// RTL Arabic menu
-<Menu style="all" rtl sections={[
-  { groupLabel: 'عنوان', items: [{ label: 'نص العنصر', leadIcon: 'list' }] },
-]} />`}</pre>
-</div>
-
----
-
 {/* ── Accessibility ─────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 16 }}>Accessibility</h2>
-  <ul style={{ fontSize: 14, color: '#374151', lineHeight: 1.8, paddingLeft: 20 }}>
-    <li>The <code>Menu</code> root has <code>role="menu"</code>. Each <code>MenuListItem</code> has <code>role="menuitem"</code>.</li>
-    <li>Disabled items get <code>aria-disabled="true"</code> and <code>tabIndex="-1"</code> — they cannot receive focus.</li>
-    <li>Selected items get <code>aria-selected="true"</code> for screen reader announcement.</li>
-    <li>The Switch trail element has <code>role="switch"</code> and <code>aria-checked</code> for state announcement.</li>
-    <li>Focus is managed via <code>tabIndex={0}</code> on each enabled item. Keyboard users can press <code>Enter</code> or <code>Space</code> to activate an item.</li>
-    <li>The <code>rtl</code> prop sets <code>dir="rtl"</code> on the item for correct screen reader reading order.</li>
-  </ul>
+<div style={{ marginBottom: 48 }} id="accessibility">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Accessibility</h2>
+
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Concern</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Implementation</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Role semantics</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The <code style={{ color: '#1849a9', fontSize: 12 }}>Menu</code> root has <code style={{ color: '#1849a9', fontSize: 12 }}>role="menu"</code>. Each <code style={{ color: '#1849a9', fontSize: 12 }}>MenuListItem</code> has <code style={{ color: '#1849a9', fontSize: 12 }}>role="menuitem"</code>.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Disabled items</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Disabled items get <code style={{ color: '#1849a9', fontSize: 12 }}>aria-disabled="true"</code> and <code style={{ color: '#1849a9', fontSize: 12 }}>tabIndex="-1"</code> — they cannot receive focus.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Selected items</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Selected items get <code style={{ color: '#1849a9', fontSize: 12 }}>aria-selected="true"</code> for screen reader announcement.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Switch trail</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The Switch trail element has <code style={{ color: '#1849a9', fontSize: 12 }}>role="switch"</code> and <code style={{ color: '#1849a9', fontSize: 12 }}>aria-checked</code> for state announcement.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Keyboard navigation</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Focus is managed via <code style={{ color: '#1849a9', fontSize: 12 }}>tabIndex={0}</code> on each enabled item. Keyboard users can press <code style={{ color: '#1849a9', fontSize: 12 }}>Enter</code> or <code style={{ color: '#1849a9', fontSize: 12 }}>Space</code> to activate an item.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>RTL support</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The <code style={{ color: '#1849a9', fontSize: 12 }}>rtl</code> prop sets <code style={{ color: '#1849a9', fontSize: 12 }}>dir="rtl"</code> on the item for correct screen reader reading order.</div>
+  </div>
 </div>
 
 </div>

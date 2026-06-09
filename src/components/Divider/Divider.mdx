@@ -1,383 +1,250 @@
-{/* Divider.mdx — Masterteam Design System */}
-import { Meta } from '@storybook/addon-docs/blocks';
-import { Divider } from './Divider';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as DividerStories from './Divider.stories';
 
 <Meta of={DividerStories} />
 
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
 
-{/* ── Header ───────────────────────────────────────────────── */}
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Divider</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Divider</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 640, lineHeight: 1.7 }}>
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / Divider</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>Divider</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
     A thin 1 px line that visually separates content regions. Supports horizontal and vertical orientations,
     two colour modes (default and on-color), and three colour tokens (neutral, primary, solid white).
-  </div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
-      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
-      Available
-    </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>8 variants</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>2 orientations · 3 colors · 2 modes</span>
-  </div>
-</div>
-
----
-
-## Overview
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 16 }}>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-
-    {/* Horizontal previews */}
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Horizontal</div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 12, color: '#6b7280', minWidth: 160 }}>Neutral (default)</span>
-          <div style={{ flex: 1, background: '#f3f4f6', padding: '12px 16px', borderRadius: 6 }}>
-            <Divider orientation="horizontal" color="neutral" />
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 12, color: '#6b7280', minWidth: 160 }}>Primary (default)</span>
-          <div style={{ flex: 1, background: '#f3f4f6', padding: '12px 16px', borderRadius: 6 }}>
-            <Divider orientation="horizontal" color="primary" />
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 12, color: '#6b7280', minWidth: 160 }}>Neutral (on-color)</span>
-          <div style={{ flex: 1, background: '#000b36', padding: '12px 16px', borderRadius: 6 }}>
-            <Divider orientation="horizontal" color="neutral" onColor />
-          </div>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 12, color: '#6b7280', minWidth: 160 }}>Solid White (on-color)</span>
-          <div style={{ flex: 1, background: '#000b36', padding: '12px 16px', borderRadius: 6 }}>
-            <Divider orientation="horizontal" color="solidWhite" onColor />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Vertical previews */}
-    <div>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 16 }}>Vertical</div>
-      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
-        {[
-          { color: 'neutral',    onColor: false, label: 'Neutral · Default',        bg: '#f3f4f6' },
-          { color: 'primary',    onColor: false, label: 'Primary · Default',        bg: '#f3f4f6' },
-          { color: 'neutral',    onColor: true,  label: 'Neutral · OnColor',        bg: '#000b36' },
-          { color: 'solidWhite', onColor: true,  label: 'Solid White · OnColor',    bg: '#000b36' },
-        ].map(({ color, onColor, label, bg }) => (
-          <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-            <div style={{ background: bg, padding: '12px 20px', borderRadius: 6, height: 72, display: 'flex', alignItems: 'stretch' }}>
-              <Divider orientation="vertical" color={color} onColor={onColor} />
-            </div>
-            <span style={{ fontSize: 11, color: '#6b7280', textAlign: 'center', maxWidth: 100 }}>{label}</span>
-          </div>
-        ))}
-      </div>
-    </div>
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>8 Variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>2 Orientations</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Colors</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>2 Modes</span>
   </div>
 </div>
 
-**8 variants** · 2 orientations · 3 color tokens · 2 background modes. Thickness is always 1 px; length follows the container.
-
----
-
-## Anatomy
-
-<div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 10, padding: '28px 24px', marginBottom: 24 }}>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 28px' }}>
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
     {[
-      ['1', 'Element — a single <div role="separator"> with aria-orientation set automatically.'],
-      ['2', 'Thickness — always 1 px; controlled by height (horizontal) or width (vertical).'],
-      ['3', 'Length — driven by the parent container: width: 100% (horizontal) · height: 100% (vertical).'],
-      ['4', 'Color — one of three tokens: neutral (rgba white 30%), primary (#1849A9), or solid white (#ffffff).'],
-      ['5', 'Mode — default or on-color. On-color signals the dark #000B36 background context.'],
-    ].map(([n, l]) => (
-      <div key={n} style={{ display: 'flex', alignItems: 'flex-start', gap: 7, fontSize: 13, color: '#111827', maxWidth: 640 }}>
-        <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#1849a9', color: '#fff', fontSize: 10, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{n}</span>
-        <span style={{ lineHeight: 1.5 }}>{l}</span>
-      </div>
+      ['#overview',      'Overview'],
+      ['#anatomy',       'Anatomy'],
+      ['#orientation',   'Property: Orientation'],
+      ['#color',         'Property: Color'],
+      ['#on-color',      'Property: OnColor'],
+      ['#properties',    'Properties'],
+      ['#accessibility', 'Accessibility'],
+      ['#usage',         'Usage Guidelines'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
     ))}
   </div>
 </div>
 
 ---
 
-## Property: Orientation
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>orientation</code>,{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>color</code>, and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>onColor</code> in the controls panel
+  to explore all 8 variants. Thickness is always 1 px; length follows the container.
+</p>
 
-<div style={{ marginBottom: 20 }}>
-  <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-    <span style={{ fontSize: 12, color: '#6b7280', minWidth: 100 }}>Horizontal</span>
-    <div style={{ flex: 1, background: '#f3f4f6', padding: '16px 20px', borderRadius: 6 }}>
-      <Divider orientation="horizontal" color="primary" />
-    </div>
+<Canvas of={DividerStories.Playground} />
+<Controls of={DividerStories.Playground} />
+
+---
+
+{/* ── Anatomy ── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Description</span>
   </div>
-  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-    <span style={{ fontSize: 12, color: '#6b7280', minWidth: 100 }}>Vertical</span>
-    <div style={{ background: '#f3f4f6', padding: '16px 20px', borderRadius: 6, height: 80, display: 'inline-flex', alignItems: 'stretch' }}>
-      <Divider orientation="vertical" color="primary" />
+  {[
+    ['1', 'Element',   'A single <div role="separator"> with aria-orientation set automatically.'],
+    ['2', 'Thickness', 'Always 1 px; controlled by height (horizontal) or width (vertical).'],
+    ['3', 'Length',    'Driven by the parent container: width: 100% (horizontal) · height: 100% (vertical).'],
+    ['4', 'Color',     'One of three tokens: neutral (rgba white 30%), primary (#1849A9), or solid white (#ffffff).'],
+    ['5', 'Mode',      'Default or on-color. On-color signals the dark #000B36 background context.'],
+  ].map(([n, part, desc]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '40px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{n}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
-  </div>
+  ))}
 </div>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Orientation tokens</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '110px 80px 80px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+---
+
+{/* ── Property: Orientation ── */}
+<h2 id="orientation" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Orientation</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Two orientations control the direction of the divider line via the{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>orientation</code> prop.
+  Horizontal spans full width; vertical spans full height of the parent container.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '130px 80px 80px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Orientation</span><span>Width</span><span>Height</span><span>CSS</span>
   </div>
   {[
-    { o: 'horizontal', w: '100%',  h: '1 px', css: 'width: 100%; height: 1px' },
-    { o: 'vertical',   w: '1 px',  h: '100%', css: 'width: 1px; height: 100%' },
-  ].map(({ o, w, h, css }, i) => (
-    <div key={o} style={{ display: 'grid', gridTemplateColumns: '110px 80px 80px 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>"{o}"</code>
-      <span style={{ fontSize: 13, color: '#374151' }}>{w}</span>
-      <span style={{ fontSize: 13, color: '#374151' }}>{h}</span>
-      <code style={{ fontSize: 11, color: '#6b7280' }}>{css}</code>
+    ['"horizontal"', '100%',  '1 px', 'width: 100%; height: 1px'],
+    ['"vertical"',   '1 px',  '100%', 'width: 1px; height: 100%'],
+  ].map(([o, w, h, css]) => (
+    <div key={o} style={{ display: 'grid', gridTemplateColumns: '130px 80px 80px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{o}</code>
+      <span style={{ color: '#374151' }}>{w}</span>
+      <span style={{ color: '#374151' }}>{h}</span>
+      <code style={{ fontSize: 12, color: '#374151' }}>{css}</code>
     </div>
   ))}
 </div>
 
+<Canvas of={DividerStories.HorizontalDefault} />
+<Canvas of={DividerStories.VerticalDefault} />
+
 ---
 
-## Property: Color
+{/* ── Property: Color ── */}
+<h2 id="color" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: Color</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Three color tokens controlled via the{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>color</code> prop.
+  Use <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>neutral</code> for subtle separation,{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>primary</code> for a prominent brand-blue break,
+  and <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>solidWhite</code> exclusively on dark on-color backgrounds.
+</p>
 
-<div style={{ marginBottom: 20 }}>
-  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 130 }}>neutral (default)</span>
-      <div style={{ flex: 1, background: '#f3f4f6', padding: '14px 20px', borderRadius: 6 }}>
-        <Divider orientation="horizontal" color="neutral" />
-      </div>
-    </div>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 130 }}>primary</span>
-      <div style={{ flex: 1, background: '#f3f4f6', padding: '14px 20px', borderRadius: 6 }}>
-        <Divider orientation="horizontal" color="primary" />
-      </div>
-    </div>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-      <span style={{ fontSize: 12, color: '#6b7280', minWidth: 130 }}>solidWhite (on-color)</span>
-      <div style={{ flex: 1, background: '#000b36', padding: '14px 20px', borderRadius: 6 }}>
-        <Divider orientation="horizontal" color="solidWhite" onColor />
-      </div>
-    </div>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Color tokens</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '110px 200px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 10, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 200px 90px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Token</span><span>Value</span><span>Mode</span><span>When to use</span>
   </div>
   {[
-    { token: 'neutral',    value: 'rgba(255,255,255,0.3)', mode: 'Both',    desc: 'Subtle separator on any background. Works in both default and on-color contexts.' },
-    { token: 'primary',    value: '#1849A9',               mode: 'Default', desc: 'Prominent brand-blue separator. Use on light or white backgrounds.' },
-    { token: 'solidWhite', value: '#ffffff',               mode: 'OnColor', desc: 'High-visibility white line. Use exclusively on the dark #000B36 background.' },
-  ].map(({ token, value, mode, desc }, i) => (
-    <div key={token} style={{ display: 'grid', gridTemplateColumns: '110px 200px 100px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 10, alignItems: 'center' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>"{token}"</code>
+    ['neutral',    'rgba(255,255,255,0.3)', 'rgba(255,255,255,0.3)', 'Both',    'Subtle separator on any background. Works in both default and on-color contexts.'],
+    ['primary',    '#1849A9',               '#1849a9',               'Default', 'Prominent brand-blue separator. Use on light or white backgrounds.'],
+    ['solidWhite', '#ffffff',               '#ffffff',               'OnColor', 'High-visibility white line. Use exclusively on the dark #000B36 background.'],
+  ].map(([token, value, swatchBg, mode, desc]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '120px 200px 90px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-        <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: token === 'neutral' ? 'rgba(255,255,255,0.3)' : token === 'primary' ? '#1849a9' : '#ffffff', border: '1px solid rgba(0,0,0,.15)', flexShrink: 0 }} />
-        <code style={{ fontSize: 11, color: '#374151' }}>{value}</code>
+        <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 3, background: swatchBg, border: '1px solid rgba(0,0,0,.15)', flexShrink: 0 }} />
+        <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
       </span>
-      <span style={{ fontSize: 12, color: mode === 'Both' ? '#059669' : mode === 'OnColor' ? '#7c3aed' : '#c2410c', fontWeight: 600 }}>{mode}</span>
-      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{desc}</span>
+      <span style={{ color: '#374151' }}>{mode}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
   ))}
 </div>
 
+<Canvas of={DividerStories.HorizontalDefault} />
+
 ---
 
-## Property: OnColor
+{/* ── Property: OnColor ── */}
+<h2 id="on-color" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Property: OnColor</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  The <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>onColor</code> prop signals the divider is placed on the dark{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>#000B36</code> background.
+  Use inside dark headers, sidebars, or branded panels.
+</p>
 
-<div style={{ marginBottom: 20 }}>
-  <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
-    <div style={{ flex: 1 }}>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>onColor=false (default)</div>
-      <div style={{ background: '#f3f4f6', padding: '20px 24px', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <Divider orientation="horizontal" color="primary" />
-        <Divider orientation="horizontal" color="neutral" />
-      </div>
-    </div>
-    <div style={{ flex: 1 }}>
-      <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280', marginBottom: 12 }}>onColor=true (#000B36)</div>
-      <div style={{ background: '#000b36', padding: '20px 24px', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <Divider orientation="horizontal" color="solidWhite" onColor />
-        <Divider orientation="horizontal" color="neutral" onColor />
-      </div>
-    </div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 140px 180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Mode</span><span>Background</span><span>Available Colors</span><span>When to use</span>
   </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Mode reference</div>
   {[
-    { mode: 'Default (onColor=false)', bg: 'Light / white', available: 'neutral · primary',          note: 'Use on page backgrounds, cards, modals.' },
-    { mode: 'OnColor (onColor=true)',  bg: '#000B36 (dark)', available: 'neutral · solidWhite',       note: 'Use inside dark headers, sidebars, or branded panels.' },
-  ].map(({ mode, bg, available, note }, i) => (
-    <div key={mode} style={{ display: 'grid', gridTemplateColumns: '220px 140px 180px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', fontSize: 13, color: '#374151' }}>
-      <code style={{ fontSize: 11, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{mode}</code>
-      <span>{bg}</span>
-      <span>{available}</span>
-      <span style={{ lineHeight: 1.5 }}>{note}</span>
+    ['Default (onColor=false)', 'Light / white',  'neutral · primary',     'Use on page backgrounds, cards, modals.'],
+    ['OnColor (onColor=true)',  '#000B36 (dark)',  'neutral · solidWhite',  'Use inside dark headers, sidebars, or branded panels.'],
+  ].map(([mode, bg, available, note]) => (
+    <div key={mode} style={{ display: 'grid', gridTemplateColumns: '220px 140px 180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{mode}</code>
+      <span style={{ color: '#374151' }}>{bg}</span>
+      <span style={{ color: '#374151' }}>{available}</span>
+      <span style={{ color: '#374151', lineHeight: 1.5 }}>{note}</span>
     </div>
   ))}
 </div>
 
+<Canvas of={DividerStories.HorizontalOnColor} />
+
 ---
 
-## Properties
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Divider props</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '130px 100px 160px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '140px 240px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
   </div>
   {[
-    { n: 'orientation', tb: '#fff7ed', tc: '#c2410c', type: 'enum',    def: '"horizontal"', d: '"horizontal" | "vertical" — Sets the direction of the divider line. Horizontal spans full width; vertical spans full height.' },
-    { n: 'color',       tb: '#fff7ed', tc: '#c2410c', type: 'enum',    def: '"neutral"',    d: '"neutral" | "primary" | "solidWhite" — Controls the color token. See color reference table above.' },
-    { n: 'onColor',     tb: '#f3f0ff', tc: '#7c3aed', type: 'boolean', def: 'false',        d: 'Signals the divider is placed on the dark #000B36 background. Primarily used to guide color selection (solidWhite is only meaningful when onColor=true).' },
-    { n: 'className',   tb: '#ecfdf5', tc: '#059669', type: 'string',  def: '""',           d: 'Additional CSS class applied to the divider element.' },
-  ].map(({ n, tb, tc, type, def, d }, i) => (
-    <div key={n} style={{ display: 'grid', gridTemplateColumns: '130px 100px 160px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600 }}>{type}</span>
-      <code style={{ fontSize: 11, color: '#6b7280' }}>{def}</code>
-      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
+    ['orientation', '"horizontal" | "vertical"',           '"horizontal"', 'Sets the direction of the divider line. Horizontal spans full width; vertical spans full height.'],
+    ['color',       '"neutral" | "primary" | "solidWhite"','"neutral"',    'Controls the color token. See color reference table above.'],
+    ['onColor',     'boolean',                             'false',        'Signals the divider is placed on the dark #000B36 background. solidWhite is only meaningful when onColor=true.'],
+    ['className',   'string',                              '""',           'Additional CSS class applied to the divider element.'],
+  ].map(([n, type, def, d]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '140px 240px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{n}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{d}</span>
     </div>
   ))}
 </div>
 
 ---
 
-## Accessibility
+{/* ── Accessibility ── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
-  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#fdf4ff', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#9333ea' }}>ARIA roles &amp; attributes</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        ['role="separator"', 'Applied to the div element. Communicates that the element divides content sections.'],
-        ['aria-orientation', 'Set to "horizontal" or "vertical" automatically from the orientation prop.'],
-      ].map(([attr, desc]) => (
-        <div key={attr} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <code style={{ background: '#f3f0ff', padding: '2px 8px', borderRadius: 4, fontSize: 11, fontWeight: 600, flexShrink: 0, color: '#7c3aed' }}>{attr}</code>
-          <span style={{ lineHeight: 1.5 }}>{desc}</span>
-        </div>
-      ))}
-    </div>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
   </div>
-
-  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#ecfdf5', padding: '8px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#059669' }}>Colour contrast</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        ['Neutral (default)',    'rgba(255,255,255,0.30) on #f3f4f6', 'Decorative — 30% opacity conveys low-emphasis separation'],
-        ['Primary (default)',    '#1849A9 on #ffffff',                 'Passes WCAG AA (>3:1 for non-text / UI elements)'],
-        ['Neutral (on-color)',   'rgba(255,255,255,0.30) on #000B36', 'Decorative — low-emphasis separator on dark background'],
-        ['Solid White (on-color)', '#ffffff on #000B36',              'High contrast — strong separation on dark background'],
-      ].map(([pair, colours, result]) => (
-        <div key={pair} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <span style={{ minWidth: 200, fontWeight: 500, flexShrink: 0 }}>{pair}</span>
-          <code style={{ fontSize: 11, color: '#374151', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{colours}</code>
-          <span style={{ color: '#059669', fontSize: 12, fontWeight: 500, flexShrink: 0 }}>{result}</span>
-        </div>
-      ))}
+  {[
+    ['role="separator"',              'Applied to the div element. Communicates that the element divides content sections.'],
+    ['aria-orientation',              'Set to "horizontal" or "vertical" automatically from the orientation prop.'],
+    ['Neutral contrast (default)',    'rgba(255,255,255,0.30) on #f3f4f6 — Decorative; 30% opacity conveys low-emphasis separation.'],
+    ['Primary contrast (default)',    '#1849A9 on #ffffff — Passes WCAG AA (>3:1 for non-text / UI elements).'],
+    ['Neutral contrast (on-color)',   'rgba(255,255,255,0.30) on #000B36 — Decorative; low-emphasis separator on dark background.'],
+    ['Solid White contrast (on-color)', '#ffffff on #000B36 — High contrast; strong separation on dark background.'],
+  ].map(([concern, impl]) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '240px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
     </div>
-  </div>
+  ))}
 </div>
 
 ---
 
-## Usage Guidelines
+{/* ── Usage Guidelines ── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
 
-<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
-  <div style={{ border: '1px solid #d1fae5', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#ecfdf5', padding: '8px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#059669' }}>✓ Do</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        'Use to separate logically distinct content sections or columns.',
-        'Make the parent a flex container with a defined height when using a vertical divider — height: 100% requires a sized ancestor.',
-        'Use solidWhite only on the dark #000B36 (on-color) background.',
-        'Use primary on light/white backgrounds for a prominent visual break.',
-        'Use neutral for subtle, decorative separation in both default and on-color contexts.',
-      ].map((t, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <span style={{ color: '#059669', fontWeight: 700, flexShrink: 0 }}>✓</span>
-          <span style={{ lineHeight: 1.5 }}>{t}</span>
-        </div>
-      ))}
-    </div>
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use to separate logically distinct content sections or columns</li>
+      <li>Make the parent a flex container with a defined height when using a vertical divider — <code>height: 100%</code> requires a sized ancestor</li>
+      <li>Use <code>solidWhite</code> only on the dark <code>#000B36</code> on-color background</li>
+      <li>Use <code>primary</code> on light or white backgrounds for a prominent visual break</li>
+      <li>Use <code>neutral</code> for subtle, decorative separation in both default and on-color contexts</li>
+    </ul>
   </div>
-  <div style={{ border: '1px solid #fee2e2', borderRadius: 8, overflow: 'hidden' }}>
-    <div style={{ background: '#fef2f2', padding: '8px 16px', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#dc2626' }}>✗ Don't</div>
-    <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {[
-        "Don't use solidWhite on light backgrounds — it will be invisible or jarring.",
-        "Don't set a fixed width or height on the divider element — let the parent control dimensions.",
-        "Don't use a divider to add spacing — use padding or gap instead; dividers are semantic separators, not spacers.",
-        "Don't stack multiple dividers back-to-back without meaningful content between them.",
-      ].map((t, i) => (
-        <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 13, color: '#374151' }}>
-          <span style={{ color: '#dc2626', fontWeight: 700, flexShrink: 0 }}>✗</span>
-          <span style={{ lineHeight: 1.5 }}>{t}</span>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
-
----
-
-## Code Examples
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Horizontal — Primary</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`import { Divider } from '@/components/Divider';
-
-<Divider orientation="horizontal" color="primary" />`}</pre>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Vertical divider between columns</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`<div style={{ display: 'flex', alignItems: 'stretch', gap: 16 }}>
-  <span>Column A</span>
-  <Divider orientation="vertical" color="primary" />
-  <span>Column B</span>
-</div>`}</pre>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 16 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>OnColor — Solid White</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`<div style={{ background: '#000B36', padding: 24 }}>
-  <p style={{ color: '#f9fafb' }}>Section A</p>
-  <Divider orientation="horizontal" color="solidWhite" onColor />
-  <p style={{ color: '#f9fafb' }}>Section B</p>
-</div>`}</pre>
-  </div>
-</div>
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>OnColor — Neutral (30% opacity)</div>
-  <div style={{ padding: 16, background: '#1e1e2e' }}>
-    <pre style={{ margin: 0, fontSize: 13, color: '#cdd6f4', lineHeight: 1.7, overflowX: 'auto' }}>{`<div style={{ background: '#000B36', padding: 24 }}>
-  <p style={{ color: '#f9fafb' }}>Section A</p>
-  <Divider orientation="horizontal" color="neutral" onColor />
-  <p style={{ color: '#f9fafb' }}>Section B</p>
-</div>`}</pre>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't use <code>solidWhite</code> on light backgrounds — it will be invisible or jarring</li>
+      <li>Don't set a fixed width or height on the divider element — let the parent control dimensions</li>
+      <li>Don't use a divider to add spacing — use padding or gap instead; dividers are semantic separators, not spacers</li>
+      <li>Don't stack multiple dividers back-to-back without meaningful content between them</li>
+    </ul>
   </div>
 </div>
 
