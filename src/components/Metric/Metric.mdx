@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+﻿import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import * as MetricStories from './Metric.stories';
 
 <Meta of={MetricStories} />
@@ -18,7 +18,7 @@ import * as MetricStories from './Metric.stories';
 
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px 0' }}>
     {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Chart Types','#chart-types'],['Trend States','#trend-states'],['Change Badge','#change-badge'],['Toggle States','#toggle-states'],['RTL Support','#rtl-support'],['Props Reference','#props-reference'],['Token Table','#token-table'],['Do / Don\'t','#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}

@@ -1,4 +1,4 @@
-import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+﻿import { Meta, Canvas } from '@storybook/addon-docs/blocks';
 import { FloatingButton } from './FloatingButton';
 import { PlusIcon, ArrowRightIcon } from '../Button/ButtonIcons';
 import * as FloatingButtonStories from './FloatingButton.stories';
@@ -20,7 +20,7 @@ import * as FloatingButtonStories from './FloatingButton.stories';
 
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px 0' }}>
     {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Sizes','#sizes'],['States','#states'],['State Table','#state-table'],['On Color','#on-color'],['RTL Support','#rtl-support'],['Icon vs Pill','#icon-vs-pill'],['Token Table','#token-table'],['Properties','#properties'],['Accessibility','#accessibility'],['Usage Guidelines','#usage-guidelines'],['Implementation Examples','#implementation-examples'],['Figma Reference','#figma-reference']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}

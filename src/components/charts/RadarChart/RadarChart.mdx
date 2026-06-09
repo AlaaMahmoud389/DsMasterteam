@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+﻿import { Meta } from '@storybook/addon-docs/blocks';
 import { RadarChart } from './RadarChart';
 import * as RadarStories from './RadarChart.stories';
 
@@ -18,7 +18,7 @@ import * as RadarStories from './RadarChart.stories';
 
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px 0' }}>
     {[['Overview','#overview'],['Anatomy','#anatomy'],['Variants','#variants'],['Series Colors','#series-colors'],['Legend Filtering','#legend-filtering'],['RTL Support','#rtl-support'],['States','#states'],['Props Reference','#props-reference'],['Tokens','#token-table'],["Do / Don't",'#do--dont'],['Accessibility','#accessibility']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}
