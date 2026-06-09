@@ -1,40 +1,18 @@
 import React from 'react';
 import { Loading } from './Loading';
 
-const FIGMA_URL =
-  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4389-1155';
-
-const FONT = "'IBM Plex Sans Arabic', system-ui, sans-serif";
-
 export default {
   title: 'Components/Loading',
   component: Loading,
-  parameters: {
-    layout: 'padded',
-    design: { type: 'figma', url: FIGMA_URL },
-  },
-  tags: [],
+  parameters: { layout: 'padded' },
   argTypes: {
-    size:  { control: 'select', options: ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'] },
-    style: { control: 'select', options: ['primary', 'neutral', 'on-color'] },
+    size:  { control: 'radio', options: ['xx-small', 'x-small', 'small', 'medium', 'large', 'x-large', 'xx-large'] },
+    style: { control: 'radio', options: ['primary', 'neutral', 'on-color'] },
     label: { control: 'text' },
   },
 };
 
-const LABEL = {
-  style: {
-    fontSize: 11,
-    color: '#9ca3af',
-    textTransform: 'uppercase',
-    letterSpacing: '.06em',
-    marginBottom: 10,
-    fontFamily: FONT,
-  },
-};
-
-/* ════════════════════════════════════════════════════════════════════
-   Playground
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Playground ─────────────────────────────────────────────── */
 export const Playground = {
   args: {
     size: 'medium',
@@ -42,19 +20,17 @@ export const Playground = {
     label: 'Loading',
   },
   render: (args) => (
-    <div style={{ fontFamily: FONT, padding: 24 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 24 }}>
       <Loading {...args} />
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   All Sizes — Primary
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Style=Primary — All Sizes ──────────────────────────────── */
 export const AllSizesPrimary = {
   name: 'Style=Primary — All Sizes',
   render: () => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', fontFamily: FONT, padding: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16 }}>
       {[
         { size: 'xx-small', label: 'xx Small\n20px / 2px' },
         { size: 'x-small',  label: 'x Small\n24px / 2px' },
@@ -66,20 +42,18 @@ export const AllSizesPrimary = {
       ].map(({ size, label }) => (
         <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
           <Loading size={size} style="primary" />
-          <span style={{ ...LABEL.style, marginBottom: 0, textAlign: 'center', whiteSpace: 'pre-line' }}>{label}</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: '#6C7C96', textAlign: 'center', whiteSpace: 'pre-line', display: 'block' }}>{label}</span>
         </div>
       ))}
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   All Sizes — Neutral
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Style=Neutral — All Sizes ──────────────────────────────── */
 export const AllSizesNeutral = {
   name: 'Style=Neutral — All Sizes',
   render: () => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', fontFamily: FONT, padding: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16 }}>
       {[
         { size: 'xx-small', label: 'xx Small\n20px / 2px' },
         { size: 'x-small',  label: 'x Small\n24px / 2px' },
@@ -91,21 +65,19 @@ export const AllSizesNeutral = {
       ].map(({ size, label }) => (
         <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
           <Loading size={size} style="neutral" />
-          <span style={{ ...LABEL.style, marginBottom: 0, textAlign: 'center', whiteSpace: 'pre-line' }}>{label}</span>
+          <span style={{ fontSize: 12, fontWeight: 600, color: '#6C7C96', textAlign: 'center', whiteSpace: 'pre-line', display: 'block' }}>{label}</span>
         </div>
       ))}
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   All Sizes — On-Color  (dark surface)
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Style=On-Color — All Sizes ─────────────────────────────── */
 export const AllSizesOnColor = {
   name: 'Style=On-Color — All Sizes',
   render: () => (
     <div style={{ background: '#000b36', padding: 32, borderRadius: 8 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', fontFamily: FONT }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 32, flexWrap: 'wrap', fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
         {[
           { size: 'xx-small', label: 'xx Small\n20px / 2px' },
           { size: 'x-small',  label: 'x Small\n24px / 2px' },
@@ -117,7 +89,7 @@ export const AllSizesOnColor = {
         ].map(({ size, label }) => (
           <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
             <Loading size={size} style="on-color" />
-            <span style={{ ...LABEL.style, marginBottom: 0, textAlign: 'center', whiteSpace: 'pre-line', color: '#6b7280' }}>{label}</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#6C7C96', textAlign: 'center', whiteSpace: 'pre-line', display: 'block' }}>{label}</span>
           </div>
         ))}
       </div>
@@ -125,32 +97,28 @@ export const AllSizesOnColor = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   All Styles — Medium size
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Style Comparison — Medium ──────────────────────────────── */
 export const AllStylesMedium = {
   name: 'Style Comparison — Medium',
   render: () => (
-    <div style={{ display: 'flex', gap: 48, fontFamily: FONT, flexWrap: 'wrap' }}>
+    <div style={{ display: 'flex', gap: 48, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", flexWrap: 'wrap' }}>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <div style={LABEL.style}>Primary</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Primary</p>
         <Loading size="medium" style="primary" />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <div style={LABEL.style}>Neutral</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Neutral</p>
         <Loading size="medium" style="neutral" />
       </div>
       <div style={{ background: '#000b36', padding: 20, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <div style={{ ...LABEL.style, color: '#6b7280' }}>On-Color</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>On-Color</p>
         <Loading size="medium" style="on-color" />
       </div>
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Full Matrix — All Sizes × All Styles
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Full Matrix — Size × Style ─────────────────────────────── */
 export const FullMatrix = {
   name: 'Full Matrix — Size × Style',
   render: () => {
@@ -165,14 +133,14 @@ export const FullMatrix = {
       'xx-large': 'xx Large (44px)',
     };
     return (
-      <div style={{ fontFamily: FONT }}>
+      <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
         <table style={{ borderCollapse: 'collapse', fontSize: 13 }}>
           <thead>
             <tr>
-              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400 }}>Size</th>
-              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400 }}>Primary</th>
-              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400 }}>Neutral</th>
-              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400, background: '#000b36' }}>On-Color</th>
+              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#6C7C96', fontWeight: 600, fontSize: 12 }}>Size</th>
+              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#6C7C96', fontWeight: 600, fontSize: 12 }}>Primary</th>
+              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#6C7C96', fontWeight: 600, fontSize: 12 }}>Neutral</th>
+              <th style={{ padding: '6px 16px', textAlign: 'left', color: '#6C7C96', fontWeight: 600, fontSize: 12, background: '#000b36' }}>On-Color</th>
             </tr>
           </thead>
           <tbody>

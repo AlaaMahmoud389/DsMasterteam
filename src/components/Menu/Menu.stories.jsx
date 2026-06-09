@@ -1,39 +1,17 @@
 import React, { useState } from 'react';
 import { MenuListItem, MenuSection, Menu } from './Menu';
 
-const FIGMA_URL =
-  'https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4250-1938';
-
-const FONT = "'IBM Plex Sans Arabic', system-ui, sans-serif";
-
 export default {
   title: 'Components/Menu',
-  parameters: {
-    layout: 'padded',
-    design: { type: 'figma', url: FIGMA_URL },
-  },
-  tags: [],
+  parameters: { layout: 'padded' },
 };
 
-const LABEL = {
-  style: {
-    fontSize: 11,
-    color: '#9ca3af',
-    textTransform: 'uppercase',
-    letterSpacing: '.06em',
-    marginBottom: 10,
-    fontFamily: FONT,
-  },
-};
-
-/* ════════════════════════════════════════════════════════════════════
-   Playground — MenuListItem
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Playground — MenuListItem ──────────────────────────────── */
 export const PlaygroundListItem = {
   name: 'Playground — Menu List Item',
   argTypes: {
-    trailElement: { control: 'select', options: ['none', 'text', 'icon', 'button', 'tag', 'switch'] },
-    state:        { control: 'select', options: ['default', 'hovered', 'pressed', 'focused', 'disabled', 'selected'] },
+    trailElement: { control: 'radio', options: ['none', 'text', 'icon', 'button', 'tag', 'switch'] },
+    state:        { control: 'radio', options: ['default', 'hovered', 'pressed', 'focused', 'disabled', 'selected'] },
     label:        { control: 'text' },
     rtl:          { control: 'boolean' },
     subItem:      { control: 'boolean' },
@@ -46,19 +24,17 @@ export const PlaygroundListItem = {
     subItem: false,
   },
   render: (args) => (
-    <div style={{ fontFamily: FONT, padding: 16, width: 260 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16, width: 260 }}>
       <MenuListItem {...args} />
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   All States — No trail element
-   ════════════════════════════════════════════════════════════════════ */
+/* ── All States ─────────────────────────────────────────────── */
 export const AllStates = {
   name: 'Menu List Item — All States',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, fontFamily: FONT }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       {[
         { state: 'default',  label: 'Default' },
         { state: 'hovered',  label: 'Hovered' },
@@ -68,7 +44,7 @@ export const AllStates = {
         { state: 'disabled', label: 'Disabled' },
       ].map(({ state, label }) => (
         <div key={state}>
-          <div style={LABEL.style}>{label}</div>
+          <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>{label}</p>
           <MenuListItem label="Item Label" leadIcon="list" state={state} />
         </div>
       ))}
@@ -76,53 +52,49 @@ export const AllStates = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   All Trail Elements — Default state
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Trail Elements ─────────────────────────────────────────── */
 export const AllTrailElements = {
   name: 'Menu List Item — Trail Elements',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontFamily: FONT }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       <div>
-        <div style={LABEL.style}>Trail = None</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = None</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="none" />
       </div>
       <div>
-        <div style={LABEL.style}>Trail = Text (+99)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = Text (+99)</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="text" trailText="+99" />
       </div>
       <div>
-        <div style={LABEL.style}>Trail = Icon (tick)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = Icon (tick)</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="icon" trailIcon="tick" />
       </div>
       <div>
-        <div style={LABEL.style}>Trail = Button (chevron)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = Button (chevron)</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="button" />
       </div>
       <div>
-        <div style={LABEL.style}>Trail = Tag</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = Tag</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="tag" trailTagText="Label" />
       </div>
       <div>
-        <div style={LABEL.style}>Trail = Switch (off)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = Switch (off)</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="switch" switchChecked={false} />
       </div>
       <div>
-        <div style={LABEL.style}>Trail = Switch (on)</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Trail = Switch (on)</p>
         <MenuListItem label="Item Label" leadIcon="list" trailElement="switch" switchChecked={true} />
       </div>
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Sub Item
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Sub Item ────────────────────────────────────────────────── */
 export const SubItems = {
   name: 'Menu List Item — Sub Item',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontFamily: FONT, width: 260 }}>
-      <div style={LABEL.style}>Main item followed by sub items</div>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", width: 260 }}>
+      <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Main item followed by sub items</p>
       <MenuListItem label="Main Item" leadIcon="list" />
       <MenuListItem label="Sub Item A" leadIcon="list" subItem />
       <MenuListItem label="Sub Item B" leadIcon="list" subItem />
@@ -131,55 +103,51 @@ export const SubItems = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   RTL variants
-   ════════════════════════════════════════════════════════════════════ */
+/* ── RTL variants ────────────────────────────────────────────── */
 export const RTLItems = {
   name: 'Menu List Item — RTL',
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, fontFamily: FONT }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
       <div>
-        <div style={LABEL.style}>RTL — None</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — None</p>
         <MenuListItem label="نص العنصر" leadIcon="list" rtl />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — Text trail</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Text trail</p>
         <MenuListItem label="نص العنصر" leadIcon="list" trailElement="text" trailText="+99" rtl />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — Icon trail</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Icon trail</p>
         <MenuListItem label="نص العنصر" leadIcon="list" trailElement="icon" trailIcon="tick" rtl />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — Tag trail</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Tag trail</p>
         <MenuListItem label="نص العنصر" leadIcon="list" trailElement="tag" trailTagText="وسم" rtl />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — Switch trail</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Switch trail</p>
         <MenuListItem label="نص العنصر" leadIcon="list" trailElement="switch" rtl />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — Selected</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Selected</p>
         <MenuListItem label="نص العنصر" leadIcon="list" trailElement="icon" trailIcon="tick" state="selected" rtl />
       </div>
       <div>
-        <div style={LABEL.style}>RTL — Disabled</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Disabled</p>
         <MenuListItem label="نص العنصر" leadIcon="list" state="disabled" rtl />
       </div>
     </div>
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Interactive Switch demo
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Interactive Switch demo ─────────────────────────────────── */
 export const InteractiveSwitch = {
   name: 'Menu List Item — Interactive Switch',
   render: () => {
     const [checked, setChecked] = useState(false);
     return (
-      <div style={{ fontFamily: FONT, padding: 16, width: 280 }}>
-        <div style={LABEL.style}>Click switch to toggle</div>
+      <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16, width: 280 }}>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>Click switch to toggle</p>
         <MenuListItem
           label="Dark Mode"
           leadIcon="eye"
@@ -192,13 +160,11 @@ export const InteractiveSwitch = {
   },
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Menu — Style=All  (LTR)
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Menu — Style=All (LTR) ─────────────────────────────────── */
 export const MenuStyleAll = {
   name: 'Menu — Style=All (LTR)',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 16 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16 }}>
       <Menu
         style="all"
         sections={[
@@ -235,13 +201,11 @@ export const MenuStyleAll = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Menu — Style=Text Only
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Menu — Style=Text Only ─────────────────────────────────── */
 export const MenuTextOnly = {
   name: 'Menu — Style=Text Only',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 16 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16 }}>
       <Menu
         style="text-only"
         sections={[
@@ -278,13 +242,11 @@ export const MenuTextOnly = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Menu — Style=Text + Icon
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Menu — Style=Text + Icon ───────────────────────────────── */
 export const MenuTextIcon = {
   name: 'Menu — Style=Text + Icon',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 16 }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16 }}>
       <Menu
         style="text-icon"
         sections={[
@@ -321,15 +283,13 @@ export const MenuTextIcon = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Menu — RTL
-   ════════════════════════════════════════════════════════════════════ */
+/* ── Menu — RTL ─────────────────────────────────────────────── */
 export const MenuRTL = {
   name: 'Menu — RTL',
   render: () => (
-    <div style={{ fontFamily: FONT, padding: 16, display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+    <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", padding: 16, display: 'flex', gap: 32, flexWrap: 'wrap' }}>
       <div>
-        <div style={LABEL.style}>RTL — Style=All</div>
+        <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>RTL — Style=All</p>
         <Menu
           style="all"
           rtl
@@ -367,9 +327,7 @@ export const MenuRTL = {
   ),
 };
 
-/* ════════════════════════════════════════════════════════════════════
-   Side-by-side — All Menu Styles
-   ════════════════════════════════════════════════════════════════════ */
+/* ── All Menu Styles Side by Side ───────────────────────────── */
 export const AllMenuStyles = {
   name: 'Menu — All Styles Side by Side',
   render: () => {
@@ -379,14 +337,14 @@ export const AllMenuStyles = {
       { label: 'Item Label', trailElement: 'none' },
     ];
     return (
-      <div style={{ display: 'flex', gap: 32, fontFamily: FONT, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 32, fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif", flexWrap: 'wrap' }}>
         {[
           { style: 'all', label: 'Style = All' },
           { style: 'text-only', label: 'Style = Text Only' },
           { style: 'text-icon', label: 'Style = Text + Icon' },
         ].map(({ style, label }) => (
           <div key={style}>
-            <div style={LABEL.style}>{label}</div>
+            <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 600, color: '#6C7C96' }}>{label}</p>
             <Menu
               style={style}
               sections={[{ groupLabel: 'GROUP LABEL', items: baseItems }]}

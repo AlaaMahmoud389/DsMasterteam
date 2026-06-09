@@ -1,6 +1,5 @@
 {/* Loading.mdx — Masterteam Design System */}
-import { Meta } from '@storybook/addon-docs/blocks';
-import { Loading } from './Loading';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import * as LoadingStories from './Loading.stories';
 
 <Meta of={LoadingStories} />
@@ -8,311 +7,165 @@ import * as LoadingStories from './Loading.stories';
 <div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
 
 {/* ── Header ───────────────────────────────────────────────── */}
-<div style={{ marginBottom: 40, paddingBottom: 28, borderBottom: '1px solid #e5e7eb' }}>
-  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 10 }}>Components / Loading</div>
-  <h1 style={{ fontSize: 34, fontWeight: 600, marginBottom: 10, color: '#111827' }}>Loading</h1>
-  <div style={{ fontSize: 15, color: '#6b7280', maxWidth: 680, lineHeight: 1.7 }}>
+<div style={{ marginBottom: 40 }}>
+  <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 12, color: '#000b36' }}>Loading</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
     A circular spinner built from two concentric arcs — a static <strong>Track</strong> (background ring)
     and a rotating <strong>Tail</strong> (90° indicator arc). Available in 7 sizes across 3 colour styles.
     The Figma Indicator property (1–4) represents 4 rotation frames, reproduced here as a continuous CSS animation.
-  </div>
-  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 16 }}>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>
+  </p>
+  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 16 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#ecfdf5', color: '#065f46', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>
       <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#059669', display: 'inline-block' }} />
       Available
     </span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>7 sizes</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>3 styles</span>
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#f3f4f6', padding: '3px 10px', borderRadius: 100, fontSize: 12, color: '#6b7280' }}>Animated</span>
-    <a href="https://www.figma.com/design/WTmRAkJVvw0IvZMA7wBdTC/Masterteam-Ds-For-Experiment-ONLY?node-id=4389-1155" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: '#eff3fb', color: '#1849a9', padding: '3px 12px', borderRadius: 100, fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>Figma ↗</a>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>7 Sizes</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>3 Styles</span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', background: '#eff3fb', color: '#1849a9', padding: '3px 10px', borderRadius: 100, fontSize: 12, fontWeight: 500 }}>Animated</span>
   </div>
 </div>
 
----
+{/* ── Table of Contents ────────────────────────────────────── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 40, display: 'inline-block', minWidth: 220 }}>
+  <p style={{ margin: '0 0 8px', fontSize: 12, fontWeight: 700, color: '#000b36', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Contents</p>
+  <ol style={{ margin: 0, padding: '0 0 0 16px', fontSize: 13, color: '#1849a9', lineHeight: 2 }}>
+    <li><a href="#overview" style={{ color: '#1849a9', textDecoration: 'none' }}>Overview</a></li>
+    <li><a href="#styles" style={{ color: '#1849a9', textDecoration: 'none' }}>Styles</a></li>
+    <li><a href="#sizes-primary" style={{ color: '#1849a9', textDecoration: 'none' }}>Sizes — Primary</a></li>
+    <li><a href="#sizes-neutral" style={{ color: '#1849a9', textDecoration: 'none' }}>Sizes — Neutral</a></li>
+    <li><a href="#sizes-on-color" style={{ color: '#1849a9', textDecoration: 'none' }}>Sizes — On-Color</a></li>
+    <li><a href="#matrix" style={{ color: '#1849a9', textDecoration: 'none' }}>Full Matrix</a></li>
+    <li><a href="#props" style={{ color: '#1849a9', textDecoration: 'none' }}>Props</a></li>
+    <li><a href="#tokens" style={{ color: '#1849a9', textDecoration: 'none' }}>Design Tokens</a></li>
+    <li><a href="#accessibility" style={{ color: '#1849a9', textDecoration: 'none' }}>Accessibility</a></li>
+  </ol>
+</div>
 
-{/* ── All Styles — Medium ───────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Styles</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 28, lineHeight: 1.6 }}>
+{/* ── Overview ─────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="overview">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 16 }}>Overview</h2>
+  <Canvas of={LoadingStories.Playground} />
+  <Controls of={LoadingStories.Playground} />
+</div>
+
+{/* ── Styles ───────────────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="styles">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Styles</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
     Three colour variants — <strong>Primary</strong> (blue tail), <strong>Neutral</strong> (dark tail),
     and <strong>On-Color</strong> (white tail + track) for use on dark surfaces.
   </p>
-
-  <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', alignItems: 'flex-start' }}>
-
-    {/* Primary */}
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-      <div style={{ fontSize: 12, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em' }}>Primary</div>
-      <Loading size="medium" style="primary" />
-      <div style={{ fontSize: 12, color: '#9ca3af', textAlign: 'center', lineHeight: 1.5 }}>
-        Track: #F3F4F6<br />Tail: #1849A9
-      </div>
-    </div>
-
-    {/* Neutral */}
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-      <div style={{ fontSize: 12, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em' }}>Neutral</div>
-      <Loading size="medium" style="neutral" />
-      <div style={{ fontSize: 12, color: '#9ca3af', textAlign: 'center', lineHeight: 1.5 }}>
-        Track: #F3F4F6<br />Tail: #1F2A37
-      </div>
-    </div>
-
-    {/* On-Color */}
-    <div style={{ background: '#000b36', padding: 20, borderRadius: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-      <div style={{ fontSize: 12, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>On-Color</div>
-      <Loading size="medium" style="on-color" />
-      <div style={{ fontSize: 12, color: '#6b7280', textAlign: 'center', lineHeight: 1.5 }}>
-        Track: rgba(255,255,255,0.30)<br />Tail: #FFFFFF
-      </div>
-    </div>
-
-  </div>
+  <Canvas of={LoadingStories.AllStylesMedium} />
 </div>
 
----
-
-{/* ── All Sizes — Primary ───────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 8 }}>Sizes — Primary</h2>
-  <p style={{ fontSize: 14, color: '#6b7280', marginBottom: 28, lineHeight: 1.6 }}>
+{/* ── Sizes — Primary ──────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="sizes-primary">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Sizes — Primary</h2>
+  <p style={{ margin: '0 0 20px', fontSize: 15, color: '#374151', lineHeight: 1.6 }}>
     Seven sizes from xx Small (20 px) to xx Large (44 px). Border width (ring thickness) scales with size.
   </p>
-
-  <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, flexWrap: 'wrap' }}>
-    {[
-      { size: 'xx-small', px: '20px', stroke: '2px' },
-      { size: 'x-small',  px: '24px', stroke: '2px' },
-      { size: 'small',    px: '28px', stroke: '2px' },
-      { size: 'medium',   px: '32px', stroke: '3px' },
-      { size: 'large',    px: '36px', stroke: '3px' },
-      { size: 'x-large',  px: '40px', stroke: '3px' },
-      { size: 'xx-large', px: '44px', stroke: '4px' },
-    ].map(({ size, px, stroke }) => (
-      <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <Loading size={size} style="primary" />
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em' }}>{size.replace('-', ' ')}</div>
-          <div style={{ fontSize: 11, color: '#d1d5db' }}>{px} / {stroke}</div>
-        </div>
-      </div>
-    ))}
-  </div>
+  <Canvas of={LoadingStories.AllSizesPrimary} />
 </div>
 
----
-
-{/* ── All Sizes — Neutral ───────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 28 }}>Sizes — Neutral</h2>
-
-  <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, flexWrap: 'wrap' }}>
-    {[
-      { size: 'xx-small', px: '20px', stroke: '2px' },
-      { size: 'x-small',  px: '24px', stroke: '2px' },
-      { size: 'small',    px: '28px', stroke: '2px' },
-      { size: 'medium',   px: '32px', stroke: '3px' },
-      { size: 'large',    px: '36px', stroke: '3px' },
-      { size: 'x-large',  px: '40px', stroke: '3px' },
-      { size: 'xx-large', px: '44px', stroke: '4px' },
-    ].map(({ size, px, stroke }) => (
-      <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-        <Loading size={size} style="neutral" />
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: 11, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.06em' }}>{size.replace('-', ' ')}</div>
-          <div style={{ fontSize: 11, color: '#d1d5db' }}>{px} / {stroke}</div>
-        </div>
-      </div>
-    ))}
-  </div>
+{/* ── Sizes — Neutral ──────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="sizes-neutral">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Sizes — Neutral</h2>
+  <Canvas of={LoadingStories.AllSizesNeutral} />
 </div>
 
----
-
-{/* ── All Sizes — On-Color ─────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 28 }}>Sizes — On-Color</h2>
-
-  <div style={{ background: '#000b36', padding: 32, borderRadius: 8 }}>
-    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32, flexWrap: 'wrap' }}>
-      {[
-        { size: 'xx-small', px: '20px', stroke: '2px' },
-        { size: 'x-small',  px: '24px', stroke: '2px' },
-        { size: 'small',    px: '28px', stroke: '2px' },
-        { size: 'medium',   px: '32px', stroke: '3px' },
-        { size: 'large',    px: '36px', stroke: '3px' },
-        { size: 'x-large',  px: '40px', stroke: '3px' },
-        { size: 'xx-large', px: '44px', stroke: '4px' },
-      ].map(({ size, px, stroke }) => (
-        <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}>
-          <Loading size={size} style="on-color" />
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 11, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '.06em' }}>{size.replace('-', ' ')}</div>
-            <div style={{ fontSize: 11, color: '#4b5563' }}>{px} / {stroke}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
+{/* ── Sizes — On-Color ─────────────────────────────────────── */}
+<div style={{ marginBottom: 48 }} id="sizes-on-color">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Sizes — On-Color</h2>
+  <Canvas of={LoadingStories.AllSizesOnColor} />
 </div>
-
----
 
 {/* ── Full Matrix ───────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Full Matrix — Size × Style</h2>
-
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%' }}>
-    <thead>
-      <tr>
-        <th style={{ padding: '8px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400, borderBottom: '1px solid #f3f4f6' }}>Size</th>
-        <th style={{ padding: '8px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400, borderBottom: '1px solid #f3f4f6' }}>Diameter / Stroke</th>
-        <th style={{ padding: '8px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400, borderBottom: '1px solid #f3f4f6' }}>Primary</th>
-        <th style={{ padding: '8px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400, borderBottom: '1px solid #f3f4f6' }}>Neutral</th>
-        <th style={{ padding: '8px 16px', textAlign: 'left', color: '#9ca3af', fontWeight: 400, borderBottom: '1px solid #f3f4f6', background: '#000b36' }}>On-Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        { size: 'xx-small', label: 'xx Small', px: '20px', stroke: '2px' },
-        { size: 'x-small',  label: 'x Small',  px: '24px', stroke: '2px' },
-        { size: 'small',    label: 'Small',     px: '28px', stroke: '2px' },
-        { size: 'medium',   label: 'Medium',    px: '32px', stroke: '3px' },
-        { size: 'large',    label: 'Large',     px: '36px', stroke: '3px' },
-        { size: 'x-large',  label: 'x Large',   px: '40px', stroke: '3px' },
-        { size: 'xx-large', label: 'xx Large',  px: '44px', stroke: '4px' },
-      ].map(({ size, label, px, stroke }) => (
-        <tr key={size} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '16px', color: '#374151', fontWeight: 500 }}>{label}</td>
-          <td style={{ padding: '16px', color: '#9ca3af', fontSize: 12, fontFamily: 'monospace' }}>{px} / {stroke}</td>
-          <td style={{ padding: '16px' }}><Loading size={size} style="primary" /></td>
-          <td style={{ padding: '16px' }}><Loading size={size} style="neutral" /></td>
-          <td style={{ padding: '16px', background: '#000b36' }}><Loading size={size} style="on-color" /></td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+<div style={{ marginBottom: 48 }} id="matrix">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Full Matrix — Size × Style</h2>
+  <Canvas of={LoadingStories.FullMatrix} />
 </div>
-
----
 
 {/* ── Props ─────────────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Props</h2>
+<div style={{ marginBottom: 48 }} id="props">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Props</h2>
 
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%' }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Prop</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Type</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Default</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['size',  "'xx-small' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | 'xx-large'", "'medium'",  'Controls the spinner diameter and border (ring) width.'],
-        ['style', "'primary' | 'neutral' | 'on-color'",                                               "'primary'", 'Colour variant. Use on-color on dark backgrounds.'],
-        ['label', 'string',                                                                            "'Loading'", 'Accessible aria-label read by screen readers.'],
-      ].map(([prop, type, def, desc]) => (
-        <tr key={prop} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#1849a9' }}>{prop}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#6b7280', fontSize: 12 }}>{type}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#374151' }}>{def}</td>
-          <td style={{ padding: '10px 12px', color: '#374151' }}>{desc}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Prop</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Type</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Default</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Description</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>size</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'xx-small' | 'x-small' | 'small' | 'medium' | 'large' | 'x-large' | 'xx-large'</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'medium'</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Controls the spinner diameter and border (ring) width.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>style</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'primary' | 'neutral' | 'on-color'</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'primary'</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Colour variant. Use on-color on dark backgrounds.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#1849a9', fontSize: 12 }}>label</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>string</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb' }}><code style={{ color: '#374151', fontSize: 12 }}>'Loading'</code></div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Accessible aria-label read by screen readers.</div>
+  </div>
 </div>
-
----
 
 {/* ── Design Tokens ─────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Design Tokens</h2>
+<div style={{ marginBottom: 48 }} id="tokens">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Design Tokens</h2>
 
-  <table style={{ borderCollapse: 'collapse', fontSize: 13, width: '100%' }}>
-    <thead>
-      <tr style={{ background: '#f9fafb' }}>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Token</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Value</th>
-        <th style={{ padding: '8px 12px', textAlign: 'left', color: '#374151', borderBottom: '1px solid #e5e7eb' }}>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      {[
-        ['Track — Primary / Neutral', '#F3F4F6', 'Background ring for Primary and Neutral styles'],
-        ['Track — On-Color', 'rgba(255,255,255,0.30)', 'Background ring at 30% opacity on dark surfaces'],
-        ['Tail — Primary', '#1849A9', 'Rotating indicator arc in Primary style'],
-        ['Tail — Neutral', '#1F2A37', 'Rotating indicator arc in Neutral style'],
-        ['Tail — On-Color', '#FFFFFF', 'Rotating indicator arc in On-Color style'],
-        ['Animation duration', '0.75 s', 'One full rotation period'],
-        ['Animation timing', 'linear', 'Constant rotation speed'],
-        ['xx Small diameter', '20 px', 'Border width: 2 px'],
-        ['x Small diameter', '24 px', 'Border width: 2 px'],
-        ['Small diameter', '28 px', 'Border width: 2 px'],
-        ['Medium diameter', '32 px', 'Border width: 3 px'],
-        ['Large diameter', '36 px', 'Border width: 3 px'],
-        ['x Large diameter', '40 px', 'Border width: 3 px'],
-        ['xx Large diameter', '44 px', 'Border width: 4 px'],
-      ].map(([token, value, usage]) => (
-        <tr key={token} style={{ borderTop: '1px solid #f3f4f6' }}>
-          <td style={{ padding: '10px 12px', color: '#374151', fontWeight: 500 }}>{token}</td>
-          <td style={{ padding: '10px 12px', fontFamily: 'monospace', color: '#1849a9' }}>{value}</td>
-          <td style={{ padding: '10px 12px', color: '#6b7280' }}>{usage}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Token</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Value</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Usage</div>
+
+    {[
+      { token: 'Track — Primary / Neutral', value: '#F3F4F6',              swatch: '#F3F4F6',              usage: 'Background ring for Primary and Neutral styles' },
+      { token: 'Track — On-Color',          value: 'rgba(255,255,255,0.30)', swatch: null,                  usage: 'Background ring at 30% opacity on dark surfaces' },
+      { token: 'Tail — Primary',            value: '#1849A9',              swatch: '#1849A9',              usage: 'Rotating indicator arc in Primary style' },
+      { token: 'Tail — Neutral',            value: '#1F2A37',              swatch: '#1F2A37',              usage: 'Rotating indicator arc in Neutral style' },
+      { token: 'Tail — On-Color',           value: '#FFFFFF',              swatch: '#FFFFFF',              usage: 'Rotating indicator arc in On-Color style' },
+      { token: 'Animation duration',        value: '0.75 s',               swatch: null,                  usage: 'One full rotation period' },
+      { token: 'Animation timing',          value: 'linear',               swatch: null,                  usage: 'Constant rotation speed' },
+      { token: 'xx Small diameter',         value: '20 px',                swatch: null,                  usage: 'Border width: 2 px' },
+      { token: 'x Small diameter',          value: '24 px',                swatch: null,                  usage: 'Border width: 2 px' },
+      { token: 'Small diameter',            value: '28 px',                swatch: null,                  usage: 'Border width: 2 px' },
+      { token: 'Medium diameter',           value: '32 px',                swatch: null,                  usage: 'Border width: 3 px' },
+      { token: 'Large diameter',            value: '36 px',                swatch: null,                  usage: 'Border width: 3 px' },
+      { token: 'x Large diameter',          value: '40 px',                swatch: null,                  usage: 'Border width: 3 px' },
+      { token: 'xx Large diameter',         value: '44 px',                swatch: null,                  usage: 'Border width: 4 px' },
+    ].map(({ token, value, swatch, usage }) => (
+      <>
+        <div key={`${token}-t`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>{token}</div>
+        <div key={`${token}-v`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', display: 'flex', alignItems: 'center', gap: 8 }}>
+          {swatch && <span style={{ width: 14, height: 14, borderRadius: 3, background: swatch, border: '1px solid #e5e7eb', display: 'inline-block', flexShrink: 0 }} />}
+          <code style={{ color: '#374151', fontSize: 12 }}>{value}</code>
+        </div>
+        <div key={`${token}-u`} style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#6b7280' }}>{usage}</div>
+      </>
+    ))}
+  </div>
 </div>
-
----
-
-{/* ── Usage Examples ────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 24 }}>Usage Examples</h2>
-
-  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 6, padding: 20, fontSize: 13, lineHeight: 1.7, overflow: 'auto' }}>{`import { Loading } from './Loading';
-
-// Default (medium, primary)
-<Loading />
-
-// Specific size
-<Loading size="xx-small" />
-<Loading size="x-small" />
-<Loading size="small" />
-<Loading size="large" />
-<Loading size="x-large" />
-<Loading size="xx-large" />
-
-// Neutral style
-<Loading size="medium" style="neutral" />
-
-// On dark background
-<div style={{ background: '#000B36' }}>
-  <Loading size="medium" style="on-color" />
-</div>
-
-// Custom accessible label
-<Loading size="medium" style="primary" label="Saving changes…" />`}</pre>
-</div>
-
----
 
 {/* ── Accessibility ─────────────────────────────────────────── */}
-<div style={{ marginBottom: 48 }}>
-  <h2 style={{ fontSize: 22, fontWeight: 600, color: '#111827', marginBottom: 16 }}>Accessibility</h2>
-  <ul style={{ fontSize: 14, color: '#374151', lineHeight: 1.8, paddingLeft: 20 }}>
-    <li>The spinner element has <code>role="status"</code> and <code>aria-live="polite"</code>, so screen readers announce it without interrupting the user.</li>
-    <li>The <code>label</code> prop sets <code>aria-label</code> on the element — use a descriptive string like <code>"Saving changes…"</code> when possible.</li>
-    <li>Respects <code>prefers-reduced-motion</code> — consider pausing the animation for users who prefer reduced motion by adding a media query in your global CSS.</li>
-  </ul>
+<div style={{ marginBottom: 48 }} id="accessibility">
+  <h2 style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 20 }}>Accessibility</h2>
 
-  <pre style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 6, padding: 20, fontSize: 13, lineHeight: 1.7, overflow: 'auto', marginTop: 16 }}>{`/* Add to your global CSS for reduced-motion support */
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; }
-}`}</pre>
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', borderRadius: 8, overflow: 'hidden', border: '1px solid #e5e7eb', fontSize: 13 }}>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Concern</div>
+    <div style={{ background: '#f9fafb', padding: '8px 12px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Implementation</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Screen reader announcement</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The spinner element has <code style={{ color: '#1849a9', fontSize: 12 }}>role="status"</code> and <code style={{ color: '#1849a9', fontSize: 12 }}>aria-live="polite"</code>, so screen readers announce it without interrupting the user.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Accessible label</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>The <code style={{ color: '#1849a9', fontSize: 12 }}>label</code> prop sets <code style={{ color: '#1849a9', fontSize: 12 }}>aria-label</code> on the element. Use a descriptive string like <code style={{ color: '#1849a9', fontSize: 12 }}>"Saving changes…"</code> when possible.</div>
+
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151', fontWeight: 500 }}>Reduced motion</div>
+    <div style={{ padding: '10px 12px', borderTop: '1px solid #e5e7eb', color: '#374151' }}>Respects <code style={{ color: '#1849a9', fontSize: 12 }}>prefers-reduced-motion</code>. Add <code style={{ color: '#1849a9', fontSize: 12 }}>@media (prefers-reduced-motion: reduce) {'{ * { animation-duration: 0.01ms !important; } }'}</code> to global CSS to pause the animation for users who prefer reduced motion.</div>
+  </div>
 </div>
 
 </div>
