@@ -1,549 +1,441 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import { useState } from 'react';
-import { DropdownInput } from './DropdownInput';
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DropdownInputStories from './DropdownInput.stories';
 
-<Meta title="Components/DropdownInput" />
+<Meta of={DropdownInputStories} />
 
-# DropdownInput
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
 
-A select-style field sharing TextInput's visual design. Clicking the field opens a dropdown list; the chevron rotates 180° when open. Supports four list-item layouts, group labels, single and multi selection, all six field states, three field variants, two sizes, and RTL.
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8 }}>Components / DropdownInput</div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>DropdownInput</h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 700 }}>
+    A select-style field sharing TextInput's visual design. Clicking the field opens a dropdown list;
+    the chevron rotates 180° when open. Supports four list-item layouts, group labels, single and multi
+    selection, all six field states, three field variants, two sizes, and RTL.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>4 List Types</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>6 Field States</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>3 Variants</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>2 Sizes</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Multi-Select</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>RTL Support</span>
+  </div>
+</div>
 
----
-
-## Interactive Demo
-
-export const InteractiveDemo = () => {
-  const [val, setVal] = useState(null);
-  const items = [
-    { type: 'group', label: 'Fruits' },
-    { type: 'item', value: 'apple',   label: 'Apple' },
-    { type: 'item', value: 'banana',  label: 'Banana' },
-    { type: 'item', value: 'cherry',  label: 'Cherry', disabled: true },
-    { type: 'group', label: 'Vegetables' },
-    { type: 'item', value: 'carrot',  label: 'Carrot' },
-    { type: 'item', value: 'spinach', label: 'Spinach' },
-  ];
-  return (
-    <div style={{ width: 300, paddingBottom: 260 }}>
-      <DropdownInput
-        label="Category"
-        placeholder="Select a category"
-        items={items}
-        listType="text"
-        selectedValue={val}
-        onSelectionChange={setVal}
-      />
-    </div>
-  );
-};
-
-<InteractiveDemo />
-
----
-
-## Sizes
-
-export const InteractiveSizes = () => {
-  const items = [
-    { type: 'item', value: 'a', label: 'Option A' },
-    { type: 'item', value: 'b', label: 'Option B' },
-    { type: 'item', value: 'c', label: 'Option C' },
-  ];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300, paddingBottom: 160 }}>
-      <DropdownInput label="Medium (32px)" size="medium" items={items} listType="text" placeholder="Select..." />
-      <DropdownInput label="Large (40px)"  size="large"  items={items} listType="text" placeholder="Select..." />
-    </div>
-  );
-};
-
-<InteractiveSizes />
+{/* ── On this page ── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',       'Overview'],
+      ['#sizes',          'Sizes'],
+      ['#field-states',   'Field States'],
+      ['#error-state',    'Error State'],
+      ['#variants',       'Variants'],
+      ['#label-variants', 'Label Variants'],
+      ['#helper-text',    'With Helper Text'],
+      ['#rtl',            'RTL Support'],
+      ['#list-items',     'Dropdown List Items'],
+      ['#properties',     'Properties'],
+      ['#tokens',         'Design Tokens'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
+  </div>
+</div>
 
 ---
 
-## Field States
+{/* ── Overview ── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Toggle <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code>,{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>state</code>,{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>variant</code>, and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>listType</code> in the controls panel to explore all configurations.
+  Enable <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>error</code> to see the error state,
+  or <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>rtl</code> for right-to-left layout.
+</p>
 
-export const InteractiveStates = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-      {['default','hovered','pressed','focused','read-only','disabled'].map((s) => (
-        <DropdownInput key={s} label={s.charAt(0).toUpperCase() + s.slice(1)} state={s} items={items} listType="text" placeholder="Select..." />
-      ))}
-    </div>
-  );
-};
-
-<InteractiveStates />
-
----
-
-## Error State
-
-When `error={true}` the field border turns `#A30000`. The bottom indicator bar also uses `#A30000` in pressed and focused sub-states.
-
-export const InteractiveError = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-      {['default','hovered','pressed','focused'].map((s) => (
-        <DropdownInput key={s} label={`Error — ${s}`} state={s} error items={items} listType="text"
-          showHelperText helperText="Please select a valid option" placeholder="Select..." />
-      ))}
-    </div>
-  );
-};
-
-<InteractiveError />
+<Canvas of={DropdownInputStories.Playground} />
+<Controls of={DropdownInputStories.Playground} />
 
 ---
 
-## Variants
-
-### Default
-
-export const InteractiveDefault = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 300 }}>
-      {['default','hovered','pressed','focused','read-only','disabled'].map((s) => (
-        <DropdownInput key={s} label={s} state={s} variant="default" items={items} listType="text" placeholder="Select..." />
-      ))}
-    </div>
-  );
-};
-
-<InteractiveDefault />
-
-### Filled Darker
-
-export const InteractiveFilledDarker = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 300 }}>
-      {['default','hovered','pressed','focused','read-only','disabled'].map((s) => (
-        <DropdownInput key={s} label={s} state={s} variant="filled-darker" items={items} listType="text" placeholder="Select..." />
-      ))}
-    </div>
-  );
-};
-
-<InteractiveFilledDarker />
-
-### Filled Lighter
-
-export const InteractiveFilledLighter = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: 300 }}>
-      {['default','hovered','pressed','focused','read-only','disabled'].map((s) => (
-        <DropdownInput key={s} label={s} state={s} variant="filled-lighter" items={items} listType="text" placeholder="Select..." />
-      ))}
-    </div>
-  );
-};
-
-<InteractiveFilledLighter />
-
----
-
-## Label Variants
-
-export const InteractiveLabelVariants = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: 300 }}>
-      <DropdownInput label="Regular label"           labelType="regular"  items={items} listType="text" placeholder="Select..." />
-      <DropdownInput label="Semibold label"          labelType="semibold" items={items} listType="text" placeholder="Select..." />
-      <DropdownInput label="Required field" required labelType="regular"  items={items} listType="text" placeholder="Select..." />
-      <DropdownInput label="No label shown" showLabel={false}            items={items} listType="text" placeholder="Select..." />
-    </div>
-  );
-};
-
-<InteractiveLabelVariants />
-
----
-
-## With Helper Text
-
-export const InteractiveHelper = () => {
-  const items = [{ type: 'item', value: 'a', label: 'Option A' }];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 300 }}>
-      <DropdownInput label="Normal helper" items={items} listType="text"
-        showHelperText helperText="Choose the best option for you" placeholder="Select..." />
-      <DropdownInput label="Error helper" items={items} listType="text"
-        error showHelperText helperText="Please select a valid option" placeholder="Select..." />
-    </div>
-  );
-};
-
-<InteractiveHelper />
-
----
-
-## RTL
-
-export const InteractiveRTL = () => {
-  const [single, setSingle] = useState(null);
-  const [multi, setMulti] = useState([]);
-  const items = [
-    { type: 'group', label: 'الفواكه' },
-    { type: 'item', value: 'apple',  label: 'تفاحة' },
-    { type: 'item', value: 'banana', label: 'موزة' },
-    { type: 'item', value: 'cherry', label: 'كرز', disabled: true },
-  ];
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 300, paddingBottom: 200 }}>
-      <DropdownInput label="اختر فاكهة" items={items} listType="text"
-        selectedValue={single} onSelectionChange={setSingle} placeholder="اختيار..." rtl />
-      <DropdownInput label="اختر عدة عناصر" items={items} listType="text-multi"
-        selectedValues={multi} onSelectionChange={setMulti} placeholder="اختيار متعدد..." rtl />
-      <DropdownInput label="خطأ" items={items} listType="text"
-        error showHelperText helperText="يرجى اختيار قيمة" placeholder="اختيار..." rtl />
-    </div>
-  );
-};
-
-<InteractiveRTL />
-
----
-
-## Dropdown List Items
-
-The dropdown list opens below the field when clicked. It supports four distinct item layouts controlled by the `listType` prop. All types share the same container and state styling.
-
----
-
-### 1 — Text Only · Single Select (`listType="text"`)
-
-Each item shows a text label. When an item is selected a blue tick (`#1849A9`) appears on the trailing edge; an invisible spacer preserves alignment for unselected rows. Supports group labels.
-
-export const DemoTextSingle = () => {
-  const [val, setVal] = useState('banana');
-  const items = [
-    { type: 'group', label: 'Fruits' },
-    { type: 'item', value: 'apple',   label: 'Apple' },
-    { type: 'item', value: 'banana',  label: 'Banana' },
-    { type: 'item', value: 'cherry',  label: 'Cherry', disabled: true },
-    { type: 'group', label: 'Vegetables' },
-    { type: 'item', value: 'carrot',  label: 'Carrot' },
-    { type: 'item', value: 'spinach', label: 'Spinach' },
-  ];
-  return (
-    <div style={{ width: 280, paddingBottom: 240 }}>
-      <DropdownInput label="Select a fruit" items={items} listType="text"
-        selectedValue={val} onSelectionChange={setVal}
-        placeholder="Choose one" defaultOpen={true} />
-    </div>
-  );
-};
-
-<DemoTextSingle />
-
-**Anatomy of a text-only single-select list:**
-- Group label row: semibold 14px, padding 8px top / left / right, no bottom padding, no hover state
-- Item row: regular 14px, 8px padding all sides, `#000B36` text
-- Selected item: same as above + blue tick icon (16×16) on trailing edge
-- Disabled item: background `#D2D6DB`, text `#6C7C96`, not interactive
-
----
-
-### 2 — Text Only · Multi Select (`listType="text-multi"`)
-
-Each item shows a small checkbox (20×20, `size="sm"`) on the leading edge and text on the trailing side with an 8px gap. The dropdown stays open after each selection. The field shows `"N selected"` when two or more items are chosen.
-
-export const DemoTextMulti = () => {
-  const [vals, setVals] = useState(['apple', 'spinach']);
-  const items = [
-    { type: 'group', label: 'Fruits' },
-    { type: 'item', value: 'apple',   label: 'Apple' },
-    { type: 'item', value: 'banana',  label: 'Banana' },
-    { type: 'item', value: 'cherry',  label: 'Cherry', disabled: true },
-    { type: 'group', label: 'Vegetables' },
-    { type: 'item', value: 'carrot',  label: 'Carrot' },
-    { type: 'item', value: 'spinach', label: 'Spinach' },
-  ];
-  return (
-    <div style={{ width: 280, paddingBottom: 240 }}>
-      <DropdownInput label="Select items" items={items} listType="text-multi"
-        selectedValues={vals} onSelectionChange={setVals}
-        placeholder="Choose multiple" defaultOpen={true} />
-    </div>
-  );
-};
-
-<DemoTextMulti />
-
-**Anatomy of a text-only multi-select list:**
-- Layout (LTR): `[Checkbox 20×20]` — 8px gap — `[Label text flex-1]`
-- Layout (RTL): label on right, checkbox on left (flex direction inverts with `dir="rtl"`)
-- Clicking anywhere on the row toggles the checkbox
-- No tick icon — selection state is shown entirely by the checkbox
-
----
-
-### 3 — Icon Only · Single Select (`listType="icon"`)
-
-Each item shows only an icon. No text label is rendered inside the row (the `label` field is used for the field display value and screen-reader `aria-label`). A blue tick appears on the trailing edge of the selected item.
-
-export const DemoIconSingle = () => {
-  const [val, setVal] = useState('user');
-  function UserIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="7" r="3.5" stroke="#000B36" strokeWidth="1.5"/>
-        <path d="M3 17c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    );
-  }
-  function FlagIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M4 3v14M4 3h10l-2 4 2 4H4" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-  }
-  function StarIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2l2.4 5 5.6.8-4 3.9.9 5.3L10 14.5l-4.9 2.5.9-5.3L2 7.8l5.6-.8L10 2z" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-  }
-  function BellIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2a6 6 0 00-6 6v3l-1.5 2h15L16 11V8a6 6 0 00-6-6z" stroke="#000B36" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M8.5 16.5a1.5 1.5 0 003 0" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    );
-  }
-  const items = [
-    { type: 'item', value: 'user', label: 'User',         icon: <UserIcon /> },
-    { type: 'item', value: 'flag', label: 'Flag',         icon: <FlagIcon /> },
-    { type: 'item', value: 'star', label: 'Star',         icon: <StarIcon />, disabled: true },
-    { type: 'item', value: 'bell', label: 'Notification', icon: <BellIcon /> },
-  ];
-  return (
-    <div style={{ width: 200, paddingBottom: 200 }}>
-      <DropdownInput label="Select icon" items={items} listType="icon"
-        selectedValue={val} onSelectionChange={setVal}
-        placeholder="Choose icon" defaultOpen={true} />
-    </div>
-  );
-};
-
-<DemoIconSingle />
-
-**Anatomy of an icon-only single-select list:**
-- Layout (LTR): `[Icon 20×20]` — auto spacer — `[Tick 16×16]`
-- No visible text inside the list rows (text lives in `label` for accessibility only)
-- The field displays the `label` string of the selected item as its text value
-
----
-
-### 4 — Icon + Text · Multi Select (`listType="icon-text-multi"`)
-
-Each item shows a checkbox on the leading edge, an icon in the centre, and text on the trailing side. All three elements have an 8px gap between them. The dropdown stays open after each toggle.
-
-export const DemoIconTextMulti = () => {
-  const [vals, setVals] = useState(['user', 'bell']);
-  function UserIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="7" r="3.5" stroke="#000B36" strokeWidth="1.5"/>
-        <path d="M3 17c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    );
-  }
-  function FlagIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M4 3v14M4 3h10l-2 4 2 4H4" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-  }
-  function StarIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2l2.4 5 5.6.8-4 3.9.9 5.3L10 14.5l-4.9 2.5.9-5.3L2 7.8l5.6-.8L10 2z" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-  }
-  function BellIcon() {
-    return (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2a6 6 0 00-6 6v3l-1.5 2h15L16 11V8a6 6 0 00-6-6z" stroke="#000B36" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M8.5 16.5a1.5 1.5 0 003 0" stroke="#000B36" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    );
-  }
-  const items = [
-    { type: 'group', label: 'People' },
-    { type: 'item', value: 'user', label: 'User Profile',   icon: <UserIcon /> },
-    { type: 'item', value: 'flag', label: 'Country Flag',   icon: <FlagIcon />, disabled: true },
-    { type: 'group', label: 'Actions' },
-    { type: 'item', value: 'star', label: 'Add to Starred', icon: <StarIcon /> },
-    { type: 'item', value: 'bell', label: 'Notifications',  icon: <BellIcon /> },
-  ];
-  return (
-    <div style={{ width: 300, paddingBottom: 260 }}>
-      <DropdownInput label="Select items" items={items} listType="icon-text-multi"
-        selectedValues={vals} onSelectionChange={setVals}
-        placeholder="Choose multiple" defaultOpen={true} />
-    </div>
-  );
-};
-
-<DemoIconTextMulti />
-
-**Anatomy of an icon + text multi-select list:**
-- Layout (LTR): `[Checkbox 20×20]` — 8px — `[Icon 20×20]` — 8px — `[Label text flex-1]`
-- Layout (RTL): label on right, icon centre, checkbox on left (flips with `dir="rtl"`)
-- Group labels work identically to other list types
-
----
-
-### Item States
-
-All item types share the same five interaction states:
-
-export const ItemStatesDemo = () => {
-  const items = [
-    { type: 'item', value: 'default',  label: 'Default — no background' },
-    { type: 'item', value: 'selected', label: 'Selected — tick on trailing edge' },
-    { type: 'item', value: 'disabled', label: 'Disabled — not interactive', disabled: true },
-  ];
-  return (
-    <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', paddingBottom: 200 }}>
-      <div style={{ width: 260 }}>
-        <p style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif', fontSize: 12, fontWeight: 600, color: '#6C7C96', marginBottom: 8 }}>
-          Single Select
-        </p>
-        <DropdownInput label="Single select states" items={items} listType="text"
-          selectedValue="selected" placeholder="Select..." defaultOpen={true} />
-      </div>
-      <div style={{ width: 260, paddingBottom: 200 }}>
-        <p style={{ fontFamily: 'IBM Plex Sans Arabic, sans-serif', fontSize: 12, fontWeight: 600, color: '#6C7C96', marginBottom: 8 }}>
-          Multi Select
-        </p>
-        <DropdownInput label="Multi select states" items={items} listType="text-multi"
-          selectedValues={['selected']} placeholder="Select..." defaultOpen={true} />
-      </div>
-    </div>
-  );
-};
-
-<ItemStatesDemo />
-
-| State | Background | Text color | Notes |
-|---|---|---|---|
-| Default | none | `#000B36` | No visual fill |
-| Hover | `#E5E7EB` | `#000B36` | CSS `:hover` — interact above to see |
-| Pressed | `#D2D6DB` | `#000B36` | CSS `:active` — click and hold to see |
-| Focused | none | `#000B36` | Keyboard focus — no background fill |
-| Disabled | none | `#6C7C96` | `pointer-events: none`, always visible |
-| Selected (single) | same as state | `#000B36` | Blue tick `#1849A9` on trailing edge |
-| Selected (multi) | same as state | `#000B36` | Checkbox checked, no tick icon |
-
----
-
-### Group Labels
-
-Group labels are purely decorative headings — they have no hover state, no pointer, and are not selectable. They can appear anywhere in the items array.
-
-export const GroupLabelDemo = () => {
-  const [val, setVal] = useState(null);
-  const items = [
-    { type: 'group', label: 'Section A' },
-    { type: 'item', value: 'a1', label: 'Item A-1' },
-    { type: 'item', value: 'a2', label: 'Item A-2' },
-    { type: 'group', label: 'Section B' },
-    { type: 'item', value: 'b1', label: 'Item B-1' },
-    { type: 'item', value: 'b2', label: 'Item B-2', disabled: true },
-  ];
-  return (
-    <div style={{ width: 260, paddingBottom: 220 }}>
-      <DropdownInput label="Grouped options" items={items} listType="text"
-        selectedValue={val} onSelectionChange={setVal}
-        placeholder="Select..." defaultOpen={true} />
-    </div>
-  );
-};
-
-<GroupLabelDemo />
-
-| Property | Value |
-|---|---|
-| Font size | 14px |
-| Font weight | 600 (semibold) |
-| Line height | 20px |
-| Color | `#000B36` |
-| Padding | 8px top · 8px left · 8px right · **0 bottom** |
-| Hover / press | none |
-| Pointer events | none |
-
----
-
-## Props
-
-### Field props
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ display: 'grid', gridTemplateColumns: '140px 130px 90px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
-    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+{/* ── Sizes ── */}
+<h2 id="sizes" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Sizes</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Two sizes set via the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size</code> prop.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 80px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Size</span><span>Height</span><span>Prop value</span>
   </div>
   {[
-    { n: 'label',         type: 'string',  tb: '#ecfdf5', tc: '#059669', def: "'Label'",     d: 'Field label text' },
-    { n: 'showLabel',     type: 'boolean', tb: '#f3f0ff', tc: '#7c3aed', def: 'true',        d: 'Show or hide the label row' },
-    { n: 'labelType',     type: 'enum',    tb: '#fff7ed', tc: '#c2410c', def: "'regular'",   d: "regular · semibold — label font weight" },
-    { n: 'required',      type: 'boolean', tb: '#f3f0ff', tc: '#7c3aed', def: 'false',       d: 'Show red asterisk before label' },
-    { n: 'size',          type: 'enum',    tb: '#fff7ed', tc: '#c2410c', def: "'medium'",    d: 'medium (32px) · large (40px)' },
-    { n: 'state',         type: 'enum',    tb: '#fff7ed', tc: '#c2410c', def: "'default'",   d: 'default · hovered · pressed · focused · read-only · disabled' },
-    { n: 'error',         type: 'boolean', tb: '#f3f0ff', tc: '#7c3aed', def: 'false',       d: 'Error state — red border and indicator bar' },
-    { n: 'variant',       type: 'enum',    tb: '#fff7ed', tc: '#c2410c', def: "'default'",   d: 'default · filled-darker · filled-lighter' },
-    { n: 'placeholder',   type: 'string',  tb: '#ecfdf5', tc: '#059669', def: "'Select...'", d: 'Shown in the field when nothing is selected' },
-    { n: 'showHelperText',type: 'boolean', tb: '#f3f0ff', tc: '#7c3aed', def: 'false',       d: 'Show helper text row below the field' },
-    { n: 'helperText',    type: 'string',  tb: '#ecfdf5', tc: '#059669', def: "'Helper text'",d: 'Helper or error message text' },
-    { n: 'helperIcon',    type: 'node',    tb: '#ecfdf5', tc: '#059669', def: '—',           d: 'Override the default circle-question helper icon' },
-    { n: 'rtl',           type: 'boolean', tb: '#f3f0ff', tc: '#7c3aed', def: 'false',       d: 'Right-to-left layout — chevron moves to leading edge' },
-    { n: 'className',     type: 'string',  tb: '#ecfdf5', tc: '#059669', def: '—',           d: 'Additional class applied to the outer wrapper div' },
-  ].map(({ n, type, tb, tc, def, d }, i) => (
-    <div key={n} style={{ display: 'grid', gridTemplateColumns: '140px 130px 90px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600, display: 'inline-block', alignSelf: 'center' }}>{type}</span>
-      <code style={{ fontSize: 12, color: '#6b7280', alignSelf: 'center' }}>{def}</code>
-      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
+    ['Medium', '32 px', '"medium"'],
+    ['Large',  '40 px', '"large"'],
+  ].map(([size, h, prop]) => (
+    <div key={size} style={{ display: 'grid', gridTemplateColumns: '120px 80px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{size}</span>
+      <span style={{ color: '#374151' }}>{h}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
     </div>
   ))}
 </div>
 
-### Dropdown props
+<Canvas of={DropdownInputStories.Sizes} />
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ display: 'grid', gridTemplateColumns: '160px 130px 90px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
-    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+---
+
+{/* ── Field States ── */}
+<h2 id="field-states" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Field States</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Six interactive states controlled via the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>state</code> prop.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '130px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Visual Treatment</span>
   </div>
   {[
-    { n: 'items',             type: 'array',    tb: '#eff3fb', tc: '#1849a9', def: '[]',     d: 'Array of item and group objects — see Item shape below' },
-    { n: 'listType',          type: 'enum',     tb: '#fff7ed', tc: '#c2410c', def: "'text'", d: 'text · text-multi · icon · icon-text-multi' },
-    { n: 'selectedValue',     type: 'string',   tb: '#ecfdf5', tc: '#059669', def: '—',      d: 'Controlled single-select value' },
-    { n: 'selectedValues',    type: 'string[]', tb: '#eff3fb', tc: '#1849a9', def: '—',      d: 'Controlled multi-select values array' },
-    { n: 'onSelectionChange', type: 'function', tb: '#fdf4ff', tc: '#9333ea', def: '—',      d: 'Called with string (single) or string[] (multi) on change' },
-    { n: 'defaultOpen',       type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', def: 'false',  d: 'Opens the list on first render — useful for documentation demos' },
-  ].map(({ n, type, tb, tc, def, d }, i) => (
-    <div key={n} style={{ display: 'grid', gridTemplateColumns: '160px 130px 90px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600, display: 'inline-block', alignSelf: 'center' }}>{type}</span>
-      <code style={{ fontSize: 12, color: '#6b7280', alignSelf: 'center' }}>{def}</code>
-      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
+    ['default',   'Border: 1px solid #D2D6DB — resting state'],
+    ['hovered',   'Border: 1px solid #1F2A37 — darker border on cursor entry'],
+    ['pressed',   'Border + bottom indicator bar at 1/3 width, colour #1849A9'],
+    ['focused',   'Border + full-width bottom indicator bar, colour #1849A9'],
+    ['read-only', 'Chevron hidden; value not interactive; inherits default border'],
+    ['disabled',  'Border: 1px solid #E5E7EB; text #6C7C96; pointer-events none'],
+  ].map(([state, desc]) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '130px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{state}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
     </div>
   ))}
 </div>
 
-### Item object shape
+<Canvas of={DropdownInputStories.FieldStates} />
+
+---
+
+{/* ── Error State ── */}
+<h2 id="error-state" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Error State</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  When <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>error={'{true}'}</code> the field border turns{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>#A30000</code>.
+  The bottom indicator bar also uses <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>#A30000</code> in pressed and focused sub-states.
+</p>
+
+<Canvas of={DropdownInputStories.ErrorStates} />
+
+---
+
+{/* ── Variants ── */}
+<h2 id="variants" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Variants</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Three visual variants controlled via the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>variant</code> prop.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>Background treatment</span>
+  </div>
+  {[
+    ['"default"',        'Transparent background; border always visible'],
+    ['"filled-darker"',  'Filled background slightly darker than page; border softened'],
+    ['"filled-lighter"', 'Filled background slightly lighter than page; border softened'],
+  ].map(([variant, desc]) => (
+    <div key={variant} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{variant}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.Variants} />
+
+---
+
+{/* ── Label Variants ── */}
+<h2 id="label-variants" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Label Variants</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Control label appearance via <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>labelType</code>,{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showLabel</code>, and{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>required</code>.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Value</span><span>Effect</span>
+  </div>
+  {[
+    ['labelType',  '"regular"',  'Default label — normal font weight (400)'],
+    ['labelType',  '"semibold"', 'Bold label — font weight 600'],
+    ['required',   'true',       'Red asterisk (*) rendered before the label text'],
+    ['showLabel',  'false',      'Label row hidden — field renders without label above'],
+  ].map(([prop, val, effect]) => (
+    <div key={prop + val} style={{ display: 'grid', gridTemplateColumns: '160px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{val}</code>
+      <span style={{ color: '#374151' }}>{effect}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.LabelVariants} />
+
+---
+
+{/* ── With Helper Text ── */}
+<h2 id="helper-text" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>With Helper Text</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Set <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>showHelperText=true</code> to render a helper row below the field.
+  Pass <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>helperText</code> for the message and optionally{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>helperIcon</code> to override the default icon.
+  When <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>error=true</code> the helper text colour shifts to indicate the error condition.
+</p>
+
+<Canvas of={DropdownInputStories.HelperText} />
+
+---
+
+{/* ── RTL ── */}
+<h2 id="rtl" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>RTL Support</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Pass <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>rtl=true</code> to switch the field to right-to-left layout.
+  The chevron moves to the leading (right) edge and the dropdown list mirrors accordingly.
+  Works with all list types and the multi-select mode.
+</p>
+
+<Canvas of={DropdownInputStories.RTL} />
+
+---
+
+{/* ── Dropdown List Items ── */}
+<h2 id="list-items" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Dropdown List Items</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 24, lineHeight: 1.6 }}>
+  The dropdown list opens below the field when clicked. It supports four distinct item layouts controlled by the{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>listType</code> prop.
+  All types share the same container and state styling.
+</p>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>1 — Text Only · Single Select (<code style={{ fontSize: 13, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>listType="text"</code>)</h3>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Each item shows a text label. When an item is selected a blue tick (<code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>#1849A9</code>) appears on the trailing edge;
+  an invisible spacer preserves alignment for unselected rows. Supports group labels.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['Group label row',  'Semibold 14 px, padding 8 px top/left/right, no bottom padding, no hover state'],
+    ['Item row',         'Regular 14 px, 8 px padding all sides, #000B36 text'],
+    ['Selected item',   'Same as item row + blue tick icon (16×16) on trailing edge'],
+    ['Disabled item',   'Text #6C7C96, not interactive'],
+  ].map(([part, desc]) => (
+    <div key={part} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.TextSingleSelect} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12, marginTop: 32 }}>2 — Text Only · Multi Select (<code style={{ fontSize: 13, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>listType="text-multi"</code>)</h3>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Each item shows a small checkbox (20×20, <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>size="sm"</code>) on the leading edge and text on the trailing side with an 8 px gap.
+  The dropdown stays open after each selection. The field shows{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>"N selected"</code> when two or more items are chosen.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['Layout (LTR)', '[Checkbox 20×20] — 8 px gap — [Label text flex-1]'],
+    ['Layout (RTL)', 'Label on right, checkbox on left (flex direction inverts with dir="rtl")'],
+    ['Row click',    'Clicking anywhere on the row toggles the checkbox'],
+    ['Tick icon',    'None — selection state is shown entirely by the checkbox'],
+  ].map(([part, desc]) => (
+    <div key={part} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.TextMultiSelect} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12, marginTop: 32 }}>3 — Icon Only · Single Select (<code style={{ fontSize: 13, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>listType="icon"</code>)</h3>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Each item shows only an icon. No text label is rendered inside the row — the{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>label</code> field is used for the field display value and screen-reader{' '}
+  <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>aria-label</code>. A blue tick appears on the trailing edge of the selected item.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['Layout (LTR)',   '[Icon 20×20] — auto spacer — [Tick 16×16]'],
+    ['Text in rows',  'None visible — label lives in aria-label for accessibility'],
+    ['Field display', 'Shows the label string of the selected item as text value'],
+  ].map(([part, desc]) => (
+    <div key={part} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.IconSingleSelect} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12, marginTop: 32 }}>4 — Icon + Text · Multi Select (<code style={{ fontSize: 13, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>listType="icon-text-multi"</code>)</h3>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Each item shows a checkbox on the leading edge, an icon in the centre, and text on the trailing side.
+  All three elements have an 8 px gap between them. The dropdown stays open after each toggle.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Part</span><span>Description</span>
+  </div>
+  {[
+    ['Layout (LTR)',  '[Checkbox 20×20] — 8 px — [Icon 20×20] — 8 px — [Label text flex-1]'],
+    ['Layout (RTL)',  'Label on right, icon centre, checkbox on left (flips with dir="rtl")'],
+    ['Group labels', 'Work identically to other list types'],
+  ].map(([part, desc]) => (
+    <div key={part} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.IconTextMultiSelect} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12, marginTop: 32 }}>Item States</h3>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  All item types share the same five interaction states.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '140px 140px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Background</span><span>Text Color</span><span>Notes</span>
+  </div>
+  {[
+    ['Default',          'none',         '#000B36', 'No visual fill'],
+    ['Hover',            '#E5E7EB',      '#000B36', 'CSS :hover — interact above to see'],
+    ['Pressed',          '#D2D6DB',      '#000B36', 'CSS :active — click and hold to see'],
+    ['Focused',          'none',         '#000B36', 'Keyboard focus — no background fill'],
+    ['Disabled',         'none',         '#6C7C96', 'pointer-events: none, always visible'],
+    ['Selected (single)','same as state','#000B36', 'Blue tick #1849A9 on trailing edge'],
+    ['Selected (multi)', 'same as state','#000B36', 'Checkbox checked, no tick icon'],
+  ].map(([state, bg, text, notes]) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '140px 140px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{state}</span>
+      <code style={{ fontSize: 12, color: '#374151' }}>{bg}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{text}</code>
+      <span style={{ color: '#374151' }}>{notes}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.ItemStates} />
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12, marginTop: 32 }}>Group Labels</h3>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 16, lineHeight: 1.6 }}>
+  Group labels are purely decorative headings — they have no hover state, no pointer, and are not selectable.
+  They can appear anywhere in the <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>items</code> array.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Property</span><span>Value</span>
+  </div>
+  {[
+    ['Font size',      '14 px'],
+    ['Font weight',    '600 (semibold)'],
+    ['Line height',    '20 px'],
+    ['Color',          '#000B36'],
+    ['Padding',        '8 px top · 8 px left · 8 px right · 0 bottom'],
+    ['Hover / press',  'none'],
+    ['Pointer events', 'none'],
+  ].map(([prop, val]) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{prop}</span>
+      <code style={{ fontSize: 12, color: '#374151' }}>{val}</code>
+    </div>
+  ))}
+</div>
+
+<Canvas of={DropdownInputStories.GroupLabels} />
+
+---
+
+{/* ── Properties ── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Field Props</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 200px 110px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['label',          'string',                                    "'Label'",      'Field label text'],
+    ['showLabel',      'boolean',                                   'true',         'Show or hide the label row'],
+    ['labelType',      "'regular' | 'semibold'",                   "'regular'",    'Label font weight variant'],
+    ['required',       'boolean',                                   'false',        'Show red asterisk before label'],
+    ['size',           "'medium' | 'large'",                       "'medium'",     'medium (32 px) · large (40 px)'],
+    ['state',          "'default' | 'hovered' | 'pressed' | 'focused' | 'read-only' | 'disabled'", "'default'", 'Controlled field state'],
+    ['error',          'boolean',                                   'false',        'Error state — red border and indicator bar'],
+    ['variant',        "'default' | 'filled-darker' | 'filled-lighter'", "'default'", 'Visual background variant'],
+    ['placeholder',    'string',                                    "'Select...'",  'Shown in the field when nothing is selected'],
+    ['showHelperText', 'boolean',                                   'false',        'Show helper text row below the field'],
+    ['helperText',     'string',                                    "'Helper text'", 'Helper or error message text'],
+    ['helperIcon',     'ReactNode',                                 '—',            'Override the default circle-question helper icon'],
+    ['rtl',            'boolean',                                   'false',        'Right-to-left layout — chevron moves to leading edge'],
+    ['className',      'string',                                    '—',            'Additional class applied to the outer wrapper div'],
+  ].map(([n, type, def, d]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '160px 200px 110px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{n}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{d}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Dropdown Props</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 160px 80px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['items',             'array',     '[]',      'Array of item and group objects — see Item Shape below'],
+    ['listType',          "'text' | 'text-multi' | 'icon' | 'icon-text-multi'", "'text'", 'List item layout variant'],
+    ['selectedValue',     'string',    '—',       'Controlled single-select value'],
+    ['selectedValues',    'string[]',  '—',       'Controlled multi-select values array'],
+    ['onSelectionChange', 'function',  '—',       'Called with string (single) or string[] (multi) on change'],
+    ['defaultOpen',       'boolean',   'false',   'Opens the list on first render — useful for documentation demos'],
+  ].map(([n, type, def, d]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '180px 160px 80px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{n}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{d}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 8 }}>Item Shape</h3>
 
 ```js
 // Regular selectable item
@@ -553,117 +445,114 @@ export const GroupLabelDemo = () => {
 { type: 'group', label: 'Section title' }
 ```
 
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ display: 'grid', gridTemplateColumns: '110px 130px 100px 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24, marginTop: 16 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 120px 120px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Field</span><span>Type</span><span>Required</span><span>Description</span>
   </div>
   {[
-    { n: 'type',     type: 'enum',     tb: '#fff7ed', tc: '#c2410c', req: 'yes',          d: "item · group — 'group' renders a non-interactive heading" },
-    { n: 'value',    type: 'string',   tb: '#ecfdf5', tc: '#059669', req: 'for items',    d: 'Unique identifier used for selection tracking' },
-    { n: 'label',    type: 'string',   tb: '#ecfdf5', tc: '#059669', req: 'yes',          d: 'Display text; also the aria-label for icon-only items and the field value text' },
-    { n: 'icon',     type: 'node',     tb: '#ecfdf5', tc: '#059669', req: 'icon types',   d: "Rendered for 'icon' and 'icon-text-multi' list types" },
-    { n: 'disabled', type: 'boolean',  tb: '#f3f0ff', tc: '#7c3aed', req: 'no',           d: 'Prevents interaction; shows text in #6C7C96 with no background' },
-  ].map(({ n, type, tb, tc, req, d }, i) => (
-    <div key={n} style={{ display: 'grid', gridTemplateColumns: '110px 130px 100px 1fr', padding: '10px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start' }}>
-      <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 6px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{n}</code>
-      <span style={{ background: tb, color: tc, fontSize: 11, padding: '2px 7px', borderRadius: 4, fontWeight: 600, display: 'inline-block', alignSelf: 'center' }}>{type}</span>
-      <span style={{ fontSize: 12, color: '#6b7280', alignSelf: 'center' }}>{req}</span>
-      <span style={{ fontSize: 13, color: '#374151', lineHeight: 1.5 }}>{d}</span>
+    ['type',     "'item' | 'group'", 'yes',        "'group' renders a non-interactive heading"],
+    ['value',    'string',           'for items',  'Unique identifier used for selection tracking'],
+    ['label',    'string',           'yes',        'Display text; also the aria-label for icon-only items and the field value text'],
+    ['icon',     'ReactNode',        'icon types', "Rendered for 'icon' and 'icon-text-multi' list types"],
+    ['disabled', 'boolean',          'no',         'Prevents interaction; shows text in #6C7C96'],
+  ].map(([n, type, req, d]) => (
+    <div key={n} style={{ display: 'grid', gridTemplateColumns: '100px 120px 120px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{n}</code>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#374151' }}>{type}</code>
+      <span style={{ color: '#374151' }}>{req}</span>
+      <span style={{ color: '#374151' }}>{d}</span>
     </div>
   ))}
 </div>
 
 ---
 
-## Design Tokens
+{/* ── Design Tokens ── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens</h2>
 
-### Field
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Field tokens</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Field</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Token</span><span>Value</span>
   </div>
   {[
-    ['Height — medium', '32px'],
-    ['Height — large', '40px'],
-    ['Border radius', '4px'],
-    ['Border — default', '1px solid #D2D6DB'],
-    ['Border — hovered', '1px solid #1F2A37'],
-    ['Border — error', '1px solid #A30000'],
-    ['Border — disabled', '1px solid #E5E7EB'],
-    ['Indicator — pressed', '#1849A9 · 1/3 field width · centred'],
-    ['Indicator — focused', '#1849A9 · full field width'],
-    ['Indicator error — pressed', '#A30000 · 1/3 width'],
-    ['Indicator error — focused', '#A30000 · full width'],
-    ['Chevron size', '20×20px'],
-    ['Chevron color — default', '#000B36'],
-    ['Chevron color — disabled', '#6C7C96'],
-    ['Placeholder color', '#B6BDCA'],
-    ['Value text color', '#000B36'],
-    ['Font family', "IBM Plex Sans Arabic"],
-  ].map(([token, value], i) => (
-    <div key={token} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
-      <span style={{ fontSize: 13, color: '#374151' }}>{token}</span>
-      <code style={{ fontSize: 12, color: '#111827', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{value}</code>
+    ['Height — medium',              '32px'],
+    ['Height — large',               '40px'],
+    ['Border radius',                '4px'],
+    ['Border — default',             '1px solid #D2D6DB'],
+    ['Border — hovered',             '1px solid #1F2A37'],
+    ['Border — error',               '1px solid #A30000'],
+    ['Border — disabled',            '1px solid #E5E7EB'],
+    ['Indicator — pressed',          '#1849A9 · 1/3 field width · centred'],
+    ['Indicator — focused',          '#1849A9 · full field width'],
+    ['Indicator error — pressed',    '#A30000 · 1/3 width'],
+    ['Indicator error — focused',    '#A30000 · full width'],
+    ['Chevron size',                 '20×20px'],
+    ['Chevron color — default',      '#000B36'],
+    ['Chevron color — disabled',     '#6C7C96'],
+    ['Placeholder color',            '#B6BDCA'],
+    ['Value text color',             '#000B36'],
+    ['Font family',                  'IBM Plex Sans Arabic'],
+  ].map(([token, value]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '260px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
     </div>
   ))}
 </div>
 
-### Dropdown list container
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Container tokens</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Dropdown List Container</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Token</span><span>Value</span>
   </div>
   {[
-    ['Background', '#FFFFFF'],
-    ['Border', '1px solid #D2D6DB'],
-    ['Border radius', '4px'],
-    ['Shadow (shadow-xl)', '0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)'],
-    ['Padding', '8px all sides'],
-    ['Offset from field bottom', '4px'],
-    ['Max height', '256px (scrolls beyond)'],
-    ['z-index', '1000'],
-  ].map(([token, value], i) => (
-    <div key={token} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
-      <span style={{ fontSize: 13, color: '#374151' }}>{token}</span>
-      <code style={{ fontSize: 12, color: '#111827', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{value}</code>
+    ['Background',             '#FFFFFF'],
+    ['Border',                 '1px solid #D2D6DB'],
+    ['Border radius',          '4px'],
+    ['Shadow (shadow-xl)',     '0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03)'],
+    ['Padding',                '8px all sides'],
+    ['Offset from field bottom','4px'],
+    ['Max height',             '256px (scrolls beyond)'],
+    ['z-index',                '1000'],
+  ].map(([token, value]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '260px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
     </div>
   ))}
 </div>
 
-### Dropdown list items
-
-<div style={{ border: '1px solid #e5e7eb', borderRadius: 10, overflow: 'hidden', marginBottom: 24 }}>
-  <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Item tokens</div>
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Dropdown List Items</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
     <span>Token</span><span>Value</span>
   </div>
   {[
-    ['Font size', '14px'],
-    ['Font weight', '400 (regular)'],
-    ['Line height', '20px'],
-    ['Text color', '#000B36'],
-    ['Padding', '8px all sides'],
-    ['Border radius', '4px'],
-    ['Gap between elements', '8px'],
-    ['Background — default', 'none'],
-    ['Background — hover', '#E5E7EB'],
-    ['Background — pressed', '#D2D6DB'],
-    ['Background — disabled', 'none'],
-    ['Text color — disabled', '#6C7C96'],
-    ['Tick icon size', '16×16px'],
-    ['Tick icon color', '#1849A9'],
-    ['Checkbox size', '16×16px (size="xs")'],
-    ['Group label font weight', '600 (semibold)'],
-    ['Group label line height', '20px'],
-    ['Group label padding', '8px top · 8px left · 8px right · 0 bottom'],
-  ].map(([token, value], i) => (
-    <div key={token} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', padding: '9px 16px', background: i % 2 === 0 ? '#fff' : '#fafafa', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'center' }}>
-      <span style={{ fontSize: 13, color: '#374151' }}>{token}</span>
-      <code style={{ fontSize: 12, color: '#111827', background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>{value}</code>
+    ['Font size',                   '14px'],
+    ['Font weight',                 '400 (regular)'],
+    ['Line height',                 '20px'],
+    ['Text color',                  '#000B36'],
+    ['Padding',                     '8px all sides'],
+    ['Border radius',               '4px'],
+    ['Gap between elements',        '8px'],
+    ['Background — default',        'none'],
+    ['Background — hover',          '#E5E7EB'],
+    ['Background — pressed',        '#D2D6DB'],
+    ['Background — disabled',       'none'],
+    ['Text color — disabled',       '#6C7C96'],
+    ['Tick icon size',              '16×16px'],
+    ['Tick icon color',             '#1849A9'],
+    ['Checkbox size',               '16×16px (size="xs")'],
+    ['Group label font weight',     '600 (semibold)'],
+    ['Group label line height',     '20px'],
+    ['Group label padding',         '8px top · 8px left · 8px right · 0 bottom'],
+  ].map(([token, value]) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '260px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: '#fff' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{token}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{value}</code>
     </div>
   ))}
+</div>
+
 </div>
