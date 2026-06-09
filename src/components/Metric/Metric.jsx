@@ -310,6 +310,7 @@ export function Metric({
   trend            = 'Positive',
   changeType       = '01',
   showMarker       = true,
+  verticalLayout   = false,
 }) {
   const isSmall  = variant === 'Small Chart';
   const isLarge  = variant === 'Large Chart';
@@ -383,8 +384,8 @@ export function Metric({
 
       {/* ── BODY — Small Chart ── */}
       {isSmall && (
-        <div className={`${styles.body} ${rtlSmall ? styles.bodyRtl : styles.bodyLtr}`}>
-          {ltrSmall && (
+        <div className={`${styles.body} ${rtlSmall ? styles.bodyRtl : styles.bodyLtr} ${verticalLayout ? styles.bodyVertical : ''}`}>
+          {ltrSmall && !verticalLayout && (
             <div className={styles.valueBlock}>
               <p className={styles.percentage}>{percentage}</p>
               {showInfo && (
@@ -395,8 +396,19 @@ export function Metric({
               )}
             </div>
           )}
+          {ltrSmall && verticalLayout && (
+            <div className={styles.bodyVerticalTop}>
+              <p className={styles.percentage}>{percentage}</p>
+              {showInfo && showChange && (
+                <ChangeBadge pct={changePct} trend={trend} changeType={changeType} />
+              )}
+              {showInfo && showText && (
+                <p className={styles.changeSubtext}>{subtext}</p>
+              )}
+            </div>
+          )}
           {showChart && <SmallSparkline {...chartProps} />}
-          {rtlSmall && (
+          {rtlSmall && !verticalLayout && (
             <div className={`${styles.valueBlock} ${styles.valueBlockRtl}`}>
               <p className={styles.percentage}>{percentage}</p>
               {showInfo && (
@@ -404,6 +416,17 @@ export function Metric({
                   {showText && <p dir="auto" className={styles.changeSubtext}>{subtext}</p>}
                   {showChange && <ChangeBadge pct={changePct} trend={trend} changeType={changeType} />}
                 </div>
+              )}
+            </div>
+          )}
+          {rtlSmall && verticalLayout && (
+            <div className={`${styles.bodyVerticalTop} ${styles.bodyVerticalTopRtl}`}>
+              <p className={styles.percentage}>{percentage}</p>
+              {showInfo && showChange && (
+                <ChangeBadge pct={changePct} trend={trend} changeType={changeType} />
+              )}
+              {showInfo && showText && (
+                <p dir="auto" className={styles.changeSubtext}>{subtext}</p>
               )}
             </div>
           )}

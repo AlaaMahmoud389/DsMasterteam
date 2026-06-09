@@ -114,7 +114,7 @@
 /* ─── Body (Small Chart) ────────────────────────────────────────────────────── */
 .body {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   width: 100%;
   min-width: 0;
   flex-shrink: 0;
@@ -225,6 +225,29 @@
   min-width: 0;
 }
 
+/* ─── Vertical layout (dashboard mode) ─────────────────────────────────────── */
+.bodyVertical {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 10px !important;
+}
+
+.bodyVerticalTop {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bodyVerticalTopRtl {
+  align-items: flex-end;
+}
+
+.bodyVertical .chartSmall {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 72px !important;
+}
+
 /* ─── Sparkline — Small (128×64) ────────────────────────────────────────────── */
 .chartSmall {
   position: relative;
@@ -233,7 +256,7 @@
   min-width: 0;
   height: 64px;
   flex-shrink: 1;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 /* ─── Sparkline — Large (full width, 64px) ──────────────────────────────────── */
