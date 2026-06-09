@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+﻿import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
 import * as SecondNavHeaderStories from './SecondNavHeader.stories';
 
 <Meta of={SecondNavHeaderStories} />
@@ -23,7 +23,7 @@ import * as SecondNavHeaderStories from './SecondNavHeader.stories';
 
 <div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 20px', marginBottom: 24 }}>
   <div style={{ fontSize: 12, fontWeight: 700, color: '#1849a9', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.07em' }}>On this page</div>
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px 0' }}>
     {[['Playground','#playground'],['All Variants','#all-variants'],['Color Schemes','#color-schemes'],['RTL Support','#rtl-support'],['Content & Actions','#content-actions'],['Props','#props'],['Design Tokens','#design-tokens']].map(([label, href]) => (
       <a key={href} href={href} style={{ fontSize: 13, color: '#1849a9', textDecoration: 'none', lineHeight: 2 }}>{label}</a>
     ))}
