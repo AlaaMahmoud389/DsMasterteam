@@ -49,45 +49,70 @@ const BASE = {
   showMarker: true,
 };
 
-const WRAP = (style, children) => (
-  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, padding: 32, background: '#f8fafc', alignItems: 'flex-start', ...style }}>
+const BG = '#f0f2f5';
+const LABEL = {
+  fontSize: 10,
+  fontWeight: 700,
+  color: '#9ca3af',
+  letterSpacing: '.08em',
+  textTransform: 'uppercase',
+  marginBottom: 12,
+};
+
+/* Scrollable row — matches Figma side-by-side reference */
+const Row = ({ children, pad = 32 }) => (
+  <div style={{ overflowX: 'auto', background: BG, padding: pad }}>
+    <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', width: 'max-content' }}>
+      {children}
+    </div>
+  </div>
+);
+
+/* Wrapping grid — for larger sets (chart type / trend grids) */
+const Grid = ({ children }) => (
+  <div style={{ background: BG, padding: 32 }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, alignItems: 'flex-start' }}>
+      {children}
+    </div>
+  </div>
+);
+
+const Card = ({ label, children }) => (
+  <div style={{ width: 360, flexShrink: 0 }}>
+    {label && <div style={LABEL}>{label}</div>}
     {children}
   </div>
 );
-const LABEL = { fontSize: 10, fontWeight: 700, color: '#d1d5db', letterSpacing: '.06em', textTransform: 'uppercase', marginBottom: 12 };
 
 // ─── 1. Interactive (Controls) ───────────────────────────────────────────────
 export const Default = {
   name: 'Interactive (Controls)',
   args: BASE,
   render: (args) => (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', padding: 32, background: '#f8fafc', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: BG }}>
       <Metric {...args} />
     </div>
   ),
 };
 
-// ─── 2. All Variants (Figma Reference) ──────────────────────────────────────
+// ─── 2. All Variants — matches the Figma 4-card reference ───────────────────
 export const AllVariants = {
   name: 'All Variants — Figma Reference',
-  render: () => WRAP({}, [
-    ['Small Chart LTR', { variant: 'Small Chart', rtl: false }],
-    ['Large Chart LTR', { variant: 'Large Chart', rtl: false }],
-    ['Small Chart RTL', { variant: 'Small Chart', rtl: true }],
-    ['Large Chart RTL', { variant: 'Large Chart', rtl: true }],
-  ].map(([lbl, p]) => (
-    <div key={lbl}>
-      <div style={LABEL}>{lbl}</div>
-      <Metric {...BASE} {...p} />
-    </div>
-  ))),
+  render: () => (
+    <Row>
+      <Card label="Large Chart — LTR"><Metric {...BASE} variant="Large Chart" rtl={false} /></Card>
+      <Card label="Small Chart — LTR"><Metric {...BASE} variant="Small Chart" rtl={false} /></Card>
+      <Card label="Small Chart — RTL"><Metric {...BASE} variant="Small Chart" rtl /></Card>
+      <Card label="Large Chart — RTL"><Metric {...BASE} variant="Large Chart" rtl /></Card>
+    </Row>
+  ),
 };
 
 // ─── 3. Small Chart — LTR ───────────────────────────────────────────────────
 export const SmallChartLTR = {
   name: 'Small Chart — LTR',
   render: () => (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: '#f8fafc' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: BG }}>
       <Metric {...BASE} variant="Small Chart" rtl={false} />
     </div>
   ),
@@ -97,7 +122,7 @@ export const SmallChartLTR = {
 export const SmallChartRTL = {
   name: 'Small Chart — RTL',
   render: () => (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: '#f8fafc' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: BG }}>
       <Metric {...BASE} variant="Small Chart" rtl />
     </div>
   ),
@@ -107,7 +132,7 @@ export const SmallChartRTL = {
 export const LargeChartLTR = {
   name: 'Large Chart — LTR',
   render: () => (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: '#f8fafc' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: BG }}>
       <Metric {...BASE} variant="Large Chart" rtl={false} />
     </div>
   ),
@@ -117,7 +142,7 @@ export const LargeChartLTR = {
 export const LargeChartRTL = {
   name: 'Large Chart — RTL',
   render: () => (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: '#f8fafc' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', padding: 32, background: BG }}>
       <Metric {...BASE} variant="Large Chart" rtl />
     </div>
   ),
@@ -126,112 +151,106 @@ export const LargeChartRTL = {
 // ─── 7. Trend — Positive vs Negative ────────────────────────────────────────
 export const TrendStates = {
   name: 'Trend — Positive & Negative',
-  render: () => WRAP({}, [
-    ['Realistic — Positive', { chartType: 'Realistic', trend: 'Positive' }],
-    ['Realistic — Negative', { chartType: 'Realistic', trend: 'Negative' }],
-    ['Wavy — Positive',      { chartType: 'Wavy',      trend: 'Positive' }],
-    ['Wavy — Negative',      { chartType: 'Wavy',      trend: 'Negative' }],
-    ['Straight — Positive',  { chartType: 'Straight',  trend: 'Positive' }],
-    ['Straight — Negative',  { chartType: 'Straight',  trend: 'Negative' }],
-    ['Layers — Positive',    { chartType: 'Layers',    trend: 'Positive' }],
-    ['Layers — Negative',    { chartType: 'Layers',    trend: 'Negative' }],
-  ].map(([lbl, p]) => (
-    <div key={lbl}>
-      <div style={LABEL}>{lbl}</div>
-      <Metric {...BASE} variant="Small Chart" rtl={false} {...p} />
-    </div>
-  ))),
+  render: () => (
+    <Grid>
+      {['Realistic', 'Wavy', 'Straight', 'Layers'].flatMap(ct => [
+        <Card key={ct + '-pos'} label={`${ct} — Positive`}>
+          <Metric {...BASE} variant="Small Chart" chartType={ct} trend="Positive" />
+        </Card>,
+        <Card key={ct + '-neg'} label={`${ct} — Negative`}>
+          <Metric {...BASE} variant="Small Chart" chartType={ct} trend="Negative" />
+        </Card>,
+      ])}
+    </Grid>
+  ),
 };
 
 // ─── 8. Chart Types — Small ──────────────────────────────────────────────────
 export const ChartTypesSmall = {
   name: 'Chart Types — Small',
-  render: () => WRAP({}, ['Realistic','Wavy','Straight','Layers'].flatMap(ct => [
-    <div key={ct + '-pos'}>
-      <div style={LABEL}>{ct} / Positive</div>
-      <Metric {...BASE} variant="Small Chart" chartType={ct} trend="Positive" />
-    </div>,
-    <div key={ct + '-neg'}>
-      <div style={LABEL}>{ct} / Negative</div>
-      <Metric {...BASE} variant="Small Chart" chartType={ct} trend="Negative" />
-    </div>,
-  ])),
+  render: () => (
+    <Grid>
+      {['Realistic', 'Wavy', 'Straight', 'Layers'].flatMap(ct => [
+        <Card key={ct + '-pos'} label={`${ct} / Positive`}>
+          <Metric {...BASE} variant="Small Chart" chartType={ct} trend="Positive" />
+        </Card>,
+        <Card key={ct + '-neg'} label={`${ct} / Negative`}>
+          <Metric {...BASE} variant="Small Chart" chartType={ct} trend="Negative" />
+        </Card>,
+      ])}
+    </Grid>
+  ),
 };
 
 // ─── 9. Chart Types — Large ──────────────────────────────────────────────────
 export const ChartTypesLarge = {
   name: 'Chart Types — Large',
-  render: () => WRAP({}, ['Realistic','Wavy','Straight','Layers'].flatMap(ct => [
-    <div key={ct + '-pos'}>
-      <div style={LABEL}>{ct} / Positive</div>
-      <Metric {...BASE} variant="Large Chart" chartType={ct} trend="Positive" />
-    </div>,
-    <div key={ct + '-neg'}>
-      <div style={LABEL}>{ct} / Negative</div>
-      <Metric {...BASE} variant="Large Chart" chartType={ct} trend="Negative" />
-    </div>,
-  ])),
+  render: () => (
+    <Grid>
+      {['Realistic', 'Wavy', 'Straight', 'Layers'].flatMap(ct => [
+        <Card key={ct + '-pos'} label={`${ct} / Positive`}>
+          <Metric {...BASE} variant="Large Chart" chartType={ct} trend="Positive" />
+        </Card>,
+        <Card key={ct + '-neg'} label={`${ct} / Negative`}>
+          <Metric {...BASE} variant="Large Chart" chartType={ct} trend="Negative" />
+        </Card>,
+      ])}
+    </Grid>
+  ),
 };
 
 // ─── 10. Change Badge Types ───────────────────────────────────────────────────
 export const ChangeBadgeTypes = {
   name: 'Change Badge — Type 01 vs 02',
-  render: () => WRAP({}, [
-    ['Type 01 — Positive', { changeType: '01', trend: 'Positive' }],
-    ['Type 01 — Negative', { changeType: '01', trend: 'Negative' }],
-    ['Type 02 — Positive', { changeType: '02', trend: 'Positive' }],
-    ['Type 02 — Negative', { changeType: '02', trend: 'Negative' }],
-  ].map(([lbl, p]) => (
-    <div key={lbl}>
-      <div style={LABEL}>{lbl}</div>
-      <Metric {...BASE} variant="Small Chart" rtl={false} {...p} />
-    </div>
-  ))),
+  render: () => (
+    <Row>
+      <Card label="Type 01 — Positive"><Metric {...BASE} changeType="01" trend="Positive" /></Card>
+      <Card label="Type 01 — Negative"><Metric {...BASE} changeType="01" trend="Negative" /></Card>
+      <Card label="Type 02 — Positive"><Metric {...BASE} changeType="02" trend="Positive" /></Card>
+      <Card label="Type 02 — Negative"><Metric {...BASE} changeType="02" trend="Negative" /></Card>
+    </Row>
+  ),
 };
 
 // ─── 11. Marker On / Off ─────────────────────────────────────────────────────
 export const MarkerStates = {
   name: 'Marker — On & Off',
-  render: () => WRAP({}, [
-    ['With Marker',    { showMarker: true }],
-    ['Without Marker', { showMarker: false }],
-  ].map(([lbl, p]) => (
-    <div key={lbl}>
-      <div style={LABEL}>{lbl}</div>
-      <Metric {...BASE} variant="Small Chart" rtl={false} {...p} />
-    </div>
-  ))),
+  render: () => (
+    <Row>
+      <Card label="With Marker"><Metric {...BASE} showMarker={true} /></Card>
+      <Card label="Without Marker"><Metric {...BASE} showMarker={false} /></Card>
+    </Row>
+  ),
 };
 
 // ─── 12. Toggle States ────────────────────────────────────────────────────────
 export const ToggleStates = {
   name: 'Toggle States',
-  render: () => WRAP({}, [
-    { label: 'No Actions',          props: { showActions: false } },
-    { label: 'No Change Badge',     props: { showChange: false } },
-    { label: 'No Chart',            props: { showChart: false } },
-    { label: 'No Featured Icon',    props: { showFeaturedIcon: false } },
-    { label: 'No Info Section',     props: { showInfo: false } },
-    { label: 'No Secondary Action', props: { showSecondaryAction: false } },
-  ].map(({ label, props }) => (
-    <div key={label}>
-      <div style={LABEL}>{label}</div>
-      <Metric {...BASE} variant="Small Chart" rtl={false} {...props} />
-    </div>
-  ))),
+  render: () => (
+    <Grid>
+      <Card label="No Actions">         <Metric {...BASE} showActions={false} /></Card>
+      <Card label="No Change Badge">    <Metric {...BASE} showChange={false} /></Card>
+      <Card label="No Chart">           <Metric {...BASE} showChart={false} /></Card>
+      <Card label="No Featured Icon">   <Metric {...BASE} showFeaturedIcon={false} /></Card>
+      <Card label="No Info Section">    <Metric {...BASE} showInfo={false} /></Card>
+      <Card label="No Secondary Action"><Metric {...BASE} showSecondaryAction={false} /></Card>
+    </Grid>
+  ),
 };
 
 // ─── 13. RTL — All Chart Types ────────────────────────────────────────────────
 export const RTLAllTypes = {
   name: 'RTL — All Chart Types',
-  render: () => WRAP({}, ['Realistic','Wavy','Straight','Layers'].flatMap(ct => [
-    <div key={ct + '-pos'}>
-      <div style={LABEL}>{ct} / Positive (RTL)</div>
-      <Metric {...BASE} variant="Small Chart" rtl chartType={ct} trend="Positive" />
-    </div>,
-    <div key={ct + '-neg'}>
-      <div style={LABEL}>{ct} / Negative (RTL)</div>
-      <Metric {...BASE} variant="Small Chart" rtl chartType={ct} trend="Negative" />
-    </div>,
-  ])),
+  render: () => (
+    <Grid>
+      {['Realistic', 'Wavy', 'Straight', 'Layers'].flatMap(ct => [
+        <Card key={ct + '-pos'} label={`${ct} / Positive (RTL)`}>
+          <Metric {...BASE} variant="Small Chart" rtl chartType={ct} trend="Positive" />
+        </Card>,
+        <Card key={ct + '-neg'} label={`${ct} / Negative (RTL)`}>
+          <Metric {...BASE} variant="Small Chart" rtl chartType={ct} trend="Negative" />
+        </Card>,
+      ])}
+    </Grid>
+  ),
 };
