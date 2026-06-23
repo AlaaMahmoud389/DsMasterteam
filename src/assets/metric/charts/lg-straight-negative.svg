@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="1126 1340 328 64" width="328" height="64" fill="none">
+<defs>
+<linearGradient id="paint13_linear_4140_89813" x1="164" y1="0" x2="164" y2="64" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<g id="Type=Straight, Trend=Negative_2">
+<g id="Background_12">
+<mask id="mask13_4140_89813" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1126" y="1340" width="328" height="64">
+<g id="Mask_14">
+<rect width="328" height="64" transform="translate(1126 1340)" fill="url(#paint13_linear_4140_89813)"/>
+</g>
+</mask>
+<g mask="url(#mask13_4140_89813)">
+<path id="Color_12" opacity="0.2" d="M1366.88 1366L1454 1404H1126V1340L1215.69 1378L1366.88 1366Z" fill="#F68F87"/>
+</g>
+</g>
+<path id="Line_12" d="M1454 1404L1366.88 1366L1215.69 1378L1126 1340" stroke="#A30000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
