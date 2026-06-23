@@ -3,24 +3,24 @@ import { Icon } from '../icons/Icon';
 import settingsIconSrc from '../../assets/icons/settings.svg';
 
 // ── Small chart images (128 × 64 px) ────────────────────────────────────────
-import smRealisticPos from '../../assets/metric/charts/sm-realistic-positive.png';
-import smRealisticNeg from '../../assets/metric/charts/sm-realistic-negative.png';
-import smWavyPos      from '../../assets/metric/charts/sm-wavy-positive.png';
-import smWavyNeg      from '../../assets/metric/charts/sm-wavy-negative.png';
-import smStraightPos  from '../../assets/metric/charts/sm-straight-positive.png';
-import smStraightNeg  from '../../assets/metric/charts/sm-straight-negative.png';
-import smLayersPos    from '../../assets/metric/charts/sm-layers-positive.png';
-import smLayersNeg    from '../../assets/metric/charts/sm-layers-negative.png';
+import smRealisticPos from '../../assets/metric/charts/sm-realistic-positive.svg';
+import smRealisticNeg from '../../assets/metric/charts/sm-realistic-negative.svg';
+import smWavyPos      from '../../assets/metric/charts/sm-wavy-positive.svg';
+import smWavyNeg      from '../../assets/metric/charts/sm-wavy-negative.svg';
+import smStraightPos  from '../../assets/metric/charts/sm-straight-positive.svg';
+import smStraightNeg  from '../../assets/metric/charts/sm-straight-negative.svg';
+import smLayersPos    from '../../assets/metric/charts/sm-layers-positive.svg';
+import smLayersNeg    from '../../assets/metric/charts/sm-layers-negative.svg';
 
 // ── Large chart images (328 × 64 px) ────────────────────────────────────────
-import lgRealisticPos from '../../assets/metric/charts/lg-realistic-positive.png';
-import lgRealisticNeg from '../../assets/metric/charts/lg-realistic-negative.png';
-import lgWavyPos      from '../../assets/metric/charts/lg-wavy-positive.png';
-import lgWavyNeg      from '../../assets/metric/charts/lg-wavy-negative.png';
-import lgStraightPos  from '../../assets/metric/charts/lg-straight-positive.png';
-import lgStraightNeg  from '../../assets/metric/charts/lg-straight-negative.png';
-import lgLayersPos    from '../../assets/metric/charts/lg-layers-positive.png';
-import lgLayersNeg    from '../../assets/metric/charts/lg-layers-negative.png';
+import lgRealisticPos from '../../assets/metric/charts/lg-realistic-positive.svg';
+import lgRealisticNeg from '../../assets/metric/charts/lg-realistic-negative.svg';
+import lgWavyPos      from '../../assets/metric/charts/lg-wavy-positive.svg';
+import lgWavyNeg      from '../../assets/metric/charts/lg-wavy-negative.svg';
+import lgStraightPos  from '../../assets/metric/charts/lg-straight-positive.svg';
+import lgStraightNeg  from '../../assets/metric/charts/lg-straight-negative.svg';
+import lgLayersPos    from '../../assets/metric/charts/lg-layers-positive.svg';
+import lgLayersNeg    from '../../assets/metric/charts/lg-layers-negative.svg';
 
 // ── Trade icon paths (fill-based, extracted from Figma frame 4140:89813) ─────
 const TRADE_UP_D =
@@ -81,7 +81,7 @@ function getSmallMarkers(chartType, trend) {
         : [{ top: '53.13%', right: '11.4%', bottom: '12.5%',  left: '75.4%' }];
     case 'Realistic':
       return isPos
-        ? [{ top: 3, bottom: 39, left: 'calc(50% + 21px)', transform: 'translateX(-50%)', width: 22 }]
+        ? [{ top: 3, bottom: 39, left: 'calc(50% + 21px)', transform: 'translateX(-50%)', width: 20 }]
         : [{ top: '25%', right: '28.13%', bottom: '40.63%', left: '54.69%' }];
     case 'Straight':
       return isPos
@@ -102,21 +102,21 @@ function getLargeMarkers(chartType, trend) {
   switch (chartType) {
     case 'Wavy':
       return isPos
-        ? [{ top: 14, bottom: 28, left: 'calc(50% + 107px)', transform: 'translateX(-50%)', width: 22 }]
-        : [{ top: '56.25%', bottom: '9.38%', left: 'calc(50% + 111px)', transform: 'translateX(-50%)', width: 22 }];
+        ? [{ top: 14, bottom: 28, left: 'calc(50% + 107px)', transform: 'translateX(-50%)', width: 20 }]
+        : [{ top: '56.25%', bottom: '9.38%', left: 'calc(50% + 111px)', transform: 'translateX(-50%)', width: 20 }];
     case 'Realistic':
       return isPos
-        ? [{ top: 'calc(50% - 19px)', left: 'calc(50% + 56px)', transform: 'translate(-50%, -50%)', width: 22, height: 22 }]
-        : [{ top: 15, bottom: 26.81, left: 'calc(50% + 44px)', transform: 'translateX(-50%)', width: 22 }];
+        ? [{ top: 'calc(50% - 19px)', left: 'calc(50% + 56px)', transform: 'translate(-50%, -50%)', width: 20, height: 20 }]
+        : [{ top: 15, bottom: 26.81, left: 'calc(50% + 44px)', transform: 'translateX(-50%)', width: 20 }];
     case 'Straight':
       return isPos
         ? [
-            { top: 26, bottom: 16, left: 'calc(50% + 75px)', transform: 'translateX(-50%)', width: 22 },
-            { top: 16, bottom: 26, left: 'calc(50% - 76px)', transform: 'translateX(-50%)', width: 22 },
+            { top: 26, bottom: 16, left: 'calc(50% + 75px)', transform: 'translateX(-50%)', width: 20 },
+            { top: 16, bottom: 26, left: 'calc(50% - 76px)', transform: 'translateX(-50%)', width: 20 },
           ]
         : [
-            { top: '25%',    bottom: '40.63%', right: 75,  width: 22 },
-            { top: '42.19%', bottom: '23.44%', right: 228, width: 22 },
+            { top: '25%',    bottom: '40.63%', right: 75,  width: 20 },
+            { top: '42.19%', bottom: '23.44%', right: 228, width: 20 },
           ];
     default: return [];
   }

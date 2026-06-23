@@ -282,7 +282,6 @@
   height: 100%;
   object-fit: fill;
   display: block;
-  filter: brightness(1.05);
 }
 
 /* Line overlay is slightly oversized per Figma inset values */
@@ -310,21 +309,21 @@
 }
 
 /* ─── Marker dot (on sparkline) ─────────────────────────────────────────────── */
-/* Small: bottom=39px top=3px w=22px left=calc(50%+21px) translateX(-50%) */
+/* Small: bottom=39px top=3px w=20px left=calc(50%+21px) translateX(-50%) */
 .markerSmall {
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   top: 3px;
   left: calc(50% + 21px);
   transform: translateX(-50%);
 }
 
-/* Large: 22px centered at left=calc(50%+56px) top=calc(50%-19px) translate(-50%,-50%) */
+/* Large: 20px centered at left=calc(50%+56px) top=calc(50%-19px) translate(-50%,-50%) */
 .markerLarge {
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   left: calc(50% + 56px);
   top: calc(50% - 19px);
   transform: translate(-50%, -50%);
@@ -334,17 +333,17 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border-width: 1.571px;
+  border-width: 2px;
   border-style: solid;
   opacity: 0.2;
 }
 
 .markerDot {
   position: absolute;
-  inset: 22.73%;
+  inset: 25%;
   border-radius: 50%;
   background: #f5faff;
-  border-width: 1.571px;
+  border-width: 2px;
   border-style: solid;
 }
 
