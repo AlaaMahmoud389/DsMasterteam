@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="573 1360 128 64" width="128" height="64" fill="none">
+<defs>
+<linearGradient id="paint6_linear_4140_89813" x1="64" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<g id="Type=Layers, Trend=Negative">
+<g id="Line 01 mask">
+<mask id="mask6_4140_89813" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="573" y="1360" width="128" height="64">
+<g id="Mask_7">
+<rect width="128" height="64" transform="translate(573 1360)" fill="url(#paint6_linear_4140_89813)"/>
+</g>
+</mask>
+<g mask="url(#mask6_4140_89813)">
+<path id="Line 01" opacity="0.2" d="M701 1379.66C699.711 1379.54 698.42 1379.48 697.128 1379.48C687.19 1379.48 677.341 1383.15 667.474 1386.84C660.866 1389.31 654.251 1391.78 647.596 1393.15C631.003 1396.57 614.657 1393.15 598.064 1381.19C592.829 1377.41 587.62 1372.79 582.419 1368.17C579.277 1365.38 576.139 1362.59 573 1360V1424H701V1379.66Z" fill="#F68F87"/>
+</g>
+</g>
+<path id="Line 02" opacity="0.2" d="M573 1391.74V1424H701V1397.79C696.889 1400.11 692.788 1402.36 688.687 1404C677.667 1408.4 666.647 1408.4 655.627 1403.12C650.117 1400.47 644.558 1396.51 639 1392.54C633.442 1388.58 627.883 1384.61 622.373 1381.97C611.353 1376.68 600.333 1376.68 589.313 1381.97C585.668 1383.71 582.023 1386.04 578.371 1388.37C576.583 1389.52 574.793 1390.66 573 1391.74Z" fill="#F68F87"/>
+</g>
+</svg>

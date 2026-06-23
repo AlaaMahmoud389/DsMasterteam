@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="1126 1233 328 64" width="328" height="64" fill="none">
+<defs>
+<linearGradient id="paint9_linear_4140_89813" x1="164" y1="0" x2="164" y2="64" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<g id="Type=Wavy, Trend=Negative_2">
+<g id="Background_8">
+<mask id="mask9_4140_89813" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1126" y="1233" width="328" height="64">
+<g id="Mask_10">
+<rect width="328" height="64" transform="translate(1126 1233)" fill="url(#paint9_linear_4140_89813)"/>
+</g>
+</mask>
+<g mask="url(#mask9_4140_89813)">
+<path id="Color_8" opacity="0.2" d="M1126 1233C1179.29 1234.73 1182.59 1276.22 1235.33 1281C1278.83 1284.94 1300.85 1262.57 1344.67 1265C1392.19 1267.63 1407.4 1290.94 1454 1297H1290H1126V1233Z" fill="#F68F87"/>
+</g>
+</g>
+<path id="Line_8" d="M1454 1297C1407.4 1290.94 1392.19 1267.63 1344.67 1265C1300.85 1262.57 1278.83 1284.94 1235.33 1281C1182.59 1276.22 1179.29 1234.73 1126 1233" stroke="#A30000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>

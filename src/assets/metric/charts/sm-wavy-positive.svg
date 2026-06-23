@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="429 1200 128 64" width="128" height="64" fill="none">
+<defs>
+<linearGradient id="paint0_linear_4140_89813" x1="64" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+<stop/>
+<stop offset="1" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<g id="Type=Wavy, Trend=Positive">
+<g id="Background">
+<mask id="mask0_4140_89813" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="429" y="1200" width="128" height="64">
+<g id="Mask">
+<rect width="128" height="64" transform="translate(429 1200)" fill="url(#paint0_linear_4140_89813)"/>
+</g>
+</mask>
+<g mask="url(#mask0_4140_89813)">
+<path id="Color" opacity="0.2" d="M557 1200C536.204 1201.73 534.916 1243.22 514.333 1248C497.36 1251.94 488.766 1229.57 471.667 1232C453.12 1234.63 447.185 1257.94 429 1264H557V1200Z" fill="#9CD4BB"/>
+</g>
+</g>
+<path id="Line" d="M429 1264C447.185 1257.94 453.12 1234.63 471.667 1232C488.766 1229.57 497.36 1251.94 514.333 1248C534.916 1243.22 536.204 1201.73 557 1200" stroke="#006121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
