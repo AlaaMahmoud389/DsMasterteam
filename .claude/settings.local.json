@@ -74,7 +74,13 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "PowerShell(Get-ChildItem -Path \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\" -Recurse -Directory | Where-Object { $_.Name -match '\\(logo|[Ll]og|[Ff]oundation\\)' } | Select-Object -ExpandProperty FullName)",
       "Bash(Get-ChildItem -Path \"D:\\\\Jobs\\\\Master Team\\\\DESIGN SYSTEM\\\\MASTER TEAM DESIGN SYSTEM FINAL\\\\src\\\\components\" -Recurse -Include \"*ropdown*\")",
-      "Bash(Select-String *)"
+      "Bash(Select-String *)",
+      "Bash(npx eslint *)",
+      "Bash(cp /tmp/check_d2.cjs ./check_d2_tmp.cjs)",
+      "Bash(rm -f ./check_d2_tmp.cjs)",
+      "Bash(npx playwright *)",
+      "Bash(kill %1)",
+      "Bash(pkill -f \"npx playwright install\")"
     ]
   }
 }
