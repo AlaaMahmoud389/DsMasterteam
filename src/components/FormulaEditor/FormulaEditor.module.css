@@ -1,0 +1,1035 @@
+/*
+ * FormulaEditor.module.css — Masterteam Design System
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+
+/* ══════════════════════════════════════════════════════════════════
+   Wrapper
+   ══════════════════════════════════════════════════════════════════ */
+
+.wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Label — mirrors TextInput
+   ══════════════════════════════════════════════════════════════════ */
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.label {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000b36;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Helper panel
+   ══════════════════════════════════════════════════════════════════ */
+
+.helperPanel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Search bar row — search section + divider + insert section
+   ══════════════════════════════════════════════════════════════════ */
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.searchSection {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  min-width: 0;
+  height: 100%;
+}
+
+.searchIconWrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #6c7c96;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: #000b36;
+  padding: 0;
+  margin: 0;
+}
+
+.searchInput::placeholder {
+  color: #b6bdca;
+  opacity: 1;
+}
+
+.clearSearch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #9ca3af;
+  border-radius: 2px;
+  outline: none;
+  transition: color 120ms ease;
+}
+
+.clearSearch:hover { color: #374151; }
+.clearSearch:focus-visible { outline: 2px solid #1849a9; outline-offset: 1px; }
+
+.searchDivider {
+  width: 1px;
+  height: 20px;
+  background: #e5e7eb;
+  flex-shrink: 0;
+}
+
+.insertSection {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px 0 12px;
+  flex-shrink: 0;
+  width: 200px;
+  height: 100%;
+}
+
+.insertLabel {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  color: #6c7c96;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.insertInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 12px;
+  line-height: 18px;
+  color: #000b36;
+  padding: 0;
+  margin: 0;
+}
+
+.insertInput::placeholder {
+  color: #b6bdca;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-style: italic;
+  opacity: 1;
+}
+
+.insertBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #6c7c96;
+  padding: 0;
+  outline: none;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.insertBtn:hover { background: #e5e7eb; color: #000b36; border-color: #d2d6db; }
+.insertBtn:active { background: #d2d6db; }
+.insertBtn:focus-visible { outline: 2px solid #1849a9; outline-offset: 1px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Panel body — fixed height, scrollable children
+   ══════════════════════════════════════════════════════════════════ */
+
+.panelBody {
+  display: flex;
+  flex-direction: row;
+  height: 260px;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Left navigation — vertical tab list
+   ══════════════════════════════════════════════════════════════════ */
+
+.leftNav {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  flex-shrink: 0;
+  border-inline-end: 1px solid #e5e7eb;
+  padding: 8px 0;
+  box-sizing: border-box;
+  gap: 2px;
+  overflow-y: auto;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 40px;
+  padding: 0 12px 0 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000b36;
+  text-align: start;
+  position: relative;
+  box-sizing: border-box;
+  outline: none;
+  transition: background 120ms ease, opacity 120ms ease;
+}
+
+.navItem::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 16px;
+  border-radius: 9999px;
+  background: transparent;
+  transition: background 120ms ease;
+}
+
+.navItem:not(.navItemActive):not(.navItemMuted):hover { background: #f3f4f6; }
+.navItem:not(.navItemActive):not(.navItemMuted):hover::before { background: #d2d6db; }
+.navItem:not(.navItemActive):not(.navItemMuted):active { background: #e5e7eb; }
+
+.navItemActive { font-weight: 600; }
+.navItemActive::before { background: #1849a9; }
+
+/* Muted: section has no search results */
+.navItemMuted {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.navItem:focus-visible { outline: 2px solid #1849a9; outline-offset: -2px; }
+
+.navIcon  { display: flex; align-items: center; flex-shrink: 0; }
+
+.navLabel {
+  flex: 1;
+  text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navCount {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #6c7c96;
+  background: #f3f4f6;
+  border-radius: 9999px;
+  padding: 0 6px;
+  min-width: 20px;
+  text-align: center;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.navCountActive {
+  background: rgba(24, 73, 169, 0.1);
+  color: #1849a9;
+}
+
+.navCountMuted {
+  background: transparent;
+  color: #d2d6db;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Right content area — scrollable
+   ══════════════════════════════════════════════════════════════════ */
+
+.rightContent {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Category group
+   ══════════════════════════════════════════════════════════════════ */
+
+.categoryGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.categoryHeading {
+  margin: 0;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #6c7c96;
+}
+
+.categoryItems {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Helper panel clickable tags (browse area — not formula box)
+   ══════════════════════════════════════════════════════════════════ */
+
+.functionTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px 0 8px;
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  background: #eff6ff;
+  color: #1849a9;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background 120ms ease, border-color 120ms ease;
+  box-sizing: border-box;
+}
+
+.functionTag:hover  { background: #dbeafe; border-color: #93c5fd; }
+.functionTag:active { background: #bfdbfe; }
+.functionTag:focus-visible { outline: 2px solid #1849a9; outline-offset: 1px; }
+
+.funcPrefix {
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  color: #93b4da;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.propertyTag {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid #a7f3d0;
+  border-radius: 4px;
+  background: #ecfdf5;
+  color: #065f46;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background 120ms ease, border-color 120ms ease;
+  box-sizing: border-box;
+}
+
+.propertyTag:hover  { background: #d1fae5; border-color: #6ee7b7; }
+.propertyTag:active { background: #a7f3d0; }
+.propertyTag:focus-visible { outline: 2px solid #065f46; outline-offset: 1px; }
+
+.operationTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  background: #f9fafb;
+  color: #374151;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  transition: background 120ms ease, border-color 120ms ease;
+  box-sizing: border-box;
+}
+
+.operationTag:hover  { background: #e5e7eb; border-color: #d1d5db; }
+.operationTag:active { background: #d2d6db; }
+.operationTag:focus-visible { outline: 2px solid #1849a9; outline-offset: 1px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Empty search state
+   ══════════════════════════════════════════════════════════════════ */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 28px 16px;
+  text-align: center;
+  flex: 1;
+}
+
+.emptyIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 4px;
+}
+
+.emptyTitle {
+  margin: 0;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #374151;
+}
+
+.emptyBody {
+  margin: 0;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #6c7c96;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Formula area label
+   ══════════════════════════════════════════════════════════════════ */
+
+.formulaAreaLabel {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000b36;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Formula box outer — border wrapper with row number gutter
+   ══════════════════════════════════════════════════════════════════ */
+
+.formulaBoxOuter {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border: 1px solid #d2d6db;
+  border-radius: 4px;
+  background: #ffffff;
+  min-height: 72px;
+  box-sizing: border-box;
+  transition: border-color 120ms ease;
+  overflow: hidden;
+}
+
+.formulaBoxOuter:focus-within {
+  border-color: #b6bdca;
+}
+
+/* ── Row number gutter ── */
+.lineGutter {
+  width: 32px;
+  flex-shrink: 0;
+  background: #f9fafb;
+  border-right: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.lineNumber {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 7px;
+  box-sizing: border-box;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 10px;
+  font-weight: 400;
+  color: #b6bdca;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ── Token display area ── */
+.formulaBox {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 14px 12px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.formulaPlaceholder {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #b6bdca;
+  font-style: italic;
+  pointer-events: none;
+  align-self: center;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Formula actions (Clear All) — below formula box
+   ══════════════════════════════════════════════════════════════════ */
+
+.formulaActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.clearAllBtn {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9ca3af;
+  cursor: pointer;
+  outline: none;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.clearAllBtn:hover {
+  background: #fef2f2;
+  color: #ef4444;
+  border-color: #fecaca;
+}
+
+.clearAllBtn:focus-visible {
+  outline: 2px solid #1849a9;
+  outline-offset: 1px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Debug output — read-only formula string
+   ══════════════════════════════════════════════════════════════════ */
+
+.debugOutput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.debugLabel {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.debugInput {
+  flex: 1;
+  min-width: 0;
+  height: 32px;
+  padding: 0 10px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 12px;
+  color: #4b5563;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: default;
+  outline: none;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  user-select: text;
+}
+
+.debugInput::-webkit-scrollbar {
+  height: 4px;
+}
+
+.debugInput::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 9999px;
+}
+
+.debugInput::-webkit-scrollbar-thumb {
+  background: #d2d6db;
+  border-radius: 9999px;
+}
+
+.debugInput::-webkit-scrollbar-thumb:hover {
+  background: #b6bdca;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   JSON output — live token array viewer
+   ══════════════════════════════════════════════════════════════════ */
+
+.jsonOutput {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.jsonHeader {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.jsonLabel {
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.tokenCountValue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 18px;
+  padding: 0 6px;
+  background: #eff3fb;
+  border: 1px solid #dce3f7;
+  border-radius: 9999px;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #1849a9;
+  line-height: 1;
+}
+
+.jsonPre {
+  margin: 0;
+  padding: 10px 12px;
+  background: #0f1c2e;
+  border: 1px solid #1e2f44;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: #94a3b8;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 220px;
+  white-space: pre;
+  box-sizing: border-box;
+  cursor: default;
+  tab-size: 2;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Formula tokens (inside formula box)
+   ══════════════════════════════════════════════════════════════════ */
+
+.fToken {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  box-sizing: border-box;
+  transition: background 120ms ease, border-color 120ms ease;
+  cursor: default;
+}
+
+/* Function — blue */
+.fTokenFunction {
+  height: 26px;
+  padding: 0 4px 0 7px;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1849a9;
+}
+.fTokenFunction:hover { background: #dbeafe; border-color: #93c5fd; }
+
+/* Param — amber dashed */
+.fTokenParam {
+  height: 26px;
+  padding: 0 4px 0 8px;
+  background: #fffbeb;
+  border: 1px dashed #fcd34d;
+  color: #78350f;
+  font-style: italic;
+}
+.fTokenParam:hover { background: #fef3c7; border-color: #f59e0b; }
+
+/* Property — emerald */
+.fTokenProperty {
+  height: 26px;
+  padding: 0 4px 0 8px;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+.fTokenProperty:hover { background: #d1fae5; border-color: #6ee7b7; }
+
+/* Operation — neutral monospace */
+.fTokenOperation {
+  height: 26px;
+  padding: 0 4px 0 8px;
+  background: #f9fafb;
+  border-color: #e5e7eb;
+  color: #374151;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 13px;
+}
+.fTokenOperation:hover { background: #e5e7eb; border-color: #d1d5db; }
+
+/* Syntax — minimal monospace */
+.fTokenSyntax {
+  height: 22px;
+  padding: 0 3px 0 5px;
+  background: transparent;
+  border-color: transparent;
+  color: #6c7c96;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+}
+.fTokenSyntax:hover { background: #f3f4f6; border-color: #e5e7eb; }
+
+/* Wildcard — same as syntax but bold */
+.fTokenWildcard {
+  height: 22px;
+  padding: 0 3px 0 5px;
+  background: transparent;
+  border-color: transparent;
+  color: #6c7c96;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  font-style: normal;
+}
+.fTokenWildcard:hover { background: #f3f4f6; border-color: #e5e7eb; }
+
+/* Custom (Insert field) — neutral monospace */
+.fTokenCustom {
+  height: 26px;
+  padding: 0 4px 0 8px;
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #374151;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 12px;
+}
+.fTokenCustom:hover { background: #e5e7eb; border-color: #b6bdca; }
+
+/* ── Function "f" prefix ── */
+.fTokenFPrefix {
+  font-size: 10px;
+  font-weight: 400;
+  font-style: italic;
+  color: #93b4da;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Token value text ── */
+.fTokenValue {
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* ── Remove button inside each token — hidden, revealed on hover ── */
+.fTokenRemove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 2px;
+  outline: none;
+  color: transparent;
+  transition: color 100ms ease, background 100ms ease;
+  line-height: 1;
+  margin-inline-start: 1px;
+}
+
+.fToken:hover .fTokenRemove {
+  color: currentColor;
+  opacity: 0.6;
+}
+
+.fTokenRemove:hover {
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 1 !important;
+  color: currentColor !important;
+}
+
+.fTokenRemove:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 1px;
+  color: currentColor;
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Rich function tooltip — dark popover (fixed position)
+   ══════════════════════════════════════════════════════════════════ */
+
+.richTooltip {
+  width: 296px;
+  border-radius: 8px;
+  background: #1a2236;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 10px 30px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  pointer-events: none;
+}
+
+.ttHeader {
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ttSignature {
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #93c5fd;
+  letter-spacing: 0.01em;
+}
+
+.ttDescription {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #94a3b8;
+}
+
+.ttDivider { height: 1px; background: #2d3f5e; }
+
+.ttSection {
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ttSectionLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #4b6080;
+  text-transform: uppercase;
+  line-height: 14px;
+}
+
+.ttTypeBadge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 9999px;
+  background: #243450;
+  border: 1px solid #2d4a70;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #7dd3fc;
+  line-height: 1;
+  width: fit-content;
+}
+
+.ttParam { display: flex; flex-direction: column; gap: 3px; }
+
+.ttCodeBlock {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0f1c2e;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.ttParamName {
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1;
+}
+
+.ttParamType {
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1;
+}
+
+.ttParamDesc {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #64748b;
+  padding-inline-start: 2px;
+}
+
+.ttExample {
+  display: block;
+  background: #0f1c2e;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', Menlo, monospace;
+  font-size: 12px;
+  line-height: 18px;
+  color: #a5f3fc;
+  word-break: break-all;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Scrollbar — subtle
+   ══════════════════════════════════════════════════════════════════ */
+
+.rightContent::-webkit-scrollbar,
+.leftNav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.rightContent::-webkit-scrollbar-track,
+.leftNav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.rightContent::-webkit-scrollbar-thumb,
+.leftNav::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 9999px;
+}
+
+.rightContent::-webkit-scrollbar-thumb:hover,
+.leftNav::-webkit-scrollbar-thumb:hover {
+  background: #d2d6db;
+}

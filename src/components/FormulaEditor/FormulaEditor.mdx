@@ -1,0 +1,536 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { FormulaEditor } from './FormulaEditor';
+import * as FormulaEditorStories from './FormulaEditor.stories';
+
+<Meta of={FormulaEditorStories} />
+
+<div style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}>
+
+{/* ── Header ─────────────────────────────────────────────────────── */}
+<div style={{ borderBottom: '1px solid #e5e7eb', paddingBottom: 16, marginBottom: 28 }}>
+  <div style={{ fontSize: 12, color: '#6b7280', marginBottom: 8, letterSpacing: '0.02em' }}>
+    Components / Formula Editor
+  </div>
+  <h1 style={{ margin: '0 0 10px', fontSize: 28, fontWeight: 700, color: '#000b36', lineHeight: 1.25 }}>
+    Formula Editor
+  </h1>
+  <p style={{ margin: '0 0 16px', fontSize: 15, color: '#374151', lineHeight: 1.6, maxWidth: 680 }}>
+    Formula Editor lets users visually construct formulas using typed tokens — functions, properties, operations, and custom values.
+    A helper panel provides searchable browsing of all available items. Each token is individually removable,
+    and a debug field shows the live formula string.
+  </p>
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+    <span style={{ background: '#d1fae5', color: '#065f46', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Available</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>13 Functions</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>11 Properties</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>10 Operations</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>7 Token Types</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Search &amp; Filter</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Line Numbers</span>
+    <span style={{ background: '#dbeafe', color: '#1e40af', fontSize: 12, fontWeight: 600, padding: '3px 10px', borderRadius: 9999 }}>Debug Output</span>
+  </div>
+</div>
+
+{/* ── On this page ───────────────────────────────────────────────── */}
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '16px 20px', marginBottom: 32 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 10 }}>On this page</div>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '4px 24px' }}>
+    {[
+      ['#overview',       'Overview'],
+      ['#anatomy',        'Anatomy'],
+      ['#token-types',    'Token Types'],
+      ['#functions',      'Functions'],
+      ['#properties',     'Properties'],
+      ['#operations',     'Operations'],
+      ['#search',         'Search & Nav'],
+      ['#formula-box',    'Formula Box'],
+      ['#line-numbers',   'Line Numbers'],
+      ['#debug',          'Debug Output'],
+      ['#usage',          'Usage Guidelines'],
+      ['#tokens',         'Design Tokens'],
+      ['#props',          'Component Props'],
+      ['#accessibility',  'Accessibility'],
+    ].map(([href, text]) => (
+      <a key={href} href={href} style={{ color: '#1849a9', fontSize: 13, textDecoration: 'none', lineHeight: '22px' }}>{text}</a>
+    ))}
+  </div>
+</div>
+
+---
+
+{/* ── Overview ───────────────────────────────────────────────────── */}
+<h2 id="overview" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Overview</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Use the interactive playground below to explore the FormulaEditor. Click any item in the helper panel to add it as a token.
+  Hover a token to reveal its remove button. Use the search bar to filter and highlight matching categories.
+</p>
+
+<Canvas of={FormulaEditorStories.Playground} />
+<Controls of={FormulaEditorStories.Playground} />
+
+---
+
+{/* ── Anatomy ────────────────────────────────────────────────────── */}
+<h2 id="anatomy" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Anatomy</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  The Formula Editor is split into two main regions — a helper panel on top and a formula area below.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>#</span><span>Part</span><span>Notes</span>
+  </div>
+  {[
+    ['1', 'Component label',     'Optional — rendered above the helper panel; controlled via label / showLabel props'],
+    ['2', 'Search bar',          'Full-width search input; filters items across all three categories in real time'],
+    ['3', 'Insert field',        'Adjacent to search; type a custom value and press Enter or click Insert to add a custom token'],
+    ['4', 'Category nav tabs',   'Functions · Properties · Operations — always visible; active tabs highlighted, non-matching tabs muted when searching'],
+    ['5', 'Helper panel body',   'Fixed-height scrollable list of items in the active category; click any item to insert it as token(s)'],
+    ['6', 'Formula area label',  'Static "Formula Editor" label rendered directly above the formula box'],
+    ['7', 'Line gutter',         'Narrow column on the left of the formula box showing row numbers, like a code editor'],
+    ['8', 'Formula box',         'Token display area — tokens are laid out left-to-right, wrapping across rows as needed'],
+    ['9', 'Token',               'Pill-shaped chip representing one formula element; hover to reveal the × remove button'],
+    ['10','Clear All button',    'Appears below the formula box when at least one token exists; removes all tokens at once'],
+    ['11','Debug output',        'Read-only single-line input showing the full formula string for inspection'],
+  ].map(([num, part, notes]) => (
+    <div key={num} style={{ display: 'grid', gridTemplateColumns: '40px 180px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: '#fff' }}>
+      <span style={{ color: '#9ca3af', fontWeight: 700 }}>{num}</span>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{part}</span>
+      <span style={{ color: '#374151' }}>{notes}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Token Types ────────────────────────────────────────────────── */}
+<h2 id="token-types" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Token Types</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Every element in a formula is represented as a <strong>token</strong> with a specific variant that determines its colour and meaning.
+  Functions expand into multiple tokens when clicked.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>Colour</span><span>Description</span>
+  </div>
+  {[
+    ['function',   '#eff3fb / #1849a9', 'Function name — SUM, IF, CHILD, etc.'],
+    ['param',      '#fff7ed / #c2410c', 'Parameter placeholder — values, condition, decimals, etc.'],
+    ['property',   '#f0fdf4 / #15803d', 'Field property name — Budget, Status, ActualCost, etc.'],
+    ['operation',  '#fdf4ff / #9333ea', 'Arithmetic, comparison, or logical operator — +, ==, &&, etc.'],
+    ['syntax',     '#f3f4f6 / #374151', 'Structural punctuation — parentheses ( ), comma ,, dot .'],
+    ['wildcard',   '#fffbeb / #b45309', 'Wildcard selector — * used inside CHILD()'],
+    ['custom',     '#f9fafb / #4b5563', 'Custom value typed by the user via the Insert field'],
+  ].map(([variant, colours, desc], i) => (
+    <div key={variant} style={{ display: 'grid', gridTemplateColumns: '120px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{variant}</code>
+      <span style={{ fontSize: 11, color: '#6b7280', fontFamily: 'monospace' }}>{colours}</span>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={FormulaEditorStories.AllTokenTypes} />
+
+---
+
+{/* ── Functions ──────────────────────────────────────────────────── */}
+<h2 id="functions" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Functions</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  13 built-in functions across four categories. Clicking a function in the helper panel expands it into its full token sequence
+  — name, opening parenthesis, typed parameter placeholders, and closing parenthesis.
+</p>
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginBottom: 28 }}>
+
+  {/* Math */}
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Math</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '130px 200px 1fr 100px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+      <span>Function</span><span>Signature</span><span>Description</span><span>Returns</span>
+    </div>
+    {[
+      ['SUM',     'SUM(values)',              'Sum of all values in the set',               'number'],
+      ['AVERAGE', 'AVERAGE(values)',          'Arithmetic mean of all values',              'number'],
+      ['MIN',     'MIN(values)',              'Minimum value in the set',                   'number'],
+      ['MAX',     'MAX(values)',              'Maximum value in the set',                   'number'],
+      ['ROUND',   'ROUND(value, decimals)',   'Rounds value to N decimal places',           'number'],
+    ].map(([fn, sig, desc, ret], i) => (
+      <div key={fn} style={{ display: 'grid', gridTemplateColumns: '130px 200px 1fr 100px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa', fontSize: 13 }}>
+        <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{fn}</code>
+        <code style={{ fontSize: 12, color: '#374151' }}>{sig}</code>
+        <span style={{ color: '#374151' }}>{desc}</span>
+        <span style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#6b7280', display: 'inline-block' }}>{ret}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Logical */}
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Logical</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '130px 260px 1fr 100px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+      <span>Function</span><span>Signature</span><span>Description</span><span>Returns</span>
+    </div>
+    {[
+      ['IF',       'IF(condition, trueValue, falseValue)',  'Returns trueValue when condition is truthy, otherwise falseValue',  'any'],
+      ['OR',       'OR(condition1, condition2)',            'Returns true if at least one condition is true',                    'boolean'],
+      ['AND',      'AND(condition1, condition2)',           'Returns true only if all conditions are true',                     'boolean'],
+      ['COALESCE', 'COALESCE(value1, value2)',             'Returns the first non-null / non-empty value',                     'any'],
+    ].map(([fn, sig, desc, ret], i) => (
+      <div key={fn} style={{ display: 'grid', gridTemplateColumns: '130px 260px 1fr 100px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa', fontSize: 13 }}>
+        <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{fn}</code>
+        <code style={{ fontSize: 12, color: '#374151' }}>{sig}</code>
+        <span style={{ color: '#374151' }}>{desc}</span>
+        <span style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#6b7280', display: 'inline-block' }}>{ret}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Hierarchy */}
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Hierarchy</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '130px 220px 1fr 100px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+      <span>Function</span><span>Signature</span><span>Description</span><span>Returns</span>
+    </div>
+    {[
+      ['CHILD',  'CHILD(*.propertyKey)',  'Accesses a named property from each child item — use * as wildcard to target all children',  'array'],
+      ['PARENT', 'PARENT(propertyKey)',   'Accesses a property from the direct parent item',                                            'any'],
+    ].map(([fn, sig, desc, ret], i) => (
+      <div key={fn} style={{ display: 'grid', gridTemplateColumns: '130px 220px 1fr 100px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa', fontSize: 13 }}>
+        <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{fn}</code>
+        <code style={{ fontSize: 12, color: '#374151' }}>{sig}</code>
+        <span style={{ color: '#374151' }}>{desc}</span>
+        <span style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#6b7280', display: 'inline-block' }}>{ret}</span>
+      </div>
+    ))}
+  </div>
+
+  {/* Aggregation */}
+  <div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+    <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.08em', color: '#6b7280' }}>Aggregation</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '130px 220px 1fr 100px', background: '#f0f1f3', padding: '7px 16px', gap: 12, fontSize: 11, fontWeight: 600, color: '#6b7280', borderBottom: '1px solid #e5e7eb' }}>
+      <span>Function</span><span>Signature</span><span>Description</span><span>Returns</span>
+    </div>
+    {[
+      ['COUNT',    'COUNT(values)',                  'Counts the total number of non-null items',                  'number'],
+      ['COUNT_IF', 'COUNT_IF(values, condition)',    'Counts items that satisfy the given condition',              'number'],
+    ].map(([fn, sig, desc, ret], i) => (
+      <div key={fn} style={{ display: 'grid', gridTemplateColumns: '130px 220px 1fr 100px', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', gap: 12, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa', fontSize: 13 }}>
+        <code style={{ fontSize: 12, background: '#eff3fb', padding: '2px 7px', borderRadius: 4, color: '#1849a9', fontWeight: 600 }}>{fn}</code>
+        <code style={{ fontSize: 12, color: '#374151' }}>{sig}</code>
+        <span style={{ color: '#374151' }}>{desc}</span>
+        <span style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#6b7280', display: 'inline-block' }}>{ret}</span>
+      </div>
+    ))}
+  </div>
+
+</div>
+
+<Canvas of={FormulaEditorStories.FunctionTokens} />
+
+---
+
+{/* ── Properties ─────────────────────────────────────────────────── */}
+<h2 id="properties" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Properties</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  11 built-in field properties available in the helper panel. Clicking a property inserts a single <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>property</code> token.
+</p>
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 10, marginBottom: 28 }}>
+  {['PlannedCost','ActualCost','Budget','Status','EndDate','Duration','Priority','Owner','Category','Risk','Score'].map((prop) => (
+    <div key={prop} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <code style={{ fontSize: 13, fontWeight: 600, color: '#15803d', background: '#f0fdf4', padding: '2px 8px', borderRadius: 4, display: 'inline-block' }}>{prop}</code>
+      <span style={{ fontSize: 11, color: '#9ca3af' }}>property</span>
+    </div>
+  ))}
+</div>
+
+<Canvas of={FormulaEditorStories.PropertyTokens} />
+
+---
+
+{/* ── Operations ─────────────────────────────────────────────────── */}
+<h2 id="operations" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Operations</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  10 operators across three groups. Clicking an operator inserts a single <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4 }}>operation</code> token.
+</p>
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 28 }}>
+  {[
+    { group: 'Arithmetic', ops: ['+','-','*','/'], desc: 'Basic mathematical operations' },
+    { group: 'Comparison', ops: ['==','!=','>','<','>=','<='], desc: 'Value comparison — returns boolean' },
+    { group: 'Logical',    ops: ['&&','||'], desc: 'Boolean logic — combine conditions' },
+  ].map(({ group, ops, desc }) => (
+    <div key={group} style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden' }}>
+      <div style={{ background: '#f9fafb', padding: '10px 16px', borderBottom: '1px solid #e5e7eb' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#000b36' }}>{group}</span>
+        <span style={{ fontSize: 12, color: '#6b7280', marginLeft: 10 }}>{desc}</span>
+      </div>
+      <div style={{ padding: '12px 16px', display: 'flex', gap: 10, flexWrap: 'wrap', background: '#fff' }}>
+        {ops.map(op => (
+          <code key={op} style={{ fontSize: 14, fontWeight: 700, background: '#fdf4ff', color: '#9333ea', padding: '4px 12px', borderRadius: 6, border: '1px solid #e9d5ff' }}>{op}</code>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Search & Nav ───────────────────────────────────────────────── */}
+<h2 id="search" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Search &amp; Navigation</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  The search bar at the top of the helper panel filters items in real time. Category nav tabs remain visible at all times,
+  but their appearance adapts to the current search state.
+</p>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>State</span><span>Behaviour</span>
+  </div>
+  {[
+    ['No query',         'All three tabs are shown normally; the active tab content is fully displayed'],
+    ['Query with match', 'Tabs with matches are highlighted (active style). Tabs with no matches are muted (dimmed, not clickable). Content auto-switches to the first matching category'],
+    ['Query no match',   'All tabs appear muted; the panel body shows an empty state message'],
+  ].map(([state, behaviour], i) => (
+    <div key={state} style={{ display: 'grid', gridTemplateColumns: '160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{state}</span>
+      <span style={{ color: '#374151' }}>{behaviour}</span>
+    </div>
+  ))}
+</div>
+
+<div style={{ background: '#f0f4ff', border: '1px solid #dce3f7', borderRadius: 8, padding: '14px 18px', marginBottom: 24 }}>
+  <div style={{ fontSize: 13, fontWeight: 600, color: '#1e40af', marginBottom: 6 }}>Insert field</div>
+  <p style={{ margin: 0, fontSize: 13, color: '#374151', lineHeight: 1.6 }}>
+    The <strong>Insert</strong> field sits next to the search bar. Type any custom value and press <kbd style={{ background: '#f3f4f6', border: '1px solid #d2d6db', borderRadius: 3, padding: '1px 5px', fontSize: 11 }}>Enter</kbd> or click
+    the <strong>Insert</strong> button to add it as a <code style={{ fontSize: 12, background: '#dbeafe', padding: '2px 5px', borderRadius: 4 }}>custom</code> token.
+    Useful for string literals like <code>"Done"</code>, numeric constants like <code>0.8</code>, or any arbitrary value.
+  </p>
+</div>
+
+---
+
+{/* ── Formula Box ────────────────────────────────────────────────── */}
+<h2 id="formula-box" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Formula Box</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  The formula box renders tokens as pill-shaped chips that wrap naturally across rows. A "Formula Editor" label sits above the box
+  for context. Hovering any token reveals a <strong>×</strong> button to remove it individually.
+</p>
+
+<Canvas of={FormulaEditorStories.MixedFormula} />
+
+---
+
+{/* ── Line Numbers ───────────────────────────────────────────────── */}
+<h2 id="line-numbers" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Line Numbers</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  A narrow gutter on the left side of the formula box shows row numbers, similar to a code editor. Row numbers update
+  automatically as tokens wrap onto new lines — useful for navigating complex multi-row formulas.
+</p>
+
+<div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 8, padding: '12px 16px', fontSize: 13, color: '#b45309', marginBottom: 20 }}>
+  <strong>Implementation note:</strong> Row numbers are computed via <code>useLayoutEffect</code> by measuring the <code>offsetTop</code> of each token element.
+  The formula box uses <code>align-items: flex-start</code> so all tokens on the same visual row share the same <code>offsetTop</code> value.
+</div>
+
+<Canvas of={FormulaEditorStories.MultiRow} />
+
+---
+
+{/* ── Debug Output ───────────────────────────────────────────────── */}
+<h2 id="debug" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Debug Output</h2>
+<p style={{ fontSize: 14, color: '#374151', marginBottom: 20, lineHeight: 1.6 }}>
+  Below the Clear All button, a read-only debug field shows the full formula as a concatenated string — tokens joined by spaces.
+  It updates live as tokens are added or removed, making it easy to verify the formula being constructed.
+</p>
+
+<div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 8, padding: '14px 18px', marginBottom: 24 }}>
+  <div style={{ fontSize: 12, fontWeight: 600, color: '#6b7280', marginBottom: 8, textTransform: 'uppercase', letterSpacing: '.06em' }}>Example debug string</div>
+  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+    <span style={{ fontSize: 13, fontWeight: 600, color: '#6b7280', flexShrink: 0 }}>Debug</span>
+    <div style={{ flex: 1, height: 32, padding: '0 10px', background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 4, fontFamily: 'monospace', fontSize: 12, color: '#4b5563', display: 'flex', alignItems: 'center' }}>
+      COUNT_IF ( CHILD ( * . Status ) , Status == &quot;Done&quot; )
+    </div>
+  </div>
+</div>
+
+<Canvas of={FormulaEditorStories.WithCallback} />
+
+---
+
+{/* ── Usage Guidelines ───────────────────────────────────────────── */}
+<h2 id="usage" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Usage Guidelines</h2>
+
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 28 }}>
+  <div style={{ border: '1.5px solid #d1fae5', borderRadius: 8, padding: '16px 18px', background: '#f0fdf4' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#065f46', marginBottom: 10 }}>Do</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Use the helper panel to discover and insert functions and properties</li>
+      <li>Use the Insert field for string literals and numeric constants</li>
+      <li>Remove individual tokens by hovering and clicking ×</li>
+      <li>Use Clear All to reset the formula when starting over</li>
+      <li>Check the debug field to verify the formula string before saving</li>
+      <li>Place the editor inside a card or modal with a clear title and Save/Cancel actions</li>
+    </ul>
+  </div>
+  <div style={{ border: '1.5px solid #fee2e2', borderRadius: 8, padding: '16px 18px', background: '#fff5f5' }}>
+    <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 10 }}>Don't</div>
+    <ul style={{ margin: 0, paddingLeft: 18, fontSize: 13, color: '#374151', lineHeight: 1.8 }}>
+      <li>Don't nest the editor inside a scrollable parent with a fixed height — the formula box needs room to grow</li>
+      <li>Don't use the debug output field as a writable input — it is intentionally read-only</li>
+      <li>Don't rely on only the debug string for formula validation — parse the token array from <code>onChange</code></li>
+      <li>Don't place two FormulaEditor instances on the same page without clear labels distinguishing them</li>
+    </ul>
+  </div>
+</div>
+
+<Canvas of={FormulaEditorStories.InCard} />
+
+---
+
+{/* ── Design Tokens ──────────────────────────────────────────────── */}
+<h2 id="tokens" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Design Tokens</h2>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Token chip colours</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '120px 60px 140px 60px 140px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Variant</span><span>BG swatch</span><span>Background</span><span>Text swatch</span><span>Text</span><span>Usage</span>
+  </div>
+  {[
+    ['function',  '#eff3fb', '#1849a9', 'Function names'],
+    ['param',     '#fff7ed', '#c2410c', 'Parameter placeholders'],
+    ['property',  '#f0fdf4', '#15803d', 'Field property names'],
+    ['operation', '#fdf4ff', '#9333ea', 'Operators'],
+    ['syntax',    '#f3f4f6', '#374151', 'Punctuation ( ) , .'],
+    ['wildcard',  '#fffbeb', '#b45309', 'Wildcard * selector'],
+    ['custom',    '#f9fafb', '#4b5563', 'Custom user values'],
+  ].map(([variant, bg, text, usage], i) => (
+    <div key={variant} style={{ display: 'grid', gridTemplateColumns: '120px 60px 140px 60px 140px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'center', background: i % 2 === 0 ? '#fff' : '#fafafa', gap: 8 }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{variant}</code>
+      <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, background: bg, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{bg}</code>
+      <span style={{ display: 'inline-block', width: 24, height: 24, borderRadius: 6, background: text, border: '1px solid #e5e7eb', flexShrink: 0 }} />
+      <code style={{ fontSize: 12, color: '#374151' }}>{text}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Structure &amp; Geometry</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 24 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Token</span><span>Value</span><span>Usage</span>
+  </div>
+  {[
+    ['Font family',         'IBM Plex Sans Arabic',     'All text in the component'],
+    ['Helper panel height', '260 px (fixed)',           'Fixed height — content scrolls inside'],
+    ['Nav tab height',      '32 px',                   'Category navigation tab'],
+    ['Formula box min-h',   '72 px',                   'Minimum height for the token display area'],
+    ['Line gutter width',   '32 px',                   'Row-number gutter to the left of the formula box'],
+    ['Token height',        '26 px',                   'Height of each token chip'],
+    ['Token border-radius', '4 px',                    'Token chip corner radius'],
+    ['Token gap',           '6 px',                    'Gap between tokens in the formula box'],
+    ['Token padding',       '0 8px',                   'Horizontal padding inside token chips'],
+    ['Brand blue',          '#1849a9',                 'Active nav tab, function tokens, focus rings'],
+    ['Border default',      '#d2d6db',                 'Panel and formula box borders'],
+    ['Background page',     '#f9fafb',                 'Nav panel background and line gutter'],
+  ].map(([token, value, usage], i) => (
+    <div key={token} style={{ display: 'grid', gridTemplateColumns: '220px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+      <span style={{ fontWeight: 500, color: '#000b36' }}>{token}</span>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{value}</code>
+      <span style={{ color: '#374151' }}>{usage}</span>
+    </div>
+  ))}
+</div>
+
+---
+
+{/* ── Component Props ────────────────────────────────────────────── */}
+<h2 id="props" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Component Props</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '150px 160px 100px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Prop</span><span>Type</span><span>Default</span><span>Description</span>
+  </div>
+  {[
+    ['label',         'string',                     '"Formula"',  'Label text shown above the helper panel'],
+    ['showLabel',     'boolean',                    'true',       'Show or hide the top label'],
+    ['defaultTokens', 'Token[]',                    '[]',         'Initial token array — each token is { id, value, variant }'],
+    ['onChange',      '(formula, tokens) => void',  '—',          'Called whenever the token list changes. formula is the joined string; tokens is the full array'],
+  ].map(([prop, type, def, desc], i) => (
+    <div key={prop} style={{ display: 'grid', gridTemplateColumns: '150px 160px 100px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{prop}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{def}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+<h3 style={{ fontSize: 15, fontWeight: 600, color: '#000b36', marginBottom: 12 }}>Token object shape</h3>
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '100px 160px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Field</span><span>Type</span><span>Description</span>
+  </div>
+  {[
+    ['id',      'string',  'Unique identifier — any string; use Math.random().toString(36).slice(2, 9) or crypto.randomUUID()'],
+    ['value',   'string',  'Displayed text of the token — e.g. "SUM", "(", "Budget", ">"'],
+    ['variant', 'string',  'One of: function · param · property · operation · syntax · wildcard · custom'],
+  ].map(([field, type, desc], i) => (
+    <div key={field} style={{ display: 'grid', gridTemplateColumns: '100px 160px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+      <code style={{ fontSize: 12, background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, color: '#1849a9' }}>{field}</code>
+      <code style={{ fontSize: 12, color: '#374151' }}>{type}</code>
+      <span style={{ color: '#374151' }}>{desc}</span>
+    </div>
+  ))}
+</div>
+
+```jsx
+import { FormulaEditor } from '@/components/FormulaEditor';
+
+// Empty — user builds formula interactively
+<FormulaEditor label="Formula" onChange={(formula, tokens) => console.log(formula, tokens)} />
+
+// Pre-populated with tokens
+const tokens = [
+  { id: '1', value: 'SUM',    variant: 'function' },
+  { id: '2', value: '(',      variant: 'syntax' },
+  { id: '3', value: 'values', variant: 'param' },
+  { id: '4', value: ')',      variant: 'syntax' },
+];
+<FormulaEditor label="Budget Formula" defaultTokens={tokens} />
+
+// No label
+<FormulaEditor showLabel={false} />
+```
+
+---
+
+{/* ── Accessibility ──────────────────────────────────────────────── */}
+<h2 id="accessibility" style={{ fontSize: 20, fontWeight: 700, color: '#000b36', marginBottom: 8 }}>Accessibility</h2>
+
+<div style={{ border: '1px solid #e5e7eb', borderRadius: 8, overflow: 'hidden', marginBottom: 28 }}>
+  <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', background: '#f9fafb', borderBottom: '1px solid #e5e7eb', padding: '10px 16px', fontSize: 12, fontWeight: 600, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+    <span>Concern</span><span>Implementation</span>
+  </div>
+  {[
+    ['Search input',      'Native <input type="text"> — fully keyboard accessible; Tab focuses it, Escape clears it'],
+    ['Insert input',      'Native <input> with associated Insert button. Press Enter in the field or click the button to add a custom token'],
+    ['Category nav',      'Each tab is a native <button> — Tab / Shift+Tab navigable; active tab is indicated via aria-selected and visual highlight'],
+    ['Token remove',      'The × remove button is a native <button> inside each token; accessible via keyboard Tab when the token is focused'],
+    ['Clear All button',  'Only rendered when tokens exist — native <button>, keyboard accessible, clearly labelled'],
+    ['Debug output',      'Marked readOnly and aria-label="Formula debug output" — screen readers announce the field as read-only'],
+    ['Helper panel body', 'Scrollable region with overflow: auto — keyboard users can scroll via arrow keys when focused'],
+    ['Line numbers',      'Decorative only — marked with user-select: none; not in the tab order'],
+    ['Formula box',       'Token layout is visual; formula meaning is communicated via the debug output field and the onChange string'],
+  ].map(([concern, impl], i) => (
+    <div key={concern} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '10px 16px', borderBottom: '1px solid #f3f4f6', fontSize: 13, alignItems: 'start', background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
+      <span style={{ fontWeight: 600, color: '#000b36' }}>{concern}</span>
+      <span style={{ color: '#374151' }}>{impl}</span>
+    </div>
+  ))}
+</div>
+
+</div>
